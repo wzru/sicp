@@ -1685,18 +1685,22 @@
 <a name='p1' class='permalink'></a><p>
     On the surface, time seems straightforward.  It
     is an ordering imposed on events.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-    For any events $A$ and $B$,
-    either $A$ occurs before $B$,
-    $A$ and $B$
-    are simultaneous, or $A$ occurs after
+    For any events $A$ and
+    $B$,
+    either $A$ occurs before
+    $B$,
+    $A$ and
+    $B$ are simultaneous, or
+    $A$ occurs after
     $B$.  For instance,
     returning to the bank account example, suppose that Peter withdraws
     \$10 and Paul withdraws \$25 from a 
     
     joint account that initially
-    contains \$100, leaving \$65 in the account.  Depending on the order
-    of the two withdrawals, the sequence of balances in the account is
-    either $\$100 \rightarrow \$90 \rightarrow\$65$$\$100 \rightarrow \$75 \rightarrow\$65$.
+    contains \$100, leaving \$65 in the account.  Depending on the
+    order of the two withdrawals, the sequence of balances in the account is
+    either $\$100 \rightarrow \$90 \rightarrow\$65$
+    or $\$100 \rightarrow \$75 \rightarrow\$65$.
     In a computer implementation of the banking system, this changing
     sequence of balances could be  modeled by successive assignments to
     a variable <kbd>balance</kbd>.
@@ -1720,14 +1724,14 @@
     withdrawals made by Peter and Paul are implemented as two separate
     
     threads 
-    sharing a common variable <kbd>balance</kbd>, each 
+    sharing<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+    a common variable <kbd>balance</kbd>, each 
     
     thread 
     specified by the
     
     function
-    given in
-    Section <REF NAME="sec:local-state-variables"><a class="superscript" id="3.4.1-sec-link-3.1.1" href="./3.1.1.html">3.1.1</a></REF>:
+    given in section <REF NAME="sec:local-state-variables"><a class="superscript" id="3.4.1-sec-link-3.1.1" href="./3.1.1.html">3.1.1</a></REF>:
     <div class='snippet' id='javascript_66_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=DYUwLgBARghsMDsDGIIF4IEYAM2DcAUAGYCuyYAlgPYIQDuFYAFgCYBOMdAFDALZVkwASggBvAhEkQKRCF1jxkqAHwY+AhMLESpuhYhTpocA6gC0EdYMK7dbcCTa19Sm1IC+EEMADOqcbZS9mCOtABEAJIIPiRERBRIFCCaEKQILD5hbpLuBLkEDMzsnFwATACsQngQAPQ1EAJgAA4kYABcEADs5UA')">function withdraw(amount) {
     if (balance >= amount) {
         balance = balance - amount;
@@ -1774,7 +1778,7 @@ balance = balance - amount;
 
   <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
-    The timing diagram in Figure <REF NAME="fig:bank-access"><a class="superscript" id="3.4.1-fig-link-3.29" href="./3.4.1.html#fig_3.29">3.29</a></REF> depicts
+    The timing diagram in figure <REF NAME="fig:bank-access"><a class="superscript" id="3.4.1-fig-link-3.29" href="./3.4.1.html#fig_3.29">3.29</a></REF> depicts
     an order of events where <kbd>balance</kbd> starts at 100,
     Peter withdraws 10, Paul withdraws 25, and yet the final value of
     <kbd>balance</kbd> is 75.  As shown in the diagram,
@@ -1786,7 +1790,7 @@ balance = balance - amount;
     failure for the banking system, because the total amount of money in the
     system is not conserved.  Before the transactions, the total amount of
     money was \$100.  Afterwards, Peter has \$10, Paul has
-    \$25, and the bank has \$75.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+    \$25, and the bank has \$75.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
   </p></div>
 
   <div class='permalink'>
@@ -1808,51 +1812,17 @@ balance = balance - amount;
     the balance, he must be able to assume that, just before the moment of
     change, the balance is still what he thought it was.
   </p></div>
-
   
-    
-      
+  
       <div class='permalink'>
         <a name='h1' class='permalink'></a><h2>
-    
-        JavaScript and concurrency
-      </h2></div>
-
-      <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
-	In its initial design, JavaScript did not allow for two
-        processes to apply functions such as
-	<kbd>withdraw</kbd>
-        concurrently. In fact, the concurrency model of the language enforced
-	strict sequential execution of activities resulting from <EM>events</EM>,
-	with the use of an <EM>event queue</EM>. In the early 2000s, multicore
-	computers became common and around 2010, the JavaScript designers
-	responded with the introduction of concurrent processes via
-	the concept of <EM>web workers</EM>. As of 2019,
-	most internet browsers support this feature. As originally conceived,
-	web workers were not able to share data such as the variable
-	<kbd>balance</kbd> above. However,
-	a shared data structure called
-	<kbd>SharedArrayBuffer</kbd> is included
-	in the latest
-	<a address='http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf' href='http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf'>ECMAScript specification</a>.
-	Using <kbd>SharedArrayBuffer</kbd>, it is
-	possible to program a <kbd>withdraw</kbd>
-	function as described above.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
-      </p></div>
-    
-  
-  
-  
-      <div class='permalink'>
-        <a name='h2' class='permalink'></a><h2>
     
     Correct behavior of concurrent programs
   </h2></div>
 
   
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
     The above example typifies the subtle bugs that can creep into
     concurrent programs.  The root of this complexity lies in the
     assignments to variables that are shared among the different
@@ -1861,12 +1831,12 @@ balance = balance - amount;
     We already know that we must be careful in writing programs that use
     
     assignment,
-    because the results of a computation depend on the order in which the assignments
-    occur.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
+    because the results of a computation depend on the order in which the
+    assignments occur.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
   </p></div>
 
   <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
     With concurrent 
     
     threads 
@@ -1898,13 +1868,12 @@ balance = balance - amount;
   
 
   <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
-    One possible restriction on concurrency would
-    stipulate that no two operations that
-    change any shared state variables can occur at the same time.  This is an
-    extremely stringent requirement.  For distributed banking, it would
-    require the system designer to ensure that only one transaction could
-    proceed at a time. This would be both inefficient and overly
+<a name='p10' class='permalink'></a><p>
+    One possible restriction on concurrency would stipulate that no two
+    operations that change any shared state variables can occur at the same
+    time.  This is an extremely stringent requirement.  For distributed banking,
+    it would require the system designer to ensure that only one transaction
+    could proceed at a time. This would be both inefficient and overly
     conservative.  Figure <REF NAME="fig:two-shared-accounts"><a class="superscript" id="3.4.1-fig-link-3.30" href="./3.4.1.html#fig_3.30">3.30</a></REF> shows
     Peter and Paul sharing a bank account, where Paul has a private account
     as well. The diagram illustrates two withdrawals from the shared account
@@ -1913,15 +1882,13 @@ balance = balance - amount;
   </p></div>
 
   <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
-    The two withdrawals from the shared account must not be
-    concurrent (since both access and update the same account), and Paul's
-    deposit and withdrawal must not be concurrent (since both access and
-    update the amount in Paul's wallet).
-    But there should be no problem
-    permitting Paul's deposit to his private account to proceed
-    concurrently with Peter's withdrawal from the shared account.
-
+<a name='p11' class='permalink'></a><p>
+    The two withdrawals from the shared account must not be concurrent (since
+    both access and update the same account), and Paul's deposit and
+    withdrawal must not be concurrent (since both access and update the amount
+    in Paul's wallet). But there should be no problem permitting
+    Paul's deposit to his private account to proceed concurrently with
+    Peter's withdrawal from the shared account.
     <FIGURE>
       <img src="../img_original/Fig3.30.svg">
       
@@ -1934,53 +1901,53 @@ balance = balance - amount;
   </p></div>
 
   <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
     A less stringent restriction on concurrency would ensure that a
-    concurrent system produces the same result
-    as if the 
+    concurrent system produces the same result as if the 
     
     threads 
-    had run sequentially in some order.
-    There are two important aspects to this requirement.
-    First, it does not require the 
+    had run sequentially in some order. There are two important aspects to this
+    requirement. First, it does not require the 
     
-    threads 
-    to actually run sequentially,
-    but only to produce results that are the same <EM>as if</EM> they had run
-    sequentially.  For the example in
-    Figure <REF NAME="fig:two-shared-accounts"><a class="superscript" id="3.4.1-fig-link-3.30" href="./3.4.1.html#fig_3.30">3.30</a></REF>, the designer of the bank
-    account system can safely allow Paul's deposit and Peter's
+      
+      threads
+     
+    to actually run sequentially, but only to produce results that are the same
+    <EM>as if</EM> they had run sequentially.  For the example in
+    figure <REF NAME="fig:two-shared-accounts"><a class="superscript" id="3.4.1-fig-link-3.30" href="./3.4.1.html#fig_3.30">3.30</a></REF>, the designer of the
+    bank account system can safely allow Paul's deposit and Peter's
     withdrawal to happen concurrently, because the net result will be the same as
     if the two operations had happened sequentially.  Second, there may be more
     than one possible <QUOTE>correct</QUOTE> result produced by a concurrent
     program, because we require only that the result be the same as for
-    <EM>some</EM> sequential order.
-    
-    For example, suppose that Peter and Paul's joint account starts out
-    with \$100, and Peter deposits \$40 while Paul concurrently
-    withdraws half the money in the account. Then sequential execution could
-    result in the account balance being either \$70 or \$90
-    (see exercise <REF NAME="ex:joint-account"><a class="superscript" id="3.4.1-ex-link-3.38" href="./3.4.1.html#ex_3.38">3.38</a></REF>).<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a>
+    <EM>some</EM> sequential order. For example, suppose that Peter and
+    Paul's joint account starts out with \$100, and Peter deposits
+    \$40 while Paul concurrently withdraws half the money in the account.
+    Then sequential execution could result in the account balance being either
+    \$70 or \$90 (see
+    exercise <REF NAME="ex:joint-account"><a class="superscript" id="3.4.1-ex-link-3.38" href="./3.4.1.html#ex_3.38">3.38</a></REF>).<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a>
   </p></div>
 
   <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
-    There are still weaker requirements for correct execution of
-    concurrent programs.  A program for simulating 
+<a name='p13' class='permalink'></a><p>
+    There are still weaker requirements for correct execution of concurrent
+    programs.  A program for simulating 
     
     diffusion (say, the flow of heat in an object) might consist of a large
     number of 
     
-    threads, 
-    each one representing a small volume of space,
-    that update their values concurrently.  Each 
+      
+    threads,
+    each one representing a small volume of space, that update their values
+    concurrently.  Each 
     
-    thread 
-    repeatedly changes
-    its value to the average of its own value and its neighbors' values.
-    This algorithm converges to the right answer independent of the order in
-    which the operations are done; there is no need for any restrictions on
-    concurrent use of the shared values.
+      
+      thread
+     
+    repeatedly changes its value to the average of its own value and its
+    neighbors' values. This algorithm converges to the right answer
+    independent of the order in which the operations are done; there is no
+    need for any restrictions on concurrent use of the shared values.
   </p></div>
 
   
@@ -1989,26 +1956,26 @@ balance = balance - amount;
   
     
     Suppose that Peter, Paul, and Mary share a joint bank account that
-    initially contains \$100.  Concurrently, Peter deposits \$10, Paul
-    withdraws \$20, and Mary withdraws half the money in the account, by
-    executing the following commands:
+    initially contains \$100.  Concurrently, Peter deposits
+    \$10, Paul withdraws \$20, and Mary withdraws half the
+    money in the account, by executing the following commands:
     
       
       
-        <table>
-          <tr><td><kbd>Peter:</kbd></td><td><kbd>balance = balance + 10</kbd></td></tr>
-          <tr><td><kbd>Paul:</kbd></td> <td><kbd>balance = balance - 20</kbd></td></tr>
-          <tr><td><kbd>Mary:</kbd></td> <td><kbd>balance = balance - (balance/2)</kbd></td></tr>
-        </table>
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        <TABLE>
+          <TR>
+	    <TD>Peter:</TD>
+	    <TD><kbd>balance = balance + 10</kbd></TD>
+	  </TR>
+          <TR>
+	    <TD>Paul:</TD>
+	    <TD><kbd>balance = balance - 20</kbd></TD>
+	  </TR>
+          <TR>
+	    <TD>Mary:</TD>
+	    <TD><kbd>balance = balance - (balance/2)</kbd></TD>
+	  </TR>
+	</TABLE>
         
       
     
@@ -2018,8 +1985,8 @@ balance = balance - amount;
         
 	<kbd>balance</kbd>
 	
-	after these three transactions have been completed, assuming that the
-	banking system forces the three 
+	after these three transactions have been completed,
+	assuming that the banking system forces the three 
   
   threads 
   to run sequentially in some order.
@@ -2028,8 +1995,10 @@ balance = balance - amount;
         What are some other values
         that could be produced if the system allows the 
         
-        threads 
-  to be interleaved? Draw timing diagrams like the one in
+	  
+          threads
+	 
+	to be interleaved? Draw timing diagrams like the one in
 	figure <REF NAME="fig:bank-access"><a class="superscript" id="3.4.1-fig-link-3.29" href="./3.4.1.html#fig_3.29">3.29</a></REF> to explain
 	how these values can occur.
       </LI>
@@ -2050,15 +2019,44 @@ balance = balance - amount;
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
     <FOOTNOTE>
-    To quote some graffiti seen on a Cambridge
+    To quote some graffiti seen
+    on a Cambridge
     
-    building wall: <QUOTE>Time is a device that was invented to keep everything
-    from happening at once.</QUOTE>
+    building wall: <QUOTE>Time is a device that was invented to keep
+    everything from happening at once.</QUOTE>
     </FOOTNOTE></div>
 
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
+    <FOOTNOTE>
+    In its initial design, JavaScript
+    did not allow for two processes to apply functions such as
+    <kbd>withdraw</kbd>
+    concurrently. In fact, the concurrency model of the language enforced
+    strict sequential execution of activities resulting from <EM>events</EM>,
+    with the use of an <EM>event queue</EM>. In the early 2000s, multicore
+    computers became common and around 2010, the JavaScript designers
+    responded with the introduction of concurrent processes via
+    the concept of <EM>web workers</EM>. As of 2019,
+    most internet browsers support this feature. As originally conceived,
+    web workers were not able to share data such as the variable
+    <kbd>balance</kbd> above. However,
+    a shared data structure called
+    <kbd>SharedArrayBuffer</kbd> is included
+    in the latest
+    <a address='http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf' href='http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf'>ECMAScript specification</a>.
+    Using <kbd>SharedArrayBuffer</kbd>, it is
+    possible to program a <kbd>withdraw</kbd>
+    function as described above, where multiple threads access a shared value.
+    As of 2019, browsers differ in their support for
+    <kbd>SharedArrayBuffer</kbd>
+    objects.
+    </FOOTNOTE></div>
+
+    
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
     <FOOTNOTE>
     An even worse
     failure for this system could occur if the two
@@ -2067,8 +2065,8 @@ balance = balance - amount;
       assignment statements
     
     attempt to change the balance simultaneously, in which case the actual data
-    appearing in memory might end up being a random combination of the information
-    being written by the two 
+    appearing in memory might end up being a random combination of the
+    information being written by the two 
     
     threads.  
     Most computers have interlocks on
@@ -2082,16 +2080,6 @@ balance = balance - amount;
     maintain a consistent view of memory contents, despite the fact that
     data may be replicated (<QUOTE>cached</QUOTE>) among the different
     processors to increase the speed of memory access.
-    </FOOTNOTE></div>
-
-    
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
-    <FOOTNOTE>
-    As of 2019, browsers differ
-	in their support for
-	<kbd>SharedArrayBuffer</kbd>
-	objects.
     </FOOTNOTE></div>
 
     
@@ -2120,19 +2108,14 @@ balance = balance - amount;
     <div class='footnote'>
       <a class='footnote-number' id='footnote-6' href='#footnote-link-6'>[6] </a>
     <FOOTNOTE>
-    A more formal
-    way to express this idea is to say that concurrent programs are inherently 
+    A more formal way
+    to express this idea is to say that concurrent programs are inherently 
     
-    <EM>nondeterministic</EM>. That
-    is, they are described not by single-valued functions, but by
-    functions whose results are sets of possible values.
+    <EM>nondeterministic</EM>. That is, they are described not by single-valued
+    functions, but by functions whose results are sets of possible values.
+    In section <REF NAME="sec:nondeterministic-evaluation"><a class="superscript" id="3.4.1-sec-link-4.3" href="./4.3.html">4.3</a></REF> we will
+    study a language for expressing nondeterministic computations.
     
-      
-      
-        
-      
-    
-
     </FOOTNOTE></div>
 
     

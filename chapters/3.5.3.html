@@ -1676,7 +1676,7 @@
       </div>
       <div class='chapter-text'>
         <div class='SECTION'><SECTION>
-    <div style="color:red" class="wip-stamp">Note: this section is a work in progress!</div>
+    
 
   
   <div class='permalink'>
@@ -1709,23 +1709,28 @@
   
   <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-    In section <REF NAME="sec:recursion-and-iteration"><a class="superscript" id="3.5.3-sec-link-1.2.1" href="./1.2.1.html">1.2.1</a></REF>, we introduced iterative
-    processes, which proceed by updating state variables.  We know now
-    that we can represent state as a <QUOTE>timeless</QUOTE> stream of values rather
-    than as a set of variables to be updated.  Let's adopt this
+    In section <REF NAME="sec:recursion-and-iteration"><a class="superscript" id="3.5.3-sec-link-1.2.1" href="./1.2.1.html">1.2.1</a></REF>, we introduced
+    iterative processes, which proceed by updating state variables.  We know now
+    that we can represent state as a <QUOTE>timeless</QUOTE> stream of values
+    rather than as a set of variables to be updated.  Let's adopt this
     perspective in revisiting the square-root
-    function
-    from
-    section <REF NAME="sec:sqrt"><a class="superscript" id="3.5.3-sec-link-1.1.7" href="./1.1.7.html">1.1.7</a></REF>.  Recall that the idea is to generate a
-    sequence of better and better guesses for the square root of $x$ by
-    applying over and over again the
-    function
+    
+      
+      function
+    
+    from section <REF NAME="sec:sqrt"><a class="superscript" id="3.5.3-sec-link-1.1.7" href="./1.1.7.html">1.1.7</a></REF>.  Recall that the idea is to
+    generate a sequence of better and better guesses for the square root of
+    $x$ by applying over and over again the
+    
+      
+      function
+    
     that improves guesses:
-
-    <div class='snippet' id='javascript_71_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function sqrt_improve(guess, x) {
+    
+    <div class='snippet' id='javascript_71_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=GYVwdgxgLglg9mABAQwG4FMBOyDm6AUAHgDQCeAlIgN4BQi9im6UImSRiA1IhYgPSIATAG4aAXxqhIsBIgDOAR0xQA+jAC2AB0xwM+HCHRy5xRIUq0GjZqyRosuAgaMmz-RM+PlREmouVqWjp6AIwAdIKmgt5AA')">function sqrt_improve(guess, x) {
     return average(guess, x / guess);
 }
+
 </pre></div></div>
   </p></div>
 
@@ -1733,22 +1738,24 @@ function sqrt_improve(guess, x) {
 <a name='p4' class='permalink'></a><p>
     
     In our original <kbd>sqrt</kbd>
-    function, we made these guesses be the
-    successive values of a state variable. Instead we can generate the
-    infinite stream of guesses, starting with an initial guess of 1:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-
-    <div class='snippet' id='javascript_71_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function sqrt_stream(x) {
+    
+      
+      function,
+    
+    we made these guesses be the successive values of a state variable. Instead
+    we can generate the infinite stream of guesses, starting with an initial
+    guess of 1:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+    <div class='snippet' id='javascript_71_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=GYVwdgxgLglg9mABAQwG4FMBOyDm6AUAHgDQCeAlIgN4BQi9im6UImSRiA1IhYgPSIATAG4aAXxqhIsBIgDOAR0xQA+jAC2AB0xwM+HCHRy5xRIUq0GjZqyRosuAgaMmz-RM+PlREiAjlQiOrIhCoAJjBymgA2yKSIALyIAJyiUtDwSBFRsaQqAUzI6vhyFnQM6TJZkTFx+VCF6mpQWCVQpmBlVlYwwIj4kSpgINHRbeRd3fRiiOjRcuiIvf1ICWuIAAyTU1bZtaT4AOSHpgBEAHSXp97lUzNzC9S3O-R7ufgAFujIYeM3L7sarl6o1mq0Ct8mlBkDAxgFyB1EABaRAARn+OwkVixDDedQhRTBmBKpmCoTxFB8knAGVkimUIMhRG2iD8YACHkMxiMiWeVk0MOJqPOG2IfJe+EoCQAfPIGpCVMFNPouXJErL6aoNNpdE5VaZzGKAcaTZ4FqUMfQmCw2JyXEYqTQKYyiiUlKoCcVBBNhEA')">function sqrt_stream(x) {
     const guesses =
         pair(1.0,
              () => stream_map(guess => sqrt_improve(guess, x),
-                              guesses);
-            );
+                              guesses));
     return guesses;
 }
-display(eval_stream(sqrt_stream(2), 5));
-// [1, [1.5, [1.4166666666666665, [1.4142156862745097,
-// [1.4142135623746899, null]]]]]
+
+</pre></div></div>
+    <div class='snippet' id='javascript_71_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=MYewdgzgLgBAtgQwB4H0AmBLCAHANggTxgF4YBOAbgCgAzAVzGCg3Bkx3wJWgCcBTBHAAUEAJQwA3lRgyY9Rs1bs8hblH6CUGKHx4ioAGhhhxU2eZgYaMIVhRg6uXPtGnpFmQF8YfXBD6W1kJgJMSkAAxuHh7KnEIA5PFGAEQAdOnJotTRMN6+-pLuOTKxhEIAFgJoLllFxaVcvAJwWjp6TZpQCBjO0KJGIQC0MACMtTmedZPmDWoaLdq6IkaIqA21k-JMLCEIAG66CADmfEJIBgRRsvxQdDwhZzAA1DCXMAD0MABM1JsM26wIABHHhQLRwbA8EAHIRHOh8CAQIxIK4yG53XYHHjHU5whFImBID4wPGIja0f6KELA0FzZpnVEwUCQWCk-wQEh1czYbp6EapcIGLk5ITiYgAPhgHRaiGwsPhiJIkppYIwEKhMLZyP6wuKeosbIRrmy1z4t3uJIV7N+VFm0pEILB9q+xqAA')">display_stream(sqrt_stream(2));
+
 </pre></div></div>
   </p></div>
 
@@ -1756,10 +1763,12 @@ display(eval_stream(sqrt_stream(2), 5));
 <a name='p5' class='permalink'></a><p>
     We can generate more and more terms of the stream to get better and
     better guesses.  If we like, we can write a
-    function
-    that keeps
-    generating terms until the answer is good enough.  (See
-    exercise <REF NAME="ex:stream-limit"><a class="superscript" id="3.5.3-ex-link-3.64" href="./3.5.3.html#ex_3.64">3.64</a></REF>.)
+    
+      
+      function
+    
+    that keeps generating terms until the answer is good enough.
+    (See exercise <REF NAME="ex:stream-limit"><a class="superscript" id="3.5.3-ex-link-3.65" href="./3.5.3.html#ex_3.65">3.65</a></REF>.)
   </p></div>
 
   <div class='permalink'>
@@ -1771,9 +1780,9 @@ display(eval_stream(sqrt_stream(2), 5));
     
     
     Another iteration that we can treat in the same way is to generate an
-    approximation to $\pi$, based upon the alternating series that we saw
-    in section <REF NAME="sec:procedures-as-parameters"><a class="superscript" id="3.5.3-sec-link-1.3.1" href="./1.3.1.html">1.3.1</a></REF>:
-
+    approximation to $\pi$, based upon the
+    alternating series that we saw in
+    section <REF NAME="sec:procedures-as-parameters"><a class="superscript" id="3.5.3-sec-link-1.3.1" href="./1.3.1.html">1.3.1</a></REF>:
     
       \[
       \frac {\pi}{4} = 1-\frac{1}{3}+\frac{1}{5}-\frac{1}{7}+\cdots
@@ -1787,10 +1796,12 @@ display(eval_stream(sqrt_stream(2), 5));
     of the odd integers, with alternating signs).  Then we take the stream
     of sums of more and more terms (using the 
     
-    <kbd>partial_sums</kbd> function
-    of exercise <REF NAME="ex:partial-sums"><a class="superscript" id="3.5.3-ex-link-3.55" href="./3.5.2.html#ex_3.55">3.55</a></REF>) and scale the result by 4:
-    <div class='snippet' id='javascript_71_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function pi_summands(n) {
+      
+      <kbd>partial_sums</kbd> function
+      
+    
+    of exercise <REF NAME="ex:partial-sums"><a class="superscript" id="3.5.3-ex-link-3.56" href="./3.5.2.html#ex_3.56">3.56</a></REF>) and scale the result by 4:
+    <div class='snippet' id='javascript_71_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=MYewdgzgLgBAtgQwB4H0AmBLCAHANggTxgF4YBOAbgCgAzAVzGCg3Bkx3wJWgCcBTBHAAUEAJQwA3lRgyY9Rs1bs8hblH6CUGKHx4ioAGhhhxU2eZgYaMIVhRg6uXPtGnpFmQF8YfXBD6W1kJgJMSkAAxuHh7KnEIA5PFGAEQAdOnJotTRMN6+-pLuOTKxhEIAFgJoLllFxaVcvAJwWjp6TZpQCBjO0KJGIQC0MACMtTmedZPmDWoaLdq6IkaIqA21k-JMLCEQwAi4fHPN+vNGNAhMIDxRsvxQdDy76s0oiNhCSCQAfDBfAFRyS5Qa4GOrFYodOAbWgMbasOB8OAgITyUwASHMdUOsAOGjQXB4DBIQL8fGyshxMH4EEcsFIDDQfBoGDAfDQFJk90eISE4mIvzMEIhVhsAEI8VVCQxbsK5TS6ST5HzOXKIZKEASUESQqR1HRyeC1dFuU9qXxabgoKrjbI8mTCraIaaQgqrTanZNMRNqJs4YpnvMUKA4AAjVl8VFGCAjaMAJll5oeZrsDicIjGMAAZFnLBB7I5egmjTIAPzGQslmAALjzBfTMfEAB8m3W00XRFXy7oeNdgoWUgw+EhsHwmOyYAgeABzOiIsCwVkwKHBkBhiPVzJV2vYbp6GgVKoZ-qVTUiBP9GBV6KI5FCPk-ZcvTQh8NsqNPoNdHrHsFO-85Cu34dq4MJbAGk5oGgxyCBAGbxomLqfq8r4RveSCxn8CaPhhMAANRYdGmEQAmvqwgoOwwLuPDMAc3BznBYiOncfDJiEu4YHop7VGIf62g+AqQdBUKMc+LTASI-TXgB0TUbRuD0XAjGgWR4GUdgGCKYgYBoHBJjMVyrE8lRe5CCMqThDAAD0xhGNJHgCb8K7vJ8j6DEgfEyXKGlaQgOl6fhMAXvZ5gwlQoCQLAPlQiSdR7AcRxQkIckYHRtJKclmnpdpulma4RgACy1FQsxJdFYlZEAA')">function pi_summands(n) {
     return pair(1.0 / n, 
                 () => stream_map(x => -x,
                                  pi_summands(n + 2))
@@ -1799,32 +1810,30 @@ function pi_summands(n) {
 
 const pi_stream = 
     scale_stream(partial_sums(pi_summands(1)), 4);
-display_stream(eval_stream(pi_stream, 8));
-// [4, [2.666666666666667, [3.466666666666667,
-// [2.8952380952380956, [3.3396825396825403, 
-// [2.9760461760461765, [3.2837384837384844, 
-// [3.017071817071818, null]]]]]]]]
+
+</pre></div></div>
+    <div class='snippet' id='javascript_71_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=MYewdgzgLgBAtgQwB4H0AmBLCAHANggTxgF4YBOAbgCgAzAVzGCg3Bkx3wJWgCcBTBHAAUEAJQwA3lRgyY9Rs1bs8hblH6CUGKHx4ioAGhhhxU2eZgYaMIVhRg6uXPtGnpFmQF8YfXBD6W1kJgJMSkAAxuHh7KnEIA5PFGAEQAdOnJotTRMN6+-pLuOTKxhEIAFgJoLllFxaVcvAJwWjp6TZpQCBjO0KJGIQC0MACMtTmedZPmDWoaLdq6IkaIqA21k-JMLCEQwAi4fHPN+vNGNAhMIDxRsvxQdDy76s0oiNhCSCQAfDBfAFRyS5Qa4GOrFYodOAbWgMbasOB8OAgITyUwASHMdUOsAOGjQXB4DBIQL8fGyshxMH4EEcsFIDDQfBoGDAfDQFJk90eISE4mIvzMEIhVhsAEI8VVCQxbsK5TS6ST5HzOXKIZKEASUESQqR1HRyeC1dFuU9qXxabgoKrjbI8mTCraIaaQgqrTanZNMRNqJs4YpnvMUKA4AAjVl8VFGCAjaMAJll5oeZrsDicIjGMAAZFnLBB7I5egmjTIAPzGQslmAALjzBfTMfEAB8m3W00XRFXy7oeNdgoWUgw+EhsHwmOyYAgeABzOiIsCwVkwKHBkBhiPVzJV2vYbp6GgVKoZ-qVTUiBP9GBV6KI5FCPk-ZcvTQh8NsqNPoNdHrHsFO-85Cu34dq4MJbAGk5oGgxyCBAGbxomLqfq8r4RveSCxn8CaPhhMAANRYdGmEQAmvqwgoOwwLuPDMAc3BznBYiOncfDJiEu4YHop7VGIf62g+AqQdBUKMc+LTASI-TXgB0TUbRuD0XAjGgWR4GUdgGCKYgYBoHBJjMVyrE8lRe5CCMqThDAAD0xhGNJHgCb8K7vJ8j6DEgfEyXKGlaQgOl6fhMAXvZ5gwlQoCQLAPlQiSdR7AcRxQkIckYHRtJKclmnpdpulma4RgACy1LMSXRWJWRAA')">display_stream(pi_stream);
+
 </pre></div></div>
   </p></div>
 
   <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
-    This gives us a stream of better and better approximations to $\pi$,
-    although the approximations converge rather slowly.  Eight terms of
-    the sequence bound the value of $\pi$ between 3.284 and 3.017.
+    This gives us a stream of better and better approximations to
+    $\pi$, although the approximations converge
+    rather slowly.  Eight terms of the sequence bound the value of
+    $\pi$ between 3.284 and 3.017.
   </p></div>
 
   <div class='permalink'>
 <a name='p9' class='permalink'></a><p>
     
     So far, our use of the stream of states approach is not much different
-    from updating state variables.  But streams give us an opportunity to
-    do some interesting tricks.  For example, we can transform a stream
-    with a 
+    from updating state variables.  But streams give us an opportunity to do
+    some interesting tricks.  For example, we can transform a stream with a 
     
-    <EM>sequence accelerator</EM> that converts a sequence of
-    approximations to a new sequence that converges to the same value as
-    the original, only faster.
+    <EM>sequence accelerator</EM> that converts a sequence of approximations to a
+    new sequence that converges to the same value as the original, only faster.
   </p></div>
 
   <div class='permalink'>
@@ -1832,9 +1841,10 @@ display_stream(eval_stream(pi_stream, 8));
     One such accelerator, due to the eighteenth-century Swiss mathematician
     
     Leonhard Euler, works well with sequences that are partial sums of
-    alternating series (series of terms with alternating signs).
-    In Euler's technique, if $S_n$ is the $n$th term
-    of the original sum sequence, then the accelerated sequence has terms
+    alternating series (series of terms with alternating signs). In
+    Euler's technique, if $S_n$ is the
+    $n$th term of the original sum sequence, then
+    the accelerated sequence has terms
     
       \[ 
       S_{n+1} - \frac{(S_{n+1}-S_n)^2}{S_{n-1}-2S_n+S_{n+1}}
@@ -1842,58 +1852,55 @@ display_stream(eval_stream(pi_stream, 8));
      
     Thus, if the original sequence is represented as a stream of values,
     the transformed sequence is given by
-
-    <div class='snippet' id='javascript_71_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function euler_transform(s) {
+    <div class='snippet' id='javascript_71_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=GYVwdgxgLglg9mABAZwI4gIYCcCmAKADwEpEBvAKESsVyhCyQMQCpECBucgX3NElgSIAtjiFw8fEqQCQ1RJWoAbHFEQZFuDABMAngH0s4RAF5Ewdchyc5y1bmQhFq0+C05gMMDi3Xqtekh4JMYAfGQKcpFRcjDAiHgAhOqaugbgUhHRWdH2js5m4EG+2SVyyTja+oZIplCGVpmlJf4MNDgOTsVNUVyIOIqW4d1NLUi5nY3DVDyyWVycPBAIyKpCGAR6WjDIAA6KGDomiACcnHzQ8Ehbu-v6K5pCeMgZcucCV9t7B3r3FUJ6MCgOCwTygABpEGAXtFYvFtnowI5FKCiNCen0BjhELC8DVjKYAAxo7LXL46PAAcgpEIARAA6Bk0ohdOS9fqDChNUm3PAACwqWhRzMmUW531+GH+gOBoIeeigGBgyJWRAhSAAtIgAIzCuaZHhyMV3Op-AFAkHICFrDZG4U8N6XFAQdQ4H4myWyv4Q8zQOBYYmjFDu-5rHaEExhJisH1QP1gkVTCVCO28cAXQRJvRLIQAI08+GAEOQWqLACYAyoAtjkAikU8dYgAGSN6u1xTK8sJgD8kKRCYAXK3Ee36yQAD5jod15CdrI94FYP24pG08A4Ag7HDQbxqLAAcxAIjAqk8Qbl2bzXn7TIHiB2ipBwD5AtHYP52ie5dV8imIjEeCCCMz1NC98wkItg3lRVlR1eMpngkpMwVJVP1RVEFlTfhHW0LQ3QeZB6zLCs6FaTNQK8ACCBLNhyyAqjEAAahootqJnFMHUEe8sFgdQfkPAjniGPxK1ae8YBBd9BWeOCpkA0I1C0XCkwEyDkOVVUEwQ7IuJ4xQ+KEAS0IwjikB2GB9LWMAtAIqEhKoQMxJBLU6QJRAAHpIQhTTojksJM1DcN5PVAgZK07ozIsjArJsxjEC-bzIhTcgljAFY73MpMjkyZBnWUPC-jwHSYF4hwDMKjLD0s6y8B1b8ABZhRMvpHGBeUsCi5BgD9R5BM5agUrS5BXNMTNcCfS1ECJLoBtUYsjlG9wnghHVpuWWbS3myCxqWuLdWEkjTIfPAEqoGdEE1NBMFwT9zpQBsPKeVymLwdVaNYOamLY0KSj-cRfOa5QsDajquqwHrVOgp40KSo18o9HAWqBuoQe68q4eTZkgA')">function euler_transform(s) {
     const s0 = stream_ref(s, 0);
     const s1 = stream_ref(s, 1);
     const s2 = stream_ref(s, 2);
-    return pair(s2 - 
-                square(s2 - s1) / (s0 + (-2) * s1 + s2),
-                () => euler_transform(stream_tail(s)));
+    return pair(
+             s2 - square(s2 - s1) / (s0 + (-2) * s1 + s2),
+             memo(() => euler_transform(stream_tail(s))));
 }
+
 </pre></div></div>
   </p></div>
 
-  <div class='permalink'>
+  
+    
+    
+      <div class='permalink'>
 <a name='p11' class='permalink'></a><p>
-    We can demonstrate Euler acceleration with our sequence of
-    approximations to $\pi$:
-
-    <div class='snippet' id='javascript_71_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-display_stream(euler_transform(pi_stream));
-// 3.166666666666667
-// 3.1333333333333337
-// 3.1452380952380956
-// 3.13968253968254
-// 3.1427128427128435
-// 3.1408813408813416
-// 3.142071817071818
-// 3.1412548236077655
-// ...
-</pre></div></div>
-  </p></div>
-
+	Note that we make use of the memoization optimization, because in the
+	following we will rely on repeated evaluation of the resulting stream.
+      </p></div>
+    
+  
+  
   <div class='permalink'>
 <a name='p12' class='permalink'></a><p>
-    Even better, we can accelerate the accelerated sequence, and
-    recursively accelerate that, and so on.  Namely, we create a stream of
-    streams (a structure we'll call a 
-    
-    <EM>tableau</EM>) in which each stream
-    is the transform of the preceding one:
+    We can demonstrate Euler acceleration with our sequence of
+    approximations to $\pi$:
+    <div class='snippet' id='javascript_71_7_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=GYVwdgxgLglg9mABAZwI4gIYCcCmAKADwEpEBvAKESsVyhCyQMQCpECBucgX3NElgSIAtjiFw8fEqQCQ1RJWoAbHFEQZFuDABMAngH0s4RAF5Ewdchyc5y1bmQhFq0+C05gMMDi3Xqtekh4JMYAfGQKcpFRcjDAiHgAhOqaugbgUhHRWdH2js5m4EG+2SVyyTja+oZIplCGVpmlJf4MNDgOTsVNUVyIOIqW4d1NLUi5nY3DVDyyWVycPHzQ8Eg4jjhYenUYYMjAcFhCeMgZchAIyKrIAAwmKHUVQgbuxwA0iNdEXee7VwCMd0umieuGAb0Qfy+mR+lxQACZAQ8MCCXsh3nCoXJRogAA4YGBYPCTaLIBEAWhQ6Gw+FJiApyEhiAA9PEbogANTxMkYlgoAGc0lEV7EqIiMR4IImMJrZSbba7faHY5Ip5QfGKY5ELVQngw1RCDAEPRaGDIHGKDA6O4ATk4SwESBNZot+iBj01Q2o9pWiCd5stejdyL0MCgG2V7zAp2isXipr0YEcGsuWs9PT6AxwiFjeBqxlMnzT2T9LrwAHIy+8AEQAOjrVcx0V6-UGFCaJcteAAFhUtMqtV0sh3XSqQ2HCUHVer+5G6RDGz1Mjw5MPA6PQ+G0cJDcbTf6dDreOBloJkBB1Dg18DlcD3uZoAdo1RsZO9AacYQpWxefeoAdhVMJIqoe3qnqO5xCAARp4+DAO8DLwTybZ+CoATZsgCZJscjIAGQ4ehmGKMmGIigA-IgiZESKABcBGUcmjIAD6MXRWGCmRfRYFgBy5km1bgDgBA4jg0DeGoWAAOYgCIYCqJ49zAnoEHQV41ENjRuL4oSYI9to2FCrpfaCkK8hTGK4iSqECmPEpcBQTBEjwaOaowAxQoioBnmvi5xHaiBx4OmoWhaFejzINhiFPm0dCtK+ykOYQfzvAQPJWQQ-JsHC8FJfC-n8D6eJYLA6iBtJ4UnEW2J4gS3a9pqAFTJZYTaCFk7lc504nA1nlTIVxWKKVQjldqCxHvlgg4jAg0GmAWjhVGlWoa01WEn8Na3CyYDvB50RNdZwbvp+VlkgQ3U9U0k3TTsc25hyiAYkQO2RIe5B6riU2TncmRnheoXIngfUwCVDhDQDH3STNN2QiZAAsUKrpOeAyhsWxYDsewHEcl2TgOQA')">display_stream(euler_transform(pi_stream));
 
-    <div class='snippet' id='javascript_71_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function make_tableau(transform, s) {
-    return pair(s, () => make_tableau(transform, transform(s)));
-}
 </pre></div></div>
   </p></div>
 
   <div class='permalink'>
 <a name='p13' class='permalink'></a><p>
-    The tableau has the form
+    Even better, we can accelerate the accelerated sequence, and recursively
+    accelerate that, and so on.  Namely, we create a stream of streams (a
+    structure we'll call a 
+    
+    <EM>tableau</EM>) in which each stream is the transform of the preceding one:
+    <div class='snippet' id='javascript_71_8_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=GYVwdgxgLglg9mABAWwIYGsCmB9KqBGANpqiABRQBOqYAzsHJcgDSK0CUiA3gFCL+JKmKCEpIADqhiUytVmU4BeAHwoMOPERLkqNeoxaJddBk1nsLAbh4BfIA')">function make_tableau(transform, s) {
+    return pair(s, () => make_tableau(transform, transform(s)));
+}
 
+</pre></div></div>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p14' class='permalink'></a><p>
+    The tableau has the form
     
       \[
       \begin{array}{llllll}
@@ -1907,59 +1914,55 @@ function make_tableau(transform, s) {
   </p></div>
 
   <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
+<a name='p15' class='permalink'></a><p>
     Finally, we form a sequence by taking the first term in each row of
     the tableau:
-
-    <div class='snippet' id='javascript_71_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function accelerated_sequence(transform, s) {
+    <div class='snippet' id='javascript_71_9_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=GYVwdgxgLglg9mABAWwIYGsCmB9KqBGANpqiABRQBOqYAzsHJcgDSK0CUiA3gFCL+JKmKCEpIADqhiUytVmU4BeAHwoMOPERLkqNeoxaJddBk1nsLAbh4BfHqEiwEbAI4hUQsgA9OvAYOFRJC9EACpEL2s7B2h4JGRMZDgyB18ASH8+AWIoRFRCIVQAEwBPbEpwREVEYHzaTGt-HIDaEEJc6vAizGAYMEwixoEhETFEBSrVP38Z2ZmYYHGAQnzC0vLwXyy5nZ2hVvaqmvAFId3z-1WSdYqkaqoQBu2Li5GglraoM5fZm0RMQj1bjPH57QJjfafb6ggR2DI7GxRezgWLOTBtTCUXDUEwGczA-wQBC0XK0AAMRxJhWQ5R6slYZPY3yJdFJAEZKVQSDShMB6Yg2UzniySWwAEyc6m0vlyRBioX+N5jSTSMggna0CUAWlc7k8msQOtogsQAHpxuTEABqcZa+VhNgcm2a9jMdVzBJJMgTFT-DFY4z6MxU7m4KSEcwWIV2EW5NBebBFGC0cSEVAlI4ATmsMScSCTKbTZRDqGQ+Om-FzcUQBdT6ewJZpMCgmNkUFYYC2OwW42T2DAbQjJIsBLmfwBQJ7ZDuimqjNH51rRbIAHIV6wAEQAOh3G4VY-+gMwC92S-TZAAFtc21Z3TMz8WuaXsM3W42wzAh1BXYgkDrBdCsLPHY-gPg2T5Ni2MiyvGibJnWJTRsijjVrQED5DgjZttSrC1NAjBdsM4JIO+aDiN4kwRA6eFQIwbownMjZIVWzjvkSyD4H0mApKwxq8faFYBKMSB9gOhBDiaABkkmIKJg6yPKd4APy-oOd4AFyybQ-bycanAAD76VpOniQp7DKf8lCUIw06Dpu4CYF44iYNAAx5JQADmIAJGAuR9GwEHYOxnH9Ope4aYgKoyHyV7FLIgrMLFRRmT+d4eokyQ+qobFwBxXE8QFUp4J+8WumlDEMe+xVDvKUZIixSDFEU4HUrQ8X8YR-BKiRgXBfl3hsqwXj2r6XhOhEYq8YN4rMSieaRR4sD5A23ltRwJ7dQtqpJeY9EwlleRFM1jZrYF1W7eVFVzJIlBLYQK3IGtdW2MhqISDAD1oGARRtZ2G3EVtMhsluFLmmArCXTMB2kag5EhL6WpeHtV0-OIH2tMgX0-dO1pyhYkMCEhPCxpF6MQUczxoRhLXcmQN13Q9bVo59NDY4KP4ACxCg1eQQBAAKYqgLbHZgbiYJA3GBqYhjrYJm0w+RSWsGgWBhlopAUDiQYy7edg8GBWGoHzAvUMLDai48EtkOixABlr0vIyjoLM0xTJAA')">function accelerated_sequence(transform, s) {
     return stream_map(head, make_tableau(transform, s));
 }
-</pre></div></div>
 
+</pre></div></div>
     We can demonstrate this kind of <QUOTE>super-acceleration</QUOTE> of the
     $\pi$ sequence:
+    <div class='snippet' id='javascript_71_10_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=GYVwdgxgLglg9mABAWwIYGsCmB9KqBGANpqiABRQBOqYAzsHJcgDSK0CUiA3gFCL+JKmKCEpIADqhiUytVmU4BeAHwoMOPERLkqNeoxaJddBk1nsLAbh4BfHqEiwEiVBAiZi1KJgAm2WpgAjiCYkJgU1CYGrBzcfAJCImJsVCTI2GjiZAAWJD6saFi4BMSkEXqmhhzs1nYO0PBItMGoQmQAHpy8AoLCokjtiABUiO219uANzsiYyHBkDl0AkD3x-MRQLoRCqD4AntiU4IiKiMCohAHWPRu9tCCEm6fgPpjAMGC+1wl9yQonqm6PWBIOBMGAiDIAEILjt9odwF01qCUaChPdHiczuAFN9UfierC8gcjkhTlQQniCQTEv07g8oFTqcCbIgPAE4szqbTkuiGUyufw7CsUTZxvUnEhMA9MJRcJF9GZYkD+BAELRNrQAAxYjU7dJCYCyVhamrItV0TUARl1qVQBrexsQVrNPQtGrYACZbfrDo65IhPa6fkkJFIZMjUbRvQBaNgtNrRxBx2guxAAekh2sQAGpITGg8M2Da89H2MxIyiZnMyP8VGyZXLjIrkLI7ek8DBCOYLGa7O7Nmh2tgfDBaOJCKg9liAJzWCWNRCj8eTg56tLmTkCBfOZcTqf+dvYGDeGQa1hgJEo8GQsfYMAPbsaixbkGs9mYRA3shkxSnU2vqie6rmQADkoGsAARAAdLBkHBm+bKXJ+KpAWO+57DkeRtlYlYgsBB7rvax6nm2vqdk+UDlogSBxi6ApCsidg9ARa5HiespOkOI7oaufYTI4i60BAFw4ERrbiaw5zQIwV4hnS4kZKgWSDPWgwjNJUCMBWgqguJ-E7k0R5qsg+AfOEwAxFaMSFqhPJIHeD6EE+aYAGSuV+tD3o+shBnhiAAPw0Y+-kAFyed5zmyGmAA+MURU5T5+SiQWypQjA-o+UHgJg7TiJg0C+C4lAAOYgDMYCbB8KS+iZZmfKF8FhYgkjSAsWG7NF5a5J1ZbUf5oLVvMdaqIpdXmQsMRHhRXU6bp816dNUhJb2BmTJKLg+H44m0NFNlyfw9k1Wk2DjZ8tbtNZoyFmpJbXVZ+3iuti6SJQsAXP45W7cqyJHa1Mg9T45hzVyI2bdt7bfUtXbAwNC2gq972EJ9yDfb2T2Cc44gwCjaBgD4u2XoBf3hmQVrQTqmZgKwcMgmDimZB0ALJu0IPwwS2O4zQBM-rmgYWLTPT8TwA4tTj4lYsiwmiYe+pkIjMAffcqPy+L5V4zzLrUQALGarGyxurjuJ4qDeNtQQhGEZDSp48oVNEgvsz0nP6TUQA')">display_stream(accelerated_sequence(euler_transform,
+                                    pi_stream));
 
-    <div class='snippet' id='javascript_71_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-display(eval_stream(accelerated_sequence(euler_transform,
-                                         pi_stream),
-                    8));
-// [4, [3.166666666666667, [3.142105263157895,
-// [3.141599357319005, [3.1415927140337785, [3.1415926539752927,
-// [3.1415926535911765, [3.141592653589778, null]]]]]]]]
 </pre></div></div>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p15' class='permalink'></a><p>
-    The result is impressive.  Taking eight terms of the sequence yields
-    the correct value of $\pi$ to 14 decimal places.  If we had used only
-    the original $\pi$ sequence, we would need to compute on the order of
-    $10^{13}$ terms (i.e., expanding the series far enough so that the
-    individual terms are less then $10^{-13}$) to get that much accuracy!
-    
   </p></div>
 
   <div class='permalink'>
 <a name='p16' class='permalink'></a><p>
-    We could have implemented these acceleration techniques without
-    using streams.  But the stream formulation is particularly elegant and
-    convenient because the entire sequence of states is available to us as a
-    data structure that can be manipulated with a uniform set of
-    operations.
+    The result is impressive.  Taking eight terms of the sequence yields the
+    correct value of $\pi$ to 14 decimal places.
+    If we had used only the original $\pi$ sequence,
+    we would need to compute on the order of $10^{13}$
+    terms (i.e., expanding the series far enough so that the individual terms
+    are less then $10^{-13}$) to get that much
+    accuracy!
+    
+  </p></div>
+
+  <div class='permalink'>
+<a name='p17' class='permalink'></a><p>
+    We could have implemented these acceleration techniques without using
+    streams.  But the stream formulation is particularly elegant and convenient
+    because the entire sequence of states is available to us as a data structure
+    that can be manipulated with a uniform set of operations.
   </p></div>
 
   
     <div class="permalink">
-    <a name="ex_3.63" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.63">Exercise 3.63 </a></b> 
+    <a name="ex_3.64" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.64">Exercise 3.64 </a></b> 
   
     Louis Reasoner asks why the 
     
-    <kbd>sqrt_stream</kbd> function
-    was not
-    written in the following more straightforward way, without
+      
+      <kbd>sqrt_stream</kbd> function
+      
+    
+    was not written in the following more straightforward way, without
     the local variable <kbd>guesses</kbd>:
-    <div class='snippet' id='javascript_71_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_71_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function sqrt_stream(x) {
     return pair(1.0,
                 () => stream_map(guess => 
@@ -1968,12 +1971,17 @@ function sqrt_stream(x) {
                );
 }
 </pre></div></div>
-    Alyssa P. Hacker replies that this version of the
-    function
-    is
-    considerably less efficient because it performs redundant computation.
-    Explain Alyssa's answer.  Would the two versions still differ in
-    efficiency if our implementation of <kbd>delay</kbd> used only <kbd>???</kbd> without using the optimization provided by <kbd>memo-proc</kbd> (section <REF NAME="sec:delayed-lists"><a class="superscript" id="3.5.3-sec-link-3.5.1" href="./3.5.1.html">3.5.1</a></REF>)?
+    
+      
+      
+	Alyssa P. Hacker replies that this version of the function is
+	considerably less efficient if the memoization optimization in
+	section <REF NAME="sec:delayed-lists"><a class="superscript" id="3.5.3-sec-link-3.5.1" href="./3.5.1.html">3.5.1</a></REF> is used.
+	Is Alyssa's answer correct?  Do the two versions differ in efficiency
+	without using the optimization provided by
+	<kbd>memo</kbd>?
+      
+    
     
   
       <div class="Solution">
@@ -1986,19 +1994,21 @@ function sqrt_stream(x) {
 
   
     <div class="permalink">
-    <a name="ex_3.64" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.64">Exercise 3.64 </a></b> 
+    <a name="ex_3.65" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.65">Exercise 3.65 </a></b> 
   
   Write a
   
-  function <kbd>stream_limit</kbd>
-
+    
+    function <kbd>stream_limit</kbd>
+    
+  
   
   that takes as arguments a stream
   and a number (the tolerance).  It should examine the stream until it
   finds two successive elements that differ in absolute value by less
   than the tolerance, and return the second of the two elements.  Using
   this, we could compute square roots up to a given tolerance by
-  <div class='snippet' id='javascript_71_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+  <div class='snippet' id='javascript_71_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function sqrt(x, tolerance) {
     return stream_limit(sqrt_stream(x), tolerance);
 }
@@ -2014,7 +2024,7 @@ function sqrt(x, tolerance) {
 
   
     <div class="permalink">
-    <a name="ex_3.65" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.65">Exercise 3.65 </a></b> 
+    <a name="ex_3.63" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.63">Exercise 3.63 </a></b> 
   
     
     Use the series
@@ -2047,37 +2057,52 @@ function sqrt(x, tolerance) {
   
   
   <div class='permalink'>
-<a name='p17' class='permalink'></a><p>
-    In section <REF NAME="sec:nested-mappings"><a class="superscript" id="3.5.3-sec-link-2.2.3" href="./2.2.3.html">2.2.3</a></REF>, we saw how the sequence paradigm
-    handles traditional nested loops as processes defined on sequences of
-    pairs.  If we generalize this technique to infinite streams, then we
-    can write programs that are not easily represented as loops, because
+<a name='p18' class='permalink'></a><p>
+    In section <REF NAME="sec:nested-mappings"><a class="superscript" id="3.5.3-sec-link-2.2.3" href="./2.2.3.html">2.2.3</a></REF>, we saw how the
+    sequence paradigm handles traditional nested loops as processes defined
+    on sequences of pairs. If we generalize this technique to infinite streams,
+    then we can write programs that are not easily represented as loops, because
     the <QUOTE>looping</QUOTE> must range over an infinite set.
   </p></div>
 
   <div class='permalink'>
-<a name='p18' class='permalink'></a><p>
+<a name='p19' class='permalink'></a><p>
     
     For example, suppose we want to generalize the 
     
-    <kbd>prime_sum_pairs</kbd> function
+      
+      <kbd>prime_sum_pairs</kbd> function
+      
+    
     of section <REF NAME="sec:nested-mappings"><a class="superscript" id="3.5.3-sec-link-2.2.3" href="./2.2.3.html">2.2.3</a></REF> to produce the stream
-    of pairs of <EM>all</EM> integers $(i,j)$ with $i \leq j$ such that $i+j$
-    is prime.  If 
-    <kbd>int_pairs</kbd> is the sequence of all pairs of integers $(i,j)$
-    with $i \leq j$, then our required stream is simply<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-
-    <div class='snippet' id='javascript_71_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-stream_filter(pair => is_prime(head(pair) + head(tail(pair))),
+    of pairs of <EM>all</EM> integers $(i,j)$ with
+    $i \leq j$ such that
+    $i+j$
+    is prime.  If
+    
+      
+      <kbd>int_pairs</kbd>
+    
+    is the sequence of all pairs of integers $(i,j)$
+    with $i \leq j$, then our required stream is
+    simply<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+    
+    <div class='snippet' id='javascript_71_13_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=GYVwdgxgLglg9mABAZwI4gIYCcCmAKADwEpEBvAKESsVyhCyQMQCpECBucgX3NElgSIYyAPoATGADdhMAEYAbfAQA0iAJ4kK1GjjoM2iAKTrEAXnOIADJx59o8JDDBQcAcxxZRyKNlhhXIsBYcAC2eGCalNS09EgADhgwWOHKUdrp6XgkpgB8Qs5uHl4+WH4BQaHhiADUiACMRGkZGUQ2vOD2gsIicVgwIfgRZE12Ao4uyXHIkc06ekhomLh4ABY4GGJ4U0QkeWBNs9QA-IhQWCA4B4eIAFxCohLSyHKKKYhrG1vTjdfNJ8AYeTIS6-DJ3GATPDeXAYEIiHwweRfHacbQ8bQxfQQjxbPoDaZtCAIbyIXr9HDIMykxLJABMqVBsyyZjy0PWcOAiMhV0Zv26ZIGqh5vMOThc7k8Im8vic5WCYQAzDthb9Wu1+A58hNFBhJPhkHVVMhaTNorpYvcRGAQPIkQafn8ULThXcEklVutNvahSLmbktR4dXqofSUGd2fDEnaGg7QWrbB0xtSksgoaooKaqJj4jS8PJhFAPZ9pqoPpsM0Qfb7snkxYH1sG2bCRCEMHFCCzEPnvEWvZW2JWVSLh9om3CEUiKwyRyK3Z4oeHmxOof2hzPfmPI4i8BWUdxyESwCS6xLKaYA6epSUyoF5XgGpxDyTWwRxMI4vIMGoqQBOTijTUJGQD8vyvGEwmmYZtAAwQgJAtQwIjbFkm8VQhi0ZoYGARA8G6a1bQXHYoOaLhEBwIEcCEbCqnMc9LEzQ44M-NQ8AAclY1QACIADpeM4tVZlI8jgWI64mK-XtCIE35xIQzdkIXcCtztDM0MQABaeppIydFqF0qhZMQ5sFOQVQXzfYDmPjA9iSgLUehpM9k3nE8ilUVzPDVTdOXkSE507fk8XwMsthpEhahC5c5x2QdeTFByU1aIA')">stream_filter(pair => is_prime(head(pair) + head(tail(pair))),
               int_pairs);
+
 </pre></div></div>
   </p></div>
 
   <div class='permalink'>
-<a name='p19' class='permalink'></a><p>
-    Our problem, then, is to produce the stream 
-    <kbd>int_pairs</kbd>.  More
-    generally, suppose we have two streams $S = (S_i)$ and $T = (T_j)$,
+<a name='p20' class='permalink'></a><p>
+    Our problem, then, is to produce the stream
+    
+      
+      <kbd>int_pairs</kbd>.
+    
+    More generally, suppose we have two streams
+    $S = (S_i)$ and
+    $T = (T_j)$,
     and imagine the infinite rectangular array
     
       \[
@@ -2101,17 +2126,23 @@ stream_filter(pair => is_prime(head(pair) + head(tail(pair))),
       \end{array}
       \]
     
-    (If we take both $S$ and $T$ to be the stream of integers, then this
-    will be our desired stream 
-    <kbd>int_pairs</kbd>.)  
+    (If we take both $S$ and
+    $T$ to be the stream of integers, then this
+    will be our desired stream
+    
+    <kbd>int_pairs</kbd>.)
+    
   </p></div>
 
   <div class='permalink'>
-<a name='p20' class='permalink'></a><p>
-    Call the general stream of pairs 
-    <kbd>pairs(S, T)</kbd>, and consider it to
-    be composed of three parts: the pair $(S_0,T_0)$, the
-    rest of the pairs in the first row, and the remaining pairs:<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+<a name='p21' class='permalink'></a><p>
+    Call the general stream of pairs
+    
+    <kbd>pairs(S, T)</kbd>,
+    
+    and consider it to be composed of three parts: the pair
+    $(S_0,T_0)$, the rest of the pairs in the first
+    row, and the remaining pairs:<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
     
       \[
       \begin{array}{c|ccc}
@@ -2123,121 +2154,136 @@ stream_filter(pair => is_prime(head(pair) + head(tail(pair))),
       \end{array}
       \]
     
-    Observe that the third piece in this decomposition (pairs that are not in the first row) is (recursively) the pairs formed from 
+    Observe that the third piece in this decomposition (pairs that are not in
+    the first row) is (recursively) the pairs formed from 
     
-    <kbd>stream_tail(S)</kbd>
-    and 
-    <kbd>stream_tail(T)</kbd>.  
+      
+      <kbd>stream_tail(S)</kbd>
+      
+    
+    and
+    
+      
+      <kbd>stream_tail(T)</kbd>.
+      
+    
     Also note that the second piece (the rest of the first row) is
-    <div class='snippet' id='javascript_71_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_71_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 stream_map(x => list(head(s), x),
            stream_tail(t));
 </pre></div></div>
   </p></div>
 
   <div class='permalink'>
-<a name='p21' class='permalink'></a><p>
+<a name='p22' class='permalink'></a><p>
     Thus we can form our stream of pairs as follows:
-    <div class='snippet' id='javascript_71_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function pairs(s, t) {
+    <kbd class='snippet'>function pairs(s, t) {
     return pair(list(head(s), head(t)), 
-                () => <combine_in_some_way>(
+                () => $\textit{combine_in_some_way}$(
                          stream_map(x => list(head(s), x),
                                     stream_tail(t)),
                          pairs(stream_tail(s), stream_tail(t)))
                );
-}
-</pre></div></div>
+}</kbd>
   </p></div>
 
   <div class='permalink'>
-<a name='p22' class='permalink'></a><p>
+<a name='p23' class='permalink'></a><p>
     
     In order to complete the
-    function, we must choose some way to combine
-    the two inner streams.  One idea is to use the stream analog of the
-    <kbd>append</kbd>
-    function
+    
+      function,
+    
+    we must choose some way to combine the two inner streams.  One idea is to
+    use the stream analog of the <kbd>append</kbd>
+    
+      
+      function
+    
     from section <REF NAME="sec:sequences"><a class="superscript" id="3.5.3-sec-link-2.2.1" href="./2.2.1.html">2.2.1</a></REF>:
-
-    <div class='snippet' id='javascript_71_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function stream_append(s1, s2) {
+    
+    <div class='snippet' id='javascript_71_15_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=GYVwdgxgLglg9mABAZygJwKYEMC2B9LAB0IzABMAKZARgBoUAmASkQG8AoRLxTKENJDGR4wIADZiq1Jp25yA-I1lyuALkSEsMNBQAW2SjSb1lKs4gosAvAD4U6bPiIlyVB7jxQtko-WTNTc24mAG52AF92dggEVEQEDGREKw0tHToLazsE5FDo2KhEKAB3OCSUzW0KBnpLZLsSsryYsDjnUjIMMmT7TA921xz6Rtyw1D78TGAKAc6yemoABkXQoA')">function stream_append(s1, s2) {
     return is_null(s1)
         ? s2
         : pair(head(s1), 
                () => stream_append(stream_tail(s1), s2)
               );
 }
+
 </pre></div></div>
   </p></div>
 
   <div class='permalink'>
-<a name='p23' class='permalink'></a><p>
-    This is unsuitable for infinite streams, however,
-    because it takes all the elements from the first stream before
-    incorporating the second stream.
-    In particular, if we try to generate all pairs of positive integers using
+<a name='p24' class='permalink'></a><p>
+    This is unsuitable for infinite streams, however, because it takes all the
+    elements from the first stream before incorporating the second stream. In
+    particular, if we try to generate all pairs of positive integers using
+    
+    <div class='snippet' id='javascript_71_16_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=GYVwdgxgLglg9mABAZygJwKYEMC2B9LAB0IzABMAKZARgBoUAmASkQG8AoRLxTKENJDGR4wIADZiq1Jp25yA-I1lyuALkSEsMNBQAW2SjSb1lKs4gosAvAD4U6bPiIlyVB7jxQtko-WTNTc24mAG52AF92UEhYBA0tNGQqeigWDjlefiRNbQoxISg9AypjRH0sSlTSwKDuS0Rbe0wPZ1JKGtrO1Gb8HCIKAA8Gu3zUIoqS+gHjDs65oO7HT28KKtpZ+ZUcxLce5ZgfUsWPLwPVpguNs1CI9ggEVEQ+gbwyIUIxLABPBsQATjC0Wg8CQb2QH2+eGOOBKbFMQNioPeny+UPc+BgUAwOlQ9DAaVmMGAFiEInEPiqcKC4UQGDEyAwiCJFiQVjZiAADAT5mCIV8KAByAX0ABEADoJSKbtTafTGek5ryUeNDFUwjzkZDoXhMdjdktThTSkgALSIaTq8yROTW7hKrXonVYnH0Z6vTVfG6RBEgplgLEAc2xwlQWDQsDAAbwwDQcBh+Kp3EyAniuTA602dWsdhg-owQcSaLDEajMbjFCQAGpzTJM4gvXcHlA-YHg79c63C6Hw7nS7GYRb2Nskh388H6KOC8gbux7ajoRRhxRJ+OW2PEhcQkA')">pairs(integers, integers);
 
-    <div class='snippet' id='javascript_71_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-pairs(integers, integers);
 </pre></div></div>
-
+    
     our stream of results will first try to run through all pairs with the
     first integer equal to 1, and hence will never produce pairs with any
     other value of the first integer.
   </p></div>
 
   <div class='permalink'>
-<a name='p24' class='permalink'></a><p>
+<a name='p25' class='permalink'></a><p>
     To handle infinite streams, we need to devise an order of combination
     that ensures that every element will eventually be reached if we let
     our program run long enough.  An elegant way to accomplish this is
     with the following <kbd>interleave</kbd>
     function:<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
-
-    <div class='snippet' id='javascript_71_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function interleave(s1, s2) {
+    
+    <div class='snippet' id='javascript_71_17_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=MYewdgzgLgBAtgQwB4H0AmBLCAHANggTxgF4YBOAbgCgAzAVzGCg3Bkx3wJWgCcBTBHAAUEAJQwA3lRgyY9Rs1bs8hblH6CUGKHx4ioAGhhhxU2eZgYaMIVhRg6uXPtGnpFmQF8YfXBD6W1kJgJMSkAAxuHh7KnEIA5PFGAEQAdOnJotTRMN6+-pLuOTKxhEIAFgJoLllFxaVcvAJwWjp6TZpQCBjO0KJGIQC0MACMtTmedZPmDWoaLdq6IkaIqA21k-JMLCEYYG24AgBufCIjRhAATFGy-FB0PLsQ9o69Y3XmAPwwVx+yAFwwbDdPSVBDVCBjIx-YpCcTEAB8ln2ukOCBOIkuF3UzRQXR6Z1cMOiGyoVFAkFg4D4EBIQJBQnONnhSOpYmoFOgMCgAHcQLTSMCMHoscySEjefzapzYHsDsc+Gg6XLUQqhGyjJL2VRZh1hCqeGiTmgskA')">function interleave(s1, s2) {
     return is_null(s1)
-        ? s2;
+        ? s2
         : pair(head(s1), 
                () => interleave(s2, stream_tail(s1))
               );
 }
-</pre></div></div>
-  </p></div>
 
-  <div class='permalink'>
-<a name='p25' class='permalink'></a><p>
-    Since <kbd>interleave</kbd> takes elements alternately from the two streams,
-    every element of the second stream will eventually find its way into
-    the interleaved stream, even if the first stream is infinite.
+</pre></div></div>
   </p></div>
 
   <div class='permalink'>
 <a name='p26' class='permalink'></a><p>
-    We can thus generate the required stream of pairs as
-    <div class='snippet' id='javascript_71_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function pairs(s, t) {
-    return pair(list(head(s), head(t)), 
-   	        () => interleave(stream_map(x => list(head(s), 
-                                                      x),
-                                            stream_tail(t)),
-                                 pairs(stream_tail(s), 
-                                       stream_tail(t)));
-}
-</pre></div></div>
+    Since <kbd>interleave</kbd> takes elements alternately
+    from the two streams, every element of the second stream will eventually
+    find its way into the interleaved stream, even if the first stream is
+    infinite.
   </p></div>
 
+  <div class='permalink'>
+<a name='p27' class='permalink'></a><p>
+    We can thus generate the required stream of pairs as
+    <div class='snippet' id='javascript_71_18_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=GYVwdgxgLglg9mABDMUCmAnANmghgNzQAoBnARgBpESAmASkQG8AoRNxDNKEDJGEgPpgQWLKTJ1W7aQH5qNKdLYAuRAAdcMDEQAWeACbi6VRUrOIiDALwA+ZKkw4CxWlRJROuALYComseR0kubmdADczAC+zBAI7oheuAAeAvr8ali4AJ6IVogAnBGgkLAIiGkkGdkC7p5epAws0sXQ8EgVVVk1Hng+MOja7lRgjabSMMAW-EIiAVBBTGPskYhoWCRoyJNESFZ7iAAMoyHSHZlZRADkl1QARAB0j7fhS2wraxuLJ+xn2boGpHmL2+bF+XVqvQE-UwgLqvn8gOMiCQAFpEBIIiFotJsT90udunDoYMqIkUmCXtEWqU+A4AOaYQTuXAYWBgOkCYAYOD1EZfdicbi8dSabRgCivE6WXJ2FDoBkYJl+VkoDlcnk7RAAanRwRB7EpMTiUHs8sZuVNaAVSpZbLV3PqGOY1LaIq0JFIVHm-LYgp4SA0WiIWH4UH+uEMJCRegjRCBJn10mltkt2DwhFhkMSaiISRliBD7nDkaRSWMksTlZOEO88JgYnjFarJ0Disztb89YaCebvaUNZ8nYbQSCEWizDBhN6RFbHrlVsZVHn1tHQA')">function pairs(s, t) {
+    return pair(list(head(s), head(t)), 
+                () => interleave(stream_map(x => list(head(s), x),
+                                            stream_tail(t)),
+                                 pairs(stream_tail(s), 
+                                       stream_tail(t))));
+}
+
+</pre></div></div>
+    
+
+  </p></div>
 
   
     <div class="permalink">
-    <a name="ex_3.66" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.66">Exercise 3.66 </a></b> 
+    <a name="ex_3.67" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.67">Exercise 3.67 </a></b> 
   
-    Examine the stream 
-    <kbd>pairs(integers, integers)</kbd>. Can you make any general
-    comments about the order in which the pairs are placed into the
-    stream? For example, about how many pairs precede the pair (1,100)?
-    the pair (99,100)? the pair (100,100)? (If you can make precise
+    Examine the stream
+    
+      
+      <kbd>pairs(integers, integers)</kbd>.
+      
+    
+    Can you make any general comments about the order in which the pairs are
+    placed into the stream? For example, about how many pairs precede the pair
+    (1,100)? the pair (99,100)? the pair (100,100)? (If you can make precise
     mathematical statements here, all the better. But feel free to give
     more qualitative answers if you find yourself getting bogged down.)
     
@@ -2252,13 +2298,22 @@ function pairs(s, t) {
 
   
     <div class="permalink">
-    <a name="ex_3.67" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.67">Exercise 3.67 </a></b> 
+    <a name="ex_3.66" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.66">Exercise 3.66 </a></b> 
   
     Modify the <kbd>pairs</kbd>
-    function
-    so that 
-    <kbd>pairs(integers, integers)</kbd> will produce the stream of <EM>all</EM> pairs of integers
-    $(i,j)$ (without the condition $i \leq j$).  Hint: You will need to
+    
+      
+      function
+    
+    so that
+    
+      
+      <kbd>pairs(integers, integers)</kbd>
+      
+    
+    will produce the stream of <EM>all</EM> pairs of integers
+    $(i,j)$ (without the condition
+    $i \leq j$).  Hint: You will need to
     mix in an additional stream.
   
       <div class="Solution">
@@ -2271,13 +2326,13 @@ function pairs(s, t) {
 
   
     <div class="permalink">
-    <a name="ex_3.68" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.68">Exercise 3.68 </a></b> 
+    <a name="ex_3.69" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.69">Exercise 3.69 </a></b> 
   
-    Louis Reasoner thinks that building a stream of pairs from three
-    parts is unnecessarily complicated.  Instead of separating the
-    pair $(S_0,T_0)$ from the rest of the pairs in the first row,
-    he proposes to work with the whole first row, as follows:
-    <div class='snippet' id='javascript_71_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    Louis Reasoner thinks that building a stream of pairs from three parts is
+    unnecessarily complicated.  Instead of separating the pair
+    $(S_0,T_0)$ from the rest of the pairs in the
+    first row, he proposes to work with the whole first row, as follows:
+    <div class='snippet' id='javascript_71_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function pairs(s, t) {
     return interleave(stream_map(x => list(head(s), x),
                                  t), 
@@ -2286,7 +2341,11 @@ function pairs(s, t) {
 </pre></div></div>
     Does this work?  Consider what happens if we evaluate
     
-    <kbd>pairs(integers, integers)</kbd> using Louis's definition of <kbd>pairs</kbd>.
+      
+      <kbd>pairs(integers, integers)</kbd>
+      
+    
+    using Louis's definition of <kbd>pairs</kbd>.
     
   
       <div class="Solution">
@@ -2299,18 +2358,24 @@ function pairs(s, t) {
 
   
     <div class="permalink">
-    <a name="ex_3.69" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.69">Exercise 3.69 </a></b> 
+    <a name="ex_3.70" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.70">Exercise 3.70 </a></b> 
   
     Write a
-    function
-    <kbd>triples</kbd> that takes three infinite
-    streams, $S$, $T$, and $U$, and produces the stream of triples
-    $(S_i,T_j,U_k)$ such that $i \leq j \leq k$.
-    Use <kbd>triples</kbd> to
-    generate the stream of all 
     
-    Pythagorean triples of positive integers,
-    i.e., the triples $(i,j,k)$ such that $i \leq j$ and $i^2 + j^2 =k^2$.
+      
+      function
+    
+    <kbd>triples</kbd> that takes three infinite streams,
+    $S$, $T$, and
+    $U$, and produces the stream of triples
+    $(S_i,T_j,U_k)$ such that
+    $i \leq j \leq k$. Use
+    <kbd>triples</kbd> to generate the stream of all 
+    
+    Pythagorean triples of positive integers, i.e., the triples
+    $(i,j,k)$ such that
+    $i \leq j$ and
+    $i^2 + j^2 =k^2$.
     
   
       <div class="Solution">
@@ -2323,7 +2388,7 @@ function pairs(s, t) {
 
   
     <div class="permalink">
-    <a name="ex_3.70" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.70">Exercise 3.70 </a></b> 
+    <a name="ex_3.71" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.71">Exercise 3.71 </a></b> 
   
     
     
@@ -2332,42 +2397,67 @@ function pairs(s, t) {
     appear in some useful order, rather than in the order that results
     from an <EM>ad hoc</EM> interleaving process.  We can use a technique
     similar to the <kbd>merge</kbd>
-    function
-    of exercise <REF NAME="ex:merge"><a class="superscript" id="3.5.3-ex-link-3.56" href="./3.5.2.html#ex_3.56">3.56</a></REF>, if we
-    define a way to say that one pair of integers is <QUOTE>less than</QUOTE>
-    another.  One way to do this is to define a <QUOTE>weighting function</QUOTE>
-    $W(i,j)$ and stipulate that $(i_1,j_1)$ is less than $(i_2,j_2)$ if
+    
+      
+      function
+    
+    of exercise <REF NAME="ex:merge"><a class="superscript" id="3.5.3-ex-link-3.57" href="./3.5.2.html#ex_3.57">3.57</a></REF>, if we define a way to say that
+    one pair of integers is <QUOTE>less than</QUOTE> another.  One way to do
+    this is to define a <QUOTE>weighting function</QUOTE>
+    $W(i,j)$ and stipulate that
+    $(i_1,j_1)$ is less than
+    $(i_2,j_2)$ if
     $W(i_1,j_1) < W(i_2,j_2)$.  Write a
     
-    function <kbd>merge_weighted</kbd>
-    that is like <kbd>merge</kbd>, except that 
-    <kbd>merge_weighted</kbd> takes an
-    additional argument <kbd>weight</kbd>, which is a
-    function
-    that computes
-    the weight of a pair, and is used to determine the order in which
-    elements should appear in the resulting merged stream.<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
-    Using this,
-    generalize <kbd>pairs</kbd> to a
+      
+      function <kbd>merge_weighted</kbd>
+      
     
-    function <kbd>weighted_pairs</kbd>
-    that
-    takes two streams, together with a
-    function
-    that computes a weighting
-    function, and generates the stream of pairs, ordered according to
-    weight.  Use your
-    function
+    that is like <kbd>merge</kbd>, except that
+    
+      
+      <kbd>merge_weighted</kbd>
+      
+    
+    takes an additional argument <kbd>weight</kbd>, which is a
+    
+      
+      function
+    
+    that computes the weight of a pair, and is used to determine the order in
+    which elements should appear in the resulting merged stream.<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a> Using this, generalize <kbd>pairs</kbd>
+    to a
+    
+      
+      function <kbd>weighted_pairs</kbd>
+      
+    
+    that takes two streams, together with a
+    
+      
+      function
+    
+    that computes a weighting function, and generates the stream of pairs,
+    ordered according to weight.  Use your
+    
+      
+      function
+    
     to generate
     <OL>
       <LI>
-	the stream of all pairs of positive integers $(i,j)$ with $i \leq
-        j$ ordered according to the sum $i + j$
+	the stream of all pairs of positive integers
+	$(i,j)$ with $i \leq
+        j$ ordered according to the sum
+	$i + j$
       </LI>
       <LI>
-	the stream of all pairs of positive integers $(i,j)$ with $i \leq
-        j$, where neither $i$ nor $j$ is divisible by 2, 3, or 5, and the
-	pairs are ordered according to the sum $2 i + 3 j + 5 i j$.
+	the stream of all pairs of positive integers
+	$(i,j)$ with $i \leq
+        j$, where neither $i$ nor
+	$j$ is divisible by 2, 3, or 5, and the
+	pairs are ordered according to the sum
+	$2 i + 3 j + 5 i j$.
       </LI>
     </OL>
   
@@ -2381,20 +2471,22 @@ function pairs(s, t) {
 
   
     <div class="permalink">
-    <a name="ex_3.71" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.71">Exercise 3.71 </a></b> 
+    <a name="ex_3.72" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.72">Exercise 3.72 </a></b> 
   
     
     Numbers that can be expressed as the sum of two cubes in more than one
     way are sometimes called <EM>Ramanujan numbers</EM>, in honor of the
-    mathematician Srinivasa Ramanujan.<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a>
-    Ordered streams of pairs provide an elegant solution to the problem of
-    computing these numbers.  To find a number that can be written as the
-    sum of two cubes in two different ways, we need only generate the
-    stream of pairs of integers $(i,j)$ weighted according to the sum $i^3
-    + j^3$ (see exercise <REF NAME="ex:weighted-pairs"><a class="superscript" id="3.5.3-ex-link-3.70" href="./3.5.3.html#ex_3.70">3.70</a></REF>),
-    then search the stream for two consecutive pairs with the same
-    weight.  Write a
-    function
+    mathematician Srinivasa Ramanujan.<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a> Ordered streams of pairs provide an elegant solution
+    to the problem of computing these numbers.  To find a number that can be
+    written as the sum of two cubes in two different ways, we need only generate
+    the stream of pairs of integers $(i,j)$ weighted
+    according to the sum $i^3 + j^3$ (see
+    exercise <REF NAME="ex:weighted-pairs"><a class="superscript" id="3.5.3-ex-link-3.71" href="./3.5.3.html#ex_3.71">3.71</a></REF>), then search the stream for
+    two consecutive pairs with the same weight.  Write a
+    
+      
+      function
+    
     to generate the Ramanujan numbers.  The first
     such number is 1,729.  What are the next five?
     
@@ -2409,12 +2501,11 @@ function pairs(s, t) {
 
   
     <div class="permalink">
-    <a name="ex_3.72" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.72">Exercise 3.72 </a></b> 
+    <a name="ex_3.68" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.68">Exercise 3.68 </a></b> 
   
-    In a similar way to exercise <REF NAME="ex:ramanujan-nums"><a class="superscript" id="3.5.3-ex-link-3.71" href="./3.5.3.html#ex_3.71">3.71</a></REF> generate
-    a stream of
-    all numbers that can be written as the sum of two squares in three
-    different ways (showing how they can be so written).
+    In a similar way to exercise <REF NAME="ex:ramanujan-nums"><a class="superscript" id="3.5.3-ex-link-3.72" href="./3.5.3.html#ex_3.72">3.72</a></REF> generate
+    a stream of all numbers that can be written as the sum of two squares in
+    three different ways (showing how they can be so written).
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_71_10_div" data-toggle="collapse">Add solution</button></div>
@@ -2437,13 +2528,13 @@ function pairs(s, t) {
   
   
   <div class='permalink'>
-<a name='p27' class='permalink'></a><p>
+<a name='p28' class='permalink'></a><p>
     We began our discussion of streams by describing them as computational
-    analogs of the <QUOTE>signals</QUOTE> in signal-processing systems.  In fact, we
-    can use streams to model signal-processing systems in a very direct
-    way, representing the values of a signal at successive time intervals
-    as consecutive elements of a stream.  For instance, we can implement
-    an 
+    analogs of the <QUOTE>signals</QUOTE> in signal-processing systems.
+    In fact, we can use streams to model signal-processing systems in a very
+    direct way, representing the values of a signal at successive time
+    intervals as consecutive elements of a stream.  For instance, we can
+    implement an 
     
     <EM>integrator</EM> or 
     <EM>summer</EM> that, for an input stream
@@ -2452,26 +2543,32 @@ function pairs(s, t) {
     
       \[ S_i =C +\sum_{j=1}^{i} x_{j} \, dt \]
     
-    and returns the stream of values $S=(S_{i})$.  The following <kbd>integral</kbd>
-    function
+    and returns the stream of values $S=(S_{i})$.
+    The following <kbd>integral</kbd>
+    
+      
+      function
+    
     is reminiscent of the <QUOTE>implicit style</QUOTE> definition of the
     stream of integers (section <REF NAME="sec:infinite-streams"><a class="superscript" id="3.5.3-sec-link-3.5.2" href="./3.5.2.html">3.5.2</a></REF>):
-
-    <div class='snippet' id='javascript_71_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function integral(integrand, initial_value, dt) {
-    const integ = pair(initial_value, 
-        () => add_streams(scale_stream(integrand, dt),
-                          integ);
-        );
+    
+    <div class='snippet' id='javascript_71_20_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=GYVwdgxgLglg9mABAWwKbLgClGAlIgbwEhFTEAoMxAG1SkQENqAnVBgEwE8B9Z8RALyJgTAM6oA3JTK16rUSGr0h4dqmAwwqdlKqsoIZkkz4BAPkLSq1m1RjBEmAIRNWHHnzyXbP34nmKysLgJrp+4WSubFy8-EJQfJJWEX76hkgBSmEpNgC+iKjU4t45qXTp-qgKWcmlpLnkJD65Ug040PBIoglsyNwQcMgARpqo2AA0iKIAjJOiAEz4BMlpRogwotxgitSYM-gAZAfrm9vUuwu4tWQA-Ihn1NekAFwnWzt70-gAPt9vD3tFk9EHdUMxmHBmJgHpMAETgVAADwADqhoNpGMwAOYgNBgeiaKY9Bh9AbDUbPWFXHyvZEMGBQ4CYAAW0U+uHGrI4gNwHIopTQGEwJkEFm6blJgxGWgmRIl3Cg9IuX3GwLq6vFvQVSp5vNwrXI7VgCEY7HY3E1JNEnzmixKpFWXWJkvJMswiNmiERdvMXumiAA1F75nNPZcDUbOlMIExUBbnXtnZMRNBIUsVuU1pa+sgGMj3aKvYgAFTCBip5iq9XWbP68htcAdE2aKCoLHMJiYFttjtgdiTTQwWBMbgANyYIFQk3YUHTVAGYG663xbcEiDpDMwavCg+H1DHE6n-OrjlMFg45uz1u31dEMdo8YlXZX7YYfens6rJ583ax1PVdZ6JmSC-gahqNsaSDbMMYKbN0DDMLAYBYtwwAQsgmBQB+c5kI6670lCWE3tYIq+tBQywfGCFIShaGDJhgaIDO2HEWQdYNAuS4zmuAAMAB0PHTBIRDkJx9DUKMCFruRlHwYhmi0ehmA8dhwm2KJCBLhJWgIdwv4dtQa76Z22lsJWiAqUxs5SAA9DZiBksiIA0curavoZdHIBZiBQHAiAAMyIHADhMoipheuQdmOFArKuT2TAnIgWLuuF-EAKxegAeiGjB9j5rKsMAkKoJF9kxaglTVASoj3GZFl8Rlpb+dla4ACwNVc2a8OomCmbpxnUJMuYxbwcCqJggX2TOvISEAA')">function integral(integrand, initial_value, dt) {
+    const integ = pair(
+                    initial_value, 
+                    () => add_streams(
+                            scale_stream(integrand, dt),
+                            integ)
+                  );
     return integ;
 }
-</pre></div></div>
 
+</pre></div></div>
     
     <FIGURE>
       <img id="fig_3.32" src="../img_original/ch3-Z-G-49.svg">
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./3.5.3.html#fig_3.32">Figure 3.32 </a></b>The <kbd>integral</kbd>
+      
       function
       viewed as a signal-processing system.
       </div>
@@ -2480,12 +2577,16 @@ function integral(integrand, initial_value, dt) {
   </p></div>
 
   <div class='permalink'>
-<a name='p28' class='permalink'></a><p>
-    Figure <REF NAME="fig:integral"><a class="superscript" id="3.5.3-fig-link-3.32" href="./3.5.3.html#fig_3.32">3.32</a></REF> is a picture of a signal-processing system that
-    corresponds to the <kbd>integral</kbd>
-    function.  The input stream is
-    scaled by $dt$ and passed through an adder, whose output is passed
-    back through the same adder.  The self-reference in the definition of
+<a name='p29' class='permalink'></a><p>
+    Figure <REF NAME="fig:integral"><a class="superscript" id="3.5.3-fig-link-3.32" href="./3.5.3.html#fig_3.32">3.32</a></REF> is a picture of a signal-processing
+    system that corresponds to the <kbd>integral</kbd>
+    
+      
+      function.
+    
+    The input stream is scaled by $dt$ and passed
+    through an adder, whose output is passed back through the same adder.
+    The self-reference in the definition of
     
       
       
@@ -2498,7 +2599,7 @@ function integral(integrand, initial_value, dt) {
 
   
     <div class="permalink">
-    <a name="ex_3.73" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.73">Exercise 3.73 </a></b> 
+    <a name="ex_3.74" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.74">Exercise 3.74 </a></b> 
   
     
     <p>
@@ -2513,31 +2614,52 @@ function integral(integrand, initial_value, dt) {
       
       
       
-      
       We can model electrical circuits using streams to represent the values
       of currents or voltages at a sequence of times.  For instance, suppose
-      we have an <EM>RC circuit</EM> consisting of a resistor of resistance $R$
-      and a capacitor of capacitance $C$ in series.  The voltage response
-      $v$ of the circuit to an injected current $i$ is determined by the
-      formula in Figure <REF NAME="fig:rc"><a class="superscript" id="3.5.3-fig-link-3.33" href="./3.5.3.html#fig_3.33">3.33</a></REF>, whose structure is shown by the accompanying
-      signal-flow diagram.
+      we have an <EM>RC circuit</EM> consisting of a resistor of resistance
+      $R$ and a capacitor of capacitance
+      $C$ in series.  The voltage response
+      $v$ of the circuit to an injected current
+      $i$ is determined by the formula in
+      figure <REF NAME="fig:rc"><a class="superscript" id="3.5.3-fig-link-3.33" href="./3.5.3.html#fig_3.33">3.33</a></REF>, whose structure is shown by the
+      accompanying signal-flow diagram.
     </p>
 
     <p>
       Write a
-      function
-      <kbd>RC</kbd> that models this circuit.  <kbd>RC</kbd> should
-      take as inputs the values of $R$, $C$, and $dt$ and should return a
-      function
-      that takes as inputs a stream representing the current $i$
-      and an initial value for the capacitor voltage $v_{0}$ and produces as
-      output the stream of voltages $v$.  For example, you should be able to
-      use <kbd>RC</kbd> to model an RC circuit with $R = 5$ ohms, $C = 1$ farad,
-      and a 0.5-second time step by evaluating <kbd>const RC1 = RC(5, 1, 0.5)</kbd>.  This defines <kbd>RC1</kbd> as a
-      function
-      that takes a stream
-      representing the time sequence of currents and an initial capacitor
-      voltage and produces the output stream of voltages.
+      
+	
+	function
+      
+      <kbd>RC</kbd> that models this circuit.
+      <kbd>RC</kbd> should take as inputs the values of
+      $R$, $C$, and
+      $dt$ and should return a
+      
+	
+	function
+      
+      that takes as inputs a stream representing the current
+      $i$ and an initial value for the capacitor
+      voltage $v_{0}$ and produces as output the
+      stream of voltages $v$.  For example, you
+      should be able to use <kbd>RC</kbd> to model an RC
+      circuit with $R = 5$ ohms,
+      $C = 1$ farad, and a 0.5-second time step by
+      evaluating
+      
+	
+	
+	  <kbd>const RC1 = RC(5, 1, 0.5)</kbd>.
+	
+      
+      This defines <kbd>RC1</kbd> as a
+      
+	
+	function
+      
+      that takes a stream representing the time sequence of currents and an
+      initial capacitor voltage and produces the output stream of voltages.
     </p>
   
       <div class="Solution">
@@ -2550,36 +2672,52 @@ function integral(integrand, initial_value, dt) {
 
   
     <div class="permalink">
-    <a name="ex_3.74" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.74">Exercise 3.74 </a></b> 
+    <a name="ex_3.75" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.75">Exercise 3.75 </a></b> 
   
     
     
     Alyssa P. Hacker is designing a system to process signals coming from
-    physical sensors.  One important feature she wishes to produce is a
-    signal that describes the <EM>zero crossings</EM> of the input signal.
-    That is, the resulting signal should be $+1$ whenever the input signal
-    changes from negative to positive, $-1$ whenever the input signal changes from positive to negative, and 0 otherwise.  (Assume that the
-    sign of a 0 input is positive.)  For example, a typical input signal
-    with its associated zero-crossing signal would be
-    <div class='snippet' id='javascript_71_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    physical sensors.  One important feature she wishes to produce is a signal
+    that describes the <EM>zero crossings</EM> of the input signal. That is,
+    the resulting signal should be $+1$ whenever the
+    input signal changes from negative to positive,
+    $-1$ whenever the input signal changes from
+    positive to negative, and 0 otherwise.  (Assume that the sign of a 0 input
+    is positive.)  For example, a typical input signal with its associated
+    zero-crossing signal would be
+    <div class='snippet' id='javascript_71_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ... 1  2  1.5  1  0.5  -0.1  -2  -3  -2  -0.5  0.2  3  4 ...
 ... 0  0    0  0    0     -1  0   0   0     0    1  0  0 ...
 </pre></div></div>
 
     In Alyssa's system, the signal from the sensor is represented as a
-    stream 
-    <kbd>sense_data</kbd> 
-    and the stream 
-    <kbd>zero_crossings</kbd> is
-    the corresponding stream of zero crossings.  Alyssa first writes a
-    function
+    stream
     
-    <kbd>sign_change_detector</kbd> that takes two values as
-    arguments and compares the signs of the values to produce an
-    appropriate $0$, $1$, or $-1$.  She then constructs her zero-crossing
-    stream as follows:
+      
+      <kbd>sense_data</kbd>
+     
+    and the stream
+    
+      
+      <kbd>zero_crossings</kbd>
+      
+    
+    is the corresponding stream of zero crossings.  Alyssa first writes a
+    
+      
+      function
+    
+    
+      
+      <kbd>sign_change_detector</kbd>
+      
+    
+    that takes two values as arguments and compares the signs of the values to
+    produce an appropriate $0$,
+    $1$, or $-1$.  She
+    then constructs her zero-crossing stream as follows:
 
-    <div class='snippet' id='javascript_71_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_71_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_zero_crossings(input_stream, last_value) {
     return pair(sign_change_detector(head(input_stream),
                                      last_value),
@@ -2600,64 +2738,16 @@ const zero_crossings = make_zero_crossings(sense_data, 0);
 	from exercise <REF NAME="ex:combine-streams"><a class="superscript" id="3.5.3-ex-link-3.50" href="./3.5.1.html#ex_3.50">3.50</a></REF>:
       
     
-    <div class='snippet' id='javascript_71_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-const zero_crossing = combine_streams(sign_change_detector,
+    <kbd class='snippet'>const zero_crossing = combine_streams(sign_change_detector,
                                       sense_data,
-                                      <expression>);
-</pre></div></div>
-
+                                      $\textit{expression}$);</kbd>
     Complete the program by supplying the indicated
-    <kbd><expression></kbd>.
+    $\textit{expression}$.
     
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_71_12_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_71_12_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
-    
-</EXERCISE></div>
-
-
-  
-    <div class="permalink">
-    <a name="ex_3.75" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.75">Exercise 3.75 </a></b> 
-  
-    
-    
-    
-    
-    Unfortunately, Alyssa's zero-crossing detector in
-    exercise <REF NAME="ex:zero-crossing"><a class="superscript" id="3.5.3-ex-link-3.74" href="./3.5.3.html#ex_3.74">3.74</a></REF> proves to be insufficient, because the
-    noisy signal from the sensor leads to spurious zero crossings.  Lem E.
-    Tweakit, a hardware specialist, suggests that Alyssa smooth the signal
-    to filter out the noise before extracting the zero crossings.  Alyssa
-    takes his advice and decides to extract the zero crossings from the
-    signal constructed by averaging each value of the sense data with the
-    previous value.  She explains the problem to her assistant, Louis
-    Reasoner, who attempts to implement the idea, altering Alyssa's program as
-    follows:
-
-    <div class='snippet' id='javascript_71_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function make_zero_crossings(input_stream, last_value) {
-    const avpt = (head(input_stream) + last_value) / 2;
-    return pair(sign_change_detector(avpt, last_value),
-        () => make_zero_crossings(
-                  stream_tail(input_stream), 
-                  avpt);
-		 );
-}
-</pre></div></div>
-
-    This does not correctly implement Alyssa's plan.
-    Find the bug that Louis has installed
-    and fix it without changing the structure of the program.  (Hint: You
-    will need to increase the number of arguments to 
-    <kbd>make_zero_crossings</kbd>.)
-    
-  
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_71_13_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_71_13_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
@@ -2671,17 +2761,67 @@ function make_zero_crossings(input_stream, last_value) {
     
     
     
+    Unfortunately, Alyssa's zero-crossing detector in
+    exercise <REF NAME="ex:zero-crossing"><a class="superscript" id="3.5.3-ex-link-3.75" href="./3.5.3.html#ex_3.75">3.75</a></REF> proves to be insufficient,
+    because the noisy signal from the sensor leads to spurious zero crossings.
+    Lem E. Tweakit, a hardware specialist, suggests that Alyssa smooth the
+    signal to filter out the noise before extracting the zero crossings.
+    Alyssa takes his advice and decides to extract the zero crossings from
+    the signal constructed by averaging each value of the sense data with
+    the previous value.  She explains the problem to her assistant, Louis
+    Reasoner, who attempts to implement the idea, altering Alyssa's
+    program as follows:
+    <div class='snippet' id='javascript_71_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function make_zero_crossings(input_stream, last_value) {
+    const avpt = (head(input_stream) + last_value) / 2;
+    return pair(sign_change_detector(avpt, last_value),
+        () => make_zero_crossings(
+                  stream_tail(input_stream), 
+                  avpt);
+		 );
+}
+</pre></div></div>
+    This does not correctly implement Alyssa's plan.
+    Find the bug that Louis has installed
+    and fix it without changing the structure of the program.  (Hint: You
+    will need to increase the number of arguments to
+    
+      
+      <kbd>make_zero_crossings</kbd>.)
+      
+    
+    
+  
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_71_13_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_71_13_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+
+  
+    <div class="permalink">
+    <a name="ex_3.73" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.73">Exercise 3.73 </a></b> 
+  
+    
+    
+    
+    
     Eva Lu Ator has a criticism of Louis's approach in
-    exercise <REF NAME="ex:zero-crossing-2"><a class="superscript" id="3.5.3-ex-link-3.75" href="./3.5.3.html#ex_3.75">3.75</a></REF>.  The program he wrote is not modular,
-    because it intermixes the operation of smoothing with the
+    exercise <REF NAME="ex:zero-crossing-2"><a class="superscript" id="3.5.3-ex-link-3.76" href="./3.5.3.html#ex_3.76">3.76</a></REF>.  The program he wrote is
+    not modular, because it intermixes the operation of smoothing with the
     zero-crossing extraction.  For example, the extractor should not have
     to be changed if Alyssa finds a better way to condition her input
     signal.  Help Louis by writing a
-    function
-    <kbd>smooth</kbd> that takes a
-    stream as input and produces a stream in which each element is the
-    average of two successive input stream elements.  Then use <kbd>smooth</kbd> as a component to implement the zero-crossing detector in a
-    more modular style.
+    
+      
+      function
+    
+    <kbd>smooth</kbd> that takes a stream as input and
+    produces a stream in which each element is the average of two successive
+    input stream elements.  Then use <kbd>smooth</kbd> as a
+    component to implement the zero-crossing detector in a more modular style.
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_71_14_div" data-toggle="collapse">Add solution</button></div>
@@ -2690,80 +2830,93 @@ function make_zero_crossings(input_stream, last_value) {
     
 </EXERCISE></div>
 
-  
-  
 
+  
+  
 <hr>
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
     <FOOTNOTE>
-    We can't use <kbd>let</kbd> to bind the local variable
-    <kbd>guesses</kbd>, because the value of <kbd>guesses</kbd> depends on <kbd>guesses</kbd> itself.  Exercise <REF NAME="ex:stream-internal-def"><a class="superscript" id="3.5.3-ex-link-3.63" href="./3.5.3.html#ex_3.63">3.63</a></REF> addresses why
-    we want a local variable here.
+    We can't use <kbd>let</kbd> to
+    bind the local variable <kbd>guesses</kbd>, because the
+    value of <kbd>guesses</kbd> depends on
+    <kbd>guesses</kbd> itself.
+    Exercise <REF NAME="ex:stream-internal-def"><a class="superscript" id="3.5.3-ex-link-3.64" href="./3.5.3.html#ex_3.64">3.64</a></REF> addresses why we want
+    a local variable here.
     </FOOTNOTE></div>
 
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
     <FOOTNOTE>
-    As in section <REF NAME="sec:sequences-conventional-interfaces"><a class="superscript" id="3.5.3-sec-link-2.2.3" href="./2.2.3.html">2.2.3</a></REF>,
-    we represent a pair of integers as a list rather than a JavaScript pair.
+    As in
+    section <REF NAME="sec:sequences-conventional-interfaces"><a class="superscript" id="3.5.3-sec-link-2.2.3" href="./2.2.3.html">2.2.3</a></REF>, we
+    represent a pair of integers as a list rather than a
+    
+      
+      JavaScript
+    
+    pair.
     </FOOTNOTE></div>
 
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
     <FOOTNOTE>
-    See exercise <REF NAME="ex:pairs-array"><a class="superscript" id="3.5.3-ex-link-3.68" href="./3.5.3.html#ex_3.68">3.68</a></REF> for some insight
-    into why we chose this decomposition.
+    See
+    exercise <REF NAME="ex:pairs-array"><a class="superscript" id="3.5.3-ex-link-3.69" href="./3.5.3.html#ex_3.69">3.69</a></REF> for some insight into why we
+    chose this decomposition.
     </FOOTNOTE></div>
 
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-4' href='#footnote-link-4'>[4] </a>
     <FOOTNOTE>
-    The precise statement of the
-    required property on the order of combination is as follows: There
-    should be a function $f$ of two arguments such that the pair
-    corresponding to element $i$ of the first stream and element $j$ of
-    the second stream will appear as element number $f(i,j)$ of the output
-    stream.  The trick of using <kbd>interleave</kbd> to accomplish this was
-    shown to us by 
+    The
+    precise statement of the required property on the order of combination is
+    as follows: There should be a function $f$ of
+    two arguments such that the pair corresponding to
+    element $i$ of the first stream and
+    element $j$ of the second stream will
+    appear as element number $f(i,j)$ of the output
+    stream.  The trick of using <kbd>interleave</kbd>
+    to accomplish this was shown to us by 
     
     David Turner, who employed it in the language 
     
-    KRC
-    (<CITATION>Turner 1981</CITATION>).
+    KRC (<CITATION>Turner 1981</CITATION>).
     </FOOTNOTE></div>
 
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-5' href='#footnote-link-5'>[5] </a>
     <FOOTNOTE>
-    We will require that the weighting function be such that
-    the weight of a pair increases as we move out along a row or down
-    along a column of the array of pairs.
+    We
+    will require that the weighting function be such that the weight of a pair
+    increases as we move out along a row or down along a column of the array of
+    pairs.
     </FOOTNOTE></div>
 
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-6' href='#footnote-link-6'>[6] </a>
     <FOOTNOTE>
-    To quote from G. H. Hardy's obituary of
+    To quote from G. H.
+    Hardy's obituary of
     
     
     
-    Ramanujan (<CITATION>Hardy 1921</CITATION>): <QUOTE>It was Mr. Littlewood (I believe) who remarked that
-    <QUOTE>every positive integer was one of his friends.</QUOTE>  I remember once
-    going to see him when he was lying ill at Putney.  I had ridden in
-    taxi-cab No. 1729, and remarked that the number seemed to me a rather
-    dull one, and that I hoped it was not an unfavorable omen.  
-    <QUOTE>No,</QUOTE> he
-    replied, <QUOTE>it is a very interesting number; it is the smallest number
-    expressible as the sum of two cubes in two different ways.</QUOTE></QUOTE>
-    The trick of using weighted pairs to generate the Ramanujan numbers
-    was shown to us by Charles Leiserson.
+    Ramanujan (<CITATION>Hardy 1921</CITATION>): <QUOTE>It was Mr. Littlewood
+    (I believe) who remarked that <QUOTE>every positive integer was one of his
+    friends.</QUOTE>  I remember once going to see him when he was lying ill
+    at Putney.  I had ridden in taxi-cab No. 1729, and remarked that the number
+    seemed to me a rather dull one, and that I hoped it was not an unfavorable
+    omen. <QUOTE>No,</QUOTE> he replied, <QUOTE>it is a very interesting number;
+    it is the smallest number expressible as the sum of two cubes in two
+    different ways.</QUOTE></QUOTE> The trick of using weighted pairs to
+    generate the Ramanujan numbers was shown to us by Charles
+    Leiserson.
     </FOOTNOTE></div>
 
     
