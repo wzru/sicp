@@ -2258,7 +2258,7 @@ function rest_args(ops) {
 	to implement as syntactic transformations are called <EM>derived
 	expressions</EM>. <kbd>Let</kbd> expressions are also
 	derived expressions (see
-	exercise <REF NAME="ex:implement-let"><a class="superscript" id="4.1.2-ex-link-4.10" href="./4.1.2.html#ex_4.10">4.10</a></REF>).<a class='superscript' id='footnote-link-7' href='#footnote-7'style="color:teal">[7]</a>
+	exercise <REF NAME="ex:implement-let"><a class="superscript" id="4.1.2-ex-link-4.9" href="./4.1.2.html#ex_4.9">4.9</a></REF>).<a class='superscript' id='footnote-link-7' href='#footnote-7'style="color:teal">[7]</a>
 	
 	
 	
@@ -2554,7 +2554,11 @@ list("constant_declaration", list("name", "x"), 1);
 </EXERCISE></div>
 
   
-  <table width="100%">
+  
+    <div class="permalink">
+    <a name="ex_4.8" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.8">Exercise 4.8 </a></b> 
+  
+    <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
           <td class="meta" style = "color:grey; text-align: center">Original</td>
@@ -2563,10 +2567,6 @@ list("constant_declaration", list("name", "x"), 1);
         </tr>
         <tr>
           <td><span style="color:teal">
-      
-    <div class="permalink">
-    <a name="ex_4.8" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.8">Exercise 4.8 </a></b> 
-  
 	
 	
 	
@@ -2588,7 +2588,35 @@ list("constant_declaration", list("name", "x"), 1);
 	returns 2. Modify the handling of <kbd>cond</kbd> 
 	so that it supports this extended syntax.
 	
-      
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+	In JavaScript, lambda expressions must not have duplicate parameters. The
+	<kbd>evaluate</kbd> function in
+	section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> does not check for this.
+	<UL>
+	  <LI>
+	    Modify the <kbd>evaluate</kbd> function such
+	    that any attempt to apply a function with duplicate parameters
+	    raises an error.
+	  </LI>
+	  <LI>
+	    Implement a <kbd>verify</kbd> function that
+	    checks whether any lambda expression in a given program contains
+	    duplicate parameters. With such a function, we could check the entire
+	    given program before we pass it to
+	    <kbd>evaluate</kbd>.
+	  </LI>
+	</UL>
+	In order to implement this check in a JavaScript interpreter, which one
+	of these two approaches would you prefer? Why?
+	<p></p>
+	The names declared in the body of a lambda expression outside of a block
+	must be distinct from each other, and also distinct from the names of
+	the parameters of the lambda expression. Use your preferred approach
+	above to check for this, as well.
+      </span></td></tr></table>
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_6_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_77_6_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2596,48 +2624,12 @@ list("constant_declaration", list("name", "x"), 1);
     
 </EXERCISE></div>
 
-    </span>    </td>
-          <td></td>
-          <td><span style="color:blue">
-      
-    <div class="permalink">
-    <a name="ex_3.85" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.85">Exercise 3.85 </a></b> 
+
   
-      In JavaScript, lambda expressions must not have duplicate parameters. The
-      <kbd>evaluate</kbd> function in
-      section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> does not check for this.
-      <UL>
-	<LI>
-	  Modify the <kbd>evaluate</kbd> function such
-	  that any attempt to apply a function with duplicate parameters
-	  raises an error.
-	</LI>
-	<LI>
-	  Implement a <kbd>verify</kbd> function that
-	  checks whether any lambda expression in a given program contains
-	  duplicate parameters. With such a function, we could check the entire
-	  given program before we pass it to
-	  <kbd>evaluate</kbd>.
-	</LI>
-      </UL>
-      In order to implement this check in a JavaScript interpreter, which one
-      of these two approaches would you prefer? Why?
-      <p></p>
-      The names declared in the body of a lambda expression outside of a block
-      must be distinct from each other, and also distinct from the names of
-      the parameters of the lambda expression. Use your preferred approach
-      above to check for this, as well.
-      
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_7_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_77_7_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
-    
-</EXERCISE></div>
-
-    </span></td></tr></table>
-
-  <table width="100%">
+    <div class="permalink">
+    <a name="ex_4.9" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.9">Exercise 4.9 </a></b> 
+  
+    <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
           <td class="meta" style = "color:grey; text-align: center">Original</td>
@@ -2646,10 +2638,6 @@ list("constant_declaration", list("name", "x"), 1);
         </tr>
         <tr>
           <td><span style="color:teal">
-      
-    <div class="permalink">
-    <a name="ex_4.10" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.10">Exercise 4.10 </a></b> 
-  
 	
 	<kbd>Let</kbd> expressions are derived expressions,
 	because
@@ -2672,42 +2660,34 @@ list("constant_declaration", list("name", "x"), 1);
 	<kbd>eval</kbd> to handle
 	<kbd>let</kbd> expressions.
 	
-      
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_8_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_77_8_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
-    
-</EXERCISE></div>
-
-    </span>    </td>
+      </span>    </td>
           <td></td>
           <td><span style="color:blue">
-      
-    <div class="permalink">
-    <a name="ex_4.9" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.9">Exercise 4.9 </a></b> 
+	Prior to ECMAScript 2015, the only way to declare a variable in
+	JavaScript was using the keyword <kbd>var</kbd>
+	instead of the keyword <kbd>let</kbd>.
+	The scope of variables declared with
+	<kbd>var</kbd> is the entire body of the
+	immediately surrounding function declaration or lambda expression, rather
+	than just the immediately enclosing block. Write programs in JavaScript
+	that behave differently when some occurrences of the 
+	<kbd>let</kbd> keyword are replaced with
+	<kbd>var</kbd>.
+      </span></td></tr></table>
   
-      Prior to ECMAScript 2015, the only way to declare a variable in
-      JavaScript was using the keyword <kbd>var</kbd>
-      instead of the keyword <kbd>let</kbd>.
-      The scope of variables declared with
-      <kbd>var</kbd> is the entire body of the
-      immediately surrounding function declaration or lambda expression, rather
-      than just the immediately enclosing block. Write programs in JavaScript
-      that behave differently when some occurrences of the 
-      <kbd>let</kbd> keyword are replaced with
-      <kbd>var</kbd>.
-      
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_9_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_77_9_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_7_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_77_7_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
 
-    </span></td></tr></table>
 
-  <table width="100%">
+  
+    <div class="permalink">
+    <a name="ex_4.10" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.10">Exercise 4.10 </a></b> 
+  
+    <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
           <td class="meta" style = "color:grey; text-align: center">Original</td>
@@ -2716,10 +2696,6 @@ list("constant_declaration", list("name", "x"), 1);
         </tr>
         <tr>
           <td><span style="color:teal">
-      
-    <div class="permalink">
-    <a name="ex_4.12" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.12">Exercise 4.12 </a></b> 
-  
 	
 	
 	<kbd>Let*</kbd> is similar to
@@ -2739,7 +2715,7 @@ list("constant_declaration", list("name", "x"), 1);
 	<kbd>let*->nested-lets</kbd> that performs this
 	transformation. If we have already implemented
 	<kbd>let</kbd>
-	(exercise <REF NAME="ex:implement-let"><a class="superscript" id="4.1.2-ex-link-4.10" href="./4.1.2.html#ex_4.10">4.10</a></REF>)
+	(exercise <REF NAME="ex:implement-let"><a class="superscript" id="4.1.2-ex-link-4.9" href="./4.1.2.html#ex_4.9">4.9</a></REF>)
 	and we want to extend the evaluator to handle
 	<kbd>let*</kbd>, is it sufficient to add a clause to
 	<kbd>eval</kbd> whose action is
@@ -2750,39 +2726,27 @@ list("constant_declaration", list("name", "x"), 1);
 	explicitly expand <kbd>let*</kbd> in terms of
 	non-derived expressions?
 	
-      
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_10_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_77_10_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
-    
-</EXERCISE></div>
-
-    </span>    </td>
+      </span>    </td>
           <td></td>
           <td><span style="color:blue">
-      
-    <div class="permalink">
-    <a name="ex_4.11" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.11">Exercise 4.11 </a></b> 
-  
-      The language Scheme includes a variant of
-      <kbd>let</kbd> called
-      <kbd>let*</kbd>. We could approximate
-      the semantics of
-      <kbd>let*</kbd> in JavaScript by stipulating
-      that a
-      <kbd>let*</kbd> declaration implicitly
-      introduces a new block whose body includes the declaration and all
-      subsequent statements of the statement sequence in which the
-      declaration occurs. For example, the program
-      <div class='snippet' id='javascript_77_38_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	The language Scheme includes a variant of
+	<kbd>let</kbd> called
+	<kbd>let*</kbd>. We could approximate
+	the semantics of
+	<kbd>let*</kbd> in JavaScript by stipulating
+	that a
+	<kbd>let*</kbd> declaration implicitly
+	introduces a new block whose body includes the declaration and all
+	subsequent statements of the statement sequence in which the
+	declaration occurs. For example, the program
+	<div class='snippet' id='javascript_77_38_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 display(1);
 let* x = 2;
 let* y = x + 3;
 display(x + y);
 </pre></div></div>
-      could be seen as a shorthand for
-      <div class='snippet' id='javascript_77_39_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	could be seen as a shorthand for
+	<div class='snippet' id='javascript_77_39_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 display(1);
 {
   let x = 2;
@@ -2792,49 +2756,54 @@ display(1);
   }
 }
 </pre></div></div>
-      <UL>
-	<LI>
-	  Write programs in such an extended JavaScript language
-	  that behave differently when some occurrences of the keyword
-	  <kbd>let</kbd> are replaced
-	  with <kbd>let*</kbd>, assuming
-	  that <kbd>let*</kbd> works as described.
-	</LI>
-	<LI>
-	  Define appropriate syntax functions for this 
-	  <kbd>let*</kbd> variant.
-	</LI>
-	<LI>
-	  Write a function
-	  <kbd>let_star_to_nested_let</kbd> that
-	  that transforms any occurrence of 
-	  <kbd>let*</kbd> in a given program as
-	  described above. We can
-	  then evaluate programs <kbd>p</kbd> in the
-	  extended language by running
-	  <kbd>evaluate(let_star_to_nested_let(p));</kbd>.
-	</LI>
-	<LI>
-	  Consider the alternative of implementing
-	  <kbd>let*</kbd> as we implemented
-	  <kbd>let</kbd> and 
-	  <kbd>const</kbd>, namely by
-	  introducing an evaluation function
-	  <kbd>eval_let_star_declaration</kbd>.
-	  Why does this approach not work?
-	</LI>
-      </UL>
-      
+	<UL>
+	  <LI>
+	    Write programs in such an extended JavaScript language
+	    that behave differently when some occurrences of the keyword
+	    <kbd>let</kbd> are replaced
+	    with <kbd>let*</kbd>, assuming
+	    that <kbd>let*</kbd> works as described.
+	  </LI>
+	  <LI>
+	    Define appropriate syntax functions for this 
+	    <kbd>let*</kbd> variant.
+	  </LI>
+	  <LI>
+	    Write a function
+	    <kbd>let_star_to_nested_let</kbd> that
+	    that transforms any occurrence of 
+	    <kbd>let*</kbd> in a given program as
+	    described above. We can
+	    then evaluate programs <kbd>p</kbd> in the
+	    extended language by running
+	    <kbd>evaluate(let_star_to_nested_let(p));</kbd>.
+	  </LI>
+	  <LI>
+	    Consider the alternative of implementing
+	    <kbd>let*</kbd> as we implemented
+	    <kbd>let</kbd> and 
+	    <kbd>const</kbd>, namely by
+	    introducing an evaluation function
+	    <kbd>eval_let_star_declaration</kbd>.
+	    Why does this approach not work?
+	  </LI>
+	</UL>
+      </span></td></tr></table>
+  
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_11_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_77_11_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_8_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_77_8_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
 
-    </span></td></tr></table>
 
-  <table width="100%">
+  
+    <div class="permalink">
+    <a name="ex_4.11" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.11">Exercise 4.11 </a></b> 
+  
+    
+    <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
           <td class="meta" style = "color:grey; text-align: center">Original</td>
@@ -2843,10 +2812,6 @@ display(1);
         </tr>
         <tr>
           <td><span style="color:teal">
-      
-    <div class="permalink">
-    <a name="ex_4.14" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.14">Exercise 4.14 </a></b> 
-  
 	
 	
 	<QUOTE>Named <kbd>let</kbd></QUOTE> is a variant of
@@ -2875,38 +2840,27 @@ display(1);
             (fib-iter (+ a b) a (- count 1)))))
 </pre></div></div>
 	Modify <kbd>let->combination</kbd> of
-	exercise <REF NAME="ex:implement-let"><a class="superscript" id="4.1.2-ex-link-4.10" href="./4.1.2.html#ex_4.10">4.10</a></REF> to also support named
+	exercise <REF NAME="ex:implement-let"><a class="superscript" id="4.1.2-ex-link-4.9" href="./4.1.2.html#ex_4.9">4.9</a></REF> to also support named
 	<kbd>let</kbd>.
 	
-      
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_12_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_77_12_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
-    
-</EXERCISE></div>
-
-    </span>    </td>
+      </span>    </td>
           <td></td>
           <td><span style="color:blue">
-      
-    <div class="permalink">
-    <a name="ex_4.15" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.15">Exercise 4.15 </a></b> 
-  
-      The language JavaScript supports <kbd>while</kbd>
-      loops that execute a given statement repeatedly. More specifically,
-      <kbd class='snippet'>while ( $\textit{predicate}$ ) { $\textit{body}$ }</kbd>
-      evaluates the $\textit{predicate}$, and
-      if it holds, it evaluates the
-      $\textit{body}$, followed by evaluating
-      the whole <kbd>while</kbd> loop again.
-      Once the result of evaluating the
-      $\textit{condition}$ is false, the
-      <kbd>while</kbd> loop terminates. Using
-      this syntax, we can for example compute the greatest common divisor
-      of two numbers using the following function:
-      
-      <div class='snippet' id='javascript_77_42_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AczIBMAKAQwBpQAjASlABvXKFGgA7gAsqAGwCmHUAEIAvCt4DhY7aCoFFAPg1CROs+1DqLAWl4BuU2YC+oOTIDOck2bM9LvUFt2Bx9QJwBIUUcw6IAnOQoiWPpg8NwnfCY2FGxuDGw+OyA')">function gcd(a, b) {
+	The language JavaScript supports
+	<kbd>while</kbd> loops that execute a given
+	statement repeatedly. More specifically,
+	<kbd class='snippet'>while ( $\textit{predicate}$ ) { $\textit{body}$ }</kbd>
+	evaluates the $\textit{predicate}$, and
+	if it holds, it evaluates the
+	$\textit{body}$, followed by evaluating
+	the whole <kbd>while</kbd> loop again.
+	Once the result of evaluating the
+	$\textit{condition}$ is false, the
+	<kbd>while</kbd> loop terminates. Using
+	this syntax, we can for example compute the greatest common divisor
+	of two numbers using the following function:
+	
+	<div class='snippet' id='javascript_77_42_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AczIBMAKAQwBpQAjASlABvXKFGgA7gAsqAGwCmHUAEIAvCt4DhY7aCoFFAPg1CROs+1DqLAWl4BuU2YC+oOTIDOck2bM9LvUFt2Bx9QJwBIUUcw6IAnOQoiWPpg8NwnfCY2FGxuDGw+OyA')">function gcd(a, b) {
     while(a !== b) {
         if(a > b) {
             a = a - b;
@@ -2918,15 +2872,15 @@ display(1);
 }
 
 </pre></div></div>
-      <UL>
-	<LI>
-	  Declare a function <kbd>while_loop</kbd> that
-	  takes a predicate and a body—both represented by nullary
-	  functions—as arguments, and simulates the behavior of the
-	  <kbd>while</kbd> loop. The
-	  <kbd>gcd</kbd> function would then
-	  look as follows:
-	  <div class='snippet' id='javascript_77_43_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AczIBMAKAQwBpQAjASlABvXKFGgA7gAsqAGwCmAfRk0aAB1ahWAgLwA+UO1ABCbdt6cRYq9bFbQeoaKoFNh-fyGWb3nzcNnDAFpeAG4vXwixAF9QORkAZzlPSJSbHnteUGD2MNSUqIBIUXC8qyiS3z5csQAnOQoiGvocgtwooA')">function gcd(a, b) {
+	<UL>
+	  <LI>
+	    Declare a function <kbd>while_loop</kbd> that
+	    takes a predicate and a body—both represented by nullary
+	    functions—as arguments, and simulates the behavior of the
+	    <kbd>while</kbd> loop. The
+	    <kbd>gcd</kbd> function would then
+	    look as follows:
+	    <div class='snippet' id='javascript_77_43_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AczIBMAKAQwBpQAjASlABvXKFGgA7gAsqAGwCmAfRk0aAB1ahWAgLwA+UO1ABCbdt6cRYq9bFbQeoaKoFNh-fyGWb3nzcNnDAFpeAG4vXwixAF9QORkAZzlPSJSbHnteUGD2MNSUqIBIUXC8qyiS3z5csQAnOQoiGvocgtwooA')">function gcd(a, b) {
     while_loop( () => a !== b,
                 () => {  if (a > b) {
                              a = a - b;
@@ -2939,44 +2893,47 @@ display(1);
 }
 
 </pre></div></div>
-	</LI>
-	<LI>
-	  Explore how <kbd>parse</kbd> represents
-	  <kbd>while</kbd> loops.
-	</LI>
-	<LI>
-	  Install <kbd>while</kbd> loops for the
-	  evaluator by defining appropriate syntax functions and a
-	  transformation function
-	  <kbd>while_to_function_call</kbd> 
-	  that makes use of your function
-	  <kbd>while_loop</kbd>.
-	</LI>
-	<LI>
-	  What problem arises with this approach for implementing
-	  <kbd>while</kbd> loops, when
-	  the programmer decides within the body of the loop to
-	  return from the function that contains the loop?
-	</LI>
-	<LI>
-	  Change your approach to address the problem. How about directly
-	  installing <kbd>while</kbd> loops for the
-	  evaluator, using a function
-	  <kbd>eval_while</kbd>?
-	</LI>
-      </UL>
-      
-      
+	  </LI>
+	  <LI>
+	    Explore how <kbd>parse</kbd> represents
+	    <kbd>while</kbd> loops.
+	  </LI>
+	  <LI>
+	    Install <kbd>while</kbd> loops for the
+	    evaluator by defining appropriate syntax functions and a
+	    transformation function
+	    <kbd>while_to_function_call</kbd> 
+	    that makes use of your function
+	    <kbd>while_loop</kbd>.
+	  </LI>
+	  <LI>
+	    What problem arises with this approach for implementing
+	    <kbd>while</kbd> loops, when
+	    the programmer decides within the body of the loop to
+	    return from the function that contains the loop?
+	  </LI>
+	  <LI>
+	    Change your approach to address the problem. How about directly
+	    installing <kbd>while</kbd> loops for the
+	    evaluator, using a function
+	    <kbd>eval_while</kbd>?
+	  </LI>
+	</UL>
+      </span></td></tr></table>
+  
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_13_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_77_13_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_9_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_77_9_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
 
-    </span></td></tr></table>
-
-  <table width="100%">
+  
+  
+    <div class="permalink">
+    <a name="ex_4.12" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.12">Exercise 4.12 </a></b> 
+  
+    <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
           <td class="meta" style = "color:grey; text-align: center">Original</td>
@@ -2985,11 +2942,7 @@ display(1);
         </tr>
         <tr>
           <td><span style="color:teal">
-      
-    <div class="permalink">
-    <a name="ex_4.13" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.13">Exercise 4.13 </a></b> 
-  
-	
+  	
 	
 	Many languages support a variety of iteration constructs, such as
 	<kbd>do</kbd>, <kbd>for</kbd>,
@@ -3000,31 +2953,19 @@ display(1);
 	other hand, such constructs are often convenient.  Design some iteration
 	constructs, give examples of their use, and show how to implement them
 	as derived expressions.
-      
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_14_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_77_14_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
-    
-</EXERCISE></div>
-
-    </span>    </td>
+      </span>    </td>
           <td></td>
           <td><span style="color:blue">
-      
-    <div class="permalink">
-    <a name="ex_4.17" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.17">Exercise 4.17 </a></b> 
-  
-      Another kind of loop available in JavaScript is the
-      <kbd>for</kbd> loop, which combines
-      an initialization, a predicate, an update statement and a body in a single
-      construct. Similar to the <kbd>while</kbd>
-      loop, the body is repeatedly executed as long as the predicate holds. After
-      every execution, the update statement is evaluated. Here is a function
-      that reverses a list, using a <kbd>for</kbd>
-      loop. 
-      
-      <div class='snippet' id='javascript_77_44_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDjQAGyYVGTDkUmyAvKBKLJAbjESCNBt2myyRBsxIrQ-TaACEoKhwD66yZO4mzTCwJufzlhQAhlTu-t4UAkKiErFyCkqgqgAOIQYAFkxBACYepgECADTxipHasQC+OuLMFKb0zAkU2lW4zGycPJKOFNwYxdjFAMxRmkA')">function reverse(xs) {
+	Another kind of loop available in JavaScript is the
+	<kbd>for</kbd> loop, which combines
+	an initialization, a predicate, an update statement and a body in a single
+	construct. Similar to the <kbd>while</kbd>
+	loop, the body is repeatedly executed as long as the predicate holds. After
+	every execution, the update statement is evaluated. Here is a function
+	that reverses a list, using a <kbd>for</kbd>
+	loop. 
+	
+	<div class='snippet' id='javascript_77_44_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDjQAGyYVGTDkUmyAvKBKLJAbjESCNBt2myyRBsxIrQ-TaACEoKhwD66yZO4mzTCwJufzlhQAhlTu-t4UAkKiErFyCkqgqgAOIQYAFkxBACYepgECADTxipHasQC+OuLMFKb0zAkU2lW4zGycPJKOFNwYxdjFAMxRmkA')">function reverse(xs) {
     let result = null;
     for(let current = xs; ! is_null(current); current = tail(current)) {
         result = pair(head(current), result);
@@ -3033,45 +2974,49 @@ display(1);
 }
 
 </pre></div></div>
-      <UL>
-	<LI>
-	  Explore how <kbd>parse</kbd> represents
-	  <kbd>for</kbd> loops.
-	</LI>
-	<LI>
-	  Following the approach for <kbd>while</kbd>
-	  loops in exercise <REF NAME="ex:while_loop"><a class="superscript" id="4.1.2-ex-link-4.15" href="./4.1.2.html#ex_4.15">4.15</a></REF>, first implement
-	  a function <kbd>for_loop</kbd> that takes
-	  four nullary functions as arguments, and simulates the behaviour of
-	  the <kbd>for</kbd> loop. Then install
-	  <kbd>for</kbd> loops for the evaluator by
-	  defining appropriate syntax functions and a transformation function
-	  <kbd>for_to_function_call</kbd> 
-	  that makes use of your function
-	  <kbd>for_loop</kbd>. Finally,
-	  install <kbd>for</kbd> loops directly
-	  in the interpreter, using a function
-	  <kbd>eval_for</kbd>.
-	</LI>
-	<LI>
-	  Assume the you have solved the last part of
-	  exercise <REF NAME="ex:while_loop"><a class="superscript" id="4.1.2-ex-link-4.15" href="./4.1.2.html#ex_4.15">4.15</a></REF>. Would this allow
-	  for a particularly elegant way to install
-	  <kbd>for</kbd> loops for the evaluator?
-	</LI>
-      </UL>
-            
-      
+	<UL>
+	  <LI>
+	    Explore how <kbd>parse</kbd> represents
+	    <kbd>for</kbd> loops.
+	  </LI>
+	  <LI>
+	    Following the approach for <kbd>while</kbd>
+	    loops in exercise <REF NAME="ex:while_loop"><a class="superscript" id="4.1.2-ex-link-4.11" href="./4.1.2.html#ex_4.11">4.11</a></REF>, first implement
+	    a function <kbd>for_loop</kbd> that takes
+	    four nullary functions as arguments, and simulates the behaviour of
+	    the <kbd>for</kbd> loop. Then install
+	    <kbd>for</kbd> loops for the evaluator by
+	    defining appropriate syntax functions and a transformation function
+	    <kbd>for_to_function_call</kbd> 
+	    that makes use of your function
+	    <kbd>for_loop</kbd>. Finally,
+	    install <kbd>for</kbd> loops directly
+	    in the interpreter, using a function
+	    <kbd>eval_for</kbd>.
+	  </LI>
+	  <LI>
+	    Assume the you have solved the last part of
+	    exercise <REF NAME="ex:while_loop"><a class="superscript" id="4.1.2-ex-link-4.11" href="./4.1.2.html#ex_4.11">4.11</a></REF>. Would this allow
+	    for a particularly elegant way to install
+	    <kbd>for</kbd> loops for the evaluator?
+	  </LI>
+	</UL>
+	      
+      </span></td></tr></table>
+  
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_15_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_77_15_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_10_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_77_10_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
 
-    </span></td></tr></table>
 
-  <table width="100%">
+  
+    <div class="permalink">
+    <a name="ex_4.13" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.13">Exercise 4.13 </a></b> 
+  
+    <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
           <td class="meta" style = "color:grey; text-align: center">Original</td>
@@ -3080,10 +3025,6 @@ display(1);
         </tr>
         <tr>
           <td><span style="color:teal">
-      
-    <div class="permalink">
-    <a name="ex_4.18" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.18">Exercise 4.18 </a></b> 
-  
 	
 	
 	By using data abstraction, we were able to write an
@@ -3097,21 +3038,9 @@ display(1);
 	in this section, without changing <kbd>eval</kbd> or
 	<kbd>apply</kbd>.
 	
-      
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_16_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_77_16_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
-    
-</EXERCISE></div>
-
-    </span>    </td>
+      </span>    </td>
           <td></td>
           <td><span style="color:blue">
-      
-    <div class="permalink">
-    <a name="ex_4.16" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.16">Exercise 4.16 </a></b> 
-  
 	The designers of JavaScript decided to devote particular support to
 	the variable declared in the initialization part of
 	<kbd>for</kbd> loops. Consider the following
@@ -3137,7 +3066,7 @@ display(1);
 	their respective list element.
 	<UL>
 	  <LI>
-	    Modify your solutions to exercise <REF NAME="ex:for_loops"><a class="superscript" id="4.1.2-ex-link-4.17" href="./4.1.2.html#ex_4.17">4.17</a></REF>
+	    Modify your solutions to exercise <REF NAME="ex:for_loops"><a class="superscript" id="4.1.2-ex-link-4.12" href="./4.1.2.html#ex_4.12">4.12</a></REF>
 	    such that each iteration of the loop has its own
 	    <QUOTE>instance</QUOTE> of the <EM>loop control variable</EM>
 	    declared in the initialization statement.
@@ -3146,15 +3075,15 @@ display(1);
 	    Discuss whether this decision was a good one.
 	  </LI>
 	</UL>
-      
+      </span></td></tr></table>
+  
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_17_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_77_17_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_11_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_77_11_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
 
-    </span></td></tr></table>
 
     
 <hr>

@@ -1943,7 +1943,15 @@
       <span style="color:blue">functions</span>
     
     to recognize
-    <span style="color:teal">the <kbd>amb</kbd> special form:</span><span style="color:blue"><kbd>amb</kbd> expressions</span>:<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+    
+      <span style="color:teal">
+	the <kbd>amb</kbd> special
+	form:<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:teal">[2]</a>
+      </span>
+      <span style="color:blue">
+	<kbd>amb</kbd> expressions:
+      </span>
+    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -1975,8 +1983,8 @@ function amb_choices(stmt) {
       </span>    </td>
           <td></td>
           <td><span style="color:blue">
-	This means that <kbd>amb</kbd> is not
-	a name with proper scoping in this language. Whenever the symbol
+	The symbol <kbd>amb</kbd> here is not
+	a name with proper scoping in this language. Whenever
 	<kbd>amb</kbd> appears as the function
 	expression of an application, we will treat the expression as
 	a nondeterministic choice point, rather than a function
@@ -3186,12 +3194,12 @@ function driver_loop() {
 
   
     <div class="permalink">
-    <a name="ex_4.66" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.66">Exercise 4.66 </a></b> 
+    <a name="ex_4.53" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.53">Exercise 4.53 </a></b> 
   
     Implement a new special form <kbd>ramb</kbd> that is like
     <kbd>amb</kbd> except that it searches alternatives in a
     random order, rather than from left to right.  Show how this can help with
-    Alyssa's problem in exercise <REF NAME="ex:sentence-generate"><a class="superscript" id="4.3.3-ex-link-4.65" href="./4.3.2.html#ex_4.65">4.65</a></REF>.
+    Alyssa's problem in exercise <REF NAME="ex:sentence-generate"><a class="superscript" id="4.3.3-ex-link-4.52" href="./4.3.2.html#ex_4.52">4.52</a></REF>.
     
   
       <div class="Solution">
@@ -3205,7 +3213,7 @@ function driver_loop() {
 
   
     <div class="permalink">
-    <a name="ex_4.67" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.67">Exercise 4.67 </a></b> 
+    <a name="ex_4.54" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.54">Exercise 4.54 </a></b> 
   
     
       <span style="color:teal">
@@ -3317,7 +3325,7 @@ try again
           <td><span style="color:teal">
       
     <div class="permalink">
-    <a name="ex_4.68" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.68">Exercise 4.68 </a></b> 
+    <a name="ex_4.55" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.55">Exercise 4.55 </a></b> 
   
 	
 	Implement a new construct called <kbd>if-fail</kbd>
@@ -3372,7 +3380,7 @@ try again
           <td><span style="color:blue">
       
     <div class="permalink">
-    <a name="ex_4.69" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.69">Exercise 4.69 </a></b> 
+    <a name="ex_4.56" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.56">Exercise 4.56 </a></b> 
   
 	
 	We shall horribly abuse the syntax for conditional statements, by
@@ -3434,8 +3442,9 @@ if (evaluation_succeeds_take) {
 
   
     <div class="permalink">
-    <a name="ex_4.64" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.64">Exercise 4.64 </a></b> 
+    <a name="ex_4.57" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.57">Exercise 4.57 </a></b> 
   
+    
     With
     
       <span style="color:teal">
@@ -3445,7 +3454,7 @@ if (evaluation_succeeds_take) {
 	the new kind of assignment
       </span>
     
-    as described in exercise <REF NAME="ex:permanent-set"><a class="superscript" id="4.3.3-ex-link-4.67" href="./4.3.3.html#ex_4.67">4.67</a></REF> and
+    as described in exercise <REF NAME="ex:permanent-set"><a class="superscript" id="4.3.3-ex-link-4.54" href="./4.3.3.html#ex_4.54">4.54</a></REF> and
     
       <span style="color:teal">
 	<kbd>if-fail</kbd>
@@ -3455,7 +3464,7 @@ if (evaluation_succeeds_take) {
 	<kbd>if (evaluation_succeeds_take)...</kbd>
       </span>
     
-    as in exercise <REF NAME="ex:if-fail"><a class="superscript" id="4.3.3-ex-link-4.69" href="./4.3.3.html#ex_4.69">4.69</a></REF>, what will be the result of
+    as in exercise <REF NAME="ex:if-fail"><a class="superscript" id="4.3.3-ex-link-4.56" href="./4.3.3.html#ex_4.56">4.56</a></REF>, what will be the result of
     evaluating
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
@@ -3489,8 +3498,9 @@ if (evaluation_succeeds_take) {
 
   
     <div class="permalink">
-    <a name="ex_4.70" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.70">Exercise 4.70 </a></b> 
+    <a name="ex_4.58" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.58">Exercise 4.58 </a></b> 
   
+    
     
     If we had not realized that <kbd>require</kbd> could be
     implemented as an ordinary
@@ -3633,14 +3643,14 @@ function analyze_require(stmt) {
     </FOOTNOTE></div>
     
     
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' >[2] </a>
+    <div class='footnote'><span style="color:teal">
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' style="color:teal">[2] </a>
     <FOOTNOTE>
     We
-    assume that the evaluator supports <kbd>let</kbd>
-    (see exercise <REF NAME="ex:implement-analyze-let"><a class="superscript" id="4.3.3-ex-link-4.37" href="./4.1.7.html#ex_4.37">4.37</a></REF>),
-    which we have used in our nondeterministic programs.
-    </FOOTNOTE></div>
+	assume that the evaluator supports <kbd>let</kbd>
+	(see exercise <REF NAME="ex:implement-analyze-let"><a class="superscript" id="4.3.3-ex-link-4.25" href="./4.1.7.html#ex_4.25">4.25</a></REF>),
+	which we have used in our nondeterministic programs.
+    </FOOTNOTE></span></div>
     
     
     <div class='footnote'><span style="color:blue">

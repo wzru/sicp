@@ -1951,7 +1951,7 @@ function simple_query(query_pattern, frame_stream) {
   
     section <REF NAME="sec:query-streams"><a class="superscript" id="4.4.4-sec-link-4.4.4.6" href="./4.4.4.html#sec4.4.4.6">4.4.4.6</a></REF>) to make a stream of all the ways that
     the given pattern can be satisfied consistent with the original frame
-    (see exercise <REF NAME="ex:q-why-not-append"><a class="superscript" id="4.4.4-ex-link-4.70" href="./4.4.4.html#ex_4.70">4.70</a></REF>).  The streams for the
+    (see exercise <REF NAME="ex:q-why-not-append"><a class="superscript" id="4.4.4-ex-link-4.71" href="./4.4.4.html#ex_4.71">4.71</a></REF>).  The streams for the
     individual input frames are combined using
   
     
@@ -2021,7 +2021,7 @@ put("and", "qeval", conjoin);
   
     function
     from section <REF NAME="sec:query-streams"><a class="superscript" id="4.4.4-sec-link-4.4.4.6" href="./4.4.4.html#sec4.4.4.6">4.4.4.6</a></REF>.
-    (See exercises <REF NAME="ex:q-why-not-append"><a class="superscript" id="4.4.4-ex-link-4.70" href="./4.4.4.html#ex_4.70">4.70</a></REF> and <REF NAME="ex:q-why-interleave"><a class="superscript" id="4.4.4-ex-link-4.71" href="./4.4.4.html#ex_4.71">4.71</a></REF>.)
+    (See exercises <REF NAME="ex:q-why-not-append"><a class="superscript" id="4.4.4-ex-link-4.71" href="./4.4.4.html#ex_4.71">4.71</a></REF> and <REF NAME="ex:q-why-interleave"><a class="superscript" id="4.4.4-ex-link-4.72" href="./4.4.4.html#ex_4.72">4.72</a></REF>.)
 
     <div class='snippet' id='javascript_95_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function disjoin(disjuncts, frame_stream) {
@@ -2413,7 +2413,7 @@ function apply_rules(pattern, frame) {
     could devise a more clever environment structure; however, the
     renaming approach we have chosen here is the most straightforward,
     even if not the most efficient.  (See
-    exercise <REF NAME="ex:query-local-names"><a class="superscript" id="4.4.4-ex-link-4.78" href="./4.4.4.html#ex_4.78">4.78</a></REF>.)  Here is the
+    exercise <REF NAME="ex:query-local-names"><a class="superscript" id="4.4.4-ex-link-4.79" href="./4.4.4.html#ex_4.79">4.79</a></REF>.)  Here is the
     <kbd>apply_a_rule</kbd>
     function:
 
@@ -2863,7 +2863,7 @@ function use_index(pat) {
 
   
     <div class="permalink">
-    <a name="ex_4.67" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.67">Exercise 4.67 </a></b> 
+    <a name="ex_4.70" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.70">Exercise 4.70 </a></b> 
   
     What is the purpose of the
     constant declarations
@@ -2924,7 +2924,7 @@ function add_assertion(assertion) {
     <kbd>integral</kbd>
     function
     in section <REF NAME="sec:streams-and-delayed-evaluation"><a class="superscript" id="4.4.4-sec-link-3.5.4" href="./3.5.4.html">3.5.4</a></REF>).
-    This postpones looping in some cases (see exercise <REF NAME="ex:q-why-not-append"><a class="superscript" id="4.4.4-ex-link-4.70" href="./4.4.4.html#ex_4.70">4.70</a></REF>).
+    This postpones looping in some cases (see exercise <REF NAME="ex:q-why-not-append"><a class="superscript" id="4.4.4-ex-link-4.71" href="./4.4.4.html#ex_4.71">4.71</a></REF>).
 
     <div class='snippet' id='javascript_95_31_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function stream_append_delayed(s1, delayed_s2) {
@@ -2955,7 +2955,7 @@ function interleave_delayed(s1, delayed_s2) {
     introduced for ordinary lists in section <REF NAME="sec:nested-mappings"><a class="superscript" id="4.4.4-sec-link-2.2.3" href="./2.2.3.html">2.2.3</a></REF>.
     Unlike ordinary <kbd>flatmap</kbd>, however, we accumulate the streams with
     an interleaving process, rather than simply appending them (see
-    exercises <REF NAME="ex:q-why-interleave"><a class="superscript" id="4.4.4-ex-link-4.71" href="./4.4.4.html#ex_4.71">4.71</a></REF> and  <REF NAME="ex:q-why-delay"><a class="superscript" id="4.4.4-ex-link-4.72" href="./4.4.4.html#ex_4.72">4.72</a></REF>).
+    exercises <REF NAME="ex:q-why-interleave"><a class="superscript" id="4.4.4-ex-link-4.72" href="./4.4.4.html#ex_4.72">4.72</a></REF> and  <REF NAME="ex:q-why-delay"><a class="superscript" id="4.4.4-ex-link-4.73" href="./4.4.4.html#ex_4.73">4.73</a></REF>).
 
     <div class='snippet' id='javascript_95_32_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function stream_flatmap(fun, s) {
@@ -3228,7 +3228,7 @@ function extend(variable, value, frame) {
 
   
     <div class="permalink">
-    <a name="ex_4.70" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.70">Exercise 4.70 </a></b> 
+    <a name="ex_4.71" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.71">Exercise 4.71 </a></b> 
   
     Louis Reasoner wonders why the
     <kbd>simple_query</kbd>
@@ -3268,7 +3268,7 @@ function disjoin(disjuncts, frame_stream) {
 
   
     <div class="permalink">
-    <a name="ex_4.71" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.71">Exercise 4.71 </a></b> 
+    <a name="ex_4.72" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.72">Exercise 4.72 </a></b> 
   
     Why do <kbd>disjoin</kbd> and
     <kbd>stream_flatmap</kbd>
@@ -3288,7 +3288,7 @@ function disjoin(disjuncts, frame_stream) {
 
   
     <div class="permalink">
-    <a name="ex_4.72" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.72">Exercise 4.72 </a></b> 
+    <a name="ex_4.73" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.73">Exercise 4.73 </a></b> 
   
   Why does
   <kbd>flatten_stream</kbd>
@@ -3314,7 +3314,7 @@ function flatten_stream(stream) {
 
   
     <div class="permalink">
-    <a name="ex_4.69" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.69">Exercise 4.69 </a></b> 
+    <a name="ex_4.74" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.74">Exercise 4.74 </a></b> 
   
     
     Alyssa P. Hacker proposes to use a simpler version of
@@ -3356,7 +3356,7 @@ function simple_flatten(stream) {
 
   
     <div class="permalink">
-    <a name="ex_4.74" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.74">Exercise 4.74 </a></b> 
+    <a name="ex_4.75" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.75">Exercise 4.75 </a></b> 
   
     
     
@@ -3435,7 +3435,7 @@ put("unique", "qeval", uniquely_asserted);
 
   
     <div class="permalink">
-    <a name="ex_4.75" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.75">Exercise 4.75 </a></b> 
+    <a name="ex_4.76" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.76">Exercise 4.76 </a></b> 
   
     
     
@@ -3473,7 +3473,7 @@ put("unique", "qeval", uniquely_asserted);
 
   
     <div class="permalink">
-    <a name="ex_4.76" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.76">Exercise 4.76 </a></b> 
+    <a name="ex_4.77" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.77">Exercise 4.77 </a></b> 
   
     
     
@@ -3504,7 +3504,7 @@ put("unique", "qeval", uniquely_asserted);
 
   
     <div class="permalink">
-    <a name="ex_4.77" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.77">Exercise 4.77 </a></b> 
+    <a name="ex_4.78" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.78">Exercise 4.78 </a></b> 
   
     
     Redesign the query language as a nondeterministic program to be
@@ -3530,7 +3530,7 @@ put("unique", "qeval", uniquely_asserted);
 
   
     <div class="permalink">
-    <a name="ex_4.78" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.78">Exercise 4.78 </a></b> 
+    <a name="ex_4.79" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.79">Exercise 4.79 </a></b> 
   
     
     

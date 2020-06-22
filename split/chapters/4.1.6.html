@@ -1763,7 +1763,7 @@
 	the defined variables. (For an example of a procedure that doesn't
 	obey these restrictions, so that sequential definition isn't
 	equivalent to simultaneous definition, see
-	exercise <REF NAME="ex:simultaneous-def_scheme"><a class="superscript" id="4.1.6-ex-link-4.28" href="./4.1.6.html#ex_4.28">4.28</a></REF>.)<a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:teal">[1]</a>
+	exercise <REF NAME="ex:simultaneous-def_scheme"><a class="superscript" id="4.1.6-ex-link-4.22" href="./4.1.6.html#ex_4.22">4.22</a></REF>.)<a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:teal">[1]</a>
       </p></div>
 
       <div class='permalink'>
@@ -1808,318 +1808,12 @@
       <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
 	An alternative strategy for scanning out internal definitions is shown
-	in exercise <REF NAME="ex:alternative-scanout"><a class="superscript" id="4.1.6-ex-link-4.32" href="./4.1.6.html#ex_4.32">4.32</a></REF>. Unlike the
+	in exercise <REF NAME="ex:alternative-scanout"><a class="superscript" id="4.1.6-ex-link-4.20" href="./4.1.6.html#ex_4.20">4.20</a></REF>. Unlike the
 	transformation shown above, this enforces the restriction that the
 	defined variables' values can be evaluated without using any of the
 	variables' values.<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:teal">[2]</a>
 	
-	
       </p></div>
-
-      
-    <div class="permalink">
-    <a name="ex_4.25" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.25">Exercise 4.25 </a></b> 
-  
-	In this exercise we implement the method just described for interpreting
-	internal definitions.
-	We assume that the evaluator supports <kbd>let</kbd>
-	(see exercise <REF NAME="ex:implement-let"><a class="superscript" id="4.1.6-ex-link-4.10" href="./4.1.2.html#ex_4.10">4.10</a></REF>).
-	<OL>
-	  
-	  <LI>
-	    Change <kbd>lookup-variable-value</kbd>
-	    (section <REF NAME="sec:operations-on-environments"><a class="superscript" id="4.1.6-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF>)
-	    to signal an error if the value it finds is the symbol
-	    <kbd>*unassigned*</kbd>.
-	  </LI>
-	  <LI>
-	    
-	    Write a procedure <kbd>scan-out-defines</kbd>
-	    that takes a procedure body and returns an equivalent one that has no
-	    internal definitions, by making the transformation described above.
-	  </LI>
-	  <LI>
-	    Install <kbd>scan-out-defines</kbd> in the
-	    interpreter, either in  <kbd>make-procedure</kbd>
-	    or in <kbd>procedure-body</kbd> (see
-	    section <REF NAME="sec:eval-data-structures"><a class="superscript" id="4.1.6-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF>).
-	    Which place is better? Why?
-	  </LI>
-	</OL>
-	
-      
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_1_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_81_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
-    
-</EXERCISE></div>
-
-
-      
-    <div class="permalink">
-    <a name="ex_4.19" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.19">Exercise 4.19 </a></b> 
-  
-	Draw diagrams of the environment in effect when evaluating the
-	expression e3 in the procedure in the text,
-	comparing how this will be structured when definitions are interpreted
-	sequentially with how it will be structured if definitions are scanned
-	out as described. Why is there an extra frame in the transformed program?
-	Explain why this difference in environment structure can never make a
-	difference in the behavior of a correct program.  Design a way to make
-	the interpreter implement the <QUOTE>simultaneous</QUOTE> scope rule for
-	internal definitions without constructing the extra frame.
-      
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_2_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_81_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
-    
-</EXERCISE></div>
-
-
-      
-    <div class="permalink">
-    <a name="ex_4.27" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.27">Exercise 4.27 </a></b> 
-  
-	Consider an alternative strategy for scanning out definitions that
-	translates the example in the text to
-	<kbd class='snippet'>
-	  <span style="color:teal">
-(lambda ^vars^
-   (let ((u '*unassigned*)
-         (v '*unassigned*))
-      (let ((a ^e1^)
-            (b ^e2^))
-         (set! u a)
-   (set! v b))
-   ^e3^))
-	  </span>
-	</kbd>
-	Here <kbd>a</kbd> and <kbd>b</kbd>
-	are meant to represent new variable names, created by the interpreter,
-	that do	not appear in the user's program. Consider the
-	<kbd>solve</kbd> procedure from
-	section <REF NAME="sec:streams-and-delayed-evaluation"><a class="superscript" id="4.1.6-sec-link-3.5.4" href="./3.5.4.html">3.5.4</a></REF>:
-	<div class='snippet' id='javascript_81_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (solve f y0 dt)
-(define y (integral (delay dy) y0 dt))
-(define dy (stream-map f y))
-      y)
-</pre></div></div>
-	Will this procedure work if internal definitions are scanned out as
-	shown in this exercise? What if they are scanned out as shown in the
-	text?  Explain.
-	
-      
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_3_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_81_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
-    
-</EXERCISE></div>
-
-
-      
-    <div class="permalink">
-    <a name="ex_4.28" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.28">Exercise 4.28 </a></b> 
-  
-	Ben Bitdiddle, Alyssa P. Hacker, and Eva Lu Ator are arguing about
-	the desired result of evaluating the expression
-	<div class='snippet' id='javascript_81_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(let ((a 1))
-   (define (f x)
-      (define b (+ a x))
-      (define a 5)
-      (+ a b))
-   (f 10))
-</pre></div></div>
-	Ben asserts that the result should be obtained using the sequential rule
-	for <kbd>define</kbd>: <kbd>b</kbd>
-	is defined to be 11, then <kbd>a</kbd> is defined to
-	be 5, so the result is 16.  Alyssa objects that mutual recursion requires
-	the simultaneous scope rule for internal procedure definitions,	and that
-	it is unreasonable to treat procedure names differently from other names.
-	Thus, she argues for the mechanism implemented in
-	exercise <REF NAME="ex:internal-defs_scheme"><a class="superscript" id="4.1.6-ex-link-4.25" href="./4.1.6.html#ex_4.25">4.25</a></REF>. This would lead to
-	<kbd>a</kbd> being unassigned at the time that the
-	value for <kbd>b</kbd> is to be computed.  Hence, in
-	Alyssa's view the procedure should produce an error.  Eva has a
-	third opinion.  She says that if the definitions of
-	<kbd>a</kbd> and <kbd>b</kbd> are
-	truly meant to be simultaneous, then the value 5 for
-	<kbd>a</kbd> should be used in evaluating
-	<kbd>b</kbd>.  Hence, in Eva's view
-	<kbd>a</kbd> should be 5,
-	<kbd>b</kbd> should be 15, and the result should be 20.
-	Which (if any) of these	viewpoints do you support?  Can you devise a way
-	to implement internal definitions so that they behave as Eva
-	prefers?<a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:teal">[3]</a>
-	
-      
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_4_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_81_4_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
-    
-</EXERCISE></div>
-
-
-      
-    <div class="permalink">
-    <a name="ex_4.29" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.29">Exercise 4.29 </a></b> 
-  
-	
-	
-	Because internal definitions look sequential but are actually
-	simultaneous, some people prefer to avoid them entirely, and use the
-	special form <kbd>letrec</kbd> instead.  
-	<kbd>Letrec</kbd> looks like
-	<kbd>let</kbd>, so it is not surprising that the
-	variables it binds are bound simultaneously and have the same scope as
-	each other.  The sample	procedure <kbd>f</kbd> above
-	can be written without internal definitions, but with exactly the same
-	meaning, as
-	<div class='snippet' id='javascript_81_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (f x)
-   (letrec ((even?
-               (lambda (n)
-                  (if (= n 0)
-                      true
-                      (odd? (- n 1)))))
-            (odd?
-               (lambda (n)
-                  (if (= n 0)
-                      false
-                      (even? (- n 1))))))
-      ^rest of body of^ f))
-</pre></div></div>
-	<kbd>Letrec</kbd> expressions, which have the form
-	<div class='snippet' id='javascript_81_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(letrec ((^var$_{1}$^ ^exp$_{1}$^) ^$\ldots$^ (^var$_{n}$^ ^exp$_{n}$^))
-    ^body^)
-</pre></div></div>
-	are a variation on <kbd>let</kbd> in which the
-	expressions exp$_{k}$ that provide the
-	initial values for the variables var$_{k}$
-	are evaluated in an environment that includes all the
-	<kbd>letrec</kbd> bindings.  This permits recursion in
-	the bindings, such as the mutual recursion of
-	<kbd>even?</kbd> and <kbd>odd?</kbd>
-	in the example above, or
-	
-	the evaluation of 10 factorial with
-	<div class='snippet' id='javascript_81_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(letrec ((fact
-            (lambda (n)
-               (if (= n 1)
-                   1
-                   (* n (fact (- n 1)))))))
-        (fact 10))
-</pre></div></div>
-	<OL>
-	  <LI>
-	    Implement <kbd>letrec</kbd> as a derived
-	    expression, by transforming a <kbd>letrec</kbd>
-	    expression into a <kbd>let</kbd> expression as
-	    shown in  the text above or in
-	    exercise <REF NAME="ex:alternative-scanout_scheme"><a class="superscript" id="4.1.6-ex-link-4.27" href="./4.1.6.html#ex_4.27">4.27</a></REF>. That is,
-	    the <kbd>letrec</kbd> variables should be created
-	    with a <kbd>let</kbd> and then be assigned their
-	    values with <kbd>set!</kbd>.
-	  </LI>
-	  <LI>
-	    Louis Reasoner is confused by all this fuss about internal
-	    definitions.  The way he sees it, if you don't like to use
-	    <kbd>define</kbd> inside a procedure, you can just
-	    use <kbd>let</kbd>. Illustrate what is loose about
-	    his reasoning by drawing an environment diagram that shows the
-	    environment in which the
-	    <kbd>^rest of body of^ f</kbd> is evaluated during
-	    evaluation of the expression <kbd>(f 5)</kbd>, with
-	    <kbd>f</kbd> defined as in this exercise. Draw an
-	    environment diagram for the same evaluation, but with
-	    <kbd>let</kbd> in place of
-	    <kbd>letrec</kbd> in the definition of
-	    <kbd>f</kbd>.
-	  </LI>
-	</OL>
-      
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_5_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_81_5_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
-    
-</EXERCISE></div>
-
-
-      
-    <div class="permalink">
-    <a name="ex_4.26" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.26">Exercise 4.26 </a></b> 
-  
-	
-	Amazingly, Louis's intuition in
-	exercise <REF NAME="ex:letrec"><a class="superscript" id="4.1.6-ex-link-4.29" href="./4.1.6.html#ex_4.29">4.29</a></REF> is correct. It is indeed
-	possible to specify recursive procedures without using
-	<kbd>letrec</kbd> (or even
-	<kbd>define</kbd>), although the method for
-	accomplishing this is much more subtle than Louis imagined.
-	The following expression computes 10 factorial by applying a recursive
-	
-	factorial procedure:<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:teal">[4]</a>
-	<div class='snippet' id='javascript_81_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-((lambda (n)
-    ((lambda (fact)
-        (fact fact n))
-     (lambda (ft k)
-        (if (= k 1)
-            1
-            (* k (ft ft (- k 1)))))))
- 10)
-</pre></div></div>
-	<OL>
-	  <LI>
-	    Check (by evaluating the expression) that this really does compute
-	    factorials.  Devise an analogous expression for computing Fibonacci
-	    numbers.
-	  </LI>
-	  <LI>
-	    Consider the following procedure, which includes mutually recursive
-	    internal definitions:
-	    <div class='snippet' id='javascript_81_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (f x)
-   (define (even? n)
-      (if (= n 0)
-          true
-      (odd? (- n 1))))
-   (define (odd? n)
-      (if (= n 0)
-          false
-          (even? (- n 1))))
-   (even? x))
-</pre></div></div>
-	    Fill in the missing expressions to complete an alternative definition
-	    of <kbd>f</kbd>, which uses neither internal
-	    definitions nor <kbd>letrec</kbd>:
-	    <div class='snippet' id='javascript_81_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (f x)
-   ((lambda (even? odd?)
-  (even? even? odd? x))
-    (lambda (ev? od? n)
-  (if (= n 0) true (od? ^??^ ^??^ ^??^)))
-    (lambda (ev? od? n)
-  (if (= n 0) false (ev? ^??^ ^??^ ^??^)))))
-</pre></div></div>
-	  </LI>
-	</OL>
-      
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_6_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_81_6_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
-    
-</EXERCISE></div>
-
     </span>    </td>
           <td></td>
           <td><span style="color:blue">
@@ -2150,7 +1844,7 @@
       <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
 	Consider a function with internal declarations, such as
-	<div class='snippet' id='javascript_81_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_81_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function f(x) {
     function is_even(n) {
         return n === 0
@@ -2225,18 +1919,56 @@ function f(x) {
 <a name='p11' class='permalink'></a><p>
 	An alternative strategy for scanning out internal
 	declarations is shown in
-	exercise <REF NAME="ex:alternative-scanout"><a class="superscript" id="4.1.6-ex-link-4.32" href="./4.1.6.html#ex_4.32">4.32</a></REF>. Unlike the
+	exercise <REF NAME="ex:alternative-scanout"><a class="superscript" id="4.1.6-ex-link-4.20" href="./4.1.6.html#ex_4.20">4.20</a></REF>. Unlike the
 	transformation shown above, this enforces the restriction that the
 	declared names' values can be evaluated without using any of the
 	names' values.
 	
-	
       </p></div>
-
-      
-    <div class="permalink">
-    <a name="ex_4.31" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.31">Exercise 4.31 </a></b> 
+    </span></td></tr></table>
   
+    <div class="permalink">
+    <a name="ex_4.19" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.19">Exercise 4.19 </a></b> 
+  
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr>
+          <td><span style="color:teal">
+	In this exercise we implement the method just described for interpreting
+	internal definitions.
+	We assume that the evaluator supports <kbd>let</kbd>
+	(see exercise <REF NAME="ex:implement-let"><a class="superscript" id="4.1.6-ex-link-4.9" href="./4.1.2.html#ex_4.9">4.9</a></REF>).
+	<OL>
+	  
+	  <LI>
+	    Change <kbd>lookup-variable-value</kbd>
+	    (section <REF NAME="sec:operations-on-environments"><a class="superscript" id="4.1.6-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF>)
+	    to signal an error if the value it finds is the symbol
+	    <kbd>*unassigned*</kbd>.
+	  </LI>
+	  <LI>
+	    
+	    Write a procedure <kbd>scan-out-defines</kbd>
+	    that takes a procedure body and returns an equivalent one that has no
+	    internal definitions, by making the transformation described above.
+	  </LI>
+	  <LI>
+	    Install <kbd>scan-out-defines</kbd> in the
+	    interpreter, either in  <kbd>make-procedure</kbd>
+	    or in <kbd>procedure-body</kbd> (see
+	    section <REF NAME="sec:eval-data-structures"><a class="superscript" id="4.1.6-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF>).
+	    Which place is better? Why?
+	  </LI>
+	</OL>
+	
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
 	In this exercise we implement the method just described for interpreting
 	internal declarations as syntactic sugar for immediately invoked
 	functions that carry out assignments.
@@ -2269,19 +2001,41 @@ function f(x) {
 	  </LI>
 	</OL>
 	
-      
+      </span></td></tr></table>
+  
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_7_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_81_7_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_1_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_81_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
 
 
-      
-    <div class="permalink">
-    <a name="ex_4.32" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.32">Exercise 4.32 </a></b> 
   
+    <div class="permalink">
+    <a name="ex_4.20" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.20">Exercise 4.20 </a></b> 
+  
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr>
+          <td><span style="color:teal">
+	Draw diagrams of the environment in effect when evaluating the
+	expression e3 in the procedure in the text,
+	comparing how this will be structured when definitions are interpreted
+	sequentially with how it will be structured if definitions are scanned
+	out as described. Why is there an extra frame in the transformed program?
+	Explain why this difference in environment structure can never make a
+	difference in the behavior of a correct program.  Design a way to make
+	the interpreter implement the <QUOTE>simultaneous</QUOTE> scope rule for
+	internal definitions without constructing the extra frame.
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
 	Consider an alternative strategy for scanning out declarations
 	that translates the example in the text to
 	<kbd class='snippet'>( $\textit{vars}$ ) => {
@@ -2298,7 +2052,7 @@ function f(x) {
 	not appear in the user's program. Consider the
 	<kbd>solve</kbd> function
 	from section <REF NAME="sec:streams-and-delayed-evaluation"><a class="superscript" id="4.1.6-sec-link-3.5.4" href="./3.5.4.html">3.5.4</a></REF>:
-	<div class='snippet' id='javascript_81_11_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzAVwDsBjAFwEsB7E0AZxoBsA3AUwAoCAaUATwAMfACYUAlKADeuUHNBk6DCgNABeUFRIV2AcwBOAQ2adQnSWoB8oEfz5DREgNyz5ikspv91jCvvaGALYA+oGGAA7c9uIu8qD+FET69PwuAL5AA')">function solve(f, y0, dt) {
+	<div class='snippet' id='javascript_81_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzAVwDsBjAFwEsB7E0AZxoBsA3AUwAoCAaUATwAMfACYUAlKADeuUHNBk6DCgNABeUFRIV2AcwBOAQ2adQnSWoB8oEfz5DREgNyz5ikspv91jCvvaGALYA+oGGAA7c9uIu8qD+FET69PwuAL5AA')">function solve(f, y0, dt) {
     const y = integral( () => dy, y0, dt);
     const dy = stream_map(f, y);
     return y;
@@ -2309,19 +2063,62 @@ function f(x) {
 	work if internal definitions are scanned out as shown in this exercise?
 	What if they are scanned out as shown in the text?  Explain.
 	
-      
+      </span></td></tr></table>
+  
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_8_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_81_8_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_2_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_81_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
 
 
-      
-    <div class="permalink">
-    <a name="ex_4.33" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.33">Exercise 4.33 </a></b> 
   
+    <div class="permalink">
+    <a name="ex_4.21" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.21">Exercise 4.21 </a></b> 
+  
+    	
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr>
+          <td><span style="color:teal">
+	Consider an alternative strategy for scanning out definitions that
+	translates the example in the text to
+	<kbd class='snippet'>
+	  <span style="color:teal">
+(lambda ^vars^
+   (let ((u '*unassigned*)
+         (v '*unassigned*))
+      (let ((a ^e1^)
+            (b ^e2^))
+         (set! u a)
+   (set! v b))
+   ^e3^))
+	  </span>
+	</kbd>
+	Here <kbd>a</kbd> and <kbd>b</kbd>
+	are meant to represent new variable names, created by the interpreter,
+	that do	not appear in the user's program. Consider the
+	<kbd>solve</kbd> procedure from
+	section <REF NAME="sec:streams-and-delayed-evaluation"><a class="superscript" id="4.1.6-sec-link-3.5.4" href="./3.5.4.html">3.5.4</a></REF>:
+	<div class='snippet' id='javascript_81_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(define (solve f y0 dt)
+(define y (integral (delay dy) y0 dt))
+(define dy (stream-map f y))
+      y)
+</pre></div></div>
+	Will this procedure work if internal definitions are scanned out as
+	shown in this exercise? What if they are scanned out as shown in the
+	text?  Explain.
+	
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
 	Our implementation of lambda expressions and blocks in
 	section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> imposes a
 	runtime burden on every function application: It needs to scan
@@ -2369,25 +2166,70 @@ function f(x) {
 	    <kbd>set_name_value</kbd>.
 	  </LI>
 	</UL>
-		
-      
+      </span></td></tr></table>
+  
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_9_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_81_9_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_3_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_81_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
 
-      
-      
-    <div class="permalink">
-    <a name="ex_4.30" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.30">Exercise 4.30 </a></b> 
+
   
+    <div class="permalink">
+    <a name="ex_4.22" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.22">Exercise 4.22 </a></b> 
+  
+    bla
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr>
+          <td><span style="color:teal">
+	Ben Bitdiddle, Alyssa P. Hacker, and Eva Lu Ator are arguing about
+	the desired result of evaluating the expression
+	<div class='snippet' id='javascript_81_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(let ((a 1))
+   (define (f x)
+      (define b (+ a x))
+      (define a 5)
+      (+ a b))
+   (f 10))
+</pre></div></div>
+	Ben asserts that the result should be obtained using the sequential rule
+	for <kbd>define</kbd>: <kbd>b</kbd>
+	is defined to be 11, then <kbd>a</kbd> is defined to
+	be 5, so the result is 16.  Alyssa objects that mutual recursion requires
+	the simultaneous scope rule for internal procedure definitions,	and that
+	it is unreasonable to treat procedure names differently from other names.
+	Thus, she argues for the mechanism implemented in
+	exercise <REF NAME="ex:internal-defs_scheme"><a class="superscript" id="4.1.6-ex-link-4.19" href="./4.1.6.html#ex_4.19">4.19</a></REF>. This would lead to
+	<kbd>a</kbd> being unassigned at the time that the
+	value for <kbd>b</kbd> is to be computed.  Hence, in
+	Alyssa's view the procedure should produce an error.  Eva has a
+	third opinion.  She says that if the definitions of
+	<kbd>a</kbd> and <kbd>b</kbd> are
+	truly meant to be simultaneous, then the value 5 for
+	<kbd>a</kbd> should be used in evaluating
+	<kbd>b</kbd>.  Hence, in Eva's view
+	<kbd>a</kbd> should be 5,
+	<kbd>b</kbd> should be 15, and the result should be 20.
+	Which (if any) of these	viewpoints do you support?  Can you devise a way
+	to implement internal definitions so that they behave as Eva
+	prefers?<a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:teal">[3]</a>
+	
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
 	Draw diagrams of the environment in effect when evaluating the
 	$\textit{statement}$ in the
 	function in the text, comparing how this will be structured when
 	declarations are interpreted sequentially as described in
-	exercise <REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.33" href="./4.1.6.html#ex_4.33">4.33</a></REF>
+	exercise <REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.21" href="./4.1.6.html#ex_4.21">4.21</a></REF>
 	with how it is structured if declarations are scanned out as described in
 	section  <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
 	Why is there an extra frame in the latter case?  Explain why this
@@ -2395,22 +2237,112 @@ function f(x) {
 	behavior of a correct program.  Design a way to make the interpreter
 	implement the <QUOTE>simultaneous</QUOTE> scope rule for internal 
 	declarations without constructing the extra frame.
-      
+      </span></td></tr></table>
+  
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_10_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_81_10_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_4_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_81_4_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
 
-      
-      
-    <div class="permalink">
-    <a name="ex_4.35" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.35">Exercise 4.35 </a></b> 
+
   
+    <div class="permalink">
+    <a name="ex_4.23" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.23">Exercise 4.23 </a></b> 
+  
+     
+      
+    bal
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr>
+          <td><span style="color:teal">
+	
+	Because internal definitions look sequential but are actually
+	simultaneous, some people prefer to avoid them entirely, and use the
+	special form <kbd>letrec</kbd> instead.  
+	<kbd>Letrec</kbd> looks like
+	<kbd>let</kbd>, so it is not surprising that the
+	variables it binds are bound simultaneously and have the same scope as
+	each other.  The sample	procedure <kbd>f</kbd> above
+	can be written without internal definitions, but with exactly the same
+	meaning, as
+	<div class='snippet' id='javascript_81_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(define (f x)
+   (letrec ((even?
+               (lambda (n)
+                  (if (= n 0)
+                      true
+                      (odd? (- n 1)))))
+            (odd?
+               (lambda (n)
+                  (if (= n 0)
+                      false
+                      (even? (- n 1))))))
+      ^rest of body of^ f))
+</pre></div></div>
+	<kbd>Letrec</kbd> expressions, which have the form
+	<div class='snippet' id='javascript_81_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(letrec ((^var$_{1}$^ ^exp$_{1}$^) ^$\ldots$^ (^var$_{n}$^ ^exp$_{n}$^))
+    ^body^)
+</pre></div></div>
+	are a variation on <kbd>let</kbd> in which the
+	expressions exp$_{k}$ that provide the
+	initial values for the variables var$_{k}$
+	are evaluated in an environment that includes all the
+	<kbd>letrec</kbd> bindings.  This permits recursion in
+	the bindings, such as the mutual recursion of
+	<kbd>even?</kbd> and <kbd>odd?</kbd>
+	in the example above, or
+	
+	the evaluation of 10 factorial with
+	<div class='snippet' id='javascript_81_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(letrec ((fact
+            (lambda (n)
+               (if (= n 1)
+                   1
+                   (* n (fact (- n 1)))))))
+        (fact 10))
+</pre></div></div>
+	<OL>
+	  <LI>
+	    Implement <kbd>letrec</kbd> as a derived
+	    expression, by transforming a <kbd>letrec</kbd>
+	    expression into a <kbd>let</kbd> expression as
+	    shown in  the text above or in
+	    exercise . That is,
+	    the <kbd>letrec</kbd> variables should be created
+	    with a <kbd>let</kbd> and then be assigned their
+	    values with <kbd>set!</kbd>.
+	  </LI>
+	  <LI>
+	    Louis Reasoner is confused by all this fuss about internal
+	    definitions.  The way he sees it, if you don't like to use
+	    <kbd>define</kbd> inside a procedure, you can just
+	    use <kbd>let</kbd>. Illustrate what is loose about
+	    his reasoning by drawing an environment diagram that shows the
+	    environment in which the
+	    <kbd>^rest of body of^ f</kbd> is evaluated during
+	    evaluation of the expression <kbd>(f 5)</kbd>, with
+	    <kbd>f</kbd> defined as in this exercise. Draw an
+	    environment diagram for the same evaluation, but with
+	    <kbd>let</kbd> in place of
+	    <kbd>letrec</kbd> in the definition of
+	    <kbd>f</kbd>.
+	  </LI>
+	</OL>
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
 	Ben Bitdiddle, Alyssa P. Hacker, and Eva Lu Ator are arguing about
 	the desired result of evaluating the expression
-	<div class='snippet' id='javascript_81_12_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAbAUwBdQBDUAXlAwG5cAzAVwDsBjEgSwHtXRGACgAeASlABvUNJm4ZoYmQBG1CqADUoYQ3mK1NAKw6ZAJ1LMT-SpqUMAvk0EYADKLpA')">let a = 1;
+	<div class='snippet' id='javascript_81_9_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAbAUwBdQBDUAXlAwG5cAzAVwDsBjEgSwHtXRGACgAeASlABvUNJm4ZoYmQBG1CqADUoYQ3mK1NAKw6ZAJ1LMT-SpqUMAvk0EYADKLpA')">let a = 1;
 function f(x) {      
     let b = a + x;
     let a = 5;
@@ -2421,7 +2353,7 @@ f(10);
 </pre></div></div>
 	Ben asserts that the result should be obtained using the sequential
 	implementation for <kbd>let</kbd> as given
-	in exercise <REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.33" href="./4.1.6.html#ex_4.33">4.33</a></REF>:
+	in exercise <REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.21" href="./4.1.6.html#ex_4.21">4.21</a></REF>:
 	<kbd>b</kbd> is declared to be 11, then
 	<kbd>a</kbd> is declared to be 5, so the result is 16.
 	Alyssa objects that mutual recursion requires the simultaneous scope
@@ -2441,21 +2373,90 @@ f(10);
 	<kbd>b</kbd> should be 15, and the result should be 20.
 	Which (if any) of these	viewpoints do you support?  Can you devise a way
 	to implement internal declarations so that they behave as Eva
-	prefers?<a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:blue">[5]</a>
-	
-      
+	prefers?<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:blue">[4]</a>
+      </span></td></tr></table>
+  
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_11_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_81_11_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_5_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_81_5_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
 
 
-      
-    <div class="permalink">
-    <a name="ex_4.34" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.34">Exercise 4.34 </a></b> 
   
+    <div class="permalink">
+    <a name="ex_4.24" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.24">Exercise 4.24 </a></b> 
+  
+    
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr>
+          <td><span style="color:teal">
+	
+	Amazingly, Louis's intuition in
+	exercise  is correct. It is indeed
+	possible to specify recursive procedures without using
+	<kbd>letrec</kbd> (or even
+	<kbd>define</kbd>), although the method for
+	accomplishing this is much more subtle than Louis imagined.
+	The following expression computes 10 factorial by applying a recursive
+	
+	factorial procedure:<a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:teal">[5]</a>
+	<div class='snippet' id='javascript_81_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+((lambda (n)
+    ((lambda (fact)
+        (fact fact n))
+     (lambda (ft k)
+        (if (= k 1)
+            1
+            (* k (ft ft (- k 1)))))))
+ 10)
+</pre></div></div>
+	<OL>
+	  <LI>
+	    Check (by evaluating the expression) that this really does compute
+	    factorials.  Devise an analogous expression for computing Fibonacci
+	    numbers.
+	  </LI>
+	  <LI>
+	    Consider the following procedure, which includes mutually recursive
+	    internal definitions:
+	    <div class='snippet' id='javascript_81_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(define (f x)
+   (define (even? n)
+      (if (= n 0)
+          true
+      (odd? (- n 1))))
+   (define (odd? n)
+      (if (= n 0)
+          false
+          (even? (- n 1))))
+   (even? x))
+</pre></div></div>
+	    Fill in the missing expressions to complete an alternative definition
+	    of <kbd>f</kbd>, which uses neither internal
+	    definitions nor <kbd>letrec</kbd>:
+	    <div class='snippet' id='javascript_81_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(define (f x)
+   ((lambda (even? odd?)
+  (even? even? odd? x))
+    (lambda (ev? od? n)
+  (if (= n 0) true (od? ^??^ ^??^ ^??^)))
+    (lambda (ev? od? n)
+  (if (= n 0) false (ev? ^??^ ^??^ ^??^)))))
+</pre></div></div>
+	  </LI>
+	</OL>
+
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
 	
 	Recursive functions are obtained in a roundabout way in our
 	interpreter: First declare the name that will refer to the recursive
@@ -2487,10 +2488,8 @@ f(10);
 	  <LI>
 	    Consider the following function, which includes mutually recursive
 	    internal definitions:
-	    <div class='snippet' id='javascript_81_14_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzACgE4SBKAbiA')">f(99);
-
-</pre></div></div>
-	    <div class='snippet' id='javascript_81_15_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzAVwDsBjAFwEsB7E0AgCgA8BKUAb11B4dMtr0qAZwD6AUwBu4koxLsuvJaABO4ikRX16AXj2gADN2UneAflAUVRccdMmAXKBGiaAEzdzQAWlAZWANx2oAC+wcTk1HTOYu6e8pzBSmoaWqC6+kb2phYEAIYANsK22Y4xEtKy9L7+QUphyeqaQmJSMiyBuGGEjACcvYFAA')">function f(x) {
+	    
+	    <div class='snippet' id='javascript_81_14_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzAVwDsBjAFwEsB7E0AgCgA8BKUAb11B4dMtr0qAZwD6AUwBu4koxLsuvJaABO4ikRX16AXj2gADN2UneAflAUVRccdMmAXKBGiaAEzdzQAWlAZWANx2oAC+wcTk1HTOYu6e8pzBSmoaWqC6+kb2phYEAIYANsK22Y4xEtKy9L7+QUphyeqaQmJSMiyBuGGEjACcvYFAA')">function f(x) {
     function is_even(n) {
         return n === 0
                ? true
@@ -2505,12 +2504,12 @@ f(10);
 }
 
 </pre></div></div>
-	    Fill in the missing expressions to complete an alternative definition
-	    of <kbd>f</kbd>, which uses
+	    Fill in the missing expressions to complete an alternative
+	    declaration of <kbd>f</kbd>, which uses
 	    neither <kbd>const</kbd> nor
 	    <kbd>let</kbd> nor internal function
 	    declarations:
-	    <div class='snippet' id='javascript_81_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	    <div class='snippet' id='javascript_81_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function f(x) {
     return (
         (is_even, is_odd) => 
@@ -2525,18 +2524,16 @@ function f(x) {
 </pre></div></div>
 	  </LI>
 	</OL>
-      
+      </span></td></tr></table>
+  
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_12_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_81_12_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_6_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_81_6_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
 
-    </span></td></tr></table>
-
   
-
 <hr>
 
     <div class='footnote'><span style="color:teal">
@@ -2586,8 +2583,21 @@ function f(x) {
     </FOOTNOTE></span></div>
     
     
+    <div class='footnote'><span style="color:blue">
+      <a class='footnote-number' id='footnote-4' href='#footnote-link-4' style="color:blue">[4] </a>
+    <FOOTNOTE>
+    The designers of JavaScript support Alyssa on the
+	following grounds: Eva is in principle correct—the definitions
+	should be regarded as simultaneous.  But it seems difficult to implement
+	a general, efficient mechanism that does what Eva requires. In the
+	absence of such a mechanism, it is better to generate an error in the
+	difficult cases of simultaneous definitions (Alyssa's notion) than
+	to produce an incorrect answer (as Ben would have it).
+    </FOOTNOTE></span></div>
+    
+    
     <div class='footnote'><span style="color:teal">
-      <a class='footnote-number' id='footnote-4' href='#footnote-link-4' style="color:teal">[4] </a>
+      <a class='footnote-number' id='footnote-5' href='#footnote-link-5' style="color:teal">[5] </a>
     <FOOTNOTE>
     This example illustrates a programming
 	trick for formulating recursive procedures without using
@@ -2600,19 +2610,6 @@ function f(x) {
 	recursion.  (See <CITATION>Stoy 1977</CITATION> for details on the lambda
 	calculus, and <CITATION>Gabriel 1988</CITATION> for an exposition of the
 	$Y$ operator in Scheme.)
-    </FOOTNOTE></span></div>
-    
-    
-    <div class='footnote'><span style="color:blue">
-      <a class='footnote-number' id='footnote-5' href='#footnote-link-5' style="color:blue">[5] </a>
-    <FOOTNOTE>
-    The designers of JavaScript support Alyssa on the
-	following grounds: Eva is in principle correct—the definitions
-	should be regarded as simultaneous.  But it seems difficult to implement
-	a general, efficient mechanism that does what Eva requires. In the
-	absence of such a mechanism, it is better to generate an error in the
-	difficult cases of simultaneous definitions (Alyssa's notion) than
-	to produce an incorrect answer (as Ben would have it).
     </FOOTNOTE></span></div>
     
     

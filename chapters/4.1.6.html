@@ -1786,18 +1786,21 @@ function f(x) {
 <a name='p5' class='permalink'></a><p>
 	An alternative strategy for scanning out internal
 	declarations is shown in
-	exercise <REF NAME="ex:alternative-scanout"><a class="superscript" id="4.1.6-ex-link-4.16" href="./4.1.6.html#ex_4.16">4.16</a></REF>. Unlike the
+	exercise <REF NAME="ex:alternative-scanout"><a class="superscript" id="4.1.6-ex-link-4.17" href="./4.1.6.html#ex_4.17">4.17</a></REF>. Unlike the
 	transformation shown above, this enforces the restriction that the
 	declared names' values can be evaluated without using any of the
 	names' values.
 	
-	
       </p></div>
-
-      
-    <div class="permalink">
-    <a name="ex_4.15" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.15">Exercise 4.15 </a></b> 
+    
   
+  
+    <div class="permalink">
+    <a name="ex_4.16" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.16">Exercise 4.16 </a></b> 
+  
+    
+      
+      
 	In this exercise we implement the method just described for interpreting
 	internal declarations as syntactic sugar for immediately invoked
 	functions that carry out assignments.
@@ -1831,6 +1834,8 @@ function f(x) {
 	</OL>
 	
       
+    
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_1_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_81_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1839,10 +1844,13 @@ function f(x) {
 </EXERCISE></div>
 
 
-      
-    <div class="permalink">
-    <a name="ex_4.16" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.16">Exercise 4.16 </a></b> 
   
+    <div class="permalink">
+    <a name="ex_4.17" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.17">Exercise 4.17 </a></b> 
+  
+    
+      
+      
 	Consider an alternative strategy for scanning out declarations
 	that translates the example in the text to
 	<kbd class='snippet'>( $\textit{vars}$ ) => {
@@ -1871,6 +1879,8 @@ function f(x) {
 	What if they are scanned out as shown in the text?  Explain.
 	
       
+    
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_2_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_81_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1879,10 +1889,14 @@ function f(x) {
 </EXERCISE></div>
 
 
-      
-    <div class="permalink">
-    <a name="ex_4.17" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.17">Exercise 4.17 </a></b> 
   
+    <div class="permalink">
+    <a name="ex_4.18" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.18">Exercise 4.18 </a></b> 
+  
+    	
+    
+      
+      
 	Our implementation of lambda expressions and blocks in
 	section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> imposes a
 	runtime burden on every function application: It needs to scan
@@ -1930,8 +1944,9 @@ function f(x) {
 	    <kbd>set_name_value</kbd>.
 	  </LI>
 	</UL>
-		
       
+    
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_3_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_81_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1939,16 +1954,20 @@ function f(x) {
     
 </EXERCISE></div>
 
-      
-      
-    <div class="permalink">
-    <a name="ex_4.10" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.10">Exercise 4.10 </a></b> 
+
   
+    <div class="permalink">
+    <a name="ex_4.19" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.19">Exercise 4.19 </a></b> 
+  
+    bla
+    
+      
+      
 	Draw diagrams of the environment in effect when evaluating the
 	$\textit{statement}$ in the
 	function in the text, comparing how this will be structured when
 	declarations are interpreted sequentially as described in
-	exercise <REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.17" href="./4.1.6.html#ex_4.17">4.17</a></REF>
+	exercise <REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.18" href="./4.1.6.html#ex_4.18">4.18</a></REF>
 	with how it is structured if declarations are scanned out as described in
 	section  <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
 	Why is there an extra frame in the latter case?  Explain why this
@@ -1957,6 +1976,8 @@ function f(x) {
 	implement the <QUOTE>simultaneous</QUOTE> scope rule for internal 
 	declarations without constructing the extra frame.
       
+    
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_4_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_81_4_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1964,11 +1985,17 @@ function f(x) {
     
 </EXERCISE></div>
 
-      
-      
-    <div class="permalink">
-    <a name="ex_4.19" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.19">Exercise 4.19 </a></b> 
+
   
+    <div class="permalink">
+    <a name="ex_4.20" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.20">Exercise 4.20 </a></b> 
+  
+     
+      
+    bal
+    
+      
+      
 	Ben Bitdiddle, Alyssa P. Hacker, and Eva Lu Ator are arguing about
 	the desired result of evaluating the expression
 	<div class='snippet' id='javascript_81_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAbAUwBdQBDUAXlAwG5cAzAVwDsBjEgSwHtXRGACgAeASlABvUNJm4ZoYmQBG1CqADUoYQ3mK1NAKw6ZAJ1LMT-SpqUMAvk0EYADKLpA')">let a = 1;
@@ -1982,7 +2009,7 @@ f(10);
 </pre></div></div>
 	Ben asserts that the result should be obtained using the sequential
 	implementation for <kbd>let</kbd> as given
-	in exercise <REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.17" href="./4.1.6.html#ex_4.17">4.17</a></REF>:
+	in exercise <REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.18" href="./4.1.6.html#ex_4.18">4.18</a></REF>:
 	<kbd>b</kbd> is declared to be 11, then
 	<kbd>a</kbd> is declared to be 5, so the result is 16.
 	Alyssa objects that mutual recursion requires the simultaneous scope
@@ -2003,8 +2030,9 @@ f(10);
 	Which (if any) of these	viewpoints do you support?  Can you devise a way
 	to implement internal declarations so that they behave as Eva
 	prefers?<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-	
       
+    
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_5_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_81_5_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2013,10 +2041,14 @@ f(10);
 </EXERCISE></div>
 
 
-      
-    <div class="permalink">
-    <a name="ex_4.18" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.18">Exercise 4.18 </a></b> 
   
+    <div class="permalink">
+    <a name="ex_4.21" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.21">Exercise 4.21 </a></b> 
+  
+    
+    
+      
+      
 	
 	Recursive functions are obtained in a roundabout way in our
 	interpreter: First declare the name that will refer to the recursive
@@ -2048,10 +2080,8 @@ f(10);
 	  <LI>
 	    Consider the following function, which includes mutually recursive
 	    internal definitions:
-	    <div class='snippet' id='javascript_81_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzACgE4SBKAbiA')">f(99);
-
-</pre></div></div>
-	    <div class='snippet' id='javascript_81_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzAVwDsBjAFwEsB7E0AgCgA8BKUAb11B4dMtr0qAZwD6AUwBu4koxLsuvJaABO4ikRX16AXj2gADN2UneAflAUVRccdMmAXKBGiaAEzdzQAWlAZWANx2oAC+wcTk1HTOYu6e8pzBSmoaWqC6+kb2phYEAIYANsK22Y4xEtKy9L7+QUphyeqaQmJSMiyBuGGEjACcvYFAA')">function f(x) {
+	    
+	    <div class='snippet' id='javascript_81_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzAVwDsBjAFwEsB7E0AgCgA8BKUAb11B4dMtr0qAZwD6AUwBu4koxLsuvJaABO4ikRX16AXj2gADN2UneAflAUVRccdMmAXKBGiaAEzdzQAWlAZWANx2oAC+wcTk1HTOYu6e8pzBSmoaWqC6+kb2phYEAIYANsK22Y4xEtKy9L7+QUphyeqaQmJSMiyBuGGEjACcvYFAA')">function f(x) {
     function is_even(n) {
         return n === 0
                ? true
@@ -2066,12 +2096,12 @@ f(10);
 }
 
 </pre></div></div>
-	    Fill in the missing expressions to complete an alternative definition
-	    of <kbd>f</kbd>, which uses
+	    Fill in the missing expressions to complete an alternative
+	    declaration of <kbd>f</kbd>, which uses
 	    neither <kbd>const</kbd> nor
 	    <kbd>let</kbd> nor internal function
 	    declarations:
-	    <div class='snippet' id='javascript_81_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	    <div class='snippet' id='javascript_81_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function f(x) {
     return (
         (is_even, is_odd) => 
@@ -2087,6 +2117,8 @@ function f(x) {
 	  </LI>
 	</OL>
       
+    
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_6_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_81_6_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2094,11 +2126,7 @@ function f(x) {
     
 </EXERCISE></div>
 
-    
   
-
-  
-
 <hr>
 
     <div class='footnote'>

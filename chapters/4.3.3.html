@@ -1941,7 +1941,12 @@
       functions
     
     to recognize
-    <kbd>amb</kbd> expressions:<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+    
+      
+      
+	<kbd>amb</kbd> expressions:
+      
+    
     <div class='snippet' id='javascript_90_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQGZMChslAGYCuAdgMYAuAlgPYkDOhATjQLYQzxKpoCMaAJlzFy1OqCr0A+vQCmAGwJTZANwCG8omuokA5gAp6FVhQCUoAN7ZQN0E1kUiTEhOkkirAEaymh42ZsAH0DrWzDbSRkKJio9PxNzUGDQ8LDIzxoaeVk1EniA5NTwyPd5eXzTAG5sAF9hUkpaF0iKNV1dWQATKXlJCnyAGlAKAAtZKVbdcysw+0dnVykABzUqXyME0AAyLdAxtU6K0ABeU+GxibbquuwRRvEStVZZI5nbOadm6UmO7t6jQagABEJCesiBVVqtwaYhc9AAnl4slIaEpQc9Xik7A5PnscodWlRyhszJCbndYYs1PR6FRdCRniR+iTpikPgsWm1fj0+oCgdTafTGRQIddoaImqABXSGbImTJERlif5We8cQt9gTVuVNfpCcqEqYjWKKZLpUK5RQpOpNC8WZY2eqXLr9XrtRVjVDxfcvlIyHQjLkrZ1ZGR5GomNompi1fNfT8ujyASShkD-QxWvKQ2GI1G6KKoabxOnA1nQ+HI7CFUiDQE3ti43iDm6ifoXe6WUayd7KSXM8Hy7mqzaiHaVQ7Y7j263XZ3u0XfeoYmpPNkpNmK3m8vb6+z41zE-9mf5U0uqCu1xuh00C3UF6AzxfxlfK01q0qYzY902ta3p7Wu3nGFJUfVdn0HV86GtDRR0-Bsp3xFtylnFVPRufAADFIAADQAWQAUQALmxJZwzIWRgQXddZAIWIqFhIFQAAd3okZgXDLxOjUIE8DANQCAoHxzkkVx6FHVw9lyTpsk6QjeL2CgKCWehCJAXRWKITw0H9VhgHoGgnHIgBaNQyAOWRWHhYAACt6CM+hwz0YBJDE2R6GAAA2DAUB7SVIg4zwuLg79OXaQ9eRTSjgKgkNaJIeibyAiVxACrjllzZ5BKYehgqdUBWDUJZDEVZFUSkdFZCGf8PSSn1QFStQpAyTp4VyxtqpQw1u18h5pD3NrcVC7kjz5Pcom0CzLVvHqXDG2QAA8lnsGlox3R12sQzrSTFGbFnTToEroDRlEW5baToAaOW+A8-gik9QCxIpwjTOgDthY6FqWtzzpIab732k6luWexDjWycFiPKR7AIQFeFq3tXsBpg-QDS6XEh6HAQEeHJQBz7kY0Y9Nl3PKMZowEMG6+9IjkABHUdyDHYn1sG66wtu5N7qBOmGfIv7opcAqAGtxh5uVyPyehVS-UneW52R6fF8EhhJKWTQF0AxcZ8bBOFHKd1sFmNU2jtUPV5KXFo7KrUDXXLUl6X4ON5tVZx8Rlpt1o7aZfX-ClicZcbLa1cLDXIgspYKHhGQFd5pmKH9knGxKIgygd826v86lPYm4UHYDp3fVKZDTZMKWqbD6RVxoMghbgwvFgTDmiYoVNq9r-mLfytQRaa+Qa7rsHA9xEagXboWgRVlUM8pcempoFr6+-arOx26npEK0iqDM2E0cbm6kxb1NN96HfEpnyUqPx77VvHJOEObLa0N2iNdF95nwedE2Z1L0k3ZcEgNApCvxyjQZSjsQpuFTuUMBIc7waytkYYBTADCwIgXlXUaCL7uzclaEB+g0EF2-K6LBXp17AK8K8VIWJIGXHZofPkJ9t5bghNsXYj1UiPAxFfU6N8LqdjYQ9J6tgEQ1hRGiME+geFfRWvw1CJwzj8i8ECbBLgnieD9CMGg283JLzyvglk1wgA')">function is_amb(stmt) {      
     return is_tagged_list(stmt, "application") && 
            is_name(function_expression(stmt)) && 
@@ -1955,12 +1960,12 @@ function amb_choices(stmt) {
     
       
       
-	This means that <kbd>amb</kbd> is not
-	a name with proper scoping in this language. Whenever the symbol
+	The symbol <kbd>amb</kbd> here is not
+	a name with proper scoping in this language. Whenever
 	<kbd>amb</kbd> appears as the function
 	expression of an application, we will treat the expression as
 	a nondeterministic choice point, rather than a function
-	application.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+	application.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
       
     
   </p></div>
@@ -2385,7 +2390,7 @@ function analyze_constant_declaration(stmt) {
     succeeds, however, and we go on to make the assignment, we must consider the
     possibility that this branch of the computation might later fail, which will
     require us to backtrack out of the assignment.  Thus, we must arrange to
-    undo the assignment as part of the backtracking  process.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
+    undo the assignment as part of the backtracking  process.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
   </p></div>
 
   <div class='permalink'>
@@ -2862,12 +2867,12 @@ function driver_loop() {
 
   
     <div class="permalink">
-    <a name="ex_4.49" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.49">Exercise 4.49 </a></b> 
+    <a name="ex_4.50" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.50">Exercise 4.50 </a></b> 
   
     Implement a new special form <kbd>ramb</kbd> that is like
     <kbd>amb</kbd> except that it searches alternatives in a
     random order, rather than from left to right.  Show how this can help with
-    Alyssa's problem in exercise <REF NAME="ex:sentence-generate"><a class="superscript" id="4.3.3-ex-link-4.48" href="./4.3.2.html#ex_4.48">4.48</a></REF>.
+    Alyssa's problem in exercise <REF NAME="ex:sentence-generate"><a class="superscript" id="4.3.3-ex-link-4.49" href="./4.3.2.html#ex_4.49">4.49</a></REF>.
     
   
       <div class="Solution">
@@ -2881,7 +2886,7 @@ function driver_loop() {
 
   
     <div class="permalink">
-    <a name="ex_4.50" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.50">Exercise 4.50 </a></b> 
+    <a name="ex_4.51" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.51">Exercise 4.51 </a></b> 
   
     
       
@@ -2927,7 +2932,7 @@ try again
     
       
     <div class="permalink">
-    <a name="ex_4.51" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.51">Exercise 4.51 </a></b> 
+    <a name="ex_4.52" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.52">Exercise 4.52 </a></b> 
   
 	
 	We shall horribly abuse the syntax for conditional statements, by
@@ -2972,8 +2977,9 @@ if (evaluation_succeeds_take) {
 
   
     <div class="permalink">
-    <a name="ex_4.47" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.47">Exercise 4.47 </a></b> 
+    <a name="ex_4.53" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.53">Exercise 4.53 </a></b> 
   
+    
     With
     
       
@@ -2981,7 +2987,7 @@ if (evaluation_succeeds_take) {
 	the new kind of assignment
       
     
-    as described in exercise <REF NAME="ex:permanent-set"><a class="superscript" id="4.3.3-ex-link-4.50" href="./4.3.3.html#ex_4.50">4.50</a></REF> and
+    as described in exercise <REF NAME="ex:permanent-set"><a class="superscript" id="4.3.3-ex-link-4.51" href="./4.3.3.html#ex_4.51">4.51</a></REF> and
     
       
       
@@ -2989,7 +2995,7 @@ if (evaluation_succeeds_take) {
 	<kbd>if (evaluation_succeeds_take)...</kbd>
       
     
-    as in exercise <REF NAME="ex:if-fail"><a class="superscript" id="4.3.3-ex-link-4.51" href="./4.3.3.html#ex_4.51">4.51</a></REF>, what will be the result of
+    as in exercise <REF NAME="ex:if-fail"><a class="superscript" id="4.3.3-ex-link-4.52" href="./4.3.3.html#ex_4.52">4.52</a></REF>, what will be the result of
     evaluating
     <div class='snippet' id='javascript_90_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 let pairs = null;      
@@ -3012,8 +3018,9 @@ if (evaluation_succeeds_take) {
 
   
     <div class="permalink">
-    <a name="ex_4.52" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.52">Exercise 4.52 </a></b> 
+    <a name="ex_4.54" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.54">Exercise 4.54 </a></b> 
   
+    
     
     If we had not realized that <kbd>require</kbd> could be
     implemented as an ordinary
@@ -3122,16 +3129,6 @@ function analyze_require(stmt) {
     <div class='footnote'>
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
     <FOOTNOTE>
-    We
-    assume that the evaluator supports <kbd>let</kbd>
-    (see exercise ),
-    which we have used in our nondeterministic programs.
-    </FOOTNOTE></div>
-
-    
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
-    <FOOTNOTE>
     To avoid confusion, the programmer is highly
 	discouraged from using the name <kbd>amb</kbd>
 	in any other way in their nondeterministic programs.
@@ -3139,7 +3136,7 @@ function analyze_require(stmt) {
 
     
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-4' href='#footnote-link-4'>[4] </a>
+      <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
     <FOOTNOTE>
     We
     didn't worry about undoing
