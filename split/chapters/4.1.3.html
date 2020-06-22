@@ -1143,7 +1143,7 @@
                   <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-84" aria-expanded="true" aria-controls="sidebar-collapse-84">
                   &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
                   </a>
-                  <a href="./4.2.html">4.2  <span style="color:teal"> Variations on a Scheme Lazy Evaluation </span> <span style="color:blue"> Lazy Evaluation </span></a>
+                  <a href="./4.2.html">4.2  <span style="color:teal"> Variations on a Scheme: </span> Lazy Evaluation</a>
                 </h5>
               </div>
     
@@ -1685,9 +1685,11 @@
     evaluator implementation must also define the data structures that the
     evaluator manipulates internally, as part of the execution of a
     program, such as the representation of
-    <span style="color:teal">procedures</span><span style="color:blue">functions</span>
-    and environments and
-    the representation of true and false.
+    
+      <span style="color:teal">procedures</span>
+      <span style="color:blue">functions</span>
+    
+    and environments and the representation of true and false.
   </p></div>
 
   
@@ -1711,19 +1713,16 @@
         </tr>
         <tr>
           <td><span style="color:teal">
-	For conditionals, we accept anything to be true that is not
-	the explicit <kbd>false</kbd> object.
+	For conditionals, we accept anything to be true that is not the explicit
+	<kbd>false</kbd> object.
       </span>    </td>
           <td></td>
           <td><span style="color:blue">
-	To enter the consequent of a conditional, 
-	we expect the predicate to evaluate to the value
-	<kbd>true</kbd>, and thus
-	we define the evaluator function
+	To enter the consequent of a conditional, we expect the predicate to
+	evaluate to the value <kbd>true</kbd>, and
+	thus we define the evaluator function
 	<kbd>is_true</kbd> as follows:
       </span></td></tr></table>
-
-    
     
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
@@ -1736,20 +1735,17 @@
 (define (false? x)
   (eq? x false))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_78_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=GYVwdgxgLglg9mABDAzgfSgJxAUwBQAeAlIgN4BQiVimOUImSBiAvG4lrgNzkC+55VBmz4AjES6IA9FMQoAFnBAAbACY06DJMACGylDkQAjHBB0gDiBMoCeHEchT3cQA')">function is_true(x) {
+            <td><div class='snippet' id='javascript_78_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0KgZwH0KAnIgUwAoAPASlABvXKDGg2nCkTb1eoALxLQ7LgG5cAX3xNWHHhn5rQIUIwAWNIgBsAJhKkz6BAIbXGnUACNOZF0Q9QOmsATxV9BkZwriA')">function is_true(x) {
     return x === true;
 }
 
 </pre></div></div></td></tr></table>
-
-    
     
     With the definition of the function
-    <kbd>eval_conditional_expression</kbd>
-    of section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.3-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>, this means
-    that our evaluator evaluates the alternative statement
-    for any predicate value other than
-    <kbd>true</kbd>.
+    <kbd>eval_conditional_expression</kbd> of
+    section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.3-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>, this means that our
+    evaluator evaluates the alternative statement for any predicate value other
+    than <kbd>true</kbd>.
   </p></div>
 
   
@@ -1757,18 +1753,21 @@
         <a name='h2' class='permalink'></a><h2>
     
     Representing
-    <span style="color:teal">procedures</span><span style="color:blue">functions</span>
+    
+      <span style="color:teal">procedures</span>
+    <span style="color:blue">functions</span>
+    
   </h2></div>
 
   
 
   <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-    To handle primitives,
-    we assume that we have available the
-    following
-    <span style="color:teal">procedures</span><span style="color:blue">functions</span>:
-
+    To handle primitives, we assume that we have available the following
+    
+      <span style="color:teal">procedures:</span>
+      <span style="color:blue">functions:</span>
+    
     <UL>
       <LI>
 	
@@ -1786,21 +1785,30 @@
 	
 
 	applies the given primitive
-	<span style="color:teal">procedure</span><span style="color:blue">function</span>
-	to the argument values in the
-	list
-	$\textit{args}$
-	and returns the result of the application.
-
+	
+	  <span style="color:teal">procedure</span>
+	  <span style="color:blue">function</span>
+	
+	to the argument values in the list
+	$\textit{args}$ and returns the result of
+	the application.
       </LI>
       <LI>
 	
-        <span style="color:teal"><kbd>(primitive-procedure?</kbd> proc<kbd>)</kbd></span><span style="color:blue"><kbd>is_primitive_function(</kbd>$\textit{fun}$<kbd>)</kbd></span>
+        
+	  <span style="color:teal"><kbd>(primitive-procedure?</kbd>
+	  proc<kbd>)</kbd></span>
+	  <span style="color:blue">
+	    <kbd>is_primitive_function(</kbd>$\textit{fun}$<kbd>)</kbd>
+	  </span>
+	
 	
 
-	tests whether 
-        <span style="color:teal">proc</span>
-        <span style="color:blue">$\textit{fun}$</span>
+	tests whether
+	
+	  <span style="color:teal">proc</span>
+          <span style="color:blue">$\textit{fun}$</span>
+	
         is a primitive
         
           <span style="color:teal">procedure.</span>
@@ -1809,21 +1817,28 @@
       </LI>
     </UL>
 
-    These mechanisms for handling primitives
-    are further described in
+    These mechanisms for handling primitives are further described in
     section <REF NAME="sec:running-eval"><a class="superscript" id="4.1.3-sec-link-4.1.4" href="./4.1.4.html">4.1.4</a></REF>.
   </p></div>
 
   <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
     Compound
-    <span style="color:teal">procedures</span><span style="color:blue">functions</span>
+    
+      <span style="color:teal">procedures</span>
+      <span style="color:blue">functions</span>
+    
     are constructed from parameters,
-    <span style="color:teal">procedure</span><span style="color:blue">function</span>
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
     bodies, and environments using the constructor 
-    <span style="color:teal"><kbd>make-procedure</kbd></span>
-    <span style="color:blue"><kbd>make_compound_function</kbd></span>:
-
+    
+      <span style="color:teal"><kbd>make-procedure</kbd>:</span>
+      <span style="color:blue"><kbd>make_function</kbd>:
+      </span>
+    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -1839,7 +1854,7 @@
 (define (procedure-body p) (caddr p))
 (define (procedure-environment p) (cadddr p))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_78_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=GYVwdgxgLglg9mABDAzgfSgQwObYKYAmaANqlABQpQC2UANIlABZ4Y4CUiA3gFCL+IATnighBSVGgAOmGIMo0onAGTLELTAQW1OAXn2MWbbAG4eAXx6hIsBIjyRicFDDDY0DgG5yE1BxS9OXgEhETEkLBhickCzS2toeCRgOSo0YEFMPxiwTyC+AWFRcXU8TRy8uKtwRLsHCCcUVgAjAE9yDKy8BkDuEIL+IvDEGTkOzL8e3PYqiAQqQ1Y8aikoVo9cnzA-MChEXUQwEGJiMwTbCXRl1fWvLZ2A6e4B0OLLtCOTipmLapskxDUTAAa1YcxWcHARHOSXIMgmIjwghQDGacAIrSmeWeISGJVIVHIACJwVJIWBoTULkS6C8QvSBPCulAkSjEGiMVifvEqQDJKTyZT-ggOvlcWESpIsLhCCQyB0GCS4BCoeleQgidy-rVkuqwNJMAiWcjRTjChKkASoGhhMAFYgAIxamF2F36jntYBi81vRBWm14O3ABgAJmdesQbo23kEvn8puCPuG-tt9oAzFqeHMwAtqOs3ftEC8gaC0ALVW7yHSBFbiQAPGmIImtTW0hn8WtEvH6qiYFkPRvwpr1xAAakQrRMmvYbfbzCWKzW0fu-h+BFQUmImHa-OVZIrevIebVwrA7DXG63nr1BqNrKP+b157M65Qm+3HRvHofJ51z54r7vtep7LrG2zxsebrPkAA')">function make_compound_function(parameters, body, env) {
+            <td><div class='snippet' id='javascript_78_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0oNzkAjSMVCQczDEAblZ0EjGiaWqaOnoGRvTsVAIiuUGh4ZS09ARW4swEumxZFSSpeVo6+obGztyuHV1VhKS1UTFkcYxKAEYAniItbdyyuRoFPdp9xaAWViutWRudKmNkdOK+StwSZhSLKZ0ZJFkkFKCeoCREAgIguMInVQBI2ABrJQ1SIkEQWE4Gbi6RiyeY0XiLM5dDQ7Qr9ehCcQiABEVweNFI-BhdRJ0jxBUZOgRawoyNRoHRmOxFxCwMmJhY5LMlJI1ImsJW3QKewGpnYXD4gmEK1kZJoFKpzQltN51R1URpdHMbERbJRUtxMqKAyJFGY+gIqtAGD1-NhoCNJGYXOWBGlvRthOEDu4ToIsgATG6vZ6Dd60m8PqJ-VbAwTQHbQ+HZNg3bgriQbhJnrGfnjwVDtSC6CIGTo7aSAB500AkxYklT0pnaRsk2Xe8RsNnJ1sIubN0AAalAiwCna79e0CjuDyeL3Suky2V5vCYZgEbGWpmFovFNbhJerApUu-3h798ZNZvZIivXtvQT3jAPR5WT99N9S3jT9cG-X9HwvDck2yIDr1hT8gA')">function make_function(parameters, body, env) {
     return list("compound_function",
                 parameters, body, env);
 }
@@ -1857,12 +1872,21 @@ function function_environment(f) {
 }
 
 </pre></div></div></td></tr></table>
-
-
     
   </p></div>
 
-  
+  <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr>
+          <td><span style="color:teal">
+    </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
       
       
       <div class='permalink'>
@@ -1873,33 +1897,29 @@ function function_environment(f) {
 
       <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-	We saw in section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.3-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>
-	that the evaluation of sequences terminates with the
-	first return statement encountered, and that the evaluation
-	of function applications needs to return the value
-	<kbd>undefined</kbd> if the
+	We saw in section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.3-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> that the
+	evaluation of sequences terminates when the first return statement
+	encountered, and that the evaluation of function applications needs to
+	return the value <kbd>undefined</kbd> if the
 	evaluation of the function body does not encounter a
-	<kbd>return</kbd> statement. In
-	order to identify the evaluation of
-	<kbd>return</kbd> statements, we
-	introduce       <kbd>return</kbd>
+	<kbd>return</kbd> statement. In order to
+	identify the evaluation of <kbd>return</kbd>
+	statements, we introduce <kbd>return</kbd>
 	values as evaluator data structures.
-	<div class='snippet' id='javascript_78_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=GYVwdgxgLglg9mABDAzgfSgQwObYKYAmaANqlABQpQC2UANIlABZ4Y4CUiA3gFCL+IATnighBSVGgAOmGIMo0onAGTLELTAQW1OAXn2MWbbAG4eAXx6hIsBIjyRicFDDDY0DgG5yE1BxS9OXgEhETEkLBhickCzS2toeCRgOSo0YEFMPxiwTyC+AWFRcXU8TRy8uKtwRLsHCCcUVgAjAE9yDKy8BkDuEIL+IvDEGTkOzL8e3PYqiAQqQ1Y8aikoVo9cnzA-MChEXUQwEGJiMwTbCXRl1fWvLZ2A6e4B0OLLtCOTipmLapskxDUTAAa1YQ3EaE8mGIIDw5Dmu38+RC4KQpCo5AARKjIdDYZiGAioEiqucAZIcVCYXCqbDkYUwiVJFhcIQSGRyLTutjGWBcdTMT94jULq9wvzYWgif5OXi8PTBrzSuVItEuewhTweAiFtR1pS5ftASCwbyJXCACwAJh+BFQUmImHaFLNXPIerQBupGrMdpQDqd5C9kulu3d+tdcp9QA')">function make_return_value(content) {
+	<div class='snippet' id='javascript_78_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0oNzkAjSMVCQczDEAblZ0EjGiaWqaOnoGRvTsVAIiuUGh4ZS09ARW4swEumxZFSSpeVo6+obGztyuHV1VhKS1UTFkcYxKAEYAniItbdyyuRoFPdp9xaAWViutWRudKmNkdOK+StwSZhSLKZ0ZJFkkFKCeoCREAgIguMInVQBI2ABrJR7YzMVJsAREbgiK6fbLdAow+hCcQiABEWLhCKReNkqIo6LGNUiJhYhPhiORDKRGN6RQGpnYXD4gmEImZ61ABPZJCJjLxFxCwMm9HpxKU5Oy-PlrN2IsGw1K5QFKkloVwqJuEmecsZ3zBkOhIrFSJEKAATJLeEwzAI2MtTKbbcbmF7uLqgs7GK73SI-cxFZ8RD6-QGgA')">function make_return_value(content) {
     return list("return_value", content);
 }
 function is_return_value(value) {
-    return is_tagged_list(value,"return_value");
+    return is_tagged_list(value, "return_value");
 }
 function return_value_content(value) {
     return head(tail(value));
 }
 
 </pre></div></div>
-
 	
-
       </p></div>
-    
+    </span></td></tr></table>
 
   
       <div class='permalink'>
@@ -1912,14 +1932,15 @@ function return_value_content(value) {
   
   <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
-    The evaluator needs operations for manipulating environments.  As
-    explained in section <REF NAME="sec:environment-model"><a class="superscript" id="4.1.3-sec-link-3.2" href="./3.2.html">3.2</a></REF>, an environment is a
-    sequence of frames, where each frame is a table of bindings that
-    associate
-    <span style="color:teal">variables</span><span style="color:blue">names</span>
-    with their corresponding values.  We use
-    the following operations for manipulating environments:
-
+    The evaluator needs operations for manipulating environments.  As explained
+    in section <REF NAME="sec:environment-model"><a class="superscript" id="4.1.3-sec-link-3.2" href="./3.2.html">3.2</a></REF>, an environment is a
+    sequence of frames, where each frame is a table of bindings that associate
+    
+      <span style="color:teal">variables</span>
+      <span style="color:blue">names</span>
+    
+    with their corresponding values.  We use the following operations for
+    manipulating environments:
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
@@ -1931,43 +1952,52 @@ function return_value_content(value) {
           <td><span style="color:teal">
 	<UL>
 	  
-	  <LI><kbd>(lookup-variable-value </kbd>var env<kbd>)</kbd>
+	  <LI>
+	    <kbd>(lookup-variable-value </kbd>
+	    var env<kbd>)</kbd>
 	  <p>
-	    returns the value that is bound to the symbol var in the
-	    environment env, or signals an error if the variable is unbound.
+	    returns the value that is bound to the symbol
+	    var in the environment
+	    env, or signals an error if the variable
+	    is unbound.
 	  </p>
 	  </LI>
 	  <LI>
 	    
-	    <kbd>(extend-environment </kbd>variables values base-env<kbd>)</kbd>
+	    <kbd>(extend-environment </kbd>
+	    variables values base-env
+	    <kbd>)</kbd>
 	    <p>
 	      returns a new environment, consisting of a new frame in which the
-	      symbols in the list variables are bound to the corresponding
-	      elements in the list values, where the enclosing environment is
-	      the environment base-env.
+	      symbols in the list variables are bound
+	      to the corresponding elements in the list
+	      values, where the enclosing environment
+	      is the environment base-env.
 	    </p>
 	  </LI>
 	  <LI>
 	    
-	    <kbd>(define-variable! </kbd>var value env<kbd>)</kbd>
+	    <kbd>(define-variable! </kbd>
+	    var value env
+	    <kbd>)</kbd>
 	    <p>
 	      adds to the first frame in the environment
-	      env a new binding that
-	      associates the variable var
-	      with the value value.
+	      env a new binding that associates the
+	      variable var with the value
+	      value.
 	    </p>
 	  </LI>
 	  <LI>
 	    
 	    <kbd>(set-variable-value! </kbd>
-	    var value env<kbd>)</kbd>
+	    var value env
+	    <kbd>)</kbd>
 	    <p>
-	      changes the binding of the variable
-	      var in the environment
-	      env
-	      so that the variable is now bound to the value
-	      value, or signals
-	      an error if the variable is unbound.
+	      changes the binding of the variable var
+	      in the environment env so that the
+	      variable is now bound to the value
+	      value, or signals an error if the
+	      variable is unbound.
 	    </p>
 	  </LI>
 
@@ -1978,76 +2008,58 @@ function return_value_content(value) {
 	<UL>
 	  
 	  <LI>
-	    <kbd>lookup_name_value(</kbd>
-	    $\textit{name}$,
+	    <kbd>lookup_symbol_value(</kbd>
+	    $\textit{symbol}$,
 	    $\textit{env}$
 	    <kbd>)</kbd>
 	  
 
-	  returns the value that is bound to the symbol
-	  $\textit{name}$ in the
-	  environment env,
-	  or signals an error if the name is unbound.
+	  returns the value that is bound to the
+	  $\textit{symbol}$ in the environment
+	  env, or signals an error if the
+	  $\textit{symbol}$ is unbound.
 	  </LI>
 	  <LI>
 	    
 	    <kbd>extend_environment(</kbd>
-	    $\textit{names}$, $\textit{values}$,
+	    $\textit{symbols}$, $\textit{values}$,
 	    $\textit{base-env}$
 	    <kbd>)</kbd>
 	    
 
 	    returns a new environment, consisting of a new frame in which the
-	    symbols in the list $\textit{names}$
+	    symbols in the list $\textit{symbols}$
 	    are bound to the corresponding elements in the list
-	    $\textit{values}$ (each tagged as
-	    <EM>mutable</EM>),
-	    where the enclosing environment is
-	    the environment $\textit{base-env}$.
+	    $\textit{values}$, where the enclosing
+	    environment is the environment
+	    $\textit{base-env}$.
 	  </LI>
 	  <LI>
 	    
-	    <kbd>set_name_value(</kbd>
-	    $\textit{name}$, $\textit{value}$,
+	    <kbd>assign_symbol_value(</kbd>
+	    $\textit{symbol}$, $\textit{value}$,
 	    $\textit{env}$
 	    <kbd>)</kbd>
 	    
 
-	    sets the given $\textit{name}$
-	    to the given $\textit{value}$ in
-	    the first frame of the environment
-	    $\textit{env}$.
-	  </LI>
-	  <LI>
-	    
-	    <kbd>assign_name_value(</kbd>
-	    $\textit{name}$, $\textit{value}$,
+	    finds the innermost frame of
 	    $\textit{env}$
-	    <kbd>)</kbd>
-	    
-
-	    checks if the value associated to the name
-	    $\textit{name}$
-	    is tagged as mutable, and if yes,
-	    changes its binding in the environment
-	    $\textit{env}$
-	    so that the name is now bound to the value
-	    $\textit{value}$,
-	    or signals an error if the name is unbound or its value
-	    tagged as immutable.
+	    in which the $\textit{symbol}$
+	    is bound, and changes that frame
+	    so that the symbol is now bound to the given
+	    $\textit{value}$.
 	  </LI>
-
 	</UL>
       </span></td></tr></table>
 
     
     To implement these operations we represent an environment as a list of
     frames.  The enclosing environment of an environment is the
-    <span style="color:teal"><kbd>cdr</kbd></span>
-    <span style="color:blue"><kbd>tail</kbd></span>
+    
+      <span style="color:teal"><kbd>cdr</kbd></span>
+      <span style="color:blue"><kbd>tail</kbd></span>
     
     of the list.  The empty environment is simply the empty list.
-
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2059,7 +2071,7 @@ function return_value_content(value) {
 
 (define the-empty-environment \'())
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_78_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=GYVwdgxgLglg9mABAU0gGzgZxmA5gfVQDcYAnBAW1SgApiBKRAbwChF3FTkoRSkoAhjDR0wRegG4WAXxahIsBImBlMUfMFICqo8czYcuPPogAWyAQBNdkmXPDR4SVBAyZk+AEYBPGpu3IADQoYoxMHIgG7Ea8SAAOQqR+WlTBDFKyEAhqiFDmhBRxUN6EYmSU1IgAvIhgIGhoUvKOSjCYBUUlxOVgVGC0DPoRMSZt+HUNNhksLGPIhcWlJOS91DR5HvOdSz19UJJAA')">function enclosing_environment(env) {
+            <td><div class='snippet' id='javascript_78_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0AU3IBsaBnKkgcwH0mA3KgCc6AWyYUAFAICUoAN65Qy0EIYUiQ+hQCGVZtJL8ZAblwBfQqUq16BYWwo8CQneMPGFSlWo1bQABYMOgAmHqYWVuTUdIws7Aw8AEYAnpIubgwANHGe8iqg3sq+mvQADnpC6a7iObJmlmR0jqAUQXyiZRQpfEbCYhKgALygJETMzGa4bYkMnd29giIk4iQUJkA')">function enclosing_environment(env) {
     return tail(env);
 }
 function first_frame(env) {
@@ -2069,9 +2081,6 @@ function enclose_by(frame, env) {
     return pair(frame, env);
 }
 const the_empty_environment = null;
-function is_empty_environment(env) {
-    return is_null(env);
-}
 
 </pre></div></div></td></tr></table>
     
@@ -2080,7 +2089,9 @@ function is_empty_environment(env) {
   <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
     Each frame of an environment is represented as a pair of lists: a list
-    of the variables bound in that frame and a list of the associated values.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+    of the variables bound in that frame and a list of the associated
+    values.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2096,10 +2107,10 @@ function is_empty_environment(env) {
   (set-car! frame (cons var (car frame)))
   (set-cdr! frame (cons val (cdr frame))))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_78_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=GYVwdgxgLglg9mABAWwIYGsCmB9YAnVZTACjEMwGcAaRAN1QBsRKBKRAbwChEfE9MoIPEgAOqGHlLlqdRswosA3JwC+nUJFgJE+ctjJEKxXUTbteibr36DhiABaZUAE2MFTytRujwkJnPRMlG7kZhZWPDZCSFDiDCEeqkA')">function make_frame(names, values) {
-    return pair(names, values);
+            <td><div class='snippet' id='javascript_78_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0CAnJhtgBQBnAJ4MARjQA2QgDSgAbkylE2QgJSgA3rlB7Q3NhSLd6AByZVuwsZJnylKteoDcuAL6FSlWvR59OUQlpIQF-fk0tfVBdfUNjU1AACzYmABMw3gi3T2JyajpQcM5HVVDiyOjYvXiTegpLKUyA1w98MjohCkYRLiy2UABeRlZOYoEpKi6BACIADxn5GZEZ9XlJ6Yx5ACZ1VuKOILtQhl6KlyA')">function make_frame(symbols, values) {
+    return pair(symbols, values);
 }
-function frame_names(frame) {    
+function frame_symbols(frame) {    
     return head(frame);
 }
 function frame_values(frame) {    
@@ -2112,20 +2123,22 @@ function frame_values(frame) {
   <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
     To extend an environment by a new frame that associates
-    <span style="color:teal">variables</span>
-    <span style="color:blue">names</span>
-    with
-    values, we make a frame consisting of the list of
-    <span style="color:teal">variables</span>
-    <span style="color:blue">names</span>
-    and the
-    list of values,
-    and we adjoin this to the environment.  We signal
+    
+      <span style="color:teal">variables</span>
+      <span style="color:blue">symbols</span>
+    
+    with values, we make a frame consisting of the list of
+    
+      <span style="color:teal">variables</span>
+      <span style="color:blue">symbols</span>
+    
+    and the list of values, and we adjoin this to the environment.  We signal
     an error if the number of
-    <span style="color:teal">variables</span>
-    <span style="color:blue">names</span>
+    
+      <span style="color:teal">variables</span>
+      <span style="color:blue">symbols</span>
+    
     does not match the number of values.
-
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2138,38 +2151,22 @@ function frame_values(frame) {
           (error "Too many arguments supplied" vars vals)
           (error "Too few arguments supplied" vars vals))))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_78_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=GYVwdgxgLglg9mABAU0gGzgZxmA5gfVQDcYAnBAW1SgApiBKRAbwChF3FTkoRSkoAhjDR0wRegG4WAXxahIsBImBlMUfMFICqo8czYcuPPogAWyAQBNdkmXPDR4SVBAyZk+AEYBPGpu3IADQoYoxMHIgG7Ea8SAAOQqR+WlTBDFKyEAhqiFDmhBRxUN6EYmSU1IgAvIhgIGhoUvKOSjCYBUUlxOVgVGC0DPoRMSZt+HUNNhn2Ck6IFAIA1h7+OmABmMFEAmggyJhhUZzcsYgJZDTrVJuI27v7trLNikirHlf7yQFhEUcjSOYrF8qI8Zi1XikPHc9phgcgfhw-icTIJhHDQc85sgAB5QVCWUokci9aiXDZbHY3TwCdyEw4RGDARA0NCoXB5MnXRhVHmIVl4Dl3A70iKGZHOdBYDw+GhHUXyiILZYaSGc-bBOUKrXsBZxGjY6oAPjOiX1wSgpD29ApaGFgU12oi1Np6SO0hQtuQiEZzP57NMaoOiAAPHy2YLKfQRfLkKRyEkAEQAFTgcHmAjA3kQAlIuBAfSgmEQmBAcTiaBgyEsAC5EAnEABqSKOiJqUg4XCM3wfINNhPBetNh0Ktsdrs0IVRqQRd3IT1DBWx+M0ZOp5TIADu2dz+eoRZLZYrVdrg+bLfYo7w457jD7A8bZ-Pl87wF8k9sM7sLBxeLABO6xIFiybS0Am2L9nW3gQQmABeCbWsOLYVmoNAAIzBAATMEADMCHngqeQeMghTFISPQFpIQA')">function extend_environment(names, vals, base_env) {
-    if (length(names) === length(vals)) {
-        return enclose_by(
-                   make_frame(names, 
-                      map(x => pair(x, true), vals)),
-                   base_env);
-    } else if (length(names) < length(vals)) {
-        error("Too many arguments supplied: " + 
-              stringify(names) + ", " + 
-              stringify(vals));
-    } else {
-        error("Too few arguments supplied: " + 
-              stringify(names) + ", " + 
-              stringify(vals));
-    }
+            <td><div class='snippet' id='javascript_78_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0AU3IBsaBnKkgcwH0mA3KgCc6AWyYUAFAICUoAN65Qy0EIYUiQ+hQCGVZtJL8ZAblwBfQqUq16BYWwo8CQneMPGFSlWo1bQABYMOgAmHqYWVuTUdIws7Aw8AEYAnpIubgwANHGe8iqg3sq+mvQADnpC6a7iObJmlmR0jqAUQXyiZRQpfEbCYhKgALygJETMzGZRNrGiOgDWiRnubCmiSTTMbDn8OsxEDGxyigUl-hXCkqvrm9ugu-uHEZbE0bagy4nXG1vVmccFIqqdSlQLBMKfZ7TGJ2GqJB4HNh-cQAlRAs7aPQGSENfCvGb0BgADwoTBCvUEIhI4hIUm+tx2ezuSR0bESsi8pxB-mYTC4bSuax+R2GQxGvO4AoeRyBBRUAH5QBcqnNFs44YKbltGVsZDkWWyKTJZXLQAAuUAS-kBTXCuQAHktfKlTONpvdioYQhEVQARAAVGg0UBzEgpUA6IRcIg0ihsUBsIhlMrMKgMEIW32gADUhXd+dNjiEnC4VAIaXpupzoF9OSzuZNBcLFGL3DLaWlMjdTeUFq9PskAaDHwYAHcI1GYxJ44nk6n05nq42eyoiyX27bbnJc7Wa0uVwW123y5JO1DcMTSSRyQJ+tSJJJU45B0Td76Um+AF6+vXLntPqQMByAAmHJsF-A9TTadlOm6Ck71jUwgA')">function extend_environment(symbols, vals, base_env) {
+    return length(symbols) === length(vals)
+           ? pair(make_frame(symbols, vals), base_env)
+           : length(symbols) < length(vals)
+             ? error("Too many arguments supplied")
+             : error("Too few arguments supplied");
 }
 
 </pre></div></div></td></tr></table>
-
     
     
       <span style="color:blue">
 	The function <kbd>extend_environment</kbd>
 	is used by <kbd>apply</kbd> in
-	section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.3-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> to bind
-	the parameters of a function to its arguments. In order to
-	allow for assignment to function parameters, as in function
-	<kbd>make_withdraw_with_balance</kbd>
-	of section <REF NAME="sec:local-state-variables"><a class="superscript" id="4.1.3-sec-link-3.1.1" href="./3.1.1.html">3.1.1</a></REF>, we
-	choose to tag the values in
-	<kbd>extend_environment</kbd>	as
-	mutable, using <kbd>map</kbd>.
+	section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.3-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> to bind the
+	parameters of a function to its arguments. 
       </span>
     
   </p></div>
@@ -2177,20 +2174,28 @@ function frame_values(frame) {
   <div class='permalink'>
 <a name='p9' class='permalink'></a><p>
     To look up a
-    <span style="color:teal">variable</span>
-    <span style="color:blue">name</span>
+    
+      <span style="color:teal">variable</span>
+      <span style="color:blue">symbol</span>
+    
     in an environment, we scan the list of
-    <span style="color:teal">variable</span>
-    <span style="color:blue">name</span>
+    
+      <span style="color:teal">variables</span>
+      <span style="color:blue">symbols</span>
+    
     in the first frame.  If we find the desired
-    <span style="color:teal">variable,</span>
-    <span style="color:blue">name,</span>
-    we return the corresponding element in the list of values.
-    If we do not find the
-    <span style="color:teal">variable</span>
-    <span style="color:blue">name</span>
-    in the current frame, we search the enclosing environment,
-    and so on.  If we reach the empty environment, we signal an
+    
+      <span style="color:teal">variable,</span>
+      <span style="color:blue">symbol,</span>
+    
+    we return the corresponding element in the list of values. If we do not
+    find the
+    
+      <span style="color:teal">variable</span>
+      <span style="color:blue">symbol</span>
+    
+    in the current frame, we search the enclosing environment, and so on.
+    If we reach the empty environment, we signal an
     
       <span style="color:teal">
 	<QUOTE>unbound
@@ -2202,21 +2207,11 @@ function frame_values(frame) {
       </span>
       
     error.
-
-    <div class='snippet' id='javascript_78_7_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEHUFNQVwZ2gQ1AOxgG3YgTgT1AGYwoDGALgJYD2KoicoZkAtgA5XY74Bui6M0Ah1SJmkBgHcAFlQQAoEKAAmkElk6UaoKfVRUyoXJAMAjSJFqRe-REyUA6UABUp0VjGzsEoKgUauFMCxmEyVkSAAPVmxxOGpaCgZ3GPR8MipQEhjbJFgUCgBHAVAKFRRKMlwAbkD-QWJyeNAJCkxUK0hsUDM6VlZ0CkglOhRhijIGGLIPWmti2oAKNEwAShKGCmwUq0Ry+zkSGjgDFCoAfTnIM6MDAF5QBbXbgD5UDHQqoA')">// We use a nullary function as temporary value for names whose
-// declaration has not yet been evaluated. The purpose of the
-// lambda expression is purely to create a unique identity;
-// the function will never be applied and its return value 
-// (null) is irrelevant.
-const no_value_yet = () => null;
-
-</pre></div></div>
-    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_78_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_78_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (lookup-variable-value var env)
   (define (env-loop env)
     (define (scan vars vals)
@@ -2232,59 +2227,59 @@ const no_value_yet = () => null;
                 (frame-values frame)))))
   (env-loop env))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_78_8_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEHUFNQVwZ2gQ1AOxgG3YgTgT1AGYwoDGALgJYD2KoicoZkAtgA5XY74Bui6M0Ah1SJmkBgHcAFlQQAoEKAAmkElk6UaoKfVRUyoXJAMAjSJFqRe-REyUA6UABUp0VjGzsEoKgUauFMCxmEyVkSAAPVmxxOGpaCgZ3GPR8MipQEhjbJFgUCgBHAVAKFRRKMlwAbkD-QWJyeNAJCkxUK0hsUDM6VlZ0CkglOhRhijIGGLIPWmti2oAKNEwAShKGCmwUq0Ry+zkSGjgDFCoAfTnIM6MDAF5QBbXbgD5UDHQaolJNS1J0WQoKAA5mcLNxNjQxOUFmC1gBvOSgJGgKYzRiIVowlDcFY1AC+ci+jS0BE2xzOBE4YixONACORKOMaNciCUNNxcgJRJ+oAsalkVxMuAWlNEkAANLzsfCGYjkajsLRWBjsCKqRKpTj8QcjgYyK5QWxKqDsRCUFC7m9MJ8GjzEobWMawWaLey6XKkQqEnAzst0OztdympEmKMTeDsJCLGQlmK4JLrPHuvQrrD3QyKH4FugLED9bGxHAnrd7jngfnEyt4R6GYzpoqpfyEGchQsa7WOwzmIgANZXUXUlBxyXtztjpHd1gLCKgF6gZWbaeSsjYAQrBN8Ivr0fjhkmFPhjkMvG89DeTMPMt5qQF8RrAA8oCvFc3VfTnc6kdVACInFQMt2KD4DgQIwBaDBwDAfQDEMABcoDfqAADUoA7p2xzYICQKZsKQ6FmsKHfpKiEoWhHYYVhOELJWR7IiekBntA9IflsHALL+-6EJAEh0NgoHgaAkHQYMSjwSRqG7gyFHAlReF3shCHEQpZG1tJ2EEMKNE1MenKEraTTdn2FLqreSaXEW76ekyDYLqqclmXwAhFoG+kkuqvpxmqYoysiNZetokCsl5Ygclyrm0AOVzmcFkA+UifnWbQZAYv6kWhXp3xNP8VA9lBHliBcjmQLekppsxSJBloYJnNlU5lWhlW0HAJC7KZG5ntWkl1mi9p+qZKwqeOAD8mo1f+U6DV1fL-HEwLhi60bsgNXWdvBcmziWAVBfZy0rZ2I0smyh3Ua+u17bW8HNa1yWYjty4pSdHW0R2BJjheCz2iwjq4PNkbmotsKdZJn5sXJxEAKooCYVDEMMclic9tb0YxlnjocKDHIQ6qzoQZJkMZYoBpN6OY5cOOCS1KAxfl4gxdu50M1jYqFfwtNpRyACQDL+WTJb3KcLMCNcxiTUiI0g3ZYrEQAcmKsDeGYQgxMoqjqLY8QI6LoDwZc2mdq9dEJfWvzcGNVB1dK2o6hjBjMD9zp-Ras41iGFhKL9UbQgMxzsREREIbg-vfgAXt+9OM7W3sxgAjJKABMkoAMzhxHyL6qmRr26ajvRhycjZblrA04LxXfn7kp2x7-3lLiQA')">function lookup_name_value(name, env) {
+            <td><div class='snippet' id='javascript_78_7_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuBjAewDsBnAF1AFcSBDMsgSwHMSBTAE1AF5QAKAJS8AfKBLUANpIDc+AGa0CFJqVDsSBSUWYkWAfQ0A3JgCdSAWw0V+x4QG9coZ6FPsK1UyVAU6TSbYkRoJyAL64ipoqavJmlPrypnRWgcGgji6u7p7eABbsdJypIbjhkcqq3hpaOuz6AEYAnvyJyewANOpBDplOLm4eXqAADn6mLUlWnXZhhKSUPvmGFsMUjYZBZpbWvOJSsgpK0VUAHhQanBsm5iRWJDZkjRb1RJJknUZ0b531DHV26T6zgGOVAkg0LAouX4j2erzIwh4SLBEKh-E+b0EQMymQA-CMxvwLHQANZ1VopWEvb6gDEIn5-K5YnEsgBcKL0aKp8OEAB4OZDoXTmSyWfj2KZzOMAEQAFSIRFAxJIjVAdFMLGodwoZFAZGow2GkiYXHZ0tAAGpQNjRbbnJRTEw9Ex5M1uZjLaBpZ1zVabXbRQ6nSwXc1hSKA6B2RKpfw5QrQPJ2AB3NUarXWXX6w3G01ez3+yOZIPO10wp7UhGe735v1Fu0lkNl8OzCJHSpK0nkybsctwmkY6jsKsZfrZIajMx9ysfL5DhGzcrHRM9-TusgTNo9FzYkFDfKFTdWEpldsxVeD4dH9jb5y78feXz+a8nw5RDvaIgkg1riuvfSXtOrzTN0gKZEuHbGPon7DMUYGihBahkAQdAkEBA5fCOhY4nu3hMGQ+gSNI6EIthkbikE0EKrBZH1l0NS6AYxhbLc1jFBGdHOOy7q8MiB5FOuHGcc4+L8eimFCcJ3EoWhT4BIJnRyeJmIlLa4S2i6AjGLxfBQv8KxrFcLHag4tHODGRDjO6PoAKokC8tDcO6ZqqaKoTqG87DwQGxDkFQFJeXwsSmPEAXFHIRa4XqMnXr+-YbgFgjtGZ9YBQBc5XolrksupLi5cCD5dEYVFELBMylPgvkLBY6zMTc2q8Ni7BnBcRn1WxxqUHGJw1tKjS9QAXtKSUpZGnU2BgnQAEydNgI3CaKenLKstWbO19wlLgn7fsMcXUulkhDt1NY1W12wbTIQA')">function lookup_symbol_value(symbol, env) {
     function env_loop(env) {
-        function scan(names, vals) {
-            return is_null(names)
+        function scan(symbols, vals) {
+            return is_null(symbols)
                    ? env_loop(
                        enclosing_environment(env))
-                   : name === head(names)
-                     ? head(head(vals))
-                     : scan(tail(names), tail(vals));
+                   : symbol === head(symbols)
+                     ? head(vals)
+                     : scan(tail(symbols), tail(vals));
         }
-        if (is_empty_environment(env)) {
-            error(name, "Unbound name: ");
+        if (env === the_empty_environment) {
+            error(symbol, "Unbound symbol: ");
         } else {
             const frame = first_frame(env);
-            const value =  scan(frame_names(frame),
-                                frame_values(frame));
-	    return value === no_value_yet
-              ? error(name, "Name use before declaration: ")
-              : value;
+            return scan(frame_symbols(frame),
+                        frame_values(frame));
         }
     }
     return env_loop(env);
 }
 
 </pre></div></div></td></tr></table>
-
-    
     
   </p></div>
 
   <div class='permalink'>
 <a name='p10' class='permalink'></a><p>
-    
-      <span style="color:teal">To set a variable
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr>
+          <td><span style="color:teal">To set a variable
       to a new value in a specified environment, we scan
       for the variable, just as in 
       <kbd>lookup-variable-value</kbd>,
       and change the corresponding value when we find it.
-      </span>
-      <span style="color:blue">To assign a name
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">To assign a name
       to a new value in a specified environment, we scan
-      for the name, just as in 
-      <kbd>lookup_name_value</kbd>,
-      and change the corresponding value when we find it,
-      provided it is tagged as mutable.
-      </span>
-    
-
+      for the symbol of the name, just as in 
+      <kbd>lookup_symbol_value</kbd>,
+      and change the corresponding value when we find it.
+      </span></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_78_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_78_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (set-variable-value! var val env)
   (define (env-loop env)
     (define (scan vars vals)
@@ -2300,24 +2295,21 @@ const no_value_yet = () => null;
                 (frame-values frame)))))
   (env-loop env))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_78_9_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEDMFcDsGMBcCWB7aBnCAnZBbUsALAQwAd4BTTUAFgBpQ1yEVpQBGAOjYCgo4lUocgDciAG0hEKACjTwc8euWjCAlKADe3UDszl4kTK0RoA+ozHhTI8ZKTQA5rPnxV2nR88B+HXIXvPHQAuUBNTaCIccmcFN0DAnzFkZABrSBJwyPJTUQloiKjTZCsC6L9XJRU4+NAQsNhUOSJoeFMAEyYxIkwpFhjXAJqfGzFTBvR4ZtaO2C6egWh+yrVBzzqzUUxEIgAjMWyZud7Ufuqa0GHcnO7tvYPO7uPF8uWzwPXTIjQ0RAdoKJap1WCSEVy+Pz+APgSyEVWBwVCZnGbUQC3E1gAHiQ9N8+uU3vFLujkaiWOjyFicT8Ti9YStzh8+MxUO1yOBENBSTSXASQSNTEyFqz2ZyFjDlPSah9GABHSDKWBlHnwjxE0ay+VwMrkOUK7JNChQtCnV4qj57ZCwFJA846NWmC1W8VwhmI0x6AxGcyTQ3KaH4lV20Hoj2GaDeqTkKHOyXxD6kEhiRCwJ4220+BNiACe0hGdmiyBIlCkyEwJrpqlogdtSbkRSsuXlxsLxegbWN+NevIRlGwZdpACIAKrQFLQZAAd1YBqjftA8CzRdCrDzkZCA9UAG5uABfXgwZmsTM5vj0boONDqLQeRDgUDSMLYxA4UnCbKCvp8VRX4GhoygY9TCfF8kDfAUDzFU8AMwC8twCHchDERhQjvB8kVwEhkBgNpwP4T8YG-TRgXGORQB2ZA2izUAAF4IAglgHQok8CO3eISPgUAkhTJCaM4y10VKY1yMouC2MaDjBN4jlGEwVpxDEaQPxZEhHiiChMGNL8q1tHTdL47jL1YwJ2PnKMMkbcgMFonBSGkDEaIAPlAcdrjyUws30bS9O8zwuPEQziPE0ALKsgCSCLNtpHPNAvJ8vTDXM2xLK3ABINKPECiZQBxSAxA46jA1XGRhKzWK4opCg22sFREGwf4-Wkas9MEsq4o8ELWraui8JZCVatQaMv2-IzPFve8wj-cMLOkHK8sI69zkm7L9DDVz5TGVBKuhWbXBGjwEPIJDyCInSluwtkOXINo9p0Pd9sQ5CFs8XtS0UmB6GHUdxynbrD3nRdjo5MLEyzDcRr3PclNYWtWmKNbLNzLEYorE6b1QlyWx6NtjQpEhLx-RaVv-aBcrEPaDqO1H4iWlTatzRtI0U2q60x5o2kRvHKwrTqfJh+t4eNHFYaLLH2w5y8u3B3d9x6lcrhJNFRlxqk8RcV4qeWz1jDMeBMHlenbEZ5FMWxIC9HZzsmq6iVvyatV82kY3lY29ByytnSbaakIiuiJ3KU+PK3a6wIbe3SH6MEfkoeFDkuWeNWbY1pabJSbIGhwTDsNww9Gp8mySGkUp+dKHndOjjoRTjoDVP0SgOx5St3d+oUK9joUSpNJvQ+lqHg3VHVNUVfpkcTp6UPGswzIXcwB71Yf5pVM62wu6ArvJh7AdQsIujrGdo3KfGNcJrW+4d9kNNaPeGoPytu88CnHpVEzz93lx4d4q2faZi+I19QEb9oHfGoY00LuiJlNJK39X4KHhgvPSS0X6XzfhZG691DqP3geAvuM9dRalznFIWv9ZwtHrgoCWQD4h3X2tLEAoAADqx1IDISIM5Um3QqK9y+KZDOpZ2HBSShAUszksgYAnAQZAjBuC0MOI8BYoBiAYHHBxDyHEdjkGUKfSMbQOCgAACoEGOiQQwmFkLFHnAYqRYAug4B2G0FhytLLUm1qAIxehszzmQPgPQkYAKgBgIgXUoQOgtFRFmbctD4AGObiwUAE5EBiDEM5EQlAyLHUzIgK6AE2yhHgBgJaFlQCWPvCTBJ6gTChEwG4mwLQODcBMi5Cy7l9C8WkOoaiTkSlkxln9aSlA5IJLssjLMl4k5YLCJ0wZ3YLigGGWaN0Eyog2MoNIAxRB2YYgljM-G1YfC0zLKs9ZmzemyQDgpSY8TJn0GGbbHS3tKmvQOZc0AA4cC5SQImY6Mj5gsAwMUdccFw6y30gJERpwNYgLCBqOe+ICY1BMgfXiUKtREKNKcVBugxmTwztPJFQ8b5Wx8J0q2dR0B9NOfgtqflRiCSgUgyM+8XD41LjpKlmQojGhTvqWeeDuDpR8oQq+JD57flEmgymY8PBLXqOJKYrJZiyNVrEO2nETDQnYrKr5Tw2VKliFMjwHxNi3H2HKo4YoAzeUSKq6QhrdjGs1UKUopw9VrFYQk8mPcI5y3RI6a0tJR6DBMiVXiPrGKUTRQGoKVLQqsppSVVKngI1ZQSgLXi+c7KOWcsgeGTTFBN15vxJCoqMUny-iVZlNQKrKBwn1Oq0Yo30GTR1CsALulyP5JNFF181YozHsnIgqcwFa3hhSvSX8O2CtaA43E3JYjlp8jbFtvd+Tgl+PVf+3b-WeBMgU2iX8V2Qj9MOzsFY9r7vDEXaaZ6oTavLBZV4e18lJTDq2mJ-IbV3BNQqmdige2DEYK0C9kD312oeN8lkjrLbnC-sB+48qwMQLyOWG2pdu4IR0C+yO8sZUtE-fBmMsLfD6G1cO9VOH7UMQgzyFDDMZCkemKBrV01j3IZVKh7gRSoYYHANgPAhBSDqRoPQRgf1OAACYMPaxnpYawNGOROHxKMk+4zIBLP7DyUAAAfDTTVIW6zk2CrThTdJhHIsgfYzRw2Ap6TrIgDgHBXVMDDGEkTsiTAcARzWYY3R7LBQAMl8-I8gaywXUVC+Y1ztnn293GVkMFvbMWmDc-ZnCTnBylDBh6oFRc4aUdiIprzjzzkKRhVFz1bor1dry09KVNm7MOdS92gcFWWgZas3I5rAHYsKeq1gwrRALl9YuTC4amW-odaPepnrJ9BtnP68Vhui6yvSomBqhjZrJsBBq4l2zyXHNWsHHR3DTxWsSfwNh+jcGtW5dcFTJaM2VlBfZkVp1I22sxMO+RlkTGNuSt6496Qz3nvDdK0CsIMGjvraq5thLSX6v7ca+Dz70ATu90R2tijXWfvFoK-95793huLaBWjy7QpvtQ9+9N3Hc2AfU+B6NuRYRy4rzjnF6HSnau7YawoD6TPK4LBR2V3nbcGIqR6GpOurOKc4+C0DhuIO-pC9FAxDu3W2fS6e9T2XurCfWcHatCdkvsf-jCLDlL8PufPPHT6Yh8ABdAqt-Sw9U6nGG88-+fHcv6cxOWyiRWJsVbfoI1t03e25Awjzc8hWZIlaUkcSwO3f0-am2xFdV3S0+Z6HADCNgOu5FJ8wC7UhN2pteYz2yGEonc-vdQNW-24h-RY7d9DVVYCs+0gAMxV8EJC7leLG-B523DsPg5cXkAT3IzlODB46tyUHrBTmByj4HEJxlXfpy9-1Nb1F3WMpS-d1Tobnu3vd6xWQLMU-oWr9uwliZN95cM7MDvOlf8G9kLn+z8IpMaeH7f2viAzNn8bd55r9Kdgs78vdBABUt8-Qi8RkS9-wtdZ979vczAfVXcm83QQ8ucf0BwfVx8YlJ80DVc99m8w9cCuIUhl8GAeRkDBAQ0VdG8MCPddVaDJN0kUxIdi81djcOch9X8cD2Djs-9WZ4BXpiCjdWBmDXBhCRY2Yi9391dv9Zsf9pC-8MZZDsZpBCw4DuDJMJltC-9EEigND2YDCQDFCDDWDloWYTDmxOZzCEDqdLDpYONPUuMeN8BiAyAUk6AGAmA5FOB29TsTc9ZogMQPMlp7JQtaJdZ5QrDJ905M4qooZpBRcsh1JkYy1f1PB08rUBxEisJkjPVl8I80jxcNJ6Asi2Not0IeEs4UjwAIiYdB8zcw9wAPoCj6jijDDPVq4xda4NJFImiT4y8s92j2AejZZQ0TxhjS8W9M9FJ6BK8rDo4a0BoGpGj8t-xRjFjQBO94j+1sgO1ppxgtpZjti8jjikoqDTi-Q-8JpwFh0LJzjJMsCrU70Bwri8h8DIDHjGlbjARnitjJCD8FJni-8FQkgfhHBqphB+o11oRN0SD5xqdqjBcACBR+jcwqhgTAtgs0SgVISJFsgdgTx+j1YNAE0cisEfNuMsh71pYTIXNrBsVz81iETeJOltwaiWSz9YT4TowkSJD5kv8CS-pJ86SohC4RF6AQoXiXF+sywWp+E8gApj9WBJTsgaVNSrwqTkTHkdSVj+iBZFJ+jdTd9kTntDSICVwMRKpq0apa0GplTchMivhsghTx5pB9hHBIlpT2U2kwsfSHA-TXS4EagloiTGAHQcwI8PAJSsTlS4zAg00oinIfMMQG1QiuYwzG5g4yJ3TYSi1QAH5N57xgy-TBJ1AAAeTiZQEMgga1fycM+IF6MsAcXRZIUAGyaAKic8FTGAhgdIRMDJNodcUAAAaiM28jkC2EcFvBzCrMnOeQ+mXKblnLkwXKbMLWLNLKPg8DbOkA7K7PAHIAnGggcAHJISHPCiTCunHKnPXL03nPAEXJEXUCnKoIHDXJ8g3JfJzFzPdXVL4lSHSGI2mhLmyI8CXRUEc2SALk9M8F7jQBTEWBdObP3Ophvy-yrOTOmQlDgsLBHXzKjLk35KdMBAXTwpCFKBojC0eVwvzKDEeUeVzLwoRBQos2eyrIbWp0ApVCoXiAhVP2nnZMFKqA8yg3uSVPpOeRHHImwmESiH+XRRLI3kwuMiCk1N4iMM1OxLUFUq3SCh3V8FQtNKyG1U0jNLnSYqwAspCnMqiBGxSmpJPh3TCwaSShzSbmGGkv9PIA+gADksg-FkI1FwBSxPl0dUB-km4QgUEBLBhBKMCCKkgiKxS5F-1wLIFILcgKTBhkKzL0LC0NKtsJlGLdJfK+wjyOR1IIhEk2yaKQqlFBFsINxiUlLjpoi8T2YKq9IfAsqWL-swzZTxBnUXVOLFhuL3zeKLl+L75pydBn5+idKMS9KKEMDJrHKtTQUdSbKkLjSHKdSW1XDZZ3DcBPD+MfChN-CYlOBqBTtJ9gJXx3xPUHwM4xB5SF9nrQIx96BnxEx7izAfrEAwIGiCIHDXiWjQ9oQoIBwQa3wfjWAEbsgAb9goRUwvxIaVU6wFioIc9n0TIUbs4Fho0rV4QF8UQ0BEwiBQZ6B4gqaaaqJbQ8z4gF82yqCpK+w9JWbAgF8JzObdI7Irk2knJ7IpzmbebfI8iABaQWnSYWmZUW0AeyGWmZHQKWjwBfAAKnlttEVqzGVvsm1vVtAE1p0AX2AD1vOANqNtADAElp5gXwAFJraahbaM17JnbTbzacboQBxoi3bPAPb2kVa6LaJDana8iABCULIOjwEOsW0AWOiO32hfas+O4OzMpWz20AWsnQSOimvI6s6iTOnQROsOkugutOvIhyMu8u7Ow23OpyauqOsghyUu+mhWxuu2ju1uousg6O+unQeyTwUOnQaOjwcI+EOCImrYECUGtOc7MmsPBfc6EUK6Kg9ey6NoX22yvmvI4KwKt2o+ve-erWvIgASWgD5zpp0GvtvrPvPr9qPJskiVMAAAVL7Ba36CBP7L7xrbK4JOFbzz9ibwboAzwYIrzWgYZ5TAIORTBzpMBswyKAArIgUQFCrYMgYi3SYmtGm3TGgifajwfs69OBzcQIG0vwgwDIMShqDzOe58F6kmjHdlGiFUNNO8UOg0rmcBtw4s5hhesG3okKTh84bhjNJ6+e1hlI+7Ro78GygRs6oRoKYmw7SSAqSR2yHhpyPh+gDR5etRrKIxlbHDcR7RmoKR3h0EoYp+nQMxpoEhYsyMu0qtci9YwEPNBMKtVI2R36th8DGUxa-MpxyYHDHinx8KPxlRw8AWegdixxgJxewvCJ1oOU0h8LXk0Sx0rx3aRkoKZkhwJIHYckPJjk2if9MChhwEOCU7M9bKxDXK8QfKpCsrVK+C-SyS6CsrLa4qnQzBD-cq98iPYYWCtKgudi0imE2pxEiSiPJqqIcOnq-yy8ZMnwaQFEgbYa5swBnSAaojIa4LEalU-Z20O5aqgcccACXEA9FoZ5ScpJwIAcUQs7cx3JACBJScTe9Qc5iasy6agM2asEvZ1ShCFUEBCUFZ5kqeNkipqEHp1svyyCz6BS7JWioGDrFSgS9SiVOFLSla2iXSrEja4+LzLazUyy7ahx7yKlo6s04s++JKwYSMiZrptjOpIKHAc-H1XiUXRgI8yk-YDiKI9gKhsV0TKhncDLL+Hlh0CghtAxUwEp5AMppWBFu4zcIAA')">function assign_name_value(name, val, env) {
+            <td><div class='snippet' id='javascript_78_8_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuRQAzAVwDsBjAFwEsB7MgZ2ICc6BbCGeJVTTfKUq0GoAKYA3AIYAbElKpiAFIyrsqAGnFkJASlABvXKBMsxVEizKgajAPqMxMoncmz5tMgHMVaqruMTIOCAfhNVdUDg4IAuG3syKXZlCP8o6JMwmTo6AGsSAAcHAE92ACM6GTtpORTSiqq6F0Tk33VdLTEdAIzY+LsKBlUpMio7ABMxChkpFgV6Mja03qCwtyrBpioRscnp2fmGJc7u9Iy422rZmikymTEJqZm5kUXUnpXQNZqrlhu7h57Z6HN5+E56M7RC72KSMRg0LxkZKjJYfFbfWR2WHwxHIqjHbQQz6gaEDBjjGivTFiAAeBTMcIWqMhoXEP02FKpVVp9LEjKOqXBaN6pJm5XGUmZxLC7CkuQeQmoTLFZQldgKB2SihYjFRGhZxM+KrVFXGxT1BsNvS6RM+pMcAEcSF0KCk-MKMhiqo7nZQUmInS6HsNFHjde8hZaSf07nQKLkpZ8vXZY-GCTaPVD+mYLFZE+i2Zic5ZQepI8TSVICgUZDQKCD870wlWa+b1h5lIrXq46Qz4QL3UL9VaMrKCkpZl5QABeAB8hbkCmUk6HoEn4fdukzfTELDYLAJACIAKpkXJkOgAd2sjGKoykNJs1nbS5ih90AG5cABfQTkJWiC2MjmkIWjrvoRhBDQRCgEolz0jQ7CUjQEgKv+rxKEIW6GJCxZWGu1bAeqfxIbQqF2F2TKgWuLBeIwn5RN+4gyI4NgwXB9iDOwBR0OQ4wUehVHkNhkHRJsqigKaxQzsQgkMCmdBmphwlfhk4lUKA2T1ixMmMPWZB2LxuxPAcry6lJDFqUMGm3uUlTMNOBEFF04zKcICzqpq5i7rqWFaFpsj0apYnWaA5DYgiZBiOMDmgGOSh2DO87hYyiLRf5caBZZIVbKANTOrFLYuROtGMFoKU4lFMXZcE6mgAyJAyBpjkvooShScOI6fLSihkPxNo0GwSJdPitkNGVeXuHynVdZ8lHyQNQ14m5W41UEeHWJcG1XLUSgNU126evV5gljtzpkqMI17XyjXLFacR8WIRA0FVwWgExTisaJwS7vublaCeZ4XtesnuaIVDFM5T5OcB75vb+v64PNz7suSyEMNSvZ8v2paaISEHpBt-RUCwzpKK1ygcj29LEdFer44dqwLh2ShUzyLAXRu7TlhWzNLqz5LUxzsijYO+NfojyMLg4Aa+q6SwTRmOHBNBsGXGI3EQzLgZ+grIkGkTj3Pa96QfSxYhsWr9gzKoDjbKGV2pPRBNWkTFOYYNtshhrjt+PRGgZm973MV9Bp1c9OpjKkZ0W45UYmO7Ede-bPsok7HSBwaqscXY235Z2ntR34Mf667J34UnRfqDHQfBGbodl7mKOYj6QZKPH0QMkXS5hnrAfdLXQS-nXP74HVFWRdFMlKPoc6gGQjUyF+SNyTe+mGSQxn7C8Cxc-4ytQexlyt7r7wu70dVO7pstBnbPcjXva3BET6ua8U2ty266j0R3YQLzIMgO5xCKn1FQ68jKPG3iCXyhc74OzTn7LcM1ZpBD0iMDeW9gRmSULKeUH824dxQb0LucDU5UD3s7LcQd64W2+s-cum1OLWR2JArBTJ3iEK+JpWw+J1IsKBKZDyY1KiokZlmS40g-i3HuKwwRA52icMyNw1QShJH-BkQIne8lhEyFEYo6M-8l6m1HivMGzcqipgTIKfGB8TB1SkjJSxCklLvCDnVAKOlHJoIMhAzR0D2qKWKGtceiRUpVVivFRKc8J5pXGBlbSQVCYML5m1Dq+ieouVcDoQaDBloeImjE8JQoGKS1XtLDa6Zui2OOk3OKcoHh5ymu3Wa7ttrs2xuwwc+iVgZhKX+Mx0sIq4l9mWGxdC6r5xku7IZw1Rgx3ppnYIMySh2SqPnCcYS8QrIaPTfOQog5E3zhLfpAFzG-HUYCEyWjcZCmqcsnR8y1HSMuVA7sOiLQ9PyvzJ5AJZHXPmRGfGyCfoDx-EEUxpzpZ8LmX4jC1ilZ0PufUSo8zoWYLkQZd5EYDTuzRX8kEAKxYZmBUETOiNCDI2YEQNgnAoBwEQMgdAWAABMJzXj9EcM4VwXzPA+HeNUl+CQSDlF3KiEwAAfcV8dj4kxeny90EqpWGkuBUSoYgRhisldKoVADUTHIheyy42wvBeGinYWsKjrFUAABYPGNefUwyT4JSEGmKgAZG60AtqpCuX5dOf1oAbV2qkF4fVUtLgtC-vvOhgq7DGtNfxC1otRmHkjXDUeUsHlNDsJGsVMbknetctsGguiz5hrKZcGZy1+XfVjfGs1SajxVpGum38Utm1zKxQq2tBb1VFpdbowtShi2ls3FQjNZSO1jHWTWqIRMh0juHQO0RfSDULH6Hi2FnT2i2LrSGhN5qeFHk3VckEra12iBPa8oRyLR07p7bUhdy6n0lpXX0qWV62HyRnd2udvafVLtfYus+76K32B+Ro09cLf3rSdfYetiaj3WMPBBl5X6yDnqlqh-Fbzb15r-Y+vtgHB1EeA2O0DAzsNbu-U02dsHCMAcXWR9o47yVgAAGKQAABoAFkACicQzA1ikK6UAh5kaPGNujDDoBLyUmtWJ40UhDwEDAFIIg2pA3WtsPERgzp4hepGOMe44wYiqa9VQKgBRGAxBAF4eTJAyhoC4sARgvEWCugALQiZ9RrYowAABWjBPOMBmN4YAtg9N8mAAANmwCgC9jDzVJFVJKOjjralGv3Q2pDYIxMScmFJ14mGylKc8nMLUPl8P0ZLHU8cWbmhJDEFoF9d7-CscS5pFLJpAnVYy7V1rxGV3loGVtBhfWam1ayyanLlq8uHm2t7PEJWBltKxvyXGDr52keXWWkx4amF9Wk5jXkG2Jt7pm4huboz9GHg5Md7k62cYrchWzXstNfUwf6-hJNucnoEgwBR17gt2ac3O8k37ZgiAEmZUD9lb2aYi3B7UyH-3rHYFXQd-Bp8vuTfwtNg9jbkMn1dC99luDgw3xx9-LbEOj2HhJ2IQ8Wh07HMzVT10pDe41vBTV-Cg29ttrKZXLnIzyG04Y59mnbOykkKWw-PWu7knMfFzL0b9gNYFC1ozxXD6ps6ra4koX6vkvJ3vggmnSvMsG6G+nTHYGUxaSsbjvHSWEOHuu3jQ8liyfrop47uMzv70Edq4273TvmegFcROgZTipITdd16nbr7BdsvXZWwidYGzpcTwT2byavdASz8VuH66JPtLOzn7bjHdubjV5C9cyOBvJ90Sr1a9f2UXixKVJQdBrMS-1zmxevf+8d7L7AycI-6JW+bwBvvRvOskMb-Pgf+FF0r-1RS1eVKaVcHpbwJlOA0+iCNaTZQNIHWJ8fP6xyJNnQjchf75GSgNQVe8jqLQHUxlJJR-TriPE+IBIzFmd9FX8mttQJov8yVOtLh-9eI+ogDTlMJL8LtCcj0iAAY4DADkZfdRAJMwDKsdRkCBU6dbYodMItBAcx88DV5nEQIUDSCxhyCMDQBYdqDrBy9skloroiAGDf8yD-sWCMcH9yd6k-sm5UUGBepo0f9Q96dGlahI9NhpDS8T97AFCyZ84+DB93dG09kxMNCmdVDrBDCLppDVEpptD+cW8LDagOtOsXRsh4RvAskJAclZl8QEVZC19l1oCpYRdqUmtyYql81Jdgi9B2DtBpg6BHAUwQI39bkDBghvDrANRXVAjkh9lR46og1XA35XD3C8QZJDFl4pYn838VBb0Jp85p9Qjas0iDwdFqipoF9-C39tl7JMI38IJkj6EwiMixBjDWAmsY5fJujDBei+drBF0Bj7cBkMkEDFpclHYqitAahIDYQHgvC+jQ8ugvAbVKjVlp8b9NI9iDj1ixEuEGicExCBjDjxo1ispP9NjXDLi4h7hvADimj9AAAeU4z461Wwn+EcNYPcOgA8Q8AAFRyDqTIGkknGFQfij0KBrBoGijiEPFAAAGpQBulghVA-hvBoJzRvjsSxMAYyS8TUFZUiSiBzQLjLiTA4hfpwSlAoSYSiAxBLwaIvBETRhmA9NM90SxNKSiF8SaT7M6T7j7J9AcTI9MScSqTwgJTiSgT7CpZsg8hCgOi1laNb1Ej0gpYbRzUchxxtjehM19JpSWJHiWJL8VhY1DFrTgSxS1gdATS+9mkxSQVojnCvACjuCURekqS4gdEZwA0h1vilSuEh0LjozQyrTgMqiOhA1l0GTB4TBh5ehs4bRwzb9bU8itd34liPD7TrQwTGj9SxNTwKg+Io9b0MSn4h4Q5aEO5w438ZIAiKjFlDQiZvEuiRimiBzkgOhoyggBjRjhzBimzMzjEdj8JjTNSzTQU2NQZTkd8OA98eBGV+AEsYD7AEJSIUI0IzEVoZ98d4Nssrt8RqJDxDzkJUJcDUiSIHyHhEIawyEGwsJzzrBBssJV06p7yyITz1yZJG0WQw9C1I8ghC0RxRzegw8R1oKTAR04KSVlF8Q7yXUWBkLQAGi0KIL6ck1cKk0CKEL6cI1F5I9KKAFiR4KMgw8KRGBhNihI8mKWK6L0Kw8WScKtAE4KyrR6Logw9ZQbUsQyhGBmdRLrVxLmAVghLggw8sTcKgglAaQtAgkkpQBHwcTpJQAFKggw9PMVKTA1KNLZ55xHxPNQA9KDKTAw8AAqEy2CdSmyiy7S0ABymykwOyjCtk4AZysytyrSx8MAWyri+nAAUkCtcs0rnkfEiu8v0oipUUPBvxUqCrissrzLcpSswoAEJ-UMrYr3LHxCrHIgk8q2SfiYrzKQrQA-iTBKrCLUqfjpwTLMrSqGrHJcqWrMLZxargr4rQB5wmrfKw9Zx2q+LghOr6rJqxqqrDx8rnKPLgg54TB8qggL8WQGJAKXzgLEDcMjiZwDR4pC0tAgLjzDrd5drQpLryIJM6AygAsphyETqVh4ohAtKw97qmcWsbD-zfLohfrrqhgGJcA9rEJXzOZth+SwKj0w8jYXpopI8kaqogbvSGL6dIAyAitWK+Kca8aMbMbFL6dpK7BYBIBkLybKbiaSb7KyaFAZK+NcLya+M6b6aw8AA5KQLm5ynmrmxkzG263KEGvFJo963oT6rSodXgi6-aq6tFRJSGo88iPFGoyW0cKsTCGWgGpBPChWtW5hfk8G9tQid+EG5-aiScD3GQ+c6wICd+F6OwR6FgYCOVOwALKQaQPSP4LXL0rqEG98+4PEL84SdCz4G2pNT8aIfbMpRwCwIoEs5aKw58GkXqfqLg5YlERREBVyS22gporQMcsW42qOZMiO3oPOl-Q2kC7sJ6l66gCaEu2umGlhGojmoIXIzXLWZOkaAC0KXIrwbIMoakLOjw6+ROgM7O-EU2ydMJHUgFKsmoA04II090pc8IsskwS0jVIuyaO06pB0uDIfXVKMlBN0iQD08cJUxwmIj2vuoM7oIWoIUM29HKyM5MvEsIBOuwWMwKW0l+vofspMo4lMxddMg0JiLOdiXMk47u-Ix+u2w0Hi60gGGs+A8Yes1ZaGKdN8Gc4OT6Vsq0dsprTs2BO4ns4kPsq0icoc2Yyu2aCcmoqc8dFYLM2c+2wka+re-VOqdgd+SxGSV-RwNkpI+4DSa-UADAD8DyxyZlWR78dNd2ARgPeMLQIekesetwwM-wD8IAA')">function assign_symbol_value(symbol, val, env) {
     function env_loop(env) {
-        function scan(names, vals) {
-            return is_null(names)
+        function scan(symbols, vals) {
+            return is_null(symbols)
                 ? env_loop(
                     enclosing_environment(env))
-                : name === head(names)
-                  ? ( tail(head(vals))
-                      ? set_head(head(vals), val)
-                      : error("no assignment " +
-                          "to constants allowed") )
-                  : scan(tail(names), tail(vals));
+                : symbol === head(symbols)
+                  ? set_head(vals, val)
+                  : scan(tail(symbols), tail(vals));
         } 
         if (env === the_empty_environment) {
-            error(name, "Unbound name in assignment: ");
+            error(symbol, "Unbound symbol in assignment:");
         } else {
             const frame = first_frame(env);
-            return scan(frame_names(frame),
+            return scan(frame_symbols(frame),
                         frame_values(frame));
         }
     }
@@ -2325,9 +2317,7 @@ const no_value_yet = () => null;
 }
 
 </pre></div></div></td></tr></table>
-
     
-
   </p></div>
 
   <table width="100%">
@@ -2345,12 +2335,13 @@ const no_value_yet = () => null;
         we search the first frame for a binding for
         the variable, and change the binding if it exists
 	(just as in 
-	<span style="color:teal"><kbd>set-variable-value!</kbd></span>
-	<span style="color:blue"><kbd>assign_variable_value</kbd></span>.
-	If no such binding
-	exists, we adjoin one to the first frame.
-
-	<div class='snippet' id='javascript_78_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	
+	  <span style="color:teal"><kbd>set-variable-value!</kbd>.</span>
+	  <span style="color:blue"><kbd>assign_variable_value</kbd>.
+	  </span>
+	
+	If no such binding exists, we adjoin one to the first frame.
+	<div class='snippet' id='javascript_78_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (define-variable! var val env)
   (let ((frame (first-frame env)))
     (define (scan vars vals)
@@ -2366,62 +2357,39 @@ const no_value_yet = () => null;
     </span>    </td>
           <td></td>
           <td><span style="color:blue">
-      <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
-	Function application and the evaluation of blocks
-	already ensure that local names are included in
-	the current environment before the actual declaration
-	is evaluated. Therefore, the 
-        declaration of constants and variables can be handled
-	similar to variable assignment, except that we can
-	insist that the name is found in the innermost frame.
-
-	<div class='snippet' id='javascript_78_11_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEDMFcDsGMBcCWB7aBnCAnZBbUsALAQwAd4BTTUAFgBpQ1yEVpQBGAOjYCgo4lUocgDciAG0hEKACjTwc8euWjCAlKADe3UDszl4kTK0RoA+ozHhTI8ZKTQA5rPnxV2nR88B+HXIXvPHQAuUBNTaCIccmcFN0DAnzFkZABrSBJwyPJTUQloiKjTZCsC6L9XJRU4+NAQsNhUOSJoeFMAEyYxIkwpFhjXAJqfGzFTBvR4ZtaO2C6egWh+yrVBzzqzUUxEIgAjMWyZud7Ufuqa0GHcnO7tvYPO7uPF8uWzwPXTIjQ0RAdoKJap1WCSEVy+Pz+APgSyEVWBwVCZnGbUQC3E1gAHiQ9N8+uU3vFLujkaiWOjyFicT8Ti9YStzh8+MxUO1yOBENBSTSXASQSNTEyFqz2ZyFjDlPSah9GABHSDKWBlHnwjxE0ay+VwMrkOUK7JNChQtCnV4qj57ZCwFJA846NWmC1W8VwhmI0x6AxGcyTQ3KaH4lV20Hoj2GaDeqTkKHOyXxD6kEhiRCwJ4220+BNiACe0hGdmiyBIlCkyEwJrpqlogdtSbkRSsuXlxsLxegbWN+NevIRlGwZdpACIAKrQFLQZAAd1YBqjftA8CzRdCrDzkZCA9UAG5uABfXgwZmsTM5vj0boONDqLQeRDgUDSMLYxA4UnCbKCvp8VRX4GhoygY9TCfF8kDfAUDzFU8AMwC8twCHchDERhQjvB8kVwEhkBgNpwP4T8YG-TRgXGORQB2ZA2izUAAF4IAglgHQok8CO3eISPgUAkhTJCaM4y10VKY1yMouC2MaDjBN4jlGEwVpxDEaQPxZEhHiiChMGNL8q1tHTdL47jL1YwJ2PnKMMkbcgMFonBSGkDEaIAPlAcdrjyUws30bS9O8zwuPEQziPE0ALKsgCSCLNtpHPNAvJ8vTDXM2xLK3ABINKPECiZQBxSAxA46jA1XGRhKzWK4opCg22sFREGwf4-Wkas9MEsq4o8ELWraui8JZCVatQaMv2-IzPFve8wj-cMLOkHK8sI69zkm7L9DDVz5TGVBKuhWbXBGjwEPIJDyCInSluwtkOXINo9p0Pd9sQ5CFs8XtS0UmB6GHUdxynbrD3nRdjo5MLEyzDcRr3PclNYWtWmKNbLNzLEYorE6b1QlyWx6NtjQpEhLx-RaVv-aBcrEPaDqO1H4iWlTatzRtI0U2q60x5o2kRvHKwrTqfJh+t4eNHFYaLLH2w5y8u3B3d9x6lcrhJNFRlxqk8RcV4qeWz1jDMeBMHlenbEZ5FMWxIC9HZzsmq6iVvyatV82kY3lY29ByytnSbaakIiuiJ3KU+PK3a6wIbe3SH6MEfkoeFDkuWeNWbY1pabJSbIGhwTDsNww9Gp8mySGkUp+dKHndOjjoRTjoDVP0SgOx5St3d+oUK9joUSpNJvQ+lqHg3VHVNUVfpkcTp6UPGswzIXcwB71Yf5pVM62wu6ArvJh7AdQsIujrGdo3KfGNcJrW+4d9kNNaPeGoPytu88CnHpVEzz93lx4d4q2faZi+I19QEb9oHfGoY00LuiJlNJK39X4KHhgvPSS0X6XzfhZG691DqP3geAvuM9dRalznFIWv9ZwtHrgoCWQD4h3X2tLEAoAADqx1IDISIM5Um3QqK9y+KZDOpZ2HBSShAUszksgYAnAQZAjBuC0MOI8BYoBiAYHHBxDyHEdjkGUKfSMbQOCgAACoEGOiQQwmFkLFHnAYqRYAug4B2G0FhytLLUm1qAIxehszzmQPgPQkYAKgBgIgXUoQOgtFRFmbctD4AGObiwUAE5EBiDEM5EQlAyLHUzIgK6AE2yhHgBgJaFlQCWPvCTBJ6gTChEwG4mwLQODcBMi5Cy7l9C8WkOoaiTkSlkxln9aSlA5IJLssjLMl4k5YLCJ0wZ3YLigGGWaN0Eyog2MoNIAxRB2YYgljM-G1YfC0zLKs9ZmzemyQDgpSY8TJn0GGbbHS3tKmvQOZc0AA4cC5SQImY6Mj5gsAwMUdccFw6y30gJERpwNYgLCBqOe+ICY1BMgfXiUKtREKNKcVBugxmTwztPJFQ8b5Wx8J0q2dR0B9NOfgtqflRiCSgUgyM+8XD41LjpKlmQojGhTvqWeeDuDpR8oQq+JD57flEmgymY8PBLXqOJKYrJZiyNVrEO2nETDQnYrKr5Tw2VKliFMjwHxNi3H2HKo4YoAzeUSKq6QhrdjGs1UKUopw9VrFYQk8mPcI5y3RI6a0tJR6DBMiVXiPrGKUTRQGoKVLQqsppSVVKngI1ZQSgLXi+c7KOWcsgeGTTFBN15vxJCoqMUny-iVZlNQKrKBwn1Oq0Yo30GTR1CsALulyP5JNFF181YozHsnIgqcwFa3hhSvSX8O2CtaA43E3JYjlp8jbFtvd+Tgl+PVf+3b-WeBMgU2iX8V2Qj9MOzsFY9r7vDEXaaZ6oTavLBZV4e18lJTDq2mJ-IbV3BNQqmdige2DEYK0C9kD312oeN8lkjrLbnC-sB+48qwMQLyOWG2pdu4IR0C+yO8sZUtE-fBmMsLfD6G1cO9VOH7UMQgzyFDDMZCkemKBrV01j3IZVKh7gRSoYYHANgPAhBSDqRoPQRgf1OAACYMPaxnpYawNGOROHxKMk+4zIBLP7DyUAAAfDTTVIW6zk2CrThTdJhHIsgfYzRw2Ap6TrIgDgHBXVMDDGEkTsiTAcARzWYY3R7LBQAMl8-I8gaywXUVC+Y1ztnn293GVkMFvbMWmDc-ZnCTnBylDBh6oFRc4aUdiIprzjzzkKRhVFz1bor1dry09KVNm7MOdS92gcFWWgZas3I5rAHYsKeq1gwrRALl9YuTC4amW-odaPepnrJ9BtnP68Vhui6yvSomBqhjZrJsBBq4l2zyXHNWsHHR3DTxWsSfwNh+jcGtW5dcFTJaM2VlBfZkVp1I22sxMO+RlkTGNuSt6496Qz3nvDdK0CsIMGjvraq5thLSX6v7ca+Dz70ATu90R2tijXWfvFoK-95793huLaBWjy7QpvtQ9+9N3Hc2AfU+B6NuRYRy4rzjnF6HSnau7YawoD6TPK4LBR2V3nbcGIqR6GpOurOKc4+C0DhuIO-pC9FAxDu3W2fS6e9T2XurCfWcHatCdkvsf-jCLDlL8PufPPHT6Yh8ABdAqt-Sw9U6nGG88-+fHcv6cxOWyiRWJsVbfoI1t03e25Awjzc8hWZIlaUkcSwO3f0-am2xFdV3S0+Z6HADCNgOu5FJ8wC7UhN2pteYz2yGEonc-vdQNW-24h-RY7d9DVVYCs+0gAMxV8EJC7leLG-B523DsPg5cXkAT3IzlODB46tyUHrBTmByj4HEJxlXfpy9-1Nb1F3WMpS-d1Tobnu3vd6xWQLMU-oWr9uwliZN95cM7MDvOlf8G9kLn+z8IpMaeH7f2viAzNn8bd55r9Kdgs78vdBABUt8-Qi8RkS9-wtdZ979vczAfVXcm83QQ8ucf0BwfVx8YlJ80DVc99m8w9cCuIUhl8GAeRkDBAQ0VdG8MCPddVaDJN0kUxIdi81djcOch9X8cD2Djs-9WZ4BXpiCjdWBmDXBhCRY2Yi9391dv9Zsf9pC-8MZZDsZpBCw4DuDJMJltC-9EEigND2YDCQDFCDDWDloWYTDmxOZzCEDqdLDpYONPUuMeN8BiAyAUk6AGAmA5FOB29TsTc9ZogMQPMlp7JQtaJdZ5QrDJ905M4qooZpBRcsh1JkYy1f1PB08rUBxEisJkjPVl8I80jxcNJ6Asi2Not0IeEs4UjwAIiYdB8zcw9wAPoCj6jijDDPVq4xda4NJFImiT4y8s92j2AejZZQ0TxhjS8W9M9FJ6BK8rDo4a0BoGpGj8t-xRjFjQBO94j+1sgO1ppxgtpZjti8jjikoqDTi-Q-8JpwFh0LJzjJMsCrU70Bwri8h8DIDHjGlbjARnitjJCD8FJni-8FQkgfhHBqphB+o11oRN0SD5xqdqjBcACBR+jcwqhgTAtgs0SgVISJFsgdgTx+j1YNAE0cisEfNuMsh71pYTIXNrBsVz81iETeJOltwaiWSz9YT4TowkSJD5kv8CS-pJ86SohC4RF6AQoXiXF+sywWp+E8gApj9WBJTsgaVNSrwqTkTHkdSVj+iBZFJ+jdTd9kTntDSICVwMRKpq0apa0GplTchMivhsghTx5pB9hHBIlpT2U2kwsfSHA-TXS4EagloiTGAHQcwI8PAJSsTlS4zAg00oinIfMMQG1QiuYwzG5g4yJ3TYSi1QAH5N57xgy-TBJ1AAAeTiZQEMgga1fycM+IF6MsAcXRZIUAGyaAKic8FTGAhgdIRMDJNodcUAAAaiM28jkC2EcFvBzCrMnOeQ+mXKblnLkwXKbMLWLNLKPg8DbOkA7K7PAHIAnGggcAHJISHPCiTCunHKnPXL03nPAEXJEXUCnKoIHDXJ8g3JfJzFzPdXVL4lSHSGI2mhLmyI8CXRUEc2SALk9M8F7jQBTEWBdObP3Ophvy-yrOTOmQlDgsLBHXzKjLk35KdMBAXTwpCFKBojC0eVwvzKDEeUeVzLwoRBQos2eyrIbWp0ApVCoXiAhVP2nnZMFKqA8yg3uSVPpOeRHHImwmESiH+XRRLI3kwuMiCk1N4iMM1OxLUFUq3SCh3V8FQtNKyG1U0jNLnSYqwAspCnMqiBGxSmpJPh3TCwaSShzSbmGGkv9PIA+gADksg-FkI1FwBSxPl0dUB-km4QgUEBLBhBKMCCKkgiKxT2tcQ-hwLIFILcgKTBgYLhBCKEKcSJVoKytOK0KZSVSdDMEP8JlGK4phhYK0qC52LSKYSxKGoqK2oaKQroi8T2Ymq2ofBpAUSBt-s2LbLpl-1TAWKprmzZTxBnU9I7k+wjzxwAIsqOTvyJz2L4gBxRCzsVtrz5JJwroNxQBVqpQGAzLuL3zeKLl+LzgEIVQQEJQ6KYiDFeTRLHT1iWhJKK0-LILPoFLslaKgYOsVKBL1LyqxIsptLaJdKsSKFbQloqrHKtTQUdSbK9JNSTSdTiz74krBhIzWr4L9KW1XDZZ3DcBPD+MfChN-CYlOBqBTtJ9gJXx3xPUHwM4xB5SF8ubQIx96BnxEx7izBhbEAwIGiCIHDXiWjQ9oQoIBxpa3wfjWB1bshxb9goRUwvwFaVU6wFioIc9n0TJtbs4Fho0rV4QF8UQ0BEwiBQZ6B4hHbnaqJbQ8z4gF82yqCpK+w9IfbAgF8JyA7dI7Irk2knJ7IpyvaQ7fI8iABaCOnSKOmZGO0AeyZOmZHQROjwBfAAKjTttAzqzCzvsiLrzuup5gX2AFLvOHLsrtADAATrrryIAFJG6ahm6M17JO6a6C6dAF9oie7PA+72ls6vrM6O6yCABCULcejwSe2O0ARe2iCuue6EAcas5eiezMzO-u0AWsnQLe+2vI6s6ifenQVe6eq+s+4e42nehyG+2+w+iu4+pyR+7eo8hya+t29Oj+lu-+n+i+het+nQeyTwKenQeejwcI+EOCS2rYECGWtOc7W2sPBfc6EUS6+gXBy6NoJ+mapOsg4KwKnuihkh0hkevIgASWgD51dp0EYeYZodoYXxskiVMAAAV6GI7uGCA+H6GbqmK4JOFbzz8ra5boAzwYIrzWgYZ5TAIORTBzpMBswyKAArIgUQFCrYMgYi3SK23Wm3A2giPGjwfs69ZRzcQIG0vwgwDIbqwEDzFB58bm62jHdlGiFUNNO8Keg0rmGRtw4sjxtB2W3okKPx84AJjNTm1BrxlI+7Ro78Gy0J2m8JoKK2w7SSAqOJ2yQJpyYJ+gXJzB7JrKcp061oGJgpmoeJoJ0EoYjhnQappoEhYsyMu0qtcigG6EPNBMKtVIpJkW7x8DGqg6lxUZ9BwvSYHDHiwZ8KYZzJw8AWegKZ9p+Z2ppKCWPNZkqeNk-6hEltJkn6hwJIHYckY5qERFFaFxm5hqOCU7OawDRDPK8QAqpCyqsy9CwtDSrbRq98glIQPygcDkdSCIRJNs-qqITNDiCK7CDcYlJS46Qahi4FnyHwOaha4LMM5agWuKu6ri6nHiiasE5s3c6cnQZ+fonSjEvStGjGsygm7U6yiPAmhyom59OpIKHAc-H1XiUXRgI8yk-YDiKI9gexjEexncDLL+flh0Cghtc5y565uEii3aIAA')">function set_name_value(name, val, env) {
-    function scan(names, vals) {
-        return is_null(names)
-            ? error("internal error: name not found")
-            : name === head(names)
-              ? set_head(head(vals), val)
-              : scan(tail(names), tail(vals));
-    } 
-    const frame = first_frame(env);
-    return scan(frame_names(frame),
-                frame_values(frame));
-}
-
-</pre></div></div>
-
-    
-	
-      </p></div>
     </span></td></tr></table>
 
   <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
     
-    The method described here is only one of many plausible ways to
-    represent environments.  Since we used data abstraction to isolate the
-    rest of the evaluator from the detailed choice of representation, we
-    could change the environment representation if we wanted to.  (See
-    exercise <REF NAME="ex:alternate-frame-representation"><a class="superscript" id="4.1.3-ex-link-4.11" href="./4.1.3.html#ex_4.11">4.11</a></REF>.)  In a
-    production-quality <span style="color:teal">Lisp</span><span style="color:blue">JavaScript</span> system, the speed of the evaluator's
-    environment operations—especially that of variable lookup—has a
-    major impact on the performance of the system.  The representation
-    described here, although conceptually simple, is not efficient and
-    would not ordinarily be used in a production system.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+    The method described here is only one of many plausible ways to represent
+    environments.  Since we used data abstraction to isolate the rest of the
+    evaluator from the detailed choice of representation, we could change the
+    environment representation if we wanted to.  (See
+    exercise <REF NAME="ex:alternate-frame-representation"><a class="superscript" id="4.1.3-ex-link-4.20" href="./4.1.3.html#ex_4.20">4.20</a></REF>.)  In a
+    production-quality
     
+      <span style="color:teal">Lisp</span>
+      <span style="color:blue">JavaScript</span>
+    
+    system, the speed of the evaluator's environment
+    operations—especially that of variable lookup—has a major
+    impact on the performance of the system.  The representation described here,
+    although conceptually simple, is not efficient and would not ordinarily be
+    used in a production system.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+  
   </p></div>
 
   
 
   
     <div class="permalink">
-    <a name="ex_4.11" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.11">Exercise 4.11 </a></b> 
+    <a name="ex_4.20" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.20">Exercise 4.20 </a></b> 
   
     
-    Instead of representing a frame as a pair of lists, we can represent a frame as a
-    list of bindings, where each binding is a name-value pair. Rewrite the environment
-    operations to use this alternative representation.            
+    Instead of representing a frame as a pair of lists, we can represent a frame
+    as a list of bindings, where each binding is a symbol-value pair. Rewrite the
+    environment operations to use this alternative representation.            
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_78_1_div" data-toggle="collapse">Add solution</button></div>
@@ -2441,16 +2409,17 @@ const no_value_yet = () => null;
           <td><span style="color:teal">
       
     <div class="permalink">
-    <a name="ex_4.12" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.12">Exercise 4.12 </a></b> 
+    <a name="ex_4.21" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.21">Exercise 4.21 </a></b> 
   
-	Scheme allows us to create new bindings for variables by means of <kbd>define</kbd>, but provides no way to get rid of bindings.  Implement for
-	the evaluator a special form <kbd>make-unbound!</kbd> that removes the
-	binding of a given symbol from the environment in which the
-	<kbd>make-unbound!</kbd> expression is evaluated.
-	This problem is not completely specified.  For example,
-	should we remove only the binding in the first frame of the
-	environment?  Complete the specification and justify any choices you
-	make.
+	Scheme allows us to create new bindings for variables by means of
+	<kbd>define</kbd>, but provides no way to get rid of
+	bindings.  Implement for the evaluator a special form
+	<kbd>make-unbound!</kbd> that removes the binding of a
+	given symbol from the environment in which the
+	<kbd>make-unbound!</kbd> expression is evaluated. This
+	problem is not completely specified.  For example, should we remove only
+	the binding in the first frame of the environment?  Complete the
+	specification and justify any choices you make.
 	
       
       <div class="Solution">
@@ -2465,19 +2434,36 @@ const no_value_yet = () => null;
           <td><span style="color:blue">
       
     <div class="permalink">
-    <a name="ex_4.12" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.12">Exercise 4.12 </a></b> 
+    <a name="ex_4.22" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.22">Exercise 4.22 </a></b> 
   
-        JavaScript allows us to create new bindings for names by means of constant and variable
-        declaration, but provides no way to get rid of bindings.  Implement for
-        the evaluator a <QUOTE>function</QUOTE>
-        <kbd>make_unbound</kbd> that removes the
-        binding of a name given as <QUOTE>argument</QUOTE> from the environment in which the
-        application of the function is evaluated.
-        This problem is not completely specified.  For example,
-        should we remove only the binding in the first frame of the
-        environment?  Complete the specification and justify any choices you
-        make.
-        
+	Our language distinguishes constants from variables by using 
+	two different keywords: <kbd>const</kbd>
+	and <kbd>let</kbd>. However, our interpreter
+	does not make use of this distinction; the function
+	<kbd>assign_symbol_value</kbd> will happily
+	assign a new value to a given symbol, regardless whether it is declared
+	as a constant or a variable. Correct this flaw by calling the function
+	<kbd>error</kbd> whenever an attempt is
+	made to use a constant on the left hand side of an assignment.
+	You may proceed as follows:
+	<UL>
+	  <LI>
+	    Change the functions
+	    <kbd>scan_out_declarations</kbd>
+	    and (if necessary)
+	    <kbd>extend_environment</kbd>
+	    such that constants are distinguishable from variables in
+	    the frames in which they are bound.
+	  </LI>
+	  <LI>
+	    Change the function
+	    <kbd>assign_symbol_value</kbd> such
+	    that it checks whether the given symbol has been declared as
+	    a variable or as a constant, and in the latter case signals
+	    an error that assignment operations are not allowed on contants.
+	  </LI>
+	</UL>
+	
       
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_78_3_div" data-toggle="collapse">Add solution</button></div>
@@ -2492,10 +2478,11 @@ const no_value_yet = () => null;
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1' >[1] </a>
     <FOOTNOTE>
-    Frames are not really a data abstraction in the following code:
+    Frames are not really a data abstraction in the following
+    code:
     
       <span style="color:teal"><kbd>set-variable-value!</kbd></span>
-      <span style="color:blue"><kbd>assign_name_value</kbd>
+      <span style="color:blue"><kbd>assign_symbol_value</kbd>
       </span>
     
     and 
@@ -2521,15 +2508,14 @@ const no_value_yet = () => null;
     <div class='footnote'>
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2' >[2] </a>
     <FOOTNOTE>
-    The drawback of this representation (as well as the variant in
-    exercise <REF NAME="ex:alternate-frame-representation"><a class="superscript" id="4.1.3-ex-link-4.11" href="./4.1.3.html#ex_4.11">4.11</a></REF>) is that the evaluator
-    may have to search through many frames in order to find the binding
+    The drawback of this representation (as
+    well as the variant in
+    exercise <REF NAME="ex:alternate-frame-representation"><a class="superscript" id="4.1.3-ex-link-4.20" href="./4.1.3.html#ex_4.20">4.20</a></REF>) is that the
+    evaluator may have to search through many frames in order to find the binding
     for a given variable.
     
-    (Such an approach is referred to as <EM>deep binding</EM>.)
-    One way to avoid
-    this inefficiency is to make use of a strategy called <EM>lexical
-    addressing</EM>
+    (Such an approach is referred to as <EM>deep binding</EM>.) One way to avoid
+    this inefficiency is to make use of a strategy called
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
@@ -2539,10 +2525,12 @@ const no_value_yet = () => null;
         </tr>
         <tr>
           <td><span style="color:teal">
-        , which will be discussed in section <REF NAME="sec:lexical-addressing"><a class="superscript" id="4.1.3-sec-link-5.5.6" href="./5.5.6.html">5.5.6</a></REF>.
+	<EM>lexical addressing</EM>, which will be discussed in
+	section <REF NAME="sec:lexical-addressing"><a class="superscript" id="4.1.3-sec-link-5.5.6" href="./5.5.6.html">5.5.6</a></REF>.
       </span>    </td>
           <td></td>
           <td><span style="color:blue">
+	<EM>lexical addressing</EM>.
         
       </span></td></tr></table>
   

@@ -1143,7 +1143,7 @@
                   <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-84" aria-expanded="true" aria-controls="sidebar-collapse-84">
                   &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
                   </a>
-                  <a href="./4.2.html">4.2  <span style="color:teal"> Variations on a Scheme Lazy Evaluation </span> <span style="color:blue"> Lazy Evaluation </span></a>
+                  <a href="./4.2.html">4.2  <span style="color:teal"> Variations on a Scheme: </span> Lazy Evaluation</a>
                 </h5>
               </div>
     
@@ -1678,49 +1678,47 @@
         <div class='SECTION'><SECTION>
     
 
-      
-      <div class='permalink'>
-<a name='p1' class='permalink'></a><p>
-  Section <REF NAME="sec:amb-implementation"><a class="superscript" id="4.3.2-sec-link-4.3.3" href="./4.3.3.html">4.3.3</a></REF> describes the implementation of
-  the <kbd>amb</kbd> evaluator.  First, however, we give some examples of how
-  it can be used.  The advantage of nondeterministic programming is that
-  we can suppress the details of how search is carried out, thereby
   
-  expressing our programs at a higher level of abstraction.
-      </p></div>
+  <div class='permalink'>
+<a name='p1' class='permalink'></a><p>
+    Section <REF NAME="sec:amb-implementation"><a class="superscript" id="4.3.2-sec-link-4.3.3" href="./4.3.3.html">4.3.3</a></REF> describes the
+    implementation of the <kbd>amb</kbd> evaluator.  First,
+    however, we give some examples of how it can be used.  The advantage of
+    nondeterministic programming is that we can suppress the details of how
+    search is carried out, thereby
+    
+    expressing our programs at a higher level of abstraction.
+  </p></div>
 
-      
+  
       <div class='permalink'>
         <a name='h1' class='permalink'></a><h2>
     
-  Logic Puzzles
-      </h2></div>
+    Logic Puzzles
+  </h2></div>
 
-      
-      
-      
-
-      <div class='permalink'>
-<a name='p2' class='permalink'></a><p>
   
-  The following puzzle (taken from <CITATION>Dinesman 1968</CITATION>) 
-  is typical of a large class of simple logic puzzles:
+  
+  
 
-  <BLOCKQUOTE>
-    Baker, Cooper, Fletcher, Miller, and Smith live on different floors of
-    an apartment house that contains only five floors.  Baker does not
-    live on the top floor.  Cooper does not live on the bottom floor.
-    Fletcher does not live on either the top or the bottom floor.  Miller
-    lives on a higher floor than does Cooper.  Smith does not live on a
-    floor adjacent to Fletcher's.  Fletcher does not live on a floor
-    adjacent to Cooper's.  Where does everyone live?
-  </BLOCKQUOTE>
-
-  We can determine who lives on each floor in a straightforward way by
-  enumerating all the possibilities and imposing the given
-  restrictions:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-
-<table width="100%">
+  <div class='permalink'>
+<a name='p2' class='permalink'></a><p>
+    
+    The following puzzle (taken from <CITATION>Dinesman 1968</CITATION>) 
+    is typical of a large class of simple logic puzzles:
+    <BLOCKQUOTE>
+      Baker, Cooper, Fletcher, Miller, and Smith live on different floors of
+      an apartment house that contains only five floors.  Baker does not
+      live on the top floor.  Cooper does not live on the bottom floor.
+      Fletcher does not live on either the top or the bottom floor.  Miller
+      lives on a higher floor than does Cooper.  Smith does not live on a
+      floor adjacent to Fletcher's.  Fletcher does not live on a floor
+      adjacent to Cooper's.  Where does everyone live?
+    </BLOCKQUOTE>
+    We can determine who lives on each floor in a straightforward way by
+    enumerating all the possibilities and imposing the given
+    restrictions:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -1746,7 +1744,7 @@
             (list 'miller miller)
             (list 'smith smith))))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_89_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3_Non_Det&prgrm=GYVwdgxgLglg9mABAExgZ1pKAKGUCmAtmgJSIDeAkAFCJ2IBO+UIDS6A+mCADY+4FiJWvVEB+RFAYh8I0XQBciTtz7YoAQxj88RUsPnyJUmXMOIlK3v0JEARvgbYAFvg3IBekgBpJWnYL6BubiKOiY0Or+nkLBIYqIwBo8aPgA3NQAvtSgWPBIhLywAA48+BzIAO74fDBgAObYZORmEAgYiHYaANaOiAC8iBqEdtgAjL4ATL4AzL4ALL4ArCQZom1gHW1wxX2Dw6MTiNOIc4iLiCtr9BsdwGVQEK4MA0Mj41OzC8urre1QiEI2jKL327yOJzOFyuf02ALQQKgzleBw+xy+5x+1zoTAAjiAYExsKgMHVIjxwtgur0GL5trtaYkHk9HL4gXxWYgEXhnCQ+djGPh8YT8NgAISIKk9Pb9QYrX6iPEEokS7D0mWDMb8sxKkXiyX3Zgs0Gyy7axVC5Wi1WGx7PAamrUK+i6onskGIAB8iHVDGdOMtetVhA0SI4GjsaGw3KRiAAtEyjc8yLLNeaXYGVZKQ2GI1Hbcb4z64DtHCnHemAyw2IgKRhsHWcAAiamOJu+Vt+7xmeL0RvYJu+9vF0tdnu92uUpsF57Dmdl7sT+T9pvutts4EL8e9lcx5zDvfazJAA')">function multiple_dwelling() {
+            <td><div class='snippet' id='javascript_89_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AEyoGdryKAKKigUwFtmASlABvAJC5QU0ACceFIjPosA+iSIAbDV14DBk6YYD8oCjKI8DhqQC5Qq9Vo4UAhlW3d+Q-desmzFla+oHYOmtp8-ABGPDIcABY8Lgw6XoIANKZuHrrePsHGjCxslM7ZqXr5BbagBC4azDwA3LgAvvjE7LT0fJrUAA4aPCoMAO48WlQkAOYcwiJBZHSsoFEuANaxoAC8oC58URwAjJnYmRiZKJkArIIthkskK0s0-Vu7+4cnoGegF6g3O6LZYUWpDChkRIyHZ7A7HU7nS6A+7SR4rPjuIbQj5w76-f5XUC3FFSNGg5gYijxGGfeE-REAolAwxyACORCocg4TFYU1KGmKHDWmxkmReb1FYPkkNimQxWlloAp3HigjVJNkPHZnJ4HAAhKAhRt3ttdrdmdI2RyuQaOOKTbsjuqgladfrDQRwTLsaamRapK6bR6vVCdr6nf7NdqufKsaAAHyge0ySOB3W2vguKkqFxRZgcZVU0AAWilEKhwlNjudLK11vThsz2dz+c90tDpeTlfDNct8kU9AFrA4Q84ACJhbEx5lJyn0kFqtJRxwx8np0maK9YhkF4vQMux23y1PMkfvTu99YD7GT6Ab3Pd4uD4X4uuX872rhehoBkMRuNJhmOYmiAA')">function multiple_dwelling() {
     const baker = amb(1, 2, 3, 4, 5);
     const cooper = amb(1, 2, 3, 4, 5);
     const fletcher = amb(1, 2, 3, 4, 5);
@@ -1768,16 +1766,19 @@
 }
 
 </pre></div></div></td></tr></table>
+    
+  </p></div>
 
-
-
-      </p></div>
-
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-  Evaluating the expression <span style="color:teal"><kbd>(multiple-dwelling)</kbd></span><span style="color:blue"><kbd>multiple_dwelling()</kbd></span> produces the
-  result
-  <table width="100%">
+    Evaluating the expression
+    <span style="color:teal"><kbd>(multiple-dwelling)</kbd>
+  </span>
+  <span style="color:blue"><kbd>multiple_dwelling()</kbd>
+  </span>
+    
+    produces the result
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -1791,29 +1792,34 @@
    [["miller", [5, null]],
     [["smith", [1, null]], null]]]]]
 </pre></div></div></td></tr></table>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
-  Although this simple
-  <span style="color:teal">procedure</span><span style="color:blue">function</span>
-  works, it is very slow.
-  Exercises <REF NAME="ex:better-multiple-dwelling1"><a class="superscript" id="4.3.2-ex-link-4.39" href="./4.3.2.html#ex_4.39">4.39</a></REF>
-  and <REF NAME="ex:better-multiple-dwelling2"><a class="superscript" id="4.3.2-ex-link-4.40" href="./4.3.2.html#ex_4.40">4.40</a></REF> discuss some possible
-  improvements.
-  
-      </p></div>
+    Although this simple
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
+    works, it is very slow.
+    Exercises <REF NAME="ex:better-multiple-dwelling1"><a class="superscript" id="4.3.2-ex-link-4.55" href="./4.3.2.html#ex_4.55">4.55</a></REF>
+    and <REF NAME="ex:better-multiple-dwelling2"><a class="superscript" id="4.3.2-ex-link-4.56" href="./4.3.2.html#ex_4.56">4.56</a></REF> discuss some possible
+    improvements.
+    
+  </p></div>
 
-      
-    <div class="permalink">
-    <a name="ex_4.37" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.37">Exercise 4.37 </a></b> 
   
-  Modify the multiple-dwelling
-  <span style="color:teal">procedure</span><span style="color:blue">function</span>
-  to omit the requirement that
-  Smith and Fletcher do not live on adjacent floors.  How many solutions
-  are there to this modified puzzle?
-      
+    <div class="permalink">
+    <a name="ex_4.53" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.53">Exercise 4.53 </a></b> 
+  
+    Modify the multiple-dwelling
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
+    to omit the requirement that Smith and Fletcher do not live on adjacent
+    floors.  How many solutions are there to this modified puzzle?
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_89_1_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_89_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1822,18 +1828,21 @@
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
-    <a name="ex_4.39" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.39">Exercise 4.39 </a></b> 
+    <a name="ex_4.55" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.55">Exercise 4.55 </a></b> 
   
-  Does the order of the restrictions in the multiple-dwelling
-  <span style="color:teal">procedure</span><span style="color:blue">function</span>
-  affect the answer? Does it affect the time to find an answer?  If you
-  think it matters, demonstrate a faster program obtained from the given
-  one by reordering the restrictions.  If you think it does not matter,
-  argue your case.
+    Does the order of the restrictions in the multiple-dwelling
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
+    affect the answer? Does it affect the time to find an answer?  If you
+    think it matters, demonstrate a faster program obtained from the given
+    one by reordering the restrictions.  If you think it does not matter,
+    argue your case.
+    
   
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_89_2_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_89_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1842,26 +1851,32 @@
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
-    <a name="ex_4.40" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.40">Exercise 4.40 </a></b> 
+    <a name="ex_4.56" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.56">Exercise 4.56 </a></b> 
   
-  In the multiple dwelling problem, how many sets of assignments are
-  there of people to floors, both before and after the requirement that
-  floor assignments be distinct?  It is very inefficient to generate all
-  possible assignments of people to floors and then leave it to
-  backtracking to eliminate them.  For example, most of the restrictions
-  depend on only one or two of the person-floor variables, and can thus
-  be imposed before floors have been selected for all the people.
-  Write and demonstrate a much more efficient
-  nondeterministic
-  <span style="color:teal">procedure</span><span style="color:blue">function</span>
-  that solves this problem based upon
-  generating only those possibilities that are not already ruled out by
-  previous restrictions.  <span style="color:teal">(Hint: This will require a nest of <kbd>let</kbd>
-  expressions.)</span>
+    In the multiple dwelling problem, how many sets of assignments are
+    there of people to floors, both before and after the requirement that
+    floor assignments be distinct?  It is very inefficient to generate all
+    possible assignments of people to floors and then leave it to
+    backtracking to eliminate them.  For example, most of the restrictions
+    depend on only one or two of the person-floor variables, and can thus
+    be imposed before floors have been selected for all the people.
+    Write and demonstrate a much more efficient nondeterministic
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
+    that solves this problem based upon generating only those possibilities that
+    are not already ruled out by previous restrictions.
+    
+      <span style="color:teal">
+	(Hint: This will require a nest of <kbd>let</kbd>
+	expressions.)
+      </span>
+    
+    
   
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_89_3_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_89_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1870,14 +1885,18 @@
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
-    <a name="ex_4.38" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.38">Exercise 4.38 </a></b> 
+    <a name="ex_4.54" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.54">Exercise 4.54 </a></b> 
   
+    
+    Write an ordinary
+    
+      <span style="color:teal">Scheme</span>
+      <span style="color:blue">JavaScript</span>
+    
+    program to solve the multiple dwelling puzzle.
   
-  Write an ordinary <span style="color:teal">Scheme</span><span style="color:blue">JavaScript</span>
-  program to solve the multiple dwelling puzzle.
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_89_4_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_89_4_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1886,34 +1905,42 @@
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
-    <a name="ex_4.41" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.41">Exercise 4.41 </a></b> 
+    <a name="ex_4.57" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.57">Exercise 4.57 </a></b> 
   
+    
+    Solve the following <QUOTE>Liars</QUOTE> puzzle (from
+    <CITATION>Phillips 1934</CITATION>):
+    <BLOCKQUOTE>
+      Five schoolgirls sat for an examination.  Their parents—so they
+      thought—showed an undue degree of interest in the result.  They
+      therefore agreed that, in writing home about the examination, each 
+      girl should make one true statement and one untrue one.  The following
+      are the relevant passages from their letters:
+      <UL>
+	<LI>
+	  Betty:
+	  <QUOTE>Kitty was second in the examination.  I was only third.</QUOTE>
+	</LI>
+	<LI>
+	  Ethel:
+	  <QUOTE>You'll be glad to hear that I was on top.
+	  Joan was second.</QUOTE>
+	</LI>
+	<LI>
+	  Joan: <QUOTE>I was third, and poor old Ethel was bottom.</QUOTE>
+	</LI>
+	<LI>
+	  Kitty: <QUOTE>I came out second.  Mary was only fourth.</QUOTE>
+	</LI>
+	<LI>
+	  Mary: <QUOTE>I was fourth.  Top place was taken by Betty.</QUOTE>
+	</LI>
+      </UL>
+      What in fact was the order in which the five girls were placed?
+    </BLOCKQUOTE>
   
-  Solve the following <QUOTE>Liars</QUOTE> puzzle (from <CITATION>Phillips 1934</CITATION>):
-
-  <BLOCKQUOTE>
-    Five schoolgirls sat for an examination.  Their parents—so they
-    thought—showed an undue degree of interest in the result.  They
-    therefore agreed that, in writing home about the examination, each 
-    girl should make one true statement and one untrue one.  The following
-    are the relevant passages from their letters:
-    <UL>
-      <LI>Betty: <QUOTE>Kitty was second in the examination.  I was only third.</QUOTE>
-      </LI>
-      <LI> Ethel: <QUOTE>You'll be glad to hear that I was on top.  Joan was second.</QUOTE>
-      </LI>
-      <LI>Joan: <QUOTE>I was third, and poor old Ethel was bottom.</QUOTE>
-      </LI>
-      <LI>Kitty: <QUOTE>I came out second.  Mary was only fourth.</QUOTE>
-      </LI>
-      <LI>Mary: <QUOTE>I was fourth.  Top place was taken by Betty.</QUOTE>
-      </LI>
-    </UL>
-    What in fact was the order in which the five girls were placed?
-  </BLOCKQUOTE>
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_89_5_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_89_5_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1922,27 +1949,27 @@
 </EXERCISE></div>
 
 
-      
-    <div class="permalink">
-    <a name="ex_4.42" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.42">Exercise 4.42 </a></b> 
   
-  Use the <kbd>amb</kbd> evaluator to solve the following puzzle:<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-
-  <BLOCKQUOTE>
-    Mary Ann Moore's father has a yacht and so has each of his four
-    friends:  Colonel Downing, Mr. Hall, Sir Barnacle Hood, and Dr.
-    Parker.  Each of the five also has one daughter and each has named his
-    yacht after a daughter of one of the others.  Sir Barnacle's yacht is
-    the Gabrielle, Mr. Moore owns the Lorna; Mr. Hall the Rosalind.  The
-    Melissa, owned by Colonel Downing, is named after Sir Barnacle's
-    daughter.  Gabrielle's father owns the yacht that is named after Dr.
-    Parker's daughter.  Who is Lorna's father?
-  </BLOCKQUOTE>
-  Try to write the program so that it runs efficiently (see
-  exercise <REF NAME="ex:better-multiple-dwelling2"><a class="superscript" id="4.3.2-ex-link-4.40" href="./4.3.2.html#ex_4.40">4.40</a></REF>).  Also determine how many
-  solutions there are if we are not told that Mary Ann's last name is
-  Moore.
-      
+    <div class="permalink">
+    <a name="ex_4.58" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.58">Exercise 4.58 </a></b> 
+  
+    Use the <kbd>amb</kbd> evaluator to solve the following
+    puzzle:<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+    <BLOCKQUOTE>
+      Mary Ann Moore's father has a yacht and so has each of his four
+      friends:  Colonel Downing, Mr. Hall, Sir Barnacle Hood, and Dr.
+      Parker.  Each of the five also has one daughter and each has named his
+      yacht after a daughter of one of the others.  Sir Barnacle's yacht is
+      the Gabrielle, Mr. Moore owns the Lorna; Mr. Hall the Rosalind.  The
+      Melissa, owned by Colonel Downing, is named after Sir Barnacle's
+      daughter.  Gabrielle's father owns the yacht that is named after Dr.
+      Parker's daughter.  Who is Lorna's father?
+    </BLOCKQUOTE>
+    Try to write the program so that it runs efficiently (see
+    exercise <REF NAME="ex:better-multiple-dwelling2"><a class="superscript" id="4.3.2-ex-link-4.56" href="./4.3.2.html#ex_4.56">4.56</a></REF>).  Also determine
+    how many solutions there are if we are not told that Mary Ann's last
+    name is Moore.
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_89_6_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_89_6_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1950,20 +1977,21 @@
     
 </EXERCISE></div>
 
-      
-      
+  
+  
 
-      
+  
     <div class="permalink">
-    <a name="ex_4.43" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.43">Exercise 4.43 </a></b> 
+    <a name="ex_4.59" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.59">Exercise 4.59 </a></b> 
   
+    
+    
+    
+    Exercise <REF NAME="ex:8queens"><a class="superscript" id="4.3.2-ex-link-2.43" href="./2.2.3.html#ex_2.43">2.43</a></REF> described the
+    <QUOTE>eight-queens puzzle</QUOTE> of placing queens on a chessboard so that
+    no two attack each other. Write a nondeterministic program to solve this
+    puzzle.
   
-  
-  
-  Exercise <REF NAME="ex:8queens"><a class="superscript" id="4.3.2-ex-link-2.43" href="./2.2.3.html#ex_2.43">2.43</a></REF> described the <QUOTE>eight-queens puzzle</QUOTE> of
-  placing queens on a chessboard so that no two attack each other.
-  Write a nondeterministic program to solve this puzzle.
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_89_7_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_89_7_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1972,28 +2000,27 @@
 </EXERCISE></div>
 
 
-      
+  
       <div class='permalink'>
         <a name='h2' class='permalink'></a><h2>
     
-  Parsing natural language
-      </h2></div>
+    Parsing natural language
+  </h2></div>
 
-      
-      
+  
+  
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-  Programs designed to accept natural language as input usually start by
-  attempting to <EM>parse</EM> the input, that is, to match the input
-  against some grammatical structure.  For example, we might try to
-  recognize simple sentences consisting of an article followed by a noun
-  followed by a verb, such as <QUOTE>The cat eats.</QUOTE>  To accomplish such an
-  analysis, we must be able to identify the parts of speech of
-  individual words.  We could start with some lists that classify
-  various words:<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
-
-  <table width="100%">
+    Programs designed to accept natural language as input usually start by
+    attempting to <EM>parse</EM> the input, that is, to match the input
+    against some grammatical structure.  For example, we might try to
+    recognize simple sentences consisting of an article followed by a noun
+    followed by a verb, such as <QUOTE>The cat eats.</QUOTE>  To accomplish
+    such an analysis, we must be able to identify the parts of speech of
+    individual words.  We could start with some lists that classify various
+    words:<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -2006,26 +2033,25 @@
       
       (define articles '(article the a))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_89_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-const nouns = list("noun", "student", "professor", "cat", "class");
+            <td><div class='snippet' id='javascript_89_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuBjAewDsBnAF1BKIFdzQBeUAGwEtKAKAIhvu4A0obpVoATAKYkKg4QAcATkQBmEsmSILZ3AgEMZQnS13ruASgDc+YuSoA3CQoBGZJqw4UeD59tFi2atosEgQUtAqBhhL6ZL7BEnKxltaklKC6ChRsBMGuzOxc3BlZORLaFAAWZYa65hZAA')">const nouns = list("noun", "student", "professor", "cat", "class");
 
 const verbs = list("verb", "studies", "lectures", "eats", "sleeps");
 
 const articles = list("article", "the", "a");
+
 </pre></div></div></td></tr></table>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
-  
-  We also need a <EM>grammar</EM>, that is, a set of rules describing how
-  grammatical elements are composed from simpler elements.  A very
-  simple grammar might stipulate that a sentence always consists of two
-  pieces—a noun phrase followed by a verb—and that a noun phrase
-  consists of an article followed by a noun.  With this grammar, the
-  sentence <QUOTE>The cat eats</QUOTE> is parsed as follows:
-
-  <table width="100%">
+    
+    We also need a <EM>grammar</EM>, that is, a set of rules describing how
+    grammatical elements are composed from simpler elements.  A very
+    simple grammar might stipulate that a sentence always consists of two
+    pieces—a noun phrase followed by a verb—and that a noun
+    phrase consists of an article followed by a noun.  With this grammar, the
+    sentence <QUOTE>The cat eats</QUOTE> is parsed as follows:
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -2034,22 +2060,26 @@ const articles = list("article", "the", "a");
             (verb eats))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-["sentence", [["noun-phrase", [["article", ["the", null]], 
-                               ["noun", ["cat", null]]]],
-              ["verb", ["eats", null]]]]
+list("sentence",
+     list("noun-phrase", 
+          list("article", "the"),
+          list("noun", "cat"),
+     list("verb", "eats"))
 </pre></div></div></td></tr></table>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
-  We can generate such a parse with a simple program that has separate
-  <span style="color:teal">procedures</span><span style="color:blue">functions</span>
-  for each of the grammatical rules.  To parse a sentence, we
-  identify its two constituent pieces and return a list of
-  these two elements, tagged with the symbol <kbd>sentence</kbd>:
-
-  
-  <table width="100%">
+    We can generate such a parse with a simple program that has separate
+    
+      <span style="color:teal">procedures</span>
+      <span style="color:blue">functions</span>
+    
+    for each of the grammatical rules.  To parse a sentence, we identify its
+    two constituent pieces and return a list of these two elements, tagged with
+    the symbol <kbd>sentence</kbd>:
+    
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -2059,20 +2089,20 @@ const articles = list("article", "the", "a");
             (parse-noun-phrase)
             (parse-word verbs)))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_89_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function parse_sentence() {      
+            <td><div class='snippet' id='javascript_89_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuBjAewDsBnAF1BKIFdzQBeUAGwEtKAKAIhvu4A0obpVoATAKYkKg4QAcATkQBmEsmSILZ3AgEMZQnS13ruASgDc+YuSoA3CQoBGZJqw4UeD59tFi2atosEgQUtAqBhhL6ZL7BEnKxltaklKC6ChRsBMGuzOxc3BlZORLaFAAWZYa65la4wVT0chlkEmJuJLQsLPXK9KFspKAtCm0A+gDummKc0wpi4wUUZqAA3qCbW7hboBEAjrRsEZwAhKAc4109nM2t7WbJuwdHJwC2Em9OjpxVurN3MYPIQUXRsFhzGZLDyPUCnRjMa4sJ5bGxpZR0EiLeYdZh-AEkUZtMQozaA4luUHg26E+4kqzPCRhBQkdxcfGQhbQyhmIQY+jYmbJAC++H6JEGwyJEiumPGcgqChMEk4qzWOy2EWZrOWPD4JAAtAqlW1BBrdhaLdKpjNOMVsrleebLS7rTjOPqyI8rKLcOLJazrWxCbRPMG5KG1c7ye03OHQwzUakqG1pG5ramKFICCrSXsJIdjirLkiadKSXmteFWZmfWKBlkpfdxpns7n1pbnVWWWzPCIpFmJdVnS6rc39fLFcrVQIR6Otm7bd4XN7cL6gyHPLruJVqpsdPpZMJohQkpYgA')">function parse_sentence() {      
     return list("sentence",
                 parse_noun_phrase(),
                 parse_word(verbs));
 }
-</pre></div></div></td></tr></table>
-      </p></div>
 
-      <div class='permalink'>
+</pre></div></div></td></tr></table>
+  </p></div>
+
+  <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
-  A noun phrase, similarly, is parsed by finding an article followed by a
-  noun:
-  <table width="100%">
+    A noun phrase, similarly, is parsed by finding an article followed by a
+    noun:
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -2082,54 +2112,52 @@ function parse_sentence() {
             (parse-word articles)
             (parse-word nouns)))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_89_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function parse_noun_phrase() {
+            <td><div class='snippet' id='javascript_89_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuBjAewDsBnAF1BKIFdzQBeUAGwEtKAKAIhvu4A0obpVoATAKYkKg4QAcATkQBmEsmSILZ3AgEMZQnS13ruASgDc+YuSoA3CQoBGZJqw4UeD59tFi2atosEgQUtAqBhhL6ZL7BEnKxltaklKC6ChRsBMGuzOxc3BlZORLaFAAWZYa65la4wVT0chlkEmJuJLQsLPXK9KFspKAtCm0A+gDummKc0wpi4wUUZqAA3qCbW7hboBEAjrRsEZwAhKAc4109nM2t7WbJuwdHJwC2Em9OjpxVurN3MYPIQUXRsFhzGZLDyPUCnRjMa4sJ5bGxpZR0EiLeYdZh-AEkUZtMQozaA4luUHg26E+4kqzPCRhBQkdxcfGQhbQyhmIQY+jYmbJAC++H6JEGwyJEnGbWkUgIEk4qw2u1AOy2EWZrOWPDlFAV1Q1apNW2lV0x4zkFQUJiVvONppN5pxnG8LkeVlFuHFktZ5rYhNonkDcmDKsd5PablDwYZqNSVH1bnN+sNyvjmxexyVlyRNOlJNJeyZ4VZ+q9YoGWSl9wt9CtNrtyvWjq1ZbZnl4mIAtNbbW1BI6nbsXTNOMVsrkHSPTWOFpw+ORPbhvQGg55ddxKtVNjp9LJhNEKElLEA')">function parse_noun_phrase() {
     return list("noun-phrase",
                 parse_word(articles),
                 parse_word(nouns));
 }
+
 </pre></div></div></td></tr></table>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p9' class='permalink'></a><p>
-  At the lowest level, parsing boils down to repeatedly checking that
-  the next unparsed word is a member of the list of words for the
-  required part of speech.  To implement this, we maintain a global
-  variable
-  
-    <span style="color:teal">
-  <kbd>*unparsed*</kbd>,
-    </span>
-    <span style="color:blue">
-      <kbd>unparsed</kbd>,
-    </span>
-  
-  which is the input that has not yet been
-  parsed.  Each time we check a word, we require that
-  
-    <span style="color:teal">
-  <kbd>*unparsed*</kbd>,
-    </span>
-    <span style="color:blue">
-      <kbd>unparsed</kbd>,
-    </span>
-  
-  must be non-empty and that it should begin with a word from the
-  designated list.  If so, we remove that word from
-  
-    <span style="color:teal">
-  <kbd>*unparsed*</kbd>,
-    </span>
-    <span style="color:blue">
-      <kbd>unparsed</kbd>,
-    </span>
-  
-  and
-  return the word together with its part of speech (which is found at
-  the head of the list):<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
-
-  <table width="100%">
+    At the lowest level, parsing boils down to repeatedly checking that
+    the next unparsed word is a member of the list of words for the
+    required part of speech.  To implement this, we maintain a global
+    variable
+    
+      <span style="color:teal">
+	<kbd>*unparsed*</kbd>,
+      </span>
+      <span style="color:blue">
+	<kbd>unparsed</kbd>,
+      </span>
+    
+    which is the input that has not yet been parsed.  Each time we check a word,
+    we require that
+    
+      <span style="color:teal">
+	<kbd>*unparsed*</kbd>,
+      </span>
+      <span style="color:blue">
+	<kbd>unparsed</kbd>,
+      </span>
+    
+    must be non-empty and that it should begin with a word from the designated
+    list.  If so, we remove that word from
+    
+      <span style="color:teal">
+	<kbd>*unparsed*</kbd>,
+      </span>
+      <span style="color:blue">
+	<kbd>unparsed</kbd>,
+      </span>
+    
+    and return the word together with its part of speech (which is found at
+    the head of the list):<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -2141,131 +2169,149 @@ function parse_noun_phrase() {
       (set! *unparsed* (cdr *unparsed*))
       (list (car word-list) found-word)))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_89_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function parse_word(word_list) {      
+            <td><div class='snippet' id='javascript_89_7_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG58AYwD2lRmUrCqjDqAIBLcQAoARJKoqANKBXjyLIpRJad1esIBmRRo2H0TKwbWPbHBWjZUBKAbhFiyADciegAjGU4FZRVgsIc9FnlrB2JBEnJ6ZNciZ0Z44iJqPJ8hUXFQBhJ5QWIIuUUSVUrq4gcSAAsiB1pvXwsqNPlRUDomIgB9dUpx6nb6DyIlL1AAb1xQDdBM9PpKeuipgFpZ+eYtdc3Lq83R5nGAdzsWJWaa6y9NC+vvkYY7x-ozymjC8JQAvvh+pRBsNbhNmEZDIJFssVtcvltSBk9lFGrpDCQkV1Pj8fnDJlJpicFksSaTruSAc9YuFQQIIbgoTC9uT5DRyI0+dQBaiMVQ4WxOEKBQJLv5ygiyJxyYqiUtZZtMgBHcjyTJKRSTHgEJTiv6sNkY7bY0CK9mQgZVWHmh5PJRM8a41Hoy7a3X6gCEoEN3F4ppo5pYlt9RB1esWAFsiAnQiElJ1aM8zWMo9oSLR5CaPV7lgH2JxQwQSnKymQLJSWK7AbIM1mIznq5ts8xJaB84XwxLOxtrbt9o1W+6np6Gh9QPWqI2meD8Lz+Y1caoOsSNo5nCYdDkSMUfEA')">function parse_word(word_list) {      
     require(! is_null(unparsed));
     require(member(head(unparsed), tail(word_list)) !== null);
     const found_word = head(unparsed);
     unparsed = tail(unparsed);
     return list(head(word_list), found_word);
 }
+
 </pre></div></div></td></tr></table>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p10' class='permalink'></a><p>
-	To start the parsing, all we need to do is set
-  
-    <span style="color:teal">
-  <kbd>*unparsed*</kbd>,
-    </span>
-    <span style="color:blue">
-      <kbd>unparsed</kbd>,
-    </span>
-  
-	to be
-  the entire input, try to parse a sentence, and check that nothing is
-  left over:
-
-  <table width="100%">
+    To start the parsing, all we need to do is set
+    
+      <span style="color:teal">
+	<kbd>*unparsed*</kbd>,
+      </span>
+      <span style="color:blue">
+	<kbd>unparsed</kbd>,
+      </span>
+    
+    to be
+    the entire input, try to parse a sentence, and check that nothing is
+    left over:
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_89_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define *unparsed* '())
+</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_89_8_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG4gA')">let unparsed = null;
 
-      
-      (define (parse input)
+</pre></div></div></td></tr></table>
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_89_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(define (parse input)
       (set! *unparsed* input)
       (let ((sent (parse-sentence)))
       (require (null? *unparsed*))
       sent))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_89_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-let unparsed = null;
-
-function parse_input(input) {
+            <td><div class='snippet' id='javascript_89_9_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG58AYwD2lRmUrCqjDqAIBLcQAoARJKoqANKBXjyLIpRJad1esIBmRRo2H0TKwbWPbHBWjZUBKAbhFiyADciegAjGU4FZRVgsIc9FnlrB2JBEnJ6ZNciZ0Z44iJqPJ8hUXFQBhJ5QWIIuUUSVUrq4gcSAAsiB1pvXwsqNPlRUDomIgB9AHc7FiVp+hZxqJIvUABvUE2t3C3QTIBHcnlMpQBCUEVx7l4lKlHmFi8S3YOjk4BbInfQkKVO2lmdwYDy82hItHkBDmMyWDSeoFO7E41wIzy2-nKFiklEW8zYnH+gJowNYaM2QLG+NA4Mht2JlLJe1IGUo9WUhOhC1h4lBoCxVFxMxKAF98P1KINhvcJupKONqO16B4iEpVmsdltMul6KzlqpZQBaBVK5haDW7C0W6VTGZKZo1ayg82Wl3WvFKWWMJ4CUW4cWS1nW5hGQyCFVqy3OrUstmNXSGEihrqaZ0uq0kq7Y+WK5WqlNptNu22xcLe3C+-1VKUZ+Q0ciNWvUetq50Uh6yRv1gS7DFkYNkThBhNJ1XdzVEQ7HFWXFF06WPRnRnWgfs+-DWzuNPUqDrJzaOZwmHQ5EjFHxAA')">function parse_input(input) {
     unparsed = input;
     const sent = parse_sentence();
     require(is_null(unparsed));
     return sent;
 }
+
 </pre></div></div></td></tr></table>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p11' class='permalink'></a><p>
-  We can now try the parser and verify that it works for our simple test
-  sentence:
-
-  <div class='snippet' id='javascript_89_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-// Amb-Eval input:      
-parse_input(list("the",  "cat",  "eats"));
-// Starting a new problem
-// Amb-Eval value:
-["sentence", [["noun-phrase", [["article", ["the", null]], 
-                               ["noun", ["cat", null]]]],
-              ["verb", ["eats", null]]]]
-</pre></div></div>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
-  The <kbd>amb</kbd> evaluator is useful here because it is convenient to
-  express the parsing constraints with the aid of <kbd>require</kbd>.
-  Automatic search and backtracking really pay off, however, when we
-  consider more complex grammars where there are choices for how the
-  units can be decomposed.
-      </p></div>
-
-      <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
-  Let's add to our grammar a list of prepositions:
-
-  <table width="100%">
+    We can now try the parser and verify that it works for our simple test
+    sentence:
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_89_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define prepositions '(prep for to in by with))
+;;; Amb-Eval input:
+(parse '(the cat eats))
+;;; Starting a new problem
+;;; Amb-Eval value:
+</pre><pre class='prettyprintoutput'>
+
+      (sentence (noun-phrase (article the) (noun cat)) (verb eats))
+      
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_89_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-const prepositions = list("prep", "for", "to",  "in", "by", "with");
+            <td><div class='snippet' id='javascript_89_10_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG58AYwD2lRmUrCqjDqAIBLcQAoARJKoqANKBXjyLIpRJad1esIBmRRo2H0TKwbWPbHBWjZUBKAbhFiyADciegAjGU4FZRVgsIc9FnlrB2JBEnJ6ZNciZ0Z44iJqPJ8hUXFQBhJ5QWIIuUUSVUrq4gcSAAsiB1pvXwsqNPlRUDomIgB9AHc7FiVp+hZxqJIvUABvUE2t3C3QTIBHcnlMpQBCUEVx7l4lKlHmFi8S3YOjk4BbInfQkKVO2lmdwYDy82hItHkBDmMyWDSeoFO7E41wIzy2-nKFiklEW8zYnH+gJowNYaM2QLG+NA4Mht2JlLJe1IGUo9WUhOhC1h4lBoCxVFxMxKAF98P1KINhvcJupKONqO16B4iEpVmsdltMul6KzlqpZQBaBVK5haDW7C0W6VTGZKZo1ayg82Wl3WvFKWWMJ4CUW4cWS1nW5hGQyCFVqy3OrUstmNXSGEihrqaZ0uq0kq7Y+WK5WqlNptNu22xcLe3C+-1VKUZ+Q0ciNWvUetq50Uh6yRv1gS7DFkYNkThBhNJ1XdzVEQ7HFWXFF06WPRnRnWgfs+-DWzuNPUqDrJzaOZwmHQ5EjFHxAA')">// amb-evaluate input:      
+parse_input(list("the",  "cat",  "eats"));
+// Starting a new problem
+// amb-evaluate value:
+
+</pre><pre class='prettyprintoutput'>
+
+list("sentence",
+     list("noun-phrase", 
+          list("article", "the"),
+          list("noun", "cat")),
+     list("verb", "eats"))
+      
 </pre></div></div></td></tr></table>
+  </p></div>
 
-  and define a prepositional phrase (e.g., <QUOTE>for the cat</QUOTE>) to be
-  a preposition followed by a noun phrase:
+  <div class='permalink'>
+<a name='p12' class='permalink'></a><p>
+    The <kbd>amb</kbd> evaluator is useful here because it is
+    convenient to express the parsing constraints with the aid of
+    <kbd>require</kbd>. Automatic search and backtracking
+    really pay off, however, when we consider more complex grammars where there
+    are choices for how the units can be decomposed.
+  </p></div>
 
-  <table width="100%">
+  <div class='permalink'>
+<a name='p13' class='permalink'></a><p>
+    Let's add to our grammar a list of prepositions:
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_89_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(define prepositions '(prep for to in by with))
+</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_89_11_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuBjAewDsBnAF1AAcAnAU2qLIEsKXSzQBeUAGxaUAFACI6jEQBpQIgGZFaUmRSJKZLEkpEAjAJ5aA7mwAWIgJQBuIA')">const prepositions = list("prep", "for", "to",  "in", "by", "with");
+
+</pre></div></div></td></tr></table>
+    and define a prepositional phrase (e.g., <QUOTE>for the cat</QUOTE>) to be
+    a preposition followed by a noun phrase:
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_89_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (parse-prepositional-phrase)
       (list 'prep-phrase
             (parse-word prepositions)
             (parse-noun-phrase)))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_89_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function parse_prepositional_phrase() {      
+            <td><div class='snippet' id='javascript_89_12_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG58AMyoBjEgEsA9pVB0mRAPoB3SfRYAKFWoUFxjEgEpQAb1Bnzuc6HpEAjuXE31AQlB6F3XuqpzmLAwYCVjb2jkTqALZEEQBGRPTqABZEtBo+DH4GADSgJLTiBJqqLDp6hkbO7JyeBIGW5iLS+qCCklQlWmycyaneNBmsdVbp8l25+YUjmUHmNiTk9DK6+kkpGp2l+tktbZQdxXUAvviNlM3UNtSSjOISTRygyyTqAEQXRNQvOS+t9F+gLxIkn+APElH+LxiAE8IUpbokXnVcKdmpRdowHk9XmiqBD9OQWERKCQIRdJIIiIxGKoISJaCTviICLQqYiBMimmQAG7xGIYzhYl48+gxPHzFjiSkQ4hiBZS74pEiMPHED7KpEosgMCRMymYsqvbXiXUQkjJCG0NlCUR3GS+RQ3CLUYgeXYKaiJegs8JGUxWUD1MxzBZLA0vR3OogAWhxlCjHq9zC+gf9qbM9uUxXURt1jGyKbT-oznXUsbzR2tlDEUjtA1dVHdnu96l9KeEVdtoAitChcQURAAHiQiRpY43E0RW4Xg4tQLRYqW3QnvVkC4XU93e4pB8O9upBbH402k6v12fz2mx8vmKeL3fzxn3lcbrbaARx82AgEZmZjsFSCGXY9n2O4juoGYRi6V7Hj6Fa4O21bSLIdbMMSRIiD6JgpjOoYrOGRK7hhyb3umdbQROLa3veGbCjEH7MC2cEIZ2NG8vRmHGG2No1kBW79kOYG0exU5pjhc4LkJ15EFRJG8SBAl7oKtFHhOxGyep5iSTBMkaSRj6XNctw1m+7GMd+KaHAAkJZFj-vMs6bvJu4aMWWa0eWAjHPB3FIRmYLUOQzz+YFIlmFMrAPMFJA-qAmqgKhZCcBBBHoT6MUhA4TjuDUfT2v4QyzABs4JZ5laIbW8jugZL7Ge+UktiYqbYUVuHPG8lwqd6anUXWJZPoZtp5jpD5kUuMGMaVuB+TQgX7mGZpEGKBIEbC8KmuajL0t197hqq1DKt8YLrYtjLMqy35AA')">function parse_prepositional_phrase() {      
     return list("prep-phrase",
                 parse_word(prepositions),
                 parse_noun_phrase());
 }
+
 </pre></div></div></td></tr></table>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p14' class='permalink'></a><p>
-  Now we can define a sentence to be a noun phrase followed by a verb
-  phrase, where a verb phrase can be either a verb or a verb phrase
-  extended by a prepositional phrase:<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
-
-  <table width="100%">
+    Now we can define a sentence to be a noun phrase followed by a verb
+    phrase, where a verb phrase can be either a verb or a verb phrase
+    extended by a prepositional phrase:<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_89_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_89_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (parse-sentence)
       (list 'sentence
             (parse-noun-phrase)
@@ -2279,11 +2325,10 @@ function parse_prepositional_phrase() {
             (parse-prepositional-phrase)))))
       (maybe-extend (parse-word verbs)))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_89_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function parse_sentence() {
+            <td><div class='snippet' id='javascript_89_13_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG58AMyoBjEgEsA9pVB0mRAPoB3SfRYAKFWoUFxjEgEpQAb1Bnzuc6HpEAjuXE31AQlB6F3XuqpzmLAwYCVjb2jkTqALZEEQBGRPTqABZEtBo+DH4GADSgJLTiBJqqLDp6hkbO7JyeBIGW5iLS+qCCklQlWmycyaneNBmsdVbp8l25+YUjmUHmNiTk9DK6+kkpGp2l+tktbZQdxXUAvviNlM3UNtSSjOISTRygyyTqAEQXRNQvOS+t9F+gLxIkn+APElH+LxiAE8IUpbokXnVcMJKGIpDJfIp3lcbndKLQCApqIl6LRmOojKYrKB6mY5gslmVXtiALTE0nML606k8syY5TFdTY663dGMbLc3nU-mUXZEklk8IBATHXCnZqyqiMB5PV6a8HffTkFhESgkCEXSSCIiMRiqCEiWjm74iAhkxiIgRqppkABu8Ri2s4upe-voMQhRpY4htEOIYgWse+KRIHsNxA+HqR6rIDAkrptOqZLzz4gLEJIyQhtE9QlEeNkAwUNwi1GIHjl7MVFJMPO59MWj2LLbbRBZ+rZCs5WUlUvM-M66lLBfFM7nvIXgv14qOddRDZlnanSpM3JRaOkoAitChcQURAAHiRTRp9fKOURKbO6aQGaBaLE6hvl2zBruuUrXreiiPs+ezqCGE4gUQXLgahaFcEeH5gehOE8vywq4uiBLvt2ATKtyxzBL+g6QXeMEvkKTYju2wHHhSu7IvW6KNvIChgtQ5DPPxglfsM-SjA8wkkDMZg5qAzBmg8-IKbBIhKjJ1h2A4TjuDUfSYv4QyzNRMgqSqe4XhiTGmqpJ7GP2JlDisLwqaaakoThh5UCR5ISrh-JhjEPlKhx54Hk2gXBT29lWGF3G0dBT4MZFSGibyA4yABMTqClx7YbhCX3klcEhoFk4fh5uFVWYuVYd+1WofhlwinixFIex5FWIcACQ3UWFR8w0TedHFRom5qDlAY7uZuD8lJ8HFpWyGGvMJpmrC8IVlWLpOpV6EuRm1BpqCBoAktDpuraiKBEAA')">function parse_sentence() {
     return list("sentence",
-
-
+                parse_noun_phrase(),
+                parse_verb_phrase());
 }
 
 function parse_verb_phrase() {
@@ -2295,22 +2340,23 @@ function parse_verb_phrase() {
     }		   
     return maybe_extend(parse_word(verbs));
 }
+
 </pre></div></div></td></tr></table>
-      </p></div>
+    
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p15' class='permalink'></a><p>
-  While we're at it, we can also elaborate the definition of noun
-  phrases to permit such things as <QUOTE>a cat in the class.</QUOTE>  What we used
-  to call a noun phrase, we'll now call a simple noun phrase, and a noun
-  phrase will now be either a simple noun phrase or a noun phrase
-  extended by a prepositional phrase:
-
-  <table width="100%">
+    While we're at it, we can also elaborate the definition of noun
+    phrases to permit such things as <QUOTE>a cat in the class.</QUOTE>  What
+    we used to call a noun phrase, we'll now call a simple noun phrase,
+    and a noun phrase will now be either a simple noun phrase or a noun phrase
+    extended by a prepositional phrase:
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_89_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_89_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (parse-simple-noun-phrase)
       (list 'simple-noun-phrase
             (parse-word articles)
@@ -2324,8 +2370,7 @@ function parse_verb_phrase() {
             (parse-prepositional-phrase)))))
       (maybe-extend (parse-simple-noun-phrase)))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_89_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function parse_simple_noun_phrase() {      
+            <td><div class='snippet' id='javascript_89_14_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG58AMyoBjEgEsA9pVB0mRAPoB3SfRYAKFWoUFxjEgEpQAb1Bnzuc6HpEAjuXE31AQlB6F3XuqpzmLAwYCVjb2jkTqALZEEQBGRPTqABZEtBo+DH4GADSgJLTiBJqqLDp6hkbO7JyeBIGW5iLS+qCCklQlWmycyaneNBmsdVbp8l25+YUjmUHmNiTk9DK6+kkpGp2l+tktbZQdxXUAvviNlM3UNtSSjOISTRygyyTqAEQXRNQvOS+t9F+gLxIkn+APElH+LxiAE8IUpbokXnVcMJKGIpDJfIp3lcbndKLQCApqIl6LRmOojKYrKB6mY5gslmVXtiALTE0nML606k8syY5TFdTY663dGMbLc3nU-mUXZEklk8IBATHXCnZqyqiMB5PV6a8HffTkFhESgkCEXSSCIiMRiqCEiWjm74iAhkxiIgRqppkABu8Ri2s4upe-voMQhRpY4htEOIYgWse+KRIHsNxA+HqR6rIDAkrptOqZLzz4gLEJIyQhtE9QlEeNkAwUzDNppESpM3Ppi0exZbJDbRC5UqlMrl7MVFKykpHfKbYZi8o5SqOddRDf5C6Xk8p3JRaOkoAitChcQURAAHgO9uotxPmLupd2ZLRYreA9vmNPZyPj6fFJe14aCGC5sgqnLfj+UHQXe4FEJB0GIaOTbCri6IEp+K7KtyhwAJC4RYwSkAyR4nmegGmho-KdO+4biquyL1uijbyAoYLUOQzzsZxj7mFMrAPNxJAzGYOagP2Dz8v2g4UiJ1h2A4TjuDUfSYv4QyzMRPb9iqa4HhiTY3BE1DEB445wRSJg8l2WmMisLxGSZRAsvqYHLsOSHUYKpYFuKCHQV5ajqPq9G6Yx67MWOVCYZZxh7kxh5-uRV6UcF5nLrxPLPqAr4xGl0X3vBM7QUlAEpTeIauYVHlIbVVj6ph-l1bV-KoaK0gYYVFIBBpZjHER8w9qV57lVRhniMZpkNV12GqvyQnqCGlZDoa8wmmasLwhWVYuk6NWIQ5GbUGmoIGgCy0Om6tqIoEQA')">function parse_simple_noun_phrase() {      
     return list("simple-noun-phrase",
                 parse_word(articles),
                 parse_word(nouns));
@@ -2340,184 +2385,162 @@ function parse_noun_phrase() {
     }
     return maybe_extend(parse_simple_noun_phrase());
 }
-</pre></div></div></td></tr></table>
-  
-      </p></div>
 
-      <div class='permalink'>
+</pre></div></div></td></tr></table>
+    
+  </p></div>
+
+  <div class='permalink'>
 <a name='p16' class='permalink'></a><p>
-  Our new grammar lets us parse more complex sentences.  For example
-  <table width="100%">
+    Our new grammar lets us parse more complex sentences.  For example
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_89_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_89_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (parse '(the student with the cat sleeps in the class))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_89_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-parse_input(list("the", "student", "with", "the", "cat", "sleeps", "in", "the", "class"));
-</pre></div></div></td></tr></table>
+            <td><div class='snippet' id='javascript_89_15_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG58AMyoBjEgEsA9pVB0mRAPoB3SfRYAKFWoUFxjEgEpQAb1Bnzuc6HpEAjuXE31AQlB6F3XuqpzmLAwYCVjb2jkTqALZEEQBGRPTqABZEtBo+DH4GADSgJLTiBJqqLDp6hkbO7JyeBIGW5iLS+qCCklQlWmycyaneNBmsdVbp8l25+YUjmUHmNiTk9DK6+kkpGp2l+tktbZQdxXUAvviNlM3UNtSSjOISTRygyyTqAEQXRNQvOS+t9F+gLxIkn+APElH+LxiAE8IUpbokXnVcMJKGIpDJfIp3lcbndKLQCApqIl6LRmOojKYrKB6mY5gslmVXtiALTE0nML606k8syY5TFdTY663dGMbLc3nU-mUXZEklk8IBATHXCnZqyqiMB5PV6a8HffTkFhESgkCEXSSCIiMRiqCEiWjm74iAhkxiIgRqppkABu8Ri2s4upe-voMQhRpY4htEOIYgWse+KRIHsNxA+HqR6rIDAkrptOqZLzz4gLEJIyQhtE9QlEeNkAwUNwi1GIHjl7MVFJMPO59MWj2LLbbRBZ+rZCs5WUlUvM-M66lLBfFM7nvIXgv14qOddRDZlnanSpM3JRaOkoAitChcQURAAHiRTRp9fKOURKbO6aQGaBaLE6hvl2zBruuUrXreiiPs+ezqCGE4gUQXLgahaFcEeH5gehOE8vywq4uiBLvt2ATKtyxzBL+g6QXeMEvkKTYju2wHHhSu7IvW6KNvIzamrBIgnsY-bUYyKwvMwZqmoJKE4YeVAkeSEq4fyYYxIpSoceeB5NmpGk9sJVjadxtHQU+DF6UhX5SgOMgATE6iWce2G4aZ97mXBIZqZOH6ybh-lmE5WHfgFqH4ZcIp4sRSHseRViHAAkAlFhUfMNE3nRHkaJuaiOQGO4qnuF4Yk2YLUOQzxlRV1nmFMrAPFVJAzGYOagJJZCcPy7XSUqzXWHYDhOO4NR9Ji-hDLMoltfxhW4PyjXwcWlbIYa8wmmasLwhWVYuk6fnoRJGbUGmoIGgCy0Om6tqIoEQA')">parse_input(list("the", "student", "with", "the", "cat",
+                 "sleeps", "in", "the", "class"));
 
+</pre></div></div></td></tr></table>
   produces
-
-  <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_89_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(sentence
-      (noun-phrase
-      (simple-noun-phrase (article the) (noun student))
-      (prep-phrase (prep with)
-            (simple-noun-phrase
-            (article the) (noun cat))))
-      (verb-phrase
-      (verb sleeps)
-      (prep-phrase (prep in)
-            (simple-noun-phrase
-            (article the) (noun class)))))
-</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_89_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-["sentence",
- [["noun-phrase",
-  [["simple-noun-phrase", 
-    [["article", ["the", null]],
-     [["noun", ["student", null]],
-      null],
-     ["prep-phrase", 
-      [["prep", ["with", null]],
-       [["simple-noun-phrase",
-        [["article", ["the", null]],
-         [["noun", ["cat", null]]],
-          null]]]]]],
-     [["verb-phrase",
-      [["verb", ["sleeps", null]],
-       [["prep-phrase",
-        [["prep", ["in", null]],
-         [["simple-noun-phrase", 
-          [["article", ["the", null]],
-           ["noun", ["class", null]]]]]]]]]]
-</pre></div></div></td></tr></table>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p17' class='permalink'></a><p>
-  Observe that a given input may have more than one legal parse.  In
-  the sentence <QUOTE>The professor lectures to the student with the cat,</QUOTE>
-  it may be that the professor is lecturing with the cat, or that the
-  student has the cat.  Our nondeterministic program finds both
-  possibilities:
-
   <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_89_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(sentence
+ (noun-phrase
+  (simple-noun-phrase (article the) (noun student))
+  (prep-phrase (prep with)
+   (simple-noun-phrase
+    (article the) (noun cat))))
+ (verb-phrase
+  (verb sleeps)
+  (prep-phrase (prep in)
+   (simple-noun-phrase
+    (article the) (noun class)))))
+</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_89_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+list("sentence",
+     list("noun-phrase",
+          list("simple-noun-phrase", 
+               list("article", "the"), list("noun", "student")),
+          list("prep-phrase", list("prep", "with"),
+               list("simple-noun-phrase",
+                    list("article", "the"),
+                    list("noun", "cat")))),
+     list("verb-phrase",
+          list("verb", "sleeps"),
+          list("prep-phrase", list("prep", "in"),
+               list("simple-noun-phrase", 
+                    list("article", "the"),
+                    list("noun", "class")))))
+</pre></div></div></td></tr></table>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p17' class='permalink'></a><p>
+    Observe that a given input may have more than one legal parse.  In the
+    sentence <QUOTE>The professor lectures to the student with the cat,</QUOTE>
+    it may be that the professor is lecturing with the cat, or that the student
+    has the cat.  Our nondeterministic program finds both possibilities:
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_89_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (parse '(the professor lectures to the student with the cat))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_89_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-parse_input(list("the", "professor", "lectures",
+            <td><div class='snippet' id='javascript_89_17_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG58AMyoBjEgEsA9pVB0mRAPoB3SfRYAKFWoUFxjEgEpQAb1Bnzuc6HpEAjuXE31AQlB6F3XuqpzmLAwYCVjb2jkTqALZEEQBGRPTqABZEtBo+DH4GADSgJLTiBJqqLDp6hkbO7JyeBIGW5iLS+qCCklQlWmycyaneNBmsdVbp8l25+YUjmUHmNiTk9DK6+kkpGp2l+tktbZQdxXUAvviNlM3UNtSSjOISTRygyyTqAEQXRNQvOS+t9F+gLxIkn+APElH+LxiAE8IUpbokXnVcMJKGIpDJfIp3lcbndKLQCApqIl6LRmOojKYrKB6mY5gslmVXtiALTE0nML606k8syY5TFdTY663dGMbLc3nU-mUXZEklk8IBATHXCnZqyqiMB5PV6a8HffTkFhESgkCEXSSCIiMRiqCEiWjm74iAhkxiIgRqppkABu8Ri2s4upe-voMQhRpY4htEOIYgWse+KRIHsNxA+HqR6rIDAkrptOqZLzz4gLEJIyQhtE9QlEeNkAwUNwi1GIHjl7MVFJMPO59MWj2LLbbRBZ+rZCs5WUlUvM-M66lLBfFM7nvIXgv14qOddRDZlnanSpM3JRaOkoAitChcQURAAHiRTRp9fKOURKbO6aQGaBaLE6hvl2zBruuUrXreiiPs+ezqCGE4gUQXLgahaFcEeH5gehOE8vywq4uiBLvt2ATKtyxzBL+g6QXeMEvkKTYju2wHHhSu7IvW6KNvIzamrBIgnsY-bUYyKwvMwZqmoJKE4YeVAkeSEq4fyYYxIpSoceeB5NmpGk9sJVjadxtHQU+DF6UhX5SgOMgATE6iWce2G4aZ97mXBIZqZOH6ybh-lmE5WHfgFqH4ZcIp4sRSHseRViHAAkAlFhUfMNE3nRHkaJuaiOQGO4qnuF4Yk2YLUOQzxlRV1nmFMrAPFVJAzGYOagJJZCcPy7XSUqzXWHYDhOO4NR9Ji-hDLMoltfxhW4PyjXwcWlbId8lrWra9rfPGaVJiFc6AsC3zLZG8wmmasLwhWVYuk6iKBEAA')">parse_input(list("the", "professor", "lectures",
                  "to", "the", "student", "with", "the", "cat"));
+
 </pre></div></div></td></tr></table>
-
-  produces
-
-  <table width="100%">
+    produces
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_89_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_89_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (sentence
-      (simple-noun-phrase (article the) (noun professor))
-      (verb-phrase
-      (verb-phrase
-      (verb lectures)
-      (prep-phrase (prep to)
-            (simple-noun-phrase
-            (article the) (noun student))))
-      (prep-phrase (prep with)
-            (simple-noun-phrase
-            (article the) (noun cat)))))
+ (simple-noun-phrase (article the) (noun professor))
+ (verb-phrase
+  (verb-phrase
+   (verb lectures)
+   (prep-phrase (prep to)
+    (simple-noun-phrase
+     (article the) (noun student))))
+  (prep-phrase (prep with)
+   (simple-noun-phrase
+    (article the) (noun cat)))))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_89_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-["sentence",
- [["simple-noun-phrase", 
-   [["article", ["the", null]],
-    [["noun", ["professor", null]],
-     null]],
-    null]],
-   [["verb-phrase",
-    [["verb-phrase",
-     [["verb", ["lectures", null]],
-      [["prep-phrase",
-        [["prep", ["to", null]],
-         ["simple-noun-phrase", 
-          [["article", ["the", null]],
-           [["noun", ["student", null]],
-       [["prep-phrase",
-         [["prep", ["with", null]],
-          ["simple-noun-phrase", 
-           [["article", ["the", null]],
-            [["noun", ["cat", null]]]]]]]]]]]
+            <td><div class='snippet' id='javascript_89_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+list("sentence",
+     list("simple-noun-phrase",
+          list("article", "the"), list("noun", "professor")),
+     list("verb-phrase",
+          list("verb-phrase",
+               list("verb", "lectures"),
+               list("prep-phrase", list("prep", "to"),
+                    list("simple-noun-phrase",
+                    list("article", "the"),
+		    list("noun", "student")))),
+          list("prep-phrase", list("prep", "with"),
+               list("simple-noun-phrase",
+                    list("article", "the"),
+                    list("noun", "cat")))))
 </pre></div></div></td></tr></table>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p18' class='permalink'></a><p>
-  Asking the evaluator to try again yields
-  <table width="100%">
+    Asking the evaluator to try again yields
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_89_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_89_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (sentence
-      (simple-noun-phrase (article the) (noun professor))
-      (verb-phrase
-      (verb lectures)
-      (prep-phrase (prep to)
-            (noun-phrase
-            (simple-noun-phrase
-            (article the) (noun student))
-            (prep-phrase (prep with)
-            (simple-noun-phrase
-            (article the) (noun cat)))))))
+ (simple-noun-phrase (article the) (noun professor))
+ (verb-phrase
+  (verb lectures)
+  (prep-phrase (prep to)
+   (noun-phrase
+    (simple-noun-phrase
+     (article the) (noun student))
+    (prep-phrase (prep with)
+     (simple-noun-phrase
+      (article the) (noun cat)))))))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_89_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-["sentence",
- [["simple-noun-phrase", 
-   [["article", ["the", null]],
-    [["noun", ["professor", null]],
-     null]],
-    null]],
-   [["verb-phrase",
-    [["verb-phrase",
-     [["verb", ["lectures", null]],
-      [["prep-phrase",
-        [["prep", ["to", null]],
-         [["noun-phrase", 
-          [["simple-noun-phrase", 
-          [["article", ["the", null]],
-           [["noun", ["student", null]],
-          [["prep-phrase",
-         [["prep", ["with", null]],
-          ["simple-noun-phrase", 
-           [["article", ["the", null]],
-            [["noun", ["cat", null]]]]]]]]]]]
+            <td><div class='snippet' id='javascript_89_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+list("sentence",
+     list("simple-noun-phrase", list("article", "the"),
+          list("noun", professor))
+     list("verb-phrase",
+          list("verb", "lectures"),
+          list("prep-phrase", list("prep", "to"),
+               list("noun-phrase",
+                    list("simple-noun-phrase",
+                         list("article", "the"),
+                         list("noun", "student")),
+                    list("prep-phrase", list("prep", "with"),
+                         list("simple-noun-phrase",
+                              list("article", "the"),
+                              list("noun", "cat")))))))
 </pre></div></div></td></tr></table>
+    
+  </p></div>
 
   
-      </p></div>
-
-      
     <div class="permalink">
-    <a name="ex_4.44" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.44">Exercise 4.44 </a></b> 
+    <a name="ex_4.60" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.60">Exercise 4.60 </a></b> 
   
-  With the grammar given above, the following sentence can be parsed in
-  five different ways:
-  <QUOTE>The professor lectures to the student in the class with the cat.</QUOTE>
-  Give the five parses and explain the differences in shades of
-  meaning among them.
-      
+    With the grammar given above, the following sentence can be parsed in five
+    different ways: <QUOTE>The professor lectures to the student in the class
+    with the cat.</QUOTE> Give the five parses and explain the differences in
+    shades of meaning among them.
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_89_8_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_89_8_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2526,17 +2549,17 @@ parse_input(list("the", "professor", "lectures",
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
-    <a name="ex_4.45" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.45">Exercise 4.45 </a></b> 
+    <a name="ex_4.61" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.61">Exercise 4.61 </a></b> 
   
+    
+    The evaluators in sections <REF NAME="sec:mc-eval"><a class="superscript" id="4.3.2-sec-link-4.1" href="./4.1.html">4.1</a></REF> and
+    <REF NAME="sec:lazy-evaluation"><a class="superscript" id="4.3.2-sec-link-4.2" href="./4.2.html">4.2</a></REF> do not determine what order operands are
+    evaluated in. We will see that the <kbd>amb</kbd> evaluator
+    evaluates them from left to right. Explain why our parsing program
+    wouldn't work if the operands were evaluated in some other order.
   
-  The evaluators in sections <REF NAME="sec:mc-eval"><a class="superscript" id="4.3.2-sec-link-4.1" href="./4.1.html">4.1</a></REF> and <REF NAME="sec:lazy-evaluation"><a class="superscript" id="4.3.2-sec-link-4.2" href="./4.2.html">4.2</a></REF>
-  do not determine what order operands are evaluated in.
-  We will see that the <kbd>amb</kbd> evaluator evaluates them from left to right.
-  Explain why our parsing program wouldn't work if the operands were evaluated
-  in some other order.
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_89_9_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_89_9_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2545,28 +2568,35 @@ parse_input(list("the", "professor", "lectures",
 </EXERCISE></div>
 
 
-      
-    <div class="permalink">
-    <a name="ex_4.46" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.46">Exercise 4.46 </a></b> 
   
-  Louis Reasoner suggests that, since a verb phrase is either a verb or
-  a verb phrase followed by a prepositional phrase, it would be much more
-  straightforward to define the
-  <span style="color:teal">procedure</span><span style="color:blue">function</span>
-  <kbd>parse-verb-phrase</kbd> as
-  follows (and similarly for noun phrases):
-  <table width="100%">
+    <div class="permalink">
+    <a name="ex_4.62" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.62">Exercise 4.62 </a></b> 
+  
+    Louis Reasoner suggests that, since a verb phrase is either a verb or
+    a verb phrase followed by a prepositional phrase, it would be much more
+    straightforward to define the
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
+    
+      <span style="color:teal"><kbd>parse-verb-phrase</kbd></span>
+      <span style="color:blue"><kbd>parse_verb_phrase</kbd>
+      </span>
+    
+    as follows (and similarly for noun phrases):
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_89_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_89_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (parse-verb-phrase)
       (amb (parse-word verbs)
       (list 'verb-phrase
             (parse-verb-phrase)
             (parse-prepositional-phrase))))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_89_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_89_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function parse_verb_phrase() {
     return amb(parse_word(verbs),      
                list("verb-phrase",
@@ -2574,9 +2604,9 @@ function parse_verb_phrase() {
                     parse_prepositional_phrase()));
 }
 </pre></div></div></td></tr></table>
-  Does this work?  Does the program's behavior change if we interchange
-  the order of expressions in the <kbd>amb</kbd>?
-      
+    Does this work?  Does the program's behavior change if we interchange
+    the order of expressions in the <kbd>amb</kbd>?
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_89_10_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_89_10_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2585,14 +2615,14 @@ function parse_verb_phrase() {
 </EXERCISE></div>
 
 
-      
-    <div class="permalink">
-    <a name="ex_4.47" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.47">Exercise 4.47 </a></b> 
   
-  Extend the grammar given above to handle more complex sentences.  For
-  example, you could extend noun phrases and verb phrases to include
-  adjectives and adverbs, or you could handle compound sentences.<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a>
-      
+    <div class="permalink">
+    <a name="ex_4.63" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.63">Exercise 4.63 </a></b> 
+  
+    Extend the grammar given above to handle more complex sentences.  For
+    example, you could extend noun phrases and verb phrases to include adjectives
+    and adverbs, or you could handle compound sentences.<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a>
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_89_11_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_89_11_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2601,29 +2631,27 @@ function parse_verb_phrase() {
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
-    <a name="ex_4.49" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.49">Exercise 4.49 </a></b> 
+    <a name="ex_4.65" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.65">Exercise 4.65 </a></b> 
   
+    
+    Alyssa P. Hacker is more interested in generating interesting sentences
+    than in parsing them.  She reasons that by simply changing the
+    
+      <span style="color:teal">procedure
+      <kbd>parse\?word</kbd>
+      </span>
+      <span style="color:blue">function
+      <kbd>parse_word</kbd>
+      </span>
+    
+    so that it ignores the <QUOTE>input sentence</QUOTE> and instead always
+    succeeds and generates an appropriate word, we can use the programs we had
+    built for parsing to do generation instead.  Implement Alyssa's idea,
+    and show the first half-dozen or so sentences generated.<a class='superscript' id='footnote-link-7' href='#footnote-7'>[7]</a>
+    
   
-  Alyssa P. Hacker is more interested in generating interesting
-  sentences than in parsing them.  She reasons that by simply changing
-  the
-  
-    <span style="color:teal">procedure
-    <kbd>parse\?word</kbd>
-    </span>
-    <span style="color:blue">function
-    <kbd>parse_word</kbd>
-    </span>
-  
-    so that it ignores the <QUOTE>input
-    sentence</QUOTE> and instead always succeeds and generates an appropriate
-  word, we can use the programs we had built for parsing to do
-  generation instead.  Implement Alyssa's idea, and show the first
-  half-dozen or so sentences generated.<a class='superscript' id='footnote-link-7' href='#footnote-7'>[7]</a>
-  
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_89_12_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_89_12_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2631,30 +2659,35 @@ function parse_verb_phrase() {
     
 </EXERCISE></div>
 
-      
-      
+  
+  
 
-    <hr>
+<hr>
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1' >[1] </a>
     <FOOTNOTE>
     Our program uses the following
-    <span style="color:teal">procedure</span><span style="color:blue">function</span>
-    to determine 
-    if the elements of a list are distinct:
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
+    to determine if the elements of a list are distinct:
+    <div class='snippet' id='javascript_89_21_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuATASwGcAXIgOwGMyAKAG1PoEYAaUbDlbtgVgCUAgNxA')">distinct(list(1, 2, 4, 4,5));
+
+</pre></div></div>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_89_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_89_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (distinct? items)
         (cond ((null? items) true)
               ((null? (cdr items)) true)
               ((member (car items) (cdr items)) false)
               (else (distinct? (cdr items)))))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_89_20_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=GYVwdgxgLglg9mABAExgZ1pKAKGUCmAtmgJSIDeAkAFCJ2IBO+UIDS6A+mCADY+4FiJWvVEB+RFAYh8I0XQBciTtz7YoAQxj88RUsPnyJUmXMOIlK3v0JEARvgbYAFvg3IBekgBpJWnYL6BubiKOiY0Or+nkLBIYqIwBo8aPgA3NQAvkA')">function distinct(items) {	
+            <td><div class='snippet' id='javascript_89_22_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AEyoGdryKAKKigUwFtmASlABvAJC5QU0ACceFIjPosA+iSIAbDV14DBk6YYD8oCjKI8DhqQC5Qq9Vo4UAhlW3d+Q-desmzFla+oHYOmtp8-ABGPDIcABY8Lgw6XoIANKZuHrrePsHGjCxslM7ZqXr5BbagBC4azDwA3LgAvvhMrFTsHBrFHACMmdiZKKPpAKyCgk1AA')">function distinct(items) {	
     return is_null(items)
         ? true
         : is_null(tail(items))
@@ -2665,15 +2698,15 @@ function parse_verb_phrase() {
 }
 
 </pre></div></div></td></tr></table>
-
-
-  <span style="color:teal">
-    <kbd>Member</kbd> is like <kbd>memq</kbd>
-    except that it uses <kbd>equal?</kbd> instead
-    of <kbd>eq?</kbd> to test for equality.
-  </span>
-
-
+    
+    
+      <span style="color:teal">
+	<kbd>Member</kbd> is like
+	<kbd>memq</kbd>
+	except that it uses <kbd>equal?</kbd> instead
+	of <kbd>eq?</kbd> to test for equality.
+      </span>
+    
     </FOOTNOTE></div>
     
     
@@ -2681,7 +2714,7 @@ function parse_verb_phrase() {
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2' >[2] </a>
     <FOOTNOTE>
     This is taken from a booklet called <QUOTE>Problematical
-      Recreations,</QUOTE> published in the 1960s by Litton Industries, where it
+    Recreations,</QUOTE> published in the 1960s by Litton Industries, where it
     is attributed to the <EM>Kansas State Engineer</EM>.
     </FOOTNOTE></div>
     
@@ -2689,8 +2722,9 @@ function parse_verb_phrase() {
     <div class='footnote'>
       <a class='footnote-number' id='footnote-3' href='#footnote-link-3' >[3] </a>
     <FOOTNOTE>
-    Here we use the convention that the first element of each list
-    designates the part of speech for the rest of the words in the list.
+    Here we use the convention that the first element of each
+    list designates the part of speech for the rest of the words in the
+    list.
     </FOOTNOTE></div>
     
     
@@ -2698,21 +2732,26 @@ function parse_verb_phrase() {
       <a class='footnote-number' id='footnote-4' href='#footnote-link-4' >[4] </a>
     <FOOTNOTE>
     Notice that
-  
-    <span style="color:teal">
-  <kbd>parse-word</kbd>,
-    </span>
-    <span style="color:blue">
-      <kbd>parse_word</kbd>,
-    </span>
-  
-  uses
-  <span style="color:teal"><kbd>set!</kbd></span><span style="color:blue">assignment</span>
-  to modify the
-  unparsed input list.  For this to work, our <kbd>amb</kbd> evaluator must
-  undo the effects of
-  <span style="color:teal"><kbd>set!</kbd></span><span style="color:blue">assignment</span>
-  operations when it backtracks.
+    
+      <span style="color:teal">
+	<kbd>parse-word</kbd>,
+      </span>
+      <span style="color:blue">
+	<kbd>parse_word</kbd>,
+      </span>
+    
+    uses
+    
+      <span style="color:teal"><kbd>set!</kbd></span>
+      <span style="color:blue">assignment</span>
+    
+    to modify the unparsed input list.  For this to work, our
+    <kbd>amb</kbd> evaluator must undo the effects of
+    
+      <span style="color:teal"><kbd>set!</kbd></span>
+      <span style="color:blue">assignment</span>
+    
+    operations when it backtracks.
     </FOOTNOTE></div>
     
     
@@ -2728,7 +2767,8 @@ function parse_verb_phrase() {
     <div class='footnote'>
       <a class='footnote-number' id='footnote-6' href='#footnote-link-6' >[6] </a>
     <FOOTNOTE>
-    This kind of grammar can become arbitrarily complex, but it
+    This kind of
+    grammar can become arbitrarily complex, but it
     
     is only a toy as far as real language understanding is concerned.
     Real natural-language understanding by computer requires an elaborate
@@ -2736,21 +2776,23 @@ function parse_verb_phrase() {
     other hand, even toy parsers can be useful in supporting flexible
     command languages for programs such as information-retrieval systems.
     
-    <CITATION>Winston 1992</CITATION> discusses computational approaches to real
-    language understanding and also the applications of simple grammars to
-    command languages.
+    <CITATION>Winston 1992</CITATION> discusses computational approaches to
+    real language understanding and also the applications of simple grammars
+    to command languages.
     </FOOTNOTE></div>
     
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-7' href='#footnote-link-7' >[7] </a>
     <FOOTNOTE>
-    Although Alyssa's idea works just fine (and is
-    surprisingly simple), the sentences that it generates are a bit
-    boring—they don't sample the possible sentences of this language in
-    a very interesting way.  In fact, the grammar is highly recursive in
-    many places, and Alyssa's technique <QUOTE>falls into</QUOTE> one of these recursions and
-    gets stuck.  See exercise <REF NAME="ex:ramb"><a class="superscript" id="4.3.2-ex-link-4.50" href="./4.3.3.html#ex_4.50">4.50</a></REF> for a way to deal with this.
+    Although
+    Alyssa's idea works just fine (and is surprisingly simple), the
+    sentences that it generates are a bit boring—they don't
+    sample the possible sentences of this language in a very interesting way.
+    In fact, the grammar is highly recursive in many places, and
+    Alyssa's technique <QUOTE>falls into</QUOTE> one of these recursions
+    and gets stuck.  See exercise <REF NAME="ex:ramb"><a class="superscript" id="4.3.2-ex-link-4.66" href="./4.3.3.html#ex_4.66">4.66</a></REF> for a way to deal
+    with this.
     </FOOTNOTE></div>
     
     

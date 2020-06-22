@@ -1143,7 +1143,7 @@
                   <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-84" aria-expanded="true" aria-controls="sidebar-collapse-84">
                   &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
                   </a>
-                  <a href="./4.2.html">4.2  <span style="color:teal"> Variations on a Scheme Lazy Evaluation </span> <span style="color:blue"> Lazy Evaluation </span></a>
+                  <a href="./4.2.html">4.2  <span style="color:teal"> Variations on a Scheme: </span> Lazy Evaluation</a>
                 </h5>
               </div>
     
@@ -1723,7 +1723,7 @@
       (assemble controller-text machine))
       machine))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_104_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=GYVwdgxgLglg9mABAWwIYGsCmB9NEAWMYmAFAE6YDmMAzlJmdmKspjQDSJwAOHiECKGTgAbEQ2z0AHlACUiAN4AoRKv4I6KVASKZEAXi1YmmAO65thYiVkBuJSrVpu5KkxZ79APi07rAIlQxOAhUemwKajoGf1lXSndWWU5I2npGZlYaO0dVPCtSfyI6IJFsHgYw+DAaWJIebPs1XwKSIpqoUuxioRBoauwaTABHEExITDrUGiHkACNxEgEwIVFxRmkoTnzdWRzcxAooEDIkHeJ7AF8gA')">function make_machine(register_names, ops, controller_text) {
+            <td><div class='snippet' id='javascript_104_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0EYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH1myALKktgAoATmwDmVAM4U2wjiSYM2kgDSgaAB1WgydCsJoAbQ7I4yAHhQCUoAN65QjnXWmMmvfm1ABeN+3lsAO5c7nwCglYA3PhObhoi4vKKXt4AfG4e4QBETMY0ZEwyHKIS0rJZVgliSUpWaiVSMnIKSpJRDk7cYUJZ-NK5hhyasoW0JJIVgppt0bFdnoK94xQDHH36RJRjHJJsAI5EbORsk0ySuwwARiaCuiT6RiZyFhRq8wJW7R2OohREwvR3mxogBfIA')">function make_machine(register_names, ops, controller_text) {
     const machine = make_new_machine();
 
     map(reg_name => machine("allocate_register")(reg_name), register_names);
@@ -1770,7 +1770,7 @@
             (error "Unknown request - - REGISTER" message))))
       dispatch))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_104_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=GYVwdgxgLglg9mABAWwIYGsCmB9ATpgcxgGcpNcAKMVZTASkQG8AoRNxAG0ykQgTLBRiiALyIARACpwqYsRgEwmACaTxAbmat2oSLASJlJAA6ooEABYVac1AXpNt7djGCJrmW-dEix4+1DiDCzOoez4UCC4SHyCmILEmk6hAL6ImBzEmI5hYa7uNsR22b5+WYHBybmhEVFIAG6oHCAlAHxMvPzxQqKIjc2Y6ogpSdXOaRlZOWNh5LhwlIXFADQSAKpg6GBwAO5I+ACOLaQAXIgASgCiAOIAkgDKACqX50GaM2wpVexf41rOtWihhMZksmhSQA')">function make_register(name) {
+            <td><div class='snippet' id='javascript_104_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0EYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0AnNgcyoDOFNlwAUJJgzYBKUAG9coJaAA2bCqDJ1hJCgNABeUACIAVKSYCBVXiTYATU8YDc+ZaGLlqdUPcEAHJgoyAAtRKSsmXhl5RXdlKgJQcLZI6MMDI2NoimNZBXjC0B4KIi56LV02XQFXOMKAX1A2FQE2WKL4xOSIgSj2zKy23Pz6zviSsvoANyYVIgGAPnlNbWq9Q1BZ+bZnUAa68eUmlraOo-iRLhoxXv6AGhMAVRIWEhoAd3oeAEcFoQAXKAAEoAUQA4pBwAAVUHAvKuC77MbuBpjNFjSblXwBIKhVwNIA')">function make_register(name) {
     let contents = "*unassigned*";
 
     function dispatch(message) {
@@ -1811,7 +1811,7 @@
       (define (set-contents! register value)
       ((register 'set) value))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_104_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=GYVwdgxgLglg9mABAcwKZQPoQVVYoDOAFAE6rIwG4kCUiA3gFCIuJlQglJkVWolEARGiiCaAbkYBfRo1CRYCRAXRYceQqXKVqAGkQA3AIYAbEKjpNWbdJ27a+AwStE0ixsxclSgA')">function get_contents(register) {
+            <td><div class='snippet' id='javascript_104_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0EYBQuAzAVwDsBjAFwEsB7E0AcwFMKB9MuipkigZwAoATkwZVeXQQEpQAb1ygFoYRSKD6w0eKaD+AImYVdkgNy4AvvmLlqdULxbtO3PkJFiJAGlAA3AIYAbIiZpOUUlFlV1Ny0dXXtDSX4-QODTMyA')">function get_contents(register) {
     return register("get");
 }
 
@@ -1868,7 +1868,7 @@ function set_contents(register, value) {
             message))))
       dispatch))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_104_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=GYVwdgxgLglg9mABAWwIYGsCmB9AzlVCdACgEpEBvAKEVsQBtMpF9D1EBeRMEe+gbio06oSLASIADiFwALYgA9yFRMLp1WRTlNQwATooA0LAkVL9V69XqYg9SAEQATBJgeD1AXyHrR0eEiScJJklGpWMMCIxDC42Dx8xJropMrhVnSYenpwBg4AosiSUACeJmwAXIgACgDy1Q7mPhmInoiY9LiYYS1WEAj4iFDB2rKYqE5JpikevRrT2gQw9FNsTXN0NlB2SMOSsxneXs20fuJIMGAwsKj0MABemKHUvcnaCQLpm7b2iM6u7nC3nCZwCiCcsUkqCgEHkyEwuFwqAA5pg0r0tjsUAikajOBwuA5pHIHF8MgB+KQyWRkqxVeGIlHdAmEoKSUkbWiUtlkWnqek4pn4wmXa4wW4PNx8uiU0U3O6PXmcxBVLI5PIAVTA6DAcAA7kgbABHEAIqBVADKABUAIIAYQA0g5jAzcWiDq0TohMb8IbgoTDZIJPEA')">function make_stack() {
+            <td><div class='snippet' id='javascript_104_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0EYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9coSaAA2bCqB58WoALygSRadIDc+KaGLlqdUAAciXABYCAHiNGgJ+qYv6qzTKgCdbAGgW8-ELajs5SXnJEXvQARAAmdGwxuvoAvnpShpS09KY0psJiTmFUBKACVFwcGloCrixC9sVhUmxeXjQ+MQCiDKYUAJ4BSgBcoLAA8rAxwRlhqaBs0lxsRS3OZHQ8oBT57pZsTHF1gQ0p6y6n7rxU0idKsxfhkdE7+efzzenNWcb0VCQqNQmNIqAAvNiFcTreruGo6Zr6CIUKKxBIkJIfUDffS-HKgOKVUxMChkawMNhcLhMADmbCa62RqMYlOpdNUKjUMXMVhiiJaAH4zBZLPywmMKVTaatOVy8qY+U9JEL5cIxc4JazpRyuQCgVQQeCkur9EK9cDQRC1UrQGM2h0ugBVEgsEg0ADu9AiAEciJSKGNwAAVACC0AA0jF-JK2fSsTjnijXoSuMTSZZdKkgA')">function make_stack() {
     let stack = null;
 
     function push(x) { 
@@ -1926,7 +1926,7 @@ function set_contents(register, value) {
       (define (push stack value)
       ((stack 'push) value))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_104_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=GYVwdgxgLglg9mABABzsgFAZygQwgawEpEBvAKEUsQCcBTKEapbPfdAIlWXcIG4yAvmTKhIsBChCYAFllwEANIgBuOADYhaxclRr1GzeW05TpPdKo1b+AoA')">function pop(stack) {
+            <td><div class='snippet' id='javascript_104_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0EYBQuAzAVwDsBjAFwEsB7E0ABxoYAoBnCgQzIGsBKUAG9coUaABOAUwpFx9Dtx4sAREwbK+AblwBffMXLU6jImwAW7LrwA0oAG6cANkUkDhYidNnyrS1abMNFgdnV20dIA')">function pop(stack) {
     return stack("pop");
 }
 
@@ -2062,7 +2062,7 @@ function push(stack, value) {
     </span>    </td>
           <td></td>
           <td><span style="color:blue">
-      <FIGURE><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=GYVwdgxgLglg9mABAWwIYGsCmB9MmDu2aEAFjHgBQCUiA3gFCJOIQIDOUiADhIgLwoMOAE6YA5jA6ZhFAEQ9ZVANyNmrMB0TAANqjH9BWbKIlSZsnXsUrmLdpw6oI6A2iOPn1G822ZOUEhxyDmEQaHgwbDZMAEcQTEhMAzAQbW1vJl9-QOw4LjYDbUkoCiKOOXIYWFQigC8cD3RZABpEan4APkRGirAqmBqYesUqZVVMv0QTYulsKFQAI19C4tLV+QgW7ggqVrKSi10xLcsxUYytcHCERBrtOAhUKBFxGZkwVGRMGgZbWxhgG1UGw2A8KB8vq1pmY5otfDQ+IjEOAACaYYDkTAon7jP62aHPYSwpZJARcVAwGT7cGfTCtNwvUyEmlfUZQ14w+YksZ4pgAX0QmG00TouN5guEwjg71prVkAFlUrAuNoAJ6INEYvAoqYcwkALkQ1jFzD5JqYoigIGESFkBNmdweTyxsguZtsoEgsBu9zg6BAXGMeukLO+ovF6k0ADcagZgaCIKH2UzZlz4Rd8X5rUgY9p+EjUejMSjzX8APwSqUyyFGgCqYHQYDg+CQ9uE+sUpdshsCqBRFHmMG0FFz51x7uYnuuSEwAA9MBAQM92r9eZHOMEoAUBGI-Nh1M8wFuKDwebyAW1JLhUsPN2xRuHxcxLdmjSiEJhXaWBUKRaun3YGicFwUq8AIm6hNO2BzguS4RNgIFgr2-Z3uciBdswiGJso6EARaWY2oK86LsuZ54hO-K4lO3pICikjklApAUF8IJ6GG-5-C+hEsWwbH5gIsiOMIUCyBheIVu0fBdLQ3R7geCTHjwrQBEEQGQTRUSxPEiRkXhelcTOxFLpgXh6WZiAUU+ho8XxiICZudzYBBYQadEcQJBAn5ieWskxJ0dCICpTlqS58FudpnkGG5SgWd51mYKxu78UajqPM8QYpsIonmUwFapc6GVvHFKAJbxSV2Uau5QIVZjZTlFa+v6gZtsVNnlUisgOWkuRcNITwRGwdXmRWeTbtJgU5KNcZcL1YD9kFo2tKNOGWeK8WJaSHWNENZkVo0rWlbZHV5H1NGDd5tgVgt+TFdIVbMYdu5yvWjbNq2WkJVAhrygAggAwgAEgAkgAcgAosatiWQZGr0U8pAqHyQA')">function make_new_machine() {
+      <FIGURE><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0EYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0S2B3D5sgAsq3ABQBKUAG9coOaDJ0AzhVAAHMqAC8jVpwBObAOZUVbfaIBEGy+IDcs+YpIrQBADZMj23ew6GTMwtLDy9bB3kFZVUVJjIWH2Y-WPiJCPl3NlUKQU4RFX0iSloSDiU2AEciNnI2HxIid3d0uUzs3I4aNSUfd1MKUT6VKxEqaiY+gC9OFJZLABpQCW0APlBZkZIxqgmqadtxe0dWrNAA-vMOCiYAI0ze-sHH6zIF9TJxRaGBkM8jN9CRkOLTcpGKdFAE3cNDITAoBmMFwsJCYDDYkhkkUiVAISyYSiUMNEKLRi3OQSut0yki0tNApAAJmwCCI2AyMccsZFyfD9JS7nUdGomFQLN9iai2IskgjAryJWjDmTERTrgKjly5ABfUBsdzlaSczW6-T6GjIyWLSwAWUa1DU7gAnqAmSzuAyzireQAuUDhI3yLUBuSGChEfT0Sw8y5QmFwtmWEFByLEcjUCHQmgsIhqfxe8wK9GG43OVwANwmPnxhLIheVcsuaupIO5WXD9Ar7m0dMZzNZDODWIA-CazRbSX6AKokFgkGg8ejR-Te2yDyK+3JMBmia5UdyiTvAznJ+Sp8H0NgADzYZCI8OWmM1pdU+QoPR0RiyHGc8JIb9EGgapqOJLKYXCNPur5KIcxbGvIobtn6DJ0GwiaDjqeoGo+cFRC4qhqGamg6K+hTnhwV43neJQcARRKbtuUHAqAa7yLRtb2MxOEhm2Ea6tet73kBXIntqnJnum9AMqYwoUEIohogSXhFthWIIbxClKEp3Y6JYsT6BQlgsVyI7LFoaxSOsX4-jU-4aIsOR5HhpESWUlTVLUQlcV5akXvxd5sGkXlBaAIlwb6GlabSOmvlCHAkUULnlFUNRkKhRnDpZFSrNIoAOXFTkJdRSXualPhJXYIXpeFbCKZ+2l+rGsLwnmDb6IZwVyCOjXxi1SJVYwNWaXVUV+p+FC9UE7UdSOmbZrmS79RFw10pYMVNJ0ajmHCJRKFNwUjl077mblHSHVWaibSQ255YdiyHRxoXGtVtWCitsx7UFI6zItg2RStXRbRJu3pZEI43d0-XmGO8m-Z+VrTrO86Lm5NUUL61oAILQAAEpAAByACi-qRKFPkutJcJCA4WpAA')">function make_new_machine() {
     const pc = make_register("pc");
     const flag = make_register("flag");
     const stack = make_stack();
@@ -2174,7 +2174,7 @@ function push(stack, value) {
       (set-contents! (get-register machine register-name) value)
       'done)
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_104_7_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=GYVwdgxgLglg9mABAZygQwE5QBQFs0QAWMYApgJSIDeAUIvYhqVCBkvkSadgESqZQe5bOQDcNAL40aoSLASIA5swD6TRTFSkMKiAiikwUZHgLEyAGkakNWnWDS4K1OgyYs2S1XqOHj2ZSg1G00DDFNOS2tbMJUHJ3IxSWlZaHgkZFV1UO1dfT8TDnNSK2y7OMcSxAA3NAAbEGdaBhRvfKMTQOCY7Qji0pDy+IorWoaKcRb3ViQeABMEUh5xCSA')">function start(machine) {
+            <td><div class='snippet' id='javascript_104_7_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0EYBQuAzAVwDsBjAFwEsB7E0AZwoEMAnCgCgFtmyALKiQCmASlABvXKGmhWQikVb0e-QUI4AiJmwoaRHEQG5cAX3zFy1OqADm8gPpybVJkNb2ydCkJIUG3XgFhABpZIWdXdxJmLlEJKRk5BSVbB09fHz8OOwpHcJdvVgDVELCIwvto2JEjU3NSSlp6BgcnArcPL0z-FSChULbIypj+0AA3ZgAbIjjJGUY0rt9-HLzyt2K+gfyhqtFQienRY3mkxXoNABM6IQ1jEyA')">function start(machine) {
     return machine("start")();
 }
 
@@ -2207,7 +2207,7 @@ function set_register_contents(machine, register_name, value) {
 (define (get-register machine reg-name)
       ((machine 'get-register) reg-name))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_104_8_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=GYVwdgxgLglg9mABAcwKZQPoCdXJgZylSwAoBbAQwgAsYxUAaRHZDMCs1ASkQG8AoREOboQWJJRp1UJAERpMLAkSyyuJFmw7cA3PwC+QA')">function get_register(machine, reg_name) {
+            <td><div class='snippet' id='javascript_104_8_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0EYBQuAzAVwDsBjAFwEsB7E0AcwFMKB9AJyYaoGcKn2ACgC2AQzIALKiSYAaUJwasSo4UwCUoAN65QehSyLt6YydKaCARMzaLe-dpfWDFy1RoDcuAL5A')">function get_register(machine, reg_name) {
     return machine("get_register")(reg_name);
 }
 

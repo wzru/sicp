@@ -1776,7 +1776,7 @@
       <kbd>gcd_machine()</kbd> to be a model of the GCD machine
       of section <REF NAME="sec:register-machine-language"><a class="superscript" id="5.2-sec-link-5.1.1" href="./5.1.1.html">5.1.1</a></REF> as follows:
 
-      <div class='snippet' id='javascript_103_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=GYVwdgxgLglg9mABAcwgEwPoFsCGEAWMYApgBQCUiA3gFCL2IBOxUIjSuA1sdnoSaQA2MAM5RSAIhwSANIgkAjWfKgTyMugy3ad24WKGjxE5lmUKiORgE8MoSLASlSOOQsoBeAHyIciAKSI7uqaumHhDPrGHuaWNnbg0PBgzq5Bnj5+Htnp5CERBZFGklDEYgC0ShqFNVqlBnAADpIx6kzEyJJKbRAIYjhg4gAMedW1tQqMAwRCOArEgpKoaOVoCMRq+eM1OCIiMMgpEqpyUaRNkqZqcsydUtftd92jodsRu-uHktKnxbddmy2b3eewORyqiDO-2OgLGwPCyDgGCgcFm80WxzKUEqmzh8N0EmWq3WmwA3DQAL5AA')">function gcd_machine() {
+      <div class='snippet' id='javascript_103_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCYBQWBmBXAOwGMAXASwHtDQBzYgEwH0BbAQ2IAtzCBTACgCUoAN5ZQE0ACdepfFJrsA1r1YduffgBtyAZ1L8ARG0MAaUIYBGZi6UODT4yc5euXO-dr0HDMljcseNikATyYCEgpqfn42c0thAF4APlA2UABSUASHJzd8gskPH0SAoNDwojIqQhi47KTU9MSWhsFcws6i7yNSXn0AWmtHLtHnPs9KAAcjUodpXloja3nian02QgMABnaRsbHLKU2ubTZLXi0jegYBhmpeew6D0bZdXXJaWsM7c2L+aZGPz2cwyJbGEELcErPZ5F6FN4fL5GEx-Hpg5ZPZ7whHvT7fYagf4Yn5Y-Y4gq0ShMUiUM4XK4-fqkIZPckUtyGG53B5PADcWAAvkA')">function gcd_machine() {
     return make_machine(list("a", "b", "t"),
                         list(list("rem", binary_function((a, b) => a % b)),
                              list("=", binary_function((a, b) => a === b))),
@@ -1806,22 +1806,22 @@
       To compute GCDs with this machine, we set the
       input registers, start the machine, and examine the result when the
       simulation terminates:
-      <div class='snippet' id='javascript_103_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=M4UwLg+gTiDmCWwwihAxgewHbJ8AFLGgCYQC2AhmgBbxYgA0ABAEQUvMBMADAGwCUAbiYAoFsWwgWQA')">set_register_contents(gcd_machine, "a", 206); 
+      <div class='snippet' id='javascript_103_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCYBQWDOBTAFwH0AnfAcwEtdD9TiBjAewDs73cAKCxgE2IBbAIaMAFlVb4ANKABEwubIwAGAGwBKANygscvm3xygA')">set_register_contents(gcd_machine, "a", 206); 
 "done"
 
 </pre></div></div>
 
-      <div class='snippet' id='javascript_103_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=M4UwLg+gTiDmCWwwihAxgewHbJ8AFLGgCYQC2AhmgBbxYgA0ABAEQBGLzALAAwCUAbgBQLYthAsgA')">set_register_contents(gcd_machine, "b", 40);
+      <div class='snippet' id='javascript_103_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCYBQWDOBTAFwH0AnfAcwEtdD9TiBjAewDs73cAKCxgE2IBbAIaMAFlVb4ANKABEAIzmyALAAYAlAG4scvm3xygA')">set_register_contents(gcd_machine, "b", 40);
 "done"
 
 </pre></div></div>
 
-      <div class='snippet' id='javascript_103_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=M4FwhgTiAUDmDGATA+gWzPAFgSwHYFMBKAbgCgAiRAewPKA')">start(gcd_machine);
+      <div class='snippet' id='javascript_103_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCYBQWDOAXAQwCd8AKAcwGMATAfQFtCqALASwDsBTASgG4sAIhoB7boKA')">start(gcd_machine);
 "done"
 
 </pre></div></div>
 
-      <div class='snippet' id='javascript_103_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=OYUwLg+gTiwJYGcwihAxgewHbJwgFMGgCYQC2AhmgBZxYgA0ABAEQUsCUA3AFABMQA')">get_register_contents(gcd_machine, "a");
+      <div class='snippet' id='javascript_103_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCYBQWDmBTAFwH0AnfXASwGdD9TiBjAewDs73qAKXRgE2IBbAIaMAFpVb4ANKABEwuQEoA3FgxA')">get_register_contents(gcd_machine, "a");
 2
 
 </pre></div></div>

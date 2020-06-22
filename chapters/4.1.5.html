@@ -1678,21 +1678,28 @@
         <div class='SECTION'><SECTION>
     
 
-      
-      
-      
-
-      <div class='permalink'>
-<a name='p1' class='permalink'></a><p>
-  In thinking about a JavaScript program that evaluates JavaScript expressions, an
-  analogy might be helpful.  One operational view of the meaning of a
-  program is that a 
   
-  program is a description of an abstract (perhaps
-  infinitely large) machine.  For example, consider the familiar
-  program to compute factorials:
+  
+  
 
-  <div class='snippet' id='javascript_80_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=GYVwdgxgLglg9mABMAhtOAnGKA2AKMASkQG8AoRSxDAUyhAySQF5XEBGCq7qgfg649uALmRoombPiQBaDsQBUiMAG4yAXyA')">function factorial(n) {
+  <div class='permalink'>
+<a name='p1' class='permalink'></a><p>
+    In thinking about a
+    
+      
+      JavaScript
+    
+    program that evaluates
+    
+      
+      JavaScript statements and
+    
+    expressions, an analogy might be helpful.  One operational view of the
+    meaning of a program is that a 
+    
+    program is a description of an abstract (perhaps infinitely large) machine.
+    For example, consider the familiar program to compute factorials:
+    <div class='snippet' id='javascript_80_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0FYBQuAzAVwDsBjAFwEsB7E0AgQ0poCcrGAbAChIEpQAb1yhRoVgFMKRVvXoBeRaAwixasQH5lq9WoBcDZhTYce9ALTKBAKlAkA3LgC++Ji3Zdu2PvaA')">function factorial(n) {
     return n === 1
            ? 1
            : factorial(n - 1) * n;
@@ -1700,154 +1707,180 @@
 
 </pre></div></div>
 
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-  
-  We may regard this program as the description of a machine containing
-  parts that decrement, multiply, and test for equality, together with a
-  two-position switch and another factorial machine. (The factorial
-  machine is infinite because it contains another factorial machine
-  within it.)  Figure <REF NAME="fig:fact-proc-as-machine"><a class="superscript" id="4.1.5-fig-link-4.2" href="./4.1.5.html#fig_4.2">4.2</a></REF> is a flow diagram for the
-  factorial machine, showing how the parts are wired together.
-
-  
+    
+    We may regard this program as the description of a machine containing
+    parts that decrement, multiply, and test for equality, together with a
+    two-position switch and another factorial machine. (The factorial
+    machine is infinite because it contains another factorial machine
+    within it.)  Figure <REF NAME="fig:fact-proc-as-machine"><a class="superscript" id="4.1.5-fig-link-4.2" href="./4.1.5.html#fig_4.2">4.2</a></REF> is a flow
+    diagram for the factorial machine, showing how the parts are wired together.
+    
     <FIGURE>
       <img id="fig_4.2" src="../img_original/ch4-Z-G-2.svg">
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./4.1.5.html#fig_4.2">Figure 4.2 </a></b>The factorial program, viewed as an abstract machine.
-    </div>
+      </div>
     </FIGURE>
   
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-  
-  In a similar way, we can regard the evaluator as a very special
-  machine that takes as input a description of a machine.  Given this
-  input, the evaluator configures itself to emulate the machine
-  described.  For example, if we feed our evaluator the definition of
-  <kbd>factorial</kbd>, as shown in figure <REF NAME="fig:eval-factorial"><a class="superscript" id="4.1.5-fig-link-4.3" href="./4.1.5.html#fig_4.3">4.3</a></REF>, the
-  evaluator will be able to compute factorials.
-
-  
     
+    In a similar way, we can regard the evaluator as a very special
+    machine that takes as input a description of a machine.  Given this
+    input, the evaluator configures itself to emulate the machine
+    described.  For example, if we feed our evaluator the definition of
+    <kbd>factorial</kbd>, as shown in
     
       
+      figure <REF NAME="fig:eval-factorial"><a class="superscript" id="4.1.5-fig-link-4.3" href="./4.1.5.html#fig_4.3">4.3</a></REF>,
+    
+    the evaluator will be able to compute factorials.
+    
+      
+      
+	
     <FIGURE>
       <img id="fig_4.3" src="../img_javascript/ch4-Z-G-3.svg">
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./4.1.5.html#fig_4.3">Figure 4.3 </a></b>The evaluator emulating a factorial machine.
-        </div>
+          </div>
     </FIGURE>
   
-    
-  
-      </p></div>
-
-      <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
-  
-  
-  From this perspective, our evaluator is seen to be a <EM>universal machine</EM>.
-  It mimics other machines when these are described as 
-  JavaScript 
-  programs.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
-  This is striking. Try to imagine an analogous evaluator for electrical
-  circuits.  This would be a circuit that takes as input a signal
-  encoding the plans for some other circuit, such as a filter.  Given
-  this input, the circuit evaluator would then behave like a filter with
-  the same description.  Such a universal electrical circuit is
-  almost unimaginably complex.  It is remarkable that the program
-  evaluator is a rather simple program.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
-  Another striking aspect of the evaluator is that it acts as a bridge
-  between the data objects that are manipulated by our programming
-  language and the programming language itself.  Imagine that the
-  evaluator program (implemented in 
-  JavaScript) 
-  is running, and that a user is
-  typing expressions to the evaluator and observing the results.
-  From
-  the perspective of the user, an input expression such as 
-  
-    <kbd>x * x</kbd>
-  is an expression in the programming language, which the evaluator
-  should execute.
-  
-    
-    
-      From the perspective of the evaluator, however, the
-      expression is simply a string or—after parsing—a
-      tagged-object representation
-      that is to be manipulated according to
-      a well-defined set of rules.
-    
-  
-      </p></div>
-
       
-	
-	
+    
+  </p></div>
+
+  <div class='permalink'>
+<a name='p4' class='permalink'></a><p>
+    
+    
+    From this perspective, our evaluator is seen to be a <EM>universal
+    machine</EM>. It mimics other machines when these are described as 
+    
+      
+      JavaScript
+     
+    programs.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p5' class='permalink'></a><p>
+    This is striking. Try to imagine an analogous evaluator for electrical
+    circuits.  This would be a circuit that takes as input a signal encoding the
+    plans for some other circuit, such as a filter.  Given this input, the
+    circuit evaluator would then behave like a filter with the same description.
+    Such a universal electrical circuit is almost unimaginably complex.  It is
+    remarkable that the program evaluator is a rather simple
+    program.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p6' class='permalink'></a><p>
+    Another striking aspect of the evaluator is that it acts as a bridge between
+    the data objects that are manipulated by our programming language and the
+    programming language itself.  Imagine that the evaluator program
+    
+      
+      (implemented in JavaScript)
+    
+    is running, and that a user is typing expressions to the evaluator and
+    observing the results. From the perspective of the user, an input expression
+    such as 
+    
+      
+      <kbd>x * x</kbd>
+    
+    is an expression in the programming language, which the evaluator should
+    execute.
+    
+      
+      
+	From the perspective of the evaluator, however, the expression is simply
+	a string or—after parsing—a tagged-object representation
+	that is to be manipulated according to a well-defined set of rules.
+      
+    
+  </p></div>
+
+  
+    
+    
       <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
-  That the user's programs are the evaluator's data need not be a source
-  of confusion.  In fact, it is sometimes convenient to ignore this
-  distinction, and to give the user the ability to explicitly evaluate a
-  string as a JavaScript expression, using JavaScript's primitive function
-  <kbd>eval</kbd>
-  that takes as argument a string. It parses the string and—provided
-  that it syntactically correct—evaluates the resulting representation
-  in the environment in which <kbd>eval</kbd> is
-  applied.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
-  
-  
+	That the user's programs are the evaluator's data need not
+	be a source of confusion.  In fact, it is sometimes convenient to ignore
+	this distinction, and to give the user the ability to explicitly
+	evaluate a string as a JavaScript expression, using JavaScript's
+	primitive function <kbd>eval</kbd>
+	that takes as argument a string. It parses the string
+	and—provided that it syntactically correct—evaluates the
+	resulting representation in the environment in which
+	<kbd>eval</kbd> is applied. Thus,
+	<div class='snippet' id='javascript_80_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0FYBQuBTANwEMAbACgCJtQAqUbAbioEomg')">eval("5 * 5;");
+
+</pre></div></div>
+	and
+	<div class='snippet' id='javascript_80_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0FYBQuRQAzAVwDsBjAFwEsB7MgZ2ICc6BbCGeJVTTfKUq0GoAKYA3AIYAbElKpiAFIyrsqAGnFkJASlABvXKBMsxVEizKgajAPqMxMoncmz5tMgHMVaqruMTIOCAfhNVdUDg4IAuG3syKXZlCP8o6JMwmTo6AGsSAAcHAE92ACM6GTtpORTSiqq6F0Tk33VdLTEdAIzY+LsKBlUpMio7ABMxChkpFgV6Mja03qCwtyrBpioRscnp2fmGJc7u9Iy422rZmikymTEJqZm5kUXUnpXQNZqrlhu7h57Z6HN5+E56M7RC72KSMRg0LxkZKjJYfFbfWR2WHwxHIqjHbQQz6gaEDBjjGivTFiAAeBTMcIWqMhoXEP02FKpVVp9LEjKOqXBaN6pJm5XGUmZxLC7CkuQeQmoTLFZQldgKB2SihYjFRGhZxM+KrVFXGxT1BsNvS6RM+pMcAEcSF0KCk-MKMhiqo7nZQUmInS6HsNFHjde8hZaSf07nQKLkpZ8vXZY-GCTaPVD+mYLFZE+i2Zic5ZQepI8TSVICgUZDQKCD870wlWa+b1h5lIrXq46Qz4QL3UL9VaMrKCkpZl5QABeAB8hbkCmUk6HoEn4fdukzfTELDYLAJACIAKpkXJkOgAd2sjGKoykNJs1nbS5ih90AG5cABfQTkJWiC2MjmkIWjrvoRhBDQRCgEolz0jQ7CUjQEgKv+rxKEIW6GJCxZWGu1bAeqfxIbQqF2F2TKgWuLBeIwn5RN+4gyI4NgwXB9iDOwBR0OQ4wUehVHkNhkHRJsqigKaxQzsQgkMCmdBmphwlfhk4lUKA2T1ixMmMPWZB2LxuxPAcry6lJDFqUMGm3uUlTMNOBEFF04zKcICzqpq5i7rqWFaFpsj0apYnWaA5DYgiZBiOMDmgGOSh2DO87hYyiLRf5caBZZIVbKANTOrFLYuROtGMFoKU4lFMXZcE6mgAyJAyBpjkvooShScOI6fLSihkPxNo0GwSJdPitkNGVeXuHynVdZ8lHyQNQ14m5W41UEeHWJcG1XLUSgNU126evV5gljtzpkqMI17XyjXLFacR8WIRA0FVwWgExTisaJwS7vublaCeZ4XtesnuaIVDFM5T5OcB75vb+v64PNz7suSyEMNSvZ8v2paaISEHpBt-RUCwzpKK1ygcj29LEdFer44dqwLh2ShUzyLAXRu7TlhWzNLqz5LUxzsijYO+NfojyMLg4Aa+q6SwTRmOHBNBsGXGI3EQzLgZ+grIkGkTj3Pa96QfSxYhsWr9gzKoDjbKGV2pPRBNWkTFOYYNtshhrjt+PRGgZm973MV9Bp1c9OpjKkZ0W45UYmO7Ede-bPsok7HSBwaqscXY235Z2ntR34Mf667J34UnRfqDHQfBGbodl7mKOYj6QZKPH0QMkXS5hnrAfdLXQS-nXP74HVFWRdFMlKPoc6gGQjUyF+SNyTe+mGSQxn7C8Cxc-4ytQexlyt7r7wu70dVO7pstBnbPcjXva3BET6ua8U2ty266j0R3YQLzIMgO5xCKn1FQ68jKPG3iCXyhc74OzTn7LcM1ZpBD0iMDeW9gRmSULKeUH824dxQb0LucDU5UD3s7LcQd64W2+s-cum1OLWR2JArBTJ3iEK+JpWw+J1IsKBKZDyY1KiokZlmS40g-i3HuKwwRA52icMyNw1QShJH-BkQIne8lhEyFEYo6M-8l6m1HivMGzcqipgTIKfGB8TB1SkjJSxCklLvCDnVAKOlHJoIMhAzR0D2qKWKGtceiRUpVVivFRKc8J5pXGBlbSQVCYML5m1Dq+ieouVcDoQaDBloeImjE8JQoGKS1XtLDa6Zui2OOk3OKcoHh5ymu3Wa7ttrs2xuwwc+iVgZhKX+Mx0sIq4l9mWGxdC6r5xku7IZw1Rgx3ppnYIMySh2SqPnCcYS8QrIaPTfOQog5E3zhLfpAFzG-HUYCEyWjcZCmqcsnR8y1HSMuVA7sOiLQ9PyvzJ5AJZHXPmRGfGyCfoDx-EEUxpzpZ8LmX4jC1ilZ0PufUSo8zoWYLkQZd5EYDTuzRX8kEAKxYZmBUETOiNCDI2YEQNgnAoBwEQMgdAWAABMJzXj9EcM4VwXzPA+HeNUl+CQSDlF3KiEwAAfcV8dj4kxeny90EqpWGkuBUSoYgRhisldKoVADUTHIheyy42wvBeGinYWsKjrFUAABYPGNefUwyT4JSEGmKgAZG60AtqpCuX5dOf1oAbV2qkF4fVUtLgtC-vvOhgq7DGtNfxC1otRmHkjXDUeUsHlNDsJGsVMbknetctsGguiz5hrKZcGZy1+XfVjfGs1SajxVpGum38Utm1zKxQq2tBb1VFpdbowtShi2ls3FQjNZSO1jHWTWqIRMh0juHQO0RfSDULH6Hi2FnT2i2LrSGhN5qeFHk3VckEra12iBPa8oRyLR07p7bUhdy6n0lpXX0qWV62HyRnd2udvafVLtfYus+76K32B+Ro09cLf3rSdfYetiaj3WMPBBl5X6yDnqlqh-Fbzb15r-Y+vtgHB1EeA2O0DAzsNbu-U02dsHCMAcXWR9o47yVgAAGKQAABoAFkACicQzA1ikK6UAh5kaPGNujDDoBLyUmtWJ40UhDwEDAFIIg2pA3WtsPERgzp4hepGOMe44wYiqa9VQKgBRGAxBAF4eTJAyhoC4sARgvEWCugALQiZ9RrYowAABWjBPOMBmN4YAtg9N8mAAANgAMwoAvYw81SRVSSjo462pRr90NqQ2CMTEnJhSdeJhspSnPJzC1D5fD9GSx1PHFm5oSQxBaBfXe-wrGkuaVSyaQJNXMt1ba8Rld5aBlbQYf1mpdXssmty5a-Lh5trezxKVgZbSsb8lxg6+dpHl1lpMeGphfVpOY15Jtybe7ZuIfm6M-Rh4OQne5BtnGq3IVs17LTX1MGBv4STbnJ6BIMAUbe4LdmnMLvJL+2YIgBJmXA-Ze9mmIsIe1KhwD6xcXV2Hfwafb7U38IzYPY25DJ9XSvfZbg4MN9cff225Do9h5SdiEPFodOxzM3U9dKQ3uNbwW1fwkN-bbaymV25yM8hdOGNfdp+zspJDlsPz1ru5JzGJey7G-YDWBQtZM6Vw+6bOr2uJOFxrlLyd74INp8rrLhvhvpyx2BlMWkrF4-x8lhDh6bt40PJY8n67KdO7jC7+9BG6uNp987lnoBXEToGU4qSk23det26+oXbL12VsInWBsGWk+E7m8m73QFs8lfh+uiT7Tzu5524xvbm51eQvXCjwbKfdGq9Wg39lF4sSlSUHQazkuDc5sXn3gfnfy+wMnKP+i1uW8Af78brrJCm8L8H-hRdq-9UUtXlSmlXB6W8CZWgOL6fRBGtJsoGkDqk+Pn9Y5EmzpRuQoD8jJQGpKveR1FoDqYykmo4Z1xDxHxAJGYizvou-s1tqBND-mSl1pcIAbxH1CAacphNfpdkTkekQADAgcAcjH7qIBJhAVVjqKgQKvTrbNDphFoEDuPgQavM4iBGgeQWMJQVgaAHDrQdYBXtkktFdEQEwf-hQQDmwZjk-hTvUv9k3KigwL1NGn-mHgzo0rUFHpsLIWXmfvYEoWTPnAIUPh7o2nsmJloczuodYMYRdLIaolNLoQLq3lYbUJ1l1i6NkPCN4FkhIDkrMviAivIevsurAVLKLtSs1uTFUvmlLqEXoJwdoNMHQI4CmCBB-rcgYMEL4dYBqK6sEckPsqPHVEGq4G-O4Z4XiDJIYsvFLC-h-ioLehNPnDPuEXVhkQeDorUVNIvoER-tsvZJhB-hBKkfQhEVkWIKYawM1jHL5L0YYP0fztYIukMQ7gMhkkgYtLko7DUVoDUNAbCA8D4QMWHl0F4DatUasjPnfppAcUcZsWIlwk0TghIUMcceNBsVlN-tse4dcXEPcN4EcS0foAADznHfHWr2E-wjhrB7h0AHiHgAAqOQdSZA0kk4wqD80ehQNYNA0UcQh4oAAA1KAN0sEKoH8N4NBOaL8biWJgDBSQSagrKiSUQOaFcdcSYHEL9JCUoDCXCUQGIJeDRF4MiaMMwHplnpiWJtSUQoSXSfZgyY8fZPoHiVHtiXiTSeEFKaSSCY4VLNkHkIUF0WsrRreskekFLDaOajkOOLsb0JmvpLKSxM8SxNfisLGoYraaCRKWsDoGaf3s0hKSCrEa4V4EUbwSiL0jSXEDojOAGkOr8SqVwkOlcbGeGTacBjUR0IGsukyYPCYMPL0NnDaJGffragUdru-CsV4Y6daBCc0YaWJqeBUHxNHreliU-EPCHLQh3OHB-jJEEVUYsoaETN4j0WMS0UOckB0LGUEEMeMaOcMS2dmcYnsfhKadqRaaCqUgMkiqsgCjWTUEacECaZ6SuZERWSYNaRqi0fafUR3M6SPjGSgh6RIF6eOCqc4XEXKkGasSGd0MyX0BGWcdGamQSWEI4GMPGYFPaT+VmIOSmScWmYupmQaExFnOxPmWcfkVrlrGWXiCedEGydWasgDHWYgeMI2astDFOm+HOcHJ9O2VaJ2c1t2bAg8X2cSAOTaVOSOfMSShKVOXUTOeOisDmfOYuc+IeeaceVvmAJSqwBwPvjwIyvwIlnAfYAhKRChGhGYitLPgTvBjltdviNRIeKpchKhPgekSRCZQ8IhDWGQg2FhNpdYENlhKunVMZWRBpacrFI2iyOHoWlHkEIWiOOOb0OHiOv5SYCOkFdxeHk0eFaAE0VFT5QzkmnFUmolSFQzhGovFHllQAsSMFRkOHhSIwMJsUFHsVaVfldFQznheFXhVaAVdEOHrKDaliGUIwCzi1dam1cwCsI1cEOHjiXFUEEoDSFoEEklKAI+HidJKAP1UEOHp5sNSYKNeNbPPOI+J5qALNfNSYOHgAFTLWwRjXbXrVTWgD7XbUmC7XKL4iHjABHWrWnWTWPhgA7XVUqKHgACkj1J1E1c8j4X1V1c1H1d1d+w1T1-1G1BZp1oNHJAAhP6hDX9WdY+IjY5EEnDYeH8b9WtS9aAACSYJjUlZ9X8dOMtZDajQTY5LDSTXdbOLjc9QDaAPOETTdeHrOOTVoNEJTfjZzWzVjfDUdedcEHPCYPDUEFfiyAxK5RZe5cgbhicTOAaPFIWloG5epQrbvDLaFBreRBJnQGUAFlMOQsrSsPFEIJNTFXLepVHk5cJEgh3HrR5WZAxLgLLYhJZZzNsIKTJI2uHkbC9NFFHoHVVDdb6RlZ9ZAGQMVmVdzdHbHeHRHU1Qzl1XYLAJAOFWnRnUncnQtanQoN1XxnFWnXxrnXnbdRyQAHJSBV1HU11V2QUSk625TO3e0sItFm29AW2TVDr8Hq023kRoqJIe1qVD3MJzJ1Fd2jhViYS912H8Fplt3D1u3tqETvxt2v7USTie5yEiUwzvwvR2CPQsDATvkBZSDSB6R-Da4+ldRt3WX3B4h2XCTcWfA71JqfjRAHZlIgW6lYVXQ2HPg0i9T9Q8Gfn4iKIgKuSb30EXn4l53L0T1Ryplv29DQNv6D0u0eSG3G3UATQTlINbAsJ1Hl3BDoWFEAOjAuWhT5FeDZBlDUjgNeHXwWBFBUP4hu3uzv6OAcnYAXWgDYAfjvhaB0MMNMMeHBn+AfhAA')">evaluate(parse("5 * 5;"), the_global_environment);
+
+</pre></div></div>
+	will both return 25.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+	
+	
       </p></div>
+    
+  
 	
-      
-	
-      
+  
     <div class="permalink">
-    <a name="ex_4.7" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.7">Exercise 4.7 </a></b> 
+    <a name="ex_4.14" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.14">Exercise 4.14 </a></b> 
   
-  
-  Given a one-argument
-  function
-  <kbd>p</kbd> and an object <kbd>a</kbd>, <kbd>p</kbd>
-  is said to <QUOTE>halt</QUOTE> on <kbd>a</kbd> if evaluating
-  the expression
-  
-  <kbd>p(a)</kbd>
-  returns a value (as opposed to terminating with an error message
-  or running forever).  Show that it is impossible to write a
-  
-  function
-  
-  <kbd>halts</kbd>
-  
-  that correctly determines whether <kbd>p</kbd>
-  halts on <kbd>a</kbd> for any
-  
-  function
-  <kbd>p</kbd> and object <kbd>a</kbd>.
-  Use the following
-  reasoning: If you had such a
-  
-  function
-  
-  <kbd>halts</kbd>,
-  
-  you could implement the following program:
-  <div class='snippet' id='javascript_80_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    
+    Given a one-argument
+    
+      
+      function
+    
+    <kbd>p</kbd> and an object <kbd>a</kbd>,
+    <kbd>p</kbd> is said to <QUOTE>halt</QUOTE> on
+    <kbd>a</kbd> if evaluating the expression
+    
+      
+      <kbd>p(a)</kbd>
+    
+    returns a value (as opposed to terminating with an error message or running
+    forever).  Show that it is impossible to write a
+    
+      
+      function
+    
+    
+      
+      <kbd>halts</kbd>
+    
+    that correctly determines whether <kbd>p</kbd> halts on
+    <kbd>a</kbd> for any
+    
+      
+      function
+    
+    <kbd>p</kbd> and object <kbd>a</kbd>.
+    Use the following reasoning: If you had such a
+    
+      
+      function
+    
+    
+      
+      <kbd>halts</kbd>,
+    
+    you could implement the following program:
+    <div class='snippet' id='javascript_80_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function run_forever() {
     return run_forever();      
 }
@@ -1857,16 +1890,15 @@ function try(p) {
            : "halted";
 }
 </pre></div></div>
-  Now consider evaluating the expression
+    Now consider evaluating the expression
+    
+    <kbd>try(try)</kbd>
+    
+    and show that any possible outcome (either halting or running forever)
+    violates the intended behavior of
+    <kbd>halts</kbd>.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
+    
   
-  <kbd>try(try)</kbd>
-  
-  and show that
-  any possible outcome (either halting or running forever) violates the
-  intended behavior of
-  <kbd>halts</kbd>.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
-  
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_80_1_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_80_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1874,138 +1906,134 @@ function try(p) {
     
 </EXERCISE></div>
 
-      
-
-    <hr>
+  
+<hr>
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
     <FOOTNOTE>
     The fact that the machines are described in 
-    JavaScript 
+    
+      
+      JavaScript
+     
     is inessential.  If we give our evaluator a 
-    JavaScript 
-    program that behaves as an evaluator for
-    some other language, say C, the 
-    JavaScript 
-    evaluator will emulate the C
-    evaluator, which in turn can emulate any machine described as a C
-    program.  Similarly, writing a 
-    JavaScript 
-    evaluator in C produces a C
-    program that can execute any 
-    JavaScript 
-    program.  The deep idea here is that
-    any evaluator can emulate any other.  Thus, the notion of <QUOTE>what can
-      in principle be computed</QUOTE> (ignoring practicalities of time and
-    memory required) is independent of the language or the computer, and
-    instead reflects an underlying notion of 
     
-    <EM>computability</EM>.  This
-    was first demonstrated in a clear way by 
+      
+      JavaScript
+     
+    program that behaves as an evaluator for some other language, say C, the 
     
-    Alan M. Turing (1912–1954),
-    whose 1936 paper laid the foundations for theoretical 
+      
+      JavaScript
+     
+    evaluator will emulate the C evaluator, which in turn can emulate any
+    machine described as a C program.  Similarly, writing a 
+    
+      
+      JavaScript
+     
+    evaluator in C produces a C program that can execute any 
+    
+      
+      JavaScript
+     
+    program.  The deep idea here is that any evaluator can emulate any other.
+    Thus, the notion of <QUOTE>what can in principle be computed</QUOTE>
+    (ignoring practicalities of time and memory required) is independent of the
+    language or the computer, and instead reflects an underlying notion of 
+    
+    <EM>computability</EM>.  This was first demonstrated in a clear way by 
+    
+    Alan M. Turing (1912–1954), whose 1936 paper laid the foundations
+    for theoretical 
     
     computer science.  In the paper, Turing presented a simple computational
     model—now known as a 
     
-    <EM>Turing machine</EM>—and argued that any
-    <QUOTE>effective process</QUOTE> can be formulated as a program for such a
-    machine.  (This argument is known as the 
+    <EM>Turing machine</EM>—and argued that any <QUOTE>effective
+    process</QUOTE> can be formulated as a program for such a machine.  (This
+    argument is known as the 
     
-    <EM>Church-Turing thesis</EM>.)
-    Turing then implemented a universal machine, i.e., a Turing machine
-    that behaves as an evaluator for Turing-machine programs.  He used
-    this framework to demonstrate that there are well-posed problems that
-    cannot be computed by Turing machines (see
-    exercise <REF NAME="ex:halting-theorem"><a class="superscript" id="4.1.5-ex-link-4.7" href="./4.1.5.html#ex_4.7">4.7</a></REF>), and so by implication cannot be
-    formulated as <QUOTE>effective processes.</QUOTE>  Turing went on to make
-    fundamental contributions to practical computer science as well.  For
-    example, he invented the idea of 
+    <EM>Church-Turing thesis</EM>.) Turing then implemented a universal machine,
+    i.e., a Turing machine that behaves as an evaluator for Turing-machine
+    programs.  He used this framework to demonstrate that there are well-posed
+    problems that cannot be computed by Turing machines (see
+    exercise <REF NAME="ex:halting-theorem"><a class="superscript" id="4.1.5-ex-link-4.14" href="./4.1.5.html#ex_4.14">4.14</a></REF>), and so by implication
+    cannot be formulated as <QUOTE>effective processes.</QUOTE>  Turing went on
+    to make fundamental contributions to practical computer science as well.
+    For example, he invented the idea of 
     
-    structuring programs using
-    general-purpose subroutines.  See 
+    structuring programs using general-purpose subroutines.  See 
     
-    <CITATION>Hodges 1983</CITATION> for a biography of
-    Turing.
+    <CITATION>Hodges 1983</CITATION> for a biography of Turing.
     </FOOTNOTE></div>
 
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
     <FOOTNOTE>
-    Some people find it
-    counterintuitive that an evaluator, which is implemented by a
-    relatively simple
-    function, 
-    can emulate programs that are more
-    complex than the evaluator itself.  The existence of a universal
-    evaluator machine is a deep and wonderful property of computation.
+    Some people find it counterintuitive that an evaluator,
+    which is implemented by a relatively simple
     
-    <EM>Recursion theory</EM>, a branch of mathematical logic, is concerned
-    with logical limits of computation.  
+      
+      function,
     
-    Douglas Hofstadter's beautiful
-    book <EM>Gödel, Escher, Bach</EM> (1979) 
-    explores some of these ideas.
+    can emulate programs that are more complex than the evaluator itself.  The
+    existence of a universal evaluator machine is a deep and wonderful property
+    of computation.
+    
+    <EM>Recursion theory</EM>, a branch of mathematical logic, is concerned with
+    logical limits of computation.  
+    
+    Douglas Hofstadter's beautiful book <EM>Gödel, Escher,
+    Bach</EM> (1979) explores some of these ideas.
     </FOOTNOTE></div>
 
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
     <FOOTNOTE>
-    Warning:
-    
-    This <kbd>eval</kbd> primitive is not
-    identical to the <kbd>evaluate</kbd>
-    function we implemented in
-    section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.5-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>, because it
-    uses <EM>actual</EM> JavaScript environments rather than the sample environment
-    structures we
-    built in section <REF NAME="sec:eval-data-structures"><a class="superscript" id="4.1.5-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF>.  These actual
-    environments cannot be manipulated by the user as ordinary lists; they
-    must be accessed via <kbd>eval</kbd> or other special
-    operations.
-    
-    Similarly, the <kbd>apply</kbd> primitive we saw
-    in section <REF NAME="sec:data-directed"><a class="superscript" id="4.1.5-sec-link-2.4.3" href="./2.4.3.html">2.4.3</a></REF> is not identical
-    to the metacircular <kbd>apply</kbd>, because it uses
-    actual JavaScript functions
-    rather than the function
-    objects we constructed in
-    sections <REF NAME="sec:eval-data-structures"><a class="superscript" id="4.1.5-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF>
-    and <REF NAME="sec:running-eval"><a class="superscript" id="4.1.5-sec-link-4.1.4" href="./4.1.4.html">4.1.4</a></REF>.
+    Note that the primitive function
+	may not be available in the JavaScript environment that you are
+	using.
     </FOOTNOTE></div>
 
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-4' href='#footnote-link-4'>[4] </a>
     <FOOTNOTE>
-    Although we stipulated that
-  
-  <kbd>halts</kbd>
-
-  is given a
-  
-  function
-    object,
-    notice that this reasoning still applies even if
+    Although
+    we stipulated that
     
-    <kbd>halts</kbd>
+      
+      <kbd>halts</kbd>
+    
+    is given a
+    
+      
+      function
+    
+    object, notice that this reasoning still applies even if
+    
+      
+      <kbd>halts</kbd>
     
     can gain access to the
     
-    function's
+      
+      function's
+    
     text and its environment.
     
     
-    This is Turing's celebrated <EM>Halting Theorem</EM>, which gave
-    the first clear example of a <EM>non-computable</EM> problem, i.e., a
-    well-posed task that cannot be carried out as a computational
+    This is Turing's celebrated <EM>Halting Theorem</EM>, which gave the
+    first clear example of a <EM>non-computable</EM> problem, i.e., a well-posed
+    task that cannot be carried out as a computational
     
-    function.
-  
+      
+      function.
+    
     </FOOTNOTE></div>
 
     

@@ -1143,7 +1143,7 @@
                   <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-84" aria-expanded="true" aria-controls="sidebar-collapse-84">
                   &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
                   </a>
-                  <a href="./4.2.html">4.2  <span style="color:teal"> Variations on a Scheme Lazy Evaluation </span> <span style="color:blue"> Lazy Evaluation </span></a>
+                  <a href="./4.2.html">4.2  <span style="color:teal"> Variations on a Scheme: </span> Lazy Evaluation</a>
                 </h5>
               </div>
     
@@ -1680,15 +1680,32 @@
 
   
   
+
   <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
     Given the evaluator, we have in our hands a description
-    (expressed in <span style="color:teal">Lisp</span><span style="color:blue">JavaScript</span>) of the process
-    by which <span style="color:teal">Lisp</span><span style="color:blue">JavaScript</span> expressions are evaluated.  One advantage of expressing the
-    evaluator as a program is that we can run the program.  This gives us,
-    running within <span style="color:teal">Lisp</span><span style="color:blue">JavaScript</span>, a working model of how <span style="color:teal">Lisp</span><span style="color:blue">JavaScript</span> itself evaluates
-    expressions.  This can serve as a framework for experimenting with
-    evaluation rules, as we shall do later in this chapter.
+    
+      <span style="color:teal">(expressed in Lisp)</span>
+      <span style="color:blue">(expressed in JavaScript)</span>
+    
+    of the process by which
+    
+      <span style="color:teal">Lisp expressions</span>
+      <span style="color:blue">JavaScript statements and expressions</span>
+    
+    are evaluated.  One advantage of expressing the evaluator as a program is
+    that we can run the program.  This gives us, running within
+    
+      <span style="color:teal">Lisp,</span>
+      <span style="color:blue">JavaScript,</span>
+    
+    a working model of how
+    
+      <span style="color:teal">Lisp</span>
+      <span style="color:blue">JavaScript</span>
+    
+    itself evaluates expressions.  This can serve as a framework for
+    experimenting with evaluation rules, as we shall do later in this chapter.
   </p></div>
 
   <div class='permalink'>
@@ -1701,14 +1718,14 @@
 	
       </span>
     
-    Our evaluator program reduces expressions ultimately to the
-    application of primitive
+    Our evaluator program reduces expressions ultimately to the application of
+    primitive
     
       <span style="color:teal">procedures.</span>
       <span style="color:blue">functions.</span>
     
-    Therefore, all that we need to
-    run the evaluator is to create a mechanism that calls on the underlying
+    Therefore, all that we need to run the evaluator is to create a mechanism
+    that calls on the underlying
     
       <span style="color:teal">Lisp</span>
       <span style="color:blue">JavaScript</span>
@@ -1723,16 +1740,30 @@
   <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
     There must be a binding for each primitive
-    <span style="color:teal">procedure</span><span style="color:blue">function</span>
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
     name, so that when
-    <span style="color:teal"><kbd>eval</kbd></span><span style="color:blue"><kbd>evaluate</kbd></span>
-    evaluates the operator of an application of a primitive,
-    it will find an object to pass to <kbd>apply</kbd>.  We thus set up a 
+    
+      <span style="color:teal"><kbd>eval</kbd></span>
+      <span style="color:blue"><kbd>evaluate</kbd></span>
+    
+    evaluates the
+    
+      <span style="color:teal">operator</span>
+      <span style="color:blue">function expression</span>
+    
+    of an application of a primitive, it will find an
+    object to pass to <kbd>apply</kbd>.  We thus set up a 
     
     
-    global
-    environment that associates unique objects with the names of the primitive
-    <span style="color:teal">procedures</span><span style="color:blue">functions</span>
+    global environment that associates unique objects with the names of the
+    primitive
+    
+      <span style="color:teal">procedures</span>
+      <span style="color:blue">functions</span>
+    
     that can appear in the expressions we will be evaluating.  
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
@@ -1745,9 +1776,8 @@
           <td><span style="color:teal">
 	The global environment also includes bindings for the symbols 
 	
-	<kbd>true</kbd> and
-	<kbd>false</kbd>, so that they can be used as variables in expressions
-	to be evaluated.
+	<kbd>true</kbd> and <kbd>false</kbd>,
+	so that they can be used as variables in expressions to be evaluated.
       </span>    </td>
           <td></td>
           <td><span style="color:blue">
@@ -1756,8 +1786,7 @@
 	<kbd>undefined</kbd>,
 	<kbd>NaN</kbd> and
 	<kbd>Infinity</kbd>,
-	so that they can be used as constants
-	in expressions to be evaluated.
+	so that they can be used as constants in expressions to be evaluated.
       </span></td></tr></table>
 
     
@@ -1776,30 +1805,27 @@
     (define-variable! \'false false initial-env)
     initial-env))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_79_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=GYVwdgxgLglg9mABDAzgfSgQwObYKYAmaANqlABQpQC2UANIlABZ4Y4CUiA3gFCL+IATnighBSVGgAOmGIMo0onAGTLELTAQW1OAXn2MWbbAG4eAXx6hIsBIjwAPKHjBEXANzkJqLimEw+KAzumMRBiABGmCisHpy8AsjAiOTELtjM5P6BegZpYBlM5CFh7PF8iQLCouL2kMRwMWgRAJ7kFZWdndSYANaswIIBeFnD4R1dk4k9UuQOiLoAfIgycnMMUIIgeOzBoShldBNTnVFNcWaJ5vZheEkp+YWjOYgAPIiPmSUH5ZN4goI4PIAEQAFTgcEQPTALUQmEE2BAPjAUBQiBQICkUlIhAAXIhgYgANSIY5TKiCGAFGDANrZPAHYkEhiEklkyYUqnYGltb5lS4Ca54W7cdn2AFA8hgiGIYB4ADucIRSN8aIxWJxBHxrNJJ0SnOptOeDM4JOBLKZYs6Bu5Rr57AF-Eslms0HgSBcEAaKC5aA8XjAyIocVFiWqYiQWBgxHIFwsVnAbrswDkVDQg2GsbA7l+VREEfUeE0WZzZhdidsHvqjVYrXIGZ8DBDXESE3DtVW8gbeCb2Yd8YgCCohli1CkUBafuzAaDC0QYBAxGIZldleQ6DwY4nU88gMDvhLuf47Yk6AXS8PZYTNndUL6AyGPmN4RK20ZCTzNSQnefe2Ib-7csb2TR9WHpFB61A+JWzDfNag0LRu0A68kyQbs0FfBlIOGaCBDbODI1kGMkKvQcwGHKRKWoGBYHcVgyKoTAUTRXQPjIVJ2OBcACDwFMwEIc1EG43iqUIXYrT1SS2KoKUADlMFkwTOnk2TxKk9TOlIGTgQASTAPiaJaJS9IMic1I0izpIoYEemYNAAAUdKUu87Mc9gJMsyp+wYqAViomiYDo9MK3dFirPaLotOsghUGxTAjIYToYpQOLYSmczKiiqV-kBQRnM6HKgUkjLEiy4EiXyqZ1kQFo9GWeYSTSkqBDKgBaSrJmq2qFnqxBWpq-hmv4MqACoOq6Lq6sQeYRoGxAhvC4EAHpxs6SaeumxAlrmhayoAUlWyp1qWTa9p2o5Is4-RdEO-hjt666at2ziAEJ9FulIHAYbqTvmN7WNqi7NM414Prur6no2+Z3n4QH2TK14bsSk57s2xHYee7TFjBz7vqm+ZlgxoHMs4xYkck1GCdYp7idK16cc2xITv4F6BAcdyun7Vdbx6fppH82iBhChByBgMdiCPIQCMWyixYCujBLF7FkO5uxJFl6jBeC4CwHrcAjxPddjHwIgsusFkNflvBgRV4XvwFwLWCVtIg0wSs9bAA3paitBhGAD2GAARltnX0XzKQdxnA9JZ8vy5a11WwDQcCFjFGZ6w2hD612OPNcd7XUIOR1EFjy2E7tjDQjfVPJnT5ITt51gy-zxPyCzqNiLKBbKmboLE6LiZS4doKfKYqBk7GGuujrzOi0QnPe-oocsGY-tEiH+P89HlFK--Bkp+6TBZnr5Z26I7Pu8SRe0G31E18-AtHGcVxI73IMIvUo+pBcLRr8TifAgMA8nqa+t8AEmlpnqL+P9yB-wrphcYnkr7DyXuRFe48EGX06MwUc45Jz+jfr4ZCPBY44LQNgBoURiCv28L4OcMRRARwIbQlE5B+wAEgeBkIoXAKhND9wohMEAA')">function setup_environment() {
-    const primitive_function_names =
-        map(f => head(f), primitive_functions);
-    const primitive_function_values =
-        map(f => make_primitive_function(head(tail(f))),
-            primitive_functions);
-    const primitive_constant_names =
-        map(f => head(f), primitive_constants);
-    const primitive_constant_values =
-        map(f => head(tail(f)),
-            primitive_constants);
+            <td><div class='snippet' id='javascript_79_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0oFA4GYCuAdgMYAuAlgPbGiUDOA+uQIYDm7ApgCZMA2jcgAoG5ALbkANKHIALLiw4BKUAG8coLaABOXcoR11GTAA6tKO0RPKqAZHdALWPa5NUBeL7IVL2AbhwAXzwiMipaUC4AD3IuYj54gDdLWnF4kQYAT3EAI2p+Bhkk1kKZXNYGRWTVDW1dfUM6fnj2eVEc-MLPbxbiNrlhEu7NerHQAH5Qc0thcVYAa0V8HVZ0jryCotBhhmVyyuriJOVR8e0ALlA+gY2uvdAAHmvW9t3T8-Gprh0daisAEQAFWo1FA82IWVArB07EI6WI5AYoAYhFMpkEvCuANAAGpQGdPkSUeQdJR+pR8Fk7ltVPiATIcfjCcTzmIyRSqUNSnsPqzQFcfn9ASCwfguAB3aGw+EZZGo9GYnjYvEE-lE9nk9iU6nZTbdVUM0BMtXqtmkrU67ndZSBEIEEgUGh0eKkfjUBhapjJVLEBEiGrqQl6AxGWQWfjCGp2h3hZ2gfCWMRMFZrLhR461YONMPOVzR4Kxp2RV3uqpMXLU1PpGSBtT1bOhugzKzVri1zMx0i0MQ+ariUzkLLe46+-2gDygYiEfj8QJFiJ0eZLFOrdZ6+7FUqELgPOraENNaYWKwbrZb-g7vYxsLFuhtphnwrCNu1Bv1Q+5rguF9rri2wtb0XBM-yYYYr1-NM320RsjzYShI1fGMcG7Yhe1MMlxEoKgkkUVCxFYRFkUnQQxGEUiRABEgeC4RNiF4I1qNo8leH2FkzTNCjhABSBiDo7CsiNUBeP4oc2I4iStC4gF5nkJhYEgITwVYOSFPEySOOk2S5CYABRJTlLk3T1I09VpIAOVYcyDO0SzzL5UzWQA-DyGmTDsMoXCmBcwjyEfTotgnditHmUwXwnAA+Jxv1cfB9jcygsJwvCezYIjnNShKks8lK0LSvzwN3ILPlC8KPCivNhHgxDlHijDEo8ryfPS+cXKyxrlkdRdiOuIRhGC6S8wMvN1RM+ppOqgzqtGqQBr6gEWwMlsZrmsiAQogyKJW85pJMadZyNPaZ34Ykxu0aSeEYDFWEEmRLoYa6oSJM6pPmoV-iU96dH5F7erW7SmFYXIGAZAGgeRT5fuk3EbK0YRohkLJPCi6JVSeqH5oAWlh0B4cR5HQFRzHQHR2advmgAqHG8ZJgnUYpkmtAxtbgGphHaciwnQDAUnVsogBSNn8c51H+cZ0BmcorwPBsmmkZFidvCRsnxmkgBCLxZfZ+Xyq5jXJ2VvnuMeIWOd11Hni0Q3ybWx4ZZkMY5bpp5J1plWxmkiLTZ1lHQCiq3Je4iL7fGJ2FeDgP3fG+a1Zxrn6l1rQ1e0aIHPqDK8va5KUy651-P1YjguUsK8xkersq8oDnWvFDMvLjqc7jWgmGoXIACsuAoQuStYMKwk56T6+So1Kuql8SFq36xiHnLG7vGuF3jEwZ8r3PaHH4gswPHNjGYNhOF4AQ+rCRkV64AEAJCKvIjPphEoxLh-RU50N63rRPzoUeI1fy-QjXugqgGFMCOFIfw-QZGEG-d+O8oixHiIkUcYD-T9Q4r3Uw8DhC32vsQfOm5TSOVvs1PyT49hR1ZGgjBWD-4t3bp3JEMgi5mkIalXyYFty7inuceQ-ZBzDh9EgjIv9a6Z24Uwdg7oKj8BAWODIE4USNGAfwtIECAIAEgcCiPEa3Uo0iBGIn8EAA')">function setup_environment() {
     return extend_environment(
-               append(primitive_function_names, 
-                      primitive_constant_names),
-               append(primitive_function_values, 
+               append(primitive_function_symbols, 
+                      primitive_constant_symbols),
+               append(primitive_function_objects, 
                       primitive_constant_values),
                the_empty_environment);
 }
 
 </pre></div></div></td></tr></table>
+    
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_79_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(define the-global-environment (setup-environment))
+</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_79_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0oFA4GYCuAdgMYAuAlgPbGiUDOA+uQIYDm7ApgCZMA2jcgAoG5ALbkANKHIALLiw4BKUAG8coLaABOXcoR11GTAA6tKO0RPKqAZHdALWPa5NUBeL7IVL2AbhwAXzwiMipaUC4AD3IuYj54gDdLWnF4kQYAT3EAI2p+Bhkk1kKZXNYGRWTVDW1dfUM6fnj2eVEc-MLPbxbiNrlhEu7NerHQAH5Qc0thcVYAa0V8HVZ0jryCotBhhmVyyuriJOVR8e0ALlA+gY2uvdAAHmvW9t3T8-Gprh0daisAEQAFWo1FA82IWVArB07EI6WI5AYoAYhFMpkEvCuANAAGpQGdPkSUeQdJR+pR8Fk7ltVPiATIcfjCcTzmIyRSqUNSnsPqzQFcfn9ASCwfguAB3aGw+EZZGo9GYnjYvEE-lE9nk9iU6nZTbdVUM0BMtXqtmkrU67ndZSBEIEEgUGh0eKkfjUBhapjJVLEBEiGrqQl6AxGWQWfjCGp2h3hZ2gfCWMRMFZrLhR461YONMPOVzR4Kxp2RV3uqpMXLU1PpGSBtT1bOhugzKzVri1zMx0i0MQ+ariUzkLLe46+-2gDygYiEfj8QJFiJ0eZLFOrdZ6+7FUqELgPOraENNaYWKwbrZb-g7vYxsLFuhtphnwrCNu1Bv1Q+5rguF9rri2wtb0XBM-yYYYr1-NM320RsjzYShI1fGMcG7Yhe1MMlxEoKgkkUVCxFYRFkUnQQxGEUiRABEgeC4RNiF4I1qNo8leH2FkzTNCjhABSBiDo7CsiNUBeP4oc2I4iStC4gF5nkJhYEgITwVYOSFPEySOOk2S5CYABRJTlLk3T1I09VpIAOVYcyDO0SzzL5UzWQA-DyGmTDsMoXCmBcwjyEfTotgnditHmUwXwnAA+Jxv1cfB9jcygsJwvCezYIjnNShKks8lK0LSvzwN3ILPlC8KPCivNhHgxDlHijDEo8ryfPS+cXKyxrlkdRdiOuIRhGC6S8wMvN1RM+ppOqgzqtGqQBr6gEWwMlsZrmsiAQogyKJW85pJMadZyNPaZ34Ykxu0aSeEYDFWEEmRLoYa6oSJM6pPmoV-iU96dH5F7erW7SmFYXIGAZAGgeRT5fuk3EbK0YRohkLJPCi6JVSeqH5oAWlh0B4cR5HQFRzHQHR2advmgAqHG8ZJgnUYpkmtAxtbgGphHaciwnQDAUnVsogBSNn8c51H+cZ0BmcorwPBsmmkZFidvCRsnxmkgBCLxZfZ+Xyq5jXJ2VvnuMeIWOd11Hni0Q3ybWx4ZZkMY5bpp5J1plWxmkiLTZ1lHQCiq3Je4iL7fGJ2FeDgP3fG+a1Zxrn6l1rQ1e0aIHPqDK8va5KUy651-P1YjguUsK8xkersq8oDnWvFDMvLjqc7jWgmGoXIACsuAoQuStYMKwk56T6+So1Kuql8SFq36xiHnLG7vGuF3jEwZ8r3PaHH4gswPHNjGYNhOF4AQ+rCRkV64AEAJCKvIjPphEoxLh-RU50N63rRPzoUeI1fy-QjXugqgGFMCOFIfw-QZGEG-d+O8oixHiIkUcYD-T9Q4r3Uw8DhC32vsQfOm5TSOVvs1PyT49hR1ZGgjBWD-4t3bp3JEMgi5mkIalXyYFty7inuceQ-ZBzDh9EgjIv9a6Z24Uwdg7oKj8BAWODIE4USNGAfwtIECAI4FEeI1upRpECMRP4IAA')">const the_global_environment = setup_environment();
 
-    
-    
-    
+</pre></div></div></td></tr></table>
     
   </p></div>
 
@@ -1814,20 +1840,14 @@
           <td><span style="color:teal">
       <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
-	It does not matter how we represent the 
-	primitive procedure
-	objects,
-	so long as <kbd>apply</kbd> can identify and apply them by using the
-	procedures <kbd>primitive-procedure?</kbd>
-	and
-	<kbd>apply-primitive-procedure</kbd>.
-	We have chosen to represent a 
-	primitive procedure
-	as a list beginning with the symbol <kbd>primitive</kbd> and
-	containing a
-	procedure
+	It does not matter how we represent the primitive procedure objects, so
+	long as <kbd>apply</kbd> can identify and apply them
+	by using the procedures <kbd>primitive-procedure?</kbd>
+	and <kbd>apply-primitive-procedure</kbd>. We have
+	chosen to represent a primitive procedure as a list beginning with the
+	symbol <kbd>primitive</kbd> and containing a procedure
 	in the underlying Lisp that implements that primitive.
-	<div class='snippet' id='javascript_79_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_79_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (primitive-procedure? proc)
   (tagged-list? proc \'primitive))
 
@@ -1839,28 +1859,22 @@
           <td><span style="color:blue">
       <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-	It does not matter how we represent primitive functions,
-	so long as <kbd>apply</kbd> can identify and
-	apply them using the functions
-	<kbd>is_primitive_function</kbd> and 
-	<kbd>apply_primitive_function</kbd>.  We have chosen to
-	represent a primitive function
-	as a list beginning with the string <kbd>"primitive"</kbd> and
-	containing a function
-	in the underlying JavaScript that implements that primitive.
-
-	<div class='snippet' id='javascript_79_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=GYVwdgxgLglg9mABDAzgfSgQwObYKYAmaANqlABQpQC2UANIlABZ4Y4CUiA3gFCL+IATnighBSVGgAOmGIMo0onAGTLELTAQW1OAXn2MWbbAG4eAXx6hIsBImqYA1qymCY1GLABura9Hhg5O5SxJy8AkIiYkikVOQARK7unjA+8QzBoWaWfrYS6Eke3r7g-gjk1mF8-MKi4sjoWLiEJGQV4AyJbkWpePHs2ValeYiFKT5omXjUeGBYee1gVQK10YixUGjCwIsMAIwDFjw8EAhU9gCe0t3jLsQgKIi61fwOztfJxWi5AeSI5AAPBgXPQAPkQAMQAGpEBdEAMAJARHgEVAhTAXIIFG5fH7lahXMZfEIPdiHVEodGYom9SbUELTWbzX4Ej49CYklBkkxAA')">function make_primitive_function(impl) {
-    return list("primitive", impl);
-}
-function is_primitive_function(fun) {
+	It does not matter how we represent primitive function objects, so long
+	as <kbd>apply</kbd> can identify and apply them using
+	the functions <kbd>is_primitive_function</kbd>
+	and <kbd>apply_primitive_function</kbd>.  We
+	have chosen to represent a primitive function as a list beginning with
+	the string <kbd>"primitive"</kbd> and
+	containing a function in the underlying JavaScript that implements that
+	primitive.
+	<div class='snippet' id='javascript_79_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0oFA4GYCuAdgMYAuAlgPbGiUDOA+uQIYDm7ApgCZMA2jcgAoG5ALbkANKHIALLiw4BKUAG8coLaABOXcoR11GTAA6tKO0RPKqAZHdALWPa5NUBeL7IVL2AbhwAXzwiMipaemZTHUpxSioAN0UwihpiYTDVDW09AyMov24+QTFMkhkAIhi4hMpkyuVAkNSIuhr4pMU4034ucS5iNjby4mzNLTzDOmdXNkp+UeUm4LxSWjFQcQBPM1jO+sVewgZQDwmtUpFq-bqGmWEADxltzwA+UEfQAGpQbdAmgBIbSgHA8Ri9VjbYQmDp3FIkNK0YQ7Pa1LpmfgnZaBcEMSHQuEYnp9AZDVgjVFEw6Y7FNIA')">function is_primitive_function(fun) {
    return is_tagged_list(fun, "primitive");
 }
 function primitive_implementation(fun) {
-   return list_ref(fun, 1);
+   return head(tail(fun));
 }
 
 </pre></div></div>
-
 	
       </p></div>
     </span></td></tr></table>
@@ -1869,21 +1883,21 @@ function primitive_implementation(fun) {
 <a name='p6' class='permalink'></a><p>
     
       <span style="color:teal"><kbd>Setup-environment</kbd></span>
-      <span style="color:blue">The function <kbd>setup_environment</kbd>
+      <span style="color:blue">The function
+      <kbd>setup_environment</kbd>
       </span>
     
-    will get the primitive 
+    will get the primitive names and implementation 
     
-      <span style="color:teal">names and implementation procedures</span>
-      <span style="color:blue">names and implementation functions</span>
+      <span style="color:teal">procedures</span>
+      <span style="color:blue">functions</span>
     
     from a list:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_79_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_79_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define primitive-procedures
   (list (list \'car car)
         (list \'cdr cdr)
@@ -1905,87 +1919,98 @@ function primitive_implementation(fun) {
   (map (lambda (proc) (list \'primitive (cadr proc)))
        primitive-procedures))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_79_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=MYewdgzgLgBADgJwJYFslSQNwKYH0BmArmMBuBDALwwA2S0AFAFAytu31QMBEAJvXBoBDAJ7cANOzb8Ig0VKkBKcSwV1G3bAgQgEEhWy06EBpSoPqu3ANT7T7BgA9JIxVQB8MRzGswRrZVUpSx4AWjt7VicXN0pPb1C-APM1Th4AKgjI6L9Y+Jh0pJhAizTuAHos+xzXDy8YcqKS1I0AUirTGrz61qaU4LLKIY6pLrrvIepXfvYQ7gBCYcls51zxmEWp5oGNAB4RhTG4+t22aaDZst3KA4dV2uPva9Zz0o13W7uY9c8X7cv3jdlitvo8YO5qLkZmw5vNPuxvOxjqx5mxHIoLmxFABuJhMRCodBYPBEEhkSDYoA')">const primitive_functions = list(
-       list("display",       display          ),
-       list("error",         error            ),
-       list("+",             (x, y) => x + y  ),
-       list("-",             (x, y) => x - y  ),
-       list("*",             (x, y) => x * y  ),
-       list("/",             (x, y) => x / y  ),
-       list("%",             (x, y) => x % y  ),
-       list("===",           (x, y) => x === y),
-       list("!==",           (x, y) => x !== y),
-       list("<",             (x, y) => x <   y),
-       list("<=",            (x, y) => x <=  y),
-       list(">",             (x, y) => x >   y),
-       list(">=",            (x, y) => x >=  y),
-       list("!",              x     =>   !   x)
+            <td><div class='snippet' id='javascript_79_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0oFA4MYD2AdgM4AuoADgE4CWAtneXQG4CmA+gGYCux+FiVKgAvKAA2dCgAocoBYsnTyMgEQALdgEMAJmoA0SrXqVmlASgPzzU2WvLa6Ew0sfPznqzbN3VaqicaV0VAuhpPc29PP3U-EIU-SLNo2xV1aU5iXgkXI0zs3OTQVN90tV1pKgltAE9XStJquuLSpVi1dhoaQmCjBS6eiOKS6xjyhm1yDU5tACNSQ0np2YXktsUOgGoEpRkADyNaizEAPlB90C3QWoUNxPKAWl3FA6OT0XPLx5u7sbT7AAqF4KN43D5fUCA36jHztcrAEGgMHHM4XUBgW6w8b2ACkSJREPRuJh92U9lElJehLRl0p4mO-zK9gAhFT+q9DuDaaA2QyyR0ADwErmoz7owWKRlwzblQWiEE08WXeUKaU4-ynEXvHnnNUC8qnBUczk65WgI36pnw1lI9FKcUKFmKfYWGV3ADcBGElFojGYbC4fAEQmInFItQYc0IEhEondCkmVBkJl0Rj9TBYHB4-EEdGEFi9RDIvvomcDOZD+bDhDmACt2II4wnQEmZMG0R0MwGOK5UzJ3BJ2-wLKPrZFu1mg7nQ6RC3hJxXg3nhB6gA')">const primitive_functions = list(
+       list("head",    head             ),
+       list("tail",    tail             ),
+       list("pair",    pair             ),
+       list("is_null", is_null          ),
+       list("display", display          ),
+       list("error",   error            ),
+       list("+",       (x, y) => x + y  ),
+       list("-",       (x, y) => x - y  ),
+       list("*",       (x, y) => x * y  ),
+//     more primitives
        );
+const primitive_function_symbols =
+        map(head, primitive_functions);
+const primitive_function_objects =
+        map(fun => list("primitive", head(tail(fun))),
+            primitive_functions);
 
 </pre></div></div></td></tr></table>
     
   </p></div>
 
-  
+  <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr>
+          <td><span style="color:teal">
+    </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
       <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
-	Similar to primitive functions, we define primitive values
-	that are installed in the global environment by
-	the function <kbd>setup_environment</kbd>.
-	<div class='snippet' id='javascript_79_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=MYewdgzgLgBADgJwJYFslSQNwKYH1SRQCGYUEMAvDADZLQAUtDARAK5gAm2AZkmNh2YAaGOy69+HAJRCAUDAWKlylauVMo9ZgDki24at3aZ8tWfPq6m5gEkwE9AE8DMOw6iOTF7+Y1aURFAAFrgACjYuMAHBYTZSpj6JilIA3LKyiKjoWHgE0CRkKUA')">const primitive_constants = list(list("undefined", undefined),
-                                 list("NaN",       NaN),
+	Similar to primitive functions, we define primitive values that are
+	installed in the global environment by the function
+	<kbd>setup_environment</kbd>.
+	<div class='snippet' id='javascript_79_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0oFA4MYD2AdgM4AuoADgE4CWAtneXQG4CmA+kWeQIbFypUAF5QAGzoUAFJJkAiAK7EAJuwBmdYuxXyANKGVrN2lQEo9OUNZu279h3bnlp8yMRPMAnvuvvP5F4WVo6hYU5SLvIMfOQAFpywkL7WMfGJkMHh2WHOrmkJAKIpqbFFWTmVEQoAcnw1JbZ1NWYhVVVmANwEJBTU9EwsHNy9-IKcpF4MAEaE4sIibXYxVNLqogB8oHHsfCprFv2MzGxcPBQCQl09vEeDpyO8l5ysfOKK7AtLtitrm9u7fb8OjiA6HWjHIZnUaXUjXHAQ+7Dc5jISdIA')">const primitive_constants = list(list("undefined", undefined),
                                  list("Infinity",  Infinity),
                                  list("math_PI",   math_PI)
+//                               more primitive constants
                                 );
+const primitive_constant_symbols =
+        map(f => head(f), primitive_constants);
+const primitive_constant_values =
+        map(f => head(tail(f)), primitive_constants);
 
 </pre></div></div>
 
-    
 	
       </p></div>
-    
+    </span></td></tr></table>
   
   <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
     To apply a 
-    <span style="color:teal">primitive procedure,</span>
-    <span style="color:blue">primitive function,</span>
+    
+      <span style="color:teal">primitive procedure,</span>
+      <span style="color:blue">primitive function,</span>
+    
     we simply apply the implementation
-    <span style="color:teal">procedure</span>
-    <span style="color:blue">function</span>
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
     to the arguments, using the underlying
-    <span style="color:teal">Lisp</span>
-    <span style="color:blue">JavaScript</span>
-    system:
-    <span style="color:teal">
-      <a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:teal">[2]</a>
-    </span>
-    <span style="color:blue">
-      <a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:blue">[3]</a>
-    </span>
-  
-
-  <table width="100%">
+    
+      <span style="color:teal">Lisp</span>
+      <span style="color:blue">JavaScript</span>
+    
+    system:<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_79_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_79_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (apply-primitive-procedure proc args)
       (apply-in-underlying-scheme
       (primitive-implementation proc) args))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_79_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=GYVwdgxgLglg9mABDAzgfSgQwObYKYAmaANqlABQpQC2UANIlABZ4Y4CUiA3gFCL+IATnighBSVGgAOmGIMo0onAGTLELTAQW1OAXn2MWbbAG4eAXx6hIsBImqYA1qymCY1GLABura9Hhg5O5SxJy8AkIiYkikVOQARK7unjA+8QzBoWaWfrYS6Eke3r7g-gjk1mF8-MKi4sjoWLiEJGQV4AyJbkWpePHs2ValeYiFKT5omXjUeGBYee1gVQK10YixUGjCwIsMAIwDFjwQCFT2AJ7S3eMuxCAoiLrV-A7OV8nFaLkB5IjkAB4Mc56AB8iH+iAA1IhzogBgBICI8AioEKYc5BArXT7fcrUS5jT4he7sQ4olBojGE3qTaghaazeY-fHvHoTYkoUlmXFITBSEIE7E0nm7RCYQTYEAzOatKjLFZRep8gWTMBocAEPCCYjnGBgbBoABWmC8mBQEDcUgozwitoi1ImU2lTPKlToNrtdvFkudsqUJltRx4yp1rJuX2GzMFHxpHIYG3IewYACYuUA')">function apply_primitive_function(fun, argument_list) {
+            <td><div class='snippet' id='javascript_79_7_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0oFA4GYCuAdgMYAuAlgPbGiUDOA+uQIYDm7ApgCZMA2jcgAoG5ALbkANKHIALLiw4BKUAG8coLaABOXcoR11GTAA6tKO0RPKqAZHdALWPa5NUBeL7IVL2AbhwAXzwiMipaemZTHUpxSioAN0UwihpiYTDVDW09AyMov24+QTFMkhkAIhi4hMpkyuVAkNSIuhr4pMU4034ucS5iNjby4mzNLTzDOmdXNkp+UeUm4LxSWjFQcQBPM1jO+sVewgZQDwmtUpFq-bqGmWEADxltzwA+UEfQAGpQbdAmgBIbSgHA8Ri9VjbYQmDp3FIkNK0YQ7Pa1LpmfgnZaBcEMSHQuEYnp9AZDVgjVFEw6Y7ErAiItqgVimXq7anJJitdKjGSsHTsARCcYgqYFFlspiUYhMEg8Lg6fjbaWCgBWrESrAYpFiphEFxBhpBHO64l6-UGwx5WSkBqNRv5gquTUNqxwEqVaIOnO5yKptwxxwYMiuwgwMgATDigA')">function apply_primitive_function(fun, arg_list) {
     return apply_in_underlying_javascript(
                 primitive_implementation(fun),
-                argument_list);     
+                arg_list);     
 }
 
 </pre></div></div></td></tr></table>
+    
 
-	
-
-  
-  
+    
   </p></div>
 
   
@@ -2003,17 +2028,15 @@ function primitive_implementation(fun) {
 <a name='p9' class='permalink'></a><p>
 	
 	
-	For convenience in running the metacircular evaluator, we provide a <EM>
-	driver loop</EM> that models the read-eval-print loop of the underlying
-	<span style="color:teal">Lisp</span><span style="color:blue">JavaScript</span> system.  It prints a 
+	For convenience in running the metacircular evaluator, we provide a
+	<EM>driver loop</EM> that models the read-eval-print loop of the
+	underlying Lisp system.  It prints a 
 	
-	<EM>prompt</EM>, reads an input expression,
-	evaluates this expression in the global environment, and prints the
-	result.  We precede each printed result by an <EM>output prompt</EM> so
-	as to distinguish the value of the expression from other
-	output that may be printed.<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:teal">[4]</a>
-
-	<div class='snippet' id='javascript_79_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<EM>prompt</EM>, reads an input expression, evaluates this expression in
+	the global environment, and prints the result.  We precede each printed
+	result by an <EM>output prompt</EM> so as to distinguish the value of
+	the expression from other output that may be printed.<a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:teal">[3]</a>
+	<div class='snippet' id='javascript_79_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define input-prompt ";;; M-Eval input:\n")
 (define output-prompt ";;; M-Eval value:\n")
 
@@ -2032,8 +2055,6 @@ function primitive_implementation(fun) {
 
 (define (announce-output string)
   (newline) (display string))
-
-\'METACIRCULAR-EVALUATOR-LOADED
 </pre></div></div>
       </p></div>
     </span>    </td>
@@ -2041,65 +2062,74 @@ function primitive_implementation(fun) {
           <td><span style="color:blue">
       <div class='permalink'>
 <a name='p10' class='permalink'></a><p>
-    
-    
-    For convenience in running the metacircular evaluator, we provide a <EM>
-    driver loop</EM> that models the underlying JavaScript system. It prints a 
-    
-    <EM>prompt</EM>, reads an input expression from a pop-up window,
-    evaluates this expression in a suitable environment, and prints the
-    result on the next pop-up window. We precede each printed
-    result by an <EM>output prompt</EM> so as to distinguish the value of
-    the expression from the output that may be printed.
+	
+	
+	For convenience in running the metacircular evaluator, we provide a
+	<EM>driver loop</EM> that models the the read-eval-print loop of a
+	JavaScript console. It prints a 
+	
+	<EM>prompt</EM> and reads an input program as a string.
+	It then transforms the program string
+	into a tagged-list representation of the statement according to the
+	description in
+	section <REF NAME="sec:representing-expressions"><a class="superscript" id="4.1.4-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>—a
+	process called parsing and accomplished by the primitive function
+	<kbd>parse</kbd>
+	(see exercise).
+	We consider the given program
+	to be in an implicit block such that it can redeclare primitive
+	functions, and thus the driver loop passes the tagged-list
+	representation to the block
+	constructor <kbd>make_block</kbd>
+	given in <REF NAME="sec:representing-expressions"><a class="superscript" id="4.1.4-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>,  and evaluates the
+	result in the global environment. We precede each printed result by
+	an <EM>output prompt</EM> so as to distinguish the value of the
+	program from other output that may be printed. Note that the function
+	<kbd>eval_block</kbd> from
+	section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.4-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> extends the
+	given global environment with bindings for the names declared at the
+	toplevel of the program. Section <REF NAME="sec:env-model-rules"><a class="superscript" id="4.1.4-sec-link-3.2.1" href="./3.2.1.html">3.2.1</a></REF>
+	calls this extended environment the <EM>program environment</EM>.
+	<div class='snippet' id='javascript_79_9_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0oFA5KAGYCuAdgMYAuAlgPakDORATrQLYQzxKqaZ4kKNeqACmANwCGAG2KTKogBQNKbSgBoxpcQEpQAbxyhjzUZWLNSoagwD6DUdMK2JMuTVIBzZaso6jxoFBAPzGKmoBQUEAXNZ2pJJsSuF+kVHGodK0tADWxAAO9gCebABGtNK2UrLJJeWVtM4JST5qOpqi2v7pMXG25PQqkqSUtgAmouTSkszydKStqT2Boa6VA4yUw6MTUzNz9IsdXWnpsTZVM9SSpdKi45PTs8ILKd3LoKvVl8zXt-e7J4HV6+Y66U5Rc52SQMBjUTykJIjRbvZZfGS2GFwhFIyhHLTgj6gKH9ehjagvDGiAAe+VMsPmKIhITE3w25MplRpdNEDMOKTBqJ6JOmZTGkiZRNCbEkOXugiojNFpXFtny+ySCmYDBR6mZRI+ytV5TGRV1+oNPU6hI+JIcAEdiJ1yMlfEL0ujKg6nRRkqJHc77kMFLidW9BRbiX1brRyDlJR9PbYY3H8db3ZC+qZzJYE2jWRjsxYQWoI0SSZJ8vlpNRyMC8z1QpXq2a1u4lAqXi5afS4fy3YK9Zb0jL8ooZp5QABeAB8Bdk8iUE8HoAnYbdOgzvVEzFYzHxACIAKqkHKkWgAdysDCKI0k1OsVjbi+iB50AG4cABfARkRUiZtpDNQRNDXPRDECahCFARQLjpag2ApahxHlP8XkUQRNwMCEi0sVcqyAtVfkQmgUNsTtGRA1dmE8BgP0iL8xGkBxrGg2C7AGNh8loMgxnItDKLILCIKiDYVFAE0imnIgBPoZNaFNDChM-dIxMoUAsjrZjpIYOtSFsHidkefYXh1ST6NUwZ1JvMoKiYKd8PyToxiUoR5jVDUzB3HVMM0TSZDolTRKs0AyCxeFSFEMZ7NAUdFFsac5zChkESivzYwCizgs2UBqidGLm2c8caIYTRkuxSLoqyoI1NAeliGkdSHOfBRFEkodhw+GkFFIPjrWoVhEU6PEbPqUrcrcXkOs6j4KLk-rBtxVzN2qwJcKsC51suGpFHqxqtw9OqzGLbanVJEZht23kGqWS1Yl40RCGoSqgtARjHBYkSgh3PdXM0Y9T3PK8ZLckRKCKJzH0coC31en8fxwOanzZMkkPoKke15PsSw0AlwLSda+koZgnUUFqlHZbs6SIqLdTxg6VnndtFEp7lmHO9c2jLcsmcXFmySp9mZBGgc8c-BGkfnex-R9F1FnG9NsKCKCYIuUQuPB6WA19eXhP1QmHqel60ne5jRFY1W7GmFR7C2ENLpSOj8ctQnyYwgabeDdWHd8Oj1HTV63qYz79Vqp7tVGFJTvNhzI2MN3w89u3veRR32gD-UVfY2wtryjsPcj3xo71l3jrwxPC7UaPA6CU2Q9LnNkYxb1A0UOOonpQvF1DXX-a6GvAh-WvvzwWryoiqLpMUPRZ1AUgGukT9Edk689IM4gjL2Z55k5vwlcgtiLhbnW3mdnpasdnSZcDW3u+G3fVqCQm1Y1ootdl101Do9vQnn6RpHbrEQqvVlBr0Mg8LewIfIF1vvbVOvtNzTRmoEXSwx16byBKZRQMo5Tv1bu3ZBPRO6wJTpQXeTtNyBzrubL6T8y4bQ4lZbYEDMGMjeAQz4GkbB4jUswwEJl3KjQqCiBmmYLhSF+DcO4LCBH9jaBwjIXCVCKAkX8aR-Dt5ySEdIERCiox-0XibEey9QZN0qCmeMAo8b72MLVSS0kLHyUUm8QOtV-LaQcqg-S4CNFQLagpIoq0x4JBSpVGKcUEqz3HqlMY6UtKBQJvQ3mrV2p6O6s5Fw2gBr0CWu48a0SwmCnohLFeUt1ppi6DYo6jdYqynuLnSabcZpuy2mzLGbCBx6OWOmYpv5TFS3CjiH2pZrG0NqnnaSbtBlDRGNHOmGcgjTOKLZSoedxyhNxMs+odM86CkDoTPO4s+n-jMT8NRAJjKaJxoKKpSztFzNUVIi5kCuzaPNN0vKfNHn-BkVcuZ4Y8ZIO+v3b8gQTEnKlrw2Zvj0JWMVrQu5dQKhzKhRg2R+k3nhn1G7VFvzgT-NFumIFgQM4IwIEjJghBWAcCgHARAyB0BYAAEzHJeH0BwTgXCfI8N4N4VTn7xGIGUHcKJjAAB8xVxyPsTZ6vK3TislQaC45QKiiGGKKiVUrBX-xREc8FbKLhbE8J4KKtgazKKsZQAAFvcI1Z8TBJLgpIAaoqABkrrQA2skC5PlU4-WgGtbayQng9WSwuM0T+e9aECtsEak1fFzUixGQeCNsMR6S3uY0WwEbRXRqSV6lyWxqA6NPqG0pFxplLT5V9GNcbTWJsPJW4aaafySybbMzF8qa35rVYW51OiC2KCLSWjclD02lPbaMNZ1bIiE0HcOod-aRG9P1fMPouKYUdLaDY2twb41mu4YeDdlzgQttXSIY9LzBFIpHdu7tNT51LsfcW5dvTJaXtYXJadXbZ09u9Yul9C7T5vvLXYb56iT2wp-WtR1dg60JsPVYg84HnmftIGeyWKG8WvJvbm39D7e0AYHYRoDo6QP9Kw5ur9jSZ0wYI-+hdpG2hjrJWAAAYpAAAGgAWQAKKxFMNWSQLpQAHiRg8I2aN0OgAvBSK1omjSSAPPgMAkhCBagDVamwcQGBOjiJ64YYw7hjGiCpz1lBKD5AYNEEAng5PEFKGgTiwAGA8WYC6AAtMJ716sijAAAFYMA8wwaYXhgA2F07yYAAA2AAzLgMNVtEgqglLRh1NTDV7vrYh0EonxMTEky8DDpTFMeVmJqbyeG6PFlqWOTNTREiiE0M+29fgWPnqsKVySVX0s1Za0R5dZb+mbXoT16pNXMvGuyxa3LB4tpe1xMV-prTMZ8hxvaudJGl2luMYl86HJ5gYx5Gtsbu6psIZmyMvRB52RSaO72eYS2IWsx7DTH10Het4UTTnR6+IMDkeewLNmHNTtJO+6YQg+ImUA7ZS96mwtQc1PB79qxsWV17ePnLNL428KTf3Q2pDmPRBPbZTgoM18T4IJ3WDw9B4icHk0GnI5GaKcuhIT3atYLqt4X6zt1tpSK7s+GWQjbf73tfxh2u4hC37662pzUpjIvmegZcK-PBlOJfy4m9q1rCT+fDaS0nO+8DNf3u19mheA207o5VxYsbOOGGxqyxdpNuMDwWJJ2usnyZNKWI+w7pReJ3e+4Z6AFx47+mOO69jgPvONxDYhRWgitZ6zY7O-jnLybAIp6K5LkQ4m2knbT2Lq38eI8QrXIjvrW3APbdHcr-p55MQlUULQKzouMs69b+3hvELBcTm73RLXPPCNt71x1o6NtK9j47zVhdM+9XkpXpS6lnA6U8EZWgWLrK12GpJkoak9qA8Pj9Q5YmToE+k7qfxUxih1Tla8tqTQ7VRmJKR7Tzi3FeI35OQzvR9-GstRxoX9SUJ8LhP8eJeof90JCAj909ps8RCB-oIDv8kZPd88V4ytADKtYD+UacbYIcMJNB-te82VxNutcC8138CDfskDQBodSC10C8slFpLpKC38atkdIc6C0dL8vdr8GkdoNgeoo0OCvtadBCnRQ9hDho89HdJClA844DYMndzsD1lFdlRMFD0CrAFDzoRCVFJplD6M+0X0lCbd+lnQsg4QvBMlxBskZk8R4UxCrAF1QDJZBcqVGsyZKkqDq9-13DSkrDaAHBkxgIH8bl9AggXDQB1QXUvCkg9kR5apA1Vd8hNYFoclhppIDEl5JZvcEjagVlxo84h8-C8I4j9xtESjJpx8PCH8tk7IMIH9wJoi6ETDmjGs5CWBGto4fIWiDA2judXCl1CiLCIV0koDMjHDlAb0ajmJn8YR7hnD2jODOhPBrVZjiiZ5-U7gvBNjqhv4DRQhKjsFr9CitixpNBDj2gJIli7DREow9iNirVLi7I9AAAeDSdYg4zKAhVYXcWgfcA8AAFWyFqVICkgnCFXvjDwKGrGoCiliAPFAAAGpQAukggVBfgvAoIzRqi9B0TQ8UT0TMSUEZVcTCAzQbjHjjBYgfogTFBQTwTCBRALxqJPAYSRgmBdNk8kTRM0SMTCEsSKS7MqS3jmJCTRN-pBSySwhRS8TDDJTxi2UshcgChGjVkaMb1Ii0hJZrQzVsgxwViegM09IJT5iyj24Y0DELTaTGwCRDS28mlhTgUpgQjZU7CHCloekyTYhtFpx-VB0CS5TOFB0bjQz-TzSgM5jbiF0aSB5jAh4egs5rRAyz8bU0iMiWCsiRgj9ulASqidTRMTxyheIw8b1kTH5B5g4aF24w4H9pJPCH8fDdBEyO4kkvFOikhNT+iujiVhTCi+juzRAx1lhkykyYiDS1TjSQUSl+lEUVl-lizqhdSgh9TtAnTZzdAql1zSkuzqjrjMpdyiEVDbSQzkFVhNyZyXThTgibDPAvTWDkRfTkF-Sb10zPVCMLzCFQgHBRhwyAojzpB7TMwuyYztjNB4zMpqykyhSUy2I0zT9NNli1dpjcR8yrRCyJT-pSzICxgKyVkoZJ1XxYKg4Po6zLQGzGsmyYELiFkDRCYuyhzqiRz2hQzAghzSi2KyKJy3opzryjTWyV0l9TEV92A19uAGU+BcAwC7B4ISJkJUJb9MJh9Hd4N1DECyB-oFKkIUIdDYjiI9L7gEJqxSF6xVKzcR8GNRihIV1apdLSJlKTkYoG1mQG0DwC1Q9AgC1hx2KegPLh1vLjBh0-KByPLKjgrYjnVmAwr3LadE0orE04qAradw0F5Q90r-4iR-L0gPLyQGAhMihQ8CqiqcrwracGTmBgqqrLRcqogPKZRrVMRSgGAGcmqrUWqmBlh6qggPLUSorAhFBqRNBAlEpQAHx0SpJQBerAgPKPNBrjBhrRqZ45wHwPNQBprZrjAPKAAqRamCEaza1aia0AXaza4wbawPJk4AA65a468ah8MALaiq5RA8AAUjuqOrGtngfHeoupmteqD1P0Gvup+rWs-MCSBqZIAEI-VQbvqTqHw4aHIob4q3qPivqVrHrQAvjjA0bUqMapxFqwakbcaHJjroaDwZwsaHrfrQA5x8arqPKZxibNAohSacbWamaqaYaDrTqghZ5jAYbAhD9mR6IHKjKnLoDr1ijpx9Q4oC1NBHKlKZbBgJaQoVayJxNaBSh-NJgyF5blg4pBBxqIqpalLQ9+tMJEF24tbnLTJ6IcBJaEJjKOYthuTpIG0PLDZnoopQ9fbKorrXTCag9IBSBCtir2bw7I7g6Q6GracOrbBYBIBgqk6U647465rE75BOreMoqk7eNM6s7rqDwAA5SQMug6iusu0C4UjWnKe2925haoo2noE28awdWA5Wi2siVFBJF2xSvuphWZUotukcSsDCTumvHRWA24pu-up2ttAiN+JupGP6DkzS4wmrQCN+Z6WwB6ZgICT0-zSQKQXSX4dI284cJu0yu4XECyoSAcj4CcLe98KIXbfc46QodCy6bevCSYvqHMmYhRYBFyNezAw8+CkOhekeyOWM5+noMBu-Xuh29yXW-WqgcaDi2BzYZhUo4uoIVI9WdIt+X+vMvVFIzMzwLIUoKkYB3EK+cwH+hhv+vI0pYgBwdmeCZEOkdgdI22HEzwTQDBg2+1SWSgWgQR2VVvPWsRgwAASGZBjRQKgPXtEaoFAtCAPA+NUbGA8yRhpo4RJAgdvw0dSAUcOh0ftoMZXiMcsbEXkpitkcwYsasYAG0SSA0pHsSZHB1zGsIiT-ocAHGiR0TJHpGvABsAmpSDwABdZTUJwIf0hU8UgJqhNIUq6YM0A8DzPJ-Jgpwpop4pv-S0PhjWSJycIkgAHWk3CZ8dFJcfkZqfQxVLXU4Z3B+3-XKYEd8a8H-qsB6bxCGcqfspCmenyA3iIn4aalEzVRNWYA83JkfEmcoGRM-FqkMlWemY1mkgPHmZ3CWe5XNjznWZ3xEDGF+BQnZhvJNNsXGdIFWekg6fZlMH-QmamaGdWizg+aan9QMUwuMCyckByeKbBfBYKdKZmn2e5SBIDR3EQgSAUDGFqbTVrlrJPKBZsCKqZIhbxZKcQZTMec+epXSMFIPFRcFN+fJdRbIsltoE8HK2knvwcFgmJb8HbLcQyg8TDzASmao0YBQYZfKzpZCgKSinCUnpPyShCQqjSg0m5YSWWHpcZcSDsMmWpB6iAfsOfLxDyTKllYnmiiSOVZCi2Y3kmWOaFdVbYB7uFbVYYvSBeaImejxHNdGCGZEY3lWbIsuaUpuaEr4ZtYeIyZ-APE1GEwGnIAahmGSThayB8zGAPCXj9eua3KHWodofoZ1dzI5aAA')">const input_prompt = "eager-evaluate input: ";
+const output_prompt = "eager-evaluate value: ";
 
-    <div class='snippet' id='javascript_79_8_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEDMFcDsGMBcCWB7aBnCAnZBbUsALAQwAd4BTTUAFgBpQ1yEVpQBGAOjYCgo4lUocgDciAG0hEKACjTwc8euWjCAlKADe3UDszl4kTK0RoA+ozHhTI8ZKTQA5rPnxV2nR88B+HXIXvPHQAuUBNTaCIccmcFN0DAnzFkZABrSBJwyPJTUQloiKjTZCsC6L9XJRU4+NAQsNhUOSJoeFMAEyYxIkwpFhjXAJqfGzFTBvR4ZtaO2C6egWh+yrVBzzqzUUxEIgAjMWyZud7Ufuqa0GHcnO7tvYPO7uPF8uWzwPXTIjQ0RAdoKJap1WCSEVy+Pz+APgSyEVWBwVCZnGbUQC3E1gAHiQ9N8+uU3vFLujkaiWOjyFicT8Ti9YStzh8+MxUO1yOBENBSTSXASQSNTEyFqz2ZyFjDlPSah9GABHSDKWBlHnwjxE0ay+VwMrkOUK7JNChQtCnV4qj57ZCwFJA846NWmC1W8VwhmI0x6AxGcyTQ3KaH4lV20Hoj2GaDeqTkKHOyXxD6kEhiRCwJ4220+BNiACe0hGdmiyBIlCkyEwJrpqlogdtSbkRSsuXlxsLxegbWN+NevIRlGwZdpACIAKrQFLQZAAd1YBqjftA8CzRdCrDzkZCA9UAG5uABfXgwZmsTM5vj0boONDqLQeRDgUDSMLYxA4UnCbKCvp8VRX4GhoygY9TCfF8kDfAUDzFU8AMwC8twCHchDERhQjvB8kVwEhkBgNpwP4T8YG-TRgXGORQB2ZA2izUAAF4IAglgHQok8CO3eISPgUAkhTJCaM4y10VKY1yMouC2MaDjBN4jlGEwVpxDEaQPxZEhHiiChMGNL8q1tHTdL47jL1YwJ2PnKMMkbcgMFonBSGkDEaIAPlAcdrjyUws30bS9O8zwuPEQziPE0ALKsgCSCLNtpHPNAvJ8vTDXM2xLK3ABINKPECiZQBxSAxA46jA1XGRhKzWK4opCg22sFREGwf4-Wkas9MEsq4o8ELWraui8JZCVatQaMv2-IzPFve8wj-cMLOkHK8sI69zkm7L9DDVz5TGVBKuhWbXBGjwEPIJDyCInSluwtkOXINo9p0Pd9sQ5CFs8XtS0UmB6GHUdxynbrD3nRdjo5MLEyzDcRr3PclNYWtWmKNbLNzLEYorE6b1QlyWx6NtjQpEhLx-RaVv-aBcrEPaDqO1H4iWlTatzRtI0U2q60x5o2kRvHKwrTqfJh+t4eNHFYaLLH2w5y8u3B3d9x6lcrhJNFRlxqk8RcV4qeWz1jDMeBMHlenbEZ5FMWxIC9HZzsmq6iVvyatV82kY3lY29ByytnSbaakIiuiJ3KU+PK3a6wIbe3SH6MEfkoeFDkuWeNWbY1pabJSbIGhwTDsNww9Gp8mySGkUp+dKHndOjjoRTjoDVP0SgOx5St3d+oUK9joUSpNJvQ+lqHg3VHVNUVfpkcTp6UPGswzIXcwB71Yf5pVM62wu6ArvJh7AdQsIujrGdo3KfGNcJrW+4d9kNNaPeGoPytu88CnHpVEzz93lx4d4q2faZi+I19QEb9oHfGoY00LuiJlNJK39X4KHhgvPSS0X6XzfhZG691DqP3geAvuM9dRalznFIWv9ZwtHrgoCWQD4h3X2tLEAoAADqx1IDISIM5Um3QqK9y+KZDOpZ2HBSShAUszksgYAnAQZAjBuC0MOI8BYoBiAYHHBxDyHEdjkGUKfSMbQOCgAACoEGOiQQwmFkLFHnAYqRYAug4B2G0FhytLLUm1qAIxehszzmQPgPQkYAKgBgIgXUoQOgtFRFmbctD4AGObiwUAE5EBiDEM5EQlAyLHUzIgK6AE2yhHgBgJaFlQCWPvCTBJ6gTChEwG4mwLQODcBMi5Cy7l9C8WkOoaiTkSlkxln9aSlA5IJLssjLMl4k5YLCJ0wZ3YLigGGWaN0Eyog2MoNIAxRB2YYgljM-G1YfC0zLKs9ZmzemyQDgpSY8TJn0GGbbHS3tKmvQOZc0AA4cC5SQImY6Mj5gsAwMUdccFw6y30gJERpwNYgLCBqOe+ICY1BMgfXiUKtREKNKcVBugxmTwztPJFQ8b5Wx8J0q2dR0B9NOfgtqflRiCSgUgyM+8XD41LjpKlmQojGhTvqWeeDuDpR8oQq+JD57flEmgymY8PBLXqOJKYrJZiyNVrEO2nETDQnYrKr5Tw2VKliFMjwHxNi3H2HKo4YoAzeUSKq6QhrdjGs1UKUopw9VrFYQk8mPcI5y3RI6a0tJR6DBMiVXiPrGKUTRQGoKVLQqsppSVVKngI1ZQSgLXi+c7KOWcsgeGTTFBN15vxJCoqMUny-iVZlNQKrKBwn1Oq0Yo30GTR1CsALulyP5JNFF181YozHsnIgqcwFa3hhSvSX8O2CtaA43E3JYjlp8jbFtvd+Tgl+PVf+3b-WeBMgU2iX8V2Qj9MOzsFY9r7vDEXaaZ6oTavLBZV4e18lJTDq2mJ-IbV3BNQqmdige2DEYK0C9kD312oeN8lkjrLbnC-sB+48qwMQLyOWG2pdu4IR0C+yO8sZUtE-fBmMsLfD6G1cO9VOH7UMQgzyFDDMZCkemKBrV01j3IZVKh7gRSoYYHANgPAhBSDqRoPQRgf1OAACYMPaxnpYawNGOROHxKMk+4zIBLP7DyUAAAfDTTVIW6zk2CrThTdJhHIsgfYzRw2Ap6TrIgDgHBXVMDDGEkTsiTAcARzWYY3R7LBQAMl8-I8gaywXUVC+Y1ztnn293GVkMFvbMWmDc-ZnCTnBylDBh6oFRc4aUdiIprzjzzkKRhVFz1bor1dry09KVNm7MOdS92gcFWWgZas3I5rAHYsKeq1gwrRALl9YuTC4amW-odaPepnrJ9BtnP68Vhui6yvSomBqhjZrJsBBq4l2zyXHNWsHHR3DTxWsSfwNh+jcGtW5dcFTJaM2VlBfZkVp1I22sxMO+RlkTGNuSt6496Qz3nvDdK0CsIMGjvraq5thLSX6v7ca+Dz70ATu90R2tijXWfvFoK-95793huLaBWjy7QpvtQ9+9N3Hc2AfU+B6NuRYRy4rzjnF6HSnau7YawoD6TPK4LBR2V3nbcGIqR6GpOurOKc4+C0DhuIO-pC9FAxDu3W2fS6e9T2XurCfWcHatCdkvsf-jCLDlL8PufPPHT6Yh8ABdAqt-Sw9U6nGG88-+fHcv6cxOWyiRWJsVbfoI1t03e25Awjzc8hWZIlaUkcSwO3f0-am2xFdV3S0+Z6HADCNgOu5FJ8wC7UhN2pteYz2yGEonc-vdQNW-24h-RY7d9DVVYCs+0gAMxV8EJC7leLG-B523DsPg5cXkAT3IzlODB46tyUHrBTmByj4HEJxlXfpy9-1Nb1F3WMpS-d1Tobnu3vd6xWQLMU-oWr9uwliZN95cM7MDvOlf8G9kLn+z8IpMaeH7f2viAzNn8bd55r9Kdgs78vdBABUt8-Qi8RkS9-wtdZ979vczAfVXcm83QQ8ucf0BwfVx8YlJ80DVc99m8w9cCuIUhl8GAeRkDBAQ0VdG8MCPddVaDJN0kUxIdi81djcOch9X8cD2Djs-9WZ4BXpiCjdWBmDXBhCRY2Yi9391dv9Zsf9pC-8MZZDsZpBCw4DuDJMJltC-9EEigND2YDCQDFCDDWDloWYTDmxOZzCEDqdLDpYONPUuMeN8BiAyAUk6AGAmA5FOB29TsTc9ZogMQPMlp7JQtaJdZ5QrDJ905M4qooZpBRcsh1JkYy1f1PB08rUBxEisJkjPVl8I80jxcNJ6Asi2Not0IeEs4UjwAIiYdB8zcw9wAPoCj6jijDDPVq4xda4NJFImiT4y8s92j2AejZZQ0TxhjS8W9M9FJ6BK8rDo4a0BoGpGj8t-xRjFjQBO94j+1sgO1ppxgtpZjti8jjikoqDTi-Q-8JpwFh0LJzjJMsCrU70Bwri8h8DIDHjGlbjARnitjJCD8FJni-8FQkgfhHBqphB+o11oRN0SD5xqdqjBcACBR+jcwqhgTAtgs0SgVISJFsgdgTx+j1YNAE0cisEfNuMsh71pYTIXNrBsVz81iETeJOltwaiWSz9YT4TowkSJD5kv8CS-pJ86SohC4RF6AQoXiXF+sywWp+E8gApj9WBJTsgaVNSrwqTkTHkdSVj+iBZFJ+jdTd9kTntDSICVwMRKpq0apa0GplTchMivhsghTx5pB9hHBIlpT2U2kwsfSHA-TXS4EagloiTGAHQcwI8PAJSsTlS4zAg00oinIfMMQG1QiuYwzG5g4yJ3TYSi1QAH5N57xgy-TBJ1AAAeTiZQEMgga1fycM+IF6MsAcXRZIUAGyaAKic8FTGAhgdIRMDJNodcUAAAaiM28jkC2EcFvBzCrMnOeQ+mXKblnLkwXKbMLWLNLKPg8DbOkA7K7PAHIAnGggcAHJISHPCiTCunHKnPXL03nPAEXJEXUCnKoIHDXJ8g3JfJzFzPdXVL4lSHSGI2mhLmyI8CXRUEc2SALk9M8F7jQBTEWBdObP3Ophvy-yrOTOmQlDgsLBHXzKjLk35KdMBAXTwpCFKBojC0eVwvzKDEeUeVzLwoRBQos2eyrIbWp0ApVCoXiAhVP2nnZMFKqA8yg3uSVPpOeRHHImwmESiH+XRRLI3kwuMiCk1N4iMM1OxLUFUq3SCh3V8FQtNKyG1U0jNLnSYqwAspCnMqiBGxSmpJPh3TCwaSShzSbmGGkv9PIA+gADksg-FkI1FwBSxPl0dUB-km4QgUEBLBhBKMCCKkgiKxT2tcQ-hwLIFILcgKTBgYLhBCKEKcSJVoKytOK0KZSVSdDMEP8JlGK4phhYK0qC52LSKYSxKGoqK2oaKQroi8T2Ymq2ofBpAUSBt-s2LbLpl-1TAWKprmzZTxBnU9I7k+wjzxwAIsqOTvyJz2L4gBxRCzsVtrz5JJwroNxQBVqpQGAzLuL3zeKLl+LzgEIVQQEJQ6KYiDFeTRLHT1iWhJKK0-LILPoFLslaKgYOsVKBL1LyqxIsptLaJdKsSKFbQloqrHKtTQUdSbK9JNSTSdTiz74krBhIzWr4L9K-85rANEM8rxACqkLKqzL0LC0NKttGr3yCUhA-KBwOR1IIhEk2z+qohM0OIIrsINxiUlLjpBqGKuafIfA5qFrgswzlqxAbqOL7rqceKJqwTmzdzpydBn5+idKMS9K0aMazKCbtTrKI8CaHKibn1XDZZ3DcBPD+MfChN-CYlOBqBTtJ9gJXx3xPUHwM4NbcSF8g7QIx96BnxEx7izBo7EAwIGiCIHDXiWjQ9oQoIBxk63wfjWB87sh479goRUwvwM6VU6wFioIc9n0TJi7s4Fho0rV4QF8UQ0BEwiBQZ6B4hO7u6qJbQ8z4gF82yqCpK+w9IR7AgF8JyJ7dI7Irk2knJ7Ipyh6Z7fI8iABaBenSJemZFe0AeybemZHQTejwBfAAKj3ttAPqzCPvsivrPuup5gX2AFvvOHvsftADAA3rfryIAFJP6ahv6M17JAGX6L6dAF9oiQHPAwH2lj6vrD6AGyCABCULeBjwRB1e0ATB2iB+tB6EAcas7BhBzMw+8B0AWsnQIh9uvI6s6ichnQXB5Bphuh6B6ukhhyFh1hyhh+6hpyTh4ho8hyZhvu-egRn+8RkRhhjBvhnQeyTwJBnQdBjwcI+EOCRurYECFOtOc7VusPBfc6EUS6+gUxy6NoLhmaresg4KwKkBhxmx2xmBvIgASWgD517p0E8e8ZcdcYXxskiVMAAAV3GF7gmCAwn3HNb8y4JOFbzz8m607oAzwYIrzWgYZ5TAIORTBzpMBswyKAArIgUQFCrYMgYi3SJu0um3CugiPGjwfs69bJzcQIG0vwgwDIbqwEDzHR58YO5ujHdlGiFUNNO8JBg0rmFJtw4sgZvR1O3okKMZ84CZjNQO3RoZlI+7Ro78Gy2Z12+ZoKJuw7SSAqNZ2ySZpyaZ+gU5wx45rKe5061oFZi5modZqZ0EoYgJnQZ5poEhYsyMu0qtcigG6EPNBMKtVIrZmO4Z8DGqg6lxWF-RwvSYHDHiyF8KaFw5w8AWegJF-59F15pKCWPNZkqeNk-6hEltJkn6hwJIHYckalqERFFaHpllhqOCU7JhSgM2fmrQnYYp-whQngjaOooo2WQV4VhAbsHwfIjCQotoaJVAPawMP8hwLc6OMogY5sIVkVj89V58zV18t6KYjuZAfV2Vw120Uh3p+AXh+EEIS1mV+ABuoKDkIxVobEDCfKZ5AAWW3oAFFchlwvX1xtwTIsJ4AvWzZfXeIBxA2Q3xBQBo3w3nltxTs2gtg3wC82r9L6ACBVVSxBGx4TJPXIA-WfXsUVli3MAqIpyK3vWeMyBiyIVoAvWUHOkgadAB6ugcxF849BAFFYQOg2gMt744an4TnsAHAxdeJRdGAHwO3K3iaPATIo1eIY1QUfW53Ih40LSEbSJG1SXU1bI0zM1s0VEmng4o013jagpV4JxYTeJK0qp7XvSC1kYT3VSGTzgTIcRX2aNohd2xd6An2izM3zhs39G83KaIOJRC262G3nkAAdVD5HH81x0aFd5t+Nxt3D5cgcdDzD-a7DzwNNytuN7FZcjVrc3lgvJ8QEHEEVIC9jGD3NkqgHelxl5luEiinAsGIAA')">const input_prompt = "M-Eval input: ";
-const output_prompt = "M-Eval output: ";
-
-function driver_loop(env, history) {
-    const input = prompt(history + input_prompt);
+function driver_loop(env) {
+    const input = user_read(input_prompt);
     if (input === null) {
-        display("session has ended");
+        display("evaluator terminated");
     } else {
         const program = parse(input);
-        const locals = local_names(program);	    
-        const temp_values = map(x => no_value_yet,
-                                locals);
-        const new_env = extend_environment(locals, temp_values, env);
-        const res = evaluate(program, new_env);
-
-        driver_loop(new_env, history + "\\n" + 
-                             input_prompt + input + "\\n" +
-                             output_prompt + stringify(user_print(res)));
+        const locals = scan_out_declarations(program);
+        const unassigneds = map(x => unassigned, locals);
+        const program_env = extend_environment(locals, unassigneds, env);
+        const output = evaluate(program, program_env);
+        user_print(output_prompt, output);
+        driver_loop(program_env);
     }
 }
 
 </pre></div></div>
-    We transform the input string that is read by <kbd>prompt</kbd>
-    into a tagged-list representation of the statement according to the description in
-    section 4.1.2, a process called parsing and accomplished by the primitive function
-    <kbd>parse</kbd>. Similar to the evaluation of
-    blocks in <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.4-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>, we create a new environment by
-    extending the given environment by a binding of the local names in the program
-    to the special value <kbd>no_value_yet</kbd>, and
-    evaluate the program with respect to the new environment. Passing the new
-    environment in the recursive call of <kbd>driver_loop</kbd>
-    ensures that subsequent programs can refer to previously declared names.
       </p></div>
     </span></td></tr></table>
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p11' class='permalink'></a><p>
-  We use a special printing
-  <span style="color:teal">procedure <kbd>user-print</kbd></span>
-  <span style="color:blue">function <kbd>user_print</kbd></span>, 
-  to avoid printing the environment part of a compound
-  <span style="color:teal">procedure</span><span style="color:blue">function</span>, which may be a very long list
-  (or may even contain cycles).
-
-  <table width="100%">
+    We use a special printing
+    
+      <span style="color:teal">procedure <kbd>user-print</kbd>,</span>
+      <span style="color:blue">function <kbd>user_print</kbd>,
+      </span>
+    
+    to avoid printing the environment part of a compound
+    
+      <span style="color:teal">procedure,</span>
+      <span style="color:blue">function,</span>
+    
+    which may be a very long list (or may even contain cycles).
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_79_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_79_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (user-print object)
   (if (compound-procedure? object)
       (display (list \'compound-procedure
@@ -2108,85 +2138,149 @@ function driver_loop(env, history) {
                      \'<procedure-env>))
       (display object)))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_79_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function user_print(object) {
-   return is_compound_function(object)
-       ? "compound function" +
-         stringify(function_parameters(object)) +
-         stringify(function_body(object)) +
-         "<environment>"
-       : object;
+            <td><div class='snippet' id='javascript_79_10_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0oFA5KAGYCuAdgMYAuAlgPakDORATrQLYQzxKqaZ4kKNeqACmANwCGAG2KTKogBQNKbSgBoxpcQEpQAbxyhjzUZWLNSoagwD6DUdMK2JMuTVIBzZaso6jxoFBAPzGKmoBQUEAXNZ2pJJsSuF+kVHGodK0tADWxAAO9gCebABGtNK2UrLJJeWVtM4JST5qOpqi2v7pMXG25PQqkqSUtgAmouTSkszydKStqT2Boa6VA4yUw6MTUzNz9IsdXWnpsTZVM9SSpdKi45PTs8ILKd3LoKvVl8zXt-e7J4HV6+Y66U5Rc52SQMBjUTykJIjRbvZZfGS2GFwhFIyhHLTgj6gKH9ehjagvDGiAAe+VMsPmKIhITE3w25MplRpdNEDMOKTBqJ6JOmZTGkiZRNCbEkOXugiojNFpXFtny+ySCmYDBR6mZRI+ytV5TGRV1+oNPU6hI+JIcAEdiJ1yMlfEL0ujKg6nRRkqJHc77kMFLidW9BRbiX1brRyDlJR9PbYY3H8db3ZC+qZzJYE2jWRjsxYQWoI0SSZJ8vlpNRyMC8z1QpXq2a1u4lAqXi5afS4fy3YK9Zb0jL8ooZp5QABeAB8Bdk8iUE8HoAnYbdOgzvVEzFYzHxACIAKqkHKkWgAdysDCKI0k1OsVjbi+iB50AG4cABfARkRUiZtpDNQRNDXPRDECahCFARQLjpag2ApahxHlP8XkUQRNwMCEi0sVcqyAtVfkQmgUNsTtGRA1dmE8BgP0iL8xGkBxrGg2C7AGNh8loMgxnItDKLILCIKiDYVFAE0imnIgBPoZNaFNDChM-dIxMoUAsjrZjpIYOtSFsHidkefYXh1ST6NUwZ1JvMoKiYKd8PyToxiUoR5jVDUzB3HVMM0TSZDolTRKs0AyCxeFSFEMZ7NAUdFFsac5zChkESivzYwCizgs2UBqidGLm2c8caIYTRkuxSLoqyoI1NAeliGkdSHOfBRFEkodhw+GkFFIPjrWoVhEU6PEbPqUrcrcXkOs6j4KLk-rBtxVzN2qwJcKsC51suGpFHqxqtw9OqzGLbanVJEZht23kGqWS1Yl40RCGoSqgtARjHBYkSgh3PdXM0Y9T3PK8ZLckRKCKJzH0coC31en8fxwOanzZMkkPoKke15PsSw0AlwLSda+koZgnUUFqlHZbs6SIqLdTxg6VnndtFEp7lmHO9c2jLcsmcXFmySp9mZBGgc8c-BGkfnex-R9F1FnG9NsKCKCYIuUQuPB6WA19eXhP1QmHqel60ne5jRFY1W7GmFR7C2ENLpSOj8ctQnyYwgabeDdWHd8Oj1HTV63qYz79Vqp7tVGFJTvNhzI2MN3w89u3veRR32gD-UVfY2wtryjsPcj3xo71l3jrwxPC7UaPA6CU2Q9LnNkYxb1A0UOOonpQvF1DXX-a6GvAh-WvvzwWryoiqLpMUPRZ1AUgGukT9Edk689IM4gjL2Z55k5vwlcgtiLhbnW3mdnpasdnSZcDW3u+G3fVqCQm1Y1ootdl101Do9vQnn6RpHbrEQqvVlBr0Mg8LewIfIF1vvbVOvtNzTRmoEXSwx16byBKZRQMo5Tv1bu3ZBPRO6wJTpQXeTtNyBzrubL6T8y4bQ4lZbYEDMGMjeAQz4GkbB4jUswwEJl3KjQqCiBmmYLhSF+DcO4LCBH9jaBwjIXCVCKAkX8aR-Dt5ySEdIERCiox-0XibEey9QZN0qCmeMAo8b72MLVSS0kLHyUUm8QOtV-LaQcqg-S4CNFQLagpIoq0x4JBSpVGKcUEqz3HqlMY6UtKBQJvQ3mrV2p6O6s5Fw2gBr0CWu48a0SwmCnohLFeUt1ppi6DYo6jdYqynuLnSabcZpuy2mzLGbCBx6OWOmYpv5TFS3CjiH2pZrG0NqnnaSbtBlDRGNHOmGcgjTOKLZSoedxyhNxMs+odM86CkDoTPO4s+n-jMT8NRAJjKaJxoKKpSztFzNUVIi5kCuzaPNN0vKfNHn-BkVcuZ4Y8ZIO+v3b8gQTEnKlrw2Zvj0JWMVrQu5dQKhzKhRg2R+k3nhn1G7VFvzgT-NFumIFgQM4IwIEjJghBWAcCgHARAyB0BYAAEzHJeH0BwTgXCfI8N4N4VTn7xGIGUHcKJjAAB8xVxyPsTZ6vK3TislQaC45QKiiGGKKiVUrBX-xREc8FbKLhbE8J4KKtgazKKsZQAAFvcI1Z8TBJLgpIAaoqABkrrQA2skC5PlU4-WgGtbayQng9WSwuM0T+e9aECtsEak1fFzUixGQeCNsMR6S3uY0WwEbRXRqSV6lyWxqA6NPqG0pFxplLT5V9GNcbTWJsPJW4aaafySybbMzF8qa35rVYW51OiC2KCLSWjclD02lPbaMNZ1bIiE0HcOod-aRG9P1fMPouKYUdLaDY2twb41mu4YeDdlzgQttXSIY9LzBFIpHdu7tNT51LsfcW5dvTJaXtYXJadXbZ09u9Yul9C7T5vvLXYb56iT2wp-WtR1dg60JsPVYg84HnmftIGeyWKG8WvJvbm39D7e0AYHYRoDo6QP9Kw5ur9jSZ0wYI-+hdpG2hjrJWAAAYpAAAGgAWQAKKxFMNWSQLpQAHiRg8I2aN0OgAvBSK1omjSSAPPgMAkhCBagDVamwcQGBOjiJ64YYw7hjGiCpz1lBKD5AYNEEAng5PEFKGgTiwAGA8WYC6AAtMJ716sijAAAFYMA8wwaYXhgA2F07yYAAA2AAzLgMNVtEgqglLRh1NTDV7vrYh0EonxMTEky8DDpTFMeVmJqbyeG6PFlqWOTNTREiiE0M+29fgWPnqsKVySVX0s1Za0R5dZb+mbXoT16pNXMvGuyxa3LB4tpe1xMV-prTMZ8hxvaudJGl2luMYl86HJ5gYx5Gtsbu6psIZmyMvRB52RSaO72eYS2IWsx7DTH10Het4UTTnR6+IMDkeewLNmHNTtJO+6YQg+ImUA7ZS96mwtQc1PB79qxsWV17ePnLNL428KTf3Q2pDmPRBPbZTgoM18T4IJ3WDw9B4icHk0GnI5GaKcuhIT3atYLqt4X6zt1tpSK7s+GWQjbf73tfxh2u4hC37662pzUpjIvmegZcK-PBlOJfy4m9q1rCT+fDaS0nO+8DNf3u19mheA207o5VxYsbOOGGxqyxdpNuMDwWJJ2usnyZNKWI+w7pReJ3e+4Z6AFx47+mOO69jgPvONxDYhRWgitZ6zY7O-jnLybAIp6K5LkQ4m2knbT2Lq38eI8QrXIjvrW3APbdHcr-p55MQlUULQKzouMs69b+3hvELBcTm73RLXPPCNt71x1o6NtK9j47zVhdM+9XkpXpS6lnA6U8EZWgWLrK12GpJkoak9qA8Pj9Q5YmToE+k7qfxUxih1Tla8tqTQ7VRmJKR7Tzi3FeI35OQzvR9-GstRxoX9SUJ8LhP8eJeof90JCAj909ps8RCB-oIDv8kZPd88V4ytADKtYD+UacbYIcMJNB-te82VxNutcC8138CDfskDQBodSC10C8slFpLpKC38atkdIc6C0dL8vdr8GkdoNgeoo0OCvtadBCnRQ9hDho89HdJClA844DYMndzsD1lFdlRMFD0CrAFDzoRCVFJplD6M+0X0lCbd+lnQsg4QvBMlxBskZk8R4UxCrAF1QDJZBcqVGsyZKkqDq9-13DSkrDaAHBkxgIH8bl9AggXDQB1QXUvCkg9kR5apA1Vd8hNYFoclhppIDEl5JZvcEjagVlxo84h8-C8I4j9xtESjJpx8PCH8tk7IMIH9wJoi6ETDmjGs5CWBGto4fIWiDA2judXCl1CiLCIV0koDMjHDlAb0ajmJn8YR7hnD2jODOhPBrVZjiiZ5-U7gvBNjqhv4DRQhKjsFr9CitixpNBDj2gJIli7DREow9iNirVLi7I9AAAeDSdYg4zKAhVYXcWgfcA8AAFWyFqVICkgnCFXvjDwKGrGoCiliAPFAAAGpQAukggVBfgvAoIzRqi9B0TQ8UT0TMSUEZVcTCAzQbjHjjBYgfogTFBQTwTCBRALxqJPAYSRgmBdNk8kTRM0SMTCEsSKS7MqS3jmJCTRN-pBSySwhRS8TDDJTxi2UshcgChGjVkaMb1Ii0hJZrQzVsgxwViegM09IJT5iyj24Y0DELTaTGwCRDS28mlhTgUpgQjZU7CHCloekyTYhtFpx-VB0CS5TOFB0bjQz-TzSgM5jbiF0aSB5jAh4egs5rRAyz8bU0iMiWCsiRgj9ulASqidTRMTxyheIw8b1kTH5B5g4aF24w4H9pJPCH8fDdBEyO4kkvFOikhNT+iujiVhTCi+juzRAx1lhkykyYiDS1TjSQUSl+lEUVl-lizqhdSgh9TtAnTZzdAql1zSkuzqjrjMpdyiEVDbSQzkFVhNyZyXThTgibDPAvTWDkRfTkF-Sb10zPVCMLzCFQgHBRhwyAojzpB7TMwuyYztjNB4zMpqykyhSUy2I0zT9NNli1dpjcR8yrRCyJT-pSzICxgKyVkoZJ1XxYKg4Po6zLQGzGsmyYELiFkDRCYuyhzqiRz2hQzAghzSi2KyKJy3opzryjTWyV0l9TEV92A19uAGU+BcAwC7B4ISJkJUJb9MJh9Hd4N1DECyB-oFKkIUIdDYjiI9L7gEJqxSF6xVKzcR8GNRihIV1apdLSJlKTkYoG1mQG0DwC1Q9AgC1hx2KegPLh1vLjBh0-KByPLKjgrYjnVmAwr3LadE0orE04qAradw0F5Q90r-4iR-L0gPLyQGAhMihQ8CqiqcrwracGTmBgqqrLRcqogPKZRrVMRSgGAGcmqrUWqmBlh6qggPLUSorAhFBqRNBAlEpQAHx0SpJQBerAgPKPNBrjBhrRqZ45wHwPNQBprZrjAPKAAqRamCEaza1aia0AXaza4wbawPJk4AA65a468ah8MALaiq5RA8AAUjuqOrGtngfHeoupmteqD1P0Gvup+rWs-MCSBqZIAEI-VQbvqTqHw4aHIob4q3qPivqVrHrQAvjjA0bUqMapxFqwakbcaHJjroaDwZwsaHrfrQA5x8arqPKZxibNAohSacbWamaqaYaDrTqghZ5jAYbAhD9mR6IHKjKnLoDr1ijpx9Q4oC1NBHKlKZbBgJaQoVayJxNaBSh-NJgyF5blg4pBBxqIqpalLQ9+tMJEF24tbnLTJ6IcBJaEJjKOYthuTpIG0PLDZnoopQ9fbKorrXTCag9IBSBCtir2bw7I7g6Q6GracOrbBYBIBgqk6U647465rE75BOreMoqk7eNM6s7rqDwAA5SQMug6iusu0C4UjWnKe2925haoo2noE28awdWA5Wi2siVFBJF2xSvuphWZUotukcSsDCTumvHRWA24pu-up2ttAiN+JupGP6DkzS4wmrQCN+Z6WwB6ZgICT0-zSQKQXSX4dI284cJu0yu4XECyoSAcj4CcLe98KIXbfc46QodCy6bevCSYvqHMmYhRYBFyNezAw8+CkOhekeyOWM5+noMBu-Xuh29yXW-WqgcaDi2BzYZhUo4uoIVI9WdIt+X+vMvVFIzMzwLIUoKkYB3EK+cwH+hhv+vI0pYgBwdmeCZEOkdgdI22HEzwTQDBg2+1SWSgWgQR2VVvPWsRgwAASGZBjRQKgPXtEaoFAtCAPA+NUbGA8yRhpo4RJAgdvw0dSAUcOh0ftoMZXiMcsbEXkpitkcwYsasYAG0SSA0pHsSZHB1zGsIiT-ocAHGiR0TJHpGvABsAmpSDwABdZTUJwIf0hU8UgJqhNIUq6YM0A8DzPJ-Jgpwpop4pv-S0PhjWSJycIkgAHWk3CZ8dFJcfkZqfQxXU4Z3CImeiD0MnyA3mRM0DjjdnvwcCZIwEFKZXfDfEQYNFSJod1vofsOfLa3fCAA')">function user_print(prompt_string, object) {
+   function to_string(object) {	
+       return is_compound_function(object)
+              ? "<compound-function>"
+              : is_primitive_function(object)
+	      ? "<primitive-function>"
+	      : is_pair(object)
+	      ? "[" + to_string(head(object)) + ", "
+	            + to_string(tail(object)) + "]"
+	      : stringify(object);
+    }
+    display(prompt_string + to_string(object));
 }
-</pre></div></div></td></tr></table>
-      </p></div>
 
-      <div class='permalink'>
+</pre></div></div></td></tr></table>
+    <div class='snippet' id='javascript_79_11_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0oFA5KAGYCuAdgMYAuAlgPakDORATrQLYQzxKqaZ4kKNeqACmANwCGAG2KTKogBQNKbSgBoxpcQEpQAbxyhjzUZWLNSoagwD6DUdMK2JMuTVIBzZaso6jxoFBAPzGKmoBQUEAXNZ2pJJsSuF+kVHGodK0tADWxAAO9gCebABGtNK2UrLJJeWVtM4JST5qOpqi2v7pMXG25PQqkqSUtgAmouTSkszydKStqT2Boa6VA4yUw6MTUzNz9IsdXWnpsTZVM9SSpdKi45PTs8ILKd3LoKvVl8zXt-e7J4HV6+Y66U5Rc52SQMBjUTykJIjRbvZZfGS2GFwhFIyhHLTgj6gKH9ehjagvDGiAAe+VMsPmKIhITE3w25MplRpdNEDMOKTBqJ6JOmZTGkiZRNCbEkOXugiojNFpXFtny+ySCmYDBR6mZRI+ytV5TGRV1+oNPU6hI+JIcAEdiJ1yMlfEL0ujKg6nRRkqJHc77kMFLidW9BRbiX1brRyDlJR9PbYY3H8db3ZC+qZzJYE2jWRjsxYQWoI0SSZJ8vlpNRyMC8z1QpXq2a1u4lAqXi5afS4fy3YK9Zb0jL8ooZp5QABeAB8Bdk8iUE8HoAnYbdOgzvVEzFYzHxACIAKqkHKkWgAdysDCKI0k1OsVjbi+iB50AG4cABfARkRUiZtpDNQRNDXPRDECahCFARQLjpag2ApahxHlP8XkUQRNwMCEi0sVcqyAtVfkQmgUNsTtGRA1dmE8BgP0iL8xGkBxrGg2C7AGNh8loMgxnItDKLILCIKiDYVFAE0imnIgBPoZNaFNDChM-dIxMoUAsjrZjpIYOtSFsHidkefYXh1ST6NUwZ1JvMoKiYKd8PyToxiUoR5jVDUzB3HVMM0TSZDolTRKs0AyCxeFSFEMZ7NAUdFFsac5zChkESivzYwCizgs2UBqidGLm2c8caIYTRkuxSLoqyoI1NAeliGkdSHOfBRFEkodhw+GkFFIPjrWoVhEU6PEbPqUrcrcXkOs6j4KLk-rBtxVzN2qwJcKsC51suGpFHqxqtw9OqzGLbanVJEZht23kGqWS1Yl40RCGoSqgtARjHBYkSgh3PdXM0Y9T3PK8ZLckRKCKJzH0coC31en8fxwOanzZMkkPoKke15PsSw0AlwLSda+koZgnUUFqlHZbs6SIqLdTxg6VnndtFEp7lmHO9c2jLcsmcXFmySp9mZBGgc8c-BGkfnex-R9F1FnG9NsKCKCYIuUQuPB6WA19eXhP1QmHqel60ne5jRFY1W7GmFR7C2ENLpSOj8ctQnyYwgabeDdWHd8Oj1HTV63qYz79Vqp7tVGFJTvNhzI2MN3w89u3veRR32gD-UVfY2wtryjsPcj3xo71l3jrwxPC7UaPA6CU2Q9LnNkYxb1A0UOOonpQvF1DXX-a6GvAh-WvvzwWryoiqLpMUPRZ1AUgGukT9Edk689IM4gjL2Z55k5vwlcgtiLhbnW3mdnpasdnSZcDW3u+G3fVqCQm1Y1ootdl101Do9vQnn6RpHbrEQqvVlBr0Mg8LewIfIF1vvbVOvtNzTRmoEXSwx16byBKZRQMo5Tv1bu3ZBPRO6wJTpQXeTtNyBzrubL6T8y4bQ4lZbYEDMGMjeAQz4GkbB4jUswwEJl3KjQqCiBmmYLhSF+DcO4LCBH9jaBwjIXCVCKAkX8aR-Dt5ySEdIERCiox-0XibEey9QZN0qCmeMAo8b72MLVSS0kLHyUUm8QOtV-LaQcqg-S4CNFQLagpIoq0x4JBSpVGKcUEqz3HqlMY6UtKBQJvQ3mrV2p6O6s5Fw2gBr0CWu48a0SwmCnohLFeUt1ppi6DYo6jdYqynuLnSabcZpuy2mzLGbCBx6OWOmYpv5TFS3CjiH2pZrG0NqnnaSbtBlDRGNHOmGcgjTOKLZSoedxyhNxMs+odM86CkDoTPO4s+n-jMT8NRAJjKaJxoKKpSztFzNUVIi5kCuzaPNN0vKfNHn-BkVcuZ4Y8ZIO+v3b8gQTEnKlrw2Zvj0JWMVrQu5dQKhzKhRg2R+k3nhn1G7VFvzgT-NFumIFgQM4IwIEjJghBWAcCgHARAyB0BYAAEzHJeH0BwTgXCfI8N4N4VTn7xGIGUHcKJjAAB8xVxyPsTZ6vK3TislQaC45QKiiGGKKiVUrBX-xREc8FbKLhbE8J4KKtgazKKsZQAAFvcI1Z8TBJLgpIAaoqABkrrQA2skC5PlU4-WgGtbayQng9WSwuM0T+e9aECtsEak1fFzUixGQeCNsMR6S3uY0WwEbRXRqSV6lyWxqA6NPqG0pFxplLT5V9GNcbTWJsPJW4aaafySybbMzF8qa35rVYW51OiC2KCLSWjclD02lPbaMNZ1bIiE0HcOod-aRG9P1fMPouKYUdLaDY2twb41mu4YeDdlzgQttXSIY9LzBFIpHdu7tNT51LsfcW5dvTJaXtYXJadXbZ09u9Yul9C7T5vvLXYb56iT2wp-WtR1dg60JsPVYg84HnmftIGeyWKG8WvJvbm39D7e0AYHYRoDo6QP9Kw5ur9jSZ0wYI-+hdpG2hjrJWAAAYpAAAGgAWQAKKxFMNWSQLpQAHiRg8I2aN0OgAvBSK1omjSSAPPgMAkhCBagDVamwcQGBOjiJ64YYw7hjGiCpz1lBKD5AYNEEAng5PEFKGgTiwAGA8WYC6AAtMJ716sijAAAFYMA8wwaYXhgA2F07yYAAA2AAzLgMNVtEgqglLRh1NTDV7vrYh0EonxMTEky8DDpTFMeVmJqbyeG6PFlqWOTNTREiiE0M+29fgWPnqsKVySVX0s1Za0R5dZb+mbXoT16pNXMvGuyxa3LB4tpe1xMV-prTMZ8hxvaudJGl2luMYl86HJ5gYx5Gtsbu6psIZmyMvRB52RSaO72eYS2IWsx7DTH10Het4UTTnR6+IMDkeewLNmHNTtJO+6YQg+ImUA7ZS96mwtQc1PB79qxsWV17ePnLNL428KTf3Q2pDmPRBPbZTgoM18T4IJ3WDw9B4icHk0GnI5GaKcuhIT3atYLqt4X6zt1tpSK7s+GWQjbf73tfxh2u4hC37662pzUpjIvmegZcK-PBlOJfy4m9q1rCT+fDaS0nO+8DNf3u19mheA207o5VxYsbOOGGxqyxdpNuMDwWJJ2usnyZNKWI+w7pReJ3e+4Z6AFx47+mOO69jgPvONxDYhRWgitZ6zY7O-jnLybAIp6K5LkQ4m2knbT2Lq38eI8QrXIjvrW3APbdHcr-p55MQlUULQKzouMs69b+3hvELBcTm73RLXPPCNt71x1o6NtK9j47zVhdM+9XkpXpS6lnA6U8EZWgWLrK12GpJkoak9qA8Pj9Q5YmToE+k7qfxUxih1Tla8tqTQ7VRmJKR7Tzi3FeI35OQzvR9-GstRxoX9SUJ8LhP8eJeof90JCAj909ps8RCB-oIDv8kZPd88V4ytADKtYD+UacbYIcMJNB-te82VxNutcC8138CDfskDQBodSC10C8slFpLpKC38atkdIc6C0dL8vdr8GkdoNgeoo0OCvtadBCnRQ9hDho89HdJClA844DYMndzsD1lFdlRMFD0CrAFDzoRCVFJplD6M+0X0lCbd+lnQsg4QvBMlxBskZk8R4UxCrAF1QDJZBcqVGsyZKkqDq9-13DSkrDaAHBkxgIH8bl9AggXDQB1QXUvCkg9kR5apA1Vd8hNYFoclhppIDEl5JZvcEjagVlxo84h8-C8I4j9xtESjJpx8PCH8tk7IMIH9wJoi6ETDmjGs5CWBGto4fIWiDA2judXCl1CiLCIV0koDMjHDlAb0ajmJn8YR7hnD2jODOhPBrVZjiiZ5-U7gvBNjqhv4DRQhKjsFr9CitixpNBDj2gJIli7DREow9iNirVLi7I9AAAeDSdYg4zKAhVYXcWgfcA8AAFWyFqVICkgnCFXvjDwKGrGoCiliAPFAAAGpQAukggVBfgvAoIzRqi9B0TQ8UT0TMSUEZVcTCAzQbjHjjBYgfogTFBQTwTCBRALxqJPAYSRgmBdNk8kTRM0SMTCEsSKS7MqS3jmJCTRN-pBSySwhRS8TDDJTxi2UshcgChGjVkaMb1Ii0hJZrQzVsgxwViegM09IJT5iyj24Y0DELTaTGwCRDS28mlhTgUpgQjZU7CHCloekyTYhtFpx-VB0CS5TOFB0bjQz-TzSgM5jbiF0aSB5jAh4egs5rRAyz8bU0iMiWCsiRgj9ulASqidTRMTxyheIw8b1kTH5B5g4aF24w4H9pJPCH8fDdBEyO4kkvFOikhNT+iujiVhTCi+juzRAx1lhkykyYiDS1TjSQUSl+lEUVl-lizqhdSgh9TtAnTZzdAql1zSkuzqjrjMpdyiEVDbSQzkFVhNyZyXThTgibDPAvTWDkRfTkF-Sb10zPVCMLzCFQgHBRhwyAojzpB7TMwuyYztjNB4zMpqykyhSUy2I0zT9NNli1dpjcR8yrRCyJT-pSzICxgKyVkoZJ1XxYKg4Po6zLQGzGsmyYELiFkDRCYuyhzqiRz2hQzAghzSi2KyKJy3opzryjTWyV0l9TEV92A19uAGU+BcAwC7B4ISJkJUJb9MJh9Hd4N1DECyB-oFKkIUIdDYjiI9L7gEJqxSF6xVKzcR8GNRihIV1apdLSJlKTkYoG1mQG0DwC1Q9AgC1hx2KegPLh1vLjBh0-KByPLKjgrYjnVmAwr3LadE0orE04qAradw0F5Q90r-4iR-L0gPLyQGAhMihQ8CqiqcrwracGTmBgqqrLRcqogPKZRrVMRSgGAGcmqrUWqmBlh6qggPLUSorAhFBqRNBAlEpQAHx0SpJQBerAgPKPNBrjBhrRqZ45wHwPNQBprZrjAPKAAqRamCEaza1aia0AXaza4wbawPJk4AA65a468ah8MALaiq5RA8AAUjuqOrGtngfHeoupmteqD1P0Gvup+rWs-MCSBqZIAEI-VQbvqTqHw4aHIob4q3qPivqVrHrQAvjjA0bUqMapxFqwakbcaHJjroaDwZwsaHrfrQA5x8arqPKZxibNAohSacbWamaqaYaDrTqghZ5jAYbAhD9mR6IHKjKnLoDr1ijpx9Q4oC1NBHKlKZbBgJaQoVayJxNaBSh-NJgyF5blg4pBBxqIqpalLQ9+tMJEF24tbnLTJ6IcBJaEJjKOYthuTpIG0PLDZnoopQ9fbKorrXTCag9IBSBCtir2bw7I7g6Q6GracOrbBYBIBgqk6U647465rE75BOreMoqk7eNM6s7rqDwAA5SQMug6iusu0C4UjWnKe2925haoo2noE28awdWA5Wi2siVFBJF2xSvuphWZUotukcSsDCTumvHRWA24pu-up2ttAiN+JupGP6DkzS4wmrQCN+Z6WwB6ZgICT0-zSQKQXSX4dI284cJu0yu4XECyoSAcj4CcLe98KIXbfc46QodCy6bevCSYvqHMmYhRYBFyNezAw8+CkOhekeyOWM5+noMBu-Xuh29yXW-WqgcaDi2BzYZhUo4uoIVI9WdIt+X+vMvVFIzMzwLIUoKkYB3EK+cwH+hhv+peYgBwdmeCZEA8QyfIDeZEzQOON2e-BwJkjAQUpld8N8RBg0VImh3W+h+w58trd8IAA')">user_print("output: ", 
+           evaluate(parse("1 + 2;"),
+                    the_global_environment));
+
+</pre></div></div>
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr>
+          <td><span style="color:teal">
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+	We use JavaScript's <kbd>prompt</kbd> function
+	in order to request the input string from the user:
+	<div class='snippet' id='javascript_79_12_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0oFA4GYCuAdgMYAuAlgPbGiEDOApgE4D6LTAhgCYAUABxbUAtgPJsG5FpWIBzAJSgA3jlDrQncoRZ0ho8YOFiJUmfIUBuHAF8gA')">function user_read(prompt_string) {
+    return prompt(prompt_string);
+}
+
+</pre></div></div>
+      </span></td></tr></table>
+  </p></div>
+  <div class='permalink'>
 <a name='p12' class='permalink'></a><p>
-  Now all we need to do to run the evaluator is to initialize the
-  global environment and start the driver loop.  Here is a sample
-  interaction:
-  <table width="100%">
+    Now all we need to do to run the evaluator is to initialize the global
+    environment and start the driver loop.  Here is a sample interaction:
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_79_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_79_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define the-global-environment (setup-environment))
 (driver-loop)
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_79_10_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEDMFcDsGMBcCWB7aBnCAnZBbUsALAQwAd4BTTUAFgBpQ1yEVpQBGAOjYCgo4lUocgDciAG0hEKACjTwc8euWjCAlKADe3UDszl4kTK0RoA+ozHhTI8ZKTQA5rPnxV2nR88B+HXIXvPHQAuUBNTaCIccmcFN0DAnzFkZABrSBJwyPJTUQloiKjTZCsC6L9XJRU4+NAQsNhUOSJoeFMAEyYxIkwpFhjXAJqfGzFTBvR4ZtaO2C6egWh+yrVBzzqzUUxEIgAjMWyZud7Ufuqa0GHcnO7tvYPO7uPF8uWzwPXTIjQ0RAdoKJap1WCSEVy+Pz+APgSyEVWBwVCZnGbUQC3E1gAHiQ9N8+uU3vFLujkaiWOjyFicT8Ti9YStzh8+MxUO1yOBENBSTSXASQSNTEyFqz2ZyFjDlPSah9GABHSDKWBlHnwjxE0ay+VwMrkOUK7JNChQtCnV4qj57ZCwFJA846NWmC1W8VwhmI0x6AxGcyTQ3KaH4lV20Hoj2GaDeqTkKHOyXxD6kEhiRCwJ4220+BNiACe0hGdmiyBIlCkyEwJrpqlogdtSbkRSsuXlxsLxegbWN+NevIRlGwZdpACIAKrQFLQZAAd1YBqjftA8CzRdCrDzkZCA9UAG5uABfXgwZmsTM5vj0boONDqLQeRDgUDSMLYxA4UnCbKCvp8VRX4GhoygY9TCfF8kDfAUDzFU8AMwC8twCHchDERhQjvB8kVwEhkBgNpwP4T8YG-TRgXGORQB2ZA2izUAAF4IAglgHQok8CO3eISPgUAkhTJCaM4y10VKY1yMouC2MaDjBN4jlGEwVpxDEaQPxZEhHiiChMGNL8q1tHTdL47jL1YwJ2PnKMMkbcgMFonBSGkDEaIAPlAcdrjyUws30bS9O8zwuPEQziPE0ALKsgCSCLNtpHPNAvJ8vTDXM2xLK3ABINKPECiZQBxSAxA46jA1XGRhKzWK4opCg22sFREGwf4-Wkas9MEsq4o8ELWraui8JZCVatQaMv2-IzPFve8wj-cMLOkHK8sI69zkm7L9DDVz5TGVBKuhWbXBGjwEPIJDyCInSluwtkOXINo9p0Pd9sQ5CFs8XtS0UmB6GHUdxynbrD3nRdjo5MLEyzDcRr3PclNYWtWmKNbLNzLEYorE6b1QlyWx6NtjQpEhLx-RaVv-aBcrEPaDqO1H4iWlTatzRtI0U2q60x5o2kRvHKwrTqfJh+t4eNHFYaLLH2w5y8u3B3d9x6lcrhJNFRlxqk8RcV4qeWz1jDMeBMHlenbEZ5FMWxIC9HZzsmq6iVvyatV82kY3lY29ByytnSbaakIiuiJ3KU+PK3a6wIbe3SH6MEfkoeFDkuWeNWbY1pabJSbIGhwTDsNww9Gp8mySGkUp+dKHndOjjoRTjoDVP0SgOx5St3d+oUK9joUSpNJvQ+lqHg3VHVNUVfpkcTp6UPGswzIXcwB71Yf5pVM62wu6ArvJh7AdQsIujrGdo3KfGNcJrW+4d9kNNaPeGoPytu88CnHpVEzz93lx4d4q2faZi+I19QEb9oHfGoY00LuiJlNJK39X4KHhgvPSS0X6XzfhZG691DqP3geAvuM9dRalznFIWv9ZwtHrgoCWQD4h3X2tLEAoAADqx1IDISIM5Um3QqK9y+KZDOpZ2HBSShAUszksgYAnAQZAjBuC0MOI8BYoBiAYHHBxDyHEdjkGUKfSMbQOCgAACoEGOiQQwmFkLFHnAYqRYAug4B2G0FhytLLUm1qAIxehszzmQPgPQkYAKgBgIgXUoQOgtFRFmbctD4AGObiwUAE5EBiDEM5EQlAyLHUzIgK6AE2yhHgBgJaFlQCWPvCTBJ6gTChEwG4mwLQODcBMi5Cy7l9C8WkOoaiTkSlkxln9aSlA5IJLssjLMl4k5YLCJ0wZ3YLigGGWaN0Eyog2MoNIAxRB2YYgljM-G1YfC0zLKs9ZmzemyQDgpSY8TJn0GGbbHS3tKmvQOZc0AA4cC5SQImY6Mj5gsAwMUdccFw6y30gJERpwNYgLCBqOe+ICY1BMgfXiUKtREKNKcVBugxmTwztPJFQ8b5Wx8J0q2dR0B9NOfgtqflRiCSgUgyM+8XD41LjpKlmQojGhTvqWeeDuDpR8oQq+JD57flEmgymY8PBLXqOJKYrJZiyNVrEO2nETDQnYrKr5Tw2VKliFMjwHxNi3H2HKo4YoAzeUSKq6QhrdjGs1UKUopw9VrFYQk8mPcI5y3RI6a0tJR6DBMiVXiPrGKUTRQGoKVLQqsppSVVKngI1ZQSgLXi+c7KOWcsgeGTTFBN15vxJCoqMUny-iVZlNQKrKBwn1Oq0Yo30GTR1CsALulyP5JNFF181YozHsnIgqcwFa3hhSvSX8O2CtaA43E3JYjlp8jbFtvd+Tgl+PVf+3b-WeBMgU2iX8V2Qj9MOzsFY9r7vDEXaaZ6oTavLBZV4e18lJTDq2mJ-IbV3BNQqmdige2DEYK0C9kD312oeN8lkjrLbnC-sB+48qwMQLyOWG2pdu4IR0C+yO8sZUtE-fBmMsLfD6G1cO9VOH7UMQgzyFDDMZCkemKBrV01j3IZVKh7gRSoYYHANgPAhBSDqRoPQRgf1OAACYMPaxnpYawNGOROHxKMk+4zIBLP7DyUAAAfDTTVIW6zk2CrThTdJhHIsgfYzRw2Ap6TrIgDgHBXVMDDGEkTsiTAcARzWYY3R7LBQAMl8-I8gaywXUVC+Y1ztnn293GVkMFvbMWmDc-ZnCTnBylDBh6oFRc4aUdiIprzjzzkKRhVFz1bor1dry09KVNm7MOdS92gcFWWgZas3I5rAHYsKeq1gwrRALl9YuTC4amW-odaPepnrJ9BtnP68Vhui6yvSomBqhjZrJsBBq4l2zyXHNWsHHR3DTxWsSfwNh+jcGtW5dcFTJaM2VlBfZkVp1I22sxMO+RlkTGNuSt6496Qz3nvDdK0CsIMGjvraq5thLSX6v7ca+Dz70ATu90R2tijXWfvFoK-95793huLaBWjy7QpvtQ9+9N3Hc2AfU+B6NuRYRy4rzjnF6HSnau7YawoD6TPK4LBR2V3nbcGIqR6GpOurOKc4+C0DhuIO-pC9FAxDu3W2fS6e9T2XurCfWcHatCdkvsf-jCLDlL8PufPPHT6Yh8ABdAqt-Sw9U6nGG88-+fHcv6cxOWyiRWJsVbfoI1t03e25Awjzc8hWZIlaUkcSwO3f0-am2xFdV3S0+Z6HADCNgOu5FJ8wC7UhN2pteYz2yGEonc-vdQNW-24h-RY7d9DVVYCs+0gAMxV8EJC7leLG-B523DsPg5cXkAT3IzlODB46tyUHrBTmByj4HEJxlXfpy9-1Nb1F3WMpS-d1Tobnu3vd6xWQLMU-oWr9uwliZN95cM7MDvOlf8G9kLn+z8IpMaeH7f2viAzNn8bd55r9Kdgs78vdBABUt8-Qi8RkS9-wtdZ979vczAfVXcm83QQ8ucf0BwfVx8YlJ80DVc99m8w9cCuIUhl8GAeRkDBAQ0VdG8MCPddVaDJN0kUxIdi81djcOch9X8cD2Djs-9WZ4BXpiCjdWBmDXBhCRY2Yi9391dv9Zsf9pC-8MZZDsZpBCw4DuDJMJltC-9EEigND2YDCQDFCDDWDloWYTDmxOZzCEDqdLDpYONPUuMeN8BiAyAUk6AGAmA5FOB29TsTc9ZogMQPMlp7JQtaJdZ5QrDJ905M4qooZpBRcsh1JkYy1f1PB08rUBxEisJkjPVl8I80jxcNJ6Asi2Not0IeEs4UjwAIiYdB8zcw9wAPoCj6jijDDPVq4xda4NJFImiT4y8s92j2AejZZQ0TxhjS8W9M9FJ6BK8rDo4a0BoGpGj8t-xRjFjQBO94j+1sgO1ppxgtpZjti8jjikoqDTi-Q-8JpwFh0LJzjJMsCrU70Bwri8h8DIDHjGlbjARnitjJCD8FJni-8FQkgfhHBqphB+o11oRN0SD5xqdqjBcACBR+jcwqhgTAtgs0SgVISJFsgdgTx+j1YNAE0cisEfNuMsh71pYTIXNrBsVz81iETeJOltwaiWSz9YT4TowkSJD5kv8CS-pJ86SohC4RF6AQoXiXF+sywWp+E8gApj9WBJTsgaVNSrwqTkTHkdSVj+iBZFJ+jdTd9kTntDSICVwMRKpq0apa0GplTchMivhsghTx5pB9hHBIlpT2U2kwsfSHA-TXS4EagloiTGAHQcwI8PAJSsTlS4zAg00oinIfMMQG1QiuYwzG5g4yJ3TYSi1QAH5N57xgy-TBJ1AAAeTiZQEMgga1fycM+IF6MsAcXRZIUAGyaAKic8FTGAhgdIRMDJNodcUAAAaiM28jkC2EcFvBzCrMnOeQ+mXKblnLkwXKbMLWLNLKPg8DbOkA7K7PAHIAnGggcAHJISHPCiTCunHKnPXL03nPAEXJEXUCnKoIHDXJ8g3JfJzFzPdXVL4lSHSGI2mhLmyI8CXRUEc2SALk9M8F7jQBTEWBdObP3Ophvy-yrOTOmQlDgsLBHXzKjLk35KdMBAXTwpCFKBojC0eVwvzKDEeUeVzLwoRBQos2eyrIbWp0ApVCoXiAhVP2nnZMFKqA8yg3uSVPpOeRHHImwmESiH+XRRLI3kwuMiCk1N4iMM1OxLUFUq3SCh3V8FQtNKyG1U0jNLnSYqwAspCnMqiBGxSmpJPh3TCwaSShzSbmGGkv9PIA+gADksg-FkI1FwBSxPl0dUB-km4QgUEBLBhBKMCCKkgiKxT2tcQ-hwLIFILcgKTBgYLhBCKEKcSJVoKytOK0KZSVSdDMEP8JlGK4phhYK0qC52LSKYSxKGoqK2oaKQroi8T2Ymq2ofBpAUSBt-s2LbLpl-1TAWKprmzZTxBnU9I7k+wjzxwAIsqOTvyJz2L4gBxRCzsVtrz5JJwroNxQBVqpQGAzLuL3zeKLl+LzgEIVQQEJQ6KYiDFeTRLHT1iWhJKK0-LILPoFLslaKgYOsVKBL1LyqxIsptLaJdKsSKFbQloqrHKtTQUdSbK9JNSTSdTiz74krBhIzWr4L9K-85rANEM8rxACqkLKqzL0LC0NKttGr3yCUhA-KBwOR1IIhEk2z+qohM0OIIrsINxiUlLjpBqGKuafIfA5qFrgswzlqxAbqOL7rqceKJqwTmzdzpydBn5+idKMS9K0aMazKCbtTrKI8CaHKibn1XDZZ3DcBPD+MfChN-CYlOBqBTtJ9gJXx3xPUHwM4NbcSF8g7QIx96BnxEx7izBo7EAwIGiCIHDXiWjQ9oQoIBxk63wfjWB87sh479goRUwvwM6VU6wFioIc9n0TJi7s4Fho0rV4QF8UQ0BEwiBQZ6B4hO7u6qJbQ8z4gF82yqCpK+w9IR7AgF8JyJ7dI7Irk2knJ7Ipyh6Z7fI8iABaBenSJemZFe0AeybemZHQTejwBfAAKj3ttAPqzCPvsivrPuup5gX2AFvvOHvsftADAA3rfryIAFJP6ahv6M17JAGX6L6dAF9oiQHPAwH2lj6vrD6AGyCABCULeBjwRB1e0ATB2iB+tB6EAcas7BhBzMw+8B0AWsnQIh9uvI6s6ichnQXB5Bphuh6B6ukhhyFh1hyhh+6hpyTh4ho8hyZhvu-egRn+8RkRhhjBvhnQeyTwJBnQdBjwcI+EOCRurYECFOtOc7VusPBfc6EUS6+gUxy6NoLhmaresg4KwKkBhxmx2xmBvIgASWgD517p0E8e8ZcdcYXxskiVMAAAV3GF7gmCAwn3HNb8y4JOFbzz8m607oAzwYIrzWgYZ5TAIORTBzpMBswyKAArIgUQFCrYMgYi3SJu0um3CugiPGjwfs69bJzcQIG0vwgwDIbqwEDzHR58YO5ujHdlGiFUNNO8JBg0rmFJtw4sgZvR1O3okKMZ84CZjNQO3RoZlI+7Ro78Gy2Z12+ZoKJuw7SSAqNZ2ySZpyaZ+gU5wx45rKe5061oFZi5modZqZ0EoYgJnQZ5poEhYsyMu0qtcigG6EPNBMKtVIrZmO4Z8DGqg6lxWF-RwvSYHDHiyF8KaFw5w8AWegJF-59F15pKCWPNZkqeNk-6hEltJkn6hwJIHYckalqERFFaHpllhqOCU7JhSgM2fmrQnYYp-whQngjaOooo2WQV4VhAbsHwfIjCQotoaJVAPawMP8hwLc6OMogY5sIVkVj89V58zV18t6KYjuZAfV2Vw120Uh3p+AXh+EEIS1mV+ABuoKDkIxVobEDCfKZ5AAWW3oAFFchlwvX1xtwTIsJ4AvWzZfXeIBxA2Q3xBQBo3w3nltxTs2gtg3wC82r9L6ACBVVSxBGx4TJPXIA-WfXsUVli3MAqIpyK3vWeMyBiyIVoAvWUHOkgadAB6ugcxF849BAFFYQOg2gMt744an4TnsAHAxdeJRdGAHwO3K3iaPATIo1eIY1QUfW53Ih40LSEbSJG1SXU1bI0zM1s0VEmng4o013jagpV4JxYTeJK0qp7XvSC1kYT3VSGTzgTIcRX2aNohd2xd6An2izM3zhs39G83KaIOJRC262G3nkAAdVD5HH81x0aFd5t+Nxt3D5cgcdDzD-a7DzwNNytuN7FZcjVrc3lgvJ8QEHEEVIC7gGD3NkqgHelxl5luEiinAsGIAA')">const the_global_environment = setup_environment();
-driver_loop(the_global_environment, "");
+            <td><div class='snippet' id='javascript_79_13_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0oFA5KAGYCuAdgMYAuAlgPakDORATrQLYQzxKqaZ4kKNeqACmANwCGAG2KTKogBQNKbSgBoxpcQEpQAbxyhjzUZWLNSoagwD6DUdMK2JMuTVIBzZaso6jxoFBAPzGKmoBQUEAXNZ2pJJsSuF+kVHGodK0tADWxAAO9gCebABGtNK2UrLJJeWVtM4JST5qOpqi2v7pMXG25PQqkqSUtgAmouTSkszydKStqT2Boa6VA4yUw6MTUzNz9IsdXWnpsTZVM9SSpdKi45PTs8ILKd3LoKvVl8zXt-e7J4HV6+Y66U5Rc52SQMBjUTykJIjRbvZZfGS2GFwhFIyhHLTgj6gKH9ehjagvDGiAAe+VMsPmKIhITE3w25MplRpdNEDMOKTBqJ6JOmZTGkiZRNCbEkOXugiojNFpXFtny+ySCmYDBR6mZRI+ytV5TGRV1+oNPU6hI+JIcAEdiJ1yMlfEL0ujKg6nRRkqJHc77kMFLidW9BRbiX1brRyDlJR9PbYY3H8db3ZC+qZzJYE2jWRjsxYQWoI0SSZJ8vlpNRyMC8z1QpXq2a1u4lAqXi5afS4fy3YK9Zb0jL8ooZp5QABeAB8Bdk8iUE8HoAnYbdOgzvVEzFYzHxACIAKqkHKkWgAdysDCKI0k1OsVjbi+iB50AG4cABfARkRUiZtpDNQRNDXPRDECahCFARQLjpag2ApahxHlP8XkUQRNwMCEi0sVcqyAtVfkQmgUNsTtGRA1dmE8BgP0iL8xGkBxrGg2C7AGNh8loMgxnItDKLILCIKiDYVFAE0imnIgBPoZNaFNDChM-dIxMoUAsjrZjpIYOtSFsHidkefYXh1ST6NUwZ1JvMoKiYKd8PyToxiUoR5jVDUzB3HVMM0TSZDolTRKs0AyCxeFSFEMZ7NAUdFFsac5zChkESivzYwCizgs2UBqidGLm2c8caIYTRkuxSLoqyoI1NAeliGkdSHOfBRFEkodhw+GkFFIPjrWoVhEU6PEbPqUrcrcXkOs6j4KLk-rBtxVzN2qwJcKsC51suGpFHqxqtw9OqzGLbanVJEZht23kGqWS1Yl40RCGoSqgtARjHBYkSgh3PdXM0Y9T3PK8ZLckRKCKJzH0coC31en8fxwOanzZMkkPoKke15PsSw0AlwLSda+koZgnUUFqlHZbs6SIqLdTxg6VnndtFEp7lmHO9c2jLcsmcXFmySp9mZBGgc8c-BGkfnex-R9F1FnG9NsKCKCYIuUQuPB6WA19eXhP1QmHqel60ne5jRFY1W7GmFR7C2ENLpSOj8ctQnyYwgabeDdWHd8Oj1HTV63qYz79Vqp7tVGFJTvNhzI2MN3w89u3veRR32gD-UVfY2wtryjsPcj3xo71l3jrwxPC7UaPA6CU2Q9LnNkYxb1A0UOOonpQvF1DXX-a6GvAh-WvvzwWryoiqLpMUPRZ1AUgGukT9Edk689IM4gjL2Z55k5vwlcgtiLhbnW3mdnpasdnSZcDW3u+G3fVqCQm1Y1ootdl101Do9vQnn6RpHbrEQqvVlBr0Mg8LewIfIF1vvbVOvtNzTRmoEXSwx16byBKZRQMo5Tv1bu3ZBPRO6wJTpQXeTtNyBzrubL6T8y4bQ4lZbYEDMGMjeAQz4GkbB4jUswwEJl3KjQqCiBmmYLhSF+DcO4LCBH9jaBwjIXCVCKAkX8aR-Dt5ySEdIERCiox-0XibEey9QZN0qCmeMAo8b72MLVSS0kLHyUUm8QOtV-LaQcqg-S4CNFQLagpIoq0x4JBSpVGKcUEqz3HqlMY6UtKBQJvQ3mrV2p6O6s5Fw2gBr0CWu48a0SwmCnohLFeUt1ppi6DYo6jdYqynuLnSabcZpuy2mzLGbCBx6OWOmYpv5TFS3CjiH2pZrG0NqnnaSbtBlDRGNHOmGcgjTOKLZSoedxyhNxMs+odM86CkDoTPO4s+n-jMT8NRAJjKaJxoKKpSztFzNUVIi5kCuzaPNN0vKfNHn-BkVcuZ4Y8ZIO+v3b8gQTEnKlrw2Zvj0JWMVrQu5dQKhzKhRg2R+k3nhn1G7VFvzgT-NFumIFgQM4IwIEjJghBWAcCgHARAyB0BYAAEzHJeH0BwTgXCfI8N4N4VTn7xGIGUHcKJjAAB8xVxyPsTZ6vK3TislQaC45QKiiGGKKiVUrBX-xREc8FbKLhbE8J4KKtgazKKsZQAAFvcI1Z8TBJLgpIAaoqABkrrQA2skC5PlU4-WgGtbayQng9WSwuM0T+e9aECtsEak1fFzUixGQeCNsMR6S3uY0WwEbRXRqSV6lyWxqA6NPqG0pFxplLT5V9GNcbTWJsPJW4aaafySybbMzF8qa35rVYW51OiC2KCLSWjclD02lPbaMNZ1bIiE0HcOod-aRG9P1fMPouKYUdLaDY2twb41mu4YeDdlzgQttXSIY9LzBFIpHdu7tNT51LsfcW5dvTJaXtYXJadXbZ09u9Yul9C7T5vvLXYb56iT2wp-WtR1dg60JsPVYg84HnmftIGeyWKG8WvJvbm39D7e0AYHYRoDo6QP9Kw5ur9jSZ0wYI-+hdpG2hjrJWAAAYpAAAGgAWQAKKxFMNWSQLpQAHiRg8I2aN0OgAvBSK1omjSSAPPgMAkhCBagDVamwcQGBOjiJ64YYw7hjGiCpz1lBKD5AYNEEAng5PEFKGgTiwAGA8WYC6AAtMJ716sijAAAFYMA8wwaYXhgA2F07yYAAA2AAzLgMNVtEgqglLRh1NTDV7vrYh0EonxMTEky8DDpTFMeVmJqbyeG6PFlqWOTNTREiiE0M+29fgWPnqsKVySVX0s1Za0R5dZb+mbXoT16pNXMvGuyxa3LB4tpe1xMV-prTMZ8hxvaudJGl2luMYl86HJ5gYx5Gtsbu6psIZmyMvRB52RSaO72eYS2IWsx7DTH10Het4UTTnR6+IMDkeewLNmHNTtJO+6YQg+ImUA7ZS96mwtQc1PB79qxsWV17ePnLNL428KTf3Q2pDmPRBPbZTgoM18T4IJ3WDw9B4icHk0GnI5GaKcuhIT3atYLqt4X6zt1tpSK7s+GWQjbf73tfxh2u4hC37662pzUpjIvmegZcK-PBlOJfy4m9q1rCT+fDaS0nO+8DNf3u19mheA207o5VxYsbOOGGxqyxdpNuMDwWJJ2usnyZNKWI+w7pReJ3e+4Z6AFx47+mOO69jgPvONxDYhRWgitZ6zY7O-jnLybAIp6K5LkQ4m2knbT2Lq38eI8QrXIjvrW3APbdHcr-p55MQlUULQKzouMs69b+3hvELBcTm73RLXPPCNt71x1o6NtK9j47zVhdM+9XkpXpS6lnA6U8EZWgWLrK12GpJkoak9qA8Pj9Q5YmToE+k7qfxUxih1Tla8tqTQ7VRmJKR7Tzi3FeI35OQzvR9-GstRxoX9SUJ8LhP8eJeof90JCAj909ps8RCB-oIDv8kZPd88V4ytADKtYD+UacbYIcMJNB-te82VxNutcC8138CDfskDQBodSC10C8slFpLpKC38atkdIc6C0dL8vdr8GkdoNgeoo0OCvtadBCnRQ9hDho89HdJClA844DYMndzsD1lFdlRMFD0CrAFDzoRCVFJplD6M+0X0lCbd+lnQsg4QvBMlxBskZk8R4UxCrAF1QDJZBcqVGsyZKkqDq9-13DSkrDaAHBkxgIH8bl9AggXDQB1QXUvCkg9kR5apA1Vd8hNYFoclhppIDEl5JZvcEjagVlxo84h8-C8I4j9xtESjJpx8PCH8tk7IMIH9wJoi6ETDmjGs5CWBGto4fIWiDA2judXCl1CiLCIV0koDMjHDlAb0ajmJn8YR7hnD2jODOhPBrVZjiiZ5-U7gvBNjqhv4DRQhKjsFr9CitixpNBDj2gJIli7DREow9iNirVLi7I9AAAeDSdYg4zKAhVYXcWgfcA8AAFWyFqVICkgnCFXvjDwKGrGoCiliAPFAAAGpQAukggVBfgvAoIzRqi9B0TQ8UT0TMSUEZVcTCAzQbjHjjBYgfogTFBQTwTCBRALxqJPAYSRgmBdNk8kTRM0SMTCEsSKS7MqS3jmJCTRN-pBSySwhRS8TDDJTxi2UshcgChGjVkaMb1Ii0hJZrQzVsgxwViegM09IJT5iyj24Y0DELTaTGwCRDS28mlhTgUpgQjZU7CHCloekyTYhtFpx-VB0CS5TOFB0bjQz-TzSgM5jbiF0aSB5jAh4egs5rRAyz8bU0iMiWCsiRgj9ulASqidTRMTxyheIw8b1kTH5B5g4aF24w4H9pJPCH8fDdBEyO4kkvFOikhNT+iujiVhTCi+juzRAx1lhkykyYiDS1TjSQUSl+lEUVl-lizqhdSgh9TtAnTZzdAql1zSkuzqjrjMpdyiEVDbSQzkFVhNyZyXThTgibDPAvTWDkRfTkF-Sb10zPVCMLzCFQgHBRhwyAojzpB7TMwuyYztjNB4zMpqykyhSUy2I0zT9NNli1dpjcR8yrRCyJT-pSzICxgKyVkoZJ1XxYKg4Po6zLQGzGsmyYELiFkDRCYuyhzqiRz2hQzAghzSi2KyKJy3opzryjTWyV0l9TEV92A19uAGU+BcAwC7B4ISJkJUJb9MJh9Hd4N1DECyB-oFKkIUIdDYjiI9L7gEJqxSF6xVKzcR8GNRihIV1apdLSJlKTkYoG1mQG0DwC1Q9AgC1hx2KegPLh1vLjBh0-KByPLKjgrYjnVmAwr3LadE0orE04qAradw0F5Q90r-4iR-L0gPLyQGAhMihQ8CqiqcrwracGTmBgqqrLRcqogPKZRrVMRSgGAGcmqrUWqmBlh6qggPLUSorAhFBqRNBAlEpQAHx0SpJQBerAgPKPNBrjBhrRqZ45wHwPNQBprZrjAPKAAqRamCEaza1aia0AXaza4wbawPJk4AA65a468ah8MALaiq5RA8AAUjuqOrGtngfHeoupmteqD1P0Gvup+rWs-MCSBqZIAEI-VQbvqTqHw4aHIob4q3qPivqVrHrQAvjjA0bUqMapxFqwakbcaHJjroaDwZwsaHrfrQA5x8arqPKZxibNAohSacbWamaqaYaDrTqghZ5jAYbAhD9mR6IHKjKnLoDr1ijpx9Q4oC1NBHKlKZbBgJaQoVayJxNaBSh-NJgyF5blg4pBBxqIqpalLQ9+tMJEF24tbnLTJ6IcBJaEJjKOYthuTpIG0PLDZnoopQ9fbKorrXTCag9IBSBCtir2bw7I7g6Q6GracOrbBYBIBgqk6U647465rE75BOreMoqk7eNM6s7rqDwAA5SQMug6iusu0C4UjWnKe2925haoo2noE28awdWA5Wi2siVFBJF2xSvuphWZUotukcSsDCTumvHRWA24pu-up2ttAiN+JupGP6DkzS4wmrQCN+Z6WwB6ZgICT0-zSQKQXSX4dI284cJu0yu4XECyoSAcj4CcLe98KIXbfc46QodCy6bevCSYvqHMmYhRYBFyNezAw8+CkOhekeyOWM5+noMBu-Xuh29yXW-WqgcaDi2BzYZhUo4uoIVI9WdIt+X+vMvVFIzMzwLIUoKkYB3EK+cwH+hhv+vI0pYgBwdmeCZEOkdgdI22HEzwTQDBg2+1SWSgWgQR2VVvPWsRgwAASGZBjRQKgPXtEaoFAtCAPA+NUbGA8yRhpo4RJAgdvw0dSAUcOh0ftoMZXiMcsbEXkpitkcwYsasYAG0SSA0pHsSZHB1zGsIiT-ocAHGiR0TJHpGvABsAmpSDwABdZTUJwIf0hU8UgJqhNIUq6YM0A8DzPJ-Jgpwpop4pv-S0PhjWSJycIkgAHWk3CZ8dFJcfkZqfQxVLXU4Z3B+3-XKYEd8a8H-qsB6bxCGcqfspCmenyA3iIn4aalEzVRNWYA83JkfEmcoGRM-FqkMlWemY1mkgPHmZ3CWe5XNjznWZ3xEDGF+BQnZhvJNNsXGdIFWekg6fZlMH-QmamaGdWizg+aan9QMUwuMCyckByeKbBfBYKdKZmn2e5SBIDR3EQgSAUDGFqbTVrlrJPKBZsCKqZIhbxZKcQZTMec+epXSMFIPFRcFN+fJdRbIsltoE8HK2knvwcFgmJb8HbLcQyg8TDzASmao0YBQYZfKzpZCgKSinCUnpPyShCQqjSg0m5YSWWHpcZcSDsMmWpB6iAfsOfLxDyTKllYnmiiSOVZCi2Y3kmWOaFdVbYB7uFbVYYvSBeaImejxHNdGCGZEY3lWbIsuaUpuaEr4ZtYeIyZ-APE1GEwGnIAahmGSThayB8zGAPCXj9eua3KHWodofoZ1dzI5aAA')">const the_global_environment = setup_environment();
+driver_loop(the_global_environment);
 
 </pre></div></div></td></tr></table>
 
-  <table width="100%">
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_79_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_79_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+
+</pre><pre class='prettyprintoutput'>
+
 ;;; M-Eval input:
+      
+</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_79_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+
+</pre><pre class='prettyprintoutput'>
+
+eager-evaluate input:
+      
+</pre></div></div></td></tr></table>
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_79_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (append x y)
    (if (null? x)
        y
        (cons (car x)
          (append (cdr x) y))))
+</pre><pre class='prettyprintoutput'>
+
 ;;; M-Eval value:
 ok
 
 ;;; M-Eval input:
+      
+</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_79_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function append(xs, ys) { 
+    return is_null(xs)
+           ? ys
+           : pair(head(xs), append(tail(xs), ys)); 
+}
+</pre><pre class='prettyprintoutput'>
+
+eager-evaluate value: undefined
+
+eager-evaluate input:    
+      
+</pre></div></div></td></tr></table>
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_79_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (append '(a b c) '(d e f))
+</pre><pre class='prettyprintoutput'>
+
 ;;; M-Eval value:
 (a b c d e f)
+      
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_79_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-M-Eval input:
-function append(xs,ys) { 
-    if (is_null(xs)) {
-       return ys; 
-    } else {
-       return pair(head(xs),append(tail(xs),ys)); 
-    }
-}
-M-Eval value: undefined
-
-M-Eval input:    
+            <td><div class='snippet' id='javascript_79_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 append(list('a', 'b', 'c'), list('d', 'e', 'f'));
+</pre><pre class='prettyprintoutput'>
 
-M-Eval value: ['a', ['b', ['c', ['d', ['e', ['f', null]]]]]]
+eager-evaluate value: 
+['a', ['b', ['c', ['d', ['e', ['f', null]]]]]]
+      
 </pre></div></div></td></tr></table>
-      </p></div>
+  </p></div>
 
-      
+  
     <div class="permalink">
-    <a name="ex_4.13" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.13">Exercise 4.13 </a></b> 
+    <a name="ex_4.23" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.23">Exercise 4.23 </a></b> 
   
-  Eva Lu Ator and Louis Reasoner are each experimenting with the
-  metacircular evaluator.  Eva types in the definition of <kbd>map</kbd>, and
-  runs some test programs that use it.  They work fine.  Louis, in contrast,
-  has installed the system version of <kbd>map</kbd> as a primitive for the
-  metacircular evaluator.  When he tries it, things go terribly
-  wrong.  Explain why Louis's <kbd>map</kbd> fails even though Eva's works.
+    Eva Lu Ator and Louis Reasoner are each experimenting with the
+    metacircular evaluator.  Eva types in the definition of
+    <kbd>map</kbd>, and runs some test programs that use it.
+    They work fine.  Louis, in contrast, has installed the system version of
+    <kbd>map</kbd> as a primitive for the metacircular
+    evaluator.  When he tries it, things go terribly wrong.  Explain why
+    Louis's <kbd>map</kbd> fails even though
+    Eva's works.
+    
   
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_79_1_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_79_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2194,7 +2288,8 @@ M-Eval value: ['a', ['b', ['c', ['d', ['e', ['f', null]]]]]]
     
 </EXERCISE></div>
 
-      
+
+  
 
 <hr>
 
@@ -2202,96 +2297,130 @@ M-Eval value: ['a', ['b', ['c', ['d', ['e', ['f', null]]]]]]
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1' >[1] </a>
     <FOOTNOTE>
     Any
-    <span style="color:teal">procedure</span><span style="color:blue">function</span>
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
     defined in the underlying
-    <span style="color:teal">Lisp</span><span style="color:blue">JavaScript</span>
-    can be used as a primitive for the metacircular evaluator.  The name of a primitive
-    installed in the evaluator need not be the same as the name
-    of its implementation in the underlying
-    <span style="color:teal">Lisp</span><span style="color:blue">JavaScript</span>;
+    
+      <span style="color:teal">Lisp</span>
+      <span style="color:blue">JavaScript</span>
+    
+    can be used as a primitive for the metacircular evaluator.  The name of a
+    primitive installed in the evaluator need not be the same as the name of its
+    implementation in the underlying
+    
+      <span style="color:teal">Lisp;</span>
+      <span style="color:blue">JavaScript;</span>
+      
     the names are the same here because the metacircular evaluator implements
-    <span style="color:teal">Scheme</span><span style="color:blue">JavaScript</span>    
+    
+      <span style="color:teal">Scheme</span>
+      <span style="color:blue">JavaScript</span>
+        
     itself.
     Thus, for example, we could put 
-    <span style="color:teal"><kbd>(list 'first car)</kbd></span><span style="color:blue"><kbd>list("first", head)</kbd></span> 
+    
+      <span style="color:teal"><kbd>(list 'first car)</kbd></span>
+      <span style="color:blue"><kbd>list("first", head)</kbd>
+      </span>
+     
     or 
-    <span style="color:teal"><kbd>(list 'square (lambda (x) (* x x)))</kbd></span><span style="color:blue"><kbd>list("square", x => x * x)</kbd></span>
+    
+      <span style="color:teal"><kbd>(list 'square (lambda (x) (* x x)))</kbd>
+      </span>
+      <span style="color:blue">
+	<kbd>list("square", x => x * x)</kbd>
+      </span>
+    
     in the list of 
-    <span style="color:teal"><kbd>primitive-procedures</kbd></span><span style="color:blue"><kbd>primitive_functions</kbd></span>.
+    
+      <span style="color:teal"><kbd>primitive-procedures</kbd>.</span>
+      <span style="color:blue"><kbd>primitive_functions</kbd>.
+      </span>
+    
+    </FOOTNOTE></div>
+    
+    
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' >[2] </a>
+    <FOOTNOTE>
+    
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr>
+          <td><span style="color:teal">    
+	<kbd>Apply-in-underlying-scheme</kbd> is the
+	<kbd>apply</kbd> procedure we have used in earlier
+	chapters.  The metacircular evaluator's
+	<kbd>apply</kbd> procedure
+	(section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.4-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>) models the	working
+	of this primitive.  Having two different things called
+	<kbd>apply</kbd> leads to a technical problem in
+	running the metacircular evaluator, because defining the metacircular
+	evaluator's <kbd>apply</kbd> will mask the
+	definition of the primitive.  One way around this is to	rename the
+	metacircular <kbd>apply</kbd> to avoid conflict with
+	the name of the primitive procedure. We have assumed instead that we
+	have saved a reference to the underlying
+	<kbd>apply</kbd> by doing
+	<div class='snippet' id='javascript_79_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(define apply-in-underlying-scheme apply)
+</pre></div></div>
+	before defining the metacircular <kbd>apply</kbd>.
+	This allows us to access the original version of
+	<kbd>apply</kbd> under a different name.
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+        JavaScript's <kbd>apply</kbd> method of
+	function objects expects arguments in an array. Thus, the 
+        <kbd>arg_list</kbd> is transformed into 
+        an array using a <kbd>while</kbd> loop:
+	<div class='snippet' id='javascript_79_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function apply_in_underlying_javascript(prim, arg_list) {
+   const arg_array = [];
+   let i = 0;
+   while (!is_null(arg_list)) {
+      arg_array[i] = head(arg_list);
+      i = i + 1;
+      arg_list = tail(arg_list);
+   }
+   return prim.apply(prim, arg_array);
+}
+</pre></div></div>
+	We have made use of
+	<kbd>apply_in_underlying_javascript</kbd> to
+	define the function <kbd>apply</kbd> in
+	section <REF NAME="sec:data-directed"><a class="superscript" id="4.1.4-sec-link-2.4.3" href="./2.4.3.html">2.4.3</a></REF>.
+      </span></td></tr></table>
     </FOOTNOTE></div>
     
     
     <div class='footnote'><span style="color:teal">
-      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' style="color:teal">[2] </a>
+      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' style="color:teal">[3] </a>
     <FOOTNOTE>
-    <kbd>Apply-in-underlying-scheme</kbd> is the <kbd>apply</kbd>
-      <span style="color:teal">procedure</span><span style="color:blue">function</span>
-      we have used in earlier chapters.  The metacircular evaluator's <kbd>apply</kbd>
-      <span style="color:teal">procedure</span><span style="color:blue">function</span>
-      (section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.4-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>) models the
-      working of this primitive.  Having two different things called <kbd>apply</kbd> leads to a technical problem in running the metacircular
-      evaluator, because defining the metacircular evaluator's <kbd>apply</kbd>
-      will mask the definition of the primitive.  One way around this is to
-      rename the metacircular <kbd>apply</kbd> to avoid conflict with the name of
-      the primitive
-      <span style="color:teal">procedure</span><span style="color:blue">function</span>.  We have assumed instead that we have saved a
-      reference to the underlying <kbd>apply</kbd> by doing
-      <div class='snippet' id='javascript_79_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define apply-in-underlying-scheme apply)
-</pre></div></div>
-      before defining the metacircular <kbd>apply</kbd>.  This allows us to
-      access the original version of <kbd>apply</kbd> under a different name.
-      
-    </FOOTNOTE></span></div>
-    
-    
-    <div class='footnote'><span style="color:blue">
-      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' style="color:blue">[3] </a>
-    <FOOTNOTE>
-    
-        JavaScript's <kbd>apply</kbd> 
-        method of function objects expects arguments in an array. Thus, the 
-        <kbd>argument_list</kbd> is transformed into 
-        an array using a <kbd>while</kbd> loop:
-	<div class='snippet' id='javascript_79_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function apply_in_underlying_javascript(prim, argument_list) {
-   const argument_array = [];
-   let i = 0;
-   while (!is_null(argument_list)) {
-      argument_array[i] = head(argument_list);
-      i = i + 1;
-      argument_list = tail(argument_list);
-   }
-   return prim.apply(prim, argument_array);
-}
-</pre></div></div>
-	We have made use of
-	<kbd>apply_in_underlying_javascript</kbd>
-	to define the function
-	<kbd>apply</kbd> in
-	section <REF NAME="sec:data-directed"><a class="superscript" id="4.1.4-sec-link-2.4.3" href="./2.4.3.html">2.4.3</a></REF>.
-
-      
-    </FOOTNOTE></span></div>
-    
-    
-    <div class='footnote'><span style="color:teal">
-      <a class='footnote-number' id='footnote-4' href='#footnote-link-4' style="color:teal">[4] </a>
-    <FOOTNOTE>
-    The primitive
-	<span style="color:teal">procedure</span><span style="color:blue">function</span>
-
+    The
+	primitive procedure
 	
 	
-	<kbd>read</kbd> waits for input from the user,
-	and returns the next complete expression that is typed.
-	For example, if the user types <span style="color:teal"><kbd>(+ 23 x)</kbd></span><span style="color:blue"><kbd>???</kbd></span>, <kbd>read</kbd> returns
-	a three-element list containing the symbol <kbd>+</kbd>, the number 23,
-	and the symbol <kbd>x</kbd>.
+	<kbd>read</kbd> waits for input from the user, and
+	returns the next complete expression that is typed. For example, if the
+	user types <kbd>(+ 23 x)</kbd>,
+	<kbd>read</kbd> returns a three-element list
+	containing the symbol <kbd>+</kbd>, the number 23, and
+	the symbol <kbd>x</kbd>.
 	
 	
-	If the user types <kbd>'x</kbd>, <kbd>read</kbd> returns a two-element list
-	containing the symbol <kbd>quote</kbd> and the symbol <kbd>x</kbd>.
+	If the user types <kbd>'x</kbd>,
+	<kbd>read</kbd> returns a two-element list containing
+	the symbol <kbd>quote</kbd> and the symbol
+	<kbd>x</kbd>.
     </FOOTNOTE></span></div>
     
     

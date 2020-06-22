@@ -1143,7 +1143,7 @@
                   <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-84" aria-expanded="true" aria-controls="sidebar-collapse-84">
                   &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
                   </a>
-                  <a href="./4.2.html">4.2  <span style="color:teal"> Variations on a Scheme Lazy Evaluation </span> <span style="color:blue"> Lazy Evaluation </span></a>
+                  <a href="./4.2.html">4.2  <span style="color:teal"> Variations on a Scheme: </span> Lazy Evaluation</a>
                 </h5>
               </div>
     
@@ -1694,71 +1694,75 @@
     implement streams as delayed lists.
     
       <span style="color:teal">
-	We introduced special forms
-	<kbd>delay</kbd> and <kbd>cons-stream</kbd>,
-	which allowed us
+	We introduced special forms <kbd>delay</kbd> and
+	<kbd>cons-stream</kbd>, which allowed us
       </span>
       <span style="color:blue">
 	We used a lambda expression
       </span>
     
-    to construct a <QUOTE>promise</QUOTE> to compute
-    the
-    <span style="color:teal"><kbd>cdr</kbd></span>
-    <span style="color:blue"><kbd>tail</kbd></span>
-    of a stream, without actually fulfilling that promise
-    until later.
+    to construct a <QUOTE>promise</QUOTE> to compute the
     
-      <span style="color:teal">
-    We could use this general technique of introducing
-    special forms whenever we need more control over the evaluation process,
-    but this is awkward.  For one thing, a special form is not a
-    first-class object like a
-    <span style="color:teal">procedure,</span>
-    <span style="color:blue">function,</span>
-    so we cannot use it together with higher-order
-    <span style="color:teal">procedures</span><span style="color:blue">functions</span>.<a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:teal">[1]</a>  Additionally,
-    we were forced to create streams as a new kind of data object
-    similar but not identical to lists, and this required us to
-    reimplement many ordinary list operations
-    (<kbd>map</kbd>,
-    <kbd>append</kbd>, and
-    so on) for use with streams.
-      </span>
-      <span style="color:blue">
-	We were forced to create streams as a new kind of data object
-	similar but not identical to lists, and this required us to
-	reimplement many ordinary list operations
-	(<kbd>map</kbd>,
-	<kbd>append</kbd>, and
-	so on) for use with streams.	
-      </span>
+      <span style="color:teal"><kbd>cdr</kbd></span>
+      <span style="color:blue"><kbd>tail</kbd></span>
     
+    of a stream, without actually fulfilling that promise until later.
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr>
+          <td><span style="color:teal">
+	We could use this general technique of introducing special forms
+	whenever we need more control over the evaluation process, but this is
+	awkward.  For one thing, a special form is not a first-class object
+	like a procedure, so we cannot use it together with higher-order
+	procedures.<a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:teal">[1]</a>
+	Additionally, we were forced to create streams as a new kind of data
+	object similar but not identical to lists, and this required us to
+    reimplement many ordinary list operations (<kbd>map</kbd>,
+    <kbd>append</kbd>, and so on) for use with streams.
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+	We were forced to create streams as a new kind of data object similar
+	but not identical to lists, and this required us to reimplement many
+	ordinary list operations (<kbd>map</kbd>,
+	<kbd>append</kbd>, and so on) for use with streams.	
+      </span></td></tr></table>
   </p></div>
 
   <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
     With lazy evaluation, streams and lists can be identical, so there is
-    no need for
-    <span style="color:teal">special forms or for</span>
-    separate list and stream operations.
-    All we need to do is to arrange matters so that
-    <span style="color:teal"><kbd>cons</kbd></span>
-    <span style="color:blue"><kbd>pair</kbd></span>
-    is non-strict.  One way to accomplish this is to extend the lazy
-    evaluator to allow for non-strict primitives, and to implement
-    <span style="color:teal"><kbd>cons</kbd></span>
-    <span style="color:blue"><kbd>pair</kbd></span>
+    no need for <span style="color:teal">special forms or for</span>
+    separate list and stream operations. All we need to do is to arrange matters
+    so that
+    
+      <span style="color:teal"><kbd>cons</kbd></span>
+      <span style="color:blue"><kbd>pair</kbd></span>
+    
+    is non-strict.  One way to accomplish this is to extend the lazy evaluator
+    to allow for non-strict primitives, and to implement
+    
+      <span style="color:teal"><kbd>cons</kbd></span>
+      <span style="color:blue"><kbd>pair</kbd></span>
+    
     as one of these.  An easier way is to recall
-    (section <REF NAME="sec:data?"><a class="superscript" id="4.2.3-sec-link-2.1.3" href="./2.1.3.html">2.1.3</a></REF>) that there is no fundamental
-    need to implement
-    <span style="color:teal"><kbd>cons</kbd></span>
-    <span style="color:blue"><kbd>pair</kbd></span>
+    (section <REF NAME="sec:data?"><a class="superscript" id="4.2.3-sec-link-2.1.3" href="./2.1.3.html">2.1.3</a></REF>) that there is no fundamental need
+    to implement
+    
+      <span style="color:teal"><kbd>cons</kbd></span>
+      <span style="color:blue"><kbd>pair</kbd></span>
+    
     as a primitive at all.  Instead, we can represent
     
     pairs as
     <span style="color:teal">procedures</span><span style="color:blue">functions</span>:<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-
+    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -1775,8 +1779,7 @@
       (define (cdr z)
       (z (lambda (p q) q)))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_86_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function pair(x, y) {	
+            <td><div class='snippet' id='javascript_86_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&variant=lazy&prgrm=PTAEGUEkGEAVQFLlAFgHQCY0GYBQuAzAVwDsBjAFwEsB7E0ABwEMqAnACgA8AaUATwCUoAN4BIXKEmhWAUwpFW9ALagAvAD5QSrr0EBuXAF9CpSrXoALGUwAm7AF5DhU0BKmz5i0Pfah2DXgBHIQ1GUAEDY2JyajpQChYAGwcnN0kPBXofPwDQYLVNQPDI-CtbdgSqZOY2dgBGXhqObF4MAXaIoA')">function pair(x, y) {	
     return m => m(x, y);
 }
 function head(z) {    
@@ -1785,16 +1788,16 @@ function head(z) {
 function tail(z) {
     return z( (p, q) => q );
 }
+
 </pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-    In terms of these basic operations, the standard definitions of the
-    list operations will work with infinite lists (streams) as well as
-    finite ones, and the stream operations can be implemented as list operations.
-    Here are some examples:
-
+    In terms of these basic operations, the standard definitions of the list
+    operations will work with infinite lists (streams) as well as finite ones,
+    and the stream operations can be implemented as list operations. Here are
+    some examples:
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -1837,8 +1840,7 @@ function tail(z) {
       18
       
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_86_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function list_ref(items, n) {	
+            <td><div class='snippet' id='javascript_86_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&variant=lazy&prgrm=PTAEGUEkGEAVQFLlAFgHQCY0GYBQuAzAVwDsBjAFwEsB7E0ABwEMqAnACgA8AaUATwCUoAN4BIXKEmhWAUwpFW9ALagAvAD5QSrr0EBuXAF9CpSrXoALGUwAm7AF5DhU0BKmz5i0Pfah2DXgBHIQ1GUAEDY2JyajpQChYAGwcnN0kPBXofPwDQYLVNQPDI-GizOMSqAGcKAH1ZAnYqChklKt4SJ3EXDK96VQHQAAY0lxcAflArWyaWtoFRsckALlBKmvqZRoSqZObWqoEO0ABaUABGCKMTGPMtJgZ2aN59+ZFRKVHe+mrakiJEns5odFktJv9AaCxqtmGwnqR2NM7K9DkcoUsxkoHvCSLwdkCDgIiSUyrF6FUyExEjJausKLMDrwCExKDRWKkenJMvdHpwCqA+QAqUDM1msF7Aq5RUxk0C2Gy06oUKrsOnnXh0jAc9xcry-CHJNULDETNZKjDoqSrfUAw3moSfE1jSZqy0uGEsDhI1VKy6gADUU2sdk1aKd4blNgVdJV+J9NUu3DdEadcdDxOuZDoNVAdBkVTUjE97HVuZI+auWZIOaoJBaAHMZKwC6oi3DS-LFTUVXn2qBaw2m6iDLg6ZtGgOZI3m7xzgB2CJAA')">function list_ref(items, n) {	
     return n === 0
            ? head(items)
            : list_ref(tail(items), n - 1);
@@ -1864,7 +1866,8 @@ function add_lists(list1, list2) {
 const ones = pair(1, ones);
 const integers = pair(1, add_lists(ones, integers));
 
-list_ref(integers, 17); // returns 18
+list_ref(integers, 17);
+
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -1872,54 +1875,65 @@ list_ref(integers, 17); // returns 18
 <a name='p4' class='permalink'></a><p>
     Note that these lazy lists are even lazier than the streams of
     chapter 3:  The
-    <span style="color:teal"><kbd>car</kbd></span>
-    <span style="color:blue"><kbd>head</kbd></span>
+    
+      <span style="color:teal"><kbd>car</kbd></span>
+      <span style="color:blue"><kbd>head</kbd></span>
+    
     of the list, as well as the
-    <span style="color:teal"><kbd>cdr</kbd>,</span>
-    <span style="color:blue"><kbd>tail</kbd>,</span>
+    
+      <span style="color:teal"><kbd>cdr</kbd>,</span>
+      <span style="color:blue"><kbd>tail</kbd>,</span>
+    
     is delayed.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
     In fact, even accessing the
-    <span style="color:teal"><kbd>car</kbd></span>
-    <span style="color:blue"><kbd>head</kbd></span>
+    
+      <span style="color:teal"><kbd>car</kbd></span>
+      <span style="color:blue"><kbd>head</kbd></span>
+    
     or
-    <span style="color:teal"><kbd>cdr</kbd></span>
-    <span style="color:blue"><kbd>tail</kbd></span>
+    
+      <span style="color:teal"><kbd>cdr</kbd></span>
+      <span style="color:blue"><kbd>tail</kbd></span>
+    
     of a lazy pair need not force the value of a list element.  The value will be
-    forced only when it is really needed—e.g., for use as the
-    argument of a primitive, or to be printed as an answer.
+    forced only when it is really needed—e.g., for use as the argument
+    of a primitive, or to be printed as an answer.
   </p></div>
 
   <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
     Lazy pairs also help with the problem that arose with streams in
-    section <REF NAME="sec:streams-and-delayed-evaluation"><a class="superscript" id="4.2.3-sec-link-3.5.4" href="./3.5.4.html">3.5.4</a></REF>, where we found
-    that formulating stream models of systems with loops may require us to
+    section <REF NAME="sec:streams-and-delayed-evaluation"><a class="superscript" id="4.2.3-sec-link-3.5.4" href="./3.5.4.html">3.5.4</a></REF>, where we
+    found that formulating stream models of systems with loops may require us to
     sprinkle our programs with
     
       <span style="color:teal">
-    
-    
-    explicit
-    <kbd>delay</kbd>
-    operations, beyond the
-    ones supplied by
-    <kbd>cons-stream</kbd>.
+	
+	
+	explicit
+	<kbd>delay</kbd>
+	operations, beyond the ones supplied by
+	<kbd>cons-stream</kbd>.
       </span>
       <span style="color:blue">
-    
-    
-    additional delayed lambda expressions,
-    beyond the ones required to construct a stream pair.
+	
+	
+	additional delayed lambda expressions, beyond the ones required to
+	construct a stream pair.
       </span>
     
-    With lazy evaluation, all
-    arguments to
-    <span style="color:teal">procedures</span><span style="color:blue">functions</span>
+    With lazy evaluation, all arguments to
+    
+      <span style="color:teal">procedures</span>
+      <span style="color:blue">functions</span>
+    
     are delayed uniformly.  For instance, we can implement
-    <span style="color:teal">procedures</span><span style="color:blue">functions</span>
-    to integrate lists and solve differential equations as we originally intended in
-    section <REF NAME="sec:streams-and-delayed-evaluation"><a class="superscript" id="4.2.3-sec-link-3.5.4" href="./3.5.4.html">3.5.4</a></REF>:
-
+    
+      <span style="color:teal">procedures</span>
+      <span style="color:blue">functions</span>
+    
+    to integrate lists and solve differential equations as we originally
+    intended in section <REF NAME="sec:streams-and-delayed-evaluation"><a class="superscript" id="4.2.3-sec-link-3.5.4" href="./3.5.4.html">3.5.4</a></REF>:
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -1945,8 +1959,7 @@ list_ref(integers, 17); // returns 18
       2.716924
       
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_86_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function integral(integrand, initial_value, dt) {	
+            <td><div class='snippet' id='javascript_86_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&variant=lazy&prgrm=PTAEGUEkGEAVQFLlAFgHQCY0GYBQuAzAVwDsBjAFwEsB7E0ABwEMqAnACgA8AaUATwCUoAN4BIXKEmhWAUwpFW9ALagAvAD5QSrr0EBuXAF9CpSrXoALGUwAm7AF5DhU0BKmz5i0Pfah2DXgBHIQ1GUAEDY2JyajpQChYAGwcnN0kPBXofPwDQYLVNQPDI-GizOMSqAGcKAH1ZAnYqChklKt4SJ3EXDK96VQHQAAY0lxcAflArWyaWtoFRsckALlBKmvqZRoSqZObWqoEO0ABaUABGCKMTGPMtJgZ2aN59+ZFRKVHe+mrakiJEns5odFktJv9AaCxqtmGwnqR2NM7K9DkcoUsxkoHvCSLwdkCDgIiSUyrF6FUyExEjJausKLMDrwCExKDRWKkenJMvdHpwCqA+QAqUDM1msF7Aq5RUxk0C2Gy06oUKrsOnnXh0jAc9xcry-CHJNULDETNZKjDoqSrfUAw3moSfE1jSZqy0uGEsDhI1VKy6gADUU2sdk1aKd4blNgVdJV+J9NUu3DdEadcdDxOuZDoNVAdBkVTUjE97HVuZI+auWZIOaoJBaAHMZKwC6oi3DS-LFTUVXn2qBaw2m6iDLg6ZtGgOZI3m7xzgB2K43co-OtT1hUpqr+vrkg2F4kZpUKm1ABuVKIMl4NgoXVGVZrdbU6NhHFrh+PZ8SF6TKcj0aVKoUlSNJ0puDY7nuoDXmGv5OgOGacp4K4UCSMp3FUNCJCeMhPLoQxXjeIh3tmFD8IWk7bhuNh8HhBFXC496kdRhZYo8BC6PROpIfwJRjg07AYVhOF8qEPAXLwQxoEMQxarwACs0kREAA')">function integral(integrand, initial_value, dt) {	
     const int =
         pair(initial_value,
              add_lists(scale_list(integrand, dt),
@@ -1959,12 +1972,20 @@ function solve(f, y0, dt) {
     return y;
 }
 list_ref(solve(x => x, 1, 0.001), 1000);
+
+</pre><pre class='prettyprintoutput'>
+
+L-evaluate input:
+list_ref(solve(x => x, 1, 0.001), 1000);
+L-evaluate value:
+2.716924
+      
 </pre></div></div></td></tr></table>
   </p></div>
 
   
     <div class="permalink">
-    <a name="ex_4.25" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.25">Exercise 4.25 </a></b> 
+    <a name="ex_4.41" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.41">Exercise 4.41 </a></b> 
   
     Give some examples that illustrate the difference between the streams
     of chapter 3 and the <QUOTE>lazier</QUOTE> lazy lists described in
@@ -1980,7 +2001,7 @@ list_ref(solve(x => x, 1, 0.001), 1000);
 
   
     <div class="permalink">
-    <a name="ex_4.33" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.33">Exercise 4.33 </a></b> 
+    <a name="ex_4.49" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.49">Exercise 4.49 </a></b> 
   
     Ben Bitdiddle tests the lazy list implementation given above by
     evaluating the expression
@@ -1994,16 +2015,22 @@ list_ref(solve(x => x, 1, 0.001), 1000);
             <td><div class='snippet' id='javascript_86_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 head(list(a, b, c));
 </pre></div></div></td></tr></table>
-    To his surprise, this produces an error.  After some thought, he
-    realizes that the <QUOTE>lists</QUOTE> obtained by reading in quoted expressions
-    are different from the lists manipulated by the new definitions of
-    <span style="color:teal"><kbd>cons</kbd>,</span>
-    <span style="color:blue"><kbd>pair</kbd>,</span>
-    <span style="color:teal"><kbd>car</kbd>,</span>
-    <span style="color:blue"><kbd>head</kbd>,</span>
+    To his surprise, this produces an error.  After some thought, he realizes
+    that the <QUOTE>lists</QUOTE> obtained by reading in quoted expressions are
+    different from the lists manipulated by the new definitions of
+    
+      <span style="color:teal"><kbd>cons</kbd>,</span>
+      <span style="color:blue"><kbd>pair</kbd>,</span>
+    
+    
+      <span style="color:teal"><kbd>car</kbd>,</span>
+      <span style="color:blue"><kbd>head</kbd>,</span>
+    
     and
-    <span style="color:teal"><kbd>cdr</kbd>.</span>
-    <span style="color:blue"><kbd>tail</kbd>.</span>
+    
+      <span style="color:teal"><kbd>cdr</kbd>.</span>
+      <span style="color:blue"><kbd>tail</kbd>.</span>
+    
     Modify the evaluator's treatment of
     
       <span style="color:teal">
@@ -2027,13 +2054,12 @@ head(list(a, b, c));
 
   
     <div class="permalink">
-    <a name="ex_4.34" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.34">Exercise 4.34 </a></b> 
+    <a name="ex_4.50" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.50">Exercise 4.50 </a></b> 
   
-    Modify the driver loop for the evaluator so that lazy pairs and lists
-    will print in some reasonable way.  (What are you going to do about
-    infinite lists?)  You may also need to modify the representation of
-    lazy pairs so that the evaluator can identify them in order
-    to print them.
+    Modify the driver loop for the evaluator so that lazy pairs and lists will
+    print in some reasonable way.  (What are you going to do about infinite
+    lists?)  You may also need to modify the representation of lazy pairs so
+    that the evaluator can identify them in order to print them.
     
   
       <div class="Solution">
@@ -2050,16 +2076,17 @@ head(list(a, b, c));
   
   
 
+
+  
 <hr>
 
     <div class='footnote'><span style="color:teal">
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1' style="color:teal">[1] </a>
     <FOOTNOTE>
-    This
-    is precisely the issue with the <kbd>unless</kbd>
-    <span style="color:teal">procedure,</span>
-    <span style="color:blue">function,</span>
-    as in exercise <REF NAME="ex:normal-order-via-syntax"><a class="superscript" id="4.2.3-ex-link-4.26" href="./4.2.1.html#ex_4.26">4.26</a></REF>.
+    This is precisely the issue with the
+	<kbd>unless</kbd> procedure,
+	as in
+	exercise <REF NAME="ex:normal-order-via-syntax"><a class="superscript" id="4.2.3-ex-link-4.42" href="./4.2.1.html#ex_4.42">4.42</a></REF>.
     </FOOTNOTE></span></div>
     
     
@@ -2069,37 +2096,34 @@ head(list(a, b, c));
     This
     is the 
     
-      <span style="color:teal">
-	procedural 
-      </span>
-      <span style="color:blue">
-	functional
-      </span>
+      <span style="color:teal">procedural</span>
+      <span style="color:blue">functional</span>
     
-    representation described in
-    exercise <REF NAME="ex:lambda-cons"><a class="superscript" id="4.2.3-ex-link-2.4" href="./2.1.3.html#ex_2.4">2.4</a></REF>.  Essentially any 
+    representation described in exercise <REF NAME="ex:lambda-cons"><a class="superscript" id="4.2.3-ex-link-2.4" href="./2.1.3.html#ex_2.4">2.4</a></REF>.
+    Essentially any 
     
-      <span style="color:teal">
-	procedural 
-      </span>
-      <span style="color:blue">
-	functional
-      </span>
+      <span style="color:teal">procedural</span>
+      <span style="color:blue">functional</span>
     
-    representation
-    (e.g., a message-passing implementation) would do as well.  Notice
-    that we can install these definitions in the lazy evaluator simply by
+    representation (e.g., a message-passing implementation) would do as well.
+    Notice that we can install these definitions in the lazy evaluator simply by
     typing them at the driver loop.  If we had originally included
-    <span style="color:teal"><kbd>cons</kbd>,</span>
-    <span style="color:blue"><kbd>pair</kbd>,</span>
-    <span style="color:teal"><kbd>car</kbd>,</span>
-    <span style="color:blue"><kbd>head</kbd>,</span>
+    
+      <span style="color:teal"><kbd>cons</kbd>,</span>
+      <span style="color:blue"><kbd>pair</kbd>,</span>
+    
+    
+      <span style="color:teal"><kbd>car</kbd>,</span>
+      <span style="color:blue"><kbd>head</kbd>,</span>
+    
     and
-    <span style="color:teal"><kbd>cdr</kbd></span>
-    <span style="color:blue"><kbd>tail</kbd></span>
+    
+      <span style="color:teal"><kbd>cdr</kbd></span>
+      <span style="color:blue"><kbd>tail</kbd></span>
+    
     as primitives in the global environment, they will be redefined.  (Also see
-    exercises <REF NAME="ex:lazy-list-input"><a class="superscript" id="4.2.3-ex-link-4.33" href="./4.2.3.html#ex_4.33">4.33</a></REF>
-    and <REF NAME="ex:lazy-list-printing"><a class="superscript" id="4.2.3-ex-link-4.34" href="./4.2.3.html#ex_4.34">4.34</a></REF>.)
+    exercises <REF NAME="ex:lazy-list-input"><a class="superscript" id="4.2.3-ex-link-4.49" href="./4.2.3.html#ex_4.49">4.49</a></REF>
+    and <REF NAME="ex:lazy-list-printing"><a class="superscript" id="4.2.3-ex-link-4.50" href="./4.2.3.html#ex_4.50">4.50</a></REF>.)
     </FOOTNOTE></div>
     
     
@@ -2109,8 +2133,7 @@ head(list(a, b, c));
     This permits us to create delayed versions of more
     general kinds of
     
-    list structures, not just sequences.  
-    <CITATION>Hughes 1990</CITATION>
+    list structures, not just sequences. <CITATION>Hughes 1990</CITATION>
     discusses some
     
     applications of <QUOTE>lazy trees.</QUOTE>

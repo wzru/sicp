@@ -1143,7 +1143,7 @@
                   <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-84" aria-expanded="true" aria-controls="sidebar-collapse-84">
                   &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
                   </a>
-                  <a href="./4.2.html">4.2  <span style="color:teal"> Variations on a Scheme Lazy Evaluation </span> <span style="color:blue"> Lazy Evaluation </span></a>
+                  <a href="./4.2.html">4.2  <span style="color:teal"> Variations on a Scheme: </span> Lazy Evaluation</a>
                 </h5>
               </div>
     
@@ -1678,36 +1678,51 @@
         <div class='SECTION'><SECTION>
     
 
-      
-
-      <div class='permalink'>
-<a name='p1' class='permalink'></a><p>
   
-  To extend <span style="color:teal">Scheme</span><span style="color:blue">JavaScript</span>
-  to support nondeterminism, we introduce a new <span style="color:teal">special form</span><span style="color:blue">kind of expression</span> called <kbd>amb</kbd>.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-      </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
+<a name='p1' class='permalink'></a><p>
+    
+    To extend
+    
+      <span style="color:teal">Scheme</span>
+      <span style="color:blue">JavaScript</span>
+    
+    to support nondeterminism, we introduce a new
+    
+      <span style="color:teal">special form</span>
+      <span style="color:blue">kind of expression</span>
+    
+    called
+    <kbd>amb</kbd>.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+  </p></div>
+
+  <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-	The expression
-	<span style="color:teal"><kbd>(amb </kbd>$e_1\ e_2\ldots e_n$<kbd>)</kbd></span>
-	<span style="color:blue"><kbd>amb(</kbd>$e_1,\ e_2,\ldots, e_n$<kbd>)</kbd></span>
-  returns the value of one of the $n$ expressions $e_i$ <QUOTE>ambiguously.</QUOTE>
-  For example, the expression
-
-  <table width="100%">
+    The expression
+    
+      <span style="color:teal">
+	<kbd>(amb </kbd>$e_1\ e_2\ldots e_n$<kbd>)</kbd>
+      </span>
+      <span style="color:blue">
+	<kbd>amb(</kbd>$e_1,\ e_2,\ldots, e_n$<kbd>)</kbd>
+      </span>
+    
+    returns the value of one of the $n$ expressions
+    $e_i$ <QUOTE>ambiguously.</QUOTE> For example,
+    the expression
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_88_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (list (amb 1 2 3) (amb 'a 'b))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_88_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-list(amb(1, 2, 3), amb("a", "b"))
-</pre></div></div></td></tr></table>
+            <td><div class='snippet' id='javascript_88_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAbASwGcAXACgEMBbAIwuwBpQAmFjAShdoYCIqfFnzp9OnANy4QoWACcApiRKg+AJQCuAOz6gAZgHs5oMgAsF+onPKgSBghrJEDWtKAAqATwAOC6WDI5T1AqAHMqIi1-UEiTc1A1AFFYABlQFziLOSJQ0zIWQ2MaIws7BycXEiA')">list(amb(1, 2, 3), amb("a", "b"));
 
-  can have six possible values:
-  <table width="100%">
+</pre></div></div></td></tr></table>
+    can have six possible values:
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -1717,41 +1732,49 @@ list(amb(1, 2, 3), amb("a", "b"))
             <td><div class='snippet' id='javascript_88_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 list(1, "a") list(1, "b") list(2, "a") list(2, "b") list(3, "a") list(3, "b")
 </pre></div></div></td></tr></table>
+  </p></div>
 
-      </p></div>
-
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-	
-	  <span style="color:teal">
-	    <kbd>Amb</kbd>
-	  </span>
-	  <span style="color:blue">
-	    An application of <kbd>amb</kbd>
-	  </span>
-	
-	    with a single choice produces an ordinary (single) value.
-      </p></div>
+    
+      <span style="color:teal">
+	<kbd>Amb</kbd>
+      </span>
+      <span style="color:blue">
+	An application of <kbd>amb</kbd>
+      </span>
+    
+    with a single choice produces an ordinary (single) value.
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
-  
-	
-	  <span style="color:teal">
-	    <kbd>Amb</kbd>
-	  </span>
-	  <span style="color:blue">
-	    An application of <kbd>amb</kbd>
-	  </span>
-	
-  with no choices—the expression <span style="color:teal"><kbd>(amb)</kbd></span><span style="color:blue"><kbd>amb()</kbd></span>—is an
-  expression with no acceptable values.  Operationally, we can think of
-  <span style="color:teal"><kbd>(amb)</kbd></span><span style="color:blue"><kbd>amb()</kbd></span> as an expression that when evaluated causes the
-  computation to <QUOTE>fail</QUOTE>: The computation aborts and no value is
-  produced.  Using this idea, we can express the requirement that a
-  particular predicate expression <kbd>p</kbd> must be true as follows:
-
-  <table width="100%">
+    
+    
+      <span style="color:teal">
+	<kbd>Amb</kbd>
+      </span>
+      <span style="color:blue">
+	An application of <kbd>amb</kbd>
+      </span>
+    
+    with no choices—the expression
+    
+      <span style="color:teal"><kbd>(amb)</kbd>—is</span>
+      <span style="color:blue"><kbd>amb()</kbd>—is
+      </span>
+    
+    an expression with no acceptable values.  Operationally, we can think of
+    
+      <span style="color:teal"><kbd>(amb)</kbd></span>
+      <span style="color:blue"><kbd>amb()</kbd></span>
+    
+    as an expression that when evaluated causes the computation to
+    <QUOTE>fail</QUOTE>: The computation aborts and no value is produced.
+    Using this idea, we can express the requirement that a particular predicate
+    expression <kbd>p</kbd> must be true as follows:
+    
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -1759,23 +1782,25 @@ list(1, "a") list(1, "b") list(2, "a") list(2, "b") list(3, "a") list(3, "b")
 (define (require p)
       (if (not p) (amb)))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_88_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function require(p) {
-    return ! p ? amb() : "some ordinary value";      
+            <td><div class='snippet' id='javascript_88_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AJwFMBHIq5gCgAcBKUAN65QIxkwpEG9AIShuoAPygAhgFsARp34AuUACJwy6gGcCVJgBMxbDkz0BuUaNwBffGTrGKoAB6gAvCoanNgANKAY4QCs4QDs4QCcvPa4zDZcfgB8gSjJuD4pIKCwzMbG+gBKpHqgBDQMoBQAFky1HF6gxjQANkTUdGigACoAntxMuEUUDCMqAObKVCSTYEuNLaAVAKKwADKgdOutDFRzTRThdQ2q9a1dvf0kxkA')">function require(p) {
+    return ! p ? amb() : "Satisfied require";      
 }
+
 </pre></div></div></td></tr></table>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-	With <kbd>amb</kbd> and <kbd>require</kbd>, we can implement the
-	
-	<span style="color:teal"><kbd>an-element-of</kbd> procedure</span>
-	<span style="color:blue"><kbd>an_element_of</kbd> function</span>
-	
-  used above:
-
-  <table width="100%">
+    With <kbd>amb</kbd> and
+    <kbd>require</kbd>, we can implement the
+    
+      <span style="color:teal"><kbd>an-element-of</kbd> procedure</span>
+      <span style="color:blue"><kbd>an_element_of</kbd> function
+      </span>
+    
+    used above:
+    
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -1784,32 +1809,37 @@ function require(p) {
       (require (not (null? items)))
       (amb (car items) (an-element-of (cdr items))))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_88_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function an_element_of(items) {
+            <td><div class='snippet' id='javascript_88_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AQxIH0BTAG1YFtWSLmaBABRUK3AM4BKUAG9coBaABOrAI5EqKoQEJQVccxJF27EWK5TJAbnmKVFIkvoMuAIyEALVgwAmZiZIANIwsHNy8-IJCFAxUpqIBkta4AL74ZHTiFKAAHuKgALyg7PoUQgBEDAAOVZzlweWuTM31oOVkSkyurEpKAJ7lyUxsnDx8AsJ51gCQuCCgsCri+eUASqTloAQ0SqAUXluaWaDiNOxE1HRooAAqfVWsc2AU-YwA5rEkT3r0+6ygqwAorAADKgOh7A5KKhvDwUYLbXZcHb-U7nS4kcRAA')">function an_element_of(items) {
     require(! is_null(items));
-    return amb(head(items), an_element_of(tail(items));
+    return amb(head(items), an_element_of(tail(items)));
 }
+
 </pre></div></div></td></tr></table>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
-	<span style="color:teal"><kbd>An-element-of</kbd></span>
-	<span style="color:blue">An application of <kbd>an_element_of</kbd></span>
-	
-	fails if the list is empty.  Otherwise it
-  ambiguously returns either the first element of the list or an element
-  chosen from the rest of the list.
-      </p></div>
+    
+      <span style="color:teal"><kbd>An-element-of</kbd></span>
+      <span style="color:blue">
+	An application of <kbd>an_element_of</kbd>
+      </span>
+    
+    fails if the list is empty.  Otherwise it ambiguously returns either the
+    first element of the list or an element chosen from the rest of the list.
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
-  We can also express infinite ranges of choices.  The following
-  <span style="color:teal">procedure</span><span style="color:blue">function</span>
-  potentially returns any integer greater than or equal to
-  some given $n$:
-
-  <table width="100%">
+    We can also express infinite ranges of choices.  The following
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
+    potentially returns any integer greater than or equal to some
+    given $n$:
+    
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -1817,184 +1847,351 @@ function an_element_of(items) {
 (define (an-integer-starting-from n)
       (amb n (an-integer-starting-from (+ n 1))))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_88_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function an_integer_starting_from(n) {
+            <td><div class='snippet' id='javascript_88_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AQxIH0qSKBTAcw4CdmAzhQa9qJLswK8aAWwAUJAJSgA3rlAbQvDhSK96DGQCMFAGkYs2nHvyEixEqbIWgA1KGyLFAblwBffDI6IVAAD1AAXgtWdm4+QWFRNkdpeU9fbQBHIiptOXCAPij0AFYfXFDfEFBYbQEBUAAiACVSRtACGl5QCgALDg7ckIEaABsiajo0UAAVAE8ABw5caopeOcYuBjYVsDYe-tBmgFFYABlQOgOB3iouXopzTu6ZLoGR8cmSASA')">function an_integer_starting_from(n) {
     return amb(n, an_integer_starting_from(n + 1));
 }
+
 </pre></div></div></td></tr></table>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
-  This is like the stream
-  
-    <span style="color:teal">procedure
-    <kbd>integers-starting-from</kbd>
-    </span>
-    <span style="color:blue">function</span>
-    <kbd>integers_starting_from</kbd>
+    This is like the stream
     
-  described in section <REF NAME="sec:infinite-streams"><a class="superscript" id="4.3.1-sec-link-3.5.2" href="./3.5.2.html">3.5.2</a></REF>, but with an important
-  difference: The stream
-  <span style="color:teal">procedure</span><span style="color:blue">function</span>
-  returns an object that represents the
-  sequence of all integers beginning with $n$,
-  whereas the <kbd>amb</kbd>
-  <span style="color:teal">procedure</span><span style="color:blue">function</span>
-  returns a single integer.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
-  
-  Abstractly, we can imagine that evaluating an <kbd>amb</kbd> expression
-  causes time to split into branches, where the computation continues on
-  each branch with one of the possible values of the expression.  We say
-  that <kbd>amb</kbd> represents a 
-  
-  <EM>nondeterministic choice point</EM>.
-  If we had a machine with a sufficient number of processors that could
-  be dynamically allocated, we could implement the search in a
-  straightforward way.  Execution would proceed as in a sequential
-  machine, until an <kbd>amb</kbd> expression is encountered.  At this point,
-  more processors would be allocated and initialized to continue all of
-  the parallel executions implied by the choice.  Each processor would
-  proceed sequentially as if it were the only choice, until it either
-  terminates by encountering a failure, or it further subdivides, or
-  it finishes.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
-  
-  On the other hand, if we have a machine that can execute
-  only one process (or a few concurrent processes),
-  we must consider the alternatives sequentially.
-  One could imagine modifying an evaluator
-  to pick at random a branch to follow whenever it encounters a choice
-  point.  Random choice, however, can easily lead to failing values.
-  We might try running the evaluator over and over, making random
-  choices and hoping to find a non-failing value, but it is better to 
-  
-  <EM>
-    systematically search</EM> all possible execution paths.
-  The <kbd>amb</kbd> evaluator that we will develop and work with in this section
-  implements a systematic search as follows: When the evaluator
-  encounters an application of <kbd>amb</kbd>, it initially selects the first
-  alternative.  This selection may itself lead to a further choice.  The
-  evaluator will always initially choose the first alternative at each
-  choice point.  If a choice results in a failure, then the evaluator
-  
-  automagically<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a> 
-  
-  <EM>backtracks</EM>
-  to the most recent choice point and tries the next
-  alternative.  If it runs out of alternatives at any choice point, the
-  evaluator will back up to the previous choice point and resume from
-  there.  This process leads to a search strategy known as 
-  
-  
-  <EM>
-    depth-first search</EM> or <EM>chronological backtracking</EM>.<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
-      </p></div>
-
+      <span style="color:teal">procedure
+      <kbd>integers-starting-from</kbd>
+      </span>
+      <span style="color:blue">function</span>
+      <kbd>integers_starting_from</kbd>
       
+    described in section <REF NAME="sec:infinite-streams"><a class="superscript" id="4.3.1-sec-link-3.5.2" href="./3.5.2.html">3.5.2</a></REF>, but with an
+    important difference: The stream
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
+    returns an object that represents the sequence of all integers beginning
+    with $n$, whereas the
+    <kbd>amb</kbd>
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
+    returns a single integer.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p9' class='permalink'></a><p>
+    
+    Abstractly, we can imagine that evaluating an
+    <kbd>amb</kbd> expression causes time to split into
+    branches, where the computation continues on each branch with one of the
+    possible values of the expression.  We say that
+    <kbd>amb</kbd> represents a 
+    
+    <EM>nondeterministic choice point</EM>. If we had a machine with a
+    sufficient number of processors that could be dynamically allocated, we
+    could implement the search in a straightforward way.  Execution would
+    proceed as in a sequential machine, until an <kbd>amb</kbd>
+    expression is encountered.  At this point, more processors would be allocated
+    and initialized to continue all of the parallel executions implied by the
+    choice.  Each processor would proceed sequentially as if it were the only
+    choice, until it either terminates by encountering a failure, or it further
+    subdivides, or it finishes.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p10' class='permalink'></a><p>
+    
+    On the other hand, if we have a machine that can execute only one process
+    (or a few concurrent processes), we must consider the alternatives
+    sequentially. One could imagine modifying an evaluator to pick at random a
+    branch to follow whenever it encounters a choice point.  Random choice,
+    however, can easily lead to failing values. We might try running the
+    evaluator over and over, making random choices and hoping to find a
+    non-failing value, but it is better to 
+    
+    <EM>systematically search</EM> all possible execution paths. The
+    <kbd>amb</kbd> evaluator that we will develop and work
+    with in this section implements a systematic search as follows: When the
+    evaluator encounters an application of <kbd>amb</kbd>, it
+    initially selects the first alternative.  This selection may itself lead to
+    a further choice.  The evaluator will always initially choose the first
+    alternative at each choice point.  If a choice results in a failure, then
+    the evaluator
+    
+    automagically<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a> 
+    
+    <EM>backtracks</EM> to the most recent choice point and tries the next
+    alternative.  If it runs out of alternatives at any choice point, the
+    evaluator will back up to the previous choice point and resume from there.
+    This process leads to a search strategy known as 
+    
+    
+    
+    <EM>depth-first search</EM> or <EM>chronological
+    backtracking</EM>.<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
+  </p></div>
+
+  
       <div class='permalink'>
         <a name='h1' class='permalink'></a><h2>
     
-  Driver loop
-      </h2></div>
+    Driver loop
+  </h2></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p11' class='permalink'></a><p>
-  
-  The driver loop for the <kbd>amb</kbd> evaluator
-  has some unusual properties.  It reads an
-  expression and prints the value of the first non-failing execution, as
-  in the
-  
-    <span style="color:teal"><kbd>prime-sum-pair</kbd></span>
-    <span style="color:blue"><kbd>prime_sum_pair</kbd></span>
-  
-  example shown above.  If we
-  want to see the value of the next successful execution, we can
-  ask the interpreter to backtrack and attempt to generate a second
-  non-failing execution.
-  
-    <span style="color:teal">
-  This is signaled by typing the symbol 
-  
-  <kbd>try-again</kbd>.  If any expression except <kbd>try-again</kbd> is given, the
-  interpreter will start a new problem, discarding the unexplored
-  alternatives in the previous problem.
-    </span>
-    <span style="color:blue">
-  This is signaled by typing
-  
-  <kbd>try-again</kbd>.  If any other input except <kbd>try-again</kbd>
-  is given, the interpreter will start a new problem, discarding the unexplored
-  alternatives in the previous problem.
-    </span>
-  
-  Here is a sample
-  interaction:
+    
+    The driver loop for the <kbd>amb</kbd> evaluator has some
+    unusual properties.  It reads an expression and prints the value of the
+    first non-failing execution, as in the
+    
+      <span style="color:teal"><kbd>prime-sum-pair</kbd></span>
+      <span style="color:blue"><kbd>prime_sum_pair</kbd>
+      </span>
+    
+    example shown above.  If we want to see the value of the next successful
+    execution, we can ask the interpreter to backtrack and attempt to generate a
+    second non-failing execution.
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr>
+          <td><span style="color:teal">
+	This is signaled by typing the symbol
+	
+	<kbd>try-again</kbd>. If any expression except
+	<kbd>try-again</kbd>
+	is given, the interpreter will start a new problem, discarding the
+	unexplored alternatives in the previous problem.
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+	This is signaled by typing 
+	
+	<kbd>try again</kbd>.
+	If any other input except <kbd>try again</kbd>
+	is given, the interpreter will start a new problem, discarding the
+	unexplored alternatives in the previous problem.
+      </span></td></tr></table>
+    Here is a sample interaction:
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_88_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 
-  <div class='snippet' id='javascript_88_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-// Amb-Eval input:
-prime_sum_pair(list(1, 3, 5, 8), list(20, 35, 110));
-// Starting a new problem
-// Amb-Eval value:
-[3, [20, null]]
+</pre><pre class='prettyprintoutput'>
 
-// Amb-Eval input:
-try-again
-// Amb-Eval value:
-[3, [110, null]]
-
-// Amb-Eval input:
-try-again
-// Amb-Eval value:
-[8, [35, null]]
-
-// Amb-Eval input:
-try-again
-// There are no more values of
-prime_sum_pair([1, [3, [5, [8, null]]]], [20, [35, [110, null]]])
-
-// Amb-Eval input:
-prime_sum_pair(list(19, 27, 30), list(11, 36, 58));
-// Starting a new problem
-// Amb-Eval value:
-[30, [11, null]]
-</pre></div></div>
-      </p></div>
-
+;;; Amb-Eval input:
       
-    <div class="permalink">
-    <a name="ex_4.35" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.35">Exercise 4.35 </a></b> 
-  
-  
-  
-  Write a
-  
-    <span style="color:teal">procedure
-    <kbd>an-integer-between</kbd> 
-    </span>
-    <span style="color:blue">function
-    <kbd>an_integer_between</kbd>
-    </span>
-  
-that returns an integer
-  between two given bounds.  This can be used to implement a
-  <span style="color:teal">procedure</span><span style="color:blue">function</span>
-  that finds Pythagorean triples,
-  i.e., triples of integers $(i,j,k)$ between the given bounds such
-  that $i \leq j$ and $i^2 + j^2 =k^2$, as follows:
-  <table width="100%">
+</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_88_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+
+</pre><pre class='prettyprintoutput'>
+
+// amb-evaluate input:
+      
+</pre></div></div></td></tr></table>
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_88_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(prime-sum-pair '(1 3 5 8) '(20 35 110))
+</pre><pre class='prettyprintoutput'>
+
+;;; Starting a new problem
+;;; Amb-Eval value:
+(3 20)
+      
+</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_88_7_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQSPETOUmUtABSZ6AAvMGgAAyqGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CX25e4tLdyCgQB8egnJqemZ7Nm5+UUloADUoNj8za2t-BGa0TpxhtXsVIU8pcJzWjG6VIkN1Qxl8x5e9MxsXNwAFpysRtxn-ILdJHOX4gD8oAo7CInB+v1AAC49IYTOYGFZbI1QE8Xm9zrNwfMAQRWNYGKDMa0ocdUtwMlxWIUDJkqNY0R9VO4NO5Kt4SadNttzksyHQMqANltOAwggK6g0AExNQmXdpBbrk55Ugi0k7cMEyzH6AyC7aODWa37xRIpNIGDJZeIjArFDAfA2YxbLbSxAWczjmohU2r1bjWfQUbCOf0ZCWudxzXkkfmsUWsEgGTi2bYJAw0Ah+gMzRniKP8yxxhNJzgpihpjMhihhnNiLgseo8bW6nixqaWBlzVn0SvcViOdtLXDNz3e8WZjLcIOgDCOACsjgAHPxgwHuBLQo4MPPpthQh2QKBYFwGCKAEQAJVIp9ABBo7EBTxv9X5DBo1iIqzQoAAKk5qqCDyBJxQFYJI6m+A94gfThQHPABRWAABlQF0ChH02JIHgoRxb3vQo7xg1931WBggA')">prime_sum_pair(list(1, 3, 5, 8), list(20, 35, 110));
+
+</pre><pre class='prettyprintoutput'>
+
+// Starting a new problem
+// amb-evaluate value:
+[3, [20, null]]
+      
+</pre></div></div></td></tr></table>
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_88_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+
+</pre><pre class='prettyprintoutput'>
+
+;;; Amb-Eval input:
+      
+</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_88_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+
+</pre><pre class='prettyprintoutput'>
+
+// amb-evaluate input:
+      
+</pre></div></div></td></tr></table>
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_88_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+try-again
+</pre><pre class='prettyprintoutput'>
+
+;;; Amb-Eval value:
+(3 110)
+      
+</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_88_9_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQSPETOUmUtABSZ6AAvMGgAAyqGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CX25e4tLdyCgQB8egnJqemZ7Nm5+UUloADUoNj8za2t-BGa0TpxhtXsVIU8pcJzWjG6VIkN1Qxl8x5e9MxsXNwAFpysRtxn-ILdJHOX4gD8oAo7CInB+v1AAC49IYTOYGFZbI1QE8Xm9zrNwfMAQRWNYGKDMa0ocdUtwMlxWIUDJkqNY0R9VO4NO5Kt4SadNttzksyHQMqANltOAwggK6g0AExNQmXdpBbrk55Ugi0k7cMEyzH6AyC7aODWa37xRIpNIGDJZeIjArFDAfA2YxbLbSxAWczjmohU2r1bjWfQUbCOf0ZCWudxzXkkfmsUWsEgGTi2bYJAw0Ah+gMzRniKP8yxxhNJzgpihpjMhihhnNiLgseo8bW6nixqaWBlzVn0SvcViOdtLXDNz3e8WZjLcIOgDCOACsjgAHPxgwHuBLQo4MPPpthQh2QKBYFwGCKAEQAJVIp9ABBo7EBTxv9X5DBo1iIqzQoAAKk5qqCDyBJxQFYJI6m+A94gfThQHPABRWAABlQF0ChH02JIHgoRxb3vQo7xg1931WBggA')">try again
+
+</pre><pre class='prettyprintoutput'>
+
+// amb-evaluate value:
+[3, [110, null]]
+      
+</pre></div></div></td></tr></table>
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_88_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+
+</pre><pre class='prettyprintoutput'>
+
+;;; Amb-Eval input:
+      
+</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_88_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+
+</pre><pre class='prettyprintoutput'>
+
+// amb-evaluate input:
+      
+</pre></div></div></td></tr></table>
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_88_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+try-again
+</pre><pre class='prettyprintoutput'>
+
+;;; Amb-Eval value:
+(8 35)
+      
+</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_88_11_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQSPETOUmUtABSZ6AAvMGgAAyqGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CX25e4tLdyCgQB8egnJqemZ7Nm5+UUloADUoNj8za2t-BGa0TpxhtXsVIU8pcJzWjG6VIkN1Qxl8x5e9MxsXNwAFpysRtxn-ILdJHOX4gD8oAo7CInB+v1AAC49IYTOYGFZbI1QE8Xm9zrNwfMAQRWNYGKDMa0ocdUtwMlxWIUDJkqNY0R9VO4NO5Kt4SadNttzksyHQMqANltOAwggK6g0AExNQmXdpBbrk55Ugi0k7cMEyzH6AyC7aODWa37xRIpNIGDJZeIjArFDAfA2YxbLbSxAWczjmohU2r1bjWfQUbCOf0ZCWudxzXkkfmsUWsEgGTi2bYJAw0Ah+gMzRniKP8yxxhNJzgpihpjMhihhnNiLgseo8bW6nixqaWBlzVn0SvcViOdtLXDNz3e8WZjLcIOgDCOACsjgAHPxgwHuBLQo4MPPpthQh2QKBYFwGCKAEQAJVIp9ABBo7EBTxv9X5DBo1iIqzQoAAKk5qqCDyBJxQFYJI6m+A94gfThQHPABRWAABlQF0ChH02JIHgoRxb3vQo7xg1931WBggA')">try again
+
+</pre><pre class='prettyprintoutput'>
+
+// amb-evaluate value:
+[8, [35, null]]
+      
+</pre></div></div></td></tr></table>
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_88_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+;;; Amb-Eval input:
+try-again
+</pre><pre class='prettyprintoutput'>
+
+;;; There are no more values of
+(prime-sum-pair (quote (1 3 5 8)) (quote (20 35 110)))
+      
+</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_88_12_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQSPETOUmUtABSZ6AAvMGgAAyqGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CX25e4tLdyCgQB8egnJqemZ7Nm5+UUloADUoNj8za2t-BGa0TpxhtXsVIU8pcJzWjG6VIkN1Qxl8x5e9MxsXNwAFpysRtxn-ILdJHOX4gD8oAo7CInB+v1AAC49IYTOYGFZbI1QE8Xm9zrNwfMAQRWNYGKDMa0ocdUtwMlxWIUDJkqNY0R9VO4NO5Kt4SadNttzksyHQMqANltOAwggK6g0AExNQmXdpBbrk55Ugi0k7cMEyzH6AyC7aODWa37xRIpNIGDJZeIjArFDAfA2YxbLbSxAWczjmohU2r1bjWfQUbCOf0ZCWudxzXkkfmsUWsEgGTi2bYJAw0Ah+gMzRniKP8yxxhNJzgpihpjMhihhnNiLgseo8bW6nixqaWBlzVn0SvcViOdtLXDNz3e8WZjLcIOgDCOACsjgAHPxgwHuBLQo4MPPpthQh2QKBYFwGCKAEQAJVIp9ABBo7EBTxv9X5DBo1iIqzQoAAKk5qqCDyBJxQFYJI6m+A94gfThQHPABRWAABlQF0ChH02JIHgoRxb3vQo7xg1931WBggA')">// amb-evaluate input:
+try again
+
+</pre><pre class='prettyprintoutput'>
+
+// There are no more values of
+prime_sum_pair([1, [3, [5, [8, null]]]], [20, [35, [110, null]]])
+      
+</pre></div></div></td></tr></table>
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_88_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+
+</pre><pre class='prettyprintoutput'>
+
+;;; Amb-Eval input:
+      
+</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_88_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+
+</pre><pre class='prettyprintoutput'>
+
+// amb-evaluate input:
+      
+</pre></div></div></td></tr></table>
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_88_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(prime-sum-pair '(19 27 30) '(11 36 58))
+</pre><pre class='prettyprintoutput'>
+
+;;; Starting a new problem
+;;; Amb-Eval value:
+(30 11)
+      
+</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_88_14_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQSPETOUmUtABSZ6AAvMGgAAyqGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CX25e4tLdyCgQB8egnJqemZ7Nm5+UUloADUoNj8za2t-BGa0TpxhtXsVIU8pcJzWjG6VIkN1Qxl8x5e9MxsXNwAFpysRtxn-ILdJHOX4gD8oAo7CInB+v1AAC49IYTOYGFZbI1QE8Xm9zrNwfMAQRWNYGKDMa0ocdUtwMlxWIUDJkqNY0R9VO4NO5Kt4SadNttzksyHQMqANltOAwggK6g0AExNQmXdpBbrk55Ugi0k7cMEyzH6AyC7aODWa37xRIpNIGDJZeIjArFDAfA2YxbLbSxAWczjmohU2r1bjWfQUbCOf0ZCWudxzXkkfmsUWsEgGTi2bYJAw0Ah+gMzRniKP8yxxhNJzgpihpjMhihhnNiLgseo8bW6nixqaWBlzVn0SvcViOdtLXDNz3e8WZjLcbAATkcEoA7I4MKF+MGA5Og6AMAA2RwAVgAHB2QKBYFwGCKAEQAJVIF9ABBo7EBT3v9X5DBo1iIqzQoAAKk41SgseQJOKArBJHU3zHvEz6cKAV4AKKwAAMqAugUC+mxJA8FCOA+T6FI+8Efl+qwMEAA')">prime_sum_pair(list(19, 27, 30), list(11, 36, 58));
+
+</pre><pre class='prettyprintoutput'>
+
+// Starting a new problem
+// amb-evaluate value:
+[30, [11, null]]
+      
+</pre></div></div></td></tr></table>
+  </p></div>
+
+  
+    <div class="permalink">
+    <a name="ex_4.51" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.51">Exercise 4.51 </a></b> 
+  
+    
+    
+    
+    Write a
+    
+      <span style="color:teal">procedure
+      <kbd>an-integer-between</kbd> 
+      </span>
+      <span style="color:blue">function
+      <kbd>an_integer_between</kbd>
+      </span>
+    
+    that returns an integer between two given bounds.  This can be used to
+    implement a
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
+    that finds Pythagorean triples, i.e., triples of integers
+    $(i,j,k)$ between the given bounds such
+    that $i \leq j$ and
+    $i^2 + j^2 =k^2$, as follows:
+    
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_88_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (a-pythagorean-triple-between low high)
       (let ((i (an-integer-between low high)))
       (let ((j (an-integer-between i high)))
@@ -2002,16 +2199,16 @@ that returns an integer
             (require (= (+ (* i i) (* j j)) (* k k)))
             (list i j k)))))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_88_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function a_pythogorean_triple_between(low, high) {      
+            <td><div class='snippet' id='javascript_88_15_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AQwH0AHATwoAsaBzGgJwCmDEkwr8qLADaCmAI0EUA7oMEkAFFJpKANKE5UenAJSgA3qEtXcV0GToBnCqCqgAvI1FUSFQT0H88ooqapraegZGxgDcNlb2JE6gAFbunkzevv6BCsqqGlQRhiaxtglJANZpIhk+fgFBeaHJRVGlVkIAjkRUQuquAFQuoADUKaBDqW7ToFVDFTFxlkIURPz0UlRO-Xots4sAvvjM7Fy8AsKi4pIyjSEaAKx62A+LIKCwQg4OoABEAEqkX6gAgCUBcQQg3pJBw0KREah0NCgAAqbBYglw73EbEYPAY3ixYG84M4kP+AFFYAAZUB0UmQiRGCh6UH8UAAWwuoFh8MRiSAA')">function a_pythogorean_triple_between(low, high) {      
     const i = an_integer_between(low, high);
     const j = an_integer_between(i, high);
     const k = an_integer_between(j, high);
     require(i * i + j * j === k * k);
     return list(i, j, k);
 }
+
 </pre></div></div></td></tr></table>
-      
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_88_1_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_88_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2020,54 +2217,60 @@ function a_pythogorean_triple_between(low, high) {
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
-    <a name="ex_4.32" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.32">Exercise 4.32 </a></b> 
+    <a name="ex_4.48" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.48">Exercise 4.48 </a></b> 
   
+    
+    
+    exercise <REF NAME="ex:stream-pythagorean-triples"><a class="superscript" id="4.3.1-ex-link-3.73" href="./3.5.3.html#ex_3.73">3.73</a></REF> discussed how to
+    generate the stream of <EM>all</EM> Pythagorean triples, with no upper bound
+    on the size of the integers to be searched.  Explain why simply replacing
+    
+      <span style="color:teal">
+	<kbd>an-integer-between</kbd>
+      </span>
+      <span style="color:blue">
+	<kbd>an_integer_between</kbd>
+      </span>
+    
+    by
+    
+      <span style="color:teal">
+	<kbd>an-integer-starting-from</kbd>
+      </span>
+      <span style="color:blue">
+	<kbd>an_integer_starting_from</kbd>
+      </span>
+    
+    in the
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
+    in
+    exercise <REF NAME="ex:amb-pythag-triples"><a class="superscript" id="4.3.1-ex-link-4.51" href="./4.3.1.html#ex_4.51">4.51</a></REF> is not an adequate way to
+    generate arbitrary Pythagorean triples.  Write a
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
+    that actually will accomplish this.  (That is, write a
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
+    for which repeatedly typing
+    
+      <span style="color:teal">
+	<kbd>try-again</kbd>
+      </span>
+      <span style="color:blue">
+	<kbd>try again</kbd>
+      </span>
+    
+    would in principle eventually generate all Pythagorean triples.)
   
-  
-  exercise <REF NAME="ex:stream-pythagorean-triples"><a class="superscript" id="4.3.1-ex-link-3.73" href="./3.5.3.html#ex_3.73">3.73</a></REF> discussed how to generate
-  the stream of <EM>all</EM> Pythagorean triples, with no upper bound on the
-  size of the integers to be searched.  Explain why simply replacing
-  
-    <span style="color:teal">
-      <kbd>an-integer-between</kbd>
-    </span>
-    <span style="color:blue">
-      <kbd>an_integer_between</kbd>
-    </span>
-  
-  by
-  
-    <span style="color:teal">
-  <kbd>an-integer-starting-from</kbd>
-    </span>
-    <span style="color:blue">
-      <kbd>an_integer_starting_from</kbd>
-    </span>
-  
-  in the
-  <span style="color:teal">procedure</span><span style="color:blue">function</span>
-  in
-  exercise <REF NAME="ex:amb-pythag-triples"><a class="superscript" id="4.3.1-ex-link-4.35" href="./4.3.1.html#ex_4.35">4.35</a></REF> is not an adequate way to
-  generate arbitrary Pythagorean triples.  Write a
-  <span style="color:teal">procedure</span><span style="color:blue">function</span>
-  that
-  actually will accomplish this.  (That is, write a
-  <span style="color:teal">procedure</span><span style="color:blue">function</span>
-  for which
-  repeatedly typing
-  
-    <span style="color:teal">
-      <kbd>try-again</kbd>
-    </span>
-    <span style="color:blue">
-      <kbd>       </kbd>
-    </span>
-  
-  would in principle eventually
-  generate all Pythagorean triples.)
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_88_2_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_88_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2076,22 +2279,22 @@ function a_pythogorean_triple_between(low, high) {
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
-    <a name="ex_4.36" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.36">Exercise 4.36 </a></b> 
+    <a name="ex_4.52" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.52">Exercise 4.52 </a></b> 
   
-  
-  
-  Ben Bitdiddle claims that the following method for generating
-  Pythagorean triples is more efficient than the one in
-  exercise <REF NAME="ex:amb-pythag-triples"><a class="superscript" id="4.3.1-ex-link-4.35" href="./4.3.1.html#ex_4.35">4.35</a></REF>.  Is he correct?  (Hint: Consider
-  the number of possibilities that must be explored.)
-
-  <table width="100%">
+    
+    
+    Ben Bitdiddle claims that the following method for generating Pythagorean
+    triples is more efficient than the one in
+    exercise <REF NAME="ex:amb-pythag-triples"><a class="superscript" id="4.3.1-ex-link-4.51" href="./4.3.1.html#ex_4.51">4.51</a></REF>.  Is he correct?
+    (Hint: Consider the number of possibilities that must be explored.)
+    
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_88_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_88_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (a-pythagorean-triple-between low high)
       (let ((i (an-integer-between low high))
             (hsq (* high high)))
@@ -2102,19 +2305,19 @@ function a_pythogorean_triple_between(low, high) {
             (require (integer? k))
             (list i j k))))))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_88_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function a_pythagorean_triple_between(low, high) {
+            <td><div class='snippet' id='javascript_88_16_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AQwH0AHATwoAsGBzGgJwCmDEkwr8qLADaCmAI0EUA7oMEkAFFJpKANKE5UenAJSgA3rlBXQZOgGcKoKqAC8jUVRIVBPQf3mKKmqa2noGRsYA3JbWtiQO+nYAjq76hpygAFRpRtHWNvaOAFapIkye3r7+CsqqGlRh6VExVnEJANbJqc7ZzgDUoCXZRXnWQklEVELqnF0AfG6dSc35bY7tqQC2DFxMyfwU6ksrY4ITU4LqVHblXj5+R8YnVlLXhw2Deu3NAL74xORqHQnDcKvd+OoAB6mCz5IQUIj8eiQ1wuNzbXYELQCKG-XDMdhcXgCYSicSSGQBWrBACsemwNKiQA')">function a_pythagorean_triple_between(low, high) {
     const i = an_integer_between(low, high);
     const hsq = high * high;
     const j = an_integer_between(i, high);
     const ksq = i * i + j * j;
     require(hsq >= ksq);
-    const k = sqrt(ksq);
+    const k = math_sqrt(ksq);
     require(is_integer(k));
     list(i, j, k);
 }
+
 </pre></div></div></td></tr></table>
-      
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_88_3_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_88_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2122,51 +2325,57 @@ function a_pythagorean_triple_between(low, high) {
     
 </EXERCISE></div>
 
-
-    <hr>
+<hr>
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1' >[1] </a>
     <FOOTNOTE>
-    The idea of <kbd>amb</kbd> for nondeterministic programming was
+    The idea of
+    <kbd>amb</kbd> for nondeterministic programming was
     
-    first described in 1961 by John McCarthy 
-    (see <CITATION>McCarthy 1967</CITATION>).
-    <span style="color:blue">For convenience, we make these expressions look like function applications. This is analogous
-    to the lazy boolean operators, which look like binary operators, but which are treated differently by the evaluator.
-    Applications of <kbd>amb</kbd> will be treated differently from applications of ordinary
-    primitive functions.</span>
-  
+    first described in 1961 by John McCarthy (see
+    <CITATION>McCarthy 1967</CITATION>).
+    
+      <span style="color:blue">
+	For convenience, we make these expressions look like function
+	applications. This is analogous to the lazy boolean operators, which
+	look like binary operators, but which are treated differently by the
+	evaluator. Applications of <kbd>amb</kbd>
+	will be treated differently from applications of ordinary primitive
+	functions.
+      </span>
+    
     </FOOTNOTE></div>
     
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2' >[2] </a>
     <FOOTNOTE>
-    In actuality, the distinction between nondeterministically
-    returning a single choice and returning all choices depends somewhat
-    on our point of view.  From the perspective of the code that uses the
-    value, the nondeterministic choice returns a single value.  From the
-    perspective of the programmer designing the code, the nondeterministic
-    choice potentially returns all possible values, and the computation
-    branches so that each value is investigated separately.
+    In actuality, the distinction between
+    nondeterministically returning a single choice and returning all choices
+    depends somewhat on our point of view.  From the perspective of the code
+    that uses the value, the nondeterministic choice returns a single value.
+    From the perspective of the programmer designing the code, the
+    nondeterministic choice potentially returns all possible values, and the
+    computation branches so that each value is investigated
+    separately.
     </FOOTNOTE></div>
     
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-3' href='#footnote-link-3' >[3] </a>
     <FOOTNOTE>
-    One might object that this is a hopelessly
-    inefficient mechanism.  It might require millions of processors to
-    solve some easily stated problem this way, and most of the time most
+    One might object that this is a
+    hopelessly inefficient mechanism.  It might require millions of processors
+    to solve some easily stated problem this way, and most of the time most
     of those processors would be idle.  This objection should be taken in
     the context of history.  Memory used to be considered just such an
     expensive commodity.  
     
-    In 1964 a megabyte of RAM cost about \$400,000.
-    Now every personal computer has many megabytes of RAM, and most of the
-    time most of that RAM is unused.  It is hard to underestimate the cost
-    of mass-produced electronics.
+    In 1964 a megabyte of RAM cost about \$400,000. Now every personal
+    computer has many megabytes of RAM, and most of the time most of that RAM is
+    unused.  It is hard to underestimate the cost of mass-produced
+    electronics.
     </FOOTNOTE></div>
     
     
@@ -2174,85 +2383,80 @@ function a_pythagorean_triple_between(low, high) {
       <a class='footnote-number' id='footnote-4' href='#footnote-link-4' >[4] </a>
     <FOOTNOTE>
     Automagically: <QUOTE>Automatically, but in a way
-      which, for some reason (typically because it is too complicated, or
-      too ugly, or perhaps even too trivial), the speaker doesn't feel like
-      explaining.</QUOTE>  
+    which, for some reason (typically because it is too complicated, or too ugly,
+    or perhaps even too trivial), the speaker doesn't feel like
+    explaining.</QUOTE>  
     
-    (<CITATION>Steele 1983</CITATION>, <CITATION>Raymond 1993</CITATION>)
+    (<CITATION>Steele 1983</CITATION>,
+    <CITATION>Raymond 1993</CITATION>)
     </FOOTNOTE></div>
     
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-5' href='#footnote-link-5' >[5] </a>
     <FOOTNOTE>
-    The 
-    integration of automatic search strategies
+    The integration of automatic search strategies
     
-    into programming languages has had a long and checkered history.  The
-    first suggestions that nondeterministic algorithms might be elegantly
-    encoded in a programming language with search and automatic
-    backtracking came from
+    into programming languages has had a long and checkered history.  The first
+    suggestions that nondeterministic algorithms might be elegantly encoded in a
+    programming language with search and automatic backtracking came from
     
     Robert Floyd (1967).  
     
-    Carl Hewitt
-    (1969) invented a programming language called 
+    Carl Hewitt (1969) invented a programming language called 
     
-    Planner that explicitly
-    supported automatic chronological backtracking, providing for a
-    built-in depth-first search strategy.  
+    Planner that explicitly supported automatic chronological backtracking,
+    providing for a built-in depth-first search strategy.  
     
-    Sussman, Winograd, and Charniak 
-    (1971) implemented a subset of this language, called 
     
-    MicroPlanner,
-    which was used to support work in problem solving and robot planning.
-    Similar ideas, arising from logic and theorem proving, led to the
+    Sussman, Winograd, and Charniak (1971) implemented a subset of this language,
+    called 
+    
+    MicroPlanner, which was used to support work in problem solving and robot
+    planning. Similar ideas, arising from logic and theorem proving, led to the
     genesis in Edinburgh and Marseille of the elegant language 
     
-    Prolog
-    (which we will discuss in section <REF NAME="sec:logic-programming"><a class="superscript" id="4.3.1-sec-link-4.4" href="./4.4.html">4.4</a></REF>).  After
-    sufficient frustration with automatic search, 
+    Prolog (which we will discuss in
+    section <REF NAME="sec:logic-programming"><a class="superscript" id="4.3.1-sec-link-4.4" href="./4.4.html">4.4</a></REF>).  After sufficient
+    frustration with automatic search, 
     
-    McDermott and Sussman
-    (1972) developed a language called 
+    McDermott and Sussman (1972) developed a language called 
     
-    Conniver, which included mechanisms
-    for placing the search strategy under programmer control.  This proved
-    unwieldy, however, and 
+    Conniver, which included mechanisms for placing the search strategy under
+    programmer control.  This proved unwieldy, however, and 
     
-    Sussman and Stallman (1975) found a more
-    tractable approach while investigating methods of symbolic analysis
-    for electrical circuits.  They developed a non-chronological
-    backtracking scheme that was based on tracing out the logical
-    dependencies connecting facts, a technique that has come to be known
-    as 
+    Sussman and Stallman (1975) found a more tractable approach while
+    investigating methods of symbolic analysis for electrical circuits.  They
+    developed a non-chronological backtracking scheme that was based on tracing
+    out the logical dependencies connecting facts, a technique that has come to
+    be known as 
     
     <EM>dependency-directed backtracking</EM>.  Although their method was
-    complex, it produced reasonably efficient programs because it did
-    little redundant search.  
+    complex, it produced reasonably efficient programs because it did little
+    redundant search.  
     
-    <CITATION>Doyle 1979</CITATION> 
-    and McAllester (<CITATION>McAllester 1978</CITATION>, 
-    <CITATION>McAllester 1980</CITATION>)
-    generalized and clarified the methods of Stallman and Sussman,
-    developing a new paradigm for formulating search that is now called
+    <CITATION>Doyle 1979</CITATION> and McAllester
+    (<CITATION>McAllester 1978</CITATION>, <CITATION>McAllester 1980</CITATION>)
+    generalized and clarified the methods of Stallman and Sussman, developing a
+    new paradigm for formulating search that is now called
     
-    <EM>truth maintenance</EM>.  Modern problem-solving systems all
-    use some form of truth-maintenance system as a substrate.  See 
+    <EM>truth maintenance</EM>.  Modern problem-solving systems all use some
+    form of truth-maintenance system as a substrate.  See 
     
-    <CITATION>Forbus and deKleer 1993</CITATION> 
-    for a discussion of elegant ways to build
-    truth-maintenance systems and applications using truth maintenance.
+    <CITATION>Forbus and deKleer 1993</CITATION> for a discussion of elegant
+    ways to build truth-maintenance systems and applications using truth
+    maintenance.
     
-    <CITATION>Zabih, McAllester, and Chapman 1987</CITATION> 
-    describes a nondeterministic extension to Scheme that
-    is based on <kbd>amb</kbd>; it is similar to the interpreter described in
-    this section, but more sophisticated, because it uses
-    dependency-directed backtracking rather than chronological
     
-    backtracking.  <CITATION>Winston 1992</CITATION> gives an introduction to both kinds of
-    backtracking.
+    
+    <CITATION>Zabih, McAllester, and Chapman 1987</CITATION> describes a
+    nondeterministic extension to Scheme that is based on
+    <kbd>amb</kbd>; it is similar to the interpreter described
+    in this section, but more sophisticated, because it uses dependency-directed
+    backtracking rather than chronological
+    
+    backtracking.  <CITATION>Winston 1992</CITATION> gives an introduction to
+    both kinds of backtracking.
     </FOOTNOTE></div>
     
     

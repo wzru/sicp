@@ -1143,7 +1143,7 @@
                   <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-84" aria-expanded="true" aria-controls="sidebar-collapse-84">
                   &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
                   </a>
-                  <a href="./4.2.html">4.2  <span style="color:teal"> Variations on a Scheme Lazy Evaluation </span> <span style="color:blue"> Lazy Evaluation </span></a>
+                  <a href="./4.2.html">4.2  <span style="color:teal"> Variations on a Scheme: </span> Lazy Evaluation</a>
                 </h5>
               </div>
     
@@ -1684,35 +1684,45 @@
 <a name='p1' class='permalink'></a><p>
     
     
-    In section <REF NAME="sec:elements-of-programming"><a class="superscript" id="4.2.1-sec-link-1.1" href="./1.1.html">1.1</a></REF>, where we began our
-    discussion of models of evaluation, we noted that
-    <span style="color:teal">Scheme</span>
-    <span style="color:blue">JavaScript</span>
-    is an <EM>
-    applicative-order</EM> language, namely, that all the arguments to
-    <span style="color:teal">Scheme</span>
-    <span style="color:blue">JavaScript</span>
-    <span style="color:teal">procedures</span>
-    <span style="color:blue">functions</span>
-    are evaluated when the
-    <span style="color:teal">procedure</span>
-    <span style="color:blue">function</span>
-    is applied.  In
-    contrast, <EM>normal-order</EM> languages delay evaluation of
-    <span style="color:teal">procedure</span>
-    <span style="color:blue">function</span>
-    arguments until the actual argument values are needed. Delaying evaluation of
-    <span style="color:teal">procedure</span>
-    <span style="color:blue">function</span>
-    arguments until the
-    last possible moment (e.g., until they are required by a primitive
-    operation) is called 
+    In section <REF NAME="sec:elements-of-programming"><a class="superscript" id="4.2.1-sec-link-1.1" href="./1.1.html">1.1</a></REF>, where we began
+    our discussion of models of evaluation, we noted that
     
-    <EM>lazy evaluation</EM>.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-    Consider the
-    <span style="color:teal">procedure</span>
-    <span style="color:blue">function</span>
-
+      <span style="color:teal">Scheme</span>
+      <span style="color:blue">JavaScript</span>
+    
+    is an <EM>applicative-order</EM> language, namely, that all the arguments to
+    
+      <span style="color:teal">Scheme</span>
+      <span style="color:blue">JavaScript</span>
+    
+    
+      <span style="color:teal">procedures</span>
+      <span style="color:blue">functions</span>
+    
+    are evaluated when the
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
+    is applied.  In contrast, <EM>normal-order</EM> languages delay evaluation of
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
+    arguments until the actual argument values are needed. Delaying evaluation of
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
+    arguments until the last possible moment (e.g., until they are required by a
+    primitive operation) is called 
+    
+    <EM>lazy evaluation</EM>.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a> Consider the
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
+    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -1721,7 +1731,7 @@
 (define (try a b)
 	(if (= a 0) 1 b))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_84_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=GYVwdgxgLglg9mABFATgTwPoFsCmAKAQwBpEAjASkQG8AoRexFHKEFJAxAXm8QAZEA-IgCMiAFxkA3AEgaAXyA')">function try_me(a, b) {
+            <td><div class='snippet' id='javascript_84_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&variant=lazy&prgrm=PTAEGUEkGEAVQFLlAFgHQCY0EYBQuQIB7AVwCcBjAU1AEEKBDAEyoFsBPUIgByoDsAzqAAuACwCWQ7mSIBzMg1YEw4vqAA2DAF6dWRFmlDRRRIgJoAicKUo0A5Rgsiiy56ApFW3BmRoB3cTFQAWEycQphUD0WXAAzEj4I8SI1UPYAfVYqAAoGABpQACMASlAAb1xQKtBfYXI1BlAAXhbQAAZQAH5QbFAALiKAbgBIXABffDTMnLaC0SpmbL4SdXVi4sGgA')">function try_me(a, b) {
     return a === 0 ? 1 : b;	
 }
 
@@ -1733,7 +1743,8 @@
     Evaluating
     
       <span style="color:teal"><kbd>(try 0 (/ 1 0))</kbd></span>
-      <span style="color:blue"><kbd>try_me(0, head(null));</kbd></span>
+      <span style="color:blue"><kbd>try_me(0, head(null));</kbd>
+      </span>
     
     generates an error in
     
@@ -1752,16 +1763,26 @@
   <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
     An example that exploits lazy evaluation is the definition of a
-    <span style="color:teal">procedure</span><span style="color:blue">function</span>
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
     <kbd>unless</kbd>
-
-    <div class='snippet' id='javascript_84_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_84_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (unless condition usual-value exceptional-value)
 	(if condition exceptional-value usual-value))
-</pre></div></div>
+</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_84_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&variant=lazy&prgrm=PTAEGUEkGEAVQFLlAFgHQCY0EYBQuBjAewDsBnAF1AA8zQBeUEgVwBtWBufECI5gJwIBTUAEECAQwAmQgLYBPUEQAOQ8qAoALAJZ1l-IgHN+E2bh7aSoVhIBei2URlpQ0TUSJkRAInB9BIgDlGN4aROZgFESgxLLKEvwiAO7aWqCU-NoEVI4yuABmzCTZ2qSgRaxCZGQAFMQkUqmlJAA05WTMEqwA+gBuXcxCbULUwsoUzV19A0IAlKAA3qDLK7groIkUAlb1jRNlAPygI2P7JFP9rIOgAFztnT2Xg1wAvvgVVbW0DPSMLOwtNbrZaaITSGq0WYtACQQOBjTIyhs8hq3iE-AM-Du3zI7jYUiYRCoACMRP9WN5ZrMOEA')">function unless(condition, usual_value, exceptional_value) {      
+    return condition ? exceptional_value : usual_value;
+}
 
+</pre></div></div></td></tr></table>
     that can be used in expressions such as
-
+    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -1772,10 +1793,10 @@
         (begin (display "exception: returning 0")
         0))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_84_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-unless(xs === null,
+            <td><div class='snippet' id='javascript_84_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&variant=lazy&prgrm=PTAEGUEkGEAVQFLlAFgHQCY0EYBQuQIB7AVwCcBjAU1AEEKBDAEyoFsBPUIgByoDsAzqAAuACwCWQ7mSIBzMg1YEw4vqAA2DAF6dWRFmlDRRRIgJoAicKUo0A5Rgsiiy56ApFW3BmRoB3cTFQAWEycQphUD0WXAAzEj4I8SI1BPUqAQEACg8+JkDkvgAaUBIBEgZ1AH0AN0qSKhKqAA9qbmFCytr6qgBKUABvUGGR3BHQX2FyNVz8jpTQAH5QFrb5vi669QbQAC5S8s2egG5cAF98XJDQZqEAXlA+EnV1U9w0jOzb0Dvfx+f1EUxuNhqIqMwsrdekUAJDAkH5ATcTTsLIWKhkGRkfbfAQmZ5MR5ESIAIxoTxeFl6vWOQA')">unless(xs === null,
        head(xs),	
        display("error: xs should not be null"));
+
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -1783,11 +1804,13 @@ unless(xs === null,
 <a name='p4' class='permalink'></a><p>
     This won't work in an applicative-order language because both the
     usual value and the exceptional value will be evaluated before
-    <kbd>unless</kbd>
-    is called (compare exercise <REF NAME="ex:new-if"><a class="superscript" id="4.2.1-ex-link-1.6" href="./1.1.7.html#ex_1.6">1.6</a></REF>).
-    An advantage of lazy evaluation is that some
-    <span style="color:teal">procedures,</span>
-    <span style="color:blue">functions,</span>
+    <kbd>unless</kbd> is called (compare
+    exercise <REF NAME="ex:new-if"><a class="superscript" id="4.2.1-ex-link-1.6" href="./1.1.7.html#ex_1.6">1.6</a></REF>). An advantage of lazy evaluation is
+    that some
+    
+      <span style="color:teal">procedures,</span>
+      <span style="color:blue">functions,</span>
+    
     such as <kbd>unless</kbd>, can do useful computation
     even if evaluation of some of their arguments would produce errors or
     would not terminate.
@@ -1796,20 +1819,28 @@ unless(xs === null,
   <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
     If the body of a
-    <span style="color:teal">procedure</span>
-    <span style="color:blue">function</span>
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
     is entered before an argument has been evaluated we say that the
-    <span style="color:teal">procedure</span>
-    <span style="color:blue">function</span>
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
     is 
     
-    <EM>non-strict</EM> in that
-    argument.  If the argument is evaluated before the body of the
-    <span style="color:teal">procedure</span>
-    <span style="color:blue">function</span>
+    <EM>non-strict</EM> in that argument.  If the argument is evaluated before
+    the body of the
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
     is entered we say that the
-    <span style="color:teal">procedure</span>
-    <span style="color:blue">function</span>
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
     is 
     
     <EM>strict</EM> in that
@@ -1819,33 +1850,42 @@ unless(xs === null,
   <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
     In a purely applicative-order language, all
-    <span style="color:teal">procedures</span>
-    <span style="color:blue">functions</span>
-    are strict in
-    each argument.  In a purely normal-order language, all compound
-    <span style="color:teal">procedures</span>
-    <span style="color:blue">functions</span>
+    
+      <span style="color:teal">procedures</span>
+      <span style="color:blue">functions</span>
+    
+    are strict in each argument.  In a purely normal-order language, all compound
+    
+      <span style="color:teal">procedures</span>
+      <span style="color:blue">functions</span>
+    
     are non-strict in each argument, and primitive
-    <span style="color:teal">procedures</span>
-    <span style="color:blue">functions</span>
-    may be
-    either strict or non-strict.  There are also languages (see
-    exercise <REF NAME="ex:user-controlled-strictness"><a class="superscript" id="4.2.1-ex-link-4.31" href="./4.2.2.html#ex_4.31">4.31</a></REF>) that give programmers
-    detailed control over the strictness of the
-    <span style="color:teal">procedures</span>
-    <span style="color:blue">functions</span>
+    
+      <span style="color:teal">procedures</span>
+      <span style="color:blue">functions</span>
+    
+    may be either strict or non-strict.  There are also languages (see
+    exercise <REF NAME="ex:user-controlled-strictness"><a class="superscript" id="4.2.1-ex-link-4.47" href="./4.2.2.html#ex_4.47">4.47</a></REF>) that give
+    programmers detailed control over the strictness of the
+    
+      <span style="color:teal">procedures</span>
+      <span style="color:blue">functions</span>
+    
     they define.
   </p></div>
 
   <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
     A striking example of a
-    <span style="color:teal">procedure</span>
-    <span style="color:blue">function</span>
-    that can usefully be made non-strict
-    is
-    <span style="color:teal"><kbd>cons</kbd></span>
-    <span style="color:blue"><kbd>pair</kbd></span>
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
+    that can usefully be made non-strict is
+    
+      <span style="color:teal"><kbd>cons</kbd></span>
+      <span style="color:blue"><kbd>pair</kbd></span>
+    
     (or, in general, almost any constructor for data structures).
     One can do useful computation, combining elements to form
     data structures and operating on the resulting data structures,
@@ -1854,14 +1894,15 @@ unless(xs === null,
     the values of the individual elements in the list.  We will exploit
     this idea in section <REF NAME="sec:lazy-cons"><a class="superscript" id="4.2.1-sec-link-4.2.3" href="./4.2.3.html">4.2.3</a></REF> to implement the
     streams of chapter 3 as lists formed of non-strict
-    <span style="color:teal"><kbd>cons</kbd></span>
-    <span style="color:blue"><kbd>pair</kbd></span>
-    pairs.
+    
+      <span style="color:teal"><kbd>cons</kbd> pairs.</span>
+      <span style="color:blue"><kbd>pair</kbd>s</span>
+        
   </p></div>
 
   
     <div class="permalink">
-    <a name="ex_4.24" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.24">Exercise 4.24 </a></b> 
+    <a name="ex_4.40" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.40">Exercise 4.40 </a></b> 
   
     
       <span style="color:teal">
@@ -1871,8 +1912,8 @@ unless(xs === null,
 	Suppose that (in ordinary applicative-order JavaScript) we define
       </span>
     
-    <kbd>unless</kbd>
-    as shown above and then define <kbd>factorial</kbd> in terms
+    <kbd>unless</kbd> as shown above and then define
+    <kbd>factorial</kbd> in terms
     of <kbd>unless</kbd> as
 
     <table width="100%">
@@ -1885,19 +1926,19 @@ unless(xs === null,
         (* n (factorial (- n 1)))
         1))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_84_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function factorial(n) {
+            <td><div class='snippet' id='javascript_84_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&variant=lazy&prgrm=PTAEGUEkGEAVQFLlAFgHQCY0EYBQuQIB7AVwCcBjAU1AEEKBDAEyoFsBPUIgByoDsAzqAAuACwCWQ7mSIBzMg1YEw4vqAA2DAF6dWRFmlDRRRIgJoAicKUo0A5Rgsiiy56ApFW3BmRoB3cTFQAWEycQphUD0WXAAzEj4I8SI1BPUqAQEACg8+JkDkvgAaUBIBEgZ1AH0AN0qSKhKqAA9qbmFCytr6qgBKUABvUGGR3BHQX2FyNVz8jpTQAH5QFrb5vi669QbQAC5S8s2egG5cAF98QmtyajpGFg4uXkERCSkZeUVXVQ1tXX0qIZjKZzKArDZbg4nMIXIQYe5PN5fKAAkEQmEIlEAfh4ol1qBYgwIkQwpUsnx+gMxiNJtNSnx0plyaAALxs0DYIrU8Y83mgNQAKgJRJhpPUzIAtBzely+XKRtheqcLnERSTxGSAKxKoA')">function factorial(n) {
     return unless(n === 1,
                   n * factorial(n - 1),
                   1);
 }
+
 </pre></div></div></td></tr></table>
-
     
-
     What happens if we attempt to evaluate
-    <span style="color:teal"><kbd>(factorial 5)</kbd>?</span>
-    <span style="color:blue"><kbd>factorial(5)</kbd>?</span>
+    
+      <span style="color:teal"><kbd>(factorial 5)</kbd>?</span>
+      <span style="color:blue"><kbd>factorial(5);</kbd>?
+      </span>
     
     Will our definitions work in a normal-order language?
   
@@ -1911,41 +1952,46 @@ function factorial(n) {
 
   
     <div class="permalink">
-    <a name="ex_4.26" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.26">Exercise 4.26 </a></b> 
+    <a name="ex_4.42" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.42">Exercise 4.42 </a></b> 
   
     
     
-    Ben Bitdiddle and Alyssa P. Hacker disagree over the importance of
-    lazy evaluation for implementing things such as <kbd>unless</kbd>.
-    Ben points out that it's possible to implement <kbd>unless</kbd>
-    in applicative order as a
+    Ben Bitdiddle and Alyssa P. Hacker disagree over the importance of lazy
+    evaluation for implementing things such as
+    <kbd>unless</kbd>. Ben points out that it's possible
+    to implement <kbd>unless</kbd> in applicative order as a
     <span style="color:teal">special form.</span>
-    <span style="color:blue">new kind of expression,
-    akin to conditional expressions.</span>
+    <span style="color:blue">new kind of expression, akin to conditional
+    expressions.</span>
     
     Alyssa counters that, if one did that,
     <kbd>unless</kbd> would be merely syntax, not a
-    <span style="color:teal">procedure</span>
-    <span style="color:blue">function</span>
+    
+      <span style="color:teal">procedure</span>
+      <span style="color:blue">function</span>
+    
     that could be used in conjunction with higher-order
     <span style="color:teal">procedures.</span>
     <span style="color:blue">functions.</span>
+    
     Fill in the details on both sides of the argument.
     
       <span style="color:teal">
-	Show how to implement
-	<kbd>unless</kbd> as a derived expression
-	(like <kbd>cond</kbd> or <kbd>let</kbd>),
-	and give an example of a situation where it might be useful to have
-	<kbd>unless</kbd> available as a procedure,
-	rather than as a special form.
+	Show how to implement <kbd>unless</kbd> as a derived
+	expression (like <kbd>cond</kbd> or
+	<kbd>let</kbd>), and give an example of a situation
+	where it might be useful to have <kbd>unless</kbd>
+	available as a procedure, rather than as a special form.
       </span>
       <span style="color:blue">
 	Show how to define the evaluation of 
 	<kbd>unless</kbd> as a new kind of expression
 	(as we defined the evaluation of conditional expressions in
-	section <REF NAME="sec:conditionals"><a class="superscript" id="4.2.1-sec-link-1.1.6" href="./1.1.6.html">1.1.6</a></REF>),
-	and give an example of a situation where it might be useful to have
+	section <REF NAME="sec:conditionals"><a class="superscript" id="4.2.1-sec-link-1.1.6" href="./1.1.6.html">1.1.6</a></REF>), by introducing
+	appropriate syntax functions and installing an evaluation function
+	in the <kbd>evaluate</kbd> function of
+	section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.1-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
+	Give an example of a situation where it might be useful to have
 	<kbd>unless</kbd> available as a function,
 	rather than as a new expression syntax.
       </span>
@@ -1961,19 +2007,18 @@ function factorial(n) {
 
   
   
-
 <hr>
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1' >[1] </a>
     <FOOTNOTE>
     The difference between the
-    <QUOTE>lazy</QUOTE> terminology and the <QUOTE>normal-order</QUOTE> terminology
-    is somewhat fuzzy.  Generally, <QUOTE>lazy</QUOTE> refers to the mechanisms of
-    particular evaluators, while <QUOTE>normal-order</QUOTE>
+    <QUOTE>lazy</QUOTE> terminology and the <QUOTE>normal-order</QUOTE>
+    terminology is somewhat fuzzy.  Generally, <QUOTE>lazy</QUOTE> refers to the
+    mechanisms of particular evaluators, while <QUOTE>normal-order</QUOTE>
     refers to the semantics of languages, independent of any particular
-    evaluation strategy.  But this is not a hard-and-fast distinction, and
-    the two terminologies are often used interchangeably.
+    evaluation strategy.  But this is not a hard-and-fast distinction, and the
+    two terminologies are often used interchangeably.
     </FOOTNOTE></div>
     
     
@@ -1981,18 +2026,23 @@ function factorial(n) {
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2' >[2] </a>
     <FOOTNOTE>
     The <QUOTE>strict</QUOTE> versus <QUOTE>non-strict</QUOTE>
-    terminology means essentially the same thing as <QUOTE>applicative-order</QUOTE>
-    versus <QUOTE>normal-order,</QUOTE> except that it refers to individual
-    <span style="color:teal">procedures</span><span style="color:blue">functions</span>
-    and arguments rather than to the language as a whole.  At a conference on
-    programming languages you might hear someone say, <QUOTE>The normal-order language 
+    terminology means essentially the same thing as
+    <QUOTE>applicative-order</QUOTE> versus <QUOTE>normal-order,</QUOTE> except
+    that it refers to individual
     
-    Hassle has certain
-    strict primitives.  Other
-    <span style="color:teal">procedures</span>
-    <span style="color:blue">functions</span>
-    take their arguments by lazy
-    evaluation.</QUOTE>
+      <span style="color:teal">procedures</span>
+      <span style="color:blue">functions</span>
+    
+    and arguments rather than to the language as a whole.  At a conference on
+    programming languages you might hear someone say, <QUOTE>The normal-order
+    language 
+    
+    Hassle has certain strict primitives.  Other
+    
+      <span style="color:teal">procedures</span>
+      <span style="color:blue">functions</span>
+    
+    take their arguments by lazy evaluation.</QUOTE>
     </FOOTNOTE></div>
     
     
