@@ -1958,6 +1958,10 @@
     from section <REF NAME="sec:sequences"><a class="superscript" id="2.2.3-sec-link-2.2.1" href="./2.2.1.html">2.2.1</a></REF>:
     <div class='snippet' id='javascript_34_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBnARwIEMAnAUwAoAPASlADe2UCNAcyBVrW6gAVKG4BubAF9chUpRqgAtswAOnDQBpQFMux11+Q0WPYSpZugH0iBADYfO5y9eF2gaAA-KDuXgFBogBcoPrMFKxGxJwAFuzMACY+Fla8vKaRUcV6hiagZAnevnn5ymrYpZyMLBymHhR0ZJwAjKYoppimACymAKx1QA')">map(square, list(1, 2, 3, 4, 5));
 
+</pre><pre class='prettyprintoutput'>
+      
+list(1, 4, 9, 16, 25)
+      
 </pre></div></div>
   </p></div>
 
@@ -1982,6 +1986,10 @@
     For example,
     <div class='snippet' id='javascript_34_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8KAbMgUwCcAKAB1eYBMKSAQxYAaUAGdmARwLNSzAJSgA3tlDrQPMgVa0K4gPpECDBu0ky5JRWo12NAflDHTt+3YBcobnwHDm7AAWzIK85tKy8goKbu52TpyCFBzBoeGWUWKxcTl0jCwcPvxCoqBkSWYWkdbRMbmeeUxsXDzF-mLljOnVigoA3NgAvriEpJQ0oPoGVLxhREqqdlo6tLQApKigALw7oACMA8P4+c1TM7xiDPpk7HtiKGKYYgAsYgCs0X1AA')">filter(is_odd, list(1, 2, 3, 4, 5));
 
+</pre><pre class='prettyprintoutput'>
+      
+list(1, 3, 5)
+      
 </pre></div></div>
     Accumulations can be implemented by
     
@@ -1996,13 +2004,25 @@
     
     <div class='snippet' id='javascript_34_7_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBDEkggWwIBs6yBTACioAcANKApEKlOm2EBnLgEcCXUlwCUoAN7ZQ20ACcuZArtoVpAfSLs2PWQqUlVWnc50B+EWIlsnL5wC5QAR4ACy46ABMbeUVlFWEfX0SGJlYObj4hD3EKSWEyOgprWxiHFTKAbmwAX1xCUkoaUH42AmkeAA9hAE81TWd9Q2NQdtAAalAuyprsZJZ2Tl5m1uEABmE2UzIeAEZhFGFMYQAWYQBWCqA')">accumulate(plus, 0, list(1, 2, 3, 4, 5));
 
+</pre><pre class='prettyprintoutput'>
+
+15
+      
 </pre></div></div>
     
     <div class='snippet' id='javascript_34_8_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBDEkggWwIBs6yBTACioAcANKApEKlOm2EBnLgEcCXUlwCUoAN7ZQ20ACcuZArtoVpAfSLs2PWQqUlVWnc50B+EWIlsnL5wC5QAR4ACy46ABMbeUVlFWEfX0SGJlYObj4hD3EKSWEyOgprWxiHFTKAbmwAX1xCUkoaUEpmLmkeAA9hAE81TWd9Q2NQdtAAKlAuyprsZJZ2Tl5m1uEARmE2UzIeNdRhTGEAFmEAVgqgA')">accumulate(times, 1, list(1, 2, 3, 4, 5));
 
+</pre><pre class='prettyprintoutput'>
+
+120	
+      
 </pre></div></div>
     <div class='snippet' id='javascript_34_9_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBDEkggWwIBs6yBTACioAcANKApEKlOm2EBnLgEcCXUlwCUoAN7ZQ20ACcuZArtoVpAfSLs2PWQqUlVWnc50B+EWIlsnL5wC5QAR4ACy46ABMbeUVlFWEfX0SGJlYObj4hD3EKSWEyOgprWxiHFTKAbmwAX1xklnZOXn4C3WFLNilQNlMyHgBGYRRhTGEAFmEAVgqgA')">accumulate(pair, null, list(1, 2, 3, 4, 5));
 
+</pre><pre class='prettyprintoutput'>
+
+list(1, 2, 3, 4, 5)
+      
 </pre></div></div>
   </p></div>
   <div class='permalink'>
@@ -2025,6 +2045,10 @@
 </pre></div></div>
     <div class='snippet' id='javascript_34_11_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsFMA7AVwFs8AnAQwBc8B9ASwNvIDdKAbAChQBpQA7AEoA3EA')">enumerate_interval(2, 7);
 
+</pre><pre class='prettyprintoutput'>
+
+list(2, 3, 4, 5, 6, 7)
+      
 </pre></div></div>
   </p></div>
   <div class='permalink'>
@@ -2043,6 +2067,10 @@
 </pre></div></div>
     <div class='snippet' id='javascript_34_13_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsFMA7AVwFs8AnAQwBc8B9a8vPACgBsBLAZ2pYEYANKE48WKISN6YhAFgCUcoQFYFAbiA')">enumerate_tree(list(1, list(2, list(3, 4)), 5));
 
+</pre><pre class='prettyprintoutput'>
+
+list(1, 2, 3, 4, 5)
+      
 </pre></div></div>
   </p></div>
   <div class='permalink'>
@@ -2140,6 +2168,10 @@
 </pre></div></div>
     <div class='snippet' id='javascript_34_17_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsBsBLAZwBcB9AMwICMyiBHAVwEMAnAUyIAoBGABgCUAbiA')">list_fib_squares(10);
 
+</pre><pre class='prettyprintoutput'>
+
+list(0, 1, 1, 4, 9, 25, 64, 169, 441, 1156, 3025)
+      
 </pre></div></div>
   </p></div>
   <div class='permalink'>
@@ -2156,6 +2188,10 @@
 </pre></div></div>
     <div class='snippet' id='javascript_34_19_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBnARwIEMAnAUwAoAPASlADe2UCNAcyBVrW6gAVKG4BubAF9chUpRqgKdAPpUAJoc5F+Q0WPYSpoWgFJUoALyvQARmVr8xctVqUALbsdDwANKAAnubCouKS0nJRXuq+WrQADqxGBOQGeHqMLBz6VAVGhnrsADbswURkoXTsTOyk7DGW8bbMJCQEgQTVzGRcQSERsZbTM9Puk7OLs4HMGZxFbOwLSzszeBTVo6ycugbGEc2t7bw3KdhZOXllhUybpeXGVbX1jZzVumROPNUBFMBEACwRACstyAA')">product_of_squares_of_odd_elements(list(1, 2, 3, 4, 5));
 
+</pre><pre class='prettyprintoutput'>
+
+225
+      
 </pre></div></div>
   </p></div>
   <div class='permalink'>

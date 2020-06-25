@@ -1959,7 +1959,29 @@ print-result
       <div class='permalink'>
 <a name='p10' class='permalink'></a><p>
   Interactions with the evaluator now look like this:
-  <div class='snippet' id='javascript_115_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+  <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_115_7_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
+
+      ;;; EC-Eval input:
+      (define (factorial n)
+      (if (= n 1)
+      1
+      (* (factorial (- n 1)) n)))
+      (total-pushes = 3 maximum-depth = 3)
+      ;;; EC-Eval value:
+      ok
+
+      ;;; EC-Eval input:
+      (factorial 5)
+      (total-pushes = 144 maximum-depth = 28)
+      ;;; EC-Eval value:
+      120
+    
+</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_115_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 /// EC-Eval input:
 function factorial (n) {
 return n === 1 ?
@@ -1974,7 +1996,7 @@ factorial(5);
 (total-pushes = 144 maximum-depth = 28)
 /// EC-Eval value:
 120
-</pre></div></div>
+</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>

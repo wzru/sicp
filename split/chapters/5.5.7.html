@@ -2184,7 +2184,28 @@ $\ldots$</kbd>
   interface by providing a <span style="color:teal"><kbd>compile-and-run</kbd></span><span style="color:blue"><kbd>compile_and_run</kbd></span> primitive that can be
   called from within the explicit-control evaluator as follows:
 
-  <div class='snippet' id='javascript_123_7_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsGMB7AWwAcBLAGwFMB9AQwDsATGgJwFcGAKbUP0EnVYBnKj34TQAIgBmnPABcyBBqBl1FBVmToUuDAJSgA3r0nnQrKgvatVqgLxPQARlBmLngPyuPn8wBcoKoAVGoaClo6eqoAtK4GANx+kgC+UgZJuIk5oACi0LF5AG66oKUU7FQB2AQA1tm5BUUVoGQMJOwKNVzqmtplKAbYOYn5hSVlFVU1LgBMAAxAA')">compile_and_run(
+  <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_123_7_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
+
+      ;;; EC-Eval input:
+      (compile-and-run
+      '(define (factorial n)
+      (if (= n 1)
+            1
+            (* (factorial (- n 1)) n))))
+      ;;; EC-Eval value:
+      ok
+
+      ;;; EC-Eval input:
+      (factorial 5)
+      ;;; EC-Eval value:
+      120
+    
+</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_123_7_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsGMB7AWwAcBLAGwFMB9AQwDsATGgJwFcGAKbUP0EnVYBnKj34TQAIgBmnPABcyBBqBl1FBVmToUuDAJSgA3r0nnQrKgvatVqgLxPQARlBmLngPyuPn8wBcoKoAVGoaClo6eqoAtK4GANx+kgC+UgZJuIk5oACi0LF5AG66oKUU7FQB2AQA1tm5BUUVoGQMJOwKNVzqmtplKAbYOYn5hSVlFVU1LgBMAAxAA')">compile_and_run(
     parse(
         "function factorial(n) {
              return n === 1 
@@ -2200,7 +2221,7 @@ ok
 ;;; EC-Eval value:
 120
 
-</pre></div></div>
+</pre></div></div></td></tr></table>
       
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_123_4_div" data-toggle="collapse">Add solution</button></div>

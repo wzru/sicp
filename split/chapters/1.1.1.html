@@ -1687,10 +1687,10 @@
       <span style="color:teal">Scheme dialect of Lisp.</span>
       <span style="color:blue">JavaScript language.</span>
     
-    Imagine that you are sitting at a computer terminal.  You type an
+    Imagine that you are sitting at a computer terminal.  You type 
     
-      <span style="color:teal"><EM>expression</EM>,</span>
-      <span style="color:blue"><EM>program</EM>,</span>
+      <span style="color:teal"><EM>an expression</EM>,</span>
+      <span style="color:blue"><EM>a program</EM>,</span>
     
     and the interpreter responds by displaying the
     result of its <EM>evaluating</EM> that
@@ -1701,10 +1701,19 @@
       </span>
     
   </p></div>
-  
+  <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td>    </td>
+          <td></td>
+          <td><span style="color:blue">
       <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-	<span style="color:purple">
+	<div class='webonly'>
 	  The mouse click on JavaScript statements in this edition is 
 	  programmed in such a way that a JavaScript interpreter is
 	  displayed, which can <EM>evaluate</EM> the
@@ -1714,9 +1723,9 @@
 	  written in JavaScript; it is called the <EM>script</EM> for
 	  the mouse click. Such scripts were a central objective in
 	  the original design of JavaScript.
-	</span>
+	</div>
       </p></div>
-    
+    </span></td></tr></table>
   <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
@@ -1724,8 +1733,7 @@
           <td></td>
           <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
         </tr>
-        <tr>
-          <td><span style="color:teal">
+        <tr><td><span style="color:teal">
       <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
         
@@ -1745,7 +1753,7 @@
     </span></td></tr></table>
   (More precisely, the expression that you type consists of the numerals that
   represent the number in base 10.)
-  <span style="color:maroon">
+  <div class='pdfonly'>
     If you present
     
       <span style="color:teal">Lisp</span>
@@ -1763,11 +1771,13 @@
 
 </pre></div></div></td></tr></table>
     the interpreter will respond by printing<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-    <div class='snippet' id='javascript_5_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_5_2_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
+
 486
+      
 </pre></div></div>
-  </span>
-  <span style="color:purple">
+  </div>
+  <div class='webonly'>
     If you ask our script to evaluate the expression statement
     <div class='snippet' id='javascript_5_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwFgBwBsA3EA')">486;
 
@@ -1776,7 +1786,7 @@
     browser tab where the statement is shown, with the option
     to evaluate the statement by pressing a <QUOTE>Run</QUOTE> button.
     Click on the primitive expression statement, and see what happens!
-  </span>
+  </div>
   <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
@@ -1784,8 +1794,7 @@
           <td></td>
           <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
         </tr>
-        <tr>
-          <td><span style="color:teal">
+        <tr><td><span style="color:teal">
       <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
         
@@ -1856,11 +1865,11 @@
         compound expression that represents the
         application of a corresponding primitive
         function to those numbers.  For example,
-	<span style="color:purple">
+	<div class='webonly'>
 	  evaluate
           any of the following expression statements
 	  by clicking on it:
-	</span>
+	</div>
       <div class='snippet' id='javascript_5_9_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCygzAOygDUoeALAJwDcQA')">137 + 349;
 
 </pre><pre class='prettyprintoutput'>
@@ -1905,8 +1914,7 @@
           <td></td>
           <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
         </tr>
-        <tr>
-          <td><span style="color:teal">
+        <tr><td><span style="color:teal">
       <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
         Expressions such as these, formed by 
@@ -1956,8 +1964,7 @@
           <td></td>
           <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
         </tr>
-        <tr>
-          <td><span style="color:teal">
+        <tr><td><span style="color:teal">
       <div class='permalink'>
 <a name='p9' class='permalink'></a><p>
         The convention of placing the operator to the left of the operands is
@@ -2014,13 +2021,10 @@
         The convention of placing the operator between the operands is
         known as 
         
-        <EM>infix notation</EM>. 
-        It follows 
-        the mathematical notation that the reader is most
-        likely familiar with from school and everyday life.  
-        As in mathematics, operator combinations can
-        be <EM>nested</EM>, that is, they
-        can take arguments that themselves are operator combinations:
+        <EM>infix notation</EM>. It follows the mathematical notation that the
+	reader is most likely familiar with from school and everyday life.  
+        As in mathematics, operator combinations can be <EM>nested</EM>, that
+	is, they can have operands that themselves are operator combinations:
         <div class='snippet' id='javascript_5_17_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwCgMygBUoArAJSgDUouKADKALSgBs5A3EA')">(3 * 5) + (10 - 6);
 
 </pre><pre class='prettyprintoutput'>
@@ -2028,13 +2032,10 @@
 19
 	  
 </pre></div></div>
-        As usual, parentheses are used to group operator combinations
-        in order to avoid ambiguities. JavaScript also follows the usual
-        conventions when parentheses are omitted; 
-        multiplication and division
-        bind stronger than 
-        addition and subtraction.
-        For example,
+        As usual, parentheses are used to group operator combinations in order
+	to avoid ambiguities. JavaScript also follows the usual conventions
+	when parentheses are omitted; multiplication and division bind stronger
+	than addition and subtraction. For example,
         <div class='snippet' id='javascript_5_18_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwZlAFSgCsoA1KgAyhgBMA3EA')">3 * 5 + 10 / 2;
 
 </pre></div></div>
@@ -2042,14 +2043,12 @@
         <div class='snippet' id='javascript_5_19_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwCgMygBUoArAJSgDUouKADKGAEzkDcQA')">(3 * 5) + (10 / 2);
 
 </pre></div></div>
-        We say that <kbd>*</kbd>
-        and <kbd>/</kbd>
-        have <EM>higher precedence</EM> than
-        <kbd>+</kbd>
-        and <kbd>-</kbd>.
-        Sequences of 
-        additions and subtractions are read from left to right, as are
-        sequences of multiplications and divisions. Thus,
+        We say that <kbd>*</kbd> and
+	<kbd>/</kbd> have <EM>higher precedence</EM>
+	than <kbd>+</kbd> and
+	<kbd>-</kbd>. Sequences of additions and
+	subtractions are read from left to right, as are sequences of
+	multiplications and divisions. Thus,
         <div class='snippet' id='javascript_5_20_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCy0BaUAVlDACZQAqUAFlAGpQBmAbiA')">1 - 5 / 2 * 4 + 3;
 
 </pre></div></div>
@@ -2072,15 +2071,13 @@
           <td></td>
           <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
         </tr>
-        <tr>
-          <td><span style="color:teal">
+        <tr><td><span style="color:teal">
       <div class='permalink'>
 <a name='p12' class='permalink'></a><p>
-        There is no limit (in principle) to the depth of such nesting and to
-        the overall complexity of the expressions that the Lisp interpreter
-        can evaluate.
-        It is we humans who get confused by still relatively
-        simple expressions such as
+        There is no limit (in principle) to the depth of such nesting and to the
+	overall complexity of the expressions that the Lisp interpreter can
+	evaluate. It is we humans who get confused by still relatively simple
+	expressions such as
         <div class='snippet' id='javascript_5_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (+ (* 3 (+ (* 2 4) (+ 3 5))) (+ (- 10 7) 6))
 </pre></div></div>
@@ -2095,10 +2092,9 @@
 </pre></div></div>
         following a formatting convention known as  
         
-        <EM>pretty-printing</EM>, in
-        which each long combination is written so that the operands are
-        aligned vertically.  The resulting indentations display clearly the
-        structure of the expression.<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:teal">[2]</a>
+        <EM>pretty-printing</EM>, in which each long combination is written so
+	that the operands are aligned vertically.  The resulting indentations
+	display clearly the structure of the expression.<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:teal">[2]</a>
         
         
       </p></div>
@@ -2107,12 +2103,11 @@
           <td><span style="color:blue">
       <div class='permalink'>
 <a name='p13' class='permalink'></a><p>
-        There is no limit (in principle) to the depth of such nesting and to
-        the overall complexity of the expressions that the JavaScript interpreter
-        can evaluate.
-        It is we humans who might get confused by still relatively
+        There is no limit (in principle) to the depth of such nesting and to the
+	overall complexity of the expressions that the JavaScript interpreter
+	can evaluate. It is we humans who might get confused by still relatively
         simple expressions such as
-        <div class='snippet' id='javascript_5_24_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwZlAFSgBMhoAFACygDUF+AtKAKwCUrtqADGecQOygwANlYBuIA')">3 * 2 * (4 + (3 - 5)) + 10 * (27 / 6);
+        <div class='snippet' id='javascript_5_24_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwZlAFSgAUATIaACygDUJ+dArAJS0nEoAMoAtKAOys6ANiA')">3 * (2 * 4 + (3 + 5) + ((10 - 7) + 6
 
 </pre></div></div>
         which the interpreter would readily evaluate to be 57.  We can help
@@ -2139,14 +2134,13 @@
       <span style="color:teal">expression,</span>
       <span style="color:blue">statement,</span>
     
-    and prints the result.
-    This mode of operation is often expressed by saying that the
-    interpreter runs in a 
+    and prints the result. This mode of operation is often expressed by saying
+    that the interpreter runs in a 
     
     
     <EM>read-eval-print loop</EM>.
-    Observe in particular that it is not necessary to explicitly
-    instruct the interpreter to print the value of the
+    Observe in particular that it is not necessary to explicitly instruct the
+    interpreter to print the value of the
     
       <span style="color:teal">
 	expression.<a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:teal">[3]</a>
@@ -2172,7 +2166,8 @@
     <div class='footnote'><span style="color:teal">
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2' style="color:teal">[2] </a>
     <FOOTNOTE>
-    Lisp systems typically provide
+    Lisp systems
+	typically provide
         
         
         features to aid the user in formatting expressions.  Two especially

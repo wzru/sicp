@@ -1678,407 +1678,430 @@
         <div class='SECTION'><SECTION>
     
 
-      
-      
+  
+  
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
-  
-  Logic programming excels in providing interfaces to data bases for
-  information retrieval.  The query language we shall implement in this
-  chapter is designed to be used in this way.
-      </p></div>
+    
+    Logic programming excels in providing interfaces to data bases for
+    information retrieval.  The query language we shall implement in this
+    chapter is designed to be used in this way.
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-  In order to illustrate what the query system does, we will show how it
-  can be used to manage the data base of personnel records for
-  
-  Microshaft, a thriving high-technology company in the
-  Boston area.  The language provides pattern-directed access to
-  personnel information and can also take advantage of general rules in
-  order to make logical deductions.
-      </p></div>
+    In order to illustrate what the query system does, we will show how it
+    can be used to manage the data base of personnel records for
+    
+    Microshaft, a thriving high-technology company in the
+    Boston area.  The language provides pattern-directed access to
+    personnel information and can also take advantage of general rules in
+    order to make logical deductions.
+  </p></div>
 
-      
+  
       <div class='permalink'>
         <a name='h1' class='permalink'></a><h2>
     
-  A sample data base
-      </h2></div>
+    A sample data base
+  </h2></div>
 
-      
+  
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-  
-  
-  The personnel data base for Microshaft
-  contains <EM>assertions</EM> about company personnel.  Here is the
-  information about Ben Bitdiddle, the resident computer wizard:
-
-  <div class='snippet' id='javascript_92_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-address(list("Bitdiddle", "Ben"), list("Slumerville", "Ridge Road", 10));
-job(list("Bitdiddle", "Ben"), list("computer", "wizard"));
-salary(list("Bitdiddle", "Ben"), 60000);
+    
+    
+    The personnel data base for Microshaft
+    contains <EM>assertions</EM> about company personnel.  Here is the
+    information about Ben Bitdiddle, the resident computer wizard:
+    <div class='snippet' id='javascript_92_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+address(list("Bitdiddle", "Ben"), list("Slumerville", "Ridge Road", 10))
+job(list("Bitdiddle", "Ben"), list("computer", "wizard"))
+salary(list("Bitdiddle", "Ben"), 60000)
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
-	
-	  
-	  
-	    Each assertion is an application whose arguments can be expressions
-	    such as lists.
-	  
-	
-      </p></div>
+    
+      
+      
+	An assertion looks like a function application in JavaScript, but
+	it represents information in the data base. The first
+	symbol—here <kbd>address</kbd>, 
+	<kbd>job</kbd> and
+	<kbd>salary</kbd>—is called
+	the <EM>assertion symbol</EM>, and the arguments
+	are lists or primitive values such as strings and numbers. Assertion
+	symbols do not need to be declared like constants or variables in
+	JavaScript; their scope is global.
+      
+    
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-  As resident wizard, Ben is in charge of the company's computer
-  division, and he supervises two programmers and one technician.  Here
-  is the information about them:
+    As resident wizard, Ben is in charge of the company's computer
+    division, and he supervises two programmers and one technician.  Here
+    is the information about them:
+    <div class='snippet' id='javascript_92_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+address(list("Hacker", "Alyssa", "P"), list("Cambridge", "Mass Ave", 78))
+job(list("Hacker", "Alyssa", "P"), list("computer", "programmer"))
+salary(list("Hacker", "Alyssa", "P"), 40000)
+supervisor(list("Hacker", "Alyssa", "P"), list("Bitdiddle", "Ben"))
 
-  <div class='snippet' id='javascript_92_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-address(list("Hacker", "Alyssa", "P"), list("Cambridge", "Mass Ave", 78));
-job(list("Hacker", "Alyssa", "P"), list("computer", "programmer"));
-salary(list("Hacker", "Alyssa", "P"), 40000);
-supervisor(list("Hacker", "Alyssa", "P"), list("Bitdiddle", "Ben"));
+address(list("Fect", "Cy", "D"), list("Cambridge", "Ames Street", 3))
+job(list("Fect", "Cy", "D"), list("computer", "programmer"))
+salary(list("Fect", "Cy", "D"), 35000)
+supervisor(list("Fect", "Cy", "D"), list("Bitdiddle", "Ben"))
 
-address(list("Fect", "Cy", "D"), list("Cambridge", "Ames Street", 3));
-job(list("Fect", "Cy", "D"), list("computer", "programmer"));
-salary(list("Fect", "Cy", "D"), 35000);
-supervisor(list("Fect", "Cy", "D"), list("Bitdiddle", "Ben"));
-
-address(list("Tweakit", "Lem", "E"), list("Boston", "Bay State Road", 22));
-job(list("Tweakit", "Lem", "E"), list("computer", "technician"));
-salary(list("Tweakit", "Lem", "E"), 25000);
-supervisor(list("Tweakit", "Lem", "E"), list("Bitdiddle", "Ben"));
+address(list("Tweakit", "Lem", "E"), list("Boston", "Bay State Road", 22))
+job(list("Tweakit", "Lem", "E"), list("computer", "technician"))
+salary(list("Tweakit", "Lem", "E"), 25000)
+supervisor(list("Tweakit", "Lem", "E"), list("Bitdiddle", "Ben"))
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
-  There is also a programmer trainee, who is supervised by Alyssa:
-  <div class='snippet' id='javascript_92_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-address(list("Reasoner", "Louis"), list("Slumerville", "Pine Tree Road", 80));
-job(list("Reasoner", "Louis"), list("computer", "programmer trainee"));
-salary(list("Reasoner", "Louis"), 30000);
-supervisor(list("Reasoner", "Louis"), list("Hacker", "Alyssa", "P"));
+    There is also a programmer trainee, who is supervised by Alyssa:
+    <div class='snippet' id='javascript_92_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+address(list("Reasoner", "Louis"), list("Slumerville", "Pine Tree Road", 80))
+job(list("Reasoner", "Louis"), list("computer", "programmer trainee"))
+salary(list("Reasoner", "Louis"), 30000)
+supervisor(list("Reasoner", "Louis"), list("Hacker", "Alyssa", "P"))
 </pre></div></div>
-      </p></div>
-
-      <div class='permalink'>
+    All of these people are in the computer division, as indicated by the
+    word <kbd>computer</kbd> as the first item in their job
+    descriptions.
+  </p></div>
+  <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
-  All of these people are in the computer division, as indicated by the
-  word <kbd>computer</kbd> as the first item in their job descriptions.
+    Ben is a high-level employee.  His supervisor is the company's big
+    wheel himself:
+    <div class='snippet' id='javascript_92_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+supervisor(list("Bitdiddle", "Ben"), list("Warbucks", "Oliver"))
 
-  Ben is a high-level employee.  His supervisor is the company's big
-  wheel himself:
-
-  <div class='snippet' id='javascript_92_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-supervisor(list("Bitdiddle", "Ben"), list("Warbucks", "Oliver"));
-
-address(list("Warbucks", "Oliver"), list("Swellesley", "Top Heap Road"));
-job(list("Warbucks", "Oliver"), list("administration", "big", "wheel"));
-salary(list("Warbucks", "Oliver"), 150000);
+address(list("Warbucks", "Oliver"), list("Swellesley", "Top Heap Road"))
+job(list("Warbucks", "Oliver"), list("administration", "big", "wheel"))
+salary(list("Warbucks", "Oliver"), 150000)
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
-  Besides the computer division supervised by Ben, the company has an
-  accounting division, consisting of a chief accountant and his
-  assistant:
+    Besides the computer division supervised by Ben, the company has an
+    accounting division, consisting of a chief accountant and his
+    assistant:
+    <div class='snippet' id='javascript_92_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+address(list("Scrooge", "Eben"), 
+                list("Weston", "Shady Lane", 10))
+job(list("Scrooge", "Eben"), list("accounting", list("chief", "accountant"))
+salary(list("Scrooge", "Eben"), 75000)
+supervisor(list("Scrooge", "Eben"), list("Warbucks", "Oliver"))
 
-  <div class='snippet' id='javascript_92_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-address(list("Scrooge", "Eben"), list("Weston", "Shady Lane", 10));
-job(list("Scrooge", "Eben"), list("accounting", list("chief", "accountant"));
-salary(list("Scrooge", "Eben"), 75000);
-supervisor(list("Scrooge", "Eben"), list("Warbucks", "Oliver"));
-
-address(list("Cratchet", "Robert"), list("Allston", "N Harvard Street", 16));
-job(list("Cratchet", "Robert"), list("accounting", "scrivener"));
-salary(list("Cratchet", "Robert"), 18000);
-supervisor(list("Cratchet", "Robert"), list("Scrooge", "Eben"));
+address(list("Cratchet", "Robert"), list("Allston", "N Harvard Street", 16))
+job(list("Cratchet", "Robert"), list("accounting", "scrivener"))
+salary(list("Cratchet", "Robert"), 18000)
+supervisor(list("Cratchet", "Robert"), list("Scrooge", "Eben"))
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p9' class='permalink'></a><p>
-  There is also a secretary for the big wheel:
-
-  <div class='snippet' id='javascript_92_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-address(list("Aull", "DeWitt"), list("Slumerville", "Onion Square", 5));
-job(list("Aull", "DeWitt"), list("administration", "secretary"));
-salary(list("Aull", "DeWitt"), 25000);
-supervisor(list("Aull", "DeWitt"), list("Warbucks", "Oliver"));
+    There is also a secretary for the big wheel:
+    <div class='snippet' id='javascript_92_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+address(list("Aull", "DeWitt"), list("Slumerville", "Onion Square", 5))
+job(list("Aull", "DeWitt"), list("administration", "secretary"))
+salary(list("Aull", "DeWitt"), 25000)
+supervisor(list("Aull", "DeWitt"), list("Warbucks", "Oliver"))
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p10' class='permalink'></a><p>
-  The data base also contains assertions about which kinds of jobs can
-  be done by people holding other kinds of jobs.  For instance, a
-  computer wizard can do the jobs of both a computer programmer and a
-  computer technician:
-
-  <div class='snippet' id='javascript_92_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-can_do_job(list("computer", "wizard"), list("computer", "programmer"));
-can_do_job(list("computer", "wizard"), list("computer", "technician"));
+    The data base also contains assertions about which kinds of jobs can
+    be done by people holding other kinds of jobs.  For instance, a
+    computer wizard can do the jobs of both a computer programmer and a
+    computer technician:
+    <div class='snippet' id='javascript_92_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+can_do_job(list("computer", "wizard"), 
+           list("computer", "programmer"))
+can_do_job(list("computer", "wizard"), 
+           list("computer", "technician"))
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p11' class='permalink'></a><p>
-  A computer programmer could fill in for a trainee:
-  <div class='snippet' id='javascript_92_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    A computer programmer could fill in for a trainee:
+    <div class='snippet' id='javascript_92_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 can_do_job(list("computer", "programmer"),
-           list("computer", "programmer", "trainee"));
+           list("computer", "programmer", "trainee"))
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p12' class='permalink'></a><p>
-  
-  Also, as is well known,
-  <div class='snippet' id='javascript_92_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    
+    Also, as is well known,
+    <div class='snippet' id='javascript_92_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 can_do_job(list("administration", "secretary"),
-           list("administration", "big", "wheel"));
+           list("administration", "big", "wheel"))
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      
-      
+  
+  
 
-      
+  
       <div class='permalink'>
         <a name='h2' class='permalink'></a><h2>
     
-  Simple queries
-      </h2></div>
+    Simple queries
+  </h2></div>
 
-      
-      <div class='permalink'>
+  
+  <div class='permalink'>
 <a name='p13' class='permalink'></a><p>
-  The query language allows users to retrieve information from the data
-  base by posing queries in response to the system's prompt.  For
-  example, to find all computer programmers one can say
+    The query language allows users to retrieve information from the data
+    base by posing queries in response to the system's prompt.  For
+    example, to find all computer programmers one can
+    sayWe arrange input queries to look syntactically
+    like JavaScript programs so that we can use our familiar parser to process
+    them. As a result, any input query needs to end with a
+    semicolon.
+    <div class='snippet' id='javascript_92_10_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
 
-  <div class='snippet' id='javascript_92_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-// Query input:
-job(x, list("computer", "programmer"));
+Query input:
+      
 </pre></div></div>
-      </p></div>
+    <div class='snippet' id='javascript_92_11_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHToIwChsCsB7AIwAoAPAGlABsBLAZwBcSAiAYwIFsAHAV0YCmAJxZUW3IQQDmQgIadOwlgEplAbiA')">job(x, list("computer", "programmer"));
 
-      <div class='permalink'>
+</pre></div></div>
+  </p></div>
+
+  <div class='permalink'>
 <a name='p14' class='permalink'></a><p>
-  The system will respond with the following items:
+    The system will respond with the following items:
+    <div class='snippet' id='javascript_92_12_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
 
-  <div class='snippet' id='javascript_92_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-// Query results:
+Query results:
 job(list("Hacker", "Alyssa", "P"), list("computer", "programmer"))
 job(list("Fect", "Cy", "D"), list("computer", "programmer"))
+      
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p15' class='permalink'></a><p>
-  
-  The input query specifies that we are looking for entries in the data
-  base that match a certain <EM>pattern</EM>.  In this example, the pattern
-  specifies entries consisting of three items, of which the first is the
-  literal symbol <kbd>job</kbd>, the second can be anything, and the third is
-  the literal list <kbd>list("computer", "programmer")</kbd>.  The <QUOTE>anything</QUOTE> that
-  can be the second item in the matching list is specified by a 
-  
-  <EM>
-    pattern variable</EM>,
+    
+    The input query specifies that we are looking for entries in the data
+    base that match a certain <EM>pattern</EM>.
     
       
       
+	In this example, the pattern
+	specifies the assertion symbol <kbd>job</kbd>. The
+	first argument of the assertion can be
+	anything, and the second is the literal list
+	    <kbd>list("computer", "programmer")</kbd>.
+    The <QUOTE>anything</QUOTE> that can be the second item in the matching list
+    is specified by a 
+    
+    <EM>pattern variable</EM>,
 	<kbd>x</kbd>.
+	A pattern variable is a symbol that looks like a JavaScript constant or
+	variable. We will see below why it
+	is useful to specify names for pattern variables rather than just
+	putting a single symbol such as <kbd>?</kbd>
+	into patterns to represent <QUOTE>anything.</QUOTE>
       
     
+    The system responds to a simple query by showing all entries in the data
+    base that match the specified pattern.
+  </p></div>
 
-    
-      
-    
-	The system responds to a simple query by
-      showing all entries in the data base that match the specified pattern.
-      </p></div>
-
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p16' class='permalink'></a><p>
-  A pattern can have more than one variable.  For example, the query
-  <div class='snippet' id='javascript_92_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    A pattern can have more than one variable.  For example, the query
+    <div class='snippet' id='javascript_92_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 address(x, y)
 </pre></div></div>
-  will list all the employees' addresses.
-      </p></div>
+    will list all the employees' addresses.
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p17' class='permalink'></a><p>
-  A pattern can have no variables, in which case the query simply
-  determines whether that pattern is an entry in the data base.  If so,
-  there will be one match; if not, there will be no matches.
-      </p></div>
+    A pattern can have no variables, in which case the query simply
+    determines whether that pattern is an entry in the data base.  If so,
+    there will be one match; if not, there will be no matches.
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p18' class='permalink'></a><p>
-  The same pattern variable can appear more than once in a query,
-  specifying that the same <QUOTE>anything</QUOTE> must appear in each position.
-  This is why variables have names.  For example,
-
-  <div class='snippet' id='javascript_92_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    The same pattern variable can appear more than once in a query,
+    specifying that the same <QUOTE>anything</QUOTE> must appear in each
+    position. This is why variables have names.  For example,
+    <div class='snippet' id='javascript_92_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 supervisor(x, x)
 </pre></div></div>
+    finds all people who supervise themselves (though there are no
+    such assertions in our sample data base).
+  </p></div>
 
-  finds all people who supervise themselves (though there are no such
-  assertions in our sample data base).
-      </p></div>
-
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p19' class='permalink'></a><p>
-  The query
-  <div class='snippet' id='javascript_92_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-job(x, list("computer",  type));
+    The query
+    <div class='snippet' id='javascript_92_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+job(x, list("computer",  type))
+</pre></div></div>
+    matches all job entries whose third item is a two-element list whose
+    first item is
+    
+      
+      
+	<kbd>"computer"</kbd>:
+      
+    
+    <div class='snippet' id='javascript_92_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+job(list("Bitdiddle", "Ben"), list("computer", "wizard"))
+job(list("Hacker", "Alyssa", "P"), list("computer", "programmer"))
+job(list("Fect", "Cy", "D"), list("computer", "programmer"))
+job(list("Tweakit", "Lem", "E"), list("computer", "technician"))
 </pre></div></div>
 
-  matches all job entries whose third item is a two-element list whose
-  first item is
-  
-    
-    
-      <kbd>"computer"</kbd>:
-    
-  
-  <div class='snippet' id='javascript_92_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-job(list("Bitdiddle", "Ben"), list("computer", "wizard"));
-job(list("Hacker", "Alyssa", "P"), list("computer", "programmer"));
-job(list("Fect", "Cy", "D"), list("computer", "programmer"));
-job(list("Tweakit", "Lem", "E"), list("computer", "technician"));
-</pre></div></div>
-
-      </p></div>
-      <div class='permalink'>
+  </p></div>
+  <div class='permalink'>
 <a name='p20' class='permalink'></a><p>
-  This same pattern does <EM>not</EM> match
-  <div class='snippet' id='javascript_92_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-job(list("Reasoner", "Louis"), list("computer", "programmer", "trainee"));
+    
+      
+      
+	This same pattern does <EM>not</EM> match the assertion
+	<div class='snippet' id='javascript_92_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+job(list("Reasoner", "Louis"), list("computer", "programmer", "trainee"))
 </pre></div></div>
-  because the third item in the entry is a list of three elements, and
-  the pattern's third item specifies that there should be two elements.
-  If we wanted to change the pattern so that the third item could be any
-  
-  list beginning with <kbd>computer</kbd>, we could 
-  specify
-  <div class='snippet' id='javascript_92_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	because the second argument in the assertion is a list of three
+	elements, and the pattern's second argument specifies that there
+	should be two elements. If we wanted to change the pattern so that the
+	third item
+	could be any
+	
+	list beginning with <kbd>computer</kbd>, we could 
+	specify
+      
+    
+    <div class='snippet' id='javascript_92_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 job(x, pair("computer", type))
 </pre></div></div>
-  For example,
-  <div class='snippet' id='javascript_92_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    For example,
+    <div class='snippet' id='javascript_92_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 pair("computer", type)
 </pre></div></div>
-
-  matches the data
-
-  <div class='snippet' id='javascript_92_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    matches the data
+    <div class='snippet' id='javascript_92_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 list("computer", "programmer", "trainee")
 </pre></div></div>
-
-  with
-  
+    with
     
+      
+      
+	<kbd>type</kbd>
+      
     
-      <kbd>type</kbd>
+    as the list
     
-  
-  as the list <kbd>list("programmer", "trainee")</kbd>.  
-  It also matches the data
-
-  <div class='snippet' id='javascript_92_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+      
+      
+	<kbd>list("programmer", "trainee")</kbd>.
+      
+    
+    It also matches the data
+    <div class='snippet' id='javascript_92_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 list("computer", "programmer")
 </pre></div></div>
-
-  with
-  
+    with
     
+      
+      
+	type      
+      
     
-type      
+    as the list
     
-  
-  as the list
-  <kbd>list("programmer")</kbd>, and matches the data
-
-  <div class='snippet' id='javascript_92_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+      
+      <kbd>list("programmer")</kbd>,
+      
+    
+    and matches the data
+    <div class='snippet' id='javascript_92_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 list("computer")
 </pre></div></div>
+    with
+    
+      
+      
+	type      
+      
+    
+    as the empty list
+    
+      
+      <kbd>null</kbd>.
+    
+    
+  </p></div>
 
-  with
-    
-    
-    
-type      
-    
-  
-  as the empty list <kbd>null</kbd>.
-  
-      </p></div>
-
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p21' class='permalink'></a><p>
-  We can describe the query language's processing of simple queries as
-  follows:
-
-  <UL>
-    <LI>The system finds all assignments to variables in the query
-      
-      pattern that <EM>satisfy</EM> the pattern—that is, all sets of values
-      for the variables such that if the pattern variables are 
-      
-      <EM>
-        instantiated with</EM> (replaced by) the values, the result is in the data
-      base.
-
+    We can describe the query language's processing of simple queries as
+    follows:
+    <UL>
+      <LI>
+	The system finds all assignments to variables in the query
+	
+	pattern that <EM>satisfy</EM> the pattern—that is, all sets of
+	values for the variables such that if the pattern variables are 
+	
+	<EM>instantiated with</EM> (replaced by) the values, the result is in
+	the data base.
     </LI>
     <LI>
       The system responds to the query by listing all instantiations of the
       query pattern with the variable assignments that satisfy it.
-
     </LI>
-  </UL>
-      </p></div>
+    </UL>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p22' class='permalink'></a><p>
-  Note that if the pattern has no variables, the query reduces to a
-  determination of whether that pattern is in the data base.  If so, the
-  empty assignment, which assigns no values to variables, satisfies that
-  pattern for that data base.
-      </p></div>
+    Note that if the pattern has no variables, the query reduces to a
+    determination of whether that pattern is in the data base.  If so, the
+    empty assignment, which assigns no values to variables, satisfies that
+    pattern for that data base.
+  </p></div>
 
-      
+  
     <div class="permalink">
     <a name="ex_4.55" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.55">Exercise 4.55 </a></b> 
   
-  Give simple queries that retrieve the following information from the
-  data base:
-  <OL>
-    <LI>
-      all people supervised by Ben Bitdiddle;
-    </LI>
-    <LI>
-      the names and jobs of all people in the accounting division;
-    </LI>
-    <LI>
-      the names and addresses of all people who live 
-      in Slumerville.
-    </LI>
-  </OL>
-      
+    Give simple queries that retrieve the following information from the
+    data base:
+    <OL>
+      <LI>
+	all people supervised by Ben Bitdiddle;
+      </LI>
+      <LI>
+	the names and jobs of all people in the accounting division;
+      </LI>
+      <LI>
+	the names and addresses of all people who live 
+	in Slumerville.
+      </LI>
+    </OL>
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_92_1_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_92_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2086,87 +2109,90 @@ type
     
 </EXERCISE></div>
 
-      
+  
 
-      
+  
       <div class='permalink'>
         <a name='h3' class='permalink'></a><h2>
     
-  Compound queries
-      </h2></div>
+    Compound queries
+  </h2></div>
 
-      
-
-      <div class='permalink'>
-<a name='p23' class='permalink'></a><p>
-  Simple queries form the primitive operations of the query language.
-  In order to form compound operations, the query language provides
-  means of combination.  One thing that makes the query language a logic
-  programming language is that the means of combination mirror the means
-  of combination used in forming logical expressions: <kbd>and</kbd>, <kbd>or</kbd>, and <kbd>not</kbd>.  (Here <kbd>and</kbd>, <kbd>or</kbd>, and <kbd>not</kbd> are not
-  the JavaScript primitives,
-  but rather operations built into the query language.)
-      </p></div>
-
-      <div class='permalink'>
-<a name='p24' class='permalink'></a><p>
   
-  We can use <kbd>and</kbd> as follows to find the addresses of all the
-  computer programmers:
 
-  <div class='snippet' id='javascript_92_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+  <div class='permalink'>
+<a name='p23' class='permalink'></a><p>
+    Simple queries form the primitive operations of the query language.
+    In order to form compound operations, the query language provides
+    means of combination.  One thing that makes the query language a logic
+    programming language is that the means of combination mirror the means
+    of combination used in forming logical expressions:
+    <kbd>and</kbd>, <kbd>or</kbd>, and
+    <kbd>not</kbd>.
+    
+      
+    
+  </p></div>
+
+  <div class='permalink'>
+<a name='p24' class='permalink'></a><p>
+    
+    We can use <kbd>and</kbd> as follows to find the addresses
+    of all the computer programmers:
+    <div class='snippet' id='javascript_92_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(job(person, list("computer", "programmer"),
-    address(person, where));
+    address(person, where))
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p25' class='permalink'></a><p>
-  The resulting output is
-  <div class='snippet' id='javascript_92_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    The resulting output is
+    <div class='snippet' id='javascript_92_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(job(list("Hacker", "Alyssa", "P"), list("computer", "programmer")),
     address(list("Hacker", "Alyssa", "P"), list("Cambridge", "Mass Ave", 78)))
 
 and(job(list("Fect", "Cy", "D"), list("computer", "programmer")),
     address(list("Fect", "Cy", "D"), list("Cambridge", "Ames Street", 3)))
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p26' class='permalink'></a><p>
-  
-  In general,
-  <kbd class='snippet'>and($\textit{query}_{1}$, $\textit{query}_{2}$, $\ldots$, $\textit{query}_{n})$;</kbd>
+    
+    
+      
+      
+	In general,
+	<kbd class='snippet'>	    and($\textit{query}_{1}$, $\textit{query}_{2}$, $\ldots$, $\textit{query}_{n})$</kbd>
+	is satisfied by all sets of values for the pattern variables that
+	simultaneously satisfy
+	$\textit{query}_{1}, \ldots, \textit{query}_{n}$.
+      
+    
+    </p></div>
 
-  is satisfied by all sets of values for the pattern variables that
-  simultaneously satisfy
-  $\textit{query}_{1}\ldots \textit{query}_{n}$.
-      </p></div>
-
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p27' class='permalink'></a><p>
-  As for simple queries, the system processes a compound query by
-  finding all assignments to the pattern variables that satisfy the
-  query, then displaying instantiations of the query with those values.
-      </p></div>
+    As for simple queries, the system processes a compound query by
+    finding all assignments to the pattern variables that satisfy the
+    query, then displaying instantiations of the query with those values.
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p28' class='permalink'></a><p>
-  
-  Another means of constructing compound queries is through <kbd>or</kbd>.
-  For example,
-
-  <div class='snippet' id='javascript_92_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    
+    Another means of constructing compound queries is through
+    <kbd>or</kbd>. For example,
+    <div class='snippet' id='javascript_92_25_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 or(supervisor(x, list("Bitdiddle", "Ben")),
-   supervisor(x, list("Hacker", "Alyssa", "P")));
+   supervisor(x, list("Hacker", "Alyssa", "P")))
 </pre></div></div>
-  
-  will find all employees supervised by Ben Bitdiddle or Alyssa P.
-  Hacker:
-
-  <div class='snippet' id='javascript_92_25_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    will find all employees supervised by Ben Bitdiddle or Alyssa P.
+    Hacker:
+    <div class='snippet' id='javascript_92_26_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 or(supervisor(list("Hacker", "Alyssa", "P"), list("Bitdiddle", "Ben")),
-supervisor(list("Hacker", "Alyssa", "P"), list("Hacker", "Alyssa", "P")))
+   supervisor(list("Hacker", "Alyssa", "P"), list("Hacker", "Alyssa", "P")))
 
 or(supervisor(list("Fect", "Cy", "D"), list("Bitdiddle", "Ben")),
    supervisor(list("Fect", "Cy", "D"), list("Hacker", "Alyssa", "P")))
@@ -2177,104 +2203,97 @@ or(supervisor(list("Tweakit", "Lem", "E"), list("Bitdiddle", "Ben")),
 or(supervisor(list("Reasoner", "Louis"), list("Bitdiddle", "Ben")),
    supervisor(list("Reasoner", "Louis"), list("Hacker", "Alyssa", "P")))
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p29' class='permalink'></a><p>
-  In general,
-  <kbd class='snippet'>or($\textit{query}_{1}$, $\textit{query}_{2}$, $\ldots$, $\textit{query}_{n}$^);</kbd>
+    
+      
+      
+	In general,
+	<kbd class='snippet'>or($\textit{query}_{1}$, $\textit{query}_{2}$, $\ldots$, $\textit{query}_{n}$)</kbd>
+	is satisfied by all sets of values for the pattern variables that
+	satisfy at least one of
+	$\textit{query}_{1} \ldots \textit{query}_{n}$.
+      
+    
+  </p></div>
 
-  is satisfied by all sets of values for the pattern variables that
-  satisfy at least one of
-  
-    
-    
-      $\textit{query}_{1} \ldots \textit{query}_{n}$.
-    
-  
-      </p></div>
-
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p30' class='permalink'></a><p>
-  
-  Compound queries can also be formed with
-  
     
+    Compound queries can also be formed with
     
-      <kbd>not</kbd>.
+      
+      
+	<kbd>not</kbd>.
+      
     
-  
-  For example,
-  <div class='snippet' id='javascript_92_26_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    For example,
+    <div class='snippet' id='javascript_92_27_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(supervisor(x, list("Bitdiddle", "Ben")),
-    not(job(x, list("computer", "programmer"))));
+    not(job(x, list("computer", "programmer"))))
 </pre></div></div>
+    finds all people supervised by Ben Bitdiddle who are not computer
+    programmers.  In general,
+    
+      
+      
+	<kbd class='snippet'>not($\textit{query}_{1}$)</kbd>
+      
+    
+    is satisfied by all assignments to the pattern variables that do not
+    satisfy
+    $\textit{query}_{1}$.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+  </p></div>
 
-  finds all people supervised by Ben Bitdiddle who are not computer
-  programmers.  In general,
-
-  <kbd class='snippet'>not($\textit{query}_{1}$);</kbd>
-
-  is satisfied by all assignments to the pattern variables that do not
-  satisfy $\textit{query}_{1}$.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-      </p></div>
-
+  
+    
+    
       <div class='permalink'>
 <a name='p31' class='permalink'></a><p>
-  
-  The final combining form is called
-  
-    
-    
-      <kbd>javascript_value</kbd>.
-    
-  
-  When
-  
-    
-    
-      <kbd>javascript_value</kbd>
-    
-  
-  is the first element of a pattern, it specifies that the
-  next element is a JavaScript predicate to be applied to the rest of the
-  (instantiated) elements as arguments.  In general,
-
-  <kbd class='snippet'>javascript_value($\textit{predicate}$, $\textit{arg}_{1}$, $\ldots$, $\textit{arg}_{n}$)</kbd>
-
-  will be satisfied by assignments to the pattern variables for which the
-  $\textit{predicate}$ applied to the instantiated
-  $\textit{arg}_{1}, \ldots, \textit{arg}_{n}$
-  is true.  For example, to find all people whose salary is greater than
-  \$30,000 we could write<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-
-  <div class='snippet' id='javascript_92_27_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	
+	The final combining form is called
+	<kbd>javascript_value</kbd>.
+	When 
+	<kbd>javascript_value</kbd>
+	appears as assertion symbol, the argument is a 
+	JavaScript predicate. In general,
+	<kbd class='snippet'>javascript_value($\textit{predicate}$)</kbd>
+	will be satisfied by assignments to the pattern variables that appear
+	in $\textit{predicate}$ for which the
+	instantiated 
+	$\textit{predicate}$ is true.
+	For example, to find all people whose salary is greater than
+	\$30,000 we could write<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+	<div class='snippet' id='javascript_92_28_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(salary(person, amount),
-    javascript_value(greater_than, amount, 30000));
+    javascript_value(amount > 30000))
 </pre></div></div>
-  
+	
       </p></div>
-
-      
+    
+  
+  
     <div class="permalink">
     <a name="ex_4.56" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.56">Exercise 4.56 </a></b> 
   
-  Formulate compound queries that retrieve the following information:
-  <OL>
-    <LI>
-      the names of all people who are supervised by Ben Bitdiddle, together
-      with their addresses;
-    </LI>
-    <LI>
-      all people whose salary is less than Ben Bitdiddle's, together with
-      their salary and Ben Bitdiddle's salary;
-    </LI>
-    <LI>
-      all people who are supervised by someone who is not in the computer
-      division, together with the supervisor's name and job.
-    </LI>
-  </OL>
-      
+    Formulate compound queries that retrieve the following information:
+    <OL>
+      <LI>
+	the names of all people who are supervised by Ben Bitdiddle, together
+	with their addresses;
+      </LI>
+      <LI>
+	all people whose salary is less than Ben Bitdiddle's, together
+	with their salary and Ben Bitdiddle's salary;
+      </LI>
+      <LI>
+	all people who are supervised by someone who is not in the computer
+	division, together with the supervisor's name and job.
+      </LI>
+    </OL>
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_92_2_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_92_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2282,125 +2301,134 @@ and(salary(person, amount),
     
 </EXERCISE></div>
 
-      
+  
 
-      
+  
       <div class='permalink'>
         <a name='h4' class='permalink'></a><h2>
     
-  Rules
-      </h2></div>
+    Rules
+  </h2></div>
 
-      
-      <div class='permalink'>
-<a name='p32' class='permalink'></a><p>
   
-  In addition to primitive queries and compound queries, the query
-  language provides means for abstracting queries.  These are given by
-  <EM>rules</EM>.  The rule
-
-  <div class='snippet' id='javascript_92_28_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+  <div class='permalink'>
+<a name='p32' class='permalink'></a><p>
+    
+    In addition to primitive queries and compound queries, the query
+    language provides means for abstracting queries.  These are given by
+    <EM>rules</EM>.  The rule
+    <div class='snippet' id='javascript_92_29_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 rule(lives_near(person_1, person_2),
      and(address(person_1, pair(town, rest_1)),
          address(person_2, pair(town, rest_2)),
-         not(same(person_1, person_2))));
+         not(same(person_1, person_2))))
 </pre></div></div>
-
-  specifies that two people live near each other if they live in the
-  same town.  The final <kbd>not</kbd> clause prevents the rule from saying
-  that all people live near themselves.  The <kbd>same</kbd> relation is
-  defined by a very simple rule:<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
-
-  <div class='snippet' id='javascript_92_29_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-rule(same(x, x));
+    specifies that two people live near each other if they live in the
+    same town.  The final <kbd>not</kbd> clause prevents the
+    rule from saying that all people live near themselves.  The
+    <kbd>same</kbd> relation is defined by a very simple
+    rule:<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+    <div class='snippet' id='javascript_92_30_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+rule(same(x, x))
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p33' class='permalink'></a><p>
-  The following rule declares that a person is a <QUOTE>wheel</QUOTE> in an
-  organization if he supervises someone who is in turn a supervisor:
-
-  <div class='snippet' id='javascript_92_30_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    The following rule declares that a person is a <QUOTE>wheel</QUOTE> in an
+    organization if he supervises someone who is in turn a supervisor:
+    <div class='snippet' id='javascript_92_31_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 rule(wheel(person),
      and(supervisor(middle_manager, person),
-         supervisor(x, middle_manager)));
+         supervisor(x, middle_manager)))
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p34' class='permalink'></a><p>
-  The general form of a rule is
-  <kbd class='snippet'>rule($\textit{conclusion}$, $\textit{body}$);</kbd>
-
-  where $\textit{conclusion}$ is a pattern and $\textit{body}$ is any
-  query.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a> We can think
-  of a rule as representing a large (even infinite) set of assertions,
-  namely all instantiations of the rule conclusion with variable
-  assignments that satisfy the rule body.  When we described simple
-  queries (patterns), we said that an assignment to variables satisfies
-  a pattern if the instantiated pattern is in the data base.  But the
-  pattern needn't be explicitly in the data base as an assertion.  It
-  
-  can be an implicit assertion implied by a rule.  For example, the
-  query
-  <div class='snippet' id='javascript_92_31_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    
+      
+      
+	The general form of a rule is
+	<kbd class='snippet'>rule($\textit{conclusion}$, $\textit{body}$)</kbd>
+	where $\textit{conclusion}$ is a pattern and
+	$\textit{body}$ is any query.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
+      
+    
+    We can think of a rule as representing a large (even
+    infinite) set of assertions, namely all instantiations of the rule conclusion
+    with variable assignments that satisfy the rule body.  When we described
+    simple queries (patterns), we said that an assignment to variables satisfies
+    a pattern if the instantiated pattern is in the data base.  But the pattern
+    needn't be explicitly in the data base as an assertion.  It
+    
+    can be an implicit assertion implied by a rule.  For example, the
+    query
+    <div class='snippet' id='javascript_92_32_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 lives_near(x, list("Bitdiddle", "Ben"))
 </pre></div></div>
-  results in
-  <div class='snippet' id='javascript_92_32_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    results in
+    <div class='snippet' id='javascript_92_33_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 lives_near(list("Reasoner", "Louis"), list("Bitdiddle", "Ben"))            
 lives_near(list("Aull", "DeWitt"), list("Bitdiddle", "Ben"))
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p35' class='permalink'></a><p>
-  To find all computer programmers who live near Ben Bitdiddle, we can
-  ask
-  <div class='snippet' id='javascript_92_33_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    To find all computer programmers who live near Ben Bitdiddle, we can
+    ask
+    <div class='snippet' id='javascript_92_34_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(job(x, list("computer", "programmer")),
-    lives_near(x, list("Bitdiddle", "Ben")));
+    lives_near(x, list("Bitdiddle", "Ben")))
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p36' class='permalink'></a><p>
-  
-  As in the case of compound
-  functions, rules can be used as parts of
-  other rules (as we saw with the <kbd>lives-near</kbd> rule above)
-  or even be defined recursively.  For instance, the rule
-  <div class='snippet' id='javascript_92_34_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    
+    As in the case of compound
+    
+      
+      functions,
+    
+    rules can be used as parts of other rules (as we saw with the
+    
+      
+      <kbd>lives_near</kbd>
+      
+    
+    rule above) or even be defined recursively.  For instance, the rule
+    <div class='snippet' id='javascript_92_35_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 rule(outranked_by(staff_person, boss),
      or(supervisor(staff_person, boss),
         and(supervisor(staff_person, middle_manager),
-            outranked_by(middle_manager, boss))));
+            outranked_by(middle_manager, boss))))
 </pre></div></div>
-  says that a staff person is outranked by a boss in the organization if
-  the boss is the person's supervisor or (recursively) if the person's
-  supervisor is outranked by the boss.
-      </p></div>
+    says that a staff person is outranked by a boss in the organization if
+    the boss is the person's supervisor or (recursively) if the
+    person's supervisor is outranked by the boss.
+  </p></div>
 
-      
+  
     <div class="permalink">
     <a name="ex_4.57" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.57">Exercise 4.57 </a></b> 
   
-  Define a rule that says that person 1 can replace person 2 if either
-  person 1 does the same job as person 2 or someone who does person 1's
-  job can also do person 2's job, and if person 1 and person 2 are not
-  the same person. Using your rule, give queries that find the
-  following:
-  <OL>
-    <LI>
-      all people who can replace Cy D. Fect;
-    </LI>
-    <LI>
-      all people who can replace someone who is being paid more than they
-      are, together with the two salaries.
-    </LI>
-  </OL>
-      
+    Define a rule that says that person 1 can replace person 2 if either
+    person 1 does the same job as person 2 or someone who does person 1's
+    job can also do person 2's job, and if person 1 and person 2
+    are not the same person. Using your rule, give queries that find the
+    following:
+    <OL>
+      <LI>
+	all people who can replace Cy D. Fect;
+      </LI>
+      <LI>
+	all people who can replace someone who is being paid more than they
+	are, together with the two salaries.
+      </LI>
+    </OL>
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_92_3_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_92_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2409,14 +2437,14 @@ rule(outranked_by(staff_person, boss),
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_4.58" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.58">Exercise 4.58 </a></b> 
   
-  Define a rule that says that a person is a <QUOTE>big shot</QUOTE> in a division
-  if the person works in the division but does not have a supervisor who
-  works in the division.
-      
+    Define a rule that says that a person is a <QUOTE>big shot</QUOTE> in a
+    division if the person works in the division but does not have a supervisor
+    who works in the division.
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_92_4_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_92_4_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2425,57 +2453,54 @@ rule(outranked_by(staff_person, boss),
 </EXERCISE></div>
 
 
-      
-      
+  
+  
     <div class="permalink">
     <a name="ex_4.59" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.59">Exercise 4.59 </a></b> 
   
-  Ben Bitdiddle has missed one meeting too many.
-  Fearing that his habit of forgetting meetings could cost him his
-  job, Ben decides to do something about it.  He adds all the weekly
-  meetings of the firm to the Microshaft data base by
-  asserting the following:
-  <div class='snippet' id='javascript_92_35_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    Ben Bitdiddle has missed one meeting too many. Fearing that his habit of
+    forgetting meetings could cost him his job, Ben decides to do something about
+    it.  He adds all the weekly meetings of the firm to the Microshaft data base
+    by asserting the following:
+    <div class='snippet' id='javascript_92_36_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 meeting("accounting", list("Monday", "9am"))
 meeting("administration", list("Monday", "10am"))
 meeting("computer", list("Wednesday", "3pm"))
 meeting("administration", list("Friday", "1pm"))
 </pre></div></div>
-
-  Each of the above assertions is for a meeting of an entire division.
-  Ben also adds an entry for the company-wide meeting that spans all the
-  divisions.  All of the company's employees attend this meeting.
-  <div class='snippet' id='javascript_92_36_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    Each of the above assertions is for a meeting of an entire division.
+    Ben also adds an entry for the company-wide meeting that spans all the
+    divisions.  All of the company's employees attend this meeting.
+    <div class='snippet' id='javascript_92_37_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 meeting("whole-company", list("Wednesday", "4pm"))
 </pre></div></div>
-
-  <OL>
-    <LI>
-      On Friday morning, Ben wants to query the data base for all the meetings
-      that occur that day.  What query should he use?
-    </LI>
-    <LI>
-      Alyssa P. Hacker is unimpressed.  She thinks it would be much more
-      useful to be able to ask for her meetings by specifying her name.  So
-      she designs a rule that says that a person's meetings include all
-      
+    <OL>
+      <LI>
+	On Friday morning, Ben wants to query the data base for all the meetings
+	that occur that day.  What query should he use?
+      </LI>
+      <LI>
+	Alyssa P. Hacker is unimpressed.  She thinks it would be much more
+	useful to be able to ask for her meetings by specifying her name.  So
+	she designs a rule that says that a person's meetings include all
 	
+	  
+	  
+	    <kbd>"whole-company"</kbd>
+	  
 	
-	  <kbd>whole-company</kbd>
-	
-      
-      meetings plus all meetings of that person's division.
-      Fill in the body of Alyssa's rule.
-      <kbd class='snippet'>rule(meeting_time(person, day_and_time),
-     $\textit{rule-body}$);</kbd>
-    </LI>
-    <LI>
-      Alyssa arrives at work on Wednesday morning and wonders what meetings she 
-      has to attend that day.  Having defined the above rule,
-      what query should she make to find this out?
-    </LI>
-  </OL>
-      
+	meetings plus all meetings of that person's division.
+	Fill in the body of Alyssa's rule.
+	<kbd class='snippet'>rule(meeting_time(person, day_and_time),
+     $\textit{rule-body}$)</kbd>
+      </LI>
+      <LI>
+	Alyssa arrives at work on Wednesday morning and wonders what meetings she
+	has to attend that day.  Having defined the above rule, what query should
+	she make to find this out?
+      </LI>
+    </OL>
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_92_5_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_92_5_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2484,34 +2509,29 @@ meeting("whole-company", list("Wednesday", "4pm"))
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_4.60" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.60">Exercise 4.60 </a></b> 
   
-  
-  By giving the query
-  <div class='snippet' id='javascript_92_37_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-lives_near(person, list("Hacker", "Alyssa", "P"));
+    
+    By giving the query
+    <div class='snippet' id='javascript_92_38_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+lives_near(person, list("Hacker", "Alyssa", "P"))
 </pre></div></div>
-
-  Alyssa P. Hacker is able to find people who live near her, with whom
-  she can ride to work.  On the other hand, when she tries to find all
-  pairs of people who live near each other by querying
-
-  <div class='snippet' id='javascript_92_38_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    Alyssa P. Hacker is able to find people who live near her, with whom
+    she can ride to work.  On the other hand, when she tries to find all
+    pairs of people who live near each other by querying
+    <div class='snippet' id='javascript_92_39_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 lives_near(person_1, person_2)
 </pre></div></div>
-
-  she notices that each pair of people who live near each other is
-  listed twice; for example,
-
-  <div class='snippet' id='javascript_92_39_div'><div class='pre-prettyprint'></div></div>
-
-  Why does this happen?
-  Is there a way to find a list of people who live near each other, in
-  which each pair appears only once?  Explain.
+    she notices that each pair of people who live near each other is
+    listed twice; for example,
+    <div class='snippet' id='javascript_92_40_div'><div class='pre-prettyprint'></div></div>
+    Why does this happen?
+    Is there a way to find a list of people who live near each other, in
+    which each pair appears only once?  Explain.
+    
   
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_92_6_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_92_6_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2520,134 +2540,206 @@ lives_near(person_1, person_2)
 </EXERCISE></div>
 
 
-
-      
+  
       <div class='permalink'>
         <a name='h5' class='permalink'></a><h2>
     
-  Logic as programs
-      </h2></div>
+    Logic as programs
+  </h2></div>
 
-      
-      <div class='permalink'>
-<a name='p37' class='permalink'></a><p>
-  We can regard a rule as a kind of logical implication: <EM>If</EM> an
-  assignment of values to pattern variables satisfies the body, <EM>
-    then</EM> it satisfies the conclusion.  Consequently, we can regard the
-  query language as having the ability to perform <EM>logical
-    deductions</EM> based upon the rules.  As an example, consider the <kbd>append</kbd> operation described at the beginning of
-  section <REF NAME="sec:logic-programming"><a class="superscript" id="4.4.1-sec-link-4.4" href="./4.4.html">4.4</a></REF>.  As we said, <kbd>append</kbd> can be
-  characterized by the following two rules:
-
-  <UL>
-    <LI>For any list <kbd>y</kbd>, the empty list and <kbd>y</kbd> <kbd>append</kbd> to form <kbd>y</kbd>.
-
-    </LI>
-    <LI>For any <kbd>u</kbd>,$\,$ <kbd>v</kbd>,$\,$ <kbd>y</kbd>, and <kbd>z</kbd>,
-      $\,$<kbd>pair(u, v)</kbd> and <kbd>y</kbd> <kbd>append</kbd> to form <kbd>pair(u, z)</kbd>
-      if <kbd>v</kbd> and <kbd>y</kbd> <kbd>append</kbd> to form <kbd>z</kbd>.
-    </LI>
-
-  </UL>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p38' class='permalink'></a><p>
-  To express this in our query language, we define two rules for a
-  relation
-  <div class='snippet' id='javascript_92_40_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-append-to-form("x", "y", "z")
-</pre></div></div>
-
-  which we can interpret to mean <QUOTE><kbd>x</kbd> and <kbd>y</kbd> <kbd>append</kbd> to
-    form <kbd>z</kbd></QUOTE>:
-
-  <div class='snippet' id='javascript_92_41_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-rule(append_to_form(null, y, y));
-rule(append_to_form(pair(u, v), y, pair(u, z)),
-     append-to-form(v, y, z));
-</pre></div></div>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p39' class='permalink'></a><p>
-	
-  The first rule has no body, which means that the conclusion holds for
-  any value of <kbd>y</kbd>.  Note how the second rule makes use of
   
-  dotted-tail notation to name the <kbd>head</kbd> and <kbd>tail</kbd> of a list.
-      </p></div>
+  <div class='permalink'>
+<a name='p37' class='permalink'></a><p>
+    We can regard a rule as a kind of logical implication: <EM>If</EM> an
+    assignment of values to pattern variables satisfies the body, <EM>
+    then</EM> it satisfies the conclusion.  Consequently, we can regard the
+    query language as having the ability to perform <EM>logical
+    deductions</EM> based upon the rules.  As an example, consider the
+    <kbd>append</kbd> operation described at the beginning of
+    section <REF NAME="sec:logic-programming"><a class="superscript" id="4.4.1-sec-link-4.4" href="./4.4.html">4.4</a></REF>.  As we said,
+    <kbd>append</kbd> can be characterized by the following
+    two rules:
+    <UL>
+      <LI>
+	For any list <kbd>y</kbd>, the empty list and
+	<kbd>y</kbd> <kbd>append</kbd> to
+	form <kbd>y</kbd>.
+      </LI>
+      <LI>
+	For any <kbd>u</kbd>, <kbd>v</kbd>,
+	<kbd>y</kbd>, and <kbd>z</kbd>,
+        
+	  
+	  <kbd>pair(u, v)</kbd>
+	  
+	
+	and <kbd>y</kbd> <kbd>append</kbd>
+	to form
+	
+	  
+	  <kbd>pair(u, z)</kbd>
+	  
+	
+	if <kbd>v</kbd> and <kbd>y</kbd>
+	<kbd>append</kbd> to form
+	<kbd>z</kbd>.
+      </LI>
+    </UL>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
+<a name='p38' class='permalink'></a><p>
+    To express this in our query language, we define two rules for a
+    relation
+    <div class='snippet' id='javascript_92_41_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+append_to_form("x", "y", "z")
+</pre></div></div>
+    which we can interpret to mean <QUOTE><kbd>x</kbd> and
+    <kbd>y</kbd> <kbd>append</kbd> to
+    form <kbd>z</kbd></QUOTE>:
+    <div class='snippet' id='javascript_92_42_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+rule(append_to_form(null, y, y))
+
+rule(append_to_form(pair(u, v), y, pair(u, z)),
+     append_to_form(v, y, z))
+</pre></div></div>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p39' class='permalink'></a><p>
+    
+    The first rule has no body, which means that the conclusion holds for
+    any value of
+    
+      
+      <kbd>y</kbd>.
+    
+    Note how the second rule makes use of
+    
+      
+      
+	<kbd>pair</kbd>
+      
+    
+    
+      
+      <kbd>head</kbd>
+    
+    and
+    
+      
+      <kbd>tail</kbd>
+    
+    of a list.
+  </p></div>
+
+  <div class='permalink'>
 <a name='p40' class='permalink'></a><p>
-  Given these two rules, we can formulate queries that compute the <kbd>append</kbd> of two lists:
-  <div class='snippet' id='javascript_92_42_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-// Query input:
-append-to-form(list("a", "b"), list("c", "d"), z);
-// Query results:
-append-to-form(list("a", "b"), list("c", "d"), list("a", "b", "c", "d"))
-</pre></div></div>
-      </p></div>
+    Given these two rules, we can formulate queries that compute the
+    <kbd>append</kbd> of two lists:
+    <div class='snippet' id='javascript_92_43_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
 
-      <div class='permalink'>
+Query input:
+      
+</pre></div></div>
+    <div class='snippet' id='javascript_92_44_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHToIwChsEMAHAgUwDsATAfQBcB7SgM1oCcBbACgBsBLAZ2vYAiPIIA0oQQCNBASnE9+QgMZiJ5WeIBeMgNxA')">append_to_form(list("a", "b"), list("c", "d"), z);
+
+</pre><pre class='prettyprintoutput'>
+
+Query results:
+append_to_form(list("a", "b"), list("c", "d"), list("a", "b", "c", "d"))
+      
+</pre></div></div>
+  </p></div>
+
+  <div class='permalink'>
 <a name='p41' class='permalink'></a><p>
-  What is more striking, we can use the same rules to ask the question
-  <QUOTE>Which list, when <kbd>append</kbd>ed to <kbd>list("a", "b")</kbd>, yields <kbd>list("a", "b", "c", "d")</kbd>?</QUOTE>
-  This is done as follows:
-  <div class='snippet' id='javascript_92_43_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-// Query input:
-append-to-form(list("a", "b"), y, list("a", "b", "c", "d"));
-// Query results:
-append-to-form(list("a", "b"), list("c", "d"), list("a", "b", "c", "d"))
-</pre></div></div>
-      </p></div>
+    What is more striking, we can use the same rules to ask the question
+    
+      
+      
+	<QUOTE>Which list, when <kbd>append</kbd>ed to
+	<kbd>list("a", "b")</kbd>, yields
+	<kbd>list("a", "b", "c", "d")</kbd>?
+	</QUOTE>
+      
+    
+    This is done as follows:
+    <div class='snippet' id='javascript_92_45_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
 
-      <div class='permalink'>
+Query input:
+      
+</pre></div></div>
+    <div class='snippet' id='javascript_92_46_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHToIwChsEMAHAgUwDsATAfQBcB7SgM1oCcBbACgBsBLAZ2vYAiPIIA0oQQCNBASnEBPcT35CR4qWIkBjTYPKyZAbiA')">append_to_form(list("a", "b"), y, list("a", "b", "c", "d"));
+
+</pre><pre class='prettyprintoutput'>
+
+Query results:
+append_to_form(list("a", "b"), list("c", "d"), list("a", "b", "c", "d"))
+      
+</pre></div></div>
+  </p></div>
+
+  <div class='permalink'>
 <a name='p42' class='permalink'></a><p>
-  We can also ask for all pairs of lists that <kbd>append</kbd> to form <kbd>list("a", "b", "c", "d")</kbd>:
-  <div class='snippet' id='javascript_92_44_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-// Query input:
-append-to-form(x, y, list("a", "b", "c", "d"));
-// Query results:
-append-to-form(null, list("a", "b", "c", "d"), list("a", "b", "c", "d"))
-append-to-form(list("a"), list("b", "c", "d"), list("a", "b", "c", "d"))
-append-to-form(list("a", "b"), list("c", "d"), list("a", "b", "c", "d"))
-append-to-form(list("a", "b", "c"), list("d"), list("a", "b", "c", "d"))
-append-to-form(list("a", "b", "c", "d"), null, list("a", "b", "c", "d"))
+    We can also ask for all pairs of lists that
+    <kbd>append</kbd> to form
+    
+      
+      <kbd>list("a", "b", "c", "d")</kbd>:
+      
+    
+    <div class='snippet' id='javascript_92_47_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
+
+Query input:
+      
 </pre></div></div>
-      </p></div>
+    <div class='snippet' id='javascript_92_48_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHToIwChsEMAHAgUwDsATAfQBcB7SgM1oCcBbACgA8AaUAT14AbAJYBnauwBEeSb0kAjWaEkBjJZPKSAlFoDcQA')">append_to_form(x, y, list("a", "b", "c", "d"));
 
-      <div class='permalink'>
+</pre><pre class='prettyprintoutput'>
+
+Query results:
+append_to_form(null, list("a", "b", "c", "d"), list("a", "b", "c", "d"))
+append_to_form(list("a"), list("b", "c", "d"), list("a", "b", "c", "d"))
+append_to_form(list("a", "b"), list("c", "d"), list("a", "b", "c", "d"))
+append_to_form(list("a", "b", "c"), list("d"), list("a", "b", "c", "d"))
+append_to_form(list("a", "b", "c", "d"), null, list("a", "b", "c", "d"))
+      
+</pre></div></div>
+  </p></div>
+
+  <div class='permalink'>
 <a name='p43' class='permalink'></a><p>
-  The query system may seem to exhibit quite a bit of intelligence in
-  using the rules to deduce the answers to the queries above.  Actually,
-  as we will see in the next section, the system is following a
-  well-determined algorithm in unraveling the rules.  Unfortunately,
-  although the system works impressively in the <kbd>append</kbd> case, the
-  general methods may break down in more complex cases, as we will see
-  in section <REF NAME="sec:math-logic"><a class="superscript" id="4.4.1-sec-link-4.4.3" href="./4.4.3.html">4.4.3</a></REF>.
-      </p></div>
+    The query system may seem to exhibit quite a bit of intelligence in
+    using the rules to deduce the answers to the queries above.  Actually,
+    as we will see in the next section, the system is following a
+    well-determined algorithm in unraveling the rules.  Unfortunately,
+    although the system works impressively in the
+    <kbd>append</kbd> case, the general methods may break down
+    in more complex cases, as we will see
+    in section <REF NAME="sec:math-logic"><a class="superscript" id="4.4.1-sec-link-4.4.3" href="./4.4.3.html">4.4.3</a></REF>.
+  </p></div>
 
-      
-      
+  
+  
     <div class="permalink">
     <a name="ex_4.61" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.61">Exercise 4.61 </a></b> 
   
-  The following rules implement a <kbd>next-to</kbd> relation that finds
-  adjacent elements of a list:
-  <div class='snippet' id='javascript_92_45_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    
+    The following rules implement a <kbd>next-to</kbd>
+    relation that finds adjacent elements of a list:
+    <div class='snippet' id='javascript_92_49_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 rule(next_to_in(x, y, pair(x, pair(y, u))),
      and(next_to_in(x, y, pair(v, z)),
-         next_to_in(x, y, z));
+         next_to_in(x, y, z))
 </pre></div></div>
+    What will the response be to the following queries?
+    <div class='snippet' id='javascript_92_50_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+next_to_in(x, y, list(1, list(2, 3), 4))
 
-  What will the response be to the following queries?
-  <div class='snippet' id='javascript_92_46_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-next_to_in(x, y, list(1, list(2, 3), 4));
-
-next_to_in(x, 1, list(2, 1, 3, 1));
+next_to_in(x, 1, list(2, 1, 3, 1))
 </pre></div></div>
-      
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_92_7_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_92_7_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2656,25 +2748,47 @@ next_to_in(x, 1, list(2, 1, 3, 1));
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_4.62" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.62">Exercise 4.62 </a></b> 
   
-  
-  Define rules to implement the
-  
     
+    Define rules to implement the
     
-      <kbd>last_pair</kbd>
-    
-  
-    operation of
-  exercise <REF NAME="ex:last"><a class="superscript" id="4.4.1-ex-link-2.17" href="./2.2.1.html#ex_2.17">2.17</a></REF>, which returns a list containing the last
-  element of a nonempty list.  Check your rules on queries such as
-  <kbd>last_pair(list(3), x)</kbd>, <kbd>last_pair(list(1, 2, 3), x)</kbd>, and <kbd>last_pair(list(2, x, list(3))</kbd>.
-  Do your rules work correctly on queries such as <kbd>last_pair(x, list(3))</kbd>$\,$?
-  
       
+      
+	<kbd>last_pair</kbd>
+      
+    
+    operation of exercise <REF NAME="ex:last"><a class="superscript" id="4.4.1-ex-link-2.17" href="./2.2.1.html#ex_2.17">2.17</a></REF>, which returns a list
+    containing the last element of a nonempty list.  Check your rules on queries
+    such as
+    
+      
+      <kbd>last_pair(list(3), x)</kbd>,
+      
+    
+    
+      
+      
+	<kbd>last_pair(list(1, 2, 3), x)</kbd>,
+      
+    
+    and
+    
+      
+      
+	<kbd>last_pair(list(2, x, list(3))</kbd>.
+      
+    
+    Do your rules work correctly on queries such as
+    
+      
+      <kbd>last_pair(x, list(3))</kbd>?
+      
+    
+    
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_92_8_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_92_8_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2683,35 +2797,34 @@ next_to_in(x, 1, list(2, 1, 3, 1));
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_4.63" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.63">Exercise 4.63 </a></b> 
   
-  
-  The following data base (see Genesis 4) traces the genealogy of the
-  descendants of Ada back to Adam, by way of Cain:
+    
+    The following data base (see Genesis 4) traces the genealogy of the
+    descendants of Ada back to Adam, by way of Cain:
 
-  <div class='snippet' id='javascript_92_47_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-son("Adam", "Cain");     
-son("Cain", "Enoch");
-son("Enoch", "Irad");      
-son("Methushael", "Lamech");
-wife("Lamech", "Ada");
-son("Ada", "Jabal");
-son("Ada", "Jubal");
+    <div class='snippet' id='javascript_92_51_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+son("Adam", "Cain")
+son("Cain", "Enoch")
+son("Enoch", "Irad")
+son("Methushael", "Lamech")
+wife("Lamech", "Ada")
+son("Ada", "Jabal")
+son("Ada", "Jubal")
 </pre></div></div>
-
-  Formulate rules such as <QUOTE>If <EM>S</EM> is the son of <EM>F</EM>, and <EM>
-      F</EM> is the son of <EM>G</EM>, then <EM>S</EM> is the grandson of <EM>G</EM></QUOTE>
-  and <QUOTE>If <EM>W</EM> is the wife of <EM>M</EM>, and <EM>S</EM> is the son of
-    <EM>W</EM>, then <EM>S</EM> is the son of <EM>M</EM></QUOTE> (which was supposedly
-  more true in biblical times than today) that will enable the query
-  system to find the grandson of Cain; the sons of Lamech; the grandsons
-  of Methushael.
-  (See exercise <REF NAME="ex:great-grandson"><a class="superscript" id="4.4.1-ex-link-4.69" href="./4.4.3.html#ex_4.69">4.69</a></REF> for some rules to
-  deduce more complicated relationships.)
+    Formulate rules such as <QUOTE>If <EM>S</EM> is the son of <EM>F</EM>, and
+    <EM>F</EM> is the son of <EM>G</EM>, then <EM>S</EM> is the grandson of
+    <EM>G</EM></QUOTE> and <QUOTE>If <EM>W</EM> is the wife of <EM>M</EM>, and
+    <EM>S</EM> is the son of <EM>W</EM>, then <EM>S</EM> is the son of
+    <EM>M</EM></QUOTE> (which was supposedly more true in biblical times than
+    today) that will enable the query system to find the grandson of Cain; the
+    sons of Lamech; the grandsons of Methushael.
+    (See exercise <REF NAME="ex:great-grandson"><a class="superscript" id="4.4.1-ex-link-4.69" href="./4.4.3.html#ex_4.69">4.69</a></REF> for some rules to
+    deduce more complicated relationships.)
+    
   
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_92_9_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_92_9_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2719,56 +2832,46 @@ son("Ada", "Jubal");
     
 </EXERCISE></div>
 
-      
-      
-      
-
-    <hr>
+  
+  
+  
+<hr>
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
     <FOOTNOTE>
-    Actually, this description of
-  
-    
-    
-      <kbd>not</kbd>.
-    
-  
-  is valid only for simple cases.
-  The real behavior of
-  
-    
-    
-      <kbd>not</kbd>
-    
-  
-  is more complex.  We will examine
-  <kbd>not</kbd>'s  peculiarities
-  in sections <REF NAME="sec:how-query-works"><a class="superscript" id="4.4.1-sec-link-4.4.2" href="./4.4.2.html">4.4.2</a></REF> and <REF NAME="sec:math-logic"><a class="superscript" id="4.4.1-sec-link-4.4.3" href="./4.4.3.html">4.4.3</a></REF>.
+    Actually,    
+    this description of <kbd>not</kbd>.
+    is valid only for simple cases. The real behavior of
+    <kbd>not</kbd> is more complex.  We will examine
+    <kbd>not</kbd>'s  peculiarities
+    in sections <REF NAME="sec:how-query-works"><a class="superscript" id="4.4.1-sec-link-4.4.2" href="./4.4.2.html">4.4.2</a></REF>
+    and <REF NAME="sec:math-logic"><a class="superscript" id="4.4.1-sec-link-4.4.3" href="./4.4.3.html">4.4.3</a></REF>.
     </FOOTNOTE></div>
 
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
     <FOOTNOTE>
-    Such <kbd>javascript_value</kbd> expressions should be used only to perform an operation not
     
-    provided in the query language.  In particular, it should not
-    be used to test equality (since that is what the matching in the
-    query language is designed to do) or inequality (since that can
-    be done with the <kbd>same</kbd> rule shown below).
+	Such <kbd>javascript_value</kbd>
+	queries	should be used only to perform an operation not
+	
+	provided in the query language.  In particular, it should not
+	be used to test equality (since that is what the matching in the
+	query language is designed to do) or inequality (since that can
+	be done with the <kbd>same</kbd> rule shown
+	below).
     </FOOTNOTE></div>
 
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
     <FOOTNOTE>
-    Notice 
-    that we do not need <kbd>same</kbd> in order to make two things be
-    the same: We just use the same pattern variable for each—in effect,
-    we have one thing instead of two things in the first place.  For
-    example, see
+    Notice that we do not need <kbd>same</kbd>
+    in order to make two things be the same: We just use the same pattern
+    variable for each—in effect, we have one thing instead of two things
+    in the first place.  For example, see
     
       
       
@@ -2779,7 +2882,7 @@ son("Ada", "Jubal");
     
       
       
-    <kbd>lives_near</kbd>
+	<kbd>lives_near</kbd>
       
     
     rule and
@@ -2831,10 +2934,12 @@ son("Ada", "Jubal");
     <div class='footnote'>
       <a class='footnote-number' id='footnote-4' href='#footnote-link-4'>[4] </a>
     <FOOTNOTE>
-    We will also allow rules without bodies, as in
-  
-  <kbd>same</kbd>, and we will interpret such a rule to mean that the rule
-    conclusion is satisfied by any values of the variables.
+    We will
+	also allow rules without bodies, as in
+	
+	<kbd>same</kbd>, and we will interpret such a rule to
+	mean that the rule conclusion is satisfied by any values of the
+	variables.
     </FOOTNOTE></div>
 
     
