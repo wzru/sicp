@@ -1723,10 +1723,10 @@
       (assemble controller-text machine))
       machine))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_104_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0EYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH1myALKktgAoATmwDmVAM4U2wjiSYM2kgDSgaAB1WgydCsJoAbQ7I4yAHhQCUoAN65QjnXWmMmvfm1ABeN+3lsAO5c7nwCglYA3PhObhoi4vKKXt4AfG4e4QBETMY0ZEwyHKIS0rJZVgliSUpWaiVSMnIKSpJRDk7cYUJZ-NK5hhyasoW0JJIVgppt0bFdnoK94xQDHH36RJRjHJJsAI5EbORsk0ySuwwARiaCuiT6RiZyFhRq8wJW7R2OohREwvR3mxogBfIA')">function make_machine(register_names, ops, controller_text) {
+            <td><div class='snippet' id='javascript_104_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0EYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH1myALKktgAoATmwDmVAM4U2wjiSYM2kgDSgaAB1WgydCsJoAbQ7I4yAHhQCUoAN65QjnXWmMmvfm1ABeN+3lsAO5c7nwCglYA3PhOoAQ0cmyhIuJSMnIKSj4AfG4e4QBETMY0ZEwyHKIS0rIFVinV6fKKbFZqVWmmmcpRDk7cYUIF-NLFhhyasuW0JJJ1gpqSvbEDnoLDsxRjHCP6RJQzHJJsAI5EbORs80ySxwwARiaCuiT6RiZyFhRqqwJWvX1HKIKERhPRfmxogBfIA')">function make_machine(register_names, ops, controller_text) {
     const machine = make_new_machine();
 
-    map(reg_name => machine("allocate_register")(reg_name), register_names);
+    for_each(register_name => machine("allocate_register")(register_name), register_names);
     machine("install_operations")(ops);
     machine("install_instruction_sequence")(assemble(controller_text, machine));
 
