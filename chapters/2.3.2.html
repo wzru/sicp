@@ -1772,7 +1772,7 @@
       
       function
     
-    we indulge in a little 
+    we indulge in a little
     
     wishful thinking, as we did in designing the rational-number implementation.
     If we had a means for representing algebraic expressions, we should be able
@@ -1843,7 +1843,7 @@
 	    
 	    <kbd>augend(e)</kbd>
 	    
-	   
+	  
         </TD>
         <TD>
           Augend of the sum <kbd>e</kbd>.
@@ -1930,20 +1930,20 @@
       
       function:
     
-    <div class='snippet' id='javascript_38_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGNAZAKSrR3CXKN9QOO83UABeAu8UQxMCEgoaEPVCWz0pRNkFJRUUgAc2Sg467IALATYAEzqCvNAAIgBqMZLTcos6WzYAawcGGqE2T1A2TP85JuDQPkZyIUmxr03L3xmy80rQRZWmVo5qAcIKIVst212GwLNOjHDRnABUF0evxuxlm90sgwGAmIQwYfgBBxafUGQnIHT4QjRBlhdwqCMI2mRqPRAUxdGxQzxlAJTIJROJpTMZKqr3en1O4nqtKCLTU7U63XiDOGhTGENuXPmj0IfCorWOAi6aKF+xF9P6jPxhLEHLh3OVqso6sopDYKONOsaetA0tZuKN7IVcweSK4LCEAhErS8YWcghpuqBKWINR4moDQbEAOSoAA-KAAAzJ5IALhSoYiwkDrSTKeS6aEahs9lSYaLQZDTkLJrToFyeazZaSear62Lpa7SXTT1W619lH9iKpCZLjbS4a82cHg-Hk4p0-7c7rJqXZZ7zF5Hy+-d3XeHy1HtRHLzeR9OthVao1XU3CWX767q++j6tx1t9tfU8P2A2QCxcE0PCAj9r0PfkhC-B9LWteNAJAtDlzAhc33QrtEKfG07SGfsd3QvNNTeF8Gyg4CxhIJZiGoAB3OhiwUBgGAecgAE9WgEeg6FXMZTRwL8QVOOVITE8FITGEQZK4oSvCk84vFkyEMAg8Y5IMIA')">function deriv(exp, variable) {
+    <div class='snippet' id='javascript_38_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISChoQ9UJbPSkE2QUlFWSABzZKDlqsgAsBNgATWvzc0AAiAGpR4tMyizpbNgBrBwZqoTZPUDYM-zlG4NA+RnIhCdGvDYvfadLzCtAF5aYWjmp+wgohW03bHfrApp0I4aU4AKnODx+12MMzulgG-QExEGDD8-32zV6AyE5HafCEqIMMNu5XhhG0SJRaICGLoWMGuMo+MZ+MJRJKZlJlRebw+J3EdRpQWaajaHS6MVA9KGBVG4JunLmD0IfCoLSOAk6qMFe2FdL6DLxBLE7NhXOVqso6sopDYyONOoaeqlBpxRpZxpNCtm90RXBYQgEIhaXjCzkE1N1gOSxGqPE1geDYn+SVAAH5QAAGFNJABcyTDEWEQZaydTSQzQjUNnsKXDxeDoacRZN6dAOXz2fLiXz1bWJbL3cSGceKzWfsoAYRlMTpabqQjHhzQ6HE6n5JnA-n9ZNy-LveYPPenwHe+7I6WY5qo+er2PJ1sKrVGs6W7PK4-a6+T6tR1t9rfD8gKAwsXBNJdgO7G8jz5IQv0fS1rQTQDINQodQMXd80IQ58bTtQYB13ND801V5X0bLDgNGEhFmIagAHc6BLBQGAYe5yAATxaAR6DoNdRlNHAv2BE45QhESwQhUYRCkjiBK8CSzi8aSIQwcCxhkgwgA')">function deriv(exp, variable) {
     return is_number(exp)
            ? 0
            : is_variable(exp)
              ? (is_same_variable(exp, variable)) ? 1 : 0
              : is_sum(exp)
-               ? make_sum(deriv(addend(exp), variable), 
+               ? make_sum(deriv(addend(exp), variable),
                           deriv(augend(exp), variable))
                : is_product(exp)
-                 ? make_sum(make_product(multiplier(exp), 
-                                deriv(multiplicand(exp), 
+                 ? make_sum(make_product(multiplier(exp),
+                                deriv(multiplicand(exp),
                                       variable)),
-                       make_product(deriv(multiplier(exp), 
-                                          variable), 
+                       make_product(deriv(multiplier(exp),
+                                          variable),
                            multiplicand(exp)))
                  : error(exp,
                          "unknown expression type in deriv");
@@ -1976,7 +1976,7 @@
 <a name='p7' class='permalink'></a><p>
     We can imagine many ways to use list structure to represent algebraic
     expressions.  For example, we could use lists of symbols that mirror the
-    usual algebraic notation, representing $ax+b$ as 
+    usual algebraic notation, representing $ax+b$ as
     
       
       
@@ -2016,15 +2016,15 @@
 </pre></div></div>
       </LI>
       <LI>
-	Two variables are the same if the 
+	Two variables are the same if the
 	
           
           strings representing them are equal:
           
 	
 	
-	<div class='snippet' id='javascript_38_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGNAZAKSrR3CXKN9QOO83UABeAu8UQxMcNRt7VOdIgCIRAE8ALxqvOqaagyA')">function is_same_variable(v1, v2) {
-    return is_variable(v1) && 
+	<div class='snippet' id='javascript_38_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDExw1G3sU50iAIhEATwAvaq9axuqDIA')">function is_same_variable(v1, v2) {
+    return is_variable(v1) &&
            is_variable(v2) && v1 === v2;
 }
 
@@ -2045,7 +2045,7 @@
 </pre></div></div>
       </LI>
       <LI>
-	A sum is a list whose first element is the 
+	A sum is a list whose first element is the
         
           
           string <kbd>"+"</kbd>:
@@ -2077,7 +2077,7 @@
 </pre></div></div>
       </LI>
       <LI>
-	A product is a list whose first element is the 
+	A product is a list whose first element is the
         
           
           string <kbd>"*"</kbd>:
@@ -2117,14 +2117,14 @@
     <kbd>deriv</kbd> in order to have a working
     symbolic-differentiation program.  Let us look at some examples of its
     behavior:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-    <div class='snippet' id='javascript_38_12_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGNAZAKSrR3CXKN9QOO83UABeAu8UQxMCEgoaEPVCWz0pRNkFJRUUgAc2Sg467IALATYAEzqCvNAAIgBqMZLTcos6WzYAawcGGqE2T1A2TP85JuDQPkZyIUmxr03L3xmy80rQRZWmVo5qAcIKIVst212GwLNOjHDRnABUF0evxuxlm90sgwGAmIQwYfgBBxafUGQnIHT4QjRBlhdwqCMI2mRqPRAUxdGxQzxlAJTIJROJpTMZKqr3en1O4nqtKCLTU7U63XiDOGhTGENuXPmj0IfCorWOAi6aKF+xF9P6jPxhLEHLh3OVqso6sopDYKONOsaetA0tZuKN7IVcweSK4LCEAhErS8YWcghpuqBKWINR4moDQbEAOSoAA-KAAAzJ5IALhSoYiwkDrSTKeS6aEahs9lSYaLQZDTkLJrToFyeazZaSear62Lpa7SXTT1W619lH9iKpCZLjbS4a82cHg-Hk4p0-7c7rJqXZZ7zF5Hy+-d3XeHy1HtRHLzeR9OthVao1XU3CWX767q++j6tx1t9tfU8P2A2QCxcE0PCAj9r0PfkhC-B9LWteNAJAtDlzAhc33QrtEKfG07SGfsd3QvNNTeF8Gyg4CxhIJZiGoAB3OhiwUBgGAecgAE9WgEeg6FXMZTRwL8QVOc4vDGERIQwMRJOkgwgA')">deriv(list("+", "x", 3), "x");
+    <div class='snippet' id='javascript_38_12_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISChoQ9UJbPSkE2QUlFWSABzZKDlqsgAsBNgATWvzc0AAiAGpR4tMyizpbNgBrBwZqoTZPUDYM-zlG4NA+RnIhCdGvDYvfadLzCtAF5aYWjmp+wgohW03bHfrApp0I4aU4AKnODx+12MMzulgG-QExEGDD8-32zV6AyE5HafCEqIMMNu5XhhG0SJRaICGLoWMGuMo+MZ+MJRJKZlJlRebw+J3EdRpQWaajaHS6MVA9KGBVG4JunLmD0IfCoLSOAk6qMFe2FdL6DLxBLE7NhXOVqso6sopDYyONOoaeqlBpxRpZxpNCtm90RXBYQgEIhaXjCzkE1N1gOSxGqPE1geDYn+SVAAH5QAAGFNJABcyTDEWEQZaydTSQzQjUNnsKXDxeDoacRZN6dAOXz2fLiXz1bWJbL3cSGceKzWfsoAYRlMTpabqQjHhzQ6HE6n5JnA-n9ZNy-LveYPPenwHe+7I6WY5qo+er2PJ1sKrVGs6W7PK4-a6+T6tR1t9rfD8gKAwsXBNJdgO7G8jz5IQv0fS1rQTQDINQodQMXd80IQ58bTtQYB13ND801V5X0bLDgNGEhFmIagAHc6BLBQGAYe5yAATxaAR6DoNdRlNHAv2BE4zi8UYRAhDAxHEySDCAA')">deriv(list("+", "x", 3), "x");
 
 </pre><pre class='prettyprintoutput'>
 
 list("+", 1, 0)
       
 </pre></div></div>
-    <div class='snippet' id='javascript_38_13_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGNAZAKSrR3CXKN9QOO83UABeAu8UQxMCEgoaEPVCWz0pRNkFJRUUgAc2Sg467IALATYAEzqCvNAAIgBqMZLTcos6WzYAawcGGqE2T1A2TP85JuDQPkZyIUmxr03L3xmy80rQRZWmVo5qAcIKIVst212GwLNOjHDRnABUF0evxuxlm90sgwGAmIQwYfgBBxafUGQnIHT4QjRBlhdwqCMI2mRqPRAUxdGxQzxlAJTIJROJpTMZKqr3en1O4nqtKCLTU7U63XiDOGhTGENuXPmj0IfCorWOAi6aKF+xF9P6jPxhLEHLh3OVqso6sopDYKONOsaetA0tZuKN7IVcweSK4LCEAhErS8YWcghpuqBKWINR4moDQbEAOSoAA-KAAAzJ5IALhSoYiwkDrSTKeS6aEahs9lSYaLQZDTkLJrToFyeazZaSear62Lpa7SXTT1W619lH9iKpCZLjbS4a82cHg-Hk4p0-7c7rJqXZZ7zF5Hy+-d3XeHy1HtRHLzeR9OthVao1XU3CWX767q++j6tx1t9tfU8P2A2QCxcE0PCAj9r0PfkhC-B9LWteNAJAtDlzAhc33QrtEKfG07SGfsd3QvNNTeF8Gyg4CxhIJZiGoAB3OhiwUBgGAecgAE9WgEeg6FXMZTRwL8QVOOVITGERJK4oSvCkoT9CAA')">deriv(list("*", "x", "y"), "x");
+    <div class='snippet' id='javascript_38_13_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISChoQ9UJbPSkE2QUlFWSABzZKDlqsgAsBNgATWvzc0AAiAGpR4tMyizpbNgBrBwZqoTZPUDYM-zlG4NA+RnIhCdGvDYvfadLzCtAF5aYWjmp+wgohW03bHfrApp0I4aU4AKnODx+12MMzulgG-QExEGDD8-32zV6AyE5HafCEqIMMNu5XhhG0SJRaICGLoWMGuMo+MZ+MJRJKZlJlRebw+J3EdRpQWaajaHS6MVA9KGBVG4JunLmD0IfCoLSOAk6qMFe2FdL6DLxBLE7NhXOVqso6sopDYyONOoaeqlBpxRpZxpNCtm90RXBYQgEIhaXjCzkE1N1gOSxGqPE1geDYn+SVAAH5QAAGFNJABcyTDEWEQZaydTSQzQjUNnsKXDxeDoacRZN6dAOXz2fLiXz1bWJbL3cSGceKzWfsoAYRlMTpabqQjHhzQ6HE6n5JnA-n9ZNy-LveYPPenwHe+7I6WY5qo+er2PJ1sKrVGs6W7PK4-a6+T6tR1t9rfD8gKAwsXBNJdgO7G8jz5IQv0fS1rQTQDINQodQMXd80IQ58bTtQYB13ND801V5X0bLDgNGEhFmIagAHc6BLBQGAYe5yAATxaAR6DoNdRlNHAv2BE45QhUYRHEjiBK8CSBP0IA')">deriv(list("*", "x", "y"), "x");
 
 </pre><pre class='prettyprintoutput'>
 
@@ -2132,7 +2132,7 @@ list("+", list("*", "x", 0),
           list("*", 1, "y"))
       
 </pre></div></div>
-    <div class='snippet' id='javascript_38_14_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGNAZAKSrR3CXKN9QOO83UABeAu8UQxMCEgoaEPVCWz0pRNkFJRUUgAc2Sg467IALATYAEzqCvNAAIgBqMZLTcos6WzYAawcGGqE2T1A2TP85JuDQPkZyIUmxr03L3xmy80rQRZWmVo5qAcIKIVst212GwLNOjHDRnABUF0evxuxlm90sgwGAmIQwYfgBBxafUGQnIHT4QjRBlhdwqCMI2mRqPRAUxdGxQzxlAJTIJROJpTMZKqr3en1O4nqtKCLTU7U63XiDOGhTGENuXPmj0IfCorWOAi6aKF+xF9P6jPxhLEHLh3OVqso6sopDYKONOsaetA0tZuKN7IVcweSK4LCEAhErS8YWcghpuqBKWINR4moDQbEAOSoAA-KAAAzJ5IALhSoYiwkDrSTKeS6aEahs9lSYaLQZDTkLJrToFyeazZaSear62Lpa7SXTT1W619lH9iKpCZLjbS4a82cHg-Hk4p0-7c7rJqXZZ7zF5Hy+-d3XeHy1HtRHLzeR9OthVao1XU3CWX767q++j6tx1t9tfU8P2A2QCxcE0PCAj9r0PfkhC-B9LWteNAJAtDlzAhc33QrtEKfG07SGfsd3QvNNTeF8Gyg4CxhIJZiGoAB3OhiwUBgGAecgAE9WgEeg6FXMZTRwL8QVOOVITE8FITGEQZK4oSvCk84vFkyEMAg8Y5IMIA')">deriv(list("*", list("*", "x", "y"), list("+", "x", 3)), "x");
+    <div class='snippet' id='javascript_38_14_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISChoQ9UJbPSkE2QUlFWSABzZKDlqsgAsBNgATWvzc0AAiAGpR4tMyizpbNgBrBwZqoTZPUDYM-zlG4NA+RnIhCdGvDYvfadLzCtAF5aYWjmp+wgohW03bHfrApp0I4aU4AKnODx+12MMzulgG-QExEGDD8-32zV6AyE5HafCEqIMMNu5XhhG0SJRaICGLoWMGuMo+MZ+MJRJKZlJlRebw+J3EdRpQWaajaHS6MVA9KGBVG4JunLmD0IfCoLSOAk6qMFe2FdL6DLxBLE7NhXOVqso6sopDYyONOoaeqlBpxRpZxpNCtm90RXBYQgEIhaXjCzkE1N1gOSxGqPE1geDYn+SVAAH5QAAGFNJABcyTDEWEQZaydTSQzQjUNnsKXDxeDoacRZN6dAOXz2fLiXz1bWJbL3cSGceKzWfsoAYRlMTpabqQjHhzQ6HE6n5JnA-n9ZNy-LveYPPenwHe+7I6WY5qo+er2PJ1sKrVGs6W7PK4-a6+T6tR1t9rfD8gKAwsXBNJdgO7G8jz5IQv0fS1rQTQDINQodQMXd80IQ58bTtQYB13ND801V5X0bLDgNGEhFmIagAHc6BLBQGAYe5yAATxaAR6DoNdRlNHAv2BE45QhESwQhUYRCkjiBK8CSzi8aSIQwcCxhkgwgA')">deriv(list("*", list("*", "x", "y"), list("+", "x", 3)), "x");
 
 </pre><pre class='prettyprintoutput'>
 
@@ -2236,21 +2236,21 @@ list("+", list("*", list("*", "x", "y"),
 </pre></div></div>
     
     Here is how this version works on our three examples:
-    <div class='snippet' id='javascript_38_18_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGNAZAKSrR3CXKN9QOO83UABeAu8UQxMCEgoaEPVCWz0pRNkFJRUUgAc2Sg467IALATYAEzqCvNAAIgBqMZLTcos6YhqeAQ4mAQBHQjY+IQERVq9F2z8GwOaqo+WuvdbY+Jv8wqOZsvNK0Fs2AGsHBhqhNieUBsTL+ORNYKgS4rNabbYAoEABjEp2SoAA-MDcGiAgAuKFLGEbLY7EFeZGonGYwE4ACQSXxamhXUBdxSzIBvkpOIxwNyEyx3Jx+L4jHIQkmYy8gOlvheZgqlk+PyYrQ41AGhAoQlsQNsoNOEJazNhJJ1SIkAB9LQTbFdTfD9eSUTzZJjEUK5PiTcTHUC3C7XW6Ptig6BvYTVr6dk7QAHPQFMbqE172ZHzWymen9YGw7zdaAAFQhlN40CijQSwtSj56uXGWZvSyDAYCYhDBgnAJGuh9QZCcgdHadgwN16KuhsQjaNsdrvgoItPtDQeUHar4diLfyubvNRqjVa8XierdxdVdqdbrxZfDQpjas7pt0WyEPhUVqilZCTunhfnUBbw3H9tzHBV5g+N8P1FUg2HbEC-0ac9AP6FchwHdCR1HUpwPeVsuBYXZ9i8MJnEEeckIArM7W-G5cypUAPSDRlQicCJhDo0teSENQbHsVIyI44jvDYlwt15XJ8SYsMWOqWpOLzYNlV+f58MoQiW1nIjbhI0TyK8Li8zUjTpy0ujdLScj6OYtp1U1bUFMUpTvhU2plNVOyjx1KDKE-ShaP2MQDKckLQGM7z318mC4KGcyElChK5FI9it2CxKcXcg97PFcLX0ivyAp0+L0pK2RkrEtLStCvLoMoWD4LordDNTFZ1WuYjmtdMYSC+YhqAAdzoG4FAYBh3nIABPVoBHoOhjLGbC8HCitxUlLwxhEGsMCC8ZNoMIA')">deriv(list("+", "x", 3), "x");
+    <div class='snippet' id='javascript_38_18_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISChoQ9UJbPSkE2QUlFWSABzZKDlqsgAsBNgATWvzc0AAiAGpR4tMyizpiap4BDiYBAEdCNj4hAREWrwXbP3rApsrDpc7dltiY0Gu8gsPp0vMK0Fs2AGsHBmqhNieUBsDL+OSNYKgC7LVYbLYAoEABjEJySoAA-MDcGiAgAuKGLGHrTbbEFeZGonGYwE4ACQiXxamhnUBt2SzIBvkpOIxwJy4yx3Jx+L4jHIQgmoy8gOlvheZnKlk+PyYLQ41H6hAoQlsQNsoJOEOazNhJJ1SIkAB9LQTbJdTfD9eSUTzZJjEUK5PiTcTHUC3C7XW6Ptig6BvYSVr7tk7QAHPQFMbqE172ZHzWymen9YGw7zdaAAFQhlN40CijQSwtSj56uXGGZvSwDfoCYiDBjHAJGui9AZCcjtbadgwN16KuhsQjaNsdrvgoLNPuDQeUbar4diLfy2bvNRqjVa8XiOrdxeVNodLp3ZdDAqjas7pt0WyEPhUFqi5ZCTunhdnUBbw3H9tzHBU5g+N8P1FUg2HbEC-wac9AL6FchwHdCR1HEpwPeVsuBYHY9i8MJnEEeckIArM7W-a5cypUAPSDRlQicCJhDo0teSENQbHsFIyI44jvDYlwt15HJ8SYsMWKqGpOLzYNlV+f58MoQiW1nIibhI0TyI8Li8zUjTpy0ujdNScj6OY1p1U1bUFMUpTvhUmplNVOyjx1KDKE-ShaL2MQDKckLQGM7z318mC4MGczDNCtFSPYrdgoSnl3IPezxXC19Ir8gKdPitLXSSsTUuKtLcugyhYPguityK8N7g4dUrmIxqcVGEgvmIagAHc6GuBQGAYd5yAATxaAR6DoYzRmwvBworcVJS8UYRBrDAgrGDaDCAA')">deriv(list("+", "x", 3), "x");
 
 </pre><pre class='prettyprintoutput'>
 
 1
       
 </pre></div></div>
-    <div class='snippet' id='javascript_38_19_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGNAZAKSrR3CXKN9QOO83UABeAu8UQxMCEgoaEPVCWz0pRNkFJRUUgAc2Sg467IALATYAEzqCvNAAIgBqMZLTcos6YhqeAQ4mAQBHQjY+IQERVq9F2z8GwOaqo+WuvdbY+Jv8wqOZsvNK0Fs2AGsHBhqhNieUBsTL+ORNYKgS4rNabbYAoEABjEp2SoAA-MDcGiAgAuKFLGEbLY7EFeZGonGYwE4ACQSXxamhXUBdxSzIBvkpOIxwNyEyx3Jx+L4jHIQkmYy8gOlvheZgqlk+PyYrQ41AGhAoQlsQNsoNOEJazNhJJ1SIkAB9LQTbFdTfD9eSUTzZJjEUK5PiTcTHUC3C7XW6Ptig6BvYTVr6dk7QAHPQFMbqE172ZHzWymen9YGw7zdaAAFQhlN40CijQSwtSj56uXGWZvSyDAYCYhDBgnAJGuh9QZCcgdHadgwN16KuhsQjaNsdrvgoItPtDQeUHar4diLfyubvNRqjVa8XierdxdVdqdbrxZfDQpjas7pt0WyEPhUVqilZCTunhfnUBbw3H9tzHBV5g+N8P1FUg2HbEC-0ac9AP6FchwHdCR1HUpwPeVsuBYXZ9i8MJnEEeckIArM7W-G5cypUAPSDRlQicCJhDo0teSENQbHsVIyI44jvDYlwt15XJ8SYsMWOqWpOLzYNlV+f58MoQiW1nIjbhI0TyK8Li8zUjTpy0ujdLScj6OYtp1U1bUFMUpTvhU2plNVOyjx1KDKE-ShaP2MQDKckLQGM7z318mC4KGcyElChK5FI9it2CxKcXcg97PFcLX0ivyAp0+L0pK2RkrEtLStCvLoMoWD4LordDNTFZ1WuYjmtdMYSC+YhqAAdzoG4FAYBh3nIABPVoBHoOhjLGbC8HCitxQfGsxhEdaJoWrwNoW-QgA')">deriv(list("*", "x", "y"), "x");
+    <div class='snippet' id='javascript_38_19_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISChoQ9UJbPSkE2QUlFWSABzZKDlqsgAsBNgATWvzc0AAiAGpR4tMyizpiap4BDiYBAEdCNj4hAREWrwXbP3rApsrDpc7dltiY0Gu8gsPp0vMK0Fs2AGsHBmqhNieUBsDL+OSNYKgC7LVYbLYAoEABjEJySoAA-MDcGiAgAuKGLGHrTbbEFeZGonGYwE4ACQiXxamhnUBt2SzIBvkpOIxwJy4yx3Jx+L4jHIQgmoy8gOlvheZnKlk+PyYLQ41H6hAoQlsQNsoJOEOazNhJJ1SIkAB9LQTbJdTfD9eSUTzZJjEUK5PiTcTHUC3C7XW6Ptig6BvYSVr7tk7QAHPQFMbqE172ZHzWymen9YGw7zdaAAFQhlN40CijQSwtSj56uXGGZvSwDfoCYiDBjHAJGui9AZCcjtbadgwN16KuhsQjaNsdrvgoLNPuDQeUbar4diLfy2bvNRqjVa8XiOrdxeVNodLp3ZdDAqjas7pt0WyEPhUFqi5ZCTunhdnUBbw3H9tzHBU5g+N8P1FUg2HbEC-wac9AL6FchwHdCR1HEpwPeVsuBYHY9i8MJnEEeckIArM7W-a5cypUAPSDRlQicCJhDo0teSENQbHsFIyI44jvDYlwt15HJ8SYsMWKqGpOLzYNlV+f58MoQiW1nIibhI0TyI8Li8zUjTpy0ujdNScj6OY1p1U1bUFMUpTvhUmplNVOyjx1KDKE-ShaL2MQDKckLQGM7z318mC4MGczDNCtFSPYrdgoSnl3IPezxXC19Ir8gKdPitLXSSsTUuKtLcugyhYPguityK8N7g4dUrmIxqcVGEgvmIagAHc6GuBQGAYd5yAATxaAR6DoYzRmwvBworcUHxrUYRDW8b5q8db5v0IA')">deriv(list("*", "x", "y"), "x");
 
 </pre><pre class='prettyprintoutput'>
 
 "y"
       
 </pre></div></div>
-    <div class='snippet' id='javascript_38_20_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGNAZAKSrR3CXKN9QOO83UABeAu8UQxMCEgoaEPVCWz0pRNkFJRUUgAc2Sg467IALATYAEzqCvNAAIgBqMZLTcos6YhqeAQ4mAQBHQjY+IQERVq9F2z8GwOaqo+WuvdbY+Jv8wqOZsvNK0Fs2AGsHBhqhNieUBsTL+ORNYKgS4rNabbYAoEABjEp2SoAA-MDcGiAgAuKFLGEbLY7EFeZGonGYwE4ACQSXxamhXUBdxSzIBvkpOIxwNyEyx3Jx+L4jHIQkmYy8gOlvheZgqlk+PyYrQ41AGhAoQlsQNsoNOEJazNhJJ1SIkAB9LQTbFdTfD9eSUTzZJjEUK5PiTcTHUC3C7XW6Ptig6BvYTVr6dk7QAHPQFMbqE172ZHzWymen9YGw7zdaAAFQhlN40CijQSwtSj56uXGWZvSyDAYCYhDBgnAJGuh9QZCcgdHadgwN16KuhsQjaNsdrvgoItPtDQeUHar4diLfyubvNRqjVa8XierdxdVdqdbrxZfDQpjas7pt0WyEPhUVqilZCTunhfnUBbw3H9tzHBV5g+N8P1FUg2HbEC-0ac9AP6FchwHdCR1HUpwPeVsuBYXZ9i8MJnEEeckIArM7W-G5cypUAPSDRlQicCJhDo0teSENQbHsVIyI44jvDYlwt15XJ8SYsMWOqWpOLzYNlV+f58MoQiW1nIjbhI0TyK8Li8zUjTpy0ujdLScj6OYtp1U1bUFMUpTvhU2plNVOyjx1KDKE-ShaP2MQDKckLQGM7z318mC4KGcyElChK5FI9it2CxKcXcg97PFcLX0ivyAp0+L0pK2RkrEtLStCvLoMoWD4LordDNTFZ1WuYjmtdMYSC+YhqAAdzoG4FAYBh3nIABPVoBHoOhjLGbC8HCitxQfGsVqrGsxhELaJoWrwNslLxtprDBUvGHaDCAA')">deriv(list("*", list("*", "x", "y"), list("+", "x", 3)), "x");
+    <div class='snippet' id='javascript_38_20_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISChoQ9UJbPSkE2QUlFWSABzZKDlqsgAsBNgATWvzc0AAiAGpR4tMyizpiap4BDiYBAEdCNj4hAREWrwXbP3rApsrDpc7dltiY0Gu8gsPp0vMK0Fs2AGsHBmqhNieUBsDL+OSNYKgC7LVYbLYAoEABjEJySoAA-MDcGiAgAuKGLGHrTbbEFeZGonGYwE4ACQiXxamhnUBt2SzIBvkpOIxwJy4yx3Jx+L4jHIQgmoy8gOlvheZnKlk+PyYLQ41H6hAoQlsQNsoJOEOazNhJJ1SIkAB9LQTbJdTfD9eSUTzZJjEUK5PiTcTHUC3C7XW6Ptig6BvYSVr7tk7QAHPQFMbqE172ZHzWymen9YGw7zdaAAFQhlN40CijQSwtSj56uXGGZvSwDfoCYiDBjHAJGui9AZCcjtbadgwN16KuhsQjaNsdrvgoLNPuDQeUbar4diLfy2bvNRqjVa8XiOrdxeVNodLp3ZdDAqjas7pt0WyEPhUFqi5ZCTunhdnUBbw3H9tzHBU5g+N8P1FUg2HbEC-wac9AL6FchwHdCR1HEpwPeVsuBYHY9i8MJnEEeckIArM7W-a5cypUAPSDRlQicCJhDo0teSENQbHsFIyI44jvDYlwt15HJ8SYsMWKqGpOLzYNlV+f58MoQiW1nIibhI0TyI8Li8zUjTpy0ujdNScj6OY1p1U1bUFMUpTvhUmplNVOyjx1KDKE-ShaL2MQDKckLQGM7z318mC4MGczDNCtFSPYrdgoSnl3IPezxXC19Ir8gKdPitLXSSsTUuKtLcugyhYPguityK8N7g4dUrmIxqcVGEgvmIagAHc6GuBQGAYd5yAATxaAR6DoYzRmwvBworcUHxrZaqxrUYRE28b5q8dbJS8LaawwFKxm2gwgA')">deriv(list("*", list("*", "x", "y"), list("+", "x", 3)), "x");
 
 </pre><pre class='prettyprintoutput'>
 
@@ -2270,7 +2270,7 @@ list("+",
   
     <div class="permalink">
     <a name="ex_2.56" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_2.56">Exercise 2.56 </a></b> 
-   
+  
     
     Show how to extend the basic differentiator to handle more kinds of
     expressions.  For instance, implement the differentiation rule
@@ -2309,7 +2309,7 @@ list("+",
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_38_1_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_38_1_div"><SOLUTION>
     
-      <div class='snippet' id='javascript_38_21_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGNAZAKSrR3CXKN9QOO83UABeAu8UQxMCEgoaEPVCWz0pRNkFJRUUgAc2Sg467IALATYAEzqCvNAAIgBqMZLTcos6WzYAawcGGqE2T1A2TP85JuDQPkZyIUmxr03L3xmy80rtgYGBYiGGPwbA5ro+waFyDp8ITvAzGWb3SxsQjaF5vD4BA4tX5DAGUIGooEg0GlMwVSxqVocagDQgUOp7RpBFoEjpdcRZeLI4aFMYAKmmYLueIWywchOJpNOti2tl2n0RdGOGjO7K8wrlN05uPmoFshD4VFaxwEXXe9QRVJ+-RRgOBYmx4O5qvVmuOpDYrzN+v2htATIx-1NWNuyoexBqPB1TAEAEdCGwgQIRK0vP7bPCXd8UnHA10o61YvF0-lCnGfXMHjw2AxhAIE5Sk+7TWWLb7LOnaC9TmXnRXDlW0Z7OzXawXLIsVsHo0IiyWvOny19Dimg6Hw5Ho14AAxiT7JUAAflAbjXyQAXKAZxxg2GI0J0143Kv18kt6OBLv1wepac2bLQPfx9HexCqunyeKro0p03SMsazJ5G+HImHWdDPFwLDnou3hOBELYUlO1LMEeSEZo+ARbku+FyAeahhM4kQTsRBGgEIag2PYqQUaWyHkWhEhbrkB4rtRJEpGstRUTe65bgOqzrPBlCIYMzyOhOXhsS4YheLxwnJJJ0nQrCuHKShaSCOaql8QSRIkmSQlqbeqq8tUtRiUw-JmUKNqUFqlA6jpKmWd5wkaUIaoaq5doOkM8kJD5EWWYpBm6UZkX2Y5gpCH5AW2u5abfl5kXZZF0VlllOU+alQWUPacnfoZOWkcw-4WTlok2YlZIJaZSUNsQTaeeFhU9fZ-5xT1wn3p5A2Deu7WdROoAALTbuaHg4AAkMtal+cNYV5ZVhUHjqRIZTGS2LZZYwkEsxDUAA7nQ6YKAwDAPOQACerQCPQcE6lJYwWjgfkvjK75jCIFygAALLpgNffoQA')">function base(e) {
+      <div class='snippet' id='javascript_38_21_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISChoQ9UJbPSkE2QUlFWSABzZKDlqsgAsBNgATWvzc0AAiAGpR4tMyizpbNgBrBwZqoTZPUDYM-zlG4NA+RnIhCdGvDYvfadLzCq3+-oFiQYY-esCmul6BoXJ2vhCN4GYwzO6WNiEbTPV7vAL7Zo-Qb-SiAlGA4EgkpmcqWNQtDjUfqECi1XYNILNfHtTriTIxUBIoYFUYAKimoNuuPmSwcBKJJJOtk2th2HwRdCOGlO7K8wrl105OLmoFshD4VBaRwEnTedXhlO+fWRAKBYixYO5qvVmqOpDYLzN+r2hsZxr+pvRZvNN2V92I1R4OqYAgAjoQ2ICBCIWl4A7Y4S6vsl40HOtGWrEGRm8gV477ZvceGwGMIBImKcmmV7yxa-ZYM7Rnidy87Kwdq57TbW64XLAtliGY0Ji6WvBmK58Dqng2GI1GY14AAxiD5JUAAflAbjXSQAXKAZxwQ+HI0IM143Kv10kt6OBLv1wepSc2bLQPfxzHe+DKhmyeKrrUh0XQMkydLDG+HImPWdBPFwLDnou3hOBErbklOVLMEeSGZo+ARbku+FyAeahhM4kQTsRBGgEIag2PYKQUWWyHkWhEhbjkB4rtRJHJKsNRUTe65bgOKxrPBlCIQMTyOhOXhsS4YgeLxwlJJJ0lQjCuHKShqSCOaql8fihLEqSQlqbeqq8lUNRiUw-JmUKNqUFqlA6jpKmWd5wkaUIaoaq5doOoM8lGT53mKQZynhRF9mOYKQh+QFtruem35eRFWXZXpzExTlWUpUFlD2nJ36GTlpHMP+Fk5aJNkJaS8WmYljbEM2nmxQViT2f+XXdeu96dQNI2gG1HUTqAAC027mipACQi1qX5Q3ybl7HXgVB46oS6WxjgS1qaMJCLMQ1AAO50BmCgMAw9zkAAni0Aj0HBOpSaMFo4H5L4yu+owiOcoAACy6QDn36EAA')">function base(e) {
     return head(tail(e));
 }
 function exponent(e) {
@@ -2331,17 +2331,17 @@ function deriv(exp, variable) {
            : is_variable(exp)
              ? (is_same_variable(exp, variable) ? 1 : 0)
              : is_sum(exp)
-               ? make_sum(deriv(addend(exp), variable), 
+               ? make_sum(deriv(addend(exp), variable),
                           deriv(augend(exp), variable))
                : is_product(exp)
-                 ? make_sum(make_product(multiplier(exp), 
-                                deriv(multiplicand(exp), 
-                                      variable)), 
-                            make_product(deriv(multiplier(exp), 
-                                               variable), 
+                 ? make_sum(make_product(multiplier(exp),
+                                deriv(multiplicand(exp),
+                                      variable)),
+                            make_product(deriv(multiplier(exp),
+                                               variable),
                                 multiplicand(exp)))
                  : is_exp(exp)
-                   ? make_product(make_product(exponent(exp), 
+                   ? make_product(make_product(exponent(exp),
                                       make_exp(
                                           base(exp),
                                           exponent(exp) - 1)),
@@ -2363,7 +2363,7 @@ function deriv(exp, variable) {
     numbers of (two or more) terms. Then the last example above could be
     expressed as
     
-    <div class='snippet' id='javascript_38_22_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGNAZAKSrR3CXKN9QOO83UABeAu8UQxMCEgoaEPVCWz0pRNkFJRUUgAc2Sg467IALATYAEzqCvNAAIgBqMZLTcos6WzYAawcGGqE2T1A2TP85JuDQPkZyIUmxr03L3xmy80rQRZWmVo5qAcIKIVst212GwLNOjHDRnABUF0evxuxlm90sgwGAmIQwYfgBBxafUGQnIHT4QjRBlhdwqCMI2mRqPRAUxdGxQzxlAJTIJROJpTMZKqr3en1O4nqtKCLTU7U63XiDOGhTGENuXPmj0IfCorWOAi6aKF+xF9P6jPxhLEHLwIFApB6bB0AlA5D6gVeAgYyLxSuo+DtmtsDBw5p4AE9QEj8JRiGHtNsKVTtijlarKOrKKRrQM4dzg5rKCwhAIRK0vGFnIIabqgSliDUeJrc-mxADkqAAPygAAMDeSAC4UkWIsI861643ki2hGobPZUsX+-nC04+xIW7lu62h8OAt3x+sB2v1wEW09VuskVwc4iqbXB3O0iWvB293uT9mNtGUZexNfpyb78PN8xeR8Xw7j+64HssR61IeLxvIBpy2Cqaoal0O53g+aHrk+ObwQmSYpm+KEJOhREPr2LgmqhxFoVBAH8kIIGUY2mHfAhiZIe+FEMZx3jzmRHFcXu2GIcmqbvt+DHdpqbzIbO9HEWMJBLMQ1AAO50AOCgMAwDzkAGrS2mGmanmMpo4ExIKnHKkJjCIVkBpC5lnFMXjWZCGDkeMNkGEAA')">deriv(list("*", "x", "y", list("+", "x", 3)), "x");
+    <div class='snippet' id='javascript_38_22_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISChoQ9UJbPSkE2QUlFWSABzZKDlqsgAsBNgATWvzc0AAiAGpR4tMyizpiap4BDiYBAEdCNj4hAREWrwXbP3rApsrDpc7dltiY0Gu8gsPp0vMK0Fs2AGsHBmqhNieUBsDL+OSNYKgC7LVYbLYAoEABjEJySoAA-MDcGiAgAuKGLGHrTbbEFeZGonGYwE4ACQiXxamhnUBt2SzIBvkpOIxwJy4yx3Jx+L4jHIQgmoy8gOlvheZnKlk+PyYLQ41H6hAoQlsQNsoJOEOazNhJJ1SIkAB9LQTbJdTfD9eSUTzZJjEUK5PiTcTHUC3C7XW6Ptig6BvYSVr7tk7QAHPQFMbqE172ZHzWymen9YGw7zdaAAFQhlN40CijQSwtSj56uXGGZvSwDfoCYiDBjHAJGui9AZCcjtbadgwN16KypqjVa8XiOrdoLNNRtDpdO59wZz4Zjavy2bvWyEPhUFqi5ZCTvz8GL3t9QaDyjDsSjkogUCkbpsHQCUDkXqBNUBAYNtBzmUBqHwX9llsBgcDfHgAE9QFbfBKGINDtGBQhtDbfpgXbD4jxPUVSC-fpGwnZDlkoFgdj2LwwmcQQu2vM40ztc9rlzKlQA9INGVCJwImELjS15IQ1BsewUiYkT6O8ISXAkTEcnxCk8wEqoalEvNg2VX5-lbLhaJbXC6JuBjFOYjwxLzIyaIBbCzK4yzUmY7j+NadVNW1HTdL074DJqfTVW8mcdSIyhT0oTi9jEGz-MSqjjIi48opIsjzPi2ykrRRjhOfBLcp5EKpx88UcqS+zaMPNLotiizKuKuR8qUormtdWriMoUj2yy58mvxZZ1SueimpxUYSC+YhqAAdzoa4FAYBh3nIBCWh-NDkpo0YXzwaqhArcVRmrLxRhEGtRgQmsjolSYzourwMEKsYLoMIA')">deriv(list("*", "x", "y", list("+", "x", 3)), "x");
 
 </pre></div></div>
     Try to do this by changing only the
@@ -2377,12 +2377,22 @@ function deriv(exp, variable) {
     be the first term, and the <kbd>augend</kbd> would be the
     sum of the rest of the terms.
     
+    
   
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_38_2_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_38_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_38_2_div" data-toggle="collapse">Solution</button></div>
+      <div class="solution_content collapse" id="solution_38_2_div"><SOLUTION>
     
+    
+    <div class='snippet' id='javascript_38_23_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISChoQ9UJbPSkE2QUlFWSABzZKDlqsgAsBNgATWvzc0AAiAGpR4tMyizpiap4BDiYBAEdCNj4hAREWrwXbP3rApsrDpc7dltiY0Gu8gsPp0vMK0Fs2AGsHBmqhNieUBsDL+OSNYKgC7LVYbLYAoEABjEJySoAA-MDcGiAgAuKGLGHrTbbEFeZGonGYwE4ACQiXxamhnUBt2SzIBvkpOIxwJy4yx3Jx+L4jHIQgmoy8gOlvheZnKlk+PyYLQ41H6hAoQlsQNsoJOEOazNhJJ1SIkAB9LQTbJdTfD9eSUTzZJjEUK5PiTcTHUC3C7XW6Ptig6BvYSVr7tk7QAHPQFMbqE172ZHzWymen9YGw7zdaAAFQhlN40CijQSwtSj56uXGGZvSwDfoCYiDBjHAJGui9AZCcjtbadgwN16KypqjVa8XiOrdoLNNRtDpdO59wZz4Zjavy2bvWyEPhUFqi5ZCTvz8GL3t9QaDyjDsSjkogUCkbpsHQCUDkXqBNUBAYNtBzmUBqHwX9llsBgcDfHgAE9QFbfBKGINDtGBQhtDbfpgXbD4jxPUVSC-fpGwnZDlkoFgdj2LwwmcQQu2vM40ztc9rlzKlQA9INGVCJwImELjS15IQ1BsewUiYkT6O8ISXAkTEcnxCk8wEqoalEvNg2VX5-lbLhaJbXC6JuBjFOYjwxLzIyaIBbCzK4yzUmY7j+NadVNW1HTdL074DJqfTVW8mcdSIyhT0oTi9jEGz-MSqjjIi48opIsjzPi2ykrRRjhOfBLcp5EKpx88UcqS+zaMPNLotiizKuKuR8qUormtdWriMoUj2yy58mvxZZ1SueimpxUYSC+YhqAAdzoa4FAYBh3nIBCWh-NDkpo0YXwosC2CcvrLzBBob2BUhSGqI82HIYQQr+WxyS8B9tlei9nz2hUwK69Kesyk7DXOthLuuvhbvuwLQunCgvCBd73pHPacGqoQK3FUZqy8UYRBrUYEJrdGJUmbHca8DBCrGXGDCAA')">function augend(s) {
+    return accumulate(make_sum, 0, tail(tail(s)));
+}
+function multiplicand(s) {
+    return accumulate(make_product, 1, tail(tail(s)));
+}
+
+</pre></div></div>
+    </SOLUTION></div></div>
 </EXERCISE></div>
 
 
@@ -2411,14 +2421,14 @@ function deriv(exp, variable) {
     <OL>
       <LI>
         Show how to do this in order to differentiate algebraic expressions
-	presented in infix form, 
+	presented in infix form,
 	
 	  
 	  as in this example:
-	  <div class='snippet' id='javascript_38_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-list("x", "+", 
-     list(3, "*", 
-          list("x", "+", 
+	  <div class='snippet' id='javascript_38_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+list("x", "+",
+     list(3, "*",
+          list("x", "+",
                list("y", "+", 2))))
 </pre></div></div>
 	  
@@ -2436,14 +2446,14 @@ list("x", "+",
 	always take two arguments and that expressions are fully parenthesized.
       </LI>
       <LI>
-        The problem becomes substantially harder if we allow 
+        The problem becomes substantially harder if we allow
         
           
           
 	    a notation closer to infix notation, assuming that
 	    multiplication has higher precedence than addition, as in this
 	    example:
-	    <div class='snippet' id='javascript_38_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	    <div class='snippet' id='javascript_38_25_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 list("x", "+", "3", "*", list("x", "+", "y", "+", 2))
 </pre></div></div>
 	  
@@ -2460,7 +2470,7 @@ list("x", "+", "3", "*", list("x", "+", "y", "+", 2))
     
       <OL>
 	<LI>
-	  <div class='snippet' id='javascript_38_25_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGNAZAKSrR3CXKN9QOO83UABeAu8UQxMCEgoaOmJCWx4BDiYBAEdCNj4hAREABy9q2z9E2QUlFRS+uo4O7tj4zq78wr6S03KLOls2AGsHBhqhNk9QNkz-OWHg0HH6xpa2-cOABjFB5NkAfiPcV4CALkuaiY3VrtY5eJ4vb6gD5HNwQ75-NRXSYHGZjAH1fa+OGQj4HUAAak+2PhoD4jHI9y8ACJ8VSvMcDMYyuZKildrY9FIXudRmoumxKJNxFl4gALARsAAmQnIAva4gkBTyoBpVOWZgqlilkoExGlDAGAR5dHFUqEBvVq1ZbEI2l1+sNZyCo1N0tllHa7vaBrEjJMGrWoA22yYXQ41ElhAoQlsh1sJ25zqq6IazWBMceEgAPln-rVrmm7vGwc9Ie9ZA9iXI-kigUXDm5S2Xy-Gq7884DC+1i6BG22ktDY-324iUxnUaP85N403mwEPrHQAAqINfOftskaDPUpd01d+5makKh8OR6PC05DJMpfmCznZV0yuV6RWFKm7y0syy2Qh8KhdMkMQNLkjWvR8LSZANWR-P9KAAyhSDYPVzUdK8RhNCU3WfL0UN9T8j1AHUuBYKYem8JwIgEVDAnQtEp1I2cB1ASsSTUMJnEiOZGOSD4hDUGx7FSDjhDmLx2MoiQPlyP5wTLBFrD2LjhwXLYdj2IjKBI7V7QYsSKJcMQvGHZsNK020dK4vS0kEX1h3kk8IyjCklPXKEg1U9Q9mDBww0c6MYP-QDJkshJXLC0yY1-QKEKQ6UQuMsLXnEgzDNCxLvm8hyzwpCKArgoKhAS9LirkeKSvKpJkpsoyKvSvL4MQ5CuNs1y-nqcNgu6DwiteKkSE2YhqAAdzoOYFAYBhWXIABPLoBHoOhTKpA8cAizcKSpEQ93fPcABZUs25b9CAA')">function make_sum(a1, a2) {
+	  <div class='snippet' id='javascript_38_26_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISCho6YkJbHgEOJgEAR0I2PiEBEQAHLyrbPwTZBSUVZN7ajnau2JjQDs68gt7i0zKLOls2AGsHBmqhNk9QNgz-OSHg0DG6hubW-cOABjEBpNkAfiPcV4CALkvq8Y3FptY5eJ4vb6gD5HNwQ75-NRXCYHaajAF1fa+OGQj4HUAAak+2PhoD4jHI9y8ACJ8VSvMcDMZSuYKsldrY9FIXucRmpOmxKBNxJkZgALARsAAmQnIAra4gk+VyoBpVOWZnKlilkoExGlDH6AR5dHFUqEBvVq1ZbEI2l1+sNZyCI1N0tllDa7raBrEjJMGrWoA22yYnQ41ElhAoQlsh1sJ25zsq6PqTWBMceEgAPln-jVrmm7vGwc9Ie9ZA9iXI-kigUXDm5S2Xy-Gq7884DC21i6BG23EtDY-324iUxnUaP8xN403mwEPrHQAAqINfOftskaDPUpd01d+5makKh8OR6PC06DJPJfmCzlZV0yuV6RUFKm7y0syy2Qh8KidMkMQNLkjWvR8LSZANWR-P9KAAyhSDYPVzUdK9hhNCU3WfL0UN9T8j1AHUuBYSZum8JwIgEVDAnQtEp1I2cB1ASsSTUMJnEiOZGKSD4hDUGx7BSDjhDmLx2MoiQPhyP5wTLBFrD2LjhwXLYdj2IjKBI7V7QYsSKJcMQPGHZsNK020dK4vTUkEX1h3kk8IyjCklPXKEg1U9Q9mDBww0c6MYP-QCJks4zXNkUyY1-QKEKQ6UQrChKAnEgzDNC5tvIcs8KQigK4KCoQ0sSorZHi4qyqS-SbKM8rEty+DEOQrjbNcv46nDYKumq8qqRITZiGoAB3Og5gUBgGFZcgAE9OgEeg6FMqkDxwCLNwpKkRD3d89wAFkMlUNoMIA')">function make_sum(a1, a2) {
     return number_equal(a1, 0)
            ? a2
            : number_equal(a2, 0)
@@ -2504,15 +2514,15 @@ function deriv(exp, variable) {
         : is_variable(exp)
           ? (is_same_variable(exp, variable) ? 1 : 0)
           : is_sum(exp)
-            ? make_sum(deriv(addend(exp), variable), 
+            ? make_sum(deriv(addend(exp), variable),
                        deriv(augend(exp), variable))
             : is_product(exp)
-              ? make_sum(make_product(multiplier(exp), 
-                             deriv(multiplicand(exp), 
-                                   variable)), 
+              ? make_sum(make_product(multiplier(exp),
+                             deriv(multiplicand(exp),
+                                   variable)),
                          make_product(deriv(multiplier(
-                                                    exp), 
-                                            variable), 
+                                                    exp),
+                                            variable),
                                       multiplicand(exp)))
               : error(exp,
                       "unknown expression type in deriv");
@@ -2522,10 +2532,10 @@ function deriv(exp, variable) {
 	  
 	</LI>
 	<LI>
-	  <div class='snippet' id='javascript_38_26_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGNAZAKSrR3CXKN9QOO83UABeAu8UQxMCEgoaOmJCWx4BDiYBAEdCNj4hAREABy9q2z9E2QUlFRS+uo4O7tj4zq78wr6S03KLVXIBW2Y6-GoFJnxKDg0hah7QBgGA4eDQAAsBNgATIUuFvNAzweTZAH5Qap8PjfH4ALlAXTYRyED2erzEXhBP2SlA2WyYOz2DkOx3Ip3O5Ch7UuYgMxjK5kq9DRzDY+A2DRxJzOXje-jkN1GsJebwKHy+yLk-0JlGJYiRSXBqM2tPp9QOR2ZBKJ8OWZgqllsbAA1g4GDUhGxPKA2Jl2UMgqNxvLmq12kavAAGcWCv4m3Cu0Dg60NW1tQ0oJ0uz2gf4mtwS5JS5g+w1uGZjGoTAPBkOh8OgADU7sjYNAfEYeIdoAARJmS15TWSTCATRdbQIyAJPvhQAytibiE9Pl16mxyHsGFY6-rbDha5RW2wu59iHwAJ70KfkfOPDSz5vZs59gccT6kUjKBgUjUhdQG8RSb6cs+Q6GX7K52QAQlAQjUgPa9lq9SEZYroDiNWJ5rCaTxPI2PJXBylrrDKGICLs+xMni-6ssB6qgWwhDaJB8JXtcsHUvBdIMgquJ-uW6FqqsVJarqTBdBw1BPIQFBCLYxq2Ga15ET6jQtP6nFBqAAA+okAkmNqCV+gagM6T7pvJinelJvoyRxxrxopbrcTpXqST+6l2hxcnaWmbqgJx+myNGTCxpxCYfmppmphZ-ycaAABUVkehZtn5oWmleCWXkAdxwG1mw9YtI2pDNtQrbtkO07dtuHD9oOw7RUxLFseQ45gJOnZpXOi7FcQ1BZj2O57Puh7HCBVJqLlrHsZe5qBCMt5QpMD7xM5QIcZsyZoYBBgJCYmF0YQfBUF0Ba-myvHdcR6KYshiqoWF1HktNmqzfNBakKl+GdTea2ymRKF-jtFwYbRlgQVwLBTOcYTOII0EWqtzlGW9bkBP8jqRnZH0RMIcyA0k-zvtYdgOOD6RzF4SNfemuTggprp2aOAM6R5Op6gaz2UK9zwQV2AOo04EMIgk-nIqT5M4XhUM02kX3Q1GKStfl+PuVZRPnrYHHC3z7G2IdlALZQv7swzjMhszHHS7LJ1UwrNlKwEaMCKSiI6z89EOBLeIq1Lc0y4tkxa0b9tJHr9PaxZltHZQGsvFDpI2eC9TMbb3QeC7yQliQ2qVQA7nQcwKAwDBUuQ869vQdDMyWwE4CrBYnCWIgAaFAEACz03nGf6EAA')">function items_before_first(op, s) {
+	  <div class='snippet' id='javascript_38_27_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISCho6YkJbHgEOJgEAR0I2PiEBEQAHLyrbPwTZBSUVZN7ajnau2JjQDs68gt7i0zKLVXIBW2Za-GoFJnxKDg0ham7QBn6AoeDQAAsBNgATIUuF3NAzgaTZAH5QKp8PjfH4ALlAnTYRyED2erzEHhBPySlA2WyYOz2DkOx3Ip3O5ChbUuYgMxlK5gq9DRzDY+A29RxJzOXje-jkNxGsJeb3yHy+yLk-0JlGJYiRiXBqM2tPpdQOR2ZBKJ8OWZnKllsbAA1g4GNUhGxPKA2Bl2YMgiMxvKmi02kavAAGcWCv4m3Cu0Dg631W2tQ0oJ0uz2gf4mtwSpJS5g+w1uaajarjAPBkOh8OgADU7sjYNAfEYeIdoAARJmS15TWSTCATRdbQIyAJPvhQAytibiE9Pp06mxyHsGFY6-rbDha5RW2wu59iHwAJ70KfkfOPDSz5vZs59gccT6kUjKBgUjUhdQG8RSb6cs+Q6GXuK52QAQlAQjUgLa9hqdSEZYroDiNWJ5rCaTxPI2PJXBylrrDKGICLs+xMni-6ssB6qgWwhDaJB8JXtcsHUvBdIMgquJ-uW6FqqsVJarqTCdBw1BPIQFBCLYxq2Ga15ET6DTNP6nFBqAAA+okAkmNqCV+gagM6T7pvJinelJvoyRxxrxopbrcTpXqST+6l2hxcnaWmbqgJx+myNGTCxpxCYfmppmphZ-ycaAABUVkehZtn5oWmleCWXkAdxwG1mw9bNI2pDNtQrbtkO07dtuHD9oOw7RUxLFseQ45gJOnZpXOi7FcQ1BZj2O57Puh7HCBVJqLlrHsZe5qBMMt5QhMD4zM5QIcZsyZoYBGG0ZqhB8FQnQFr+bK8d1xHopiyGKqhYXUeSmF0dNs0FqQqX4Z1N4rbKZEoX+W0XBNlKWBBXAsJM5xhM4gjQRay3OUZL1uQE-yOpGdlvREwhzP9iT-O+1h2A4oNpHMXgIx96Y5OCCmunZo5-TpHk6nqBqPZQz3PBBXZ-cjThgwiNmCsTpM4XhENU6kH2Q1GyStfluPuVZBPnrYHEC9z7G2PtlBzZQv4s3TFkMxxEtS0dFOy-56sBCjAikoiGvIvRDii3iCvizNkvzRMat69bSRa7TNuCqbB2UCrLwQ6SNngnUzGW10usOyWJDapVADudBzAoDAMFS5Dzr29B0AzJbATgCsFicJYiABoUAQALAipZZwYQA')">function items_before_first(op, s) {
     return head(s) === op
            ? null
-           : pair(head(s), 
+           : pair(head(s),
                   items_before_first(op, tail(s)));
 }
 function items_after_first(op, s) {
@@ -2545,7 +2555,7 @@ function make_sum(a1, a2) {
 // a sequence of terms and operators is a sum
 // if and only if at least one + operator occurs
 function is_sum(x) {
-    return is_pair(x) && 
+    return is_pair(x) &&
            ! (is_null(member("+", x));
 }
 function addend(s) {
@@ -2568,7 +2578,7 @@ function make_product(m1, m2) {
 // a sequence of terms and operators is a product
 // if and only if no + operator occurs
 function is_product(x) {
-    return is_pair(x) && is_null(member("+", x); 
+    return is_pair(x) && is_null(member("+", x);
 }
 function multiplier(s) {
     return items_before_first("*", s);
@@ -2582,14 +2592,14 @@ function deriv(exp, variable) {
         : is_variable(exp)
           ? (is_same_variable(exp, variable) ? 1 : 0)
           : is_sum(exp)
-            ? make_sum(deriv(addend(exp), variable), 
+            ? make_sum(deriv(addend(exp), variable),
                        deriv(augend(exp), variable))
             : is_product(exp)
-              ? make_sum(make_product(multiplier(exp), 
-                             deriv(multiplicand(exp), 
-                                   variable)), 
-                         make_product(deriv(multiplier(exp), 
-                                            variable), 
+              ? make_sum(make_product(multiplier(exp),
+                             deriv(multiplicand(exp),
+                                   variable)),
+                         make_product(deriv(multiplier(exp),
+                                            variable),
                              multiplicand(exp)))
               : error(exp,
                       "unknown expression type in deriv");
