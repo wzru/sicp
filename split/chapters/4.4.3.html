@@ -1707,7 +1707,7 @@
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(job(x, list("computer", "programmer")),
-    supervisor(x, y));
+    supervisor(x, y))
 </pre></div></div></td></tr></table>
     or
     <table width="100%">
@@ -1720,7 +1720,7 @@ and(job(x, list("computer", "programmer")),
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(supervisor(x, y),
-    job(x, list("computer", "programmer")));
+    job(x, list("computer", "programmer")))
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -1795,7 +1795,7 @@ and(supervisor(x, y),
 (assert! (married Minnie Mickey))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assert(married("Minnie", "Mickey"));
+assert(married("Minnie", "Mickey"))
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -1810,7 +1810,7 @@ assert(married("Minnie", "Mickey"));
 (married Mickey ?who)
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-married("Mickey", who);
+married("Mickey", who)
 </pre></div></div></td></tr></table>
     we will get no response, because the system doesn't know that if
     $A$ is married to $B$,
@@ -1825,7 +1825,7 @@ married("Mickey", who);
             (married ?y ?x)))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assert(rule(married(x, y), married(y, x)));
+assert(rule(married(x, y), married(y, x)))
 </pre></div></div></td></tr></table>
     and again query
     <table width="100%">
@@ -1836,7 +1836,7 @@ assert(rule(married(x, y), married(y, x)));
 (married Mickey ?who)
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-married("Mickey", who);
+married("Mickey", who)
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -1968,10 +1968,10 @@ married("Mickey", who);
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(supervisor(x, y),
-    not(job(x, list("computer", "programmer"))));
+    not(job(x, list("computer", "programmer"))))
 
 and(not(job(x, list("computer", "programmer"))),
-    supervisor(x, y));
+    supervisor(x, y))
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -2049,7 +2049,7 @@ and(not(job(x, list("computer", "programmer"))),
       <span style="color:blue">JavaScript</span>
     
     predicate can't work if some of its arguments are unbound.  See
-    exercise <REF NAME="ex:not-query-filter"><a class="superscript" id="4.4.3-ex-link-4.83" href="./4.4.4.html#ex_4.83">4.83</a></REF>.
+    exercise <REF NAME="ex:not-query-filter"><a class="superscript" id="4.4.3-ex-link-4.84" href="./4.4.4.html#ex_4.84">4.84</a></REF>.
   </p></div>
 
   <div class='permalink'>
@@ -2102,7 +2102,7 @@ and(not(job(x, list("computer", "programmer"))),
 rule(outranked_by(staff_person, boss),      
      or(supervisor(staff_person, boss),
         and(outranked_by(middle_manager, boss),
-            supervisor(staff_person, middle_manager))));
+            supervisor(staff_person, middle_manager))))
 </pre></div></div></td></tr></table>
     Just after Louis types this information into the system, DeWitt
     Aull comes by to find out who outranks Ben Bitdiddle. He issues
@@ -2115,7 +2115,7 @@ rule(outranked_by(staff_person, boss),
 (outranked-by (Bitdiddle Ben) ?who)
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-outanked_by(list("Bitdiddle", "Ben"), who);
+outanked_by(list("Bitdiddle", "Ben"), who)
 </pre></div></div></td></tr></table>
 
     After answering, the system goes into an infinite loop.  Explain why.
@@ -2146,7 +2146,7 @@ outanked_by(list("Bitdiddle", "Ben"), who);
 (wheel ?who)
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-wheel(who);
+wheel(who)
 </pre></div></div></td></tr></table>
     To his surprise, the system responds
     <table width="100%">
@@ -2202,7 +2202,7 @@ wheel(list("Warbucks", "Oliver"))
             <td><div class='snippet' id='javascript_94_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 sum(amount,      
     and(job(x, list("computer", "programmer")),
-        salary(x, amount)));
+        salary(x, amount)))
 </pre></div></div></td></tr></table>
     In general, Ben's new system allows expressions of the form
     <kbd class='snippet'>accumulation_function($\textit{variable}$, $\textit{query-pattern}$)</kbd>
@@ -2285,7 +2285,7 @@ sum(amount,
 	<kbd>append-to-form</kbd>.)
       </span>
       <span style="color:blue">
-	<kbd>append_to_form</kbd>.
+	<kbd>append_to_form</kbd>.)
       </span>
     
     Can your rules answer both
@@ -2309,60 +2309,35 @@ sum(amount,
 </EXERCISE></div>
 
 
-  
+  <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td><span style="color:teal">
+      
     <div class="permalink">
     <a name="ex_4.75" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.75">Exercise 4.75 </a></b> 
   
-    Beginning with the data base and the rules you formulated in
-    exercise <REF NAME="ex:genesis"><a class="superscript" id="4.4.3-ex-link-4.69" href="./4.4.1.html#ex_4.69">4.69</a></REF>, devise a rule for adding
-    <QUOTE>greats</QUOTE> to a grandson relationship. This should enable the
-    system to deduce that Irad is the great-grandson of Adam, or that Jabal and
-    Jubal are the great-great-great-great-great-grandsons of Adam.  (Hint:
-    Represent the fact about Irad, for example, as
-    
-      <span style="color:teal"><kbd>((great grandson) Adam Irad)</kbd>.</span>
-      <span style="color:blue">
-	<kbd>list(list("great", "grandson"), "Adam", "Irad")</kbd>.
-      </span>
-    
-    Write rules that determine if a list ends in the word
-    
-      <span style="color:teal"><kbd>grandson</kbd>.</span>
-      <span style="color:blue"><kbd>"grandson"</kbd>.</span>
-    
-    Use this to express a rule that allows one to derive the relationship
-    
-      <span style="color:teal"><kbd>((great .  ?rel) ?x ?y)</kbd>,</span>
-      <span style="color:blue">
-	<kbd>list(pair("great", rel), x, y)</kbd>,
-      </span>
-    
-    where
-    
-      <span style="color:teal"><kbd>?rel</kbd></span>
-      <span style="color:blue"><kbd>rel</kbd></span>
-    
-    is a list ending in
-    
-      <span style="color:teal"><kbd>grandson</kbd>.)</span>
-      <span style="color:blue"><kbd>"grandson"</kbd>.)</span>
+	
+	Beginning with the data base and the rules you formulated in
+	exercise <REF NAME="ex:genesis"><a class="superscript" id="4.4.3-ex-link-4.69" href="./4.4.1.html#ex_4.69">4.69</a></REF>, devise a rule for adding
+	<QUOTE>greats</QUOTE> to a grandson relationship. This should enable the
+	system to deduce that Irad is the great-grandson of Adam, or that Jabal
+	and Jubal are the great-great-great-great-great-grandsons of Adam.
+	(Hint: Represent the fact about Irad, for example, as
+	<kbd>((great grandson) Adam Irad)</kbd>.
+	Write rules that determine if a list ends in the word
+	<kbd>grandson</kbd>.
+	Use this to express a rule that allows one to derive the relationship
+	<kbd>((great .  ?rel) ?x ?y)</kbd>,
+	where <kbd>?rel</kbd> is a list ending in
+	<kbd>grandson</kbd>.)	Check your rules on queries such
+	as <kbd>((great grandson) ?g ?ggs)</kbd> and
+	<kbd>(?relationship Adam Irad)</kbd>.
       
-    Check your rules on queries such as
-    
-      <span style="color:teal"><kbd>((great grandson) ?g ?ggs)</kbd></span>
-      <span style="color:blue">
-	<kbd>list(list("great", "grandson"), g, ggs)</kbd>
-      </span>
-    
-    and
-    
-      <span style="color:teal">
-      <kbd>(?relationship Adam Irad)</kbd>.</span>
-      <span style="color:blue"><kbd>list(relationship, "Adam", "Irad")</kbd>.
-      </span>
-      
-    
-  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_94_6_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_94_6_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2370,9 +2345,72 @@ sum(amount,
     
 </EXERCISE></div>
 
+    </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+      
+    <div class="permalink">
+    <a name="ex_4.76" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.76">Exercise 4.76 </a></b> 
   
-  
+	
+	Modify the data base and the rules you formulated in
+	exercise <REF NAME="ex:genesis"><a class="superscript" id="4.4.3-ex-link-4.69" href="./4.4.1.html#ex_4.69">4.69</a></REF>, to add 
+	<QUOTE>great</QUOTE> to a grandson relationship. This should enable the
+	system to deduce that Irad is the great-grandson of Adam, or that Jabal and
+	Jubal are the great-great-great-great-great-grandsons of Adam.
+	Hints:
+	<UL>
+	  <LI>
+	    Change the assertions in the database such that there is only one
+	    kind of information, namely
+	    <kbd>related</kbd>. The first argument
+	    then describes the relationship. Thus instead of
+	    <kbd>son("Adam", "Cain")</kbd>, you would
+	    write
+	    <kbd>related("son", "Adam", "Cain")</kbd>.
+	  </LI>
+	  <LI>
+	    Represent the fact about Irad, for example, as
+	    <kbd>related(list("great", "grandson"), "Adam", "Irad")</kbd>.
+	  </LI>
+	  <LI>
+	    Write rules that determine if a list ends in the word
+	    <kbd>"grandson"</kbd>.
+	  </LI>
+	  <LI>
+	    Use this to express a rule that allows one to derive the relationship
+	    <kbd>list(pair("great", rel), x, y)</kbd>,
+	    where <kbd>rel</kbd> is a list ending in
+	    <kbd>"grandson"</kbd>.
+	  </LI>
+	</UL>
+	Check your rules on queries such as
+	<kbd>related(list("great", "grandson"), g, ggs)</kbd>
+	and
+	<kbd>related(relationship, "Adam", "Irad")</kbd>.
+	<span class='comment'>
+	  This exercise is a bit more verbose than the original, because of the
+	  choice of using explicit predicate symbols rather than general lists,
+	  see comment in the beginning of section 4.4.1. So the hint here is
+	  to revert to a list representation that makes the relationship
+	  explicit, and therefore programmable. This trick is used in the
+	  implementation of HiLog, a logic programming language with first-class
+	  predicates, see 
+	  Chen, Weidong; Kifer, Michael; Warren, David S. 
+	  (February 1993). <QUOTE>HiLog: A foundation for higher-order logic 
+	  programming</QUOTE>. Journal of Logic Programming. 15 (3): 187–230.
+	</span>
+      
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_94_7_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_94_7_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
 
+    </span></td></tr></table>
+  
+  
 <hr>
 
     <div class='footnote'>

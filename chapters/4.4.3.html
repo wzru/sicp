@@ -1699,12 +1699,12 @@
     formulate a query in either of two logically equivalent forms:
     <div class='snippet' id='javascript_94_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(job(x, list("computer", "programmer")),
-    supervisor(x, y));
+    supervisor(x, y))
 </pre></div></div>
     or
     <div class='snippet' id='javascript_94_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(supervisor(x, y),
-    job(x, list("computer", "programmer")));
+    job(x, list("computer", "programmer")))
 </pre></div></div>
   </p></div>
 
@@ -1772,7 +1772,7 @@ and(supervisor(x, y),
     marriages, including
     
     <div class='snippet' id='javascript_94_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assert(married("Minnie", "Mickey"));
+assert(married("Minnie", "Mickey"))
 </pre></div></div>
   </p></div>
 
@@ -1780,18 +1780,18 @@ assert(married("Minnie", "Mickey"));
 <a name='p6' class='permalink'></a><p>
     If we now ask
     <div class='snippet' id='javascript_94_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-married("Mickey", who);
+married("Mickey", who)
 </pre></div></div>
     we will get no response, because the system doesn't know that if
     $A$ is married to $B$,
     then $B$ is married to
     $A$.  So we assert the rule
     <div class='snippet' id='javascript_94_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assert(rule(married(x, y), married(y, x)));
+assert(rule(married(x, y), married(y, x)))
 </pre></div></div>
     and again query
     <div class='snippet' id='javascript_94_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-married("Mickey", who);
+married("Mickey", who)
 </pre></div></div>
   </p></div>
 
@@ -1912,10 +1912,10 @@ married("Mickey", who);
     following two queries:
     <div class='snippet' id='javascript_94_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(supervisor(x, y),
-    not(job(x, list("computer", "programmer"))));
+    not(job(x, list("computer", "programmer"))))
 
 and(not(job(x, list("computer", "programmer"))),
-    supervisor(x, y));
+    supervisor(x, y))
 </pre></div></div>
   </p></div>
 
@@ -2030,13 +2030,13 @@ and(not(job(x, list("computer", "programmer"))),
 rule(outranked_by(staff_person, boss),      
      or(supervisor(staff_person, boss),
         and(outranked_by(middle_manager, boss),
-            supervisor(staff_person, middle_manager))));
+            supervisor(staff_person, middle_manager))))
 </pre></div></div>
     Just after Louis types this information into the system, DeWitt
     Aull comes by to find out who outranks Ben Bitdiddle. He issues
     the query
     <div class='snippet' id='javascript_94_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-outanked_by(list("Bitdiddle", "Ben"), who);
+outanked_by(list("Bitdiddle", "Ben"), who)
 </pre></div></div>
 
     After answering, the system goes into an infinite loop.  Explain why.
@@ -2060,7 +2060,7 @@ outanked_by(list("Bitdiddle", "Ben"), who);
     <kbd>wheel</kbd> rule of
     section <REF NAME="sec:deductive-info-retrieval"><a class="superscript" id="4.4.3-sec-link-4.4.1" href="./4.4.1.html">4.4.1</a></REF>):
     <div class='snippet' id='javascript_94_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-wheel(who);
+wheel(who)
 </pre></div></div>
     To his surprise, the system responds
     <div class='snippet' id='javascript_94_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
@@ -2093,7 +2093,7 @@ wheel(list("Warbucks", "Oliver"))
     <div class='snippet' id='javascript_94_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 sum(amount,      
     and(job(x, list("computer", "programmer")),
-        salary(x, amount)));
+        salary(x, amount)))
 </pre></div></div>
     In general, Ben's new system allows expressions of the form
     <kbd class='snippet'>accumulation_function($\textit{variable}$, $\textit{query-pattern}$)</kbd>
@@ -2172,7 +2172,7 @@ sum(amount,
     
       
       
-	<kbd>append_to_form</kbd>.
+	<kbd>append_to_form</kbd>.)
       
     
     Can your rules answer both
@@ -2197,58 +2197,50 @@ sum(amount,
 
 
   
+    
+    
+      
     <div class="permalink">
     <a name="ex_4.69" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.69">Exercise 4.69 </a></b> 
   
-    Beginning with the data base and the rules you formulated in
-    exercise <REF NAME="ex:genesis"><a class="superscript" id="4.4.3-ex-link-4.63" href="./4.4.1.html#ex_4.63">4.63</a></REF>, devise a rule for adding
-    <QUOTE>greats</QUOTE> to a grandson relationship. This should enable the
-    system to deduce that Irad is the great-grandson of Adam, or that Jabal and
-    Jubal are the great-great-great-great-great-grandsons of Adam.  (Hint:
-    Represent the fact about Irad, for example, as
-    
+	
+	Modify the data base and the rules you formulated in
+	exercise <REF NAME="ex:genesis"><a class="superscript" id="4.4.3-ex-link-4.63" href="./4.4.1.html#ex_4.63">4.63</a></REF>, to add 
+	<QUOTE>great</QUOTE> to a grandson relationship. This should enable the
+	system to deduce that Irad is the great-grandson of Adam, or that Jabal and
+	Jubal are the great-great-great-great-great-grandsons of Adam.
+	Hints:
+	<UL>
+	  <LI>
+	    Change the assertions in the database such that there is only one
+	    kind of information, namely
+	    <kbd>related</kbd>. The first argument
+	    then describes the relationship. Thus instead of
+	    <kbd>son("Adam", "Cain")</kbd>, you would
+	    write
+	    <kbd>related("son", "Adam", "Cain")</kbd>.
+	  </LI>
+	  <LI>
+	    Represent the fact about Irad, for example, as
+	    <kbd>related(list("great", "grandson"), "Adam", "Irad")</kbd>.
+	  </LI>
+	  <LI>
+	    Write rules that determine if a list ends in the word
+	    <kbd>"grandson"</kbd>.
+	  </LI>
+	  <LI>
+	    Use this to express a rule that allows one to derive the relationship
+	    <kbd>list(pair("great", rel), x, y)</kbd>,
+	    where <kbd>rel</kbd> is a list ending in
+	    <kbd>"grandson"</kbd>.
+	  </LI>
+	</UL>
+	Check your rules on queries such as
+	<kbd>related(list("great", "grandson"), g, ggs)</kbd>
+	and
+	<kbd>related(relationship, "Adam", "Irad")</kbd>.
+	
       
-      
-	<kbd>list(list("great", "grandson"), "Adam", "Irad")</kbd>.
-      
-    
-    Write rules that determine if a list ends in the word
-    
-      
-      <kbd>"grandson"</kbd>.
-    
-    Use this to express a rule that allows one to derive the relationship
-    
-      
-      
-	<kbd>list(pair("great", rel), x, y)</kbd>,
-      
-    
-    where
-    
-      
-      <kbd>rel</kbd>
-    
-    is a list ending in
-    
-      
-      <kbd>"grandson"</kbd>.)
-      
-    Check your rules on queries such as
-    
-      
-      
-	<kbd>list(list("great", "grandson"), g, ggs)</kbd>
-      
-    
-    and
-    
-      
-      <kbd>list(relationship, "Adam", "Irad")</kbd>.
-      
-      
-    
-  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_94_6_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_94_6_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2256,9 +2248,10 @@ sum(amount,
     
 </EXERCISE></div>
 
+    
   
   
-
+  
 <hr>
 
     <div class='footnote'>

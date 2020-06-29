@@ -1704,7 +1704,7 @@
     data base.  One way to do this would be to implement the query system
     as a nondeterministic program, using the <kbd>amb</kbd>
     evaluator of section <REF NAME="sec:nondeterministic-evaluation"><a class="superscript" id="4.4.2-sec-link-4.3" href="./4.3.html">4.3</a></REF>
-    (see exercise <REF NAME="ex:query-lang-amb"><a class="superscript" id="4.4.2-ex-link-4.84" href="./4.4.4.html#ex_4.84">4.84</a></REF>).  Another possibility
+    (see exercise <REF NAME="ex:query-lang-amb"><a class="superscript" id="4.4.2-ex-link-4.85" href="./4.4.4.html#ex_4.85">4.85</a></REF>).  Another possibility
     is to manage the search with the aid of streams.  Our implementation follows
     this second approach.
   </p></div>
@@ -1942,7 +1942,7 @@
 (job ?x (computer programmer))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_93_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-job(x, list("computer", "programmer"));
+job(x, list("computer", "programmer"))
 </pre></div></div></td></tr></table>
     we scan through all assertions in the data base and select those that
     match the pattern with respect to an initially empty frame.  For each
@@ -1982,7 +1982,16 @@ job(x, list("computer", "programmer"));
 <a name='p9' class='permalink'></a><p>
     In our system, a query takes an input stream of frames and performs
     the above matching operation for every frame in the stream, as
-    indicated in figure <REF NAME="fig:query-stream"><a class="superscript" id="4.4.2-fig-link-4.6" href="./4.4.2.html#fig_4.6">4.6</a></REF>.  That is, for
+    indicated in
+    
+      <span style="color:teal">
+	figure <REF NAME="fig:query-stream_scheme"><a class="superscript" id="4.4.2-fig-link-4.6" href="./4.4.2.html#fig_4.6">4.6</a></REF>.
+      </span>
+      <span style="color:blue">
+	figure <REF NAME="fig:query-stream"><a class="superscript" id="4.4.2-fig-link-4.7" href="./4.4.2.html#fig_4.7">4.7</a></REF>.
+      </span>
+    
+    That is, for
     each frame in the input stream, the query generates a new stream consisting
     of all extensions to that frame by matches to assertions in the data base.
     All these streams are then combined to form one huge stream, which contains
@@ -2008,9 +2017,9 @@ job(x, list("computer", "programmer"));
           <td><span style="color:blue">
 	
     <FIGURE>
-      <img id="fig_4.6" src="../img_javascript/Fig4.4a.std.svg">
+      <img id="fig_4.7" src="../img_javascript/Fig4.4a.std.svg">
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./4.4.2.html#fig_4.6">Figure 4.6 </a></b>A query processes a stream of frames.</div>
+      <b><a class="caption" href="./4.4.2.html#fig_4.7">Figure 4.7 </a></b>A query processes a stream of frames.</div>
     </FIGURE>
   
       </span></td></tr></table>
@@ -2107,7 +2116,15 @@ job(person, x)
     
     The <kbd>and</kbd> of two queries can be viewed as a series
     combination of the two component queries, as shown in
-    figure <REF NAME="fig:query-and"><a class="superscript" id="4.4.2-fig-link-4.7" href="./4.4.2.html#fig_4.7">4.7</a></REF>.  The frames that pass through the
+    
+      <span style="color:teal">
+	figure <REF NAME="fig:query-and_scheme"><a class="superscript" id="4.4.2-fig-link-4.8" href="./4.4.2.html#fig_4.8">4.8</a></REF>.
+      </span>
+      <span style="color:blue">
+	figure <REF NAME="fig:query-and"><a class="superscript" id="4.4.2-fig-link-4.9" href="./4.4.2.html#fig_4.9">4.9</a></REF>.
+      </span>
+    
+    The frames that pass through the
     first query filter are filtered and further extended by the second query.
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
@@ -2119,9 +2136,9 @@ job(person, x)
         <tr><td><span style="color:teal">
 	
     <FIGURE>
-      <img id="fig_4.7" src="../img_original/Fig4.5a.std.svg">
+      <img id="fig_4.8" src="../img_original/Fig4.5a.std.svg">
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./4.4.2.html#fig_4.7">Figure 4.7 </a></b>
+      <b><a class="caption" href="./4.4.2.html#fig_4.8">Figure 4.8 </a></b>
 	    The <kbd>and</kbd> combination of two queries is
             produced by operating on the stream of frames in series.
 	  </div>
@@ -2132,9 +2149,9 @@ job(person, x)
           <td><span style="color:blue">
 	
     <FIGURE>
-      <img id="fig_4.7" src="../img_javascript/Fig4.5a.std.svg">
+      <img id="fig_4.9" src="../img_javascript/Fig4.5a.std.svg">
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./4.4.2.html#fig_4.7">Figure 4.7 </a></b>
+      <b><a class="caption" href="./4.4.2.html#fig_4.9">Figure 4.9 </a></b>
 	    The <kbd>and</kbd> combination of two queries is
             produced by operating on the stream of frames in series.
 	  </div>
@@ -2147,7 +2164,15 @@ job(person, x)
   <div class='permalink'>
 <a name='p13' class='permalink'></a><p>
     
-    Figure <REF NAME="fig:query-or"><a class="superscript" id="4.4.2-fig-link-4.8" href="./4.4.2.html#fig_4.8">4.8</a></REF> shows the analogous method for
+    
+      <span style="color:teal">
+    Figure <REF NAME="fig:query-or_scheme"><a class="superscript" id="4.4.2-fig-link-4.10" href="./4.4.2.html#fig_4.10">4.10</a></REF>
+      </span>
+      <span style="color:blue">
+    Figure <REF NAME="fig:query-or"><a class="superscript" id="4.4.2-fig-link-4.11" href="./4.4.2.html#fig_4.11">4.11</a></REF>
+      </span>
+    
+    shows the analogous method for
     computing the <kbd>or</kbd> of two queries as a parallel
     combination of the two component queries.  The input stream of frames is
     extended separately by each query.  The two resulting streams are then
@@ -2163,9 +2188,9 @@ job(person, x)
         <tr><td><span style="color:teal">
 	
     <FIGURE>
-      <img id="fig_4.8" src="../img_original/Fig4.6a.std.svg">
+      <img id="fig_4.10" src="../img_original/Fig4.6a.std.svg">
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./4.4.2.html#fig_4.8">Figure 4.8 </a></b>
+      <b><a class="caption" href="./4.4.2.html#fig_4.10">Figure 4.10 </a></b>
 	    The <kbd>or</kbd> combination of two queries is
 	    produced by operating on the stream of frames in parallel and
 	    merging the results.
@@ -2177,9 +2202,9 @@ job(person, x)
           <td><span style="color:blue">
 	
     <FIGURE>
-      <img id="fig_4.8" src="../img_javascript/Fig4.6a.std.svg">
+      <img id="fig_4.11" src="../img_javascript/Fig4.6a.std.svg">
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./4.4.2.html#fig_4.8">Figure 4.8 </a></b>
+      <b><a class="caption" href="./4.4.2.html#fig_4.11">Figure 4.11 </a></b>
 	    The <kbd>or</kbd> combination of two
 	    queries is produced by operating on the stream of frames in parallel
 	    and merging the results.
@@ -2200,7 +2225,7 @@ job(person, x)
     input frames from the previous query, an <kbd>and</kbd>
     query could, in the worst case, have to perform a number of matches that is
     exponential in the number of queries (see 
-    exercise <REF NAME="ex:q-exponential-and"><a class="superscript" id="4.4.2-ex-link-4.82" href="./4.4.4.html#ex_4.82">4.82</a></REF>).<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+    exercise <REF NAME="ex:q-exponential-and"><a class="superscript" id="4.4.2-ex-link-4.83" href="./4.4.4.html#ex_4.83">4.83</a></REF>).<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
     Though systems for handling only simple queries are quite practical, dealing
     with complex queries is extremely difficult.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
   </p></div>
@@ -2257,7 +2282,7 @@ not(job(x, list("computer", "programmer")))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_93_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(supervisor(x, y),
-    not(job(x, list("computer", "programmer"))));
+    not(job(x, list("computer", "programmer"))))
 </pre></div></div></td></tr></table>
     the first clause will generate frames with bindings for
     
@@ -2696,7 +2721,7 @@ and(supervisor(x, y),
 (lives-near ?x (Hacker Alyssa P))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_93_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-lives_near(x, list("Hacker", "Alyssa", "P"));
+lives_near(x, list("Hacker", "Alyssa", "P"))
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -2726,7 +2751,7 @@ lives_near(x, list("Hacker", "Alyssa", "P"));
 rule(lives_near(person_1, person_2),
      and(address(person_1, pair(town, rest_1)),
          address(person_2, list(town, rest_2)),
-         not(same(person_1, person_2))));
+         not(same(person_1, person_2))))
 </pre></div></div></td></tr></table>
     resulting in a frame specifying that
     
@@ -2941,7 +2966,15 @@ rule(lives_near(person_1, person_2),
     takes as inputs a query and a stream of frames.  Its output is a stream of
     frames, corresponding to successful matches to the query pattern, that
     extend some frame in the input stream, as indicated in
-    figure <REF NAME="fig:query-stream"><a class="superscript" id="4.4.2-fig-link-4.6" href="./4.4.2.html#fig_4.6">4.6</a></REF>.  Like
+    
+      <span style="color:teal">
+	figure <REF NAME="fig:query-stream_scheme"><a class="superscript" id="4.4.2-fig-link-4.6" href="./4.4.2.html#fig_4.6">4.6</a></REF>.
+      </span>
+      <span style="color:blue">
+	figure <REF NAME="fig:query-stream"><a class="superscript" id="4.4.2-fig-link-4.7" href="./4.4.2.html#fig_4.7">4.7</a></REF>.
+      </span>
+    
+    Like
     
       <span style="color:teal"><kbd>eval</kbd>,</span>
       <span style="color:blue"><kbd>evaluate</kbd>,</span>
@@ -2974,6 +3007,13 @@ rule(lives_near(person_1, person_2),
       </span>
     
     and one for simple queries.
+    <span class='comment'>
+      We use the more verbose name
+      <kbd>evaluate_query</kbd> rather than
+      <kbd>qeval</kbd> because we were forced
+      to use <kbd>evaluate</kbd> instead of
+      <kbd>eval</kbd> in section 4.1.
+    </span>
   </p></div>
 
   <div class='permalink'>
@@ -3030,11 +3070,11 @@ rule(lives_near(person_1, person_2),
             (supervisor ?x ?middle-manager))))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_93_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assert(job(list("Bitdiddle", "Ben"), list("computer", "wizard")));
+assert(job(list("Bitdiddle", "Ben"), list("computer", "wizard")))
 
 assert(rule(wheel(person),
             and(supervisor(middle-manager, person),
-                supervisor(x, middle-manager))));
+                supervisor(x, middle-manager))))
 </pre></div></div></td></tr></table>
     
   </p></div>
