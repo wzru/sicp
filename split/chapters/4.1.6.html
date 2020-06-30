@@ -1827,9 +1827,9 @@
 	Our environment model of evaluation
 	(section <REF NAME="sec:env-internal-def"><a class="superscript" id="4.1.6-sec-link-3.2.4" href="./3.2.4.html">3.2.4</a></REF>)
 	and our metacircular evaluator
-	(section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>) evaluate function
-	bodies and blocks by extending an environment with bindings for the
-	local names that occur in the body of the function or block. Initially,
+	(section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>) evaluate 
+	blocks by extending an environment with bindings for the
+	local names that occur in the body of the block. Initially,
 	the names refer to the special value
 	$\textit{unassigned}$, but evaluation of the
 	declaration statements assign them to their proper values. Correct
@@ -1868,7 +1868,7 @@ function f(x) {
 	should refer to the function <kbd>is_odd</kbd>
 	that is declared after <kbd>is_even</kbd>.
 	The scope of the name <kbd>is_odd</kbd> is the
-	entire body of <kbd>f</kbd>, not just the portion of
+	body block of <kbd>f</kbd>, not just the portion of
 	the body of <kbd>f</kbd> starting at the point where
 	the declaration of <kbd>is_odd</kbd>
 	occurs. Indeed, when we consider that
@@ -1881,20 +1881,21 @@ function f(x) {
 	<kbd>is_even</kbd> and
 	<kbd>is_odd</kbd>
 	were being added to the environment simultaneously. More generally, in
-	block structure, the scope of a local name is the entire function
-	body in which the declaration is evaluated. 
+	block structure, the scope of a local name is the entire block
+	in which the declaration is evaluated.
       </p></div>
       <div class='permalink'>
 <a name='p10' class='permalink'></a><p>
-	This is achieved in section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> by
-	the function <kbd>scan_out_declarations</kbd>,
-	and binding them to the value
-	<kbd>unassigned</kbd>, whenever the function,
-	here <kbd>f</kbd>, is applied. We can make
-	this treatment of local names explicit by transforming them into
+	The evaluator in section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>
+	finds all locally declared names of a block using
+	<kbd>scan_out_declarations</kbd>,
+	and binds them to the value
+	<kbd>unassigned</kbd>, whenever the block is
+	evaluated. For lambda expressions with local declarations, we can achieve
+	the same effect by transforming their bodies into
 	immediately invoked lambda expressions
-	(see section <REF NAME="sec:env-local-state"><a class="superscript" id="4.1.6-sec-link-3.2.3" href="./3.2.3.html">3.2.3</a></REF>). For example, the
-	lambda expression
+	(see section <REF NAME="sec:env-local-state"><a class="superscript" id="4.1.6-sec-link-3.2.3" href="./3.2.3.html">3.2.3</a></REF>). For example,
+	the lambda expression
 	<kbd class='snippet'>($\textit{vars}$) => {
     let u = $e_1$;
     let v = $e_2$;
@@ -1909,9 +1910,7 @@ function f(x) {
            })(unassigned, unassigned);
 }</kbd>
 	where <kbd>unassigned</kbd>
-	is as defined in section <REF NAME="sec:eval-data-structures"><a class="superscript" id="4.1.6-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF>,
-	which causes looking up a name to signal an error if an attempt is made
-	to use the value of the not-yet-assigned name.
+	is as defined in section <REF NAME="sec:eval-data-structures"><a class="superscript" id="4.1.6-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF>.
       </p></div>
 
       <div class='permalink'>
@@ -1969,7 +1968,8 @@ function f(x) {
           <td></td>
           <td><span style="color:blue">
 	In this exercise we implement the method just described for interpreting
-	internal declarations as syntactic sugar for immediately invoked
+	internal declarations of lambda expressions
+	as syntactic sugar for immediately invoked
 	functions that carry out assignments.
 	<OL>
 	  
@@ -1987,13 +1987,10 @@ function f(x) {
 	    
 	    Write a function
 	    <kbd>transform_lambda</kbd>
-	    that transforms any lambda expression as shown above. Analogously,
-	    write a function <kbd>transform_block</kbd>
-	    that transforms any block in a similar manner.
+	    that transforms any lambda expression as shown above.
 	  </LI>
 	  <LI>
-	    Install <kbd>transform_lambda</kbd> and
-	    <kbd>transform_block</kbd>
+	    Install <kbd>transform_lambda</kbd>
 	    in the interpreter by modifying the function 
 	    <kbd>evaluate</kbd>
 	    in an appropriate way.
@@ -2043,7 +2040,7 @@ function f(x) {
                           v = b;
                           $\textit{statements}$
 		      })($e_1$, $e_2$);
-           })("*unassigned*", "*unassigned*");
+           })(unassigned, unassigned);
 }</kbd>
 	Here <kbd>a</kbd> and <kbd>b</kbd> are
 	meant to represent new variable names, created by the interpreter, that do
@@ -2128,34 +2125,22 @@ function f(x) {
     <a name="ex_4.22" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.22">Exercise 4.22 </a></b> 
   
 		
-	Our implementation of lambda expressions and blocks in
+	Our implementation of blocks in
 	section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> imposes a
-	runtime burden on every function application: It needs to scan
-	the function body for locally declared names. We shall devise
-	a simpler mechanism in this exercise. In it, we fall back on
-	the penultimate specification of the environment model of
-	function application, given in
-	section <REF NAME="sec:env-model-rules"><a class="superscript" id="4.1.6-sec-link-3.2.1" href="./3.2.1.html">3.2.1</a></REF>. Recall that
-	in this specification, a  function object is applied to a set of
-	arguments by constructing a frame, in which we create variable bindings
-	of the parameters of the function to the arguments of the call, and then
-	evaluating the body of the function in the context of the new
-	environment constructed. (The ultimate specification adds
-	bindings for the local names, and is given in
-	section <REF NAME="sec:env-internal-def"><a class="superscript" id="4.1.6-sec-link-3.2.4" href="./3.2.4.html">3.2.4</a></REF>.) Using the
-	penultimate specification, we can achieve the desired result in
-	many cases by changing the evaluation of constant and variable
+	runtime burden: It needs to scan
+	the body of the block for locally declared names. We shall devise
+	a simpler mechanism in this exercise. We can achieve the desired result
+	in many cases by changing the evaluation of constant and variable
 	declaration such that they force into the innermost
 	frame of the given environment a binding of the declared name to
 	the result of evaluating the expression on the right hand side of the
 	declaration.
 	<UL>
 	  <LI>
-	    Simplify the declaration of
-	    <kbd>apply</kbd> in
-	    section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> to adhere
-	    to the penultimate specification of function application, given in
-	    section <REF NAME="sec:env-model-rules"><a class="superscript" id="4.1.6-sec-link-3.2.1" href="./3.2.1.html">3.2.1</a></REF>.
+	    Simplify the declaration of 
+	    <kbd>eval_block</kbd> in
+	    section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> to 
+	    ignore local declarations.
 	  </LI>
 	  <LI>
 	    Declare a function
@@ -2173,6 +2158,11 @@ function f(x) {
 	    such that they make use of
 	    <kbd>add_binding_to_frame</kbd> instead of
 	    <kbd>set_name_value</kbd>.
+	  </LI>
+	  <LI>
+	    Can you find programs that behave differently with this treatment
+	    of local declarations, compared to the implementation
+	    in section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>?
 	  </LI>
 	</UL>
       
@@ -2233,17 +2223,19 @@ function f(x) {
           <td></td>
           <td><span style="color:blue">
 	Draw diagrams of the environment in effect when evaluating the
-	$\textit{statement}$ in the
+	$\textit{statements}$ in the
 	function in the text, comparing how this will be structured when
 	declarations are interpreted sequentially as described in
 	exercise <REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.22" href="./4.1.6.html#ex_4.22">4.22</a></REF>
-	with how it is structured if declarations are scanned out as described in
-	section  <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
-	Why is there an extra frame in the latter case?  Explain why this
-	difference in environment structure can never make a difference in the
-	behavior of a correct program.  Design a way to make the interpreter
-	implement the <QUOTE>simultaneous</QUOTE> scope rule for internal 
-	declarations without constructing the extra frame.
+	with how it is structured if declarations are scanned out as described
+	in section  <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
+	Why is there an extra frame in the latter case?
+	JavaScript forbids the re-declaration of parameters
+	as local names in the body block of any function. With this restriction,
+	can you achieve the scoping for local names
+	in lambda expressions of 
+	section  <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>,
+	without constructing the extra frame?
       </span></td></tr></table>
   
       <div class="Solution">

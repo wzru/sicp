@@ -1818,9 +1818,11 @@ function variable_declaration_value(stmt) {
           <LI>
 	    Function definitions are objects tagged with the
 	    string <kbd>lambda</kbd>:
-	    <div class='snippet' id='javascript_77_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvggoABikAAaALIAogBcetxmAmxk3KAARMTk1HTMvNwEVCRUBSTZoADuFfI56RIARrxs2bjhbAQU3Lq+TAyMjERZg-JsJLwCfImdYPIUFGaMiSAc9UTNaGQ0EsCMNEaZALQZrtwSAJ7AAFaMJ4zpJBzATCPcjMAAbADMKIRSJRaCYWE1Wmx3HYNFptPpDMYhv4ePwhOIobJckDKkUSmUKiDsiogqE8sC6KBwW1zGxdGwJAY+owoWpNDp4UZ6BI2GYxFcWjQBMwaARmCR6dxZC43OwqAIWSpiSFAfkQZT6RDmM0aLwriyYeyDJznNxXCJZfKLQqlaFcLsSOJQNdBBq2qBPKALLpGNwRNkAB7ugB8oH9ASJQV4TDSbD1pipkOdCcVkej6T1CZpdIZvW9IiTrrYKdwUcYMYzha1Or1BZabRTQA')">// FIXME: replace "function_definition" with "lambda"
+	    <div class='snippet' id='javascript_77_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvggoABikAAaALIAogBcetxmAmxk3KAARMTk1HTMvNwEVCRUBSTZoADuFfI56RIARrxs2bjhbAQU3Lq+TAyMjERZg-JsJLwCfImdYPIUFGaMiSAc9UTNaGQ0EsCMNEaZALQZrtwSAJ7AAFaMJ4zpJBzATCPcjMAAbADMKPNIjEEsl9BIaAA3LIKLLNAQ0MgAa1ABF0e1ATVabGYzRovCuoDomV83EBFl0jD6tV0bBWJNAuPxDHobAZ8KRtUUJG4UP63L4fDQhFIlFoJhYmLa7jsGi02n0hmMQ38PH4QnE0tkuRFlSKJTKFTF2RUQVCeVFdAxbBabXMbBpEgMfUY0rUmh0CqM9AktLEVxaNAEzBoBGYJGt3FkLjc7CoAldKhNIWF+TFVpt2MZV1dso9Bi9oB9iKUcIRiJE0ZEsfj1YTidN+F2JHEhaugmtWNAnlA5MpImyAA8uwA+UADgLGoK8JhpNjZ0yStgia7tjP13DTxiz7OLu0Op0U5dtxfrzfbkS7rNH1dY+tAA')">// FIXME: replace "function_definition" with "lambda"
 // after this issue is handled:
 // https://github.com/source-academy/js-slang/issues/634
+// FIXME: remove the block from lambda_body once the
+// parser wraps the body in a block whenever needed.
 function is_lambda(stmt) {
    return is_tagged_list(stmt, "function_definition");
 }
@@ -1828,7 +1830,7 @@ function lambda_parameters(stmt) {
    return map(symbol_of_name, head(tail(stmt)));
 }
 function lambda_body(stmt) {
-   return head(tail(tail(stmt)));
+   return make_block(head(tail(tail(stmt))));
 }
 
 </pre></div></div>

@@ -1689,9 +1689,9 @@
       <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
 	Section <REF NAME="sec:env-apply-proc"><a class="superscript" id="3.2.4-sec-link-3.2.2" href="./3.2.2.html">3.2.2</a></REF> describes the application
-	of simple functions according to the substitution model, but fails to
-	handle the case where the body of the function being applied contains
-	constant, function or variable declarations, as in the functions
+	of simple functions according to the environment model, but fails to
+	handle proper blocks that contain contains constant, function or
+	variable declarations, as the bodies of the functions
 	<kbd>new_withdraw</kbd> and 
 	<kbd>make_account</kbd>
 	of section <REF NAME="sec:local-state-variables"><a class="superscript" id="3.2.4-sec-link-3.1.1" href="./3.1.1.html">3.1.1</a></REF>,
@@ -1699,16 +1699,16 @@
 	of section <REF NAME="sec:benefits-of-assignment"><a class="superscript" id="3.2.4-sec-link-3.1.2" href="./3.1.2.html">3.1.2</a></REF>
 	and in both versions of the factorial function 
 	of section <REF NAME="sec:costs-of-assignment"><a class="superscript" id="3.2.4-sec-link-3.1.3" href="./3.1.3.html">3.1.3</a></REF>.
-	Our treatment of the declaration of local names within function bodies
+	Our treatment of the declaration of local names within blocks
 	is similar to the treatment of declarations of global names, as for
 	example the name <kbd>square</kbd> in
 	section <REF NAME="sec:env-model-rules"><a class="superscript" id="3.2.4-sec-link-3.2.1" href="./3.2.1.html">3.2.1</a></REF>. We explained
 	that the names declared in the program are added to the program
 	frame. More precisely, before the program gets evaluated, we identify
-	the names that are declared in the program at toplevel. These names
-	are all added to the program frame, and then the program gets evaluated
-	with respect to the program environment. Initially, before the program
-	runs, these names refer to a special value
+	the names that are declared in the program at toplevel (outside of any
+	block). These names are all added to the program frame, and then the
+	program gets evaluated with respect to the program environment.
+	Initially, before the program runs, these names refer to a special value
 	$\textit{unassigned}$, and any attempt to
 	access the value of a name that refers to
 	$\textit{unassigned}$ leads to an error.
@@ -1717,46 +1717,13 @@
       </p></div>
       <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-	Similar to names that are declared at toplevel, we simply add the
-	names declared locally in a function body to the relevant
-	environment frame
-	before we evaluate the body. The relevant environment frame
-	here is of course the new frame that binds the function's parameters
-	to the values of the arguments. This leads to the final, definitive
-	version of the first of the two rules in
-	section <REF NAME="sec:env-model-rules"><a class="superscript" id="3.2.4-sec-link-3.2.1" href="./3.2.1.html">3.2.1</a></REF> that summarize
-	the environment model of function application. The second rule
-	is copied here for completeness; it hasn't changed.
-	<UL>
-	  <LI>
-	    A function object is applied to a set of arguments by constructing a
-	    frame, in which we create variable bindings for the parameters of the
-	    function to the arguments of the call, <EM>and constant/variable
-	    bindings for the local constants/variable declarations in the body
-	    of the function,</EM> and then evaluating the body in the context of
-	    the new environment constructed. The new frame has as its enclosing
-	    environment the environment part of the function object being
-	    applied. <EM>The local constant/variable names intially refer to
-	    the value $\textit{unassigned}$, before
-	    the body is evaluated.</EM>
-	    
-	    
-	  </LI>
-	  <LI>
-	    A function is created by evaluating a 
-	    lambda expression relative to a given environment.  The resulting
-	    function object is a pair consisting of the text of the lambda
-	    expression and a pointer to the environment in which the function
-	    was created.
-	  </LI>
-	</UL>
-	We apply the same idea to names that are declared within blocks, such
-	as the consequent or alternative block of conditional statements, which
-	we introduced in section <REF NAME="sec:lambda"><a class="superscript" id="3.2.4-sec-link-1.3.2" href="./1.3.2.html">1.3.2</a></REF>: A block
-	is evaluated by extending the current environment with a new frame.
-	The constant/variable names declared within the block intially refer
-	to the value $\textit{unassigned}$, before
-	the body of the block is evaluated.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+	In order to evaluate a block in a given environment, we extend the
+	environment by a new frame that contains all names declared locally
+	(outside of nested blocks) in the block body. These names intially refer
+	to the value $\textit{unassigned}$, when the
+	evaluation of the body commences. The evaluation of local constant
+	and variable declarations then re-assign the names to the left of the
+	equal sign, as if the declaration was an assignment.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
       </p></div>
     
   
@@ -1863,42 +1830,39 @@
       program
     
     environment, in which the parameter <kbd>x</kbd> is bound
+    to 2.
     
       
       
-	to 2, and in which the locally declared names
-	<kbd>good_enough</kbd>,
-	<kbd>improve</kbd> and
-	<kbd>sqrt_iter</kbd> are bound to
-	the value $\textit{unassigned}$.
+	The body of <kbd>sqrt</kbd> was then evaluated in
+	E1. That body in this case is a block with local
+	function declarations and therefore we extended E1 with a new frame for
+	those declarations, resulting in the new environment E2. The body
+	of the block was then evaluated in E2. Since the first statement
+	in the body is
       
     
-    The body of <kbd>sqrt</kbd> was then evaluated in
-    E1.  Since the first expression in the body of
-    <kbd>sqrt</kbd> is
     <div class='snippet' id='javascript_58_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function good_enough(guess) {
     return abs(square(guess) - x) < 0.001;
 }
 </pre></div></div>
-    evaluating this expression defined the
     
       
-      function
-    
-    
       
-      <kbd>good_enough</kbd>
+	evaluating this declaration created the function
+	<kbd>good_enough</kbd>
+	in the environment E2.
+      
     
-    in the environment E1.
     
       
       
 	To be more precise, the value
 	$\textit{unassigned}$
 	for the symbol <kbd>good_enough</kbd>
-	in the first frame of E1 is bound to a function
-	object whose associated environment is E1.
+	in the first frame of E2 was replaced by a function
+	object whose associated environment is E2.
       
     
     Similarly,
@@ -1910,9 +1874,9 @@ function good_enough(guess) {
     were defined as
     
       
-      functions
+      functions in E2.
     
-    in E1.  For conciseness,
+    For conciseness,
     
       
       
@@ -1944,7 +1908,12 @@ function good_enough(guess) {
       <kbd>sqrt_iter(1.0)</kbd>
       
     
-    was evaluated, still in environment E1.  So the
+    was evaluated, still in environment
+    
+      
+      E2.
+    
+    So the
     
       
       function
@@ -1953,9 +1922,11 @@ function good_enough(guess) {
     
       
       <kbd>sqrt_iter</kbd>
+      in E2 was called with 1 as an argument.  This created an environment E3
+      in which
+      
     
-    in E1 was called with 1 as an argument.  This created an environment E2 in
-    which <kbd>guess</kbd>, the parameter of 
+    <kbd>guess</kbd>, the parameter of 
     
       
       <kbd>sqrt_iter</kbd>,
@@ -1971,17 +1942,22 @@ function good_enough(guess) {
       
       <kbd>good_enough</kbd>
     
-    with the value of <kbd>guess</kbd> (from E2) as the
-    argument for 
+    with the value of <kbd>guess</kbd>
     
       
-      <kbd>good_enough</kbd>.
+      
+	(from E3) as the argument for 
+	<kbd>good_enough</kbd>.
+      
     
-    This set up another environment, E3, in which
-    <kbd>guess</kbd> (the parameter of 
+    This set up another environment,
     
       
-      <kbd>good_enough</kbd>)
+      
+	E4, in which
+	<kbd>guess</kbd> (the parameter of 
+	<kbd>good_enough</kbd>)
+      
     
     is bound to 1. Although 
     
@@ -1994,22 +1970,18 @@ function good_enough(guess) {
       <kbd>good_enough</kbd>
     
     both have a parameter named <kbd>guess</kbd>, these are two
-    distinct local variables located in different frames.  Also, E2 and E3 both
-    have E1 as their enclosing environment, because the 
+    distinct local variables located in different frames.
     
       
-      <kbd>sqrt_iter</kbd>
-    
-    and 
-    
       
-      <kbd>good_enough</kbd>
-    
-    
+	Also, E3 and E4 both have E2 as their enclosing environment, because the 
+	<kbd>sqrt_iter</kbd>
+	and 
+	<kbd>good_enough</kbd>
+	both have E2 as their environment part.
       
-      functions
     
-    both have E1 as their environment part.  One consequence of this is that the
+    One consequence of this is that the
     symbol <kbd>x</kbd> that appears in the body of 
     
       
@@ -2055,9 +2027,9 @@ function good_enough(guess) {
 	names will be bound in the frame that the
 	
 	  
-	  function
+	  block creates when it is evaluated,
 	
-	creates when it is run, rather than being bound in the
+	rather than being bound in the
 	
 	  
 	  program
@@ -2075,14 +2047,14 @@ function good_enough(guess) {
 	  
 	  function,
 	
-	simply by using parameter names as free variables. This is because the
-	body of the local
+	simply by using parameter names as free variables. This is
+	because the body of the local
 	
 	  
 	  function
 	
-	is evaluated in an environment that is subordinate to the evaluation
-	environment for the enclosing
+	is evaluated in an environment that is subordinate to the
+	evaluation environment for the enclosing
 	
 	  
 	  function.
@@ -2173,10 +2145,10 @@ const acc2 = make_account(100);
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
     <FOOTNOTE>
-    Equipped with a deeper
-	understanding of the scope of names, we can now explain why the program
-	in footnote <REF NAME="foot:tdz"><a class="superscript" id="3.2.4-foot-link-2" href="./1.3.2.html#footnote-2">2</a></REF> of chapter 1 goes
-	wrong.
+    Equipped
+	with a deeper understanding of the scope of names, we can now explain
+	why the program in footnote <REF NAME="foot:tdz"><a class="superscript" id="3.2.4-foot-link-2" href="./1.3.2.html#footnote-2">2</a></REF> of chapter 1
+	goes wrong.
     </FOOTNOTE></div>
 
     

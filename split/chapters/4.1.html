@@ -1733,14 +1733,17 @@
     
       <span style="color:teal">Recall that the model has two basic parts:</span>
       <span style="color:blue">
-	The ultimate refinement of the model in
-	section <REF NAME="sec:env-internal-def"><a class="superscript" id="4.1-sec-link-3.2.4" href="./3.2.4.html">3.2.4</a></REF> specifies the
+	Recall that the model specifies the
 	evaluation of function application in two basic steps:
       </span>
     
   </p></div>
 
-  <table width="100%">
+  <div class='permalink'>
+<a name='p3' class='permalink'></a><p>
+    <OL>
+      <LI> 
+	<table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
           <td class="meta" style = "color:grey; text-align: center">Original</td>
@@ -1748,51 +1751,60 @@
           <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
         </tr>
         <tr><td><span style="color:teal">
-      <div class='permalink'>
-<a name='p3' class='permalink'></a><p>
-	<OL>
-	  <LI> 
             To evaluate a combination (a compound expression other than a 
             special form), evaluate the subexpressions and then apply the value
 	    of the operator subexpression to the values of the operand
             subexpressions.
-	  </LI>
-	  <LI>
-            To apply a compound procedure to a set of arguments, evaluate the
-            body of the procedure in a new environment.  To construct this
-            environment, extend the environment part of the procedure object by a
-            frame in which the formal parameters of the procedure are bound to
-	    the arguments to which the procedure is applied.
-	  </LI>
-	</OL>
-      </p></div>
-    </span>    </td>
+	  </span>    </td>
           <td></td>
           <td><span style="color:blue">
-      <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
-	<OL>
-	  <LI>
 	    To evaluate a function application, evaluate the function
 	    subexpression and the argument subexpressions, and then apply the
 	    value of the function subexpression to the values of the argument
             subexpressions.
-	  </LI>
-	  <LI>
-	    To apply a function to a set of arguments, evaluate the body of the
-	    function in a new environment.  To construct this environment,
-	    extend the environment part of the function object by a frame in
-	    which the formal parameters of the function are bound to the
-	    arguments to which the function is applied, and in which the names
-	    of constants and variables declared in the body of the function are
-	    bound to the value $\textit{unassigned}$.
-	  </LI>
-	</OL>
-      </p></div>
-    </span></td></tr></table>
+	  </span></td></tr></table>
+      </LI>
+      <LI>
+        To apply a compound
+	
+	  <span style="color:teal">procedure</span>
+	  <span style="color:blue">function</span>
+	
+	to a set of arguments, evaluate the
+        body of the
+	
+	  <span style="color:teal">procedure</span>
+	  <span style="color:blue">function</span>
+	
+	in a new environment.  To construct this
+        environment, extend the environment part of the
+	
+	  <span style="color:teal">procedure</span>
+	  <span style="color:blue">function</span>
+	
+	object by a
+        frame in which the
+	
+	  <span style="color:teal">formal</span>
+	
+	parameters of the
+	
+	  <span style="color:teal">procedure</span>
+	  <span style="color:blue">function</span>
+	
+	are bound to
+	the arguments to which the
+	
+	  <span style="color:teal">procedure</span>
+	  <span style="color:blue">function</span>
+	
+	is applied.
+      </LI>
+    </OL>
+  </p></div>
 
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p4' class='permalink'></a><p>
     
       <span style="color:teal">
       
@@ -1836,7 +1848,7 @@
   </p></div>
 
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     The implementation of the evaluator will depend upon
     
       <span style="color:teal">procedures</span>
