@@ -1692,7 +1692,7 @@
   a
   <span style="color:teal">procedure</span><span style="color:blue">function</span>
   
-  <kbd>compile-and-go</kbd> that compiles a Scheme expression, loads the
+  <span style="color:teal"><kbd>compile-and-go</kbd></span><span style="color:blue"><kbd>compile_and_go</kbd></span> that compiles a Scheme expression, loads the
   resulting object code into the evaluator machine,
   and causes the machine to run the code in the
   evaluator global environment, print the result, and
@@ -1814,7 +1814,7 @@ apply-dispatch
 
   <kbd class='snippet'>branch(label("external_entry")), // branches if flag is set
 "read_eval_print_loop",
-perform(op("initialize-stack")),
+perform(op("initialize_stack")),
 $\langle\ldots\rangle$</kbd>
       </p></div>
 
@@ -1884,9 +1884,9 @@ external-entry
       (set-register-contents! eceval 'flag true)
       (start eceval)))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_123_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsDMBXAOwGMAXASwHsjQSqBbABwoBsBTAfQEMiATTgHMqACnYAPJgCd2AZ1nUiASlABvbKE10assqApFdUguUWzQAXlDd57BgCMOI3dzJ32RMrJH1mbdmKSMvKKADSgAEQAbtysEeERMmQEUkQRSkoJ7CTsMXFKANwaWmQAFuwAtIKsVPaxFR5RFFI0DB56VrLsyUwNRE0tRG2eIoXFml1knDKCFLrsUpz0nu3eEdm5sfGRedsGRiaUOmNaoJPT7LPzi8tunmsbuwl4rNyC22TG7CdaSSm0LikZBE6xyuzGAF8gA')">function compile_and_go(expression) {
+            <td><div class='snippet' id='javascript_123_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsDMBXAOwGMAXASwHsjQSqBbABwoBsBTAfQEMiATTgHMqACnYAPJgCd2AZ1nUiASlABvbKE10assqApFdUguUWzQAXlDd57BgCMOI3dzJ32RMrJH1mbdmKSMvKKADSgAEQAbtysEeERMmQEUkQRSkoJ7CTsMXFKANwaWmQAFlyCrFT2sZweURRSNAweelay7MlMdUQNTUQtniKFxZodZJwyghS67FKc9J6t3hHZubHxkXmbBkYmlDojWqDjk+zTs-OLbp4ra9sJeKzcgptkxuxHWkkptC5SZBEqxy2xGAF8gA')">function compile_and_go(expression) {
     const instructions = assemble(statements(compile(expression, "val", "return")), "eceval");
-    the-global-environment = setup-environment();
+    the_global_environment = setup_environment();
     set_register_contents("eceval", "val", instructions);
     set_register_contents("eceval", "flag", true);
     return start("eceval");
@@ -2046,7 +2046,7 @@ ok
       <span style="color:teal">procedure</span><span style="color:blue">function</span>
       given above.  Exercise <REF NAME="ex:measure-fact"><a class="superscript" id="5.5.7-ex-link-5.14" href="./5.2.4.html#ex_5.14">5.14</a></REF> asked you to do the same
       measurements for the special-purpose factorial machine shown in
-      Figure <REF NAME="fig:fact-machine"><a class="superscript" id="5.5.7-fig-link-5.11" href="./5.1.4.html#fig_5.11">5.11</a></REF>. Now perform the same analysis using the
+      Figure <REF NAME="fig:fact-machine"><a class="superscript" id="5.5.7-fig-link-5.13" href="./5.1.4.html#fig_5.13">5.13</a></REF>. Now perform the same analysis using the
       compiled <kbd>factorial</kbd>
       <span style="color:teal">procedure</span><span style="color:blue">function</span>.
 
@@ -2110,7 +2110,7 @@ ok
 </pre></div></div></td></tr></table>
 
   compared to the effectiveness of using the special-purpose Fibonacci machine of
-  figure <REF NAME="fig:fib-machine"><a class="superscript" id="5.5.7-fig-link-5.12" href="./5.1.4.html#fig_5.12">5.12</a></REF>.  (For measurement of the interpreted
+  figure <REF NAME="fig:fib-machine"><a class="superscript" id="5.5.7-fig-link-5.14" href="./5.1.4.html#fig_5.14">5.14</a></REF>.  (For measurement of the interpreted
   performance, see exercise <REF NAME="ex:rec-fib"><a class="superscript" id="5.5.7-ex-link-5.28" href="./5.4.4.html#ex_5.28">5.28</a></REF>.)
   For Fibonacci, the time resource used is not linear in $n$; hence the
   ratios of stack operations will not approach a limiting value that is

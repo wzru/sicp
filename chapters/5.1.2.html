@@ -1678,66 +1678,75 @@
         <div class='SECTION'><SECTION>
     
 
-      
+  
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
-  We will often define a machine to include <QUOTE>primitive</QUOTE> operations that are
-  actually very complex.  For example, in sections <REF NAME="sec:eceval"><a class="superscript" id="5.1.2-sec-link-5.4" href="./5.4.html">5.4</a></REF> and
-  <REF NAME="sec:compilation"><a class="superscript" id="5.1.2-sec-link-5.5" href="./5.5.html">5.5</a></REF> we will treat JavaScript's environment
-  manipulations as primitive.  Such abstraction is valuable because it
-  allows us to ignore the details of parts of a machine so that we can
-  concentrate on other aspects of the design.  The fact that we have
-  swept a lot of complexity under the rug, however, does not mean that a
-  machine design is unrealistic.  We can always replace the complex
-  <QUOTE>primitives</QUOTE> by simpler primitive operations.
-      </p></div>
+    We will often define a machine to include <QUOTE>primitive</QUOTE>
+    operations that are actually very complex.  For example, in
+    sections <REF NAME="sec:eceval"><a class="superscript" id="5.1.2-sec-link-5.4" href="./5.4.html">5.4</a></REF> and <REF NAME="sec:compilation"><a class="superscript" id="5.1.2-sec-link-5.5" href="./5.5.html">5.5</a></REF>
+    we will treat
+    
+      
+      JavaScript's
+    
+    environment manipulations as primitive.  Such abstraction is valuable
+    because it allows us to ignore the details of parts of a machine so that we
+    can concentrate on other aspects of the design.  The fact that we have
+    swept a lot of complexity under the rug, however, does not mean that a
+    machine design is unrealistic.  We can always replace the complex
+    <QUOTE>primitives</QUOTE> by simpler primitive operations.
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-  Consider the GCD machine. The machine has an instruction that computes
-  the remainder of the contents of registers <kbd>a</kbd> and <kbd>b</kbd> and
-  assigns the result to register <kbd>t</kbd>.  If we want to construct the
-  GCD machine without using a primitive remainder operation,
-  we must specify how to compute remainders in terms of simpler
-  operations, such as subtraction.  Indeed, we can write a 
-  JavaScript function
-  that finds remainders in this way:
+    Consider the GCD machine. The machine has an instruction that computes
+    the remainder of the contents of registers <kbd>a</kbd>
+    and <kbd>b</kbd> and assigns the result to register
+    <kbd>t</kbd>.  If we want to construct the GCD machine
+    without using a primitive remainder operation, we must specify how to
+    compute remainders in terms of simpler operations, such as subtraction.
+    Indeed, we can write a 
+    
+      
+      JavaScript function
+    
+    that finds remainders in this way:
+    <div class='snippet' id='javascript_99_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0CYBQuAnAUwFsBDASwDsATIggCmwE4AaVASgG4g')">remainder(29, 5);
 
-  <div class='snippet' id='javascript_99_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMBbAQypIBMmGAKEgBpQXAJSgA3rlAzGTCkQb16AHhHTZmgPygSGzTIBcc9px796AWhHCxAblwBfIA')">function remainder(n, d) {
+</pre></div></div>
+    <div class='snippet' id='javascript_99_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMBbAQypIBMmGAKEgBpQXAJSgA3rlAzGTCkQb16AHhHTZmgPygSGzTIBcc9px796AWhHCxAblwBffM1PdefbAE5hKUXaA')">function remainder(n, d) {
     return n < d
         ? n
         : remainder(n - d, d);
 }
 
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-  We can thus replace the remainder operation in the GCD machine's
-  data paths with a subtraction operation and a comparison test.
-  Figure <REF NAME="fig:gcd-machine-rem"><a class="superscript" id="5.1.2-fig-link-5.5" href="./5.1.2.html#fig_5.5">5.5</a></REF> shows the data paths and controller
-  for the elaborated machine.
-  The instruction
-
-  
+    We can thus replace the remainder operation in the GCD machine's
+    data paths with a subtraction operation and a comparison test.
+    Figure <REF NAME="fig:gcd-machine-rem"><a class="superscript" id="5.1.2-fig-link-5.5" href="./5.1.2.html#fig_5.5">5.5</a></REF> shows the data paths and
+    controller for the elaborated machine. The instruction
+    
     <FIGURE>
-      <img id="fig_5.5" src="../img_original/Fig5.5b.std.svg">
+      <img class="scale_factor_4" id="fig_5.5" src="../img_original/Fig5.5b.std.svg">
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./5.1.2.html#fig_5.5">Figure 5.5 </a></b>Data paths and controller for the elaborated GCD  machine.</div>
+      <b><a class="caption" href="./5.1.2.html#fig_5.5">Figure 5.5 </a></b>
+	Data paths and controller for the elaborated GCD  machine.
+      </div>
     </FIGURE>
   
-
-  <div class='snippet' id='javascript_99_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_99_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assign("t", list(op("rem"), reg("a"), reg("b")))
 </pre></div></div>
-
-  in the GCD controller definition is replaced by a sequence of
-  instructions that contains a loop, as shown in
-  figure <REF NAME="fig:gcd-machine-rem-controller"><a class="superscript" id="5.1.2-fig-link-5.6" href="./5.1.2.html#fig_5.6">5.6</a></REF>.
-
-  <FIGURE><pre class='prettyprint no-eval'>
+    in the GCD controller definition is replaced by a sequence of
+    instructions that contains a loop, as shown in
+    figure <REF NAME="fig:gcd-machine-rem-controller"><a class="superscript" id="5.1.2-fig-link-5.6" href="./5.1.2.html#fig_5.6">5.6</a></REF>.
+    
+    <FIGURE><pre class='prettyprint no-eval'>
 controller(
     "test-b",
     list(test(list(op("="), reg("b"), constant(0))),
@@ -1756,43 +1765,46 @@ controller(
 </pre>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.1.2.html#fig_5.6">Figure 5.6 </a></b>Controller instruction sequence for the GCD machine in
-  figure <REF NAME="fig:gcd-machine-rem"><a class="superscript" id="5.1.2-fig-link-5.5" href="./5.1.2.html#fig_5.5">5.5</a></REF>.</div>
+      figure <REF NAME="fig:gcd-machine-rem"><a class="superscript" id="5.1.2-fig-link-5.5" href="./5.1.2.html#fig_5.5">5.5</a></REF>.</div>
     </FIGURE>
   
-      </p></div>
+  </p></div>
 
-      
+  
     <div class="permalink">
     <a name="ex_5.3" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.3">Exercise 5.3 </a></b> 
   
-  
-  Design a machine to compute square roots using Newton's method, as
-  described in section <REF NAME="sec:sqrt"><a class="superscript" id="5.1.2-sec-link-1.1.7" href="./1.1.7.html">1.1.7</a></REF>:
-
-  <div class='snippet' id='javascript_99_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AZwEcAnCgCgA8BKUAb1yghoYuWp1QAcxo0AJgH0ApiRpFJAC3aSiihgwA0oHv0HCzLRRSIt6AQwBGDdsyK2LWnXt4BaI7wA8oAAMaEFBGADcpkIAvtEipJS09FQAtgAOLDQAbooeugZ+JmbmltZ2uSy2knnaBYacoGB1XlFmcWaiSRLMbPJUFIos+XoNvAIlwhZWNlIyCsqqGiOFPPGTQgD8Up4M6xsAXIysFP2Dw2mZObW7Y2Ntwh1TZbPHfQND7FhB3FExQA')">function sqrt(x) {
-    function good_enough(guess, x) {
-        return abs(square(guess) - x) < 0.001;
+    
+    Design a machine to compute square roots using Newton's method, as
+    described in section <REF NAME="sec:sqrt"><a class="superscript" id="5.1.2-sec-link-1.1.7" href="./1.1.7.html">1.1.7</a></REF>:
+    <div class='snippet' id='javascript_99_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUKwBundqwDmPXgBoAnoJHiJnKTNB9QAalA3QYbKo2FSSlp6ZnYKPltRcS0g3RMaGgATAH1OEhoiEwALbhMiTgYGSPt7SWl6AFtWCizk1gAjBm5mNi5c-MLBAFolQQAeUAAGNEHBjFV7DXsYnXoqCoAHdhpDdoKi4SiShyd6AyNTHjz1iyVvUGPOifEp6MDZxiYw5KoKIzXOze2xMud4pNS6UyOUuRS23zEAH4Lh0GOCIQAuR7PV7veZLFZHWH8fjXMS3H6OcpiUIUF5vdjcLCDXHqfCJKgMBYAG1YVmaT3CABYccpxCAIFkMszEqAGUzWVZQGRmTQGJxQBQaKA8OKWWyOWFuABOXn8sDgIVEEVixnqqUyuUKpWgADMuDVks14Qwoz1AsNwtFjrZ0tl8sVytduAF0CyrBIZiGIzGenqmMDitICqWnDIjOCQA')">function sqrt(x) {
+    function good_enough(guess) {
+        return math_abs(square(guess) - x) < 0.001;
     }
-    function improve(guess, x) {
+    function improve(guess) {
         return average(guess, x / guess);
     }
-    function sqrt_iter(guess, x) {
-        return good_enough(guess, x)
+    function sqrt_iter(guess) {
+        return good_enough(guess)
             ? guess
-            : sqrt_iter(improve(guess, x), x);
+            : sqrt_iter(improve(guess));
     }
     return  sqrt_iter(1.0);
 }
 
 </pre></div></div>
-
-  Begin by assuming that <kbd>good_enough</kbd> and <kbd>improve</kbd> operations
-  are available as primitives.  Then show how to expand these in terms
-  of arithmetic operations.  Describe each version of the <kbd>sqrt</kbd>
-  machine design by drawing a data-path diagram and writing a controller
-  definition in the register-machine language.
-  
+    Begin by assuming that
+    
       
+      <kbd>good_enough</kbd>
+    
+    and <kbd>improve</kbd> operations are available as
+    primitives.  Then show how to expand these in terms of arithmetic
+    operations.  Describe each version of the <kbd>sqrt</kbd>
+    machine design by drawing a data-path diagram and writing a controller
+    definition in the register-machine language.
+    
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_99_1_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_99_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1800,9 +1812,8 @@ controller(
     
 </EXERCISE></div>
 
-      
+  
 
-    
 </SUBSECTION></div></div>
 
     <div class='nav'>

@@ -1917,7 +1917,7 @@ function code_to_get_rest_args(operand_codes) {
   <span style="color:teal">procedure</span><span style="color:blue">function</span>
   in the
   meta-circular evaluator of section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="5.5.3-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> or the
-  <kbd>apply-dispatch</kbd> entry point in the explicit-control evaluator of
+  <span style="color:teal"><kbd>apply-dispatch</kbd></span><span style="color:blue"><kbd>apply_dispatch</kbd></span> entry point in the explicit-control evaluator of
   section <REF NAME="sec:procedure-application"><a class="superscript" id="5.5.3-sec-link-5.4.1" href="./5.4.1.html">5.4.1</a></REF>.  It checks whether the
   <span style="color:teal">procedure</span><span style="color:blue">function</span>
   to be applied is a primitive
@@ -1930,11 +1930,11 @@ function code_to_get_rest_args(operand_codes) {
   <span style="color:teal">procedure</span><span style="color:blue">function</span>-application code has the following
   form:
 
-  <kbd class='snippet'>  test(op("primitive-procedure"), reg("proc")),
+  <kbd class='snippet'>  test(op("primitive_procedure"), reg("proc")),
   branch(label("primitive_branch")),
-"compiled-branch",
+"compiled_branch",
   $\langle \textit{code to apply compiled procedure with given target and appropriate linkage} \rangle$
-"primitive-branch",
+"primitive_branch",
   assign($\langle\textit{target}\rangle$,
          list(op("apply_primitive_procedure"),
          reg("proc"),
@@ -1985,9 +1985,9 @@ $\langle\textit{linkage}\rangle$
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_119_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_procedure_call(target, linkage) {
-    const primitive_branch = make_label("primitive-branch");
-    const compiled_branch = make_label("compiled-branch");
-    const after_call = make_label("after-call");
+    const primitive_branch = make_label("primitive_branch");
+    const compiled_branch = make_label("compiled_branch");
+    const after_call = make_label("after_call");
 
     const compiled_linkage = linkage === "next" ? after_call : linkage;
     

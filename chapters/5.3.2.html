@@ -1794,7 +1794,7 @@ accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))
     
       
     <FIGURE>
-      <img id="fig_5.15" src="../img_javascript/Fig5.15c.std.svg">
+      <img class="scale_factor_3" id="fig_5.15" src="../img_javascript/Fig5.15c.std.svg">
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.3.2.html#fig_5.15">Figure 5.15 </a></b>Reconfiguration of memory by the garbage-collection process.</div>
     </FIGURE>
@@ -1890,7 +1890,7 @@ accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))
   there are any more objects to be scanned.  We do this by testing
   whether the <kbd>scan</kbd> pointer is coincident with the <kbd>free</kbd>
   pointer.  If the pointers are equal, then all accessible objects have
-  been relocated, and we branch to <kbd>gc-flip</kbd>, which cleans things up
+  been relocated, and we branch to <kbd>gc-flip</kbd><kbd>gc_flip</kbd>, which cleans things up
   so that we can continue the interrupted computation.  If there are
   still pairs to be scanned, we call the relocate subroutine to relocate
   the <kbd>head</kbd> of the next pair (by placing the <kbd>head</kbd> pointer in <kbd>old</kbd>).  The <kbd>relocate_continue</kbd> register is set up so that the
@@ -1923,7 +1923,7 @@ accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))
 
 "update_tail",
      perform(list(op("vector_set"), reg("new_tails"), reg("scan"), reg("new"))),
-     assign("scan", list(op("+"), reg("scan"), cons(1))),
+     assign("scan", list(op("+"), reg("scan"), constant(1))),
      go_to(label("gc_loop")),
 </pre></div></div>
       </p></div>
@@ -1966,7 +1966,7 @@ accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))
     branch(label("already_moved")),
     assign("new", reg("free")),       // new location for pair
     // Update "free" pointer.
-    assign("free", list((op("+"), reg(free), cons(1))),
+    assign("free", list((op("+"), reg("free"), constant(1))),
     // Copy the head and tail to new memory
     perform(list(op("vector_set"), 
                  reg("new_heads"), reg("new"), reg("oldhr"))),
@@ -1975,7 +1975,7 @@ accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))
                  reg("new_tails"), reg("new"), reg("oldhr"))),
     // Construct the broken heart
     perform(list(op("vector_set"),
-                 reg("the_heads"), reg("old"), cons("broken_heart"))),
+                 reg("the_heads"), reg("old"), constant("broken_heart"))),
     perform(list(op("vector_set"),
 		 reg("the_tails"), reg("old"), reg("new"))),
     go_to(reg("relocate_continue")),
@@ -2046,7 +2046,7 @@ accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))
     <div class='footnote'>
       <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
     <FOOTNOTE>
-    <p>This idea was invented and first implemented
+    This idea was invented and first implemented
       
       by Minsky, as part of the implementation of 
       
@@ -2066,8 +2066,7 @@ accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))
       Hewitt, Lieberman, and Moon (see Lieberman and Hewitt
       1983) to take advantage of the fact that some structure is more volatile
       and other structure is more permanent.  
-    </p>
-    <p>
+
       An alternative commonly used garbage-collection technique is the 
       
       
@@ -2079,8 +2078,7 @@ accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))
       
       discussion of the mark-sweep method can be found in 
       <CITATION>Allen 1978</CITATION>.
-    </p>
-    <p>
+
       The Minsky-Fenichel-Yochelson algorithm is the dominant algorithm in
       use for large-memory systems because it examines only the useful part
       of memory.  This is in contrast to mark-sweep, in which the sweep
@@ -2094,7 +2092,7 @@ accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))
       compressed out.  This can be an extremely important performance
       consideration in machines with virtual memory, in which accesses to
       widely separated memory addresses may require extra paging
-      operations.</p>
+      operations.
     </FOOTNOTE></div>
 
     

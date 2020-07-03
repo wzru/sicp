@@ -1678,159 +1678,179 @@
         <div class='SECTION'><SECTION>
     
 
-    <SECTIONCONTENT></SECTIONCONTENT>
+  <SECTIONCONTENT></SECTIONCONTENT>
 
-    
-    
-    
-    
-    
-    
-    
+  
+  
+  
+  
+  
+  
+  
 
-    <div class='permalink'>
+  <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
-      To design a register machine, we must design its <EM>data paths</EM>
-      (registers and operations) and the <EM>controller</EM> that sequences
-      these operations.  To illustrate the design of a simple register
-      machine, let us examine Euclid's Algorithm, which is used to compute
+    To design a register machine, we must design its <EM>data paths</EM>
+    (registers and operations) and the <EM>controller</EM> that sequences
+    these operations.  To illustrate the design of a simple register
+    machine, let us examine Euclid's Algorithm, which is used to compute
+    
+    the greatest common divisor (GCD) of two integers.  As we saw in
+    
+    section <REF NAME="sec:gcd"><a class="superscript" id="5.1-sec-link-1.2.5" href="./1.2.5.html">1.2.5</a></REF>, Euclid's Algorithm can be
+    carried out by an iterative process, as specified by the following
+    
       
-      the greatest common divisor (GCD) of two integers.  As we saw in
-      
-      section <REF NAME="sec:gcd"><a class="superscript" id="5.1-sec-link-1.2.5" href="./1.2.5.html">1.2.5</a></REF>, Euclid's Algorithm can be carried out by an iterative
-      process, as specified by the following
       function:
-
-      <div class='snippet' id='javascript_97_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEYBQWBmBXAOwGMAXASwHtDQBzYgEwAoBDAGlACMBKUAbyyghoAE4BTUvhE1OoALwLQABlAB+UC1AAuOoyacOmgKRduAbiwBfIA')">function gcd(a, b) {
+      
+    <div class='snippet' id='javascript_97_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEYBQWBmBXAOwGMAXASwHtDQBzYgEwAoBDAGlACMBKUAbyyghoAE4BTUvhE1OoALwLQABlAB+UC1AAuOoyacOmgKRduAbiwBfHPWYAmJRwx3zQA')">function gcd(a, b) {
     return b === 0 ? a : gcd(b, a % b);
 }
 
 </pre></div></div>
-    </p></div>
+  </p></div>
 
-    <div class='permalink'>
+  <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-      A machine to carry out this algorithm must keep track of two numbers,
-      $a$ and $b$, so let us assume that these numbers are stored in two
-      registers with those names.  The basic operations required are testing
-      whether the contents of register <kbd>b</kbd> is zero and computing the
-      remainder of the contents of register <kbd>a</kbd> divided by the contents
-      of register <kbd>b</kbd>.  The remainder operation is a complex process,
-      but assume for the moment that we have a primitive device that
-      computes remainders.  On each cycle of the GCD algorithm, the contents
-      of register <kbd>a</kbd> must be replaced by the contents of register <kbd>b</kbd>, and the contents of <kbd>b</kbd> must be replaced by the remainder of
-      the old contents of <kbd>a</kbd> divided by the old contents of <kbd>b</kbd>.
-      It would be convenient if these replacements could be done
-      simultaneously, but in our model of register machines we will assume
-      that only one register can be assigned a new value at each step.  To
-      accomplish the replacements, our machine will use a third
-      <QUOTE>temporary</QUOTE> register, which we call <kbd>t</kbd>.  (First the remainder
-      will be placed in <kbd>t</kbd>, then the contents of <kbd>b</kbd> will be placed
-      in <kbd>a</kbd>, and finally the remainder stored in <kbd>t</kbd> will be placed
-      in <kbd>b</kbd>.)
-    </p></div>
+    A machine to carry out this algorithm must keep track of two numbers,
+    $a$ and $b$, so let
+    us assume that these numbers are stored in two registers with those names.
+    The basic operations required are testing whether the contents of register
+    <kbd>b</kbd> is zero and computing the remainder of the
+    contents of register <kbd>a</kbd> divided by the contents
+    of register <kbd>b</kbd>.  The remainder operation is a
+    complex process,
+    but assume for the moment that we have a primitive device that
+    computes remainders.  On each cycle of the GCD algorithm, the contents
+    of register <kbd>a</kbd> must be replaced by the contents
+    of register <kbd>b</kbd>, and the contents of
+    <kbd>b</kbd> must be replaced by the remainder of
+    the old contents of <kbd>a</kbd> divided by the old
+    contents of <kbd>b</kbd>. It would be convenient if these
+    replacements could be done simultaneously, but in our model of register
+    machines we will assume that only one register can be assigned a new value
+    at each step.  To accomplish the replacements, our machine will use a third
+    <QUOTE>temporary</QUOTE> register, which we call
+    <kbd>t</kbd>.  (First the remainder
+    will be placed in <kbd>t</kbd>, then the contents of
+    <kbd>b</kbd> will be placed in
+    <kbd>a</kbd>, and finally the remainder stored in
+    <kbd>t</kbd> will be placed in
+    <kbd>b</kbd>.)
+  </p></div>
 
-    <div class='permalink'>
+  <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-      
-      
-      We can illustrate the registers and operations required for this
-      machine by using the data-path diagram shown in
-      figure <REF NAME="fig:gcd-machine"><a class="superscript" id="5.1-fig-link-5.1" href="./5.1.html#fig_5.1">5.1</a></REF>.  In this
-      diagram, the registers (<kbd>a</kbd>, <kbd>b</kbd>, and <kbd>t</kbd>) are represented
-      by rectangles.  Each way to assign a value to a register is
-      indicated by an arrow with an <kbd>X</kbd> behind the head, pointing from
-      the source of data to the register.  We can think of the <kbd>X</kbd> as a
-      button that, when pushed, allows the value at the source to <QUOTE>flow</QUOTE>
-      into the designated register.  The label next to each button is the
-      name we will use to refer to the button.  The names are arbitrary, and
-      can be chosen to have mnemonic value (for example, <kbd>a<-b</kbd> denotes
-      pushing the button that assigns the contents of register <kbd>b</kbd> to
-      register <kbd>a</kbd>).  The source of data for a register can be another
-      register (as in the <kbd>a<-b</kbd> assignment), an operation result (as in
-      the <kbd>t<-r</kbd> assignment), or a constant (a built-in value that
-      cannot be changed, represented in a data-path diagram by a triangle
-      containing the constant).
-    </p></div>
+    
+    
+    We can illustrate the registers and operations required for this
+    machine by using the data-path diagram shown in
+    figure <REF NAME="fig:gcd-machine"><a class="superscript" id="5.1-fig-link-5.1" href="./5.1.html#fig_5.1">5.1</a></REF>.  In this
+    diagram, the registers (<kbd>a</kbd>,
+    <kbd>b</kbd>, and <kbd>t</kbd>) are
+    represented by rectangles.  Each way to assign a value to a register is
+    indicated by an arrow with an <kbd>X</kbd> behind the
+    head, pointing from the source of data to the register.  We can think of
+    the <kbd>X</kbd> as a button that, when pushed, allows
+    the value at the source to <QUOTE>flow</QUOTE> into the designated register.
+    The label next to each button is the name we will use to refer to the
+    button.  The names are arbitrary, and can be chosen to have mnemonic value
+    (for example, <kbd>a<-b</kbd> denotes pushing the
+    button that assigns the contents of register <kbd>b</kbd>
+    to register <kbd>a</kbd>).  The source of data for a
+    register can be another register (as in the
+    <kbd>a<-b</kbd> assignment), an operation result (as in
+    the <kbd>t<-r</kbd> assignment), or a constant
+    (a built-in value that cannot be changed, represented in a data-path
+    diagram by a triangle containing the constant).
+  </p></div>
 
-    <div class='permalink'>
+  <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
-      An operation that computes a value from constants and the contents
-      of registers is represented in a data-path diagram by a trapezoid
-      containing a name for the operation.  For example, the box marked <kbd>rem</kbd> in figure <REF NAME="fig:gcd-machine"><a class="superscript" id="5.1-fig-link-5.1" href="./5.1.html#fig_5.1">5.1</a></REF> represents an
-      operation that computes the remainder of the contents of the
-      registers <kbd>a</kbd> and <kbd>b</kbd> to which it is attached.  Arrows
-      (without buttons) point from the input registers and constants to the
-      box, and arrows connect the operation's output value to registers.
-      A test is represented by a circle containing a name for the test.  For
-      example, our GCD machine has an operation that
-      tests whether the contents of register
-      <kbd>b</kbd> is zero.  A test also has arrows from its input
-      
-      
-      registers and constants, but it has no output
-      arrows; its value is used by the controller rather than by the data
-      paths.  Overall, the data-path diagram shows the registers and
-      operations that are required for the machine and how they must be
-      connected.  If we view the arrows as wires and the <kbd>X</kbd> buttons as
-      switches, the data-path diagram is very like the wiring diagram for a
-      machine that could be constructed from electrical components.
-      
-      
+    An operation that computes a value from constants and the contents
+    of registers is represented in a data-path diagram by a trapezoid
+    containing a name for the operation.  For example, the box marked
+    <kbd>rem</kbd> in
+    figure <REF NAME="fig:gcd-machine"><a class="superscript" id="5.1-fig-link-5.1" href="./5.1.html#fig_5.1">5.1</a></REF> represents an operation that
+    computes the remainder of the contents of the registers
+    <kbd>a</kbd> and <kbd>b</kbd> to which
+    it is attached.  Arrows (without buttons) point from the input registers and
+    constants to the box, and arrows connect the operation's output value
+    to registers. A test is represented by a circle containing a name for the
+    test.  For  example, our GCD machine has an operation that tests whether the
+    contents of register <kbd>b</kbd> is zero.  A test also
+    has arrows from its input
+    
+    
+    registers and constants, but it has no output
+    arrows; its value is used by the controller rather than by the data
+    paths.  Overall, the data-path diagram shows the registers and
+    operations that are required for the machine and how they must be
+    connected.  If we view the arrows as wires and the
+    <kbd>X</kbd> buttons as switches, the data-path diagram
+    is very like the wiring diagram for a machine that could be constructed
+    from electrical components.
+    
     <FIGURE>
-      <img id="fig_5.1" src="../img_original/Fig5.1a.std.svg">
+      <img class="scale_factor_3" id="fig_5.1" src="../img_original/Fig5.1a.std.svg">
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.1.html#fig_5.1">Figure 5.1 </a></b>Data paths for a GCD machine. </div>
     </FIGURE>
   
-    </p></div>
+  </p></div>
 
-    <div class='permalink'>
+  <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-      
-      
-      In order for the data paths to actually compute GCDs, the buttons must
-      be pushed in the correct sequence.  We will describe this sequence in
-      terms of a controller diagram, as illustrated in
-      figure <REF NAME="fig:gcd-controller"><a class="superscript" id="5.1-fig-link-5.2" href="./5.1.html#fig_5.2">5.2</a></REF>.  The elements of the controller
-      diagram indicate how the
-      data-path components should be operated.  The rectangular boxes in the
-      controller diagram identify data-path buttons to be pushed, and the
-      arrows describe the sequencing from one step to the next.  The diamond
-      in the diagram represents a decision.  One of the two sequencing
-      arrows will be followed, depending on the value of the data-path test
-      identified in the diamond.  We can interpret the controller in terms
-      of a physical analogy: Think of the diagram as a maze in which a
-      marble is rolling.  When the marble rolls into a box, it pushes the
-      data-path button that is named by the box.  When the marble rolls into
-      a decision node (such as the test for <kbd>b</kbd>$\, =0$), it leaves the
-      node on the path determined by the result of the indicated test.
-      Taken together, the data paths and the controller completely describe
-      a machine for computing GCDs.  We start the controller (the rolling
-      marble) at the place marked <kbd>start</kbd>, after placing numbers in
-      registers <kbd>a</kbd> and <kbd>b</kbd>.  When the controller reaches <kbd>done</kbd>, we will find the value of the GCD in register <kbd>a</kbd>.
-      
-
-      
+    
+    
+    In order for the data paths to actually compute GCDs, the buttons must
+    be pushed in the correct sequence.  We will describe this sequence in
+    terms of a controller diagram, as illustrated in
+    figure <REF NAME="fig:gcd-controller"><a class="superscript" id="5.1-fig-link-5.2" href="./5.1.html#fig_5.2">5.2</a></REF>.  The elements of the
+    controller diagram indicate how the data-path components should be operated.
+    The rectangular boxes in the controller diagram identify data-path buttons
+    to be pushed, and the arrows describe the sequencing from one step to the
+    next.  The diamond in the diagram represents a decision.  One of the two
+    sequencing arrows will be followed, depending on the value of the data-path
+    test identified in the diamond.  We can interpret the controller in terms
+    of a physical analogy: Think of the diagram as a maze in which a marble is
+    rolling.  When the marble rolls into a box, it pushes the data-path button
+    that is named by the box.  When the marble rolls into a decision node (such
+    as the test for
+    <kbd>b</kbd>$\, =0$), it leaves
+    the node on the path determined by the result of the indicated test.
+    Taken together, the data paths and the controller completely describe
+    a machine for computing GCDs.  We start the controller (the rolling
+    marble) at the place marked <kbd>start</kbd>, after
+    placing numbers in registers <kbd>a</kbd> and
+    <kbd>b</kbd>.  When the controller reaches
+    <kbd>done</kbd>, we will find the value of the GCD in
+    register <kbd>a</kbd>.
+    
+    
     <FIGURE>
-      <img id="fig_5.2" src="../img_original/Fig5.2.std.svg">
+      <img class="scale_factor_5" id="fig_5.2" src="../img_original/Fig5.2.std.svg">
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.1.html#fig_5.2">Figure 5.2 </a></b>Controller for a GCD machine.</div>
     </FIGURE>
   
-    </p></div>
+  </p></div>
 
-    
+  
     <div class="permalink">
     <a name="ex_5.1" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.1">Exercise 5.1 </a></b> 
   
+    
+    
+    Design a register machine to compute factorials using the iterative
+    algorithm specified by the following
+    
       
-      Design a register machine to compute factorials using the iterative
-      algorithm specified by the following
-      function.  Draw data-path and
-      controller diagrams for this machine.
-
-      <div class='snippet' id='javascript_97_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEYBQWBmBXAOwGMAXASwHtDRcBDMygJ3LoBsAKQgSlAG8soIbSJkqNcqQCmTDgAcmlACb4yAGlDFKRaU14Dhh0Eyml8TGlp0zQAPlA1BR58ID8oBctWknL5wC5QSRkOK0JdUAAqD0UVdV8-RKEwiIBqUAxuAG5fAF9fEzMLIN0ODA1MnNygA')">function factorial(n) {
+      function.
+    
+    Draw data-path and
+    controller diagrams for this machine.
+    <div class='snippet' id='javascript_97_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEYBQWBmBXAOwGMAXASwHtDRcBDMygJ3LoBsAKQgSlAG8soIbSJkqNcqQCmTDgAcmlACb4yAGlDFKRaU14Dhh0Eyml8TGlp0zQAPlA1BR58ID8oBctWknL5wC5QSRkOK0JdUAAqD0UVdV8-RKEwiIBqUAxuAG5fAF9fEzMLIN0ODA1MnPy8BlJmVk4UbKA')">function factorial(n) {
     function iter(product, counter) {
         return counter > n 
                ? product
@@ -1841,7 +1861,7 @@
 }
 
 </pre></div></div>
-    
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_97_1_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_97_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1849,13 +1869,13 @@
     
 </EXERCISE></div>
 
-    
-    
-    
-    
-    
+  
+  
+  
+  
+  
 
-    
+  
 </SECTION></div></div>
 
     <div class='nav'>

@@ -1678,44 +1678,58 @@
         <div class='SECTION'><SECTION>
     
 
-      
-      
-
-      <div class='permalink'>
-<a name='p1' class='permalink'></a><p>
   
-  Simulation is useful not only for verifying the correctness of a
-  proposed machine design but also for measuring the machine's
-  performance.  For example, we can install in our simulation program a
-  <QUOTE>meter</QUOTE> that measures the number of stack operations used in a
-  computation.  To do this, we modify our simulated stack to keep track
-  of the number of times registers are saved on the stack and the
-  maximum depth reached by the stack, and add a message to the stack's
-  interface that prints the statistics, as shown below.
-  We also add an operation to the basic machine model to print the
-  stack statistics, by initializing <kbd>the_ops</kbd> in <kbd>make_new_machine</kbd> to
-  <div class='snippet' id='javascript_107_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0BYBQuAbASwGcAXACmPIoCIiA7IsogQ2IC8BTAWnNYDGAa1oAaUBQCUoALwA+UP2F1GzNpy61Jk0blD791SrQAOAJ0Zk+ZQUOusW5IgJJiJ0+YpvLTFhlf5HFhctbQBuIA')">list(list("initialize-stack", () => stack("initialize")),
+  
+
+  <div class='permalink'>
+<a name='p1' class='permalink'></a><p>
+    
+    Simulation is useful not only for verifying the correctness of a
+    proposed machine design but also for measuring the machine's
+    performance.  For example, we can install in our simulation program a
+    <QUOTE>meter</QUOTE> that measures the number of stack operations used in a
+    computation.  To do this, we modify our simulated stack to keep track
+    of the number of times registers are saved on the stack and the
+    maximum depth reached by the stack, and add a message to the stack's
+    interface that prints the statistics, as shown below.
+    We also add an operation to the basic machine model to print the
+    stack statistics, by initializing
+    
+      
+      <kbd>the_ops</kbd>
+    
+    in
+    
+      
+      
+      <kbd>make_new_machine</kbd>
+    
+    to
+    <div class='snippet' id='javascript_107_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+list(list("initialize-stack", () => stack("initialize")),
      list("print-stack-statistics", () => stack("print-statistics")));
-
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-  Here is the new version of <kbd>make_stack</kbd>:
-  <div class='snippet' id='javascript_107_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9QuUFNAAbNhVBdQAXlAkiMmQG5J0uQvUMARmwBOHAA5EuACzZLVABh3TZ8xkwAeHACZsLFDYqoM66UvqgZESmpmwkFL7+gcGhYaDE5NR0oFa2Ap4iommuDjlMVKb5ADSKQi6u0oYm5rl2pU1mltZtoADUoACM9Q2R0bHxiQFBqlExcQl+U32Dww3M3ovJqsyBHOsCs+MLSTY1OzZ7XnVpAL74rhmUtPQWNBbCYsXSVASgAlRcDjqTQCLhCQpfEZmUw0SoAIgAogwAgBPRS8fgALlAsAA8rA4ddIaAbqA2DIuGxPiMRmQ6DxQBQ3sE7EwfKDrjSGqVeFQZBzVlzDvNJltRnMJpsggBaFb3LnSWIUaL0JkWQXSO6uO5pR5ZehUEhUahMGRUABebA+RS57Q02mJHRa3XsKQ1UnWoumIXd4qOXrd8pGSpVoDhPjobDhqx1D1IT2yFlMhoSPCY1B4VDIXGtxJ8AIsMiYKIEfCiDA06atAiMNSYImUAD50cmSABzH4l+vLWvEhX9s08ARwgA6JDhNThTN4MmlrVdqgnaiIxk6864VT7-e3UlH48n6yoFYY0qlwSXnql4M5mqD6Xj+tA+a4FnTZBsAgY9i4TDbbAhXIhqY9BflwP5-ioyiLq0cJblIAD8OTdHBoDYqB4FUlB0FvLBO6Ia87xCChaHfr+mFQWGhrGlQpoWlGKGIVRJpmpawjEYwpEQVhYZJim0pphm1DZrh274a2qa8IJWY5kRO7YtCsKfpxbCTgAqiQLAkDQADu9CxAAjkQ9gUNi4AACoAILQAA0oSMZ3kB9DPq+FDvjoNxAA')">function make_stack() { 
+    Here is the new version of
+    
+      
+      
+      <kbd>make_stack</kbd>:
+    
+    <div class='snippet' id='javascript_107_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9QuUFNAAbNhVBdQAXlAkiMmQG5J0uQvUMARmwBOHAA5EuACzZLVABh3TZ8xkwAeHACZsLFDYqoM66UvqgZESmpmwkFL7+gcGhrsTk1HSgVrYCniKiYa6KwRZMVKZ5ADSKQi7FUoYm5jl2DmpExmaW1m2gANSgAIz1DVExcQl+AUGq47HxiTMDw6PFzN7TyarMgRwbAvOTS4E1uzb7XnVFAL5F6ZS09BY0FsJiRa5UBKACVFwcdSaARcIQFT4NUBmUw0SoAIgAogwAgBPRS8fgALlAsAA8rA4dcIVIblCZFw2B9IcUyHQeKAKK9gnYmD4Qddqa52rwqDJ2WtqUdFltZpFogspkkggBaVbE4qxCjReiMiwC6R3Vya6QPTL0KgkKjUJgyKgALzY70K1PaQO08qa3Va9hS6qkGxOotSkKFkuWTh08sVytAcJ8dDYcLW2qkuqe2VMBoSPCY1B4VDIXCt8p8-wsMiYKIEfCiDA0qctAiMNSYImUAD50YmSABzb5F2sravyznhf4UARwgA6JDhNThjN4MmlzvaY46XRavXsVR7veKw9H442VDLDGlIuC849IrBHI191Ijyyua4ZQoZBsAgY9i4TBbbHB1ODpnoL64b4fioyiqHCrRwmuUgAPzZL0kGgNi-6AZSIGgS8FgQeuoAwehwjwYhr7vihIGhgaRpUCa5qRvBMFkcapoWnhWEEQBRHAWhzYUNKKZptQmaYeuOGcdwvC8RmWZCPhUIxLCz6ER+44AKokCwJA0AA7vQsQAI5EPYFDYuAAAqACC0AANKEtGRQ-vQt73o+Og3EAA')">function make_stack() { 
     let s = null;
     let number_pushes = 0;
     let max_depth = 0;
     let current_depth = 0;
-
     function push(x) {
         s = pair(x, s);
         number_pushes = number_pushes + 1;
         current_depth = current_depth + 1;
         max_depth = math_max(current_depth, math_max);
     }
-
     function pop() {
         if (is_null(s)) {
             error("Empty stack: POP");
@@ -1724,11 +1738,9 @@
             const top = head(s);
             s = tail(s);
             current_depth = current_depth - 1;
-
             return top;
         }
     }
-
     function initialize() {
         s = null;
         number_pushes = 0;
@@ -1737,13 +1749,11 @@
 
         return "done";
     }
-
     function print_statistics() {
         display(accumulate((b, a) => stringify(a) + b,
-                           list("\n", "total-pushes = ", number_pushes,
-                                "\n", "maximum-depth = ", max_depth)));
+                   list("\n", "total-pushes = ", number_pushes,
+                        "\n", "maximum-depth = ", max_depth)));
     }
-
     function dispatch(message) {
         return message === "push"
             ? push
@@ -1755,42 +1765,59 @@
             ? print_statistics()
             : error(message, "Unknown request: STACK");
     }
-
     return dispatch;
 }
 
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-  Exercises <REF NAME="ex:instruction-count"><a class="superscript" id="5.2.4-ex-link-5.15" href="./5.2.4.html#ex_5.15">5.15</a></REF> through <REF NAME="ex:breakpoints"><a class="superscript" id="5.2.4-ex-link-5.19" href="./5.2.4.html#ex_5.19">5.19</a></REF>
-  describe other useful monitoring and debugging features that can be
-  added to the register-machine simulator.
-      </p></div>
-      
-      
+    Exercises <REF NAME="ex:instruction-count"><a class="superscript" id="5.2.4-ex-link-5.15" href="./5.2.4.html#ex_5.15">5.15</a></REF>
+    through <REF NAME="ex:breakpoints"><a class="superscript" id="5.2.4-ex-link-5.19" href="./5.2.4.html#ex_5.19">5.19</a></REF>
+    describe other useful monitoring and debugging features that can be
+    added to the register-machine simulator.
+  </p></div>
+  
+  
     <div class="permalink">
     <a name="ex_5.14" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.14">Exercise 5.14 </a></b> 
   
-  
-  Measure the number of pushes and the maximum stack depth required to
-  compute $n!$ for various small values of $n$ using the factorial
-  machine shown in Figure <REF NAME="fig:fact-machine"><a class="superscript" id="5.2.4-fig-link-5.11" href="./5.1.4.html#fig_5.11">5.11</a></REF>.  From your data
-  determine formulas in terms of $n$ for the total number of push
-  operations and the maximum stack depth used in computing $n!$ for any
-  $n > 1$. Note that each of these is a linear function of $n$ and is
-  thus determined by two constants.  In order to get the statistics
-  printed, you will have to augment the factorial machine with instructions to
-  initialize the stack and print the statistics.
-  You may want to also modify the
-  machine so that it repeatedly reads a value for $n$, computes the
-  factorial, and prints the result (as we did for the GCD machine in
-  figure <REF NAME="fig:gcd-with-io"><a class="superscript" id="5.2.4-fig-link-5.4" href="./5.1.1.html#fig_5.4">5.4</a></REF>), so that you will not have to repeatedly
-  invoke <kbd>get_register_contents</kbd>, <kbd>set_register_contents</kbd>, and
-  start.
-  
+    
+    Measure the number of pushes and the maximum stack depth required to
+    compute $n!$ for various small values of
+    $n$ using the factorial
+    machine shown in Figure <REF NAME="fig:fact-machine"><a class="superscript" id="5.2.4-fig-link-5.11" href="./5.1.4.html#fig_5.11">5.11</a></REF>.  From your
+    data determine formulas in terms of $n$ for the
+    total number of push operations and the maximum stack depth used in
+    computing $n!$ for any
+    $n > 1$. Note that each of these is a linear
+    function of $n$ and is thus determined by two
+    constants.  In order to get the statistics printed, you will have to augment
+    the factorial machine with instructions to initialize the stack and print
+    the statistics. You may want to also modify the machine so that it
+    repeatedly reads a value for $n$, computes the
+    factorial, and prints the result (as we did for the GCD machine in
+    figure <REF NAME="fig:gcd-with-io"><a class="superscript" id="5.2.4-fig-link-5.4" href="./5.1.1.html#fig_5.4">5.4</a></REF>), so that you will not have to
+    repeatedly invoke
+    
       
+      <kbd>get_register_contents</kbd>,
+      
+    
+    
+      
+      
+	<kbd>set_register_contents</kbd>,
+      
+    
+    and
+    
+      
+      <kbd>start</kbd>.
+      
+    
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_107_1_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_107_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1799,19 +1826,19 @@
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.15" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.15">Exercise 5.15 </a></b> 
   
-  Add 
+    Add 
+    
+    <EM>instruction counting</EM> to the register machine simulation.
+    That is, have the machine model keep track of the number of
+    instructions executed.  Extend the machine model's interface to
+    accept a new message that prints the value of the instruction count and
+    resets the count to zero.
+    
   
-  <EM>instruction counting</EM> to the register machine simulation.
-  That is, have the machine model keep track of the number of
-  instructions executed.  Extend the machine model's interface to accept
-  a new message that prints the value of the instruction count and
-  resets the count to zero.
-  
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_107_2_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_107_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1820,19 +1847,30 @@
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.16" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.16">Exercise 5.16 </a></b> 
   
-  Augment the simulator to provide for 
-  
-  
-  <EM>instruction tracing</EM>.
-  That is, before each instruction is executed, the simulator should print
-  the text of the instruction.  Make the machine model accept <kbd>trace_on</kbd> and
-  <kbd>trace_off</kbd> messages to turn tracing on and off.
-  
+    Augment the simulator to provide for 
+    
+    
+    <EM>instruction tracing</EM>.
+    That is, before each instruction is executed, the simulator should print
+    the text of the instruction.  Make the machine model accept
+    
       
+      
+	<kbd>trace_on</kbd>
+      
+    
+    and
+    
+      
+      <kbd>trace_off</kbd>
+    
+    messages to turn tracing on and off.
+    
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_107_3_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_107_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1841,18 +1879,18 @@
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.17" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.17">Exercise 5.17 </a></b> 
   
-  Extend the instruction tracing of
-  exercise <REF NAME="ex:reg-machine-instruction-trace"><a class="superscript" id="5.2.4-ex-link-5.16" href="./5.2.4.html#ex_5.16">5.16</a></REF> so that before
-  printing an instruction, the simulator prints any labels that
-  immediately precede that instruction in the controller sequence.  Be
-  careful to do this in a way that does not interfere with instruction
-  counting (exercise <REF NAME="ex:instruction-count"><a class="superscript" id="5.2.4-ex-link-5.15" href="./5.2.4.html#ex_5.15">5.15</a></REF>).
-  You will have to make the simulator retain the necessary label information.
-      
+    Extend the instruction tracing of
+    exercise <REF NAME="ex:reg-machine-instruction-trace"><a class="superscript" id="5.2.4-ex-link-5.16" href="./5.2.4.html#ex_5.16">5.16</a></REF> so that
+    before printing an instruction, the simulator prints any labels that
+    immediately precede that instruction in the controller sequence.  Be
+    careful to do this in a way that does not interfere with instruction
+    counting (exercise <REF NAME="ex:instruction-count"><a class="superscript" id="5.2.4-ex-link-5.15" href="./5.2.4.html#ex_5.15">5.15</a></REF>).
+    You will have to make the simulator retain the necessary label information.
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_107_4_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_107_4_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1861,22 +1899,28 @@
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.18" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.18">Exercise 5.18 </a></b> 
   
-  
-  
-  Modify the <kbd>make_register</kbd>
-  function
-  of
-  section <REF NAME="sec:machine-model"><a class="superscript" id="5.2.4-sec-link-5.2.1" href="./5.2.1.html">5.2.1</a></REF> so that registers can be traced.
-  Registers should accept messages that turn tracing on and off.  When a
-  register is traced, assigning a value to the register should print the
-  name of the register, the old contents of the register, and the new
-  contents being assigned.  Extend the interface to the machine model
-  to permit you to turn tracing on and off for designated machine registers.
+    
+    
+    Modify the
+    
       
+      <kbd>make_register</kbd>
+    
+    
+      
+      function
+    
+    of section <REF NAME="sec:machine-model"><a class="superscript" id="5.2.4-sec-link-5.2.1" href="./5.2.1.html">5.2.1</a></REF> so that registers can be
+    traced. Registers should accept messages that turn tracing on and off.  When
+    a register is traced, assigning a value to the register should print the
+    name of the register, the old contents of the register, and the new contents
+    being assigned.  Extend the interface to the machine model to permit you to
+    turn tracing on and off for designated machine registers.
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_107_5_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_107_5_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1885,41 +1929,64 @@
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.19" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.19">Exercise 5.19 </a></b> 
   
-  Alyssa P. Hacker wants a 
-  
-  <EM>breakpoint</EM> feature in the simulator to
-  help her debug her machine designs.  You have been hired to install
-  this feature for her.  She wants to be able to specify a place in the
-  controller sequence where the simulator will stop and allow her to
-  examine the state of the machine.  You are to implement a
-  function
-
-  <kbd class='snippet'>      set_breakpoint($machine$, $label$, $n$);</kbd>
-  that sets a breakpoint just before the $n$th instruction after the
-  given label.  For example,
-
-  <div class='snippet' id='javascript_107_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0BYBQuBnAUwBcB9AIwCciBDAawAcB7ASwDsSAKAcwGMAJmQC2tPgAsORADSgARCSIESAWgpzZ2AJQBuIA')">set_breakpoint(gcd_machine, "test-b", 4);
+    
+    Alyssa P. Hacker wants a 
+    
+    <EM>breakpoint</EM> feature in the simulator to help her debug her machine
+    designs.  You have been hired to install this feature for her.  She wants to
+    be able to specify a place in the controller sequence where the simulator
+    will stop and allow her to examine the state of the machine.  You are to
+    implement a
+    
+      
+      function
+    
+    <kbd class='snippet'>      set_breakpoint($machine$, $label$, $n$);</kbd>
+    that sets a breakpoint just before the $n$th
+    instruction after the given label.  For example,
+    <div class='snippet' id='javascript_107_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0BYBQuBnAUwBcB9AIwCciBDAawAcB7ASwDsSAKAcwGMAJmQC2tPgAsORADSgARCSIESAWgpzZ2AJQBuIA')">set_breakpoint(gcd_machine, "test-b", 4);
 
 </pre></div></div>
-  installs a breakpoint in <kbd>gcd_machine</kbd> just before the
-  assignment to register a.  When the simulator reaches the
-  breakpoint it should print the label and the offset of the breakpoint
-  and stop executing instructions.  Alyssa can then use <kbd>get_register_contents</kbd> and <kbd>set_register_contents</kbd> to manipulate
-  the state of the simulated machine.  She should then be able to
-  continue execution by saying
-
-  <kbd class='snippet'>      proceed_machine($machine$);</kbd>
-  She should also be able to remove a specific breakpoint by means of
-
-  <kbd class='snippet'>      cancel_breakpoint($machine$, $label$, $n$);</kbd>
-  or to remove all breakpoints by means of
-
-  <kbd class='snippet'>      cancel_all_breakpoints($machine$);</kbd>
+    installs a breakpoint in
+    
       
+      
+	<kbd>gcd_machine</kbd>
+      
+    
+    just before the assignment to register
+    
+      
+      <kbd>"a"</kbd>.
+    
+    When the simulator reaches the breakpoint it should print the label and the
+    offset of the breakpoint and stop executing instructions.  Alyssa can then
+    use
+    
+      
+      
+	<kbd>get_register_contents</kbd>
+      
+    
+    and
+    
+      
+      
+	<kbd>set_register_contents</kbd>
+      
+    
+    to manipulate the state of the simulated machine.  She should then be able
+    to continue execution by saying
+    <kbd class='snippet'>      proceed_machine($machine$);</kbd>
+    She should also be able to remove a specific breakpoint by means of
+    <kbd class='snippet'>      cancel_breakpoint($machine$, $label$, $n$);</kbd>
+    or to remove all breakpoints by means of
+    <kbd class='snippet'>      cancel_all_breakpoints($machine$);</kbd>
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_107_6_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_107_6_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1927,11 +1994,10 @@
     
 </EXERCISE></div>
 
-      
-      
-      
+  
+  
+  
 
-    
 </SUBSECTION></div></div>
 
     <div class='nav'>

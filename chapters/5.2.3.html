@@ -1678,24 +1678,39 @@
         <div class='SECTION'><SECTION>
     
 
-      
-      
+  
+  
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
-  The assembler calls <kbd>make_execution_function</kbd> to
-  generate the execution
-  function
-  for an instruction.
-  Like the analyze
-  function
-  in the evaluator of
-  section <REF NAME="sec:separating-analysis"><a class="superscript" id="5.2.3-sec-link-4.1.7" href="./4.1.7.html">4.1.7</a></REF>, this dispatches on the type of
-  instruction to generate the appropriate execution
-  function.
-  <div class='snippet' id='javascript_106_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH02APNso6nQ7FygkgAoqJAM4UANKAA2TAEZtF0hczIALKWwUAHMgoLKA5gtlMyLBTUPSAlKADeuUJ9Bk6s0N1AAXlAdNiYAE0kZCicAbnwvUAAnNgoiJPoAwOzQACImaWkqcxJcj0SvAH5GVk4CopKo2S0bPRIDJVV1TVAHHuMncorQAC5-IJzcijZZMuHPauZ2DmnZJvka3X0FZTUNe0dTCyMyQfnR8ezg3JUkpnIdOfnF2o5b+911lq32na790BmJiWUADIYVMZZSbmGgrGhPYYvZYwig0L6bNodXbdE5neaQibXaRMABubARFSRnGJZPR2kxVgoNjsoNO4MSBKueRSshoKQpiSpHB5qJSdNa21A1lsuPZXk5k0MbCSBD5DAFVRqyyVKrV4p+WP+PT6svOY2VST56NyAFUSCwSDQAO70KSyJJESi0egUACeSrGAEFwOAAKIAWQAQgAZUO5OK4AC+QA')">function make_execution_function(inst, labels, machine, pc, flag, stack, ops) {
+    The assembler calls
+    
+      
+      
+	<kbd>make_execution_function</kbd>
+      
+    
+    to generate the execution
+    
+      
+      function
+    
+    for an instruction.
+    Like the <kbd>analyze</kbd>
+    
+      
+      function
+    
+    in the evaluator of section <REF NAME="sec:separating-analysis"><a class="superscript" id="5.2.3-sec-link-4.1.7" href="./4.1.7.html">4.1.7</a></REF>,
+    this dispatches on the type of instruction to generate the appropriate
+    execution
+    
+      
+      function.
+    
+    <div class='snippet' id='javascript_106_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AQwGcmqBzEgfQCcBTNziQYBbXgApmrDpyokmFbkUq0SASlABvXKB2g+FIt3oALXgwAmYigyoAbCS3ZdZ8xcrqrVAblwBffMTk1HSMjtIAbgy2RLycvAAeAA4OUs5yCkrBapqg2rr6hvTWdlY29pJOMuluWZ4+-oSk7vS2NDQA1kSJnIncVMJiTACewgBGNLYANKA0ibzcDFlM6lq6oGR08qCRtqAAvKFMNGSDI+NTM3MLS955OgVG21H7ewek5rwEsrzmd2ugAH5QPNuDRuKcxhNpgAiACqJHaJBoAHd6LN5osVKBZIdeGNbLwAFzQ1R-NaE0CmCylEo7Op+AJNLKgVodLqcWwMUa8eyc7m2JjTPk8wQiXgrP4bdJPXYHSTHMTC2yi0RCrk85Y+P4Peg7F5vEgfL4kH5k3RAkFgxXq5VCVWgOGGz7fcwsm0UgCC4HAAFEALIAIQAMj6SWadBTivY6fVGUEscIGO1Yr1+lRqOFYglktnpomyMZvmr+ctNH8qARQGIqExOFL5AwSBQ4kkxNnPGX-rp6xR1vt1ptrE2W90djE20lbl37rwDI8xOo9gA+dY+Na+YEC3jYyvV2tKkcTxId1bTnvY9JMfuszrdJXWkvFkXZjk2o-06d6WeFKuLlcuCgmDXXQNw1bcKyrGseH4GsKHmQ92wlT9z24fs2FnaC2Fg+YxHzQsTWmPgsPkeCXyI98p2nHVf32Fd0ObKU4KbJgxG4bxcnXTcmG3U8u0tcFcwdeFERRehsz4RwQgoIY5gvXF8SJElgJ0fwGkCZpQETZNOHRa4VAQpI8wYAsizdR9LgxG5O27QdLmvNpbx6PoBl0zE6BHHSc0naZXJuZSB2lBhemOK8DkTHNaM0pMU2c9MqEzBCjJMgizI1VRJnDT9P18-SX1cw0WMQrU1mohdIqCxJbCGKpOHeeYqtkAQACsGEiJgyD6RIKDETKsrWWYjOSRJIuSdLGGCshlluNSmSxCoOFYmCSO4FVeGmI5DDIcVrJ0c8GH7CreENRVYLEaF5pIaFCKWuCVrtcV1poTbxX86iGFjRp4xCLTYgu6t0iS-C1tSgUfKuNy5GmRIyCQmzpWsbh6LQjCiOw8E8NMi7MNW-75A-OGtjHLMkgOsIuCJw8AMo3bbIpwJ9kyqCcvc7MxAp9tMqBH7PMs3LW3ZwyouS4GlUFCy9M2UlPwpbnU2EOKEtZqlLAF49AdM0Xqa-Od6DK5cdv+biGLoJjANKRHZ2mOnSAXLW1gsSJyBTE5ofYv5fA+9TmQdxstp6F2YYNo26xNo6zeh6YozEeiQ6bMOWNdupchmr76G5uD5Fxih1ZS0Wwd5zZpgITk2ChwPeICrYpXMOKQgODPjcNWuSCzrWIL3HmJa4Vnq+bk9MvPXusk4emwuizuIcPIeVAyvq5-noWgafUHxYhzVMtKv8Dc-YPGPjsRi4YUuApr4fAlt-zPx9p3-bEV2vA46cPfdrieMy-is5hAMLFABuL1cTIWIcSSDxKMAkxItaqTjBpBuYgBosmMGLbgiDYYzh1iyU60IG5XUuEKRBhEUGxi9liBusdT4qCsLweQVQAHNFQdrH8UdSEARqCoaa0DmTc1GAscgxhP6Lw1jaMWh9j6uwNueD4WwDjcN9sYTgkjupU38u3KCB5WYKP7shWyAFQosgcuye8ecQYeXvBou2+Rvzzi3hXBeXZ24xz3sxA+JdNG2PnrvUOTiI7-0AuYtxKlX7b38V2a+ftoZ3xhpfYJoB-DRJAv5UCW4gk6A-gBL+P8ZG8J8awkIwCWCgPAUpd2DJPoaUyQWB8PJ6HUVsJg8pxgcFKnYcQkI9T5FUO6m0lhgCPAG2osrGk9gunVB6WodhpTmRQWsGwdC5gOSnXkMIbOv9TCcGmdUyx9AoKJBsOCRZFB1AADJDmUjMJYfZi5XgrNiNMz2s0QjkXuhs9BtTM7QiIjgp5RD7lbNrKjZaBljx9M2diWs0zZnzMzoJd5-Ain+BafQf5t0PLkXbMC9BAyo5FRKQiyuQ5upE2eT+V53VoQ9kbBQHBhLvmp1BbHBsw5WZoortRKZR8IUkqPDCclTY4UTKxDy5sL4ibvnRT+TFZQKJ3NpfeJ5YrHicuhEqT5Ypmk-LpWo1szLtQgrZTMn4kLurQuVWqmVNoTFvm1SVEFEqSjYpThpbmbAaBrJoPwjGuchFl3oRIjpaEaAUBdQo1uyjdyqPNeojpriuznh0fZNkd43xGM1Ym-kYgzFRLQT+PWK4PFxy8WQaYOjIGBJUX8m6pFWxmOSXir8bBkbNiRThD1wMm0rTIvwdNUa-EMKsZFPNpsE6FtAA4zxZsiL4wCWBGtqSAYOm-q6Z1rrsmjLkiAhSRT1w4vVUuwNlTbBEoVZg3dNBGk2lNRpZ1gb2mZyvS67pdD5UmDOYM6OAb70jLoeM3FiRZiDGsGQdoh76ANkA2dX9iQ+X8pCIkIgTA+GgfaFbKIMRgOgEQ+BuDDTVBsxQy9bdtLuZMFauINJAiUqIe9eI2yREG2YTRrhYyS90MAfaDQxt-AcZUy1pvSKNjbGwfg-+4ySGR0YUceO-gk7-GhOdhEntWVn4Os4ePCSga+DuqY6ZSjoAxEVxQvwOjbbGPC3Wqx9j2N7qtx4yCnNNa54Dv3kRKGf7EPSbcbJ2+99H5uKUxwrExHMyLTYGhxVgXeA4InTSjSamwTiAnU+jBbzYt8Ei1J6LzJEMWaIjjLLD7aiJdtfYPLn7ajfvVX+uVLKQWKtmCq0QF7Jm1mZt3LVk5EvbN2aK45dLwUGs5QM9sMI6vldpS1jyf7xtWosRil9UcBlTcnPSZTWJFvdHyuYFia20NR229Kx148rgEDBAMMjLbl5ixa2LPTkpbLGWZAcI7J3OD3YoUo8sYbmvg2HqzV7Hh6FrD2s0EepB+zczWxIZoOc1q9Tif4oxV2e28f1hoHzcO-tcHPuxTz4TvOw7ns-Ti07+MpO4KCcEZHoQLt0-MY73BhAro0nk7iG7IEEY0k9+nL3mit0S1HJRyd-PfXHhh+hBJeyIf7CQIgthbDFV0D+rDYh4grDR2sSXj2uvxDMyJt2n5qLQnMHQCLCT8BrB-X+gHugy2CBl8V1j0asof2hD6YQXUhgsZExSWAAB5WARTMqJO4vZgmvZA3DQOAMtzmbDasf7FHaP+Pe1FFmDH2JIEzcK-VbIOKUQqAAC9xBW50Br0A0vZcx4N0bk00JTd-FxTXJgOyKAVNECwI+20SfJ80lQ4j6F9QOkEw0pPQIh9J5lr3jvA-oQQehCP3Tlvx89-b-314BxoQ5+oHnwvc-55Ak31QbfRel-O+EkiVEX4ACOMR5AUnAAAFQ9NAAA0jgtvff8Nbp1egxvzeCz7ZU20mMyqz+HFwCkHX7GhAACpSALofgoDa9M8dAG8aw-8+F38O9i8dwqwMDV8rloR6ISQQ8s1HgJMgIkD-gg8355525cDtw18HQjYiCu99cQUiY+NwD45+wiYH5n4k8qDiD-gP46CYQz9RIr8b8KAKQAAlH0AAcUgAfx9GkM3QJ0D2KW-x-F-0WH-3Z29hYAVGTCGGug2G4E2zQygnL3sD4FMPMPxyBDqmNFNDngpF4GvyiDECMOmAGQGRsLBHMM8CT0BFOWpD8LMOWCCIpHlBOC8N-klTCICIAKxFHXzUk2IlujQ2MwINnCg1xUcycTbWQ2iE700MeCyKYJw2pT0ITHHnywoTgniAOUSx2SoHBAaOWSsNGyZ1K30naN52q1m2pHexW1yR6JZniF4DICIGHgmn6NKKKElWGKFxAwwjqPGMmOmP0lmLIwmnoWDn5znV2IfmqOF20hNGRE4BbTKn01smhjB1UwrXBBnzIFUJpmlBEXuKAMeLOhEVeNrVLyI1YwXH8jAIoFWTWK4G4mvyOi2ilztxBNnGuU8l0U5UVQPyP04EQxwSCLcTswww3xIFz1qR308C1jALbTWS5AJGvFOkVWhhwVdiFEwV+KLhcVuHr3VSiFaDIEWFiGANVRrXbmiLEHumunSPgmsDAW2gYMcJdCwOtXFJWklOpM11aJOkzlFKii+MVJFNVXShxLhwpOVM-yfkCRYN0A-k1OhD9Bl2oEqg9yNBdDrTRgpD+K3VYPQRhUVJe1l2OF5PMEQPdKzxlX0W6H5IaxrXPD1DlAMJOE1KNKpJNK7A3jYOeBlKdCcN+D32BDJytCtLEIvzbQgSXyK1wwPTZ3N3VQSA2LgmuIHm0UvDozIPkxjxtysKzimkEKr2N0DNNOJyT3PAmn7AhJbBrK2NBBOAGWLT1znlmJnL6momrKmNrJ7XTxUnmOXw-1okyjoOnwbG4EpU5hohR3Q3EzHSHUjnBLGMhLcJiCdgUyykXImOXKL14MygnxX3oPwIAi5PYxyRvOhKdl32nCBChI4LBNiBHKhLvNhIOChLfOlk3KnwYPOl9J5Lgno2WmAq7CBC5L9IwrbXfKQrwPXxjjbWwv+CBBvHZEIsQt3JQp-NlwniWAorWCBFmFChXFRwguRIOkSDmGOh4o4rBk1BiSIvovwKxKPMQ3EsnxIodCu1YvNCRI4qIuELkuBkdBEkLNvI6Rli0xry6OZDIu+POzrVWjQyuOyI40VJJGCwsqSJCC6HMF5PYxYh0Qu2hx9VuLICM1MoMs0vpK1nPA+IOBMp1LMuhF+OCtsgBICrOixJiulA4vuOFjOkUvZMB1itWN4Aj1PObBHKXM2Pcgmn8nPG5lys+OJjHPcgRVehBXCmrH7RyuSCoFnjh2nAqtauvLWQSEUX1I6rcTzgNI6vOxGrhwjnGriREXasGvcVY1mrmr6g4s8EWrnmLUcrTnHjUSbG4CGH3VWiLUvDQxaPBAPE1I2pOLEkaIWEoFfBLEoUaJMN4HihKMrNpVMFsCuA7Iu1V3rOlBNEaPY37ExT6syqol1VrFcEahFL6vYyljniBBsJeqCw8t0y625h2oUH2sBoKrnWLV+oRr6gpGRtervgxtqOvNhqBqpiOvkGWF+rr2tXQXaIH1lJNFdAAB9Oa6V2z2iibKKvwtoyarDphOi1Kbr7t7qNRX1+bvCeQrgjK5p8kFIxBGJQRZcJS+qvKywnyFApbRYeo551aJgCQlTtb8cfqQZSwUcDTnLXKdErajEW0Hz-hWVLwY8QIlbTjYgriKT7pLtEgxYTbNbzbGjvLpQW0qrBBeALiritZ68wQ4gmNgs0ZVpIorK8L0K+THi7L-bVUxS06A6tYrLGLlQMq4Eg6S74qCSGwmKoLdKgKcN10pS1aTYNazbeqnryNxRwaSCtrhZNrPcDyTMgZLKa79zKUcNGtkiUZHjY5B1R7TJ86IyBifwUjF7wqGMzKV7e6MsAs57vTmyd757NTCUg4zzUiWIt7lol6Upd6xoqjmafxDceyh6KrnzirMcfl+FnaArpgpq3FvEZrPdAMRKI6th4gQaX13tn7HgoGUKLolKdAuZx4-ozt-7raRLvUiKEH8DsEjz04OlNNTMsHLhhES4cHEK8H196lkHgiuEeEKkMHSGjEQHXZcHp8T16HUHtIT0SHmMjEOHqG9ySMeGtTYhwsBHtMFrdMYZOGUKUsItCGHj5A4tpGKNZHhHpwKQaHB9acTtxHZYDH6cNGRYvVyGqGdGczyd+EtLz8tlrzf4ZJwJ6AW7Clxlzw2AyA5ko69g-huYrjMpFUGAcFoRRgwmp61rdBUTME+BhAcEJBphRgt59oABSUAFJ6J6cRVPYRJhgZJ1JgfFJganJzBBuAAWgieya7FgT-WhDybGnInCZJGmEFTEAAAZVqgj6l90zpvHzAKnq8ItumF4-osFGlTp6n4nWm60zpQmmnO0WnSSan-hxnQmmTM5mmImVmgjxnqmktupmmp7Rn55+H7wsEOkqmSRSm54CCfGhmez6Rg4KTmyBnLjMHzocEMAOmAA2W4F5+et5nxj50hlp6YAAFi6Z8EnujhBZdp8BvuRWBd8c+YWa8CAA')">function make_execution_function(inst, labels, machine, 
+                                 pc, flag, stack, ops) {
     const x = head(inst);
-
     return x === "assign"
         ? make_assign(inst, machine, labels, ops, pc)
         : x === "test"
@@ -1703,70 +1718,99 @@
         : x === "branch"
         ? make_branch(inst, machine, labels, flag, pc)
         : x === "go_to"
-        ? make_goto(inst, machine, labels, pc)
+        ? make_go_to(inst, machine, labels, pc)
         : x === "save"
         ? make_save(inst, machine, stack, pc)
         : x === "restore"
         ? make_restore(inst, machine, stack, pc)
         : x === "perform"
         ? make_perform(inst, machine, labels, ops, pc)
-        : error(inst, "Unknown instruction type: ASSEMBLE");
+        : error(inst, "Unknown instruction type in assemble:");
 }
 
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-  For each type of instruction in the register-machine language, there
-  is a generator that builds an appropriate execution
-  function.  The
-  details of these
-  functions
-  determine both the syntax and meaning of
-  the individual instructions in the register-machine language.
-  We use data abstraction to isolate the detailed syntax of
-  register-machine expressions from the general execution mechanism, as
-  we did for evaluators in section <REF NAME="sec:representing-expressions"><a class="superscript" id="5.2.3-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>,
-  by using syntax
-  functions
-  to extract and classify the parts of an instruction.
-      </p></div>
-
+    For each type of instruction in the register-machine language, there
+    is a generator that builds an appropriate execution
+    
       
+    function.
+    The details of these
+    
+      
+      functions
+    
+    determine both the syntax and meaning of the individual instructions in the
+    register-machine language. We use data abstraction to isolate the detailed
+    syntax of register-machine expressions from the general execution mechanism,
+    as we did for evaluators in
+    section <REF NAME="sec:representing-expressions"><a class="superscript" id="5.2.3-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>, by using syntax
+    
+      
+      functions
+    
+    to extract and classify the parts of an instruction.
+  </p></div>
+
+  
       <div class='permalink'>
         <a name='h1' class='permalink'></a><h2>
     
-  Assign instructions
-      </h2></div>
-
+    
       
-      <div class='permalink'>
+	
+	The instruction assign
+	
+      
+    
+  </h2></div>
+
+  
+  <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-  The <kbd>make_assign</kbd>
-  function
-  handles assign instructions:
-  <div class='snippet' id='javascript_106_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0mBnbqgcxIAKKiW4UANIyZkAFqLZSANkwBGbJdyk0ADmwBOTanS2gdZAJSgA3rlD3QZExVAUm+-mxcBeUJ4oc+mz8VOIGQsxyClI8fIKBwRwkTAxsImIUFhYA3HYOThmgAG5MSkScbAAeOqC+sQIkHCVlFdXp4jl59gXixaXlHMT0vqEcugZGtI1VOkLNAzMWXQ4rAPzS7GN6hsbTbfOtOlKR8iSKoCrqmtrbkyZLK4+gAFwbnDr6VAxU1EWHQrI2EwACZzfqHCzHGSnc6XDTcTrLIaUKZmAwEGj6BgcZibeqCIRWWxPezcLwcAoUNgkCjcIRuDxeKQHQakQmdEmgEElcjvMhCcw5UDLAC++BWQQoRH09G2GKxONYnHxJFyIqAA')">function make_assign(inst, machine, labels, operations, pc) {
+    The
+    
+      
+      <kbd>make_assign</kbd>
+    
+    
+      
+      function
+    
+    handles
+    
+      
+      assign
+    
+    instructions:
+    <div class='snippet' id='javascript_106_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AQwGcmqBzEgfQCcBTNziQYBbXgApmrDpyokmFbkUq0SASlABvXKB2g+FIt3oALXgwAmYigyoAbCS3ZdZ8xcrqrVAblwBffMTk1HSMjtIAbgy2RLycvAAeAA4OUs5yCkrBapqg2rr6hvTWdlY29pJOMuluWZ4+-oSk7vS2NDQA1kSJnIncVMJiTACewgBGNLYANKA0ibzcDFlM6lq6oGR08qCRtqAAvKFMNGSDI+NTM3MLS955OgVG21H7ewek5rwEsrzmd2ugAH5QPNuDRuKcxhNpgAiACqJHaJBoAHd6LN5osVKBZIdeGNbLwAFzQ1R-NaE0CmCylEo7Op+AJNLKgVodLqcWwMUa8eyc7m2JjTPk8wQiXgrP4bdJPXYHSTHMTC2yi0RCrk85Y+P4Peg7F5vEgfL4kH5k3RAkFgxXq5VCVWgOGGz7fcwsm0UgCC4HAAFEALIAIQAMj6SWadBTivY6fVGUEscIGO1Yr1+lRqOFYglktnpomyMZvmr+ctNH8qARQGIqExOFL5AwSBQ4kkxNnPGX-rp6xR1vt1ptrE2W90djE20lbl37rwDI8xOo9gA+dY+Na+YEC3jYyvV2tKkcTxId1bTnvY9JMfuszrdJXWkvFkXZjk2o-06d6WeFKuLlcuCgmDXXQNw1bcKyrGseH4GsKHmQ92wlT9z24fs2FnaC2Fg+YxHzQsTWmPgsPkeCXyI98p2nHVf32Fd0ObKU4KbJgxG4bxcnXTcmG3U8u0tcFcwdeFERRehsz4RwQgoIY5gvXF8SJElgJ0fwGkCZpQETZNOHRa4VAQpI8wYAsizdR9LgxG5O27QdLmvNpbx6PoBl0zE6BHHSc0naZXJuZSB2lBhemOK8DkTHNaM0pMU2c9MqEzBCjJMgizI1VRJnDT9P18-SX1cw0WMQrU1mohdIqCxJbCGKpOHeeYqtkAQACsGEiJgyD6RIKDETKsrWWYjOSRJIuSdLGGCshlluNSmSxCoOFYmCSO4FVeGmI5DDIcVrJ0c8GH7CreENRVYLEaF5pIaFCKWuCVrtcV1poTbxX86iGFjRp4xCLTYgbMh2jK3iWVnUA-vafsSCIWxbGK3R1OZRIiCYYwxHiFYOOnMH+0SGxwXidbrH+9jMuo6FzDoXhoX8ho1nhrFElmQHMogvdBCh+wwZPXrdH4s6fWELqhlBwn2gpWAAHlYCU-BP1Arcdqy88KFmfsqUsTn-M-LGDijQYRcovrqOVxJNZAv4abh2aQlkOKoioAAvcQkMxkWIfZ02ZznegyYpqnzZly2vvocwaxxigC1w3gWAYdDna7ajRGj9D9QdRHkehbmdCBNPjEz0AKUTpgY+3V4DmhBnEgzvqs9ACuFzzguo6L5PS4dG3qDtx2q+roF26oTunYb4FuFBcFHRE1EvwARxieQKXAAAVD1oAAaSuzSm+Lg3QAtz2fxDpgw4LD66e+6LMOw8F7rj4He0Yo7AP7aEACpSAun5n79v5T+D0PFgjwuW8FZrBZoAlurwHT0RJMAqi35Hj32YrDLsctuIwK7KAze4Cy7cQoNAoG1cvxexlDESKGgApMUfgcMcvAvA7yQVlFBPE85rF5mAtaQkERIknnwGeUcKAUgAEo+gAOKQEXj6AR0sCH+Flv7bUcDf6H3-sYE+Vt6DyhOMmIY10NjcHMKWIG1EoKQ2hotXR+jSQ91AHVY0ppq4Ul4DPKIYgtHTDVmIdxfBzFTUsQQoEnjeDeN8fYw4CpXGgF1l4sEFjppxg0vROsdAKEsSIpfG+1FUnLTOlA2Jn0NI4MSU2B+KSbrzGmNQ9JCivzEVumdHBJIxAVNUUHKK2kAI1BUFYBIFBKlEJxlQcEcF4gUGmCY2wuSf4XlcJkfSQzuoAV6T+dxCzmkaXaTM9yCRAlECyE5BUCyFZGzKNWdIEy1Ggwwus5oLZtm7Imic+Q0wJo3wKbrACTzQRkGJjNFpP1BC8GRJwPC3wmZrHPIkMg-Y-mZNqeXMgUibLSgIJyNgULz4wpwtCZFMcEW7VstrVpv0RYLn8gSXsFBTBVGmdc7ivDyAl1AGM0lIMKWxFmKFFkp1bCnWhH3AenAwbr2YQQ3QZVlzC2MgDXlJBbbcq7p4beZLqmX04NYUYBJrxcp5RC9eEKxrcvkGdbFbB17GvpN-c5URWhkEWLEDFV8xQ3xAbuDRYh7rXRqfBNVBJFwQJsS6J1sDPUrW9Qy-p4IDXdXdYSi+WTr7pWFSKoNKrQ3b04mBNB-xebRuhH6KG1BKpCyNC6ZVy0KS4v+DI2BRDoT2s4Fa44trzB+3XBalpN52T2rdY6zN549RyhYAqaNdbU0ewxvHKp-a-VOlsb8Pxw9R7dvtOPLh9B7XEmCVlCk7jdZ0m3lWnQkytlkB2U7XttkAIcoSQgwCYg9VjpZsY9mDzAJcwIaTcmJoW3TkYZmsFtkJr9iubs49Oz9L3OWZeOo46sr3OJu+qpoG4Iksygene8iiFsNoplLDrdoQNm4LgzKQIxUrjIQUm9LEIXTFZVSjINLHExHpWmkV1EkNO1oWh8kG8k4lwgdKhs0M6MdPcrSpjW1u5diBLS0hETKXAf0mJo6W1+y0s45lRuvGU7nWho2uCsbbqSf+ECBtNr9P2o0zx5ufGy4JPtUZtYQIO3dAs5+TT1ntMAStZ5SyKgmAOfNJcUKZG5NssSByw6x1aPsp8uF9iXHdDueLtpwVxGJX-Us7h-jOVNgBZrtF8LlnWGYPYSu0S09Z78KislSmZyWl2dKeCYFKUiKrUWY8Zr4hoQNeDQ01r19VnMgsJEelPQTh6oVhRpJxS71kBo8c6903mKzYVbQhkeTmR-Lgoa951X8LsKVIKCyelNjTGNU8r5CtzxShDsyHWfDCm3c6Ss8su4oI5a4NmMQN24oeEDXi6UP3dmBDRdpD7h4gcqAykmmH-xOtPgFLF3zmwWN73nH+P9ugptFOW+dgKT33KBAXKj-4w3GxbTGyttbstqZcSYZ+Xmu3oQBgsBEvhUz6PMhxJIPE6rFL7vW5M7b3UBosmMEd7g4v2stB5cL9eovbDi8IlL2MQuHuQ7oF0+QwmNnZEMVU3WwudfNDqxpP5owFjkBRrt+HqVEegDxxNoG54PhbAOBb8nxhOCu-mac-yj79w2kPD7t9Z4L2XnsmyO8b5DsI48veEPJPSoY-wbDnQLNFs49vWa-7aescYUo7N6Yl6Scw9-anvPugyejYhVTxNsjK8qVpxmivC6rRM5Z66D3VuOcifoNzlgvOCQbupoL853eI5Kml5yw10IJ-GHXlP1X4-LcFm93wsQ8-je1EOVUndxyt8Kb+4NrEUFrBsHQuYDkp15DCBGaF1VMdp9QXDXrO-6gABkH-KRmHVhQd-KctG5+J+IQ5E18u+RCkaZ0RE68A2DIkyUEdaX27YEBP4Z+Mcl+1+hqgkta-A0s-gkySBSQmE74qBjw++JQRUY+LSPYjY3UFSZBMus+tBTY68TS8B5yUELBzYyBk4jB2ItY5+mBUBOB3B+BG2WI3BHk1CpB+uRCFB9gVBPyGk944BchP4UB0ISosBjqy+LSUEB4vBx4-B6BF+PwWB3UOB2hsSkyhhxB94KB6h5Bv+NIihk4pum258bANAqqNAL6SU+2COR2TukotkPuaENAys6+O2fur2kEge-IwefCoeXY54l6kejk94sedu8eb4ieY6yekU2OySReHOmo5sdOO48RBmpErYie560oREaEGEXatuRBLm-AYg+RJMVSpGFyDES2t61GoAmeJRREH4IElRrejO6QMIneIxPhysveuuckPOCkFaqkcSzI3hvhD4PI0+mhOxysi+NoNh5y3hURPuYgFxPhR+euGGSyLhusNx2+Kg9IyhCMjMnM-BYMZ0Fc4hEhIQOceskq5SUQMQ0+vx5cSMC+qgjS4JL01BZu58RcmY-he2pkYMF2N8KE-AzRzYrRxkgR6W7QdGmEq0L6ExaO9AfRre1cwJWJIxBegxJSbAVJsO1eFOte969edCSJnh2kEkysfA6JtujJIR-6jReJBwPWl8uERJmJIsZJ-WYolJ28hR4qdJfUxRM2RETyXx+spefUnJKY42Xy1OsOvgIB9AqJ4g4x-Bmhtp684xehGkQpYIdp-ABxPK7pfAzpXprpzIYMyp-AFJwZdx0+ChIJ-0rxx+-JWIjMahDxjwmhswOhogZx+htY4ORhz+tYr+KBX+Ahj+ZhV+UB7i7YMIaZHhCZVwbkn2xBjMOZfBThJgTxxy7izZx47xWxtZyODZ3Q+U+iYgXZ0+uso51pMaVwBAYIAwNuCpKU2RH2wRl2zutkxkd2tc8wM53Awg9azQlJ-ub22ZdZIGrYG5bxuee01yIOYU58XZEgzQARRYvJje04S5p5fmSevRKeMGleF5hOpAJKjA5gI2XJZp8GjeVpFRLemUMxjyDo8x05s5yxay6ig+6xAuHx9M25s5+5WQlJ-BbyfuuQ2FZ82kSG+kP86J2Rtur5MOwxeOjJ7KOJtk8QqsLhL2JUVS7FeGF0eWgIMaF0opC5B2NoR2MWtcXylmvF-GcuaWW2G+85NWQRsWR2ju0lbmoAslZc8+AlQI5uq+1usxGJi54lZ2KK2JMl2mRxNA+lMatlIlKlduK5m63GOlDoTpClKJrU4gylxJ4pml04FIHluB8gHp9l0KfCHpTlAVIsVlWloVyFu5kV58yVc5JltuH5rlRWI87eJlZWk8dxESMk4E6F3ECkI+8ZIQXQ5gtqdGLEl6qlpl20a50oEK+JNRTWolMIOq2854xqnVhJzlWKKKFa54BKnWdSIs41tk7KaKNWZ0y50soR0oBSVAvAw0Bw611QuuNyJ6dyny-k54fym1oOWY8QtyVFair0VS4U1YRRlym11Y0Ob5XYp1yQdxqq3S1YCab1Sase9Fae8OQNsO1GoNMO52ENSaWJ0NIqLFf1SaJek5fyhhTY3AQwextoYoxeUG-Br+B40ayN1VYkwyCwlAr4JYXSwyOivA8UrVbaGkpgtgVwL6R2h26MmU54JowydGHF1IcytwPRRCUErgjUbq3SdGbl04QIXidNaJTVtcuM8p2kaNCgmNPNzYu2JeQRngQ8ct9Nd6ytfydxEtvNCyuN8gywuto+yZRQ3SKc-qJoroAAPi7cWWMtTT0mlgbWiWMqMuzNLRGMCGTRuZTRqK4V7WNMzVcDWSEGsXzt9kkqCNDF6t0s+SaBKGxqHRTYdj1NXIxCnQSCGunZnGzbraQomrVfVZeuXS5RnYiTDkYpeGOiBHHfQH8lNXWvdBJeFtMIXRMMXd9cMqxdKJ1udf8oClNdvN-GCHEESYtMGqtJFFNTptavVfZnCd3Y6h6iqj3dvKvV5kJstXCSxf5IfekN5l9UpvSg0gnQSEnejYPWnTTS1eatxZhqJZOQRt1J1tPqvT-Q0pmfEi0Y1oUiUW0WA0mR-T+KMTNrKVkpA0vfGoGViAUnWoXkg3vTjcQgzWsDqctgg7Ulg8tG1mCdEI3fkFUj7F+ijefMJf5aZB+f2a5VdrZNYNwPRENY1vKc5RdOSfdGqcdbZNQiOAdGEFwKI19lxYilsKI7eczCef2YeFI5ON5WDp+Zsq2Ko4kA3c1cuUHfnFObFBmBdckO4jo2NFleJeqT+ZXVrMyVnixBw-ROQzEJwETuyWsCaZTvejBtBQ0OeGwGQFfuPXsH8J3aJfne+TygwOvHPvE7gojV2FAZoXwMIOvBINMKMBjvtAAKSgA5OvXVyaF7CZMMDZO5Mpw5PJP-CaHC4AC0owV0zCwuI5yQ0IZTY05ECTY03BYgAADJ4MU31PPljdkiEw05+rVrU1lMJdCLgkKKdIzLgRk9050edCSB6mdM0wqiM3MxI2dHE0s4aj07s8M8wvM80yc91D00kxcyKo5feAs3wk0ySLM5+N1pM9M+8z4Og2A4XsE6Ez1Q6Mc6ABgAMwAGy3D-NL2AshNAogsJPTAAAsQzfzHD3UQLiLNWtwRD8E8LwLI1cT3gQAA')">function make_assign(inst, machine, labels, operations, pc) {
     const target = get_register(machine, assign_reg_name(inst));
     const value_exp = assign_value_exp(inst);
-    const value_fun = is_operation_exp(value_exp)
-          ? make_operation_exp(value_exp, machine, labels, operations)
-          : make_primitive_exp(head(value_exp), machine, labels);
-
-    function perform_make_assign() {
+    const value_fun =
+        is_operation_exp(value_exp)
+        ? make_operation_exp(value_exp, machine, labels, operations)
+        : make_primitive_exp(head(value_exp), machine, labels);
+    return () => {
         set_contents(target, value_fun());
         advance_pc(pc); 
-    }
-
-    return perform_make_assign;
+    };
 }
 
 </pre></div></div>
-  <kbd>Make_assign</kbd> extracts the target register name (the
-  second element of the instruction) and the value expression
-  (the rest of the list that forms the instruction)
-  from the assign instruction using the selectors
-  <div class='snippet' id='javascript_106_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AQwGcmqBzEgfQCcBTNziQYBbXgApmrDpyokmFbkUq0SASlABvXKB2g+FIt3oALXgwAmYigyoAbCS3ZdZ8xcrqrVAblwBffMTk1HSMjtIAbgy2RLycvAAeAA4OUs5yCkrBapqg2rr6hvTWdlY29pJOMuluWZ4+vkA')">function assign_reg_name(assign_instruction) {
+    
+      
+      
+	The function
+	<kbd>make_assign</kbd>
+      
+    
+    extracts the target register name (the second element of the instruction)
+    and the value expression (the rest of the list that forms the instruction)
+    from the <kbd>assign</kbd> instruction using the selectors
+    <div class='snippet' id='javascript_106_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9coSaAA2bCqB58WoALygSRadIDc+KaGLlqdUAAciXABYCAHiNGgJ+qYv6qzTKgCdbAGgW8-ELajs5SXnJEXvQARAAmdGwxuvoAvnpShpS09KY0psJiTmFUBKACVFwcGloCrixC9sVhUmxeXjQ+MQCiDKYUAJ4BSgBcoLAA8rAxwRlhqaBs0lxsRS3OZHQ8oBT57pZsTHF1gQ0p6y6n7rxU0idKsxfhkdE7+efzzenNWcb0VCQqNQmNIqAAvNiFcTreruGo6Zr6CIUKKxBIkJIfUDffS-HKgOKVUxMChkawMNhcLhMADmbCa62RqMYlOpdNUKjUMXMVhiiJaAH4zBZLPywmMKVTaatOVy8qY+U9JEL5cIxc4JazpRyuQCgVQQeCkur9EK9cDQRC1UrQGM2h0ugBVEgsEg0ADu9AiAEciJSKGNwAAVACC0AA0jF-JK2fSsTjnijXoSuMTSZZdN88SZmOwOBEaZUKG0BCQmBSGVJZPJNiRi3WuO4YgAqUhMKlUGkYuLN5JzAykbImFNpskCGPSyslMrjrXs2WgGJ0igzNZKpmvWv1ihcXTqhZLFZrp6lcoT+ecxcrFdTm2gDf0ABuIL9qgAfGJQFu2A33M-pH6ISpHuNoHssqzQnekj2p0s5SnS-gxM6roel6bC+v6YwAErdAA4pAwbdFhMxYus6RkV8-YPgSRIkmSmb4Nm9DtlwNBkAI7ADP4ESbF4cRcLe1GVNUmh3DxnT8UIJrKqApBxGwBAAmwcTSbaiy+iCHFsFxoAHEcAh6cc4l8QJjSqTJhkCMZknmWpLFsVpOk3GJbC8ZJsxZoOfygMuHDfg2VlsIWPBtIJLxocFxZdMuJG4J5Rj4tefl0NuXCBZFbT+P+fphUmEVFiWMTXjMAjZXGcWMV5+K5pwAI8F4RBDiQAjFjYFC5cyxLeC1bBtf48IeZVCUmHVFANU1HCtRQFQkDwHWvJZo2DYQVUjbNY2NX8HC9a5RBbaYHTsUtx73uFOyeHcS0MStw30Elo3jVtO1kHtOQcAdDmjf4H1kLeSXOTNPDfYdwSOPFTWMKwnAYu6HDMGSSlQs0tbbKYZDuDV+ZBQVXRo7F+go-IBDSLSGNQ1jGVdMTtL41IhPDG4aiY-UwhYtWOwHBwD2bW9KwYeQMrqKJbNyBznD5I2aigjwAjS9NMTmgalqcPUUahFBd6FCoH4swrgIWkaMyNCL8gFjjk1MAARrI7hy7LRYCNyZBq2jQj+HbMTUzSate8b-ZMaAILSGxJKcGbIU+GWFYnfop4CPZ7FR2w3HYxHFvW-SOqySQ8mKd2t6MqnUXpzbahdT4dtJ9G5Ph1FpblvSbu2RrYS120JflWRizgTHLQwZHDeIQAspo1CmNIQy50pcSnZTYy058hd5YubdeBwQch8WcR9mkPyrfQwc0CwRCmBTOP19HkFhPT-7uAnF-J7P5u8BnjwtOq1G3wuckKdP5lCv3B+iFkJuk9E-COIwZjmTGJZAG-4-a71xPvRYNhdrFiRusemo1JY+TkMlOsP4dwCFdqRKQcdhLwkBjuRovdW5nXiIkHeLQwJHivhcemP13Dcwms9V6dB3qHQMocY42DjbqyeD9Vm4iLjUV4egt+i8pDkUTMyc8Mo3zqjUVnIqvAvArnVEKLWH4HBJX8kQtG-gKCc24VtPmfoBYKI1rI1BL15FAXVJqeCMpLx60UFoLm61Hq83QvYsgxp1hCj5u+T8VjaqBJ5vwuxP4wnuD5u49YnjYzaI3mQUOZ8I6KkFIHLQm8w5FzaB4lkXjtG+VXoUsIQpD7H1PqvSpWiFy+N4P4-IbQSQ5C4PU5wQoJbRIcLEjgIy1BMFMKYH8xxxkS38BLUGyjxRVKyR01WBiGYsDaXObxXIeleD6VsQZpoxYTNMFwSpgC1HAJdKAtCGEeASj4JYJSsVwbeVqeUnw8N3kYhTjSaoDd5r0H+YjJceC6lCHSiCis10A5NJPgIqgDA6gDAYJbGg0glmzOOX8ASJ0b4gjvlSByXBMXYtxaAI5JzZqOM-qS7+Odf7dm2YAylWKcX3JQmAul3kASBypGwLFshIFSQybpYRLULqlRBH7L5+JkWnxJpbJYssraHndlq6Q8LM5sJJdIMlrF2JqqWPqnV6rlizGaEy41LKp7soiYsdosFzV6qrouZ0TrlIyF1WMEM4BwDdCHgAIQADLdCgVKuBCrEXIMxgdNF+pHycF6gUDN1cEaAv9daolbDyFVEJkwOs20bCZorTQthBMtg1ncCWstGaOBlQEBmxxSIzpGK-PGbuR4i0cA9eWytphq3qiwetHBKrB26s1fmq1Frm0erbVWjtKjXjduwb2w8qwB2r2HSu0dBc6Z1vvO4H5lNxxvKUkC82zaCyHoQS0ai3bfJmLSl4UGXw+0QXVIArN3qHmoRQQdVk+JBizNAEKlioqM4SvjBVG6ENMYCrehmw92aAWPw9VwPFvTCW3npnsKWNAj4ouTei1D-Dm35EfXhgl-THH02mYdHBzBM3RKTV4FN1A00HsfhC3NOGm4txaFRkgw7Lm9JzmldttrO3L27dM8eAwAkcB-l4CeAJgUACsmDPi4GQbj-QBDNzE6YauBRTDRIKG7QOP1TIJtusKrgnZmr7q9axKIYTCOnqYHfGZcz7YyxiCxNzasPOgv8F5rwPmsTUSYE55D5MwtdioZhm9ebtW0vxfS3DZhfrEtPbo5c57oW-KvTmx+qWJMFn1VQp9kgjV+mHSatzLaXzporQ1rEzXOCGFUOqYS4mD1lWHZKopKHctPW62NgDgnsO6vy+JgSbTyYUdTV1golk5tVoy0JpbjKu0iG1rQhQeD32yq8MuLKnWOCGGEGuyQRxnwC3euxEh0jgKIYDi90tYT3vEMK2w0xKVCFpQsedW4Ag31g4Cq7MRP3E3k2LDLL6kMqsLuWPRvL-gvbfWB8jU9tZCTeTUKjig+DSc5B680AdI30Mk-1HQMdmDid0Gp-wgbTNyYM+60zv4vgzOickAtrHy3puMdIZIF9J3jHmVBwQgK+Ovwc+ZxJh7jWLh-be2jIHX6yLbp7jW1obqfDo5iGGo4Ox-RQfiRDaDIqxVsHg5RJVJgKcCHyO7Sw+WvC+7BTIB2MQKdq29zIX33EA8MQDhTqn6ueo8ACfVBJJBA8AzjzYnIy0A6Y0tsc8g1h0di6y9jgwJMaQE98+tAktu1D5-+5YDg8k0frUcQOod6GW-tWPU1092DbakeaTO61c7sud4rSPjV3etcKeZN2k3om46w6V0Q32veReSEV6lIH-hRHS5biw39m-1g64B3rkhwvmFX7SEb1hf6zfpcXFbmeDfC925Tw75iTu4ML2xEj5zN-McD1QPD2IAywNWEAmPZBcA5vf0AQWArPFnE6aiWBOVRA+3P4RVIaB3KoXgGkOkOIQdB2HgBgCgSxTmfAwPYScuE4MgkQAAMgYOlX0lIPaiznGXwKS28gfSTlAODwLDVj4OgOc2En3XQ3bRQLOmEnwMIOIJlgAxiEEMGgDnEMnwfUkLYVQJlQBjk24PxEbWmjKn4JC0MLVmMJENwPwUUCbW600LtWkLwNpDkLtkULMJUOQUMMk1bXsLnwWh0LlT0IAIhmXT4KkOXg9g9SENBUsMFSqAnxHWoKcIIOUnkOmkUKiI8OcwSKnzuF8PXXoDQOhyCPd3BXJhpBoEmhoCfxLxwyryKxr273PRoF2DgNbzmixA711QPRnw3wnR4CnSHxRWXTqNL0k2XV6IP1l2iW33B13w-2oTv13RnDEN+R6P9FZxaHpgLDK0p1Xkqyw1vTTnvSCgEEmI-mOxmIuzh3MTIH8BXx3wLC1yPzO0AQtxfx8kqN2AWKCTWhc1g1kD-3SFKM+KqLH2kBMPlgqKqMgN1SyIhgqNaO7xhxaMqKQLT3COZCKLuERLRMwOzxz2QVVHqED11nlE+RwO8h5GsHqFuwAgNQcOXjJJFBKgsOCO8mZn00hGL2vVzVpIK2r22B2LUAvXPhL3qGTz2KCnqyWiO0UzlzOyVGpPuH4HuOuNXw-SClnygjP04Av1+gPwuG+xBMxgiB4E6G5PWn20fn5NdgaKFKCl2PyTrnFNOElIphlLbzlPnwVMXxtFmICgLG+loxJKextF1MB0+yv2NMpMSi5PSkhMdmpDTQiy1NiPxDNN2AiATMxNeA9kzItNTJpHhO8glNGg9KThVJYElN+IxK0LOmxKrJrNT2wKQ28lozCPrIiOD3yGiIRQqgDmG0l2ozsKrVzP+CqFoMkKYKg2SJcIdksnbUQl7MJOcz51Plo3XMD0bMsi3NbIDnXKkwL34i92HIk3yJlzOgBi3P0JzHWzaAIE6HRR5Mx1Lwl3w36XqMNT8whjLgfKfPXialp1jhWKqHXPjiak2Ovh-K2m50hjzHAr4EFwx0OJvxPzCFGJWzDOmNOwcDQv0CQrek1xCAjP1INxP2+zSB-VeMf3eOt3xUfK8AYB+NTzt3+OdyBPZPxAYoAsIroAa3HKh0ujbxCC4rvLzDkSIv3if1GJL3wrvEhxV35OWXtPkBsH2BlSukZOZHUo6RqzOSkCFExhqxqN5MW3nRy3y1dkqV0p8VD22Uxk9xfMOLfLxXyxV2sqlVsq5HAIMpkjzwLzHGcsy1GI8t+hspqS+JoD8tACMvKKitMtfNGM8paDGG8qvC5JirirzGTMtKBhQsy1tPCq8u0QLIiCyvgrKXNOzOCr5NOCrwio6R4qYoqqTX-KYsSpcswquQaqlTeKtMAz5X+HxI9wGEg0dxWGd1dxBJPjiDyWwSoXy1krMsFPkDRidP2JLydj-3pi9g2oqy2q9h2tPVhB5yqyTNOGOpr0mQKoxEdhW1iiJxr3ujYGszUHuhGvPJcT4Qkx+l61PUxlerJgku+tgv3nizOnYwqCuMpyoFeoqCF3QpaEBoKHRMml6mmioBEyRrvDqPko1jF3xqggsSJrvHx1Jv9PqopqVGWWxrvH3zErKLzE7zrC8AGHBMtQWILW0teFoKHS9QZpBIxuOUoFyLSimhTjCSoDTVvADgOGkHxUWvF3sGkVrRrwxDaklI0v0imnk2fUcO4DGm01LAxslImyeCFB4jYGlryp3G+k8D+XJhZrGnZo1thoGtEWVvNouDGCtptuIQdqvTzHRJNs1qWj30nTs2EwQx5voCmizh-jzj9QAB9k7ZyRJahdbtk-a01SxRJ+pRJvb9A7Q2oRbKccNZVoddb-B5b8VVyIYYNncBAtwOgtB24JbbqGTnExokKxbTMlQW6cVZA14JbVIla3zfSzNZr5rJ1x7lqqswz9bl4t1VJUh66OTyYFt0pzYk4Jd8tB626R6MbVrO7gboY2BYYt7HEfhOhto3lt604k5OMzLHYck8kYUH7i4+Cjiv6G4BIsQt7Okg4jy8sSplkAGX6gH-E0akkBYSpG6M5m6UpW7h70a+pO6-ZY7O7by7pdFpoFtA9AHFA9ESoSz8RRS05LsS9ItL4sGHi5iKGXSzKf724+CyGTAkp90qHmHwFf6KQ6ScoToAyiFGGSxqG1jv7QA2S-C0RGEcGXN2s6tKyatmzILBLGyVH0T9zkEVHdsChNHPqVasGM85UDHP8sDlp6YaQyAiCFtBt9BMYt71QPYmA1YYhLY3GbxEaWg7Z8zRU1Z45-BLYFT-MABSUAYJ7xpUD2FQAJpgIJkJrOYJum5wD2CnAAWg8aiaeE91oxiFibswfXcZmH8EMIEAAAZGhsmLhwDwTHZrG4h0n0QkgqnbITKQ9ICHY8mIgGASnZ5X6+mimPHGgUntcOw0tQtOmZYhmjZRnT9xnmpin3YHYimbxWm7xoTdg6mQ9-RMmjZqn1glwbGmnGE-ZOG1jLsGm4YeHJn-AMBymAA2WYc5ymfBHfK5rarJ0AAAFkqd0GIemg+ZWt0FEbXkuZseudfMmeCCAA')">function assign_reg_name(assign_instruction) {
     return head(tail(assign_instruction));
 }
 
@@ -1775,233 +1819,350 @@ function assign_value_exp(assign_instruction) {
 }
 
 </pre></div></div>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
-  The register name is looked up with <kbd>get_register</kbd> to produce the
-  target register object.  The value expression is passed to <kbd>make_operation_exp</kbd> if the value is the result of an operation, and to
-  <kbd>make_primitive_exp</kbd> otherwise.  These
-  functions
-  (shown below)
-  parse the value expression and produce an execution
-  function
-  for the
-  value.  This is a
-  function
-  of no arguments, called 
-  
-  <kbd>value_fun</kbd>,
-  which will be evaluated during the simulation to produce the actual
-  value to be assigned to the register.  Notice that the work of looking
-  up the register name and parsing the value expression is performed
-  just once, at assembly time, not every time the instruction is
-  simulated.  This saving of work is the reason we use execution
-  
-  functions, and corresponds directly to the saving in work we obtained
-  by separating program analysis from execution in the evaluator of
-  section <REF NAME="sec:separating-analysis"><a class="superscript" id="5.2.3-sec-link-4.1.7" href="./4.1.7.html">4.1.7</a></REF>.
-      </p></div>
-
-      <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
-  The result returned by <kbd>make_assign</kbd> is the execution
-  function
-  for the assign instruction.  When this
-  function
-  is
-  called (by the machine model's execute
-  function),
-  it sets the contents of the target register to the result
-  obtained by executing <kbd>value_fun</kbd>.  Then it advances
-  the pc to the next instruction by running the
-  function
-  <div class='snippet' id='javascript_106_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AQwBMA3B8gUwH0AHMgCj4BKUAG9coSaADOHClzJ0KHEhWmCyAGlAUGVADb8A5nIVKVajUOsBuUBKm4AvkA')">function advance_pc(pc) {
-    set_contents(pc, tail(get_contents(pc))); 
-    
+    The function <kbd>assign</kbd> is the matching
+    constructor for <kbd>assign</kbd> instructions.
+    <div class='snippet' id='javascript_106_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9coSaAA2bCqB58WoALygSRadIDc+KaGLlqdUAAciXABYCAHiNGgJ+qYv6qzTKgCdbAGgW8-ELajs5SXnJEXvQARAAmdGwxuvoAvnpShpS09KY0psJiTmFUBKACVFwcGloCrixC9sVhUmxeXjQ+MQCiDKYUAJ4BSgBcoLAA8rAxwRlhqaBs0lxsRS3OZHQ8oBT57pZsTHF1gQ0p6y6n7rxU0idKsxfhkdE7+efzzenNWcb0VCQqNQmNIqAAvNiFcTreruGo6Zr6CIUKKxBIkJIfUDffS-HKgOKVUxMChkawMNhcLhMADmbCa62RqMYlOpdNUKjUMXMVhiiJaAH4zBZLPywmMKVTaatOVy8qY+U9JEL5cIxc4JazpRyuQCgVQQeCkur9EK9cDQRC1UrQGM2h0ugBVEgsEg0ADu9AiAEciJSKGNwAAVACC0AA0jF-JK2fSsTjnijXoSuMTSZZdN88SZmOwOBEaZUKG0BCQmBSGVJZPJNiRi3WuO4YgAqUhMKlUGkYuLN5JzAykbImFNpskCGPSyslMrjrXs2WgGJ0igzNZKpmvWv1ihcXTqhZLFZrp6lcoT+ecxcrFdTm2gDf0ABuIL9qgAfGJQFu2A33M-pH6ISpHuNoHssqzQnekj2p0s5SnS-gxM6roel6bC+v6YwAErdAA4pAwbdFhMxYus6RkV8-YPgSRIkmSmb4Nm9DtlwNBkAI7ADP4ESbF4cRcLe1GVNUmh3DxnT8UIJrKqApBxGwBAAmwcTSbaiy+iCHFsFxoAHEcAh6cc4l8QJjSqTJhkCMZknmWpLFsVpOk3GJbC8ZJsxZoOfygMuHDfg2VlsIWPBtIJLxocFxZdMuJG4J5Rj4tefl0NuXCBZFbT+P+fphUmEVFiWMTXjMAjZXGcWMV5+K5pwAI8F4RBDiQAjFjYFC5cyxLeC1bBtf48IeZVCUmHVFANU1HCtRQFQkDwHWvJZo2DYQVUjbNY2NX8HC9a5RBbaYHTsUtx73uFOyeHcS0MStw30Elo3jVtO1kHtOQcAdDmjf4H1kLeSXOTNPDfYdwSOPFTWMKwnAYu6HDMGSSlQs0tbbKYZDuDV+ZBQVXRo7F+go-IBDSLSGNQ1jGVdMTtL41IhPDG4aiY-UwhYtWOwHBwD2bW9KwYeQMrqKJbNyBznD5I2aigjwAjS9NMTmgalqcPUUahFBd6FCoH4swrgIWkaMyNCL8gFjjk1MAARrI7hy7LRYCNyZBq2jQj+HbMTUzSate8b-ZMaAILSGxJKcGbIU+GWFYnfop4CPZ7FR2w3HYxHFvW-SOqySQ8mKd2t6MqnUXpzbahdT4dtJ9G5Ph1FpblvSbu2RrYS120JflWRizgTHLQwZHDeIQAspo1CmNIQy50pcSnZTYy058hd5YubdeBwQch8WcR9mkPyrfQwc0CwRCmBTOP19HkFhPT-7uAnF-J7P5u8BnjwtOq1G3wuckKdP5lCv3B+iFkJuk9E-COIwZjmTGJZAG-4-a71xPvRYNhdrFiRusemo1JY+TkMlOsP4dwCFdqRKQcdhLwkBjuRovdW5nXiIkHeLQwJHivhcemP13Dcwms9V6dB3qHQMocY42DjbqyeD9Vm4iLjUV4egt+i8pDkUTMyc8Mo3zqjUVnIqvAvArnVEKLWH4HBJX8kQtG-gKCc24VtPmfoBYKI1rI1BL15FAXVJqeCMpLx60UFoLm61Hq83QvYsgxp1hCj5u+T8VjaqBJ5vwuxP4wnuD5u49YnjYzaI3mQUOZ8I6KkFIHLQm8w5FzaB4lkXjtG+VXoUsIQpD7H1PqvSpWiFy+N4P4-IbQSQ5C4PU5wQoJbRIcLEjgIy1BMFMKYH8xxxkS38BLUGyjxRVKyR01WBiGYsDaXObxXIeleD6VsQZpoxYTNMFwSpgC1HAJdKAtCGEeASj4JYJSsVwbeVqeUnw8N3kYhTjSaoDd5r0H+YjJceC6lCHSiCis10A4sU7CQCm8LITIq7AE+qCSSBgt0sIlqF144dixTYnIfsvn4kxaisq20bAFBpdijaTV7DSOogDAGTLyV0EpUNCGTST4CKoAwOoAwGCWxoNIJZszjl-AEidG+II75UgclwcVkrpWgCOSc2ajjP7Ku-jnX+3ZtmAPVRKqV9yUJgJ1d5AEgcqRsAlbISBUkMkEv0nAkEfKboCpoEfIVJNLZLFllbQ87tw3SHRbeJV0gVWsXYsGpY6LI0huWLMZoBr41GqnqaiJix2iwWTdGqui5nR5uUjIKNYwQzgHAN0IeAAhAAMt0KBHrvXSGWgHTGB0RX6kfJwXqBQR3VwRoC6t6aFVsPIVUQmTA6z0tHQymhbCCZbBrO4BdS6R0cDKgIEdjikRnSMV+eM3cjxzo4CW5dh7V0Fzppu0A2DbYBuaTeqNYbp1ppTXukt97TAIJaNRM92CL2HlWNe1ed6j2PskPTLw7gfmU3HG8pSQLzZ7oLIB4DdDl5nt8mYtKXhQZfEvRBdUgCx3loeahFBB1WT4kGLMl9zEnUurYG6+MFU-XeUxnat6I7APjoBY-EtXAZW9PlbG59ewpbvqFf20Vgn+F7vyLhqTcr+mOPptMw6ODmCjuiX2rwA7qBDtg6JjDU7DxNxbi0VTqL1OysXfxXDmaT0EZENrQOMyJ4BI4D-LwE8ATAoAFZMGfFwMgZn+gCGbo50w1cCimGiQUN2fmDO+t7eTGlVDrOTok1p3VkmzC-UVc+3Ry5kPQt+Whidj8mUFnRVQvDX5n10pHQmlF+6XzDoZW1rEca-QcEMKodUwknN3q66u7ZAnXNPUG7N5LkNGu-uWCVmTbTybKcHQNgolkVuZYhUVqNAksSgZ88Y9UpiUqELStVuQWV+tjdIMIY9UgjjPgFu9diJDpHAV40iuIP2wl-eIRVthd2CEBQsedW4AgiP3bh79MRwPkGY2LDLL6a2xMbbK05srXtvpQ+Rs+2shJvJqGxxQfBVOchDeaNe6bwnKf6l5fBjr61ucM-4eNpm5NWeDfZ38XwiWHOSFO+J87W2dOkMkFd0Z5kYepQECT3nHPUWGA+wr5w33F3g7RpDsjZEIM93Xa0ItPhccxCbUcHY-o2M4ohg6lizqM7ccolSkwtOBD5HdpYMrXgg-4o9rTtWAeZBB+4qHhiAdaf061z1HgzKgm8pOhy4lieeV4sRZj8mltjnkGsLj6XBP-Aa9dpVnn8lthqCL4bywHA6-TSuszmcwlb3Cdb2u9UWD1o4MFafADxXbPRv-V+3vn3Fenuu7Qlucdkew6Ib7LnkuFB4OI5D-woi9caxYZRjf6wDe-eNyQiXzDL9pHN6wqj1uCuLntzPRvJfncsvtexlYnGve7x9-QV-McEtMPB2GIQAywNWYA+PZBcAlvf0AQWA3PfFWBYlRA+JVlHtZBYSXgGkOkOIG9B2HgBgCgSxTmHA-FYScuE4YgkQAAMloM9WOCIPaiznGRwPz1ulngfhAJlhiALDViTkGgDmEhg2EyPUzzOmwNpDwIIJlhoz4KCk+T43xFEIZQplwwkOXhQMRzgw4Ihh3WmjKh4PlgMLViMOgM4OEgMNg1XU0OZCkNwOUlkOmnkNMKEOQWsL3QPXELYWom0LuF0Ix04IA0ELsNeA9hLQENBQsNdyqG70Gx8KzUkKqBwJkLtnkMiPcOCKjWXU-XTQ0N8LOn8I8z0P43JhpBoEmhoEf3L3HzK2rzYXplb2QxoF2DgJx3WkcWvXiIKGnwXwHx4CH0UxHy-THx6LyNDWnz1yV181Vwex33fwu3I0gxfU7yqFUN6P9D70wWfQLFqzp1Xga3x3AWLmwyCgECmI-jn2iTmNR38GXzVwLHa0PwX0AVt2fx8kqN2Hf3T3+C-w91kAXmxCCIhgqKqO-SWGMMdjBN2EgKjSyNBNaMqNbyRyRLT1xWQMJQBgqLaKQMwM4NVHqHxV1nlCUOUJMB5GsHqBewAkzkKOXhJJFBKnMJBLKLzGpCHRqPQ0nWpPK1kx5z2LUBQ3PlqPqGZTRSTja31WuN80tzvEpPuH4HuK3xRyISeJnxtFPyN3+1+n3zN1ZOqhrn9E6EhDL25Mfl5IaPJwFKCn2PyTrlFNOHFJa0lKWmlO82Vw31uLVKCm+g0yJI1KVC1M4HP11OkTvCB3-wUCi0hCeLCIPlAI5KSCBQRO8giB4BNPSihIUIzIiDVieJiO8jFNGglIbkVJYHRNZXjMYKJUR2LPQL+By2QQ01CPpOZA9nyCiIRQqmEKqGFxXSA2rMoM8B8HEPoJfRSOkKcLtksiPUQk7PxIhn7MuX90WyE1sLbIWixOJUsn7MaEXO8mXJ1RzjSj3OrIBj3NKMNLzFlQIE6FFTNPWzqLly2FJ35O2D4GpzMDaDvK8AYHXiaiZ1jjWMuWk3XMZQwP6OfU-LegF0hjzH7PjiakK2Tmv2PzCDHyJw1JmOMXDMlxgv53e1BmDIhwBzQskCBzSAo1eIf3eId1vPvJ+NxTY0dW-wziBPSCjIYr-IAr+Da3POJSujBn5TZIGzQVgv3kfzH1qPIvlLIErxJhpH8F5OWRr22BsH2EJXby82ZA0o6RpTOSkCFExny0fOOMwquTfMqT0p8Qj3m3Jj9zMpswsuJ0Uqso9Rsq5HAMMpkkxnAK5KfLHyr1+mspqS+JoB8tAGMvKPCoCvMtlz5NCs2RjMiuivZJjLips0tJCo8u0XTN2DzPsrzHyszKcp5NOHcpaDGE8sXG4oYFSvgpDJ-PvMyrOx-W1UssSo9TePWmtUeSYohhYyg3+J-zJIDhPjiDyWwSoTK2kvNPfPkDRjtMONqKdiBPpi9mWvq1Wq9nWufVhEF0a0dlVl0zkyuTJiOpiCJ1imtO2HujYDSzUHugbPXPEv4R+mG2fUxgerJjzDkQktukuzOiMwqBuLwSoAeoqHF3QpaG+oKFz0ml6jb3sxhrvGK1ko1nLwxqggsWxrvBJzxptGpMJqVGWRRrvD3wNJzHJm7zrC8AGAhNLUHkWPxSoNvTLUpqjKRuOUoAmOWB6j6lOjCSoCHVvADgOGkFlRmoJzZX72fQxDamZU0q9SRs8xA2SO4DGjC1LCRuZXdSVCFB4jYBFtNMH2+hHLQzzFprGgZoVrp1x1ERlv1qeDGCNpNuIQtsxlzx1sVqWl30H0ywk0cQTFn2Ximizh-jzirQAB9o6JyRJagppnahkhbjbOT4R+pRJk79A7Q2oea6cJNay7gk7-AJbZUDzqUOMM4BAtwOgtB24poUKmhnExpPy+a0pVJa6pVZA15G7VJpa6j585T1gJqprB8B65rGtAz8N7DB89TsQK7qa8xpd0pzYk5CdOqu767e7Va1L5BpdfroY2BYYV7HEfhOhto3lV604k4TNzTHYck8kYVr7i5BDMMb6G4lj9AV7Okg5QLtNTlYVlksQf7Ro-6EakkBYSp3dOMa6Uo66e7EbBbpc-Ykjl5pcryTBFA9EjilJ8Uf7sGbxWYezkFhS05t9aiYNWy0HmQHj5iyGHTzT37X7QVUzEo6tKZ8E1dKHflU1QAjCTpvS0oGGSweHOG37+H+t3TmQGEMQ+woz8sqHmbWIogwkFrA474Zk5l7ZeCDLmH24JGVGvA1Ggbl4mBrp6YaQyB8CD6VBmhMYV71QPYmA1YwDXGbxoaWg7YPYIh6r-B45-BLZ58mBQAABSUAIJzxpUD2FQNWAJiJ4JrOIJ8m5wcPf0AAWktijFsj9w0xiFicyxwzccywMIEAAAZGgomnh-KAMlxrH0n0QkhKnbJ8sYgVx3YHY8nfGZggUH6emuDinmm7xWmXGOmZYimsn9yqmLhWmsmxnpoimbwhmbQYTqjanadMmjZpn1g6m4gGnGE-YkoYNt8rGbGmHFxRnQAMAymAA2WYI53hk56xuGc5tx-wAAFgqd0EIaR2eZQd0BEbXiebOafJiBceCCAA')">function assign(register_name, source) {
+    const a = append(list("assign", register_name), source);
+    return a;
 }
 
 </pre></div></div>
-  <kbd>Advance_pc</kbd> is the normal termination for all instructions except
-  branch and <kbd>go_to</kbd>.
-      </p></div>
+  </p></div>
 
+  <div class='permalink'>
+<a name='p4' class='permalink'></a><p>
+    The register name is looked up with
+    
       
+      
+	<kbd>get_register</kbd>
+      
+    
+    to produce the target register object.  The value expression is passed to
+    
+      
+      <kbd>make_operation_exp</kbd>
+      
+    
+    if the value is the result of an operation, and to
+    
+      
+      
+	<kbd>make_primitive_exp</kbd>
+      
+    
+    otherwise.  These
+    
+      
+      functions
+    
+    (shown below) parse the value expression and produce an execution
+    
+      
+      function
+    
+    for the value.  This is a
+    
+      
+      function
+    
+    of no arguments, called 
+    
+    
+      
+      
+      <kbd>value_fun</kbd>,
+    
+    which will be evaluated during the simulation to produce the actual
+    value to be assigned to the register.  Notice that the work of looking
+    up the register name and parsing the value expression is performed
+    just once, at assembly time, not every time the instruction is
+    simulated.  This saving of work is the reason we use execution
+    
+    
+      
+      functions,
+    
+    and corresponds directly to the saving in work we obtained by separating
+    program analysis from execution in the evaluator of
+    section <REF NAME="sec:separating-analysis"><a class="superscript" id="5.2.3-sec-link-4.1.7" href="./4.1.7.html">4.1.7</a></REF>.
+  </p></div>
+
+  <div class='permalink'>
+<a name='p5' class='permalink'></a><p>
+    The result returned by
+    
+      
+      <kbd>make_assign</kbd>
+    
+    is the execution
+    
+      
+      function
+    
+    for the <kbd>assign</kbd> instruction.  When this
+    
+      
+      function
+    
+    is called (by the machine model's <kbd>execute</kbd>
+    
+      
+      function),
+    
+    it sets the contents of the target register to the result obtained by
+    executing
+    
+      
+      <kbd>value_fun</kbd>.
+    
+    Then it advances the <kbd>pc</kbd> to the next instruction
+    by running the
+    
+      
+      function
+    
+    <div class='snippet' id='javascript_106_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9coSaAA2bCqB58WoALygSRadIDc+KaGLlqdUAAciXABYCAHiNGgJ+qYv6qzTKgCdbAGgW8-ELajs5SXnJEXvQARAAmdGwxuvoAvnpShpS09KY0psJiTmFUBKACVFwcGloCrixC9sVhUmxeXjQ+MQCiDKYUAJ4BSgBcoLAA8rAxwRlhqaBs0lxsRS3OZHQ8oBT57pZsTHF1gQ0p6y6n7rxU0idKsxfhkdE7+efzzenNWcb0VCQqNQmNIqAAvNiFcTreruGo6Zr6CIUKKxBIkJIfUDffS-HKgOKVUxMChkawMNhcLhMADmbCa62RqMYlOpdNUKjUMXMVhiiJaAH4zBZLPywmMKVTaatOVy8qY+U9JEL5cIxc4JazpRyuQCgVQQeCkur9EK9cDQRC1UrQGM2h0ugBVEgsEg0ADu9AiAEciJSKGNwAAVACC0AA0jF-JK2fSsTjnijXoSuMTSZZdN88SZmOwOBEaZUKG0BCQmBSGVJZPJNiRi3WuO4YgAqUhMKlUGkYuLN5JzAykbImFNpskCGPSyslMrjrXs2WgGJ0igzNZKpmvWv1ihcXTqhZLFZrp6lcoT+ecxcrFdTm2gDf0ABuIL9qgAfGJQFu2A33M-pH6ISpHuNoHssqzQnekj2p0s5SnS-gxM6roel6bC+v6YwAErdAA4pAwbdFhMxYus6RkV8-YPgSRIkmSmb4Nm9DtlwNBkAI7ADP4ESbF4cRcLe1GVNUmh3DxnT8UIJrKqApBxGwBAAmwcTSbaiy+iCHFsFxoAHEcAh6cc4l8QJjSqTJhkCMZknmWpLFsVpOk3GJbC8ZJsxZoOfygMuHDfg2VlsIWPBtIJLxocFxZdMuJG4J5Rj4tefl0NuXCBZFbT+P+fphUmEVFiWMTXjMAjZXGcWMV5+K5pwAI8F4RBDiQAjFjYFC5cyxLeC1bBtf48IeZVCUmHVFANU1HCtRQFQkDwHWvJZo2DYQVUjbNY2NX8HC9a5RBbaYHTsUtx73uFOyeHcS0MStw30Elo3jVtO1kHtOQcAdDmjf4H1kLeSXOTNPDfYdwSOPFTWMKwnAYu6HDMGSSlQs0tbbKYZDuDV+ZBQVXRo7F+go-IBDSLSGNQ1jGVdMTtL41IhPDG4aiY-UwhYtWOwHBwD2bW9KwYeQMrqKJbNyBznD5I2aigjwAjS9NMTmgalqcPUUahFBd6FCoH4swrgIWkaMyNCL8gFjjk1MAARrI7hy7LRYCNyZBq2jQj+HbMTUzSate8b-ZMaAILSGxJKcGbIU+GWFYnfop4CPZ7FR2w3HYxHFvW-SOqySQ8mKd2t6MqnUXpzbahdT4dtJ9G5Ph1FpblvSbu2RrYS120JflWRizgTHLQwZHDeIQAspo1CmNIQy50pcSnZTYy058hd5YubdeBwQch8WcR9mkPyrfQwc0CwRCmBTOP19HkFhPT-7uAnF-J7P5u8BnjwtOq1G3wuckKdP5lCv3B+iFkJuk9E-COIwZjmTGJZAG-4-a71xPvRYNhdrFiRusemo1JY+TkMlOsP4dwCFdqRKQcdhLwkBjuRovdW5nXiIkHeLQwJHivhcemP13Dcwms9V6dB3qHQMocY42DjbqyeD9Vm4iLjUV4egt+i8pDkUTMyc8Mo3zqjUVnIqvAvArnVEKLWH4HBJX8kQtG-gKCc24VtPmfoBYKI1rI1BL15FAXVJqeCMpLx60UFoLm61Hq83QvYsgxp1hCj5u+T8VjaqBJ5vwuxP4wnuD5u49YnjYzaI3mQUOZ8I6KkFIHLQm8w5FzaB4lkXjtG+VXoUsIQpD7H1PqvSpWiFy+N4P4-IbQSQ5C4PU5wQoJbRIcLEjgIy1BMFMKYH8xxxkS38BLUGyjxRVKyR01WBiGYsDaXObxXIeleD6VsQZpoxYTNMFwSpgC1HAJdKAtCGEeASj4JYJSsVwbeVqeUnw8N3kYhTjSaoDd5r0H+YjJceC6lCHSiCis10A4sU7CQCm8LITIq7AE+qCSSBgt0sIlqF144dixTYnIfsvn4kxaisq20bAFBpdijaTV7DSOogDAGTLyV0EpUNCGTST4CKoAwOoAwGCWxoNIJZszjl-AEidG+II75UgclwcVkrpWgCOSc2ajjP7Ku-jnX+3ZtmAPVRKqV9yUJgJ1d5AEgcqRsAlbISBUkMkEv0nAkEfKboCpoEfIVJNLZLFllbQ87tw3SHRbeJV0gVWsXYsGpY6LI0huWLMZoBr41GqnqaiJix2iwWTdGqui5nR5uUjIKNYwQzgHAN0IeAAhAAMt0KBHrvXSGWgHTGB0RX6kfJwXqBQR3VwRoC6t6aFVsPIVUQmTA6z0tHQymhbCCZbBrO4BdS6R0cDKgIEdjikRnSMV+eM3cjxzo4CW5dh7V0Fzppu0A2DbYBuaTeqNYbp1ppTXukt97TAIJaNRM92CL2HlWNe1ed6j2PskPTLw7gfmU3HG8pSQLzZ7oLIB4DdDl5nt8mYtKXhQZfEvRBdUgCx3loeahFBB1WT4kGLMl9zEnUurYG6+MFU-XeUxnat6I7APjoBY-EtXAZW9PlbG59ewpbvqFf20Vgn+F7vyLhqTcr+mOPptMw6ODmCjuiX2rwA7qBDtg6JjDU7DxNxbi0VTqL1OysXfxXDmaT0EZENrQOMyJ4BI4D-LwE8ATAoAFZMGfFwMgZn+gCGbo50w1cCimGiQUN2fmDO+qRaS5qMGy2sSiGE2T61A53xmXM+2MsYg0rVgV0F-giteBK1iaiTBEXIMxjSqh1nJ0Sa07qyTZhfqKufbo5cyHoW-LQxOx+TKCzoqoXhr8z66UjoTSi-dL5h0MuW1iONfoOCGFUOqYSTm73rdXdsgTrmnp7au8lyGc3f3LEGzJtp5NlODt2wUSyj3MsQv61GgSbXT0+eMeqUxKVCFpQm3ILKO3jukGEMeqQRxnwC3euxEh0jgK8d7eTYsMsvrPbE694bTnhte2+qNth9NayEm8moYnFB8FM5yPt5o16LvCcZ-qXl8HVtlf51tE7TNya8726LnIvhEsOckED8TIP3s6dIZIUDEPaHOGhwQgKNPhcc-4YYVH6vnAY8XWE7HxDfohH3BBnu67WhFp8KTmITajg7H9GxnFEMHUsWdRnbjlEqUmFZwIfI7tLDDa8NH-FHtWdq0jzIaP3E48MQDqz9nAvmpZ55Xik6HLiV5-iayzrt1IZ5ktsc8g1hSdK4p-4A3rsxtlfktsNQ1fLeWA4O36aV1uczmEre4Tfe13qiwetHBgrT4AYG7Z6N-6v1j7Rxr8Hoz5ctDjkRmH+uSY0nHwri4uvUo2-8KIs3GsWGUaP+sC3WO0Y29Xy3VZCv8dpAo9rwBbuPczy77Xn3Fle1djFYTjYPXeUPegf-McEtePB2GIaAywNWWAjPZBRA3vf0AQdA-PfFWBYlbA0vP4HLZBYSXgGkOkOIG9B2HgBgCgSxTmMg-FYScuE4WgkQAAMnYM9WOBoPaiznGTIPLwhhwyTjgJqwLDVlENQIr2Ehg2EyPULzOlINpAoKoJlhoxiAkMGgDjkIZQplw0UOXjwNuA8yEO8h3WmjKjEPlgsLVisOkL93nU3UXTZ3kNXUMOZGUPIOUjUOmg0NsO0OQQsOXW2wAkhAULYWomMLuDgzMPxAA1EI8NeA9hLUkNBQcPtSqBHz2wiKzSUKqDINULtg0NSMCIr2yNny-VyK82ZGiNMIJy63JhpBoEmhoF6zJxs3nxb3p2fT72QxoF2AwJJ3WkcWvQqIEBX210nx4Gn0U0qPTW-QjQXxCIAxXzN012iRP1hzP0ANB3I0gxfSHyqF0IKEmKdwQ2fQLCmzZ1Xlm3J3AWLmwyCgmP9BWxqNeDPS2ICgsVwTZ2I3ShW2vy-xd3aPd092aNaMAKCTWkdVAIzgXmxAaIrwhN2EWO7SSIPngJRJoGQKjTKIhmaMGL7wEEJJaJwIxO4KJRMNJOZWhLxR7WQVVHqHxV1nlE+X5W8h5GsHqERzCJZNOEdi5JKnsKRIhmZii0hHr3Q0nR5JG1K22CuLUBQ3Pgbx2WZTRSTmW31XX183OJtC5PuH4H8B3z1yIQLDeKgnvyt0fxIU33x0gMrzKR4E6ElPWj60fllO6ORkuKCmuPyTrlVPqHVMW01KWm1O8w3yPy+LNKCm+g02ZOfyVCtM4BtNt2kTvHtI5MSglIBIpI9mpCHXqyCnxO8giGdIiFzMiLOg9jLN2AiCLIPwyMSlOGDKCiWyDPJKrKMMJQBg7MIIpQZIrw00SK7OZA9nyDSIRQqgDnOzuyExyPcNHNeGYM8B8AUM4JfQKJUJ8LtksiPUQgnMHIhil1Pg0xPNwJ7OJUsnPOIKHLnLUz0J1RzjSnPIpIBnPLiJzC+zaAIE6FFSlJewX0p3vNmlp3lPkD4GZzMB-L-PXiai51jiOMuWk3nMZVZSFz0wmnF0dOQu0wfLQr+HdLl1vxIqrBV21RAr2KXmZDPQcE3zCEgrehN1BmTOt1x3oqUQd1YSoxBJ-091lV-K8AYChNxTY1hMD1kARPSAdIEtgsYroGWzfOJSujBizK-LzDkSYv3naPn1VI4qgh+IN1lOWVb22BsH2EJQH3ePoHMo6Tqxu3Jh6wAvuPn0WTlMqVsp8UTwcrzHD2cs6PIrcub1+g8u0UQLOSkCFExkQPaNVPn2CvdRaDGE8q5GxIipkkxmxNiulOVx-Xco9RSqvAlPStACivJgLNdKBg6JlNODAtCo6VrJdJKrKrzEaorP8pqqUDqoKu0VkqEuapwr6v-LdOqtyqWLctdhuV4pGqQjozAXzx2AGFY39w4yD3ZL43xBPjiDyWwSoWG10pyvApGz9NuNVKdgRPpi9hOpmzOq9guufVhAlzm0dlVl0zkyuTJmepiCp1im9LK3ujYDSzUHun7IfLQTeh+gO2fUxkBrJg0pcT4VRSYjB2XiMwqE2LwSoEBoqGItIucBhoKHz0ml6n73szxptAG30pbgbypo1gsVpqghpwZrvB5OZptGWTJrvAv1FP43JhHzrC8AGDRNTV2PxRYNvTLW5odJJuOUoE-WnR6j6lOjCSoCHVvADgOGkFlT2opzZQn2fQxDamZQsq9RJs8xA3yO4DGjC1LBJuZUSqeCFB4jYFVsqp3G+lXLQzzH5rGiFsNrZ1J1EV1odouDGGdtduIU9sxnz1tqNqWnPyn0ywk0cQTDX2Ximizh-jzirQAB8c7NyRJagpoQ7zlw6h1SxRJ+pRIS6pA7Q2pZa2cJMqS7hi7-BNbZUjzvIA9OMBAtwOgtB24pp3SmhnExpIL5bDwEslQ+6pVZA14h7VIdagKtc9SWgtqdqp8l6Dq5tEz8NPCp9L9JBUhO7qpyYld0pzYk5gLhsZ6B756zbTL5Alc4boY2BYZz7HEfhOhto3kL604k4TMcrHYck8kYU-7i5RDMN-6G4qKpBz7Okg5cKhsSplksR4HRpEGiakkBYSpu6M5e6Up+657ialalc-Y8jUacrPy7pdFpoyGKT4HFA9ESoSz8RlS05-jVSGtL4KHmQTTT92GAycqoGIHQVWGTAkoYNOHhGHj24y0rCTpoy0pBGSwuHfkY1eScoUbmQGEMQ+wHTWLUy-o8F-ifiAZ+HtjXYxFeN6YaQyBKDn6VBmhMZz71QPYmA1YEDPGbxcawg7YaznU1Z45-BLYtcmBQAABSUAUJ3xp4D2FQIJpgEJsJrOUJzm5wBPf0AAWktijFsnDw0xiAScyxwy8cywsIEAAAZGhYmLgYqAMlx7Gsn0QkganbIesYgVx3YHZCmIgGAZggVgGBnZ5HZcnGh0mLgOmPHumZZSmxm2m7wOncmZnppSmbwFmbQsqGnWccmjZan1hGm4hmnGE-ZJH1H-i7GHGZHas1YMBKmAA2WYM5ymfBAR+xuGa55Z0AAAFmqd0CYemkuY+Z3t0BUbXgufebOo8eCCAA')">function advance_pc(pc) {
+    set_contents(pc, tail(get_contents(pc))); 
+}
+
+</pre></div></div>
+    
+      
+      
+	The function
+	<kbd>advance_pc</kbd>
+      
+    
+    is the normal termination for all instructions except
+    <kbd>branch</kbd> and <kbd>goto</kbd>.
+  </p></div>
+
+  
       <div class='permalink'>
         <a name='h2' class='permalink'></a><h2>
     
-  Test, branch, and go_to instructions
-      </h2></div>
+    
+      
+	
+	
+	  The instructions
+	  test,
+	  branch, and
+	  goto
+	
+      
+    
+  </h2></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
-  
-  <kbd>Make_test</kbd> handles test instructions in a similar way.  It
-  extracts the expression that specifies the condition to be tested and
-  generates an execution
-  function
-  for it.  At simulation time, the
-  function
-  for the condition is called, the result is assigned to the
-  flag register, and the pc is advanced:
-  <div class='snippet' id='javascript_106_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0K2BnCgCiok+AGkZMyACyFsxAGyYAjNnJ5iaABzYAnJtTprQBBQHMxGsgEpQAb1ygHoMgYpO6AEyr76AXlDc+DmcST29BYQpLAG58R1AqAlBBHg5NHT1aEg42AA8NfmDQzMtrOzi44L43EK9MjmJfcXZUrV1vbLyCj1q6MWYpGXklFUM0tsyeaNjyhwbKTNBWghptBg5mZoCBUvsZ8p42CiC6bhIKHn5jJjNqorp60n4SmL3ypncANyZyTgt+C2ioF2MwAvtMZtpDkRtPQlis1htOFsokC4iDQCM2LZgeUdNoVuFRKAAEQAIXeoAAKgBRcCU+IRbREeZ0ABcoAAguBwNSALKkgAy1OJUzRuDBhFILPoW2ONTCsqEfCZ0p2cUhFGhMqYVDk-EVjOZ3imIKAA')">function make_test(inst, machine, labels, operations, flag, pc) {
+    
+    
+      
+      
+	The function
+	<kbd>make_test</kbd>
+      
+    
+    handles <kbd>test</kbd> instructions in a similar way.
+    It extracts the expression that specifies the condition to be tested and
+    generates an execution
+    
+      
+      function
+    
+    for it.  At simulation time, the
+    
+      
+      function
+    
+    for the condition is called, the result is assigned to the
+    <kbd>flag</kbd> register, and the
+    <kbd>pc</kbd> is advanced:
+    <div class='snippet' id='javascript_106_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AQwBMA3B8gUwH0AHMgCj4BKUAG9coSaADOHClzJ0KHEhWmCyAGlAUGVADb8A5nIVKVajUOsBuULgC++YuWp1QAWwYBrbtN1k3vwi4lKg+nIyAd6gALygJET6+jb4YS6UtPQ8RNIAFvwAHiH2YWH+DIFxoDx6AE5F2hWBQnYSZZJ1ckR19ABETHQcfalhTu2SGW7ZNDzBYhNlVASg-FTSXInJ-M3e1gsdHRx1dTQNfQCiHjwUAJ5Rld4AXKCwAPKwfa1phw6gHPpZAdDmFFCR-DpZtU8hxmDtot8QeVotVdAZ4Y9EUjOt1epCeKNfotxulSJl3FQSFRqAx9FQAF4ceahQ67apbFKLMJdCg9fqDEjDQmSElSKZZUBMda1ChkAoeDjSaQMEwhLlSHl8zyK5UmOKxeJ9HL5PrqjoAfhquTyZrKLwVSpVHH1hp4s1N2MklrdcyEtrC9p1TpdoD6lOpVFpDOG-qklvDNLpjOCsckL2Op3OAFUSN4SDQAO70LoARyIiooL3AABUAILQADSfW0Dt1HCxIp+ON5eKl0hlctS43F7i8vi4XSM62UDRIDAVarCEQooDBylU0mqfQAVKQGEqqEZBUxtyMu6AR-Q+wP5UHVcCOstVq3gwbDSYKF8H0jNXi1xZpFSW0-gBIEWWxJ9+BfPU31DWRP0XT1uVxeg2H0cs4gAPjEVdzA3ao0PLOwHCApCQMBZ1wKQ-4TjOKC7w4bQ+hzPNC2LDgywrF4ACULgAcUgGsLm4r5hSRJwQQkqRRW7LVrwYWU8iHZwyWmRglRoARfFubQukUOomGkRDZLxdZNiSQw9LOQy-U9S1SCYDgCEpDgmFTdMy1pfhtO0GE4T8ph+CsgyjOsVMvVAAKgo4fSbPC0AXn3aRNO8jgdJ0PRLJi6zQuUwhVIlD8zFUADoqnfxjmM0Bf3Y8qZ34PoP1ExwVNcCV4OK9dLEnadjm0Qj22-Grqo4Orjga+Cvn4AbvmHArRx8bhKX8OoiHJEh+GUQoKCq4baioBotoobQOVm1r1tAZaKFW9auCOtZwR2oaUMi2FAqus78railHpu6YuA4QoYqIf6eFOAQPuent6DRQwPryy8ZFMK6-qyAGgbIEG0bBlKru0HGyCqjrYYe-x8fB1p7Dm776DHbhBQLLgvDlFzmUWMEIT4ao6YnUbevOPhmtBOgIQIfQVW5xbebG84xZVIWpA5lc2XiHndmCMTlx0GEuBRtb-tkTjOHZCzNciCgddmTd4jpfx+FtigGoTSMkz8aJm1KaivfmWJsPVsMqUTaMvlsRYtZ6iq6juhgACMImqB37enBrBfxwntETvo5aMD3s9DxZEdpfRNIU7gI-qucF2-MJIKSlLK8YkaZejuPBtghynJcpgqpBcvjhb+P4n2hpE4blspb72d53bIRNHir3Dkngf2zEsZ-go6vDgzOix9DABZJJqB4fR7kc5zjyb-mXgVjopI6Ya+iXouS+UJgzzGAv5voYuaG8IgeGlvzfgDce6KxFiuNC1Q64CF3kvXQrcOxlFtMNSB7cSBny7uFS028p4KiYixfMRZL6RyeF8cKLwookzQqHD+pIab-AxiDJkoDJBK0uo9a2oAir-g3FYVeUhIJmQ5KTNQ+wqK9xegMIY79fjrzAuFNhBNqh61uoDYGoNwb8CildXKntsQEw1non8L01GY2UBrYCxJFjDWgs6X2tpbEhj6BUOon5bSWh9thUQSN5A8MsHwbQFslq-X1mjQ25ZOCIK9sNUxTDDF3ztNqR0MEDShiukXXWITbrhJUGQGMIJLSGywjhIJmSVqhLoFwHJxt4iG2IraQMyS7GpL6M-MgpdAGRw9IcS0bSOmTwaUktsTiiqT26RacINBf7-06TOQZjjYIBwqMkLgsxjgKSyNIcZZRLRW2Kd40pez4gMB4DwFQgVDk8GkNoK2lMEkBiGa+FpuxtlhEKdEeZDEnFrLqBskWry4za24FbQZOD6JNPwbmQh7FOL+HtJUPILlmrUwuqMvmkcoIIpcrpUamxp67ReszRFgoGpopllNSceKFwIy-upaQh4SDSypUyJKDKynXQqSQAl0NXpwhJqyo87LUZ0FDiitSArGUDXRnMCVQrOUlGsS9Em-KDyCpUdMUV501I-z-gAsGVAPA7FuB4GONB9A3LOb86YRlvxsNQXSlK0hjWmvNaAH5fzwSIJQbSEMHdz6uXcTRTMRqTVmshaxIh7q1KUjpRwE1ERSG2UOBQt6m1MrTVpJqr6F0dUzPFjHAE9tY6gQzsW-QzKqp2p9ccjSAh80AmZaWgtgJviKp5ag1JfrMEFKDXRet5bd7MXQZ3C+-aXi1nAOAC4e8ABCAAZC4ZCQQvCoZmml9Ceb6o8BGFg3BAZzH3ePFmgom2gSqoIjYSt2DyH3fwfdYjbRsLINUK9qhpVcAGnewoPAokahep41cYlyJAgvVwft0qv0-pYbhR67D-CcNzQA-tRbm3XPCGW99yH72-pMvQADOigNyOdKBpet7sOb1YeA6q1QyVAKJdi4hM532TkgzQxe-6RC+y4aYPx6g6iU2JERijvaGiHtDAQtiDCwY6glHcM57DY3xo4ImoDLVs1qR5lGtGZHv1HuJY3ftaGtMi0rVRqENspm6t4HUA1-BjOMv3asg937Z5ustR6oyYk2EnPBpwrwB7imbps9u6gu6ION3oye9DqHZ7zyRPZ997r0HqGw6RP9PKAMnOPrcTJXAO51BPpSIwXAABWDA2DSDIDZm4-A4sdFmOPOYPBim+m0D5zSuU1OF1VRtJeu9ko9DyaZ2DDAoGnPOUnO2rSesez6-ipoNBBsrzbVqBg66Lo8wlSIvTDHDMWvWdatOw2IS6DqB+GjphJ6YuPY3WVlKG4iLY5R2DUr91QJ6x+2k5YIPw3ZlRqVLg4i2jMgl29r2XOBs0+5-6YOvt7t054LFUW9tuYO5spNHR4Xji3Tu+Hcworg5-Tt5HZbPMrbxAB8RUgOq8bTWduQ-U4dcBcMEHDjBWDsDybwAQwg2hjHWxpqWMdfnkAKHjRHN3T2Am0NnI7tqqOOQhPEYXnO8hcEV47X7NcVhrA2OB29GuH0gjYTohOlm81lpQyW6LDbHPIcN2z4alO6uHEgtwvClg87QYXuUHjHv1ABLg6I-hPvQDAcoi77EzA2CcG53wyPZR7k+5IoJ0CEeQRgvF30GdzBQAq9F0H4V9AY1JTja3FTVixUSnz3KK3+huVakzjXvIHt+1nURs39XFZ+Cd-VVkBveJKHpt71kjVn1EZmV0EYEwTAwPJ38B4Y6QLo5GAH8XjYw94SL5EAAMh37ywKC+nqwVKVPgXEoWMgKho35Oj9RoexAcpCfGxSPftY9f0yGwp8z7n3bMTd+c529aVX8AEWN70P96Ah90RUsutaVX1HYZoIDwhb94CPYZon9aUzJ4DwsXMkDJ8VQf9E5-9UCgD6FsDHNP1wCqJhooDDAYCq93BkMr9qCXpM5+0H98UMD6EzJ9c38qDyd18V9CDk5-92DSCc0MM7dLd+DkIeVaDWNx9aUeYjAaA7oaBtsJd9Mpc0NhB5dYMNcaMaAKBVCNdHsxJQNeC5gHdhMTcOEzdpkkNLcUdLCwNLcHcQ8RoMtOM-Y-cSpeFA8dFEFw9LodczIQD+BrCqdnsIRJwLt5ArtItG4QDpYIiKwnsygndvCfFOpSpA93c-DupRp0jgioiRMNDs9c8VC1DC9OUFNS8lMb4w9YD6EqjjC6819kCptWiaBW8y1xC1IVDjCu87ZBjVC+8RUkD5DRi5V1os1EYfQMQWgkD-YfRkUtUJRjQChdhGd0JBoWCeUVjrQpp0DmiNspZlRd0NDEimhog5cqI2FYj4haMMVriHhAh2UmUHsPovUON9kE9NjFjvBtB8iuo+Mii2dPRo9OduA+B49Q8U8GDaYJ4KwzgmRxdXjtiahCY9CYjRo4jZlxoMTogPj7tp5HsfivC-jQ9JAad-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')">function make_test(inst, machine, labels, operations, flag, pc) {
     const condition = test_condition(inst);
-
     if (is_operation_exp(condition)) {
-        const condition_fun = make_operation_exp(condition, machine, labels, operations);
-
-        function perform_make_test() {
+        const condition_fun = make_operation_exp(condition,
+                                  machine, labels, operations);
+        return () => {
             set_contents(flag, condition_fun());
             advance_pc(pc); 
-        }
-
-        return perform_make_test; 
+        };
     } else {
-        error(inst, "Bad TEST instruction: ASSEMBLE");
+        error(inst, "Bad test instruction in assemble:");
     }
 }
 
+function test(op, lhs, rhs) {
+    return list("test", op, lhs, rhs);
+}
 function test_condition(test_instruction) {
     return tail(test_instruction);
 }
 
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
-  
-  The execution
-  function
-  for a branch instruction checks the
-  contents of the flag register and either sets the contents of
-  the pc to the branch destination (if the branch is taken) or
-  else just advances the pc (if the branch is not taken).  Notice
-  that the indicated destination in a branch instruction must be a
-  label, and the make-branch
-  function
-  enforces this.  Notice
-  also that the label is looked up at assembly time, not each time the
-  branch instruction is simulated.
-
-  <div class='snippet' id='javascript_106_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0AjAJyfIAWACiokAzhQA0jJmQGi20gDZMubJWOkEVAc2kAHMgEpQAb1yhLoMnQmgAJmzsBeUL35yOjiSPEUjANwWVsGWVASgImIcKmpKHGwAHvpC3v4m5lZZ1rYUoKISYqCuSjQ0LET6MarqQrHqmqD18UlVzalO6UGh2cTk1HSg+mw8BDQ8DBzM7Nx8gkIZPdlW4ZE6bBQcNiQUbDtiQtpMOkaLy+dWYhtbdLv7QobSBRRigfgXWQC+oA1sZksfSxMewANw8nEMD2MQUBlk+ALh73OPA2RB49GGo3Gk2mnHcgm6Xx+Gj+mXOIx4418EmkACIAELA0D0gBKAEEAHLQAAS+T8PCIlFoJAAXKA2eBwABRACy9IAMlLaW8vrh4YRSELBvjPGkhDqBBxngKtSQzlYURQ0fQBGxgUIKEwqEp9XNPMbBQMzW9PkA')">function make_branch(inst, machine, labels, flag, pc) {
-    const dest = branch_dest(inst);
     
+    The execution
+    
+      
+      function
+    
+    for a <kbd>branch</kbd> instruction checks the contents of
+    the <kbd>flag</kbd> register and either sets the contents
+    of the <kbd>pc</kbd> to the branch destination (if the
+    branch is taken) or else just advances the <kbd>pc</kbd>
+    (if the branch is not taken).  Notice that the indicated destination in a
+    <kbd>branch</kbd> instruction must be a label, and the
+    
+      
+      <kbd>make_branch</kbd>
+      
+    
+    
+      
+      function
+    
+    enforces this.  Notice also that the label is looked up at assembly time,
+    not each time the <kbd>branch</kbd> instruction is
+    simulated.
+    <div class='snippet' id='javascript_106_7_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9coSaAA2bCqB58WoALygSRadIDc+KaGLlqdUAAciXABYCAHiNGgJ+qYv6qzTKgCdbAGgW8-ELajs5SXnJEXvQARAAmdGwxuvoAvnpShpS09KY0psJiTmFUBKACVFwcGloCrixC9sVhUmxeXjQ+MQCiDKYUAJ4BSgBcoLAA8rAxwRlhqaBs0lxsRS3OZHQ8oBT57pZsTHF1gQ0p6y6n7rxU0idKsxfhkdE7+efzzenNWcb0VCQqNQmNIqAAvNiFcTreruGo6Zr6CIUKKxBIkJIfUDffS-HKgOKVUxMChkawMNhcLhMADmbCa62RqMYlOpdNUKjUMXMVhiiJaAH4zBZLPywmMKVTaatOVy8qY+U9JEL5cIxc4JazpRyuQCgVQQeCkur9EK9cDQRC1UrQGM2h0ugBVEgsEg0ADu9AiAEciJSKGNwAAVACC0AA0jF-JK2fSsTjnijXoSuMTSZZdN88SZmOwOBEaZUKG0BCQmBSGVJZPJNiRi3WuO4YgAqUhMKlUGkYuLN5JzAykbImFNpskCGPSyslMrjrXs2WgGJ0igzNZKpmvWv1ihcXTqhZLFZrp6lcoT+ecxcrFdTm2gDf0ABuIL9qgAfGJQFu2A33M-pH6ISpHuNoHssqzQnekj2p0s5SnS-gxM6roel6bC+v6YwAErdAA4pAwbdFhMxYus6RkV8-YPgSRIkmSmb4Nm9DtlwNBkAI7ADP4ESbF4cRcLe1GVNUmh3DxnT8UIJrKqApBxGwBAAmwcTSbaiy+iCHFsFxoAHEcAh6cc4l8QJjSqTJhkCMZknmWpLFsVpOk3GJbC8ZJsxZoOfygMuHDfg2VlsIWPBtIJLxocFxZdMuJG4J5Rj4tefl0NuXCBZFbT+P+fphUmEVFiWMTXjMAjZXGcWMV5+K5pwAI8F4RBDiQAjFjYFC5cyxLeC1bBtf48IeZVCUmHVFANU1HCtRQFQkDwHWvJZo2DYQVUjbNY2NX8HC9a5RBbaYHTsUtx73uFOyeHcS0MStw30Elo3jVtO1kHtOQcAdDmjf4H1kLeSXOTNPDfYdwSOPFTWMKwnAYu6HDMGSSlQs0tbbKYZDuDV+ZBQVXRo7F+go-IBDSLSGNQ1jGVdMTtL41IhPDG4aiY-UwhYtWOwHBwD2bW9KwYeQMrqKJbNyBznD5I2aigjwAjS9NMTmgalqcPUUahFBd6FCoH4swrgIWkaMyNCL8gFjjk1MAARrI7hy7LRYCNyZBq2jQj+HbMTUzSate8b-ZMaAILSGxJKcGbIU+GWFYnfop4CPZ7FR2w3HYxHFvW-SOqySQ8mKd2t6MqnUXpzbahdT4dtJ9G5Ph1FpblvSbu2RrYS120JflWRizgTHLQwZHDeIQAspo1CmNIQy50pcSnZTYy058hd5YubdeBwQch8WcR9mkPyrfQwc0CwRCmBTOP19HkFhPT-7uAnF-J7P5u8BnjwtOq1G3wuckKdP5lCv3B+iFkJuk9E-COIwZjmTGJZAG-4-a71xPvRYNhdrFiRusemo1JY+TkMlOsP4dwCFdqRKQcdhLwkBjuRovdW5nXiIkHeLQwJHivhcemP13Dcwms9V6dB3qHQMocY42DjbqyeD9Vm4iLjUV4egt+i8pDkUTMyc8Mo3zqjUVnIqvAvArnVEKLWH4HBJX8kQtG-gKCc24VtPmfoBYKI1rI1BL15FAXVJqeCMpLx60UFoLm61Hq83QvYsgxp1hCj5u+T8VjaqBJ5vwuxP4wnuD5u49YnjYzaI3mQUOZ8I6KkFIHLQm8w5FzaB4lkXjtG+VXoUsIQpD7H1PqvSpWiFy+N4P4-IbQSQ5C4PU5wQoJbRIcLEjgIy1BMFMKYH8xxxkS38BLUGyjxRVKyR01WBiGYsDaXObxXIeleD6VsQZpoxYTNMFwSpgC1HAJdKAtCGEeASj4JYJSsVwbeVqeUnw8N3kYhTjSaoDd5r0H+YjJceC6lCHSiCis10A4sU7CQCm8LITIq7AE+qCSSBgt0sIlqF144dixTYnIfsvn4kxaisq20bAFBpdijaTV7DSOogDAGTLyV0EpUNCGTST4CKoAwOoAwGCWxoNIJZszjl-AEidG+II75UgclwcVkrpWgCOSc2ajjP7Ku-jnX+3ZtmAPVRKqV9yUJgJ1d5AEgcqRsAlbISBUkMkEv0nAkEfKboCpoEfIVJNLZLFllbQ87tw3SHRbeJV0gVWsXYsGpY6LI0huWLMZoBr41GqnqaiJix2iwWTdGqui5nR5uUjIKNYwQzgHAN0IeAAhAAMt0KBHrvXSGWgHTGB0RX6kfJwXqBQR3VwRoC6t6aFVsPIVUQmTA6z0tHQymhbCCZbBrO4BdS6R0cDKgIEdjikRnSMV+eM3cjxzo4CW5dh7V0Fzppu0A2DbYBuaTeqNYbp1ppTXukt97TAIJaNRM92CL2HlWNe1ed6j2PskPTLw7gfmU3HG8pSQLzZ7oLIB4DdDl5nt8mYtKXhQZfEvRBdUgCx3loeahFBB1WT4kGLMl9zEnUurYG6+MFU-XeUxnat6I7APjoBY-EtXAZW9PlbG59ewpbvqFf20Vgn+F7vyLhqTcr+mOPptMw6ODmCjuiX2rwA7qBDtg6JjDU7DxNxbi0VTqL1OysXfxXDmaT0EZENrQOMyJ4BI4D-LwE8ATAoAFZMGfFwMgZn+gCGbo50w1cCimGiQUN2fmDO+qRaS5qMGy2sSiGE2T61A53xmXM+2MsYg0rVgV0F-giteBK1iaiTBEXIMxjSqh1nJ0Sa07qyTZhfqKufbo5cyHoW-LQxOx+TKCzoqoXhr8z66UjoTSi-dL5h0MuW1iONfoOCGFUOqYSTm73rdXdsgTrmnp7au8lyGc3f3LEGzJtp5NlODt2wUSyj3MsQv61GgSbXT0+eMeqUxKVCFpQm3ILKO3jukGEMeqQRxnwC3euxEh0jgK8aRXETHYTsfENG2w6HBCAoWPOrcAQRGYfU9+mIgnXXybFhll9Z7YnXvDac8Nr231yfI2fbWQk3k1Ac4oPg8XOR9vNGvRd4TYv9S8vg6tsrKutonaZuTJXe2tc5F8IlhzkggfiZB+9nTpDJCgYh7Q5wlPUoCEFxr2X-DDCo5t84DHi6SdozJ2RsiEGe7rtaEWnwXOYhNqODsf0bGcUQwdSxZ1GduOUSpSYKXAh8ju0sMNrw+f8Ueyl2rXPMh8-cSLwxAOUuZeq+anXnleKTocuJU3+JrLOu3RfVUXgNI6RxBvQ7HgDAKCWM5v3-Fwly4nDHyIAAZAvz1xxR-tSzuM-v3eIY4aTsXh2MQCxqz3zX5BwkYPCaPa3s6wl++D+HzLGjh+gqfL4-iC-DKKa4ev8vWBxK4Pb7eQ7rTRlT741bAFqygGn497CTAGwaro-7Mi360j352xP4QGDQBxwF7oHpX5sLUR-504AGs494AZ76IGvAewlrH6grQFJ5VC3qX4IH4E3594oHKQP7TRP7UGYHIKMGf4AZ4FZpnSEF3DEGZ7grkw0g0CTQ0C9bc42YDYjalbbDyTbBqDSG7AcBqHTRXQK4zjCT8EFA6FrrqhYLrQ4KCqnwAZKFGGfrpoCAmFo627g7RJO6w5k7+CiIh5XoGFVAf7GH+imGYLPoFhTbS6ryzY87gLFzYZBSOFBHOGnTeZuF4LEaeG4LS7pEFgrYsKUbrCAJR4x4zzSGyEJ4sr2rsYrCcYLzYgkEQylG7DfpLBgHyyNE0Bqwlq8E96aEyE6H040BaHN74qiEDFDGd5-A5bIKqj1D4q6zyiv5v4mA8jWD1CI4ASZwsHLzzEiglRQH1H8bkzUhDryHm5NanBC4qGmxBThH5J1xnE7LMpopJzLb6quG+Zh53grH3D8D+AM5U5EI5FJFKi+5Y4B4kIm7YiAHVQ1z+idCQhc4PFrHKFjZlZhEaHTaoZImnBPGLYvFLRvEpEfGQmSDuEBQFjfQaazHAlPCgn+446-QhCQn44SEKBRaQg5EUEHwH7HFJBArdE75wkRDpStGOwRA8Dwn1ZBQCneT1C4lBRLZynDFckr5Ep05KkTEUo9rIIabkFbHMgez5A0EIoVQBznZ3ZCZ7ZCFeZIFVCz5X5L694WwD4cF2yWRHqIRGnak9766nwaa+kjGEoAyWQBlTE+kWlqaf46o5xpQBkqkAwBnQk5hfZtAECdCiqInobA4-raoRmzSXGonbB8AS5mCpnpnrxNTy6xx+GXLSaWmMqsrq56YTQ66Qx5i+nxxNR9bJwkmm7rBKH85JF26jLSJ9nFlvSe6gx0mcDgmMmjktz45pAUYO6FHrSITFGlleBpleAMDlFBJrSOrVEZy1HpCsmyrbkMAVl-DLbxnEpXRgz8qHF5hyITn7zyFKEPG9lQQ06u7InLKFnyA2D7CEp6E2mvBAUdJ1Y3bkw9aZkva2Zva5nDauyVIQU+Kl7QV5jZ5wXREDlXL+Cu4oUepoVciWzHLkCWBnJSBCiYxkV+7WA4WKGW4GAkw0iXGoU1IyG7BUUySYztGnFZkW45lEUtBjAkVXjsk8WgA0VHHskCXwXIkiVrLiXP4SkRBSUyV5jim7DCmMWTqKW-QcUdLnnpkaVtkzllk7nyW4XMWLLKE3IR7yFIR0ZgLN47ADCsbJ4cZp6LEBwnxxB5LYJULDYfmCVXEja3GREPFOy1H0xeyRUzbRVeyxXPqwi65zaOyqy6ZyZXJkwZUxD86xQi5lb3RsBpZqD3SamRloJvQ-QHbPqYxlVkzPkuJ8KopMRg7LxGYVCpHS5UBlUVDG59kXCNUFDN6TS9S6H2bDUawDZfktxnHzUawWJLVQSC6rV3hrEbU2jLLTV3jeEHEwl5iMF1heADDNGlqDzlEzrCHLyz63ploHWsmTXHKUD2GHg9R9SnRhJUBDq3gBwHDSCyrBW85spmHPoYhtTMrAVeqTWeYgasHcBjRhaliTXMrupKhCg8RsC-UIkWHfSeB-LkwnVjTnWQ19VrnXWZYSZmQ2hjDY243EKE1oZ5jN6o1Q1LReEWHU0g6OIJguHLxTRZw-x5xVoAA+YtTplCU0GNDS31ONJx8I-UokstGoKCY0xZ71ywapdwMt-ggNsq3pEMKenGAgW4HQWg7cU03ZTQziGtb1EmCWSo5tUqsga81tqkINCFCqxJGs-lgVFhXtoVc2NJzgQkFh3uSiRtT5nA5u6U5sScfO+FGuY0rtVtcNAFChGIzV0MbAsMcdjiPwnQ20by8dacScJmgljsOSeSMKZdxce+mG5dDcoOzQcdnSQctZ2mpysKyyWI7do0nd41SSAsJUJtGcZtKUFtbtE1X15ufst1qiglSZd0ui0089Kp7digeiJUMp+IKG5s6RDxDWl8i9rw-xzuB9EcURNmJ9jcdBspmJh9jORCx9vyqaoAoBJ0ZJRCV99xglTdDdjWn9O2hJzIDCGIfYrJtF5FY4elQlEaLFtIBZbC9MOh7gdFFF2h-oVZZCNZRhCRc0TZz6r6Cmga1hX6thUay6WthD7UQ57xkOM1kgccF9Hhvs6ufZP9aUNOB1zD2Iy5nxw105pOEJ-Dqypui5SigjVGjlRRsemDZIe5uKbGh5qerqJ5h1Jgij1gXRKpHsOjnRUae92jsDlg2DMsOjzK+5Le+pC0QZxKVjwxy09MNIZAQ+5up2+gmMcd6oHsTAasMQlsgTN4Q1LQdsHsEQDAas8c-gls9uTAoAAApKAPE2E0qB7CoDE0wHEwk1nPE3tc4CXv6AALTBPpNPDZ4aYxBZOZY4ZBMzD+DAECAAAMjQFTFwOjF1jsbjcQJT6ISQ7TtkPWMQK47sDs1TUTjTs81d0z9TwTjQhTFwIzAT4zMs8zRsSz6wIz5TMgDs9TN4Qzd4-FAGozpTCzWzLQS47j-TjCfsSUMG6RvTcMADi4qzoAGALTAAbLMA8+-U8+4y8-BQ0-4AACxtO6Db3TTPPz26B-3twAseOvO1YkRAA')">function make_branch(inst, machine, labels, flag, pc) {
+    const dest = branch_dest(inst);
     if (is_label_exp(dest)) {
         const insts = lookup_label(labels, label_exp_label(dest));
-
-        function perform_make_branch() {
-            if (get_contents(flag)) {
-                set_contents(pc, insts);
-
-            } else {
-                advance_pc(pc);
-            }
-        }
-
-        return perform_make_branch;
-
+        return () => {
+                       if (get_contents(flag)) {
+                           set_contents(pc, insts);
+                       } else {
+                           advance_pc(pc);
+                       }
+                     };
     } else {
-        error(inst, "Bad BRANCH instruction: ASSEMBLE");
+        error(inst, "Bad branch instruction in assemble:");
     }
 }
 
+function branch(label) {
+    return list("branch", label);
+}
 function branch_dest(branch_instruction) {
     return head(tail(branch_instruction));
 }
 
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
-  
-  A <kbd>go_to</kbd> instruction is similar to a branch, except that the
-  destination may be specified either as a label or as a register, and
-  there is no condition to check—the pc is always set to the
-  new destination.
-  <div class='snippet' id='javascript_106_7_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BzGimgCiokAzhQA0jJmQAWQthIA2TAEZsFwiQAcyASlABvXKGOgydUaAAmbCwF5QPPh2ujBIijoDc+E6CoFQQWEOJVUFDjYAD01+Fw89Q19fM3c-d2FQewUaGhYiTRCVNX5QtQ1QUvCogsrYm3jvJJMAJzYKImb6fj1bAD5QYTaOFIo2Egphfm0JIVFhLx8TAF9QMrY-AKCOVq4qUTZmiOi60R0EoybTcwpQHcyHIZ290eb+Zhk5CSf9w+rtti4JwaFyarXanUCPX6gwowzoo3Gk2mD1hIzGE34OzO3hBoBWawMuN8B2aNFes3EoAARAAhJiWUAAcQA8gAVZlpUTNIiUWgkABcoAAguBwABRACyNIAMmKqQtfEtcErCKReXQHLwaM56vxHNqKdz1SRzr4wR16NI2PT+BQmFQFHqtRxDTzqHRscqgA')">function make_goto(inst, machine, labels, pc) {
+    
+    A
+    
+      
+      <kbd>go_to</kbd>
+    
+    instruction is similar to a branch, except that the destination may be
+    specified either as a label or as a register, and there is no condition to
+    check—the <kbd>pc</kbd> is always set to the
+    new destination.
+    <div class='snippet' id='javascript_106_8_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0etwcIiRsEtxqmjrRhsagQuIiAET6HDmy8YkqQaHhlLQmLPnC3LrM3AAeZiLNZslaOvrp1f48-Fmi7bJ5MTmlIYSklVG14vWNLcz5bS2dqT1G9C5u7FQCax2TodMRVaBkdOJsJKIAbmwCREkaXdpbGUO5VyQ3d4VQI9nkkymdZn1fv8KEtWu0Nt0DNsGCx2Fw+IJhEdRlD2ACTuDIvRcbcYe1mMCXkcER8kRldiJ9od4QTCRcBGwAEbcQ7FV4pRG9TJYnIc7kCQF8gkVIkowRcnmw6lvTZ0vpogaY7IjUCihUS6UzWVixXkk3M9YqwXIhlM6msmUXCRsADWShuZBdIhpmQMoA9LtAnlAJCIAgEQXeoEdUTMREY8hETWSoCjqQDQdAFisSdkAdKqdSqqFOV4dG4OSCqVOqRj9DMNFaPtSVAIoBEplD4ZsbE9KmbRe09V0NGsOQAohIzBQAJ7+9iegBcoFgAHlYBNI4PtMFQDzGNwrdudLi5I3Mwz81XjzoM8G7Ve09vPvQKI3r4PQtX8LWjRcqCQVDUE8VAAF7cN6R5FneIZhhGT60iWZYkBWH6gDWOh1qAvBMBYFBkImiSMIwnD8ghaTIkRJE8EGPg5HGCY5ORqQAPxZvG8jMToy5UaRtHBvRjZMTeOhsQ2TZcdoPHcMRfHeAJAFAVQIHgcJImgGxinAUI4HepJoDLsOo65AAqiQLokDQADu9D6AAji84jLuAAAqACC0AANKArxPCTN+UYvthuFsPh8hgmyUTOm6KwxHU1hSlBAh+r8FDcHcjCZjkABUpBsMRVAcChvDZZWP6YX+UQ4YweEESIvlkcerbtg1-G6jwFATFBx5Bal6UUIwW7bru+6HgKInNfVMnUYe8m6genUDiJQWUrNAB8GiXHQaUZZmq0BOhQ0iSNAgHt16lGdYDWjGZFnWbZ3AOTJFDLgASuOADikCueOr2bvpX7DVGGGIci1W1eFUyRfQ+WMDQZAiG6M6yPoVy6LwjA+kFnZwSIqOjhjKiSWxpC8NwBAAXwkmGQ5TyI9wyPONwrgiAy+Po5j-b6RpTMs+zhPc8usPw-TjN2vznMRVhHXMH1GV43FCy6FjarRBw8W5B1-2nFhC2y9t-WMAr6tK7Iq0q0K8xpWOC0TCI5tS5V9DRUoAHiLoRAQoyzR2FBQXZtYaVNDIsHhg6TsMH8FAexCrA+x2UcWzazNuG7diO+cURpzHRJLNwZBELnZgjgjadJxkdplxnEL+gYzDZ57ufNPnhdVOYJcJ+IsjF-DPp65XUfdyXBZQ1hLvMChVnMM6BGU5B41bVHWZkJm49W-UuRmGQ-2pKeBAchwq+uko69jvvnA7ye1wUPOvaBsG48Bt6aHJTfCiu1HOdtweT3kLNofwVSK-XwShGyZWDN8b4OQtLKR0u6BcLpATc3UqkSCngNpP2gYBbSYEKz9n8joYBp9lCcmSpmSBIot6Ai3ioWQUDz4FFkAw-sR1owRyeAIeGoUT6K2tnEBIjVtyTWFgjPkKNeGLHYKQ14c1Sbk0prwJaRZiFSLIcGAOIhvhiNAGvCRCUBH9mkMglBPU9EkOSgQz8e5TpjX0pdfhiRRgAFkwzUDMAIOcZMKbFTVvFZcl9PzkSCmME21tmAcK4WlXgZVvy-kzvQThNAXREDMLFUJG9EoL13tfIETxMwiIcdwcR6SGiqNBORIJqtgRtTkd4qmKC2L2O0TkW6lkbK+KVouCY+lly2ksIcYELDgZRiws3AuaV57kVPGncBoAZZywGiIGhaEWxtg7CwLshwZn9nOoOYJyFULkROmdLJ25Tw9xXsGBuscxmtzoO3EWDJtkjxQRc5+hZ1JBVuRMyxRZAY7kCqrVq6DyLArojcXQnVyJsTQRtdQtcYQLKNlvWQ7966f0bt-R6Lw-6-JMRRDI3yIIFn+UWaSskaJzSwTccM6L3aYvuT-HFZAKzQtrnZIMcKQF0ujgykgzAmXpRZZmH+B1SWpHJTNNqOQIlkG4Wk+KalBxsVlfK0+5FJVyTojLU+SqixsUSck1J6rjyaspXRNOHDmCNnqKFKojA9WsVAGAzlm00UuuDGwMwZh0p7D8GA2QYCSUap0dNLVAkAyOtErfT0IawUCRtboO11wo3aDYu6swjAQ32OurqVp91ohPScjo3s8hKbazCBHHVej6qlspsUieBi-ZArrShTWdddUqGNo2ko1dZSw0Kvy-IPaIIDqKjyr+dBy47BToyfpIgx38uuUSIZOt2EFXHatJUi6J18pTICoUdo7Q7uXVUVdlb4mZBoEklJ7cqASDEDOCQnIaACEDT6pNRJMZQVPNUz1xERaMCfS+t9zqP3Jr+L8laeTZEkC8Qotl9igPPtfTdcybT6CJog5HUAsNuDPuSl0ompreZ7HnYM8Ol7DW3vNJo-UjA6H6hHT6X9MHcMAYRuaEdjHxSY1YdBgQNS4PyOKoh3QI5rBceaWZeDPjzTLjcuAcA44nEACEAAy45ukkbtIMvtTpj53okEpe4Sh2jYhLbPFCPH9w+kmqYEkdwlQsl2YvcQlxMyObJMsVa1IVnWgyLCy4aFjmHnsywLj5mXOnO0NMqOszqOpNo+aBjmQmNmn1PafzoNAteA2jMkL1izrhYVUrZz6wlGnl0JmatJTa1WaKR0sJ5JVgsmywS+gQX5kG3lsrA6wMiu2OPPYnULT0MFvaPoAqURZw+pw3hgj3AiMhdHhHceWGm4tAszPMt1m0u8ffbar9LGcnnggdeo1RmRAbbbuSRs1JDufvtb808XqS6zOdHCV149i73pM2ZrbjWdv1v27Zox+Kbw3fuXd8DcGjZtfKjlzreXcPeo8ei5gcjdAeIAhwZgAArNgjxGBkF0FQacIhjGDkbLIT7SzXVNlkG9+GktVuXsXcbeK3H-Q0CMCyk7S82D5O9b6zRIpF2AmIVKPMvPdD87QkFNg+moqGY52nWnrbGspcexB1LNCf05PYLoDqNWO01uB3tndw6+SdzsC9nJW72j5I3fyx3W2q5RlYyCZg4QgzkVMFD-l5m3cdDZet8Dm3Wgh41w1mzp0dfHbjYZ37xnqCmaVAyEPtDLO7a1-RqDqsgsxYRfrO4hs53G4MGbJ4LwfekG9HinQrhHh-3MAjZZHydzK5hrwFvLK29LLIH3OuSLB+ovnd1sv8saEsNTGuy9480rZHVznkH2uwNHftUwg+3ch8G6Xr8HCsp7zPVL0fqotvfklcD0qQ-Skp2VZyXf3OvuH6GZv+Z5-VRwcQ9-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-ciuBZw4ikyaKbzfQ-ua5dhUeVUSAzQBeVQY0bQdIreaEIA-QKo-gwIGKbwaowMfqOvRcPxfA9YSIFYwJfqbdTMYcHYyaQ-hFKeBwGQPwOnZ4FGOPLleRFAmwICDkJyCE4tGtUAliMqfhoCAurIJyCjkLgAKTVEHUoJQKeBxNsAJNJNtSJPpMzkijMEAC0YTkTx45F92OQWT2eqwoTEwCB18pIIgAADIYtzGxbRjkJ47wCUwchMIU5yVhXwQMViNU-oBII02rLkME3U-ww0-ghU9uBzjKmM9kPU2E0s9zKs+UzwaIPU4tB0yYgY906U1s0MzeD014-0--UMnrMQqPr09nRWWs7IBgK0wAGyTAPNmJPNeMvMqUNOyAAAs7TQQC9tjALUVQQr9DQ-z3jHFazpQQAA')">function make_go_to(inst, machine, labels, pc) {
     const dest = goto_dest(inst);
-
     if (is_label_exp(dest)) {
         const insts = lookup_label(labels, label_exp_label(dest));
         return () => set_contents(pc, insts);
-
     } else if (is_register_exp(dest)) {
         const reg = get_register(machine, register_exp_reg(dest));
         return () => set_contents(pc, get_contents(reg));
-
     } else {
-        error(inst, "Bad GOTO instruction: ASSEMBLE");
+        error(inst, "Bad go_to instruction in assemble");
     }
 }
 
+function go_to(label) {
+    return list("go_to", label);
+}
 function goto_dest(goto_instruction) {
     return head(tail(goto_instruction));
 }
 
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      
+  
       <div class='permalink'>
         <a name='h3' class='permalink'></a><h2>
     
-  Other instructions
-      </h2></div>
+    Other instructions
+  </h2></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p9' class='permalink'></a><p>
-  The stack instructions save and restore simply use the
-  stack with the designated register and advance the pc:
-  <div class='snippet' id='javascript_106_8_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnJgNzYAUVElwoAaRkzIALYWwmipLCQAcyASlABvXKD2gydUaABObAOagAvKHNsKHM+aqi2JgcxlyFFJR2GijhYcJEwMggEU6uoA3Pj6oMTk1HSgKm4ENCYMHMzs3HyCmjoJCSpEXNICimTKtvYchiQUbM1cAk7RcaX6TAAmvEzknGoCarG6+gC+8fpmFEQm9Okmmdm5rJw8-HEzhKSUtPR5nGaiWREi4pJeJPKgNXXj2pN6TcZO1vUOTi4t7p5ZHcfH5IkFzCEwpdRF1ZnokodUis1jkTkFzmYBMVXqUuA0mi02h0LKoaCpqr5arCenp+oNhhxRuMYqAcXsEvNFssMllUZt0RQLrt8AiUvRHv4ruDIeEKaCriYiIiSNiOfYuaBpGx+gJfFQADZy2qS0SK5WwqZAA')">function make_save(inst, machine, stack, pc) {
+    The stack instructions
+    <kbd>save</kbd> and <kbd>restore</kbd>
+    simply use the stack with the designated register and advance the
+    <kbd>pc</kbd>:
+    <div class='snippet' id='javascript_106_9_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=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-3Wjgcg9B2-tG7RcOI4nQBOaIPNvQ-vrD3GaGL+YemWxy9WQIsEMuRELABcTu-uogMe0BkuxGYePsoGtE4B-o6egumegimBT88BMkuekEGBe8-aReEwJet8l+W+FeXKZ01esamm2m8koq0MNB94kGPeM2HBgQe+66o+JcvBN+fELAwhcq3K0EAEvKBIYhm+aoS+juvOZ0BwXAOoeokwEG9sHAsQFAwSOsahxKVkE8lguhAgAAZOYSmuiDoZtFgpUmocobVAgnXG2hSNnNOF7IvIIf-FZJRhFn+lITVFZGoRoVoU7NJq-L1Oiq1P4aAtOLxkESNDIYSOlk3tDO+rdENEke4TNpkV7FNGTK1FZJkdBoEfXJZKobqGESnJEfkRuq1KUZ+qRIkRUTVCkbxivq1GhhAm0SNNnJBl4USj4dDFZE-sZo+jkeMCEdUWeOEbdJEYMQ0SXOMdKj-sWq0W4U9LouDGkWwfphLDqDQNdDQBQYHprhnCfvCLfkxjQIiCIarnrDEo-oOlRsAc+tAh-nZl-qhr-prqsbmr-sAZYuHuMEBogf4sLrYCgcQTvBRpSjHG8XxK-sotAtODdtMgiTirvhQoiWsQkcCegiNOCe1FTgEpLlAZCdOKnsCHnnaFCkTMoFQaAEcScXQeqmpjXppg3noPsfKKyYiH-uulMfQNnAKTQF7FwSMUyEcfcbfiwLKccRIRqiKdYWtNLncUqWqsvl0SXO5r0VsaKTNr6IdMMUUSXODtrkZgEZMX0RSMYd0L0IEZYcyFUeoXMSnM9H+mxL6Lqf-F7kkO5l7jyjsXys9MGRmq1AGSlmZK3iHnkuUYaVLrIcGU4SFlcAQLcIajvtFvwRZlaXCMfvXL5tDEUJapmeILEEkNwCsNbg-jsHsAcF7vyjqR8WNldO7sipOM2TWTEEjhxvgYQcMJri5uZCCaAf7PhIOR4L2XkinuRNgckLgTjORNORRKRiQZJuQYycyeWVmeyaMYwRpnXjyekUyHuZWdWStC9qqeDP9i0HybNBLJom7qdBQZroHmuZmJLvHnkBajasWdAg0MiLovfgBjVMBZMgKqCqAI6JzLtnrP2TFs2vmZhhnCspBd6H3jDhLC3jmcjihf+QfrqPrhhe0rwTBXBRLLwWcershRhsRUfowDjGRZMuKZRV2ckOKbRTiRcSxSuqAJhUhBVsUr2pxSkCJTxbme8DYMxUmi0oJe0opoiFIBxZzMpbcDyPhQdn+XJaxd6BebEGpduhmVmVJQRQxVrmhfxRcNmNuYhTJnCnJsqQiC8KptGlyXXiwY+fQCApMMMsRuInmUhQbkLGzBiUsvOIHqoGnD5tArnBFXdnRWxLnA3lwkrCStFioJ8nFQhmcplYzMoKOVJMzNAnjFQJIC1kUOVdqYjPEsjForpADtApzJVeLJOC+XOadOtjVIFnsOUuVZVXsH7kOW0K1awMqddPtHfpnF+fRCjnNWhETotd+WQCNaNf6Hritf6H+dtaSI8rNT7DCWeWvuseWl1OIC8EKQNigaqSYU-o2sdT5fJhdDWWdeCHtAdJ4EUlQPuqhK1CiI4JakFeZgqqiQhqeBtFUiBamtNa2vxiNFZItCVguNNVUvJWJcZJIL9VpTwljI6TipOOMRuJdajVDUTCgXmVFJmF8FjTjYEgTZzMqWTbDCDNCTwu1rFjEjKKKCNDdFgv6qOgAD5C2unWTHA3QY3fLfXY37oLg2SHQ2RS2iDZgbRAqUDvUBIL4bTtaA2Wp+nQyeXZAsBAQ3BlCjw3QhUbBxKvUa2xZ1b+im1mrZAxyW3SQg1c1gE+x+UBU8Ie2EUFWnioFrzBE8IgliA6AG0HGTj3Z9ZcbTyoW2BO3m2u1w1XFCz3btXUySC0yx0xJXi3A-Qopx0dzTzBZ0UqCDLDIzJ8Al3IJLa4mspjmtCx1BwbJlCBkFn3RBCPLqyt2ZId2TW1KFKhz8pMF14m2ERm0u1TVfX3aMJJn3ZOEuK3Tz2qmt0r1BDLH-zMZcZknYnSWLZEqqmUllS73RwH1mZH3Ljb3Qx4zrz72B7X1nrZGi6kni4BLn3VxP0IkVp06hCk4jQSiyJpkSzahy3aVnq6WXGAUIbolFBf1RXJUyU8BVIsrPYgyAMR5e3+7WgWC6Wn3dTUnB3QiLlC54EJY84nVPmTgaVSDmU6W+BFmlVwO9SJVYmB55BoNPa1wvZYNgmR6DkQkia9RYzuYDAkNAhkPLnZ5oHL2SXUmqnZzgOzD4q31Mh0M8iKN2njAeF8SaULa9TqPyhcPnToO8OmO1XyqqkdGWM5I6nqRcI6hkCaGZ0FAt0Syx12jZycBezKCxx+MoTrUeApx6NGW2D8q2Cxzk7jYACkoA0TwTQI2cBQXskTCTMTWC0Th1FwvefEAAtAE0kxcC3u5soKk+1gkf4xoEnYLLerdAAAxLzJQ0VoZfguP5MyKhw5NYHfYqA-hZz2xlNSBGWVO9SV01POHVNhzFPDC9YdKSn2xVMBMzPJTzNFN2xOxVMoTNNoTcVtNm6FMaA9OkjtOTCdOSiML32-373OOuPIMLO2AYANMABsWI1z-WtzLjdMDzGzAALE09oCvQqd8-PdoIgzHF8-cziQs1oEAA')">function make_save(inst, machine, stack, pc) {
     const reg = get_register(machine, stack_inst_reg_name(inst));
-
-    function perform_make_save() {
-        push(stack, get_contents(reg));
-        advance_pc(pc);
-    }
-
-    return perform_make_save;
+    return () => {
+                   push(stack, get_contents(reg));
+                   advance_pc(pc);
+                 };
 }
 
 function make_restore(inst, machine, stack, pc) {
     const reg = get_register(machine, stack_inst_reg_name(inst));
-
-    function perform_make_restore() {
-        set_contents(reg, pop(stack));
-        advance_pc(pc); 
-    }
-
-    return perform_make_restore;
+    return () => {
+                   set_contents(reg, pop(stack));
+                   advance_pc(pc); 
+                 };
 }
 
+function save(reg) {
+    return list("save", reg);
+}
+function restore(reg) {
+    return list("restore", reg);
+}
 function stack_inst_reg_name(stack_instruction) {
     return head(tail(stack_instruction));
 }
 
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p10' class='permalink'></a><p>
-  
-  The final instruction type, handled by <kbd>make_perform</kbd>, generates
-  an execution
-  function
-  for the action to be performed.  At simulation
-  time, the action
-  function
-  is executed and the pc advanced.
-  <div class='snippet' id='javascript_106_9_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0AHNgJwJq8GACiokAzhQA0jJmQAWYtjIA2TAEZsV4mTR68m1OjtBcyASlABvXKDugyxiqDlH6AXlN8BQjq9okohIU5gDc+PagVASgouIcenyGARxsAB5cwv505pY2kZGOwS6UKcQesuwJ+sl0qRlZpXQyzApKqhpaJokGbuJhtgV2vGwURLz0wpbuAHzWJW4c5VOhLgAmAG5M5JxmwmZhoAC+EfZHoF1s1oNDfLyCQZIyAEQAQkxroLAAogBKAGIAeV+AFkosFeEQmiQAFygACC4HA3xBrwAMt9ngNIicToRSNCvPxBAw-NDHiFrpERmMJqAKEwqCoKYdcEcgA')">function make_perform(inst, machine, labels, operations, pc) {
+    
+    The final instruction type, handled by
+    
+      
+      
+      <kbd>make_perform</kbd>,
+    
+    generates an execution
+    
+      
+      function
+    
+    for the action to be performed.  At simulation time, the action
+    
+      
+      function
+    
+    is executed and the <kbd>pc</kbd> advanced.
+    <div class='snippet' id='javascript_106_10_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=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-JPxojcEDy-cGei4BwDul4QAIQADLulCdGYM17VZBrRgXe2HaoJpSUO0YYrRZDuodZhkDw6s55JYB3Ng6lC2fCSf+vOjJ+OCfaMwfmLGOhjJ4vuVZql+41Qirxp9IGhOtGKY+ZJ3Tn6Utbcht9XHP2aak8Zz48nUp9CU90lT1SkzqcIcx4TtTUz-t0BKb1xd2OmUdfYqTUlZPRNKYprwuV0l00yboAZ01HMcM3e0Xdhq4ytH0EZKIvpASHs2sex+3Az0qfjjmguyqtNmDY-a-znGP1zp2JUbjHJklZkZA+1tdHO3lak4cBY9W4RA37sk3lDsl74jaEC2j7aJAMaY60YYVX041eQ0DWh9DHTdf2McSE0IrPzQUzcJTvKhE+kOcwbBuhhFtidQAKzYBlRgZB23ehEHQ6MMQquxDMEC-8sgRvbR6dR-4tbcY+p-bKGgRhfnJWG1Yvlmk3Bv1raxQhJiIdQ4FlB-cbAge4gLiDzWi2PW2JWwO+djXP4w--ewXQXlvM00oX52xtaG4-sKaFsxOcC3tCsXm6TmU5uxDds1-9BbwgMjgdUQdGJ5vc+0-8sr0uQTMbl5V7uS2SdfsYGThr6Zz0Sqm-R6gjHC05lVzQ9XxOzMQf7mdJT7mNlbMKtCGnXkWYC+YOECkFydCuAypPcwO1skVVnLjqIfuBO-MD7s8ONMMk41LvslNIgovbMydkwBwps3BoLhpbIhPLccdJ-1odshf6U5HaJugS5-iMjz5stSNfKjs-7upzbsRG9QQbSJnOnfdji8ZIr8nyv5t98qGt9b9CmfW4TDrgbPuDu2Yixw0Ucfos43L9nJvIIvcc4LBHgPpcY8h+jMEBz4U6qPk3QXnIBHXByCoikj5aM2xHpPYV2R9zs9o3rzCb+8htc9AADE1l5sgch69WIPsB4ACDpgCsQqZ68tlt8SApZxBS140QDq0qJ0D1pG0c96574IQ1xCkici8tcy8a4OAK8s5klHoMxGRCDI95BmA6DRBhdUh1NkNC1WCdNow9NUkDMW1DFjNi8uCLMv0RAeCF8bN6B7c3sUx4FU9ncRAAFTFJ9Cw1808E89kn8ilrN95VNL91DowD8o8j9g95DT9LDFQz9ZwEsHdr8o5Fg78JFGDyB5BdCy0TANpNx8tT1P9Qhv9-g3DiDkMQC34Qj5BWIwj4Cc1IiWCqIRB4j60E1nZ9xk0ngkiiDmCUjb11ZcRgsTE0ibg34pJWITFYjg1TAXN5sEQs4zpxhOAeB+AX5ksPIyiUYqYajqU8YQtii+gMjng9sgjcQJNRB+ZwiZgcgxjWIJjKiX8+NzEBNNlXNtN+iqh-Bmjphsg2jpilj1JLUqYxjQQZM6isdjZXgHhk9hi70ohjMij6jeI35kNyiXV5iNYWAxDai1jHj9xGjJgWiZhdiXjOim0v1QRLMfjziBjLiSwbj8ixJ64OAaBWAaASDC9ltyDc4qcc5WDvMaAawEj88o4clODwTmMpCe8Mx9M2tDNhCJDRDyT9hjMpDrM7dl8vZ49oRE9dDBs7CL8GBopqjbVuCqJeC6lPM8Z6dNlGdqtbFuiG5JCxTpD2SgVOT19uSdClCdkpI98Yx7Cr9EN0Tb979kTUTPD41ctfD38AiStg0zSawTN4xJiwCHSaBoiv1QT7SCSUTWCU8fScCGgQDBj-TCTci8C0Y-xSwQCT4-xLUET6Bzx+QxR3cypf1Jk+hYz7xeY5i7SaMe57s+wC9p9-RbRqCRcc4pJpS8Um4SyxRY1WdI1TZF1eI5D1CkzSxZBtSYs8Y9T95TClBzDY59DT8w96AC4Msax9B0S6yAwCRyy-1KypTGQfMmYYo5TZQ5yGyI15J2cWzwsOVrDtB1StCGY8YQ5Dg5RpCKwBzo9g8FR6FbCRjPZCzQcXS14txGMUdez3iCiqJXQ+xdT1jQC15JyALvyOAvS0Z6zNZGzdyYKjlcDgKQyELn8gyIz-gC5hl+8QF0Ti8Syjz94eTN8UyAQmtFyMxmhsxLj2CMz6AqL4pkcFd64CcnCMTNdTMyLKcCUGLTwIDmKJJf9iyNzatZ8uLORKDuLyNQBeKPxIjVUdBbwC5IiZyRLi9N9skeLEVPIUSawFLtAlKkTdK0ThKNcZ9ADNLpLZKPJPy-loxDKJJbLVKzLSyyQpLHRgxrLFF-z9B9LEJyFUVxAALnKrdXL5zsStL4pwQCBXQJA-KHLBzagYrdBO1TLQri9hUIrpLHDg4PIDUuoLSf8fQctX88t38is8z-gDFeBcVulClAD8K5ScSMxS5qzZSXL35P9klf42rbV1yOrf4ur-0u4mdcgd4ckWszAxs5TchlVGBJoKyMwvYqBuBvtGRlrEK-Ybl2kHYht-0sK1qAq9h-ZTgrJbdeJxsLQ1SaYVqhcJ9jDjQDrCkvDdZFYLQaFCL1tSdPqp8NyfqiK9l-qGpy8gaUoUzQaEJRUPr95ukMK8d64xD1JdAfQnSUNEhZBYbgKSFwSyFYaxy0stZSRNkVsFYlZDpuAqBGNkoqZFABBwR6rzKK0+D-1TJFZY1qL7gNJFZIMwsbhTAxZrs4hpZY19d7K0hflKaizUkQ5LA7UJJEatYUbWbNkC9YbGbRaPLxaKbGMslZb1yJIUiha2bTYMbUkLcVscluIZCH9FZYNV0PEJEAAfR286S6Lmuwf5cmyWuIFWQoFWDW7QTCRWOoSgDTcKK4zI92i3Wm8EOG8Pa0grEQQKF0VkO+d20g0yToK5Qm0OkmqaZOvtakXQV6mQKaBm0S4dI+FfY0aq2q1JcuxqjXa840Bo1JEcmMOO8c+uUa1HeSQAzKgu1O4uqOyvHOJnOuCSZOVOGanJSyV0JoM1UHexGBSbGanIbFXFUlFQJetBNHIJJhGBPk1IUa0+EkVkMEYfFVbe0VfuE+15c+lI7eU5CFS+ItPwvsQeoukujOpIHmui9i-GhZUQJnEAk+oB3mKC61BnEUrk-q0K3u4oYC7snGVc2skShB3+38z2aBsHWBksjB1MtmAcE85Q1B2SfBkUve3MvcG4cpDUfG2jJK2KkKsgziuahcznDMIm3ERkaK2K5gbhugFvDkNvJXeEebQRhNNQ7OLhnWAfI69vBBdaH++6h64wjKsRo+hhA8qu9ZIGyRz3UgO5W8ocuLSfWw7UA06MHKpWE0iRPhlKwqjWHwxMG0y2yq-UJhlKgRyWJ2X4m4SOQ2EPH4ZJDgMgfgcezwDkAuUax8JHViHIe+BJpKVRqkFeKY-QOK2QBBWQe+ZfNgUAAAUlADydSejDfk8FYhyZKfycRTyehsdDfnrwAFokmynHRf9DgchKmLdgtEmVhZAxiRAAAGL4dp40FS4zTycJ5ptUCpMZuhEHcA6ImYLpzJgZyRXINgDZvppJ4GcZxUJZ7Z7+GYXZlYBZlKJZtpkC0HXIJKC5hCN01Gu5qiVp85g51IaZ3gWZ6caJL2QhWBsJiJkS9e1iDAYZgANlWH+ZgY1JT3Ceno6uuYABZRmgggH4XgWm6ggyHi7AWEWSzQWSggA')">function make_perform(inst, machine, labels, operations, pc) {
     const action = perform_action(inst);
-
     if (is_operation_exp(action)) {
-        const action_fun = make_operation_exp(action, machine, labels, operations);
-        return () => { action_fun(); advance_pc(pc); }
-
+        const action_fun = make_operation_exp(action, machine,
+                                            labels, operations);
+        return () => { 
+                       action_fun(); advance_pc(pc); 
+                     };
     } else {
-        error(inst, "Bad PERFORM instruction: ASSEMBLE");
+        error(inst, "Bad perform instruction in assemble");
     }
 }
 
@@ -2010,114 +2171,163 @@ function perform_action(inst) {
 }
 
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      
+  
       <div class='permalink'>
         <a name='h4' class='permalink'></a><h2>
     
-  Execution
-    functions
+    Execution
+    
+      
+      functions
+    
     for subexpressions
-      </h2></div>
+  </h2></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p11' class='permalink'></a><p>
-  
-  
-  
-  The value of a reg, label, or constant expression
-  may be needed for assignment to a register (<kbd>make_assign</kbd>) or for input to
-  an operation (<kbd>make_operation_exp</kbd>, below).  The following
-  function
-  generates execution
-  functions
-  to produce values for these expressions
-  during the simulation:
-  <div class='snippet' id='javascript_106_10_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0AHAJyoarUAbpzYAPLgApxXADSMmZABZUSbeQBsmAIzYaAzgEpQAb1ygLoKgVCSq+jmTr6KTEhQ4zpEw8bOWA0CcSFyDQAF4g51d3TwkOISYNIjZvLkMAbnNAix42CiIeekljcIA+IKyci2yLAF9QPX02Kxs7By1dDTipGV9TWsDg0NUXfQjQDRoaFiIuDk69SUWDTR09HoX1jTTfKuq8gqLbUorRin0swYamlutbew48gHN7CjYeHt2-QYDhilAPAmz3yTzYrxcH0kzGUqnUgPBbw+mxe332OUOhWKp1AII8wXe7n0kh4mVA+ACNwMLX81Q+PBoPDS8gARABVEgsEg0ADu9BkeX0+lo9AoAE8uGwAFygACC4HAAFEALIAIQAMoqWZlrrg6kA')">function make_primitive_exp(exp, machine, labels) {
+    
+    
+    
+    The value of a <kbd>reg</kbd>,
+    <kbd>label</kbd>, or
+    
+      
+      constant
+    
+    expression may be needed for assignment to a register
+    
+      
+      (<kbd>make_assign</kbd>)
+    
+    or for input to an operation
+    
+      
+      
+      (<kbd>make_operation_exp</kbd>,
+    
+    below).  The following
+    
+      
+      function
+    
+    generates execution
+    
+      
+      functions
+    
+    to produce values for these expressions during the simulation:
+    <div class='snippet' id='javascript_106_11_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AGxpoGsiAHAfQYEMAjAKYMAFL0EMAzgBpG-IZxI8AtgICUoAN65QO0GToSKoAG48GoALygeEiTTKi5DBcoEyxQiaoDc+XaAAnAQoiAPpTcwso0FIAEwECKhIBWO1-XQB+UAEAgJoAx3EXFRkAIgBVEnjE5NjZcQAuUABBcHAAUQBZACEAGXbS1TT00CaKHioRCJ9cAF98YnJqOlAlHhYBTkMeMhZhdS1-BmDQbd3LUBIiBgZfYdBFylp6diIJAAthAA8D0Hv-M4sC7sCYFL4yQE+P4jHRBEJhUClWJ0ASlXz+eb3R7LF40dj7TT-XRUAigYRUCQKa4iSEHIkjHJ5AqldpKdgUACep3GuyasAA8rBBncYaBZtlJAJCaL-PoSIZQBQ8Rd3gIeLFhJD0TKdICLuNJpqeSwZjrYcFQvQlextSN5hi-Lpsc9QEkqNQzFQAF4CAmHGF6qxXG629Jwy2I5HJNH3TH+Z0rWIUkEUMifFS2HgAczU0ph4YRGYk2alUSspVeH1K9PSWUr7xr-iaRZLlmiFbx1bNoDreP2jd0zYEmZzbfLbo9DG9qIHOiyE6onp9-e7TUZ+WEFRILBINAA7vQggBHIjDihNcAAFWa0AA0qUZC2c6bdHHdAX6EmJCm075MQn6DWDZOCCLMKQoHJhEUFQ6SOE45QgkgKAkC5SgAKlIGwJCoLNajQmMsVIJ5E2THhU3TYdi2fPMRhJMkn1LdscwoQYaJlD89DoRDkJFGFxU8KV-R1OjhAYsdEQkYJWKE7tAgtBEIlPSwAD5NE4pCBCQlCrEUgRvDFXidX4yU2O7dcCgYspKh3fdDwEE8zyaAAldoAHFICvdonOFWcxRre1X0dc14U-UjyL-BYiJxaxbHsYQNg5GQgn0AJYi8NiOIpKkbmEZL8jSoYzSyOIEiSFJZzXE8zHigREtAVV1WEBqNTy1KvFUQruyyZrcoEFKCt80YYrsBwEpkA0RFagqZn-KKXWYzgEM05DerAwwclg995LstaIOZZifNmpYXUkihFq45aJFW8CchkXTNuCiNQJu5lTsGYR7oiwg5pWIDNiSQwAiIYiSGECCvgoB65JC0AQSoApwYoGRgwYGbIuOlYAYoIGQc4RHyXlSGMu2+q1Q1LG0e+jH6CxnGcU4AQvj6oh6fYPIHAp4mYYmgnDEpgDTmCThaeB+nGeZ1n2d5pHYfZqHTrxiYRCxmQ2fsKE5nRkHVnWTZkj3Tg1jTMq-XuOUFXYMgLj+kCBF2yCKzIHzZQMIwCF4LNrd1237eZd3s2d3RzaMQMdeAwF9lDY4jAoVVhcJunni2ezT3IUtLmpKOTljzY8W0xhwNEQvSgXJdNkBB9oVk6uCQsVSI5Lkh3UXKcfUGDqs6MZ71oCRW+GOC4p0MIvh8dyvLdUdxi-9rNK5njugoeH76DMJgyDIzZu72qDXCh-wRKwuLoLcOTfb7451DLGIqlK2o9-zO2XvP9O4YKIeKB3kow83x+e8-tRJ6DWrg-M+4x+5qFDBiCUklTIwnMv-MonRrjUHYAwLk1Qyp1C3jkJogc7Q1g4qUbBvdV72A3rEGMDp4zL0YMwNgXBiH-3vjoYOJgzAXEPg4Y+SVf57Wfi+EYBCSYRHEiVGo5UurZFyBubhiJrK7gPKfF6DRBi+SaD1Hm0wBF+WodTbITMyAs19Mw9SCosb5wWktLSwgJ6QOJKScklIUbS3arAkYhCoyojsToYyMCZKilYWrK2VgRa43FoYyWcUermI7lXHUQTI5xPYiTcJRjI7+VjPcDiYk641hye2bYAQWI1iyLXVSGhBZnSsStS24046hPppJByadtHVw4qkiCiSAojCHCORi45Car3joDUWScmmpzIDOUUWQmkqTUjnYZ2NRl0GTs0yZFwmn6W6ekXpVF+mIlIevCCPsXpdhhFkQ5G8Tk9xrLs1sV9SgLWIWckYWQmCsA4NcvatzViUXue2LGQy8Q5DIs8CQLzaygDznMipCzoVWB4OwdgmkNRwvYNIKF6KoTbKbL8vp4lSgVxKdyHYLAfn5PLMCgIoKDAQv8FkNFEgfnwMsnI7cCi7IOUMM2HY7wyqHS1tFJ5vDIJGz5ckHhWZii5hktk3lJtHlC2eaoVa0r+Y0KwjhEgPtpXCE1bhRZic6BQw4hopWerbBasNcskgC8jra31dq3SDMvj4kddakGvwskkx5jzd1DTnh2sFS6d59DOBsyoEoTUHIlB8BoAwGQVKaXyihqwkRCLYoOAkDGuNCbMUgpxF4UMHF03RDEZg4l8Ds2xvjVZdltl83UuikkYaAhY3HBUZ1HppNGqaLMEGqm2sbZJrFq64QjN2CPnlRK+onhE3IqbWC1NrtMWDzoZ8iNUaR1JwnZwPsE7J6NuTUWs2K7EXs3zmsfEpZVI203c3YwmwJ3jqncbGdHhJCAOAaKbdKzd1JqqFdA9MxvUwzKdYJFaD46cBKgENBSQpUACseCmAkGQAIVB2TCCATCPEU78TsDmfiQ9577DtS+gLR110e7SohDQUIkzl2E2sBwpFKKR4f1KI6yuxC1V0YYxA0DEYeAUZoTbKjKsdZvpPh+jFv75SqzIExhU4wAjMQuMK32olp0n3daBXVFNtFprMKeF1hGM3YQNc659FNQzGYYKZxYlgaxZXk2Zj6Jmn2uq7ZC4dC7k3ues66194qZNODk-5wtPncV3ow0oB9Xn8Q9SC+wQ9YqyruHC9oji4H-G6AVtUq6qnmJ3U85wRY+xWm6HVKYNO4aHC2KSbMUTeias8Dq5bGxSm2IFYutY2pipzWWL6zUpTsTNaDuijbCCw9JPpffeF+dBawUyBnop5TRg5RJmilYGbVS6DbeeNLbRIlXORZ3WOrbzdjUmNYVd+mTmrB+eW3+y7B3rskCkDh79uh5thfEBFl7KbvHQwjLl3yvWNLWLW+pQ7KyKsL27G1jrDWlP6X8qGXxgkazwMk6Ubo6pFRnldAnG1JPW3toEJ2zHE2BZ7eEHhxg7wMUBGZyakm79Nx7crozhgzOkps4inTs850qgfbBiLgNxquYRl9ZL0nnqWtDu9nwal5BPhzZ05lgHq2PbrbYqw+ICorCq-a2mTgRuP62fuKdykH73OW46m40xRhzFro+VwD9hQ52zucLur3juquPQRODn7tEHHDahyteeJiw+VNF9xK6A2Ykg+AVj53cfkeTPq11oP36cX58x9A7HopceEzKATuopv1ck5GdrFtWE23gOp5k+10Vq9pm96jGXCJOelA7+8SuH60YCwHxbs8wgx9S9tT3+gZrDRT4VziAdAssrjCzDmWI3BC6GCUDLBZ6-2cwyyq-I0e-1AADIL89o1LvomV8D-ZiV9FUCTDZ8F1HqBSux8R80Kyrx59A9d-NfbMTfbfYeCdMoL-X-PRAA11H2cdbzd-efEQYDZ-F0YOdrD+e6d-PvTApCSuT6TWVfSkfAs6QApA2VEmEAjfFIcAj+SAxEMggVAWMgszTgXSRA1LZAsmMGc1NA2nGhL3H-XA4uD9b-XeIXP-O3JwdzIAqg4-SkdfMAznRg0ocQmA7We3f3JwLgo-CMFAvQ9VPRG2LMGgPGGgaWELDLX3DFCeA3FdS3DTGgJUcfWbQmE7BxLKbQsdQPZ3VhN3KwUNT5L3WTbXeQHQ8QYQQPEHHLS+euIWQrLrGQFPWMYvV0LwykOA-EPwvLFhFdUCDTJVEVCyLXJRGjXdV-GIoRMDeI+PJIgbSPRPVaRHV8dIvIqRJkKwxESvUAMwiw2vJZevFeWwJvY4PBPyNveacwpULvfQ3vYufopUIfJwTQoVFw8wy3YQMw1w6feYufXgnmHY8wvY4w7WdgPsSEd-BuC49gAVSbF0esI0UlUrBzGVITBEG4t4QfFVIgqY36b2YsR9bov7CEY0fXGSVhQoqwTTF6bTaTME0lRZHVY+Y7bLEmUPMPJ4wEGQJoy6FovPM0LPTYTrWxb7AyQQkw72IIQwfIX0TXBEklXYCE09ZjaEvo4orTUEpklgZE-TVEwzYtDEuojos0SHZo0CVWS440Von7YknPRrck5rSk7WIE30UCfYj-TjNUnjO2NYl0GkpUIIFo0Qz-M8Ok3UrMfUlYQEPku2XVW0vYng3tc1R0pfQNM46KPsEQhQiMPvTsZGSQ4g6Qvdc7V7a9Sgj4mmSkU-IAq-V0JQ0AugznHqA9MoTsT0l0Nzf9fEbMyM-wU1Q481HqPM1LFfGhUs0MkFQDBnMM7VeQqMwbQ0UszMgE4CBdAgfIKNBk0LcIyQJbRdAwFkl2ZjHYHbWGHITsgIJQTgMco7a3feTIqswc+ssdOcm7fws9XGR7b+ZcgLZ9dcz7KTXs8kuPUUMIo9KLWI4UmFJJTPbc0gRJeU0ktHO8wvNIgSZ3MvQwCvQnDsrswYo1GmEYySSnCY+Yf4l4Scrs2ckGY7d-HmWzP4SC3cjpJOACboi87k084BAbGHHEzFdKSEldL4FUXghcraGGUih5bjYlcTS1XCEEsoi8vOdbH5ai9sbnOi72enHsmwli9FXXbMNi0UJoDi8sAfOlTIXcgfJixki8mHCediglJYmgKSucXc1SuS3s2wkSmEMSglHU7i8OFDek8vY8mwgipS0S0AcSxEQ0i04yn+Wk40vimdKypTZSh5f86c9SnsXcny7s8y7kgSuwzymy78mWLcGyRRafRUDkZFcnRvSnFvFCjgWIK5cxFxPsjFP7DbWGYJDks6RhbkseIzFdGeIo4qko+EnS0oGeCY1hUOP7TcCucq5jeFCy5ITceTcFEDEchUBWKgAQczePafF1CWJOIJOzFdG2Ear2YCNC+HZeIUmGK9ckOZIaka8kL7M80UOa-Eca-GKgL9Pa6uMInCn7UEy679WpG64BNbe66uHEp62SPODqXa6uVIlCm2bQpCAIDkLvWjQYoixs0-e3WRb64NFYRmbGMc7gcLCXCGHhSZKgR9KGAWVUBgBdbK2wr1AJFdZICGRZMi3tWG-qh+RQrYbGBDKCWGxZaLc5OSVG4E8xVWUEbTYCP67GQGoms6STGJHKjqNRZmgQNG30U-G2afOm4mimFIwmLwIWmnRsxGURG+cROoAAH01oTOyhEERkZo0uSjFuBJRmRmpENqGlhupUoARoBz4MNANpkCxoXVbJArGN9AQjyBuByDxlhusOSDpHaQhhtrOlk2wzNC9vjWOF7kRk+plFxtkxFJw3SsyoVsTsWy6sE2AUygVtTx8Tdt3Jat42PgiwxSjp9tjvJocOYz+wWr1gEANhau0SxHyAZl5Woz4WPjmRaq4xuDIWOWVU7t9p-0lSflLu0V7sBRuD3MLXenetDCnsGRnvGvGU0kmXemSvAWEArpjr9uRqzoXkbL+3QJtNUw-jyvf17sKRYhVWtPoFhJoySO5JLt3nfzxOsUfu3hfpKLVXvvj142frKNfq-hwJknFPxK-tFWAd-tHrYTePRJhiRBRBjB+u9nvWoEfTkOCyzqFrYlt1F22CQmwbLM3OY0KrYN3U4IPWvNqLmTICL0-IIZ8IjNIY6ICIVvdzDVCMzpYbtqECMNobBzqPMUYZMgIeyKMLIYVACCqq+WgcZOyIQIENFDiLmQ-pWgCA1igU-I6PgTUPkQbQnRpOwhWE5ESob1GJSvAom1YSzDIC3zrosHuBthaprD7x4Ern7y8dvvjvSE5z7yCCUErj1RkD4DqJ4FAAAFJQBwm-GZQ+8LAQmeAwmInxJwnTqRg+89sABaPgB8QaenPsUoJJw9V-bxw9Mg4QAABg+sGlkq90eQcZyc8XbnidFCo1KBYinmHmKaCcGElU3E8bKbtk3HyY6kyZ1E6c8Z6Y-nKfGbqdkk6fydmdWi53bkmZlC0sadyYWfaZhCadiBaZQYXgVkAZGyunsccbKK40rgwGqYADYZgznf6kirnDYbmVnQAAAWWp3wG+7Yhxj56TGYKB3uN5oF0q4Z7wIAA')">function make_primitive_exp(exp, machine, labels) {
     if (is_constant_exp(exp)) {
         const c = constant_exp_value(exp);
         return () => c;
-        
     } else if (is_label_exp(exp)) {
         const insts = lookup_label(labels, label_exp_label(exp));
         return () => insts;
-
     } else if (is_register_exp(exp)) {
         const r = get_register(machine, register_exp_reg(exp));
         return () => get_contents(r); 
-
     } else {
-        error(exp, "Unknown expression type: ASSEMBLE");
+        error(exp, "Unknown expression type in assemble:");
     }
 }
 
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p12' class='permalink'></a><p>
-  The syntax of reg, label, and constant expressions
-  is determined by
-  <div class='snippet' id='javascript_106_11_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0KgZwH0AnAUwHMmL3Xn2ADwAOACiHCAlKADeuUAtAcKRVvSbMKAQ06d2AE2YAbHuJEAaUACIOnK5IDcuAL75i5anSVcefASLYuMylZeUVlVXoAC3YtfVFtKiNgyUcXN1JKWnUWMjpGbRIKfzEJaTlFbxU1BhZtXQNjUwlLKzySAq0i+ydXQkzPenbOopLmADctIyJ2FNDKiJqYuIStJJS0vvcsrw0jLQAjdiMSuYrw9mqczR09QxMC4Nb9o6Me9P6PbNAX47Hf5JleYXK6gZbxRKAkSpXpAA')">function is_register_exp(exp) {
+    The syntax of
+    <kbd>reg</kbd>, <kbd>label</kbd>, and
+    
+      
+      <kbd>constant</kbd>
+    
+    expressions is determined by
+    <div class='snippet' id='javascript_106_12_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0oBJsANZK4mxksSJqmjqgAgagicmgnqAkRAICQVo64ZS09GZEjPIiAB5poOUZ2rmx+aAWVk2ynSoBre06+obGoABEvHTcU0EZoW2glZE1NGapGisZVASgIqZFJTZJsSppu6Og3Lq6NNZTAKISZhQAnjnsyQBcoLAAPKwKZDfA3UDBW4CRjcHYQjJkOjiOSbbouNyDRYIjo-LoFdhUARnZJgnHacZGegUTbY0ahJbgiqkKpRKgkKjUNhCABe3G26RunW6J1K1wpBip01mJHmdMhTO0a2qoF4TAsFDIDQk3EYjE43CuEMpkx1eoN+R8U1q9Sm4vaAH4enV5PaMv8zfqeJaCtbNnbyaAnWZNqk3ToPbqvXDvL72ZyqNyqHyA+SnfGubz+Spw9p-ncHk8AKokWIkGgAd3o+gAjkRdRR-uAACoAQWgAGkprJPQayTplhkTfQ1YwNVqgstlVEYvFmPoOMI7iISGwdUadFkKKAkSQKNw94xulMAFSkNh6qgcWW8E8LRWrFnrVXqtia7VRvvwm77Q6972xtMPAUKC344sOO50Puh5lBCULcDCcKCjiv4iP+MZWrCIEboGEoTPQABu3L1vkAB8GiQXuB4UEeBREQI9bDMEsHkvBiFgbhBaPGhn48LIUwlmWlbVtwdYNv8ABKzwAOKQC2zwSaC8pwfaDIDg+EGjuO8iTmET4qhejA0GQIjxB8sj6Eiui8IwOF6JKkzHMUxKWY8Nk5mmoCkLw3AEOyfC5vmdbcqZ3Dmc43CuCIGIiK51m2ZcubaE6MVxe5SWgP8hnGaF4WEi53BWe5YJTvpUTAcwu7QTRsXcIu4h3HZEELkuTzAUpIR6REKpYZVUHUYwtX1fuuiyPR9ZNQ5InDcuUxYaCIjjYaumEGV9Czko7LiLoRCsiQIj7o0dgcRBvTWIdMiFM5JVdXtDAkNtu3rKw3BHUcD3Hch9n4RFUVbXYK3TiYH07XtzCvYVRDPWYDwmf9k0-fl73iDdq3dVEvX-aDz0Q2QUPVOYsPI5dMPGXZvVI-9sik2QQytKV6PrXESiyhWzAxFq-kCisu4omYZDdBt851a1IjWmQHWIsi24EAInCC8zwszU8sucJLOi89uwoFELnSpPKW6+JtINPQTsJieQMZXSUBvZAoSibLRmTCCIQjiGLGaJlmzCdN2Iy4QH2yeORetTJ7SYppc-baIbLUNboygAEZZN0buiGnYv837-MqLIGdTKrHB+4XlwsUqa2gNyAjGW+ShxyNK5roaHF7AcIjZSZq46hZIvx0nWReD43m+f5vB2cavcjf3Vtna7Ltd9wPaK-Xy4L5c0gZQHNwrwn7DJ8tqnQrCLc3Fx1gL-xACyxTUGYAhfD5fk3vZyv-Or9L2hBUw78wVc1-uvB7yMgyEDTINAaCxCIGYJWos14n20JrUA9Fugd0bt3F+rVp7R3aJ-KaSDuQ+i8iQR+o8kpOjPmgxe0xBLlirBg+OvxQRJX+DFJG9FS4rDUuXRmtxGiQ33NzCEiD-pOwqlVAaIgc7KR0KhJypwRGXHge0L+Mo5SHwQsfL6QjpY9Fht0LGps6Dgz4XjaGRMYoKLpklGm+t-bgTwbjKG2ZpHaC4QqIceD0JkXtF4wCc12C6BAvaJ0QdyLqByAYPqVFDySLILIe2zADFg3NvWS22CA4QUcQIumbj3TRF4hhOMH0q6JJNsk0SqSyDzGCREmsZEKIJKSc9FJB4qndHNkxe0kZzQAStH-MgtcYHx1TKMJ0-TBk7y6fknphSgKRJ3iMx0YCIFQKGSNKZvirT-RKZsO4b5qiMEWRkJ0jt6nhISacgobAzBmAPG4C5ZhGCyEdjkjZBTCH+POEcnQTpOhvJmR83Zuh9nIm+clI2zBHZTIoehfiNDhL2TEuID0SR5D+Q6gzO6FUd5oVRf5HuHBmBwK+hBDmaLZRi2xZPO4C0FxEqbqjUBhkrwkCVvSnU7dLzXlKY9PaCMpSsMsMSZl3KmnVA4Zi58IrWVLWMVsaVPKKDY3FRRFYEEkZIwVWKugErbrPmris6BMMqASDEB8CQicaACGebc4F6xbIcUQcgq5eocqMHNZa61oAgUgoetgiCzqh7EJHjeGpFD3UWqtXC0stD6A+ufOySuepuAWqyIwjyNwWGRXuUKxa3JdVozugayB0C5aJwQq7Ng5aYR5yrQhdlzcvpOoIS6oyJky31ovpkOtMIwRqrwYGgow8n4BQhOQ+43EO0CAbdGkhz8p3-FbOAcAzxL4ACEAAyzwmEQn+Gw-NgMK5C2NRIBMBElCvS2JepenNZS1urQ6r6siWCazYHuOVIhL2KK0RrHRAsCivvfZe5gS1P2NDMOksYeDQk7nlGxY+z7BA9o-V+8ev6Pr3XEE7Ytqyp2Voffe+twG8OoZcd9KUMGRFwaPnCRDP9L1gYg2hhBOjdDdCpcrXFt6qH0fA0rRjHCJ4-Rg2I-qMTdBWKWDRpRFDr3UJjQiy9+hLxRE+Lc+6SbYSpu4OmuDnVC3PiFvGgmDG5Nkvxd2gj3rbW+sfTzHRaICg4aNboE1IhjNGOA6GL9Nq9n2uwYg65sMnYxCvfU49rnT3UHPShm95KqFTtshvLeEIPOsq8zZ4hg1SMaWg14ci1y74fFKcwYeuh77skJQAKzYERRgZBXPvBEJvG4mwl5bDMPUrYudK40wSoenh0qhqYK7UZIwVS7KBZQTcu5c93ZTGlX7H+a8Bg0HGwfDxP02ADbukLIbVNoh4rvZZjRvm7UHOprTR1OiAnAXY-M6l1hzPHYVXShexNBPoZRLKy9KCuUyuIhe8DH35TNoYkocI+R7SmDSx+n74GM2jMO3OWHDH4dmDixZxLZ3bOI-aCiucJ6z1A62DFdHPXnsJZ7bZeUEEYM-o6JE8RMTbsGDGoD5g4RUiQe0K4IiltzAmSkXYyEO2pW8H51UwXsTyZM7EzVfm8Tc2ieiQr2mpd6Z6pVELfc7sDuU8IzW6zfmLurDlhwS7k2-10DVM+AkDYom2+qCDlYiHUfA93E7nVzHKIok9wmIxkOdaK3d1sf36xkspajwbk7Ru0s09wcJ-LSiMi9WZzVQushw8Ey559nEfO31S-5jL4YqlqMaKQvaChB2phrtcHIBsmGlWGOBpplN+9dOcP06A3Xog2uZHkE8vQg-+WTHzr3v2-eBCD4siP3SPeHfZ7oAdB32qSCj+pLm3virlU6rF9rxWidgXkAaPro7VOrOZ56FdptOifIogKEfwv8hmD39EPDeUiGp0frf9++0wiPpsNwES0kNq18NTtY85VQCK1f8edyNJh6cWsIRUIVdqpBoS4fco9GcKAok0DYlZAFEyMt54NK8sCEQC8Bdi8pEkCbhckUtmJOFpMGdbgJ1rAa869eBQAn8T8m9d9W9DJ280134FRJUVRuCtRwCBAN9nZ5txD5A-Yp0bpQE5DX8GwRAVC19pDBUiR1Dj8tQd8W8C1QEhYOAaBWAaBiZMdjtsdr8rcMM392MaAaRVC9cPpsEv9kMGNYClEACsNU5gDcMe1JCh9v9iMgjYCyM6dk8095dBpFcm8E8pMK8GA25TBeMthvDmDEEFx7scCcUY90j+MIjE8KNoi5dVc4i4lQBUCJEFw89IQmCq9WDLDpgODqizCaReCW8NMBDtNhDQhRDyoOiLDFCTo8F85TDzCFCe0lCK5TDnC38RB5izDNCxifptDiRliDC+VGUK4QwthBg1ipRQ59iMUtcogbQGhOh2dwdpCTiXQFolpdieFdZat+Qz9uMBg8RLdrsMMciCgONRYY9OhFU2V3t4Z-U8szkaDtBLiSRYhZAajxM6p6it4KCi8hdaYiC4J98Zxl4GxHh3iPorCqFrjbDfiUR-jqiHtONgS8RQS3sm4PtISk9oSyCYiKihpqZQxBg4DyR0SlAqCsSRdcIGDBj6B9Rz0hppD85JT5gCVZieFlMaR9BpSjix8XZv4CT9AlsUT58K4QT-owSmTDSyl1gtDs0Dpc1TTeVzTni7pQxiV+0fp85-RZA159SeEYcbMcZgcv11STAWBZ5-THAGAWB2AuA+BBAXYYofNph-R7TnxQ9IUthQ8LSookYYo0yjCK5kyfUst3MfSTMEcAy5Bc00zcSmZCc7gCBHhTUPj4tDch948fjb8MMkg7cegay6zf49oXdW5DhvSTdPNgcOzxUfdAswYg9kcHYiyRz5U9oSTI8yCVzNxqccd-NIioTg5VVVzecpzSBbEBTpdhcYSBxy92JmDq9iTWj69bVazdAJAui7pE1ej95+ju89juzHzez1gPtSzKY3DS9xSZzjF+Ec81oWibCY8zyA54ir8ySXkKTtxGh0RLSP9nSpRUK-FFsak9t-sWiY8bDHZLcplsKrQJ88LFZe9CLz8mybUh8r8c4yKPk5CwUgxQK5DaLPjY9GLzdSLd1QByLfRJiaR2KnQTDhjuLGzeKBLM0hKPk5TxLQK5TpKLMyTmLBLhLphlTCTlKhZdLVSGz1LvjbCWK-F7y6z9LFZLLHy1LrD1zrMh9NL5LrzxBo0hI6E185APh1NXzk1tNO8QKoFeBBkRFiYQjHLKc7C+Z-1qS8jHsuMZLxZhDEFC5ci1llwY8C5zdUqdFtZDtuMxZfYAsHNHkFYiqph48Op7MMNMZuBOsChMYzTizwKjEaZQcdEhYGqFY5wskILGZadPFrkjh6l6qtgqBly9ydBuqJqWqjELojhc5YKUtscVqt4Dd1q4K4ktrcJM9drAxriDryQXllqt5CDPyXjFZQi9xdAPhJCZ0EjpDZ5v8u0LqQLXolUOzoCYQV8joe4qkqBz07JQFFABBbUIqmyWh-8dFZQjpFU0KMzPq+0hMpRTBtpKsVxPrFU8cx17JAapSRFqZLAntrrPDbr7q4acCDsFEobcb5LLJuAgb+RZ4hY18sb4b4YCDACetEtsFBwoNEZPrCFh1R5QAAAfcWsMolZyP6uwGpRm5mlcZyd066aFI6YFSgH6waDVZG2QMG21RMgyAK-eEQKqB4EoO4F6f6wq+LK4TJDW76xLZrckc2q1LIXeT6qam4SG3i5PZgm4EKsKwA326C8-Pk0YCCKjXMYII2vEucSnYbPuBeZsx5LPKCC2j262z6WqlESnXqlmbgNmRO7BFYB88GVFJOqeBecLc-MWcZfcTK3QWlR7BtHrZbJuRImauusOYpEoFM4ch6BaF5eURO3uxIfutfH2CpVpeYFQTlLTU2t2y2z2m26KlGwWqUSnSs74NgQJJK-yaQsexIQJBaRUrFGkzBdPQaAo1up0zbKUJEmqQE+OA+47Du9cc+58XqH+a+t+njO+puG4iaDiDkvAl+huW+5WNu4BjbTeyYGYOYe8EChcShGUzUhcP2D0zqUBNI1u0zEsklPBUwCMngfgDOOTLUouL+lUQo1B-0oh9Yy0pGHLECwDUQJ40s-Odhv2J4z0l8l9aWN9HAghiDUskhzgMh6M92ShnhmhqIdhqA0DBhzCyYDYgTOO+gPDe++BrRzUqdLBhlfhhNFgUIv0wh1RwM-wKRih8DfiAx+RrRzwvjEjCxh+tR5h3NVh-ARBDgMgfgfOzwFYIWRO+0fONgP2KYROSJ7Cb2zcF2fOfQCQP2duWQROZPNgUAAAUi4LOsDHzk8BSbYDSYycIXSbydGHHwbAAFpom4mbgaLQwphCn266oxZomet2GRAAAGdeDKLivDKYPx3gap1RUECp-PAiqYECPOF2JppJ0EAleuxZl+dp8ZiZ8gqZiJ2Z92VBqJ9Z+p0YIbfZnZ0QPZ7CPp3CUSkYoI6ZmpjpjZiEIZ-x0ZpBjhH+1uv+4Z9mOi6YbZ0ADAbpgANjBA+ega+f8Z+Z4pOdAAABZemggT7RBvnoqggIGraIWAnfmFslIgA')">function reg(name) {
+    return list("reg", name);
+}
+function is_register_exp(exp) {
     return is_tagged_list(exp, "reg");
 }
-
 function register_exp_reg(exp) {
     return head(tail(exp));
 }
 
+function constant(value) {
+    return list("constant", value);
+}
 function is_constant_exp(exp) {
     return is_tagged_list(exp, "constant");
 }
-
 function constant_exp_value(exp) {
     return head(tail(exp));
 }
 
+function label(name) {
+    return list("label", name);
+}
 function is_label_exp(exp) {
     return is_tagged_list(exp, "label");
 }
-
 function label_exp_label(exp) {
     return head(tail(exp));
 }
 
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p13' class='permalink'></a><p>
-  
-  Assign, perform, and test instructions
-  may include the application of a machine operation (specified by
-  an op expression) to some operands (specified by reg
-  and constant expressions).
-  The following
-  function
-  produces an execution
-  function
-  for an <QUOTE>operation expression</QUOTE>—a list containing the operation and
-  operand expressions from the instruction:
-  <div class='snippet' id='javascript_106_12_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0aAHNgJybU6HNgA9uACjHcANIyZkAFlRJs5AGyYAjNuoDOcnv0G0SegJSgA3rlB3QZOnoqgeoALyh1NGiyLcObj4qBgkjASESEXEuSWlzQ14I0wsAblt7RzMXJiCaMj0PeTiPAD55dkDghipqADdOaSk5ZiUVNS9tXQsZDPt+gcH7cJNhaVjjEgATPSlxc3N0vtBickjQJIIaPgYOZkqRyOjJSxsh0D42CiI+eh4JZkluMo2JBNBcvnyLReWAX2Wy0u11uG34Wx2e1YnEOpmO6T+QA')">function make_operation_exp(exp, machine, labels, operations) {
+    
+    
+      
+      
+	Instructions
+	<kbd>assign</kbd>,
+	<kbd>perform</kbd>, and
+	<kbd>test</kbd>
+      
+    
+    may include the application of a machine operation (specified by
+    an <kbd>op</kbd> expression) to some operands (specified
+    by <kbd>reg</kbd> and
+    
+      
+      <kbd>constant</kbd>
+    
+    expressions). The following
+    
+      
+      function
+    
+    produces an execution
+    
+      
+      function
+    
+    for an <QUOTE>operation expression</QUOTE>—a list containing the
+    operation and operand expressions from the instruction:
+    <div class='snippet' id='javascript_106_13_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AGxpoGsiAHAfXYCcqBbABQBnAJ78ARjQYAaUDXYBTHgENqdYQEpQAb1ygDoMhoqgAbioagAvKBXDhNMiPFTZ8pavUktAbn2GPIoURDz0FlbWUaCkACaKBFQkirEBhoYA-KDKPDQ8LpLScgBEAKokLCQ0AO70CspqtPRJdg6KkgyKAFzFmmnpoF2gABaKKrGCFCpUDIIRmpr+AL74xOTejMxsXAwqEoqzu-sMwnJHB5wkKvyK2nrpxj6mETatjs7nDJfXimd7B358OkgiEwuZLDZonEEkkUv10lkcnlBJ9vjcSuV4olkrFGP8GEMAILgcAAUQAsgAhAAypN68MMQymMzmlkWuBWhFIlCaoH4KhYim4fH4VGoZiFigAHuxBNL2HJ+WRhrC-sctLp+lQCKBBFRhJxHsIpiQKJx5XKZQtNQNDEbTGRXvaVKbzTLOBEiIpLex2baDCDQvRBNprAA+Iz+dJLbInRSgbW6-WcVEW+XW+7++0Jp7CV5MVgcFP4lH405445unYl9N+-2BsEhmwRpLG4RRwwxgHxxN6g1BADm+ooyirPozDIM2Z4rwHwU4g+HykESpVyTki+No-lC8UA-HddtDeDoYjc7NjxHpuEgh4i1A-S7cZt-qR+XlGIqVVq2RlQQcvIUKISg5m87QSJ0PSHqAKycmsPJ0HyApCsaKhkCwTaZgYnSmKh6GvCQRAMAw-j9PBGzsEQwjDIIUp3A+-qgHhLCvOw0z5FKcjMfek6gMeoDFLEdCKMUHYGJy6Tkby7AKJhvG9smhHESIUzoROjHpG+gjFKS-DsEBTGqSwQywAA8rAvSkYxT7CPGWEadmFAKK8ozjCpaEsNBjHMa8zKzNxYkafxTnsIF0aPkChhSYhSRilQlhUAAXt6dy8T5thKSRvH8YJwmiRFZHchssT6mxFDKiuigOCoc6pYx-E3NVc6QrYxSUdRxS8QioDtcMXWMnyVXCDV8ZRK1MnsJ1GmZD1sl9NNBhDI1w3NWNAmxdQCXJVNC1ZBt8UMElKX9Yt2Q8Lk+RlF+NT0EEACOXrGkM4AACqEtAADSxSKkNI3QRJgTBEGoAlcIZXKssqxFby-KCruQ5bvkVw3HVhg4UYdBXhQeatQAVKQ9jCFQA44rj+WFesvKg+DNHLX9L62r2dOrdExTnr0DNBUDYKXoo15Wf6Nl2SdCY6pVTWjaztkUBz9kLXx3PhJYXrNroGOmnz2OvJ6ii+DBAvTULnPy1pzO-AJ5SVDdCsPVVFBDAASqSADikCvaSDuWSLKzWQVwKKyDpVqBDHJQ5TiGE04giCqIG6KMYPCxBq9n8YpRGzEECdJ-N01ZNC2JwgtQyKA9ljR4oscjGMEyuRMmd5NnCwi6AWS17e8cN1ozdDJHzgx3Ifnt1nWjsnB0OIeehqY5rN6biOd6c-xc-LmzwRe2P4f0NLU8a9e7cI-Pcg66jAYB8vl3S70rIMF6o9hwh9Cw0KrYUDwRAP5M0oUCfCugvQbFUHyCOKUFA5CZTvlyTeOZjRvwfpwYBFA9RPB-vxNuL8IHRWaE8WB3g3TxyILg3gUd0GLwDoPdBkNIEPyYvOF+OCmh4LIAQhhRDnAvzkKwn+29yFPA4bkMgPEN7UKfpcRQ1ROCrlhHJB4JgeqOlsCI8+2l2BkC9jIp4oACC7AHK8RRe4lyXS0TVNRdpZHpSQnDZiIZArowoKMTgdD364Nsrbcgo1QCZRscEUAdihQKBxowYcKIgnFH2ltFCRlvoMXljEgwTZwyGQ8tpMJh1toLGgujc+8C9idHzEEw6xplGqI4QIs4ISjEDiiRUhYBtNHj3oJYJgZA1BCiUcjW4xtDC9l7oIdpccD6jimBBDpa186wliD-eq+jEbZOGaxdiwTCl9Isa06Z89ek-AWDIZusT6xrMGTk24YVOyxlsp020WllnFHJERag7AGCiBBjCHECsBk8CGCY20Ps9l-wElkxpTgWmxHyuFSS9TNiFi4G0zZ5z1bGnBJEN4UdllZKGZ0LyhhsoBxeKMkgWJxki0ROdZEVzLbfluvs959J5ZDDboPeY-0KbUOlPgkc0isyyJfgEyevM94qIxQYBSBpMpILbOpBaOUhLJBBYLU5wt5bZlYa8RxcCWVMMIfwwQaDcw1OidNVh1i9Vc1+WqghKVjniQiv7X5Ztmy8VtWtYoqEeAy14lkeJEYdA0IvNPPlZAB72JVc4kuXo3EColQHU1bL7zfNtEtX6LNWov0aQ47BTiGEuNDWQESbqaF3VVl63xqaYHproJwTNfNs2vBcXrWNAx40SxagJAFzSRzwwMTtW0WQW0tPbYjXiDaVqS1apPc+naBhZALNsPt88B2DUbY65NxFOD1C8E0YQ47ur+ILT4+x27bAqHYEoPFkw93sHLP4mNc6HVS0ibm5i16E3DoEquxoGhN0zSLf4udpsn2fitj+e6j17ZIWVLCde98NijspSuNCa5zaDjRB0lOAdJHJG0tBt5V9EPtIweCwmxMSDwyQ4IAjJNi2v1LSQFBAc6XTFmGRojQamg1NDlQjYjGPTK0lDKUjAFyPMboPRfowV6OTDE5xwT1G8NQMY-vAxSGuI0FCNmn+2YVCvEPceiYBTEHFEY1ErJuGlMqaOSJgOKhKGYJWZwOT7DQPwbVACOQr7vDln5ZzRyKgeDnlnPOJRaHzacZwz8UV39oLZh1lWTT-GiNRYtBQ-okXuOcDWDYeSBpXMMItPFq0uaRFZbLTllLH4HOqgrM5jwDQ3M5zjTZ3gAg4oSjHG3XLvpFRwfK58QE1rgYethdvXl2NxM+eCEfFLawQzhvGBYNx3BnD8r1o+Kz+HYizezfNwQHn7KDd9cNlRA8xM8r2zefluq2PWZESOQp9nAtOZOC5zwb6fByAqSUtTsjHglQ2LYa7Pq8VxToGF6CQqV1PdwRaL7gPpOwuzFD3BaWFHITB9V7LvH4dNG2bs7Hhg7sVYe1VtdGhw38X63Lf0u3d7Dbe+rb7DDJusfljNl0G2VFbYEUt6ygUjbk4MFpezxRKTjB8XbaBlHqEtEJuBSCnyYIXfBX9wQCgzjDHLDwVXNHfm6e0n9qJyvGCq43BryG1m-s7zp0Ds3UnNfA0HlbtND8ZPCORxIVQ5AaK3c6+ufH5YafbaS7I+I8LbCu5Z8MTgQfEGJfSKD1MvHI-ittNmLl+YthFk+KWdU92qzFmOIIBPJOA5k52RpXsx2qc3mqZMnHAxKdY1O-6sXPWa-RjlbClvzO5ts8WyX32LfxLc7b7zs6F0wslCF7iUP7uxf0Jig0toHRuiy9gpB3kU+KqfBt2CbXxR1-DCiZvk34K98R7toIE-1vSG-LoyyC-DvvCsaERsZMUwBxzliCmIJxp+CgN3UKV-W+zQBoAC+Q3+38oAAAZBAVXG5GAaGNEEWq-itlAoOBsijFfsDDvoOFErhkflAsmFkmmFaBgWCC-jVO-p-oUqVsUNgXfNZoQe6KgemCQfQDfrMLWMgdQs6KaNfLfCwYEoUsUNwTLONjfGZisNZsmMIWOMwShr8mQW-ikJQYgtQcIRBtZtITuDrOOPwWwQeJwRsBnrhvwTvp8DgZsngRLgaHHrKLIeZvIQaK-hQdrtQWYXQeCjYbngcDoXIcDHoRwfLlAiIgODQPAjQGPmVt7t1u9p5oHqLrYCEU5KfjdsgoFLHviGOAXrDpyrmKnpCl4YcGWNnjuBngXhar-H1qeN6jvPXuznIFyv9G3qDgwbKFkcPtOHuH5maAFl7ghpSjnqgWUVir8v1nXjPHUaAOXrUYOIzict2LCvzrwgJBPpMaEU5DPlRqBFLovsvoEdQiEWEZngcIAQIXpgcU5AfviO4VAokaEZHoILcRRrPtRrodXOJiyI8dbk7hRLJNxPwVYm1AoBBuxtJFRDRMxKIXwb4WCACb1FfMfAYTDMjsNBKBEXjhCXIh9hooOF0TOsuOiUZBRsRu0sDtBKTlUcPgtL1O5OhHIFMeMTMeGgtJ3qzgthzr3vrHsRsHosaHkN6J7mBt7hif7uovCjiQkf5jBgSR5ESSFjcKSYFOSQWhyQYGMXvIOBwr8UZLMTjiyUKN3hzkajEksIiYhCid6DMSYSEuaYZnuNcdQv+E5EEPvCcVgXbHybaQOPaRsMxLKXuCRr6ZftCawW8YPIGffixt8byLJMYcGacdpECWAhYaHJIZluDmjrYcQXGcmCAToVAQmI4eQUodrm3OmCUECVGYhIVkRjuLJNWVWCcXoW3PWbWJWXUOmUVu6K+nijeC2VmfYbbmJn2b6KaY-Mjp4AQHkEIAKY5j7o9qjhoDEfZOptQrYBOVObZh-NHl0mLMmMOaRo7tXlOLImhAjqQLosjvuaeZjpEb8Cqf3raNEYTs9s3keEXhSUaTXteWWgznrHqZtotp+bsiaY+EPrxIscaOPsLuuTwPwBsRLvPrZDsYyk-tJMoJObBZud4MDvwTwsaIIqvohCIlGvTvUhEU+XjvebEgdpotolxEZI9snAHholKC5G8duafL8qxY6gZvlsjnZksXjk+f4u9nOtxazLrnxXDIrjOV1kUR4L7nRZiWJU2rvm7sqB+gYFkCInvmib0fdopTVKJYxEMOJSOmsTQJpS3DZuceEbJVEfJfyipY6jaVJShCoKifZebMKQIs5azI6R6W5buLyc6V5fRR5MZf6KZapTBfwFZdpeOehVOXpYKebMJeepFXVhBb-ldABlgiWtQkBCBJLgvsMlBKOTEOwLEL2lymFuWBRb0VifCioriT0alSUCorLtmBUq1VKfpQJBUl1WYkZBealdpMxENRovureQmR2T4F7MxfCtvFQIoOwNWrQhGZ2ayiwvwoFNmMRWtUjnDCRT+fUoqahoenqKrMtatXqFjg+baAdWFs8fAl-HqJoPdQ9fLNEVRdjndr9bsgdgDbEm9sDTEhCWDfLJeh9SXg0RVSIqmKaDwKIEcV8Msg0fwbmaiOjTqhVV-KoJQAUTeAgnHNmlQBKD-NZqMAwJ4HVQZcJoxNmMkCAhRmxW5AguyMMcDMmDAkkPuMzWaOgoSgrGTZ5bmBwgsgjRkZrMjb0l-BRvUTqvTbVhpEMJnIoOTd6LmSIlJnLSzegorWKvTdzpFJxbbl-E2mMi8gAD7W0FmXDpyfwgIq3dTq2a29LpxgLpwu0DT42nlE3vGzAc1yDU2eBtlgSL6CCXi5DESDJfwdapWpT8R+2E3daCAnTR3SCdA8CvUgKfWMR00+4Ukl4cDVVtq1VcoGUJ3wZMlvnyG5jlGdjh0iKBbyYzLtIXoZXqyvxZ1x3O2xEaKBYXlwzJDiKt3QRkR5DmhwZt3zxIaqyt36bESAptpjqaCz2jjGavIKYd3QSL1LpfDVkbrr2XqBT71PAppSblohqVoiTr3bHDJR2Ywx3Z252-6BasYDlgiBYVXOqIIf38GL1-1Xzem8iYYKZDY3h45GYwpxn0l7zgOIywbtXb3t2bKgNmmSlvI1HjHQP9HLLHycxqnDaIPrJ4PYNb0Ilf30C5TSrw2XlzUyEyjV1yVZ7Pk1YD3wrOS2BTpFgNZCDDlg7jjzlE4+ARYnmsIBL8i2EL3jkihNY8a2EsMOXqgw1fWCPdlJz6Gm0VGNhVFaYPKpqcDQg8APJ82cAABWHl9gZAfA+k6dD5+u0jW2qssoH1dgkjj++A2YA4ZAH+Q91g-QLdvRDj-oO+KgUSu+kTMsajYT+SISQQcVcgpGcgEg+joAAApKAGk-nRpDvtYFEik9k+k2tGk7E4+SEn9gALQSDfTNyK6yTFAFPuOoFRPuPCGCAAAMWyzculGebMfjVTUqd95T00cmxQIh8ZjTiTvQ-S2kETLTe42ktT6SuTjE4zETZShSrTKzPTMS4ztTWziCrTMTez8stlqNOudsNTvQozGkAzsQQzeUrG28WSkDDxfjEi-V+mUSGAnTAAbOyK8-0e874-4984c6AAACzdP+B-0fPguJ3+CkOjigufN44-OLBAA')">function make_operation_exp(exp, machine, labels, operations) {
     const op = lookup_prim(operation_exp_op(exp), operations);
     const aprocs = map(e => make_primitive_exp(e, machine, labels),
                        operation_exp_operands(exp));
 
-    function perform_make_operation_exp() {
-        return op(map(p => p(), aprocs));
-    }
-    
-    return perform_make_operation_exp;
+    return () => apply_in_underlying_javascript(
+                     op, map(p => p(), aprocs));
 }
 
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p14' class='permalink'></a><p>
-  The syntax of operation expressions is determined by
-  <div class='snippet' id='javascript_106_13_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0KgZwH0aAHAUwCcBDau5hwAebABTC2ASlABvXKAWguHCkS70mzNjypdxI6QDJDDFhR4BzCxwAmzADZMKogBYceN-VIA0oAETsfpIA3LgAvvjE5Pz07Nx8tCSCIqxicbwxyVKy8orKquqgbh6i5lT2ru6e6QkCEpINoRGEpJSJoDWZEqnxJDaMop2JWdJyikoqavRlFUN1Bk1AA')">function is_operation_exp(exp) {
+    The syntax of operation expressions is determined by
+    <div class='snippet' id='javascript_106_14_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0oBJsANZK4mxksSJqmjqgAgagicmgnqAkRAICQVo64ZS09GZEjPIiAB5poOUZ2rmx+aAWVk2ynSoBre06+obGoABEvHTcU0EZoW2glZE1NGapGisZVASgIqZFJTZJsSppu6Og3Lq6NNZTAKISZhQAnjnsyQBcoLAAPKwKZDfA3UDBW4CRjcHYQjJkOjiOSbbouNyDRYIjo-LoFdhUARnZJgnHacZGegUTbY0ahJbgiqkKpRKgkKjUNhCABe3G26RunW6J1K1wpBip01mJHmdMhTO0a2qoF4TAsFDIDQk3EYjE43CuEMpkx1eoN+R8U1q9Sm4vaAH4enV5PaMv8zfqeJaCtbNnbyaAnWZNqk3ToPbqvXDvL72ZyqNyqHyA+SnfGubz+Spw9p-ncHk8AKokWIkGgAd3o+gAjkRdRR-uAACoAQWgAGkprJPQayTplhkTfQ1YwNVqgstlVEYvFmPoOMI7iISGwdUadFkKKAkSQKNw94xulMAFSkNh6qgcWW8E8LRWrFnrVXqtia7VRvvwm77Q6972xtMPAUKC344sOO50Puh5lBCULcDCcKCjiv4iP+MZWrCIEboGEoTPQABu3L1vkAB8GiQXuB4UEeBREQI9bDMEsHkvBiFgbhBaPGhn48LIUwlmWlbVtwdYNv8ABKzwAOKQC2zwSaC8pwfaDIDg+EGjuO8iTmET4qhejA0GQIjxB8sj6Eiui8IwOF6JKkzHMUxKWY8Nk5mmoCkLw3AEOyfC5vmdbcqZ3Dmc43CuCIGIiK51m2ZcubaE6MVxe5SWgP8hnGaF4WEi53BWe5YJTvpUTAcwu7QTRsXcIu4h3HZEELkuTzAUpIR6REKpYZVUHUYwtX1fuuiyPR9ZNQ5InDcuUxYaCIjjYaumEGV9Czko7LiLoRCsiQIj7o0dgcRBvTWIdMiFM5JVdXtDAkNtu3rKw3BHUcD3Hch9n4RFUVbXYK3TiYH07XtzCvYVRDPWYDwmf9k0-fl73iDdq3dVEvX-aDz0Q2QUPVOYsPI5dMPGXZvVI-9sik2QQytKV6PrXESiyhWzAxFq-kCisu4omYZDdBt851a1IjWmQHWIsi24EAInCC8zwszU8sucJLOi89uwoFELnSpPKW6+JtINPQTsJieQMZXSUBvZAoSibLRmTCCIQjiGLGaJlmzCdN2Iy4QH2yeORetTJ7SYppc-baIbLUNboygAEZZN0buiGnYv837-MqLIGdTKrHB+4XlwsUqa2gNyAjGW+ShxyNK5roaHF7AcIjZSZq46hZIvx0nWReD43m+f5vB2cavcjf3Vtna7Ltd9wPaK-Xy4L5c0gZQHNwrwn7DJ8tqnQrCLc3Fx1gL-xACyxTUGYAhfD5fk3vZyv-Or9L2hBUw78wVc1-uvB7yMgyEDTINAaCxCIGYJWos14n20JrUA9Fugd0bt3F+rVp7R3aJ-KaSDuQ+i8iQR+o8kpOjPmgxe0xBLlirBg+OvxQRJX+DFJG9FS4rDUuXRmtxGiQ33NzCEiD-pOwqlVAaIgc7KR0KhJypwRGXHge0L+Mo5SHwQsfL6QjpY9Fht0LGps6Dgz4XjaGRMYoKLpklGm+t-bgTwbjKG2ZpHaC4QqIceD0JkXtF4wCc12C6BAvaJ0QdyLqByAYPqVFDySLILIe2zADFg3NvWS22CA4QUcQIumbj3TRF4hhOMH0q6JJNsk0SqSyDzGCREmsZEKIJKSc9FJB4qndHNkxe0kZzQAStH-MgtcYHx1TKMJ0-TBk7y6fknphSgKRJ3iMx0YCIFQKGSNKZvirT-RKZsO4b5qiMEWRkJ0jt6nhISacgobAzBmAPG4C5ZhGCyEdjkjZBTCH+POEcnQTpOhvJmR83Zuh9nIm+clI2zBHZTIoehfiNDhL2TEuID0SR5D+Q6gzO6FUd5oVRf5HuHBmBwK+hBDmaLZRi2xZPO4C0FxEqbqjUBhkrwkCVvSnU7dLzXlKY9PaCMpSsMsMSZl3KmnVA4Zi58IrWVLWMVsaVPKKDY3FRRFYEEkZIwVWKugErbrPmris6BMMqASDEB8CQicaACGebc4F6xbIcUQcgq5eocqMHNZa61oAgUgoetgiCzqh7EJHjeGpFD3UWqtXC0stD6A+ufOySuepuAWqyIwjyNwWGRXuUKxa3JdVozugayB0C5aJwQq7Ng5aYR5yrQhdlzcvpOoIS6oyJky31ovpkOtMIwRqrwYGgow8n4BQhOQ+43EO0CAbdGkhz8p3-FbOAcAzxL4ACEAAyzwmEQn+Gw-NgMK5C2NRIBMBElCvS2JepenNZS1urQ6r6siWCazYHuOVIhL2KK0RrHRAsCivvfZe5gS1P2NDMOksYeDQk7nlGxY+z7BA9o-V+8ev6Pr3XEE7Ytqyp2Voffe+twG8OoZcd9KUMGRFwaPnCRDP9L1gYg2hhBOjdDdCpcrXFt6qH0fA0rRjHCJ4-Rg2I-qMTdBWKWDRpRFDr3UJjQiy9+hLxRE+Lc+6SbYSpu4OmuDnVC3PiFvGgmDG5Nkvxd2gj3rbW+sfTzHRaICg4aNboE1IhjNGOA6GL9Nq9n2uwYg65sMnYxCvfU49rnT3UHPShm95KqFTtshvLeEIPOsq8zZ4hg1SMaWg14ci1y74fFKcwYeuh77skJQAKzYERRgZBXPvBEJvG4mwl5bDMPUrYudK40wSoenh0qhqYK7UZIwVS7KBZQTcu5c93ZTGlX7H+a8Bg0HGwfDxP02ADbukLIbVNoh4rvZZjRvm7UHOprTR1OiAnAXY-M6l1hzPHYVXShexNBPoZRLKy9KCuUyuIhe8DH35TNoYkocI+R7SmDSx+n74GM2jMO3OWHDH4dmDixZxLZ3bOI-aCiucJ6z1A62DFdHPXnsJZ7bZeUEEYM-o6JE8RMTbsGDGoD5g4RUiQe0K4IiltzAmSkXYyEO2pW8H51UwXsTyZM7EzVfm8Tc2ieiQr2mpd6Z6pVELfc7sDuU8IzW6zfmLurDlhwS7k2-10DVM+AkDYom2+qCDlYiHUfA93E7nVzHKIok9wmIxkOdaK3d1sf36xkspajwbk7Ru0s09wcJ-LSiMi9WZzVQushw8Ey559nEfO31S-5jL4YqlqMaKQvaChB2phrtcHIBsmGlWGOBpplN+9dOcP06A3Xog2uZHkE8vQg-+WTHzr3v2-eBCD4siP3SPeHfZ7oAdB32qSCj+pLm3virlU6rF9rxWidgXkAaPro7VOrOZ56FdptOifIogKEfwv8hmD39EPDeUiGp0frf9++0wiPpsNwES0kNq18NTtY85VQCK1f8edyNJh6cWsIRUIVdqpBoS4fco9GcKAok0DYlZAFEyMt54NK8sCEQC8Bdi8pEkCbhckUtmJOFpMGdbgJ1rAa869eBQAn8T8m9d9W9DJ280134FRJUVRuCtRwCBAN9nZ5txD5A-Yp0bpQE5DX8GwRAVC19pDBUiR1Dj8tQd8W8C1QEFxKFpD84Fw-Y1558K5TBeMr0EcTo8FTB2AuA+BBAXY5Nv46oMUDMVQ7D+Mv1HCfptDiQctRCohANRAlozCXYphIi-ZojrCeFTBIiUMHCSUnCWAXCeB+AM5PD4ilCK5UjgNQNAiMjgjs0Dpc0witcog8NiV+0fp84p1LCGUki7pTBv9TN0jGipRnDOAcj3D3ZPCWjCieEui+MSMejNsBVKikYajfCZxFYOAaBWAaBiZMdjtsdr8rcMM392MaAaRVC9cPpsEv9kMGNYClEACsNU5gDcMe1JCh8JjS1HjYCyM6dk8095dBpFcm8E8pMK8GA25bDHsf8Gw-9tEMMFx7scCcUY9-CTD3jE8KMvi5dVdfi4lQBUCJEFw89IQmCq9WCNjpgODsTViaReCW8NMBDtNhDQhwj6AVi1jJCYj5tmSaQFCe0xisVDjVi38RAVijjNCgjZiookYhTVjNDGUK4QwthBhRTJhQ45SfDFiagXQSRYh2dwdpDlSXQFpEju8j1FZ9Rz0SSY9OhLdrtoS6pYS1llwLS8RFU2V3t4Z-U8szkaDtAbQGhLTsT0S8C8S4DyQKCi8hdaYiC4J98li5xlMaR9BzTz8Bg8QrTb8bSOA7T4SkzvhzhnS3sm4Pt3Sk9PSyDviMShpqZQxBhgz88JdC8lAqCIyRdcIGDGSchat+Q8TFT6B85TT5gCUeTnw4zHhOy6o2TRAvDxARylsxz2jnxOg8y6oG1NSDC+Vuzfoc0dCFzpToymZCc7gCBHhTUz9uNDch949Uz7MMMkg7cegDyjzf49oXdW5DgYcbMcZgcbzxUfdAswYg9kcHZ3yTNPy9pNjF4vSyCbhtj484DPizlmysCvzA9SBbFQyGzwzJNIKGDAT2JmDq8Pp+IyTbVDzdAJAqSOj6BaT956SjSeFiKHykL9p4Z1zKZTjS82yhYskc81oSTtiY8IKA4-ir8-SXlrSURGh0RKiP9ejJgJK-FFsak9t-tEzTzY9zzHlLcpk5KrQJ9FLFZe8VL4szybUh8r8c4tKPk5CwUgwALmA5DDKsdqdZAzLaYLK-EOSaBrKnQhYPKHKtinKdi3LMIOyvLbK+y-KqE-TzLd1QBtLfRhz9BQqhYEr+QTyjKczkhNKYq4rph6LSKkrFY8rjyCLDtVLoKNLAqYr8LxBo0hI6E185APh1NE0qKhCZSeEoFeBBkRFiZniArKddi+Z-1-S4THsuN0rxZhDEFC5MyxqY8C5zcpqdFtZSr4sxZfYAsHNHkFZuMxZ48OoryURMZuBOsChMYykPz+ECYaZQcdFOLTrbKuLkLGZadPFrkjh6ljqtgqBI9ILRh7riY+CXo3oqBc4BKUtsdwat4DcobBK4lYbcJM8EbAxLTkbyQXkwat5CDaLdtFYui9xdAPhJCZ1-jpDZ5v8u1sa2zXolUbzoCYQV8joe4qkqBz07JQFFABBbVeqzyWh-8dFZQjpFVJLxSaa+0hM+iWBtpKsVwabFU8cx17IWazSRFqZLAns8aLiCaibBacCDsFFeaFbM0lbuBWb+RZ4hY19Zahb4YCDACetEtsFBwoNEYabCFh1R5QAAAfL2hgFgUURmuwGpSyU2s00UWQUUI2vMXhWmygemwaDVMW2QTm21dqu6Vq-kKqB4EoO4YGy6AanYTJI6YFOOxLZrckLOq1LIXeGm36iEHmtS5PZgm4Tq7qwAhuvi8-Gs5RJwwAyMyENOwzRWSnYbPuBedSofSunOmuo6Qa7cSnBWOcVmdmc-fWFYFYEi8GVFUeqeBecLVehbEof+OuR7WlMElbehXepuAEnQEesOYpEoSFIC0FFQdzR5bBO+7ZR+tfH2CpVpeYV+jOkQKe6uvOsCjhGSpmbjXcnMwJca-yaQu+xIQJBaQclUDjTBdPQaBE8+hldcnEmJDB+OeB47ZbBlNBjGB7ZWXAiRHB6hrtaIjiMsvAohhuOhkbBlbUiaV6n6GYOYe8Ns0MBomYsfWI-0COtozqUBN8k3TzYHMoyBv28wdWgTUARwJR7ItwjOGKHzaYf0QelUUPJ+t+2R9LaYl2sUzc4kGKUPKOGBoxn1LLEx87ORiDFi3NWxlaRBDgMgfgBezwFYIWEe+0fONgP2KYROcJ7COujIDOcwlNP2duWQROZPNgUAAAUi4MxsDHzk8ESbYGSdScIRSeydGHHwbAAFpImYmIQDLQwpg8mesTCInQQs9pY31RAAAGdeDKeyvDKYHx3gCp1RUEUp-PZSqYECPOF2ep-QCQVpl+MWMJppuqMWSJqOGpm4IbBbBQl2Zp9Znp3CbZ6pmQ0QZp7CQ5wMXy-p3vKp0ZzZ0YAZ3x4Z-hjhXqH+LBwU3xle1SnZ2QDATpgANjBHebBM+cGZ+YmpOYABZumghkHRAIWBqghWHc7wXvn5rlmAggA')">function op(name) {
+    return list("op", name);
+}
+function is_operation_exp(exp) {
     return is_pair(exp) && is_tagged_list(head(exp), "op");
 }
 
@@ -2130,51 +2340,74 @@ function operation_exp_operands(operation_exp) {
 }
 
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p15' class='permalink'></a><p>
-  Observe that the treatment of operation expressions is very much like
-  the treatment of
-  function
-  applications by the <kbd>analyze_application</kbd>
-  function
-  in the evaluator of
-  section <REF NAME="sec:separating-analysis"><a class="superscript" id="5.2.3-sec-link-4.1.7" href="./4.1.7.html">4.1.7</a></REF> in that we generate an execution
-  function
-  for each operand.  At simulation time, we call the
-  operand
-  functions
-  and apply the Scheme
-  function
-  that simulates
-  the operation to the resulting values.
-  The simulation
-  function
-  is found by looking up the operation name in
-  the operation table for the machine:
-  <div class='snippet' id='javascript_106_14_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AGxpoGsiAHAfXYCcqBbABQBnAJ78ARjQYAaUDXYBTHgENqdYQEpQAb1ygDoMhoqgAbioagAvKBXDhNMiPFTZ8pavUktAbnyGoDyKFEQ89BZW1tGgpAAmigRUJIpx+oGGAPygyjw0PC6S0nIARACqJCwkNADu9ArKarQkAFygAILg4ACiALIAQgAy3SWa6RmgbQAWiipxghQqVAyCkZqa-gC+QA')">function lookup_prim(symbol, operations) {
+    Observe that the treatment of operation expressions is very much like
+    the treatment of
+    
+      
+      function
+    
+    applications by the
+    
+      
+      
+	<kbd>analyze_application</kbd>
+      
+    
+    
+      
+      function
+    
+    in the evaluator of section <REF NAME="sec:separating-analysis"><a class="superscript" id="5.2.3-sec-link-4.1.7" href="./4.1.7.html">4.1.7</a></REF> in
+    that we generate an execution
+    
+      
+      function
+    
+    for each operand.  At simulation time, we call the operand
+    
+      
+      functions
+    
+    and apply the Scheme
+    
+      
+      function
+    
+    that simulates the operation to the resulting values. The simulation
+    
+      
+      function
+    
+    is found by looking up the operation name in the operation table for the
+    machine:
+    <div class='snippet' id='javascript_106_15_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9coSaAA2bCqB58WoALygSRadIDc+KaGLlqdUAAciXABYCAHiNGgJ+qYv6qzTKgCdbAGgW8-ELajs5SXnJEXvQARAAmdGwxuvoAvnpShpS09KY0psJiTmFUBKACVFwcGloCrixC9sVhUmxeXjQ+MQCiDKYUAJ4BSgBcoLAA8rAxwRlhqaBs0lxsRS3OZHQ8oBT57pZsTHF1gQ0p6y6n7rxU0idKsxfhkdE7+efzzenNWcb0VCQqNQmNIqAAvNiFcTreruGo6Zr6CIUKKxBIkJIfUDffS-HKgOKVUxMChkawMNhcLhMADmbCa62RqMYlOpdNUKjUMXMVhiiJaAH4zBZLPywmMKVTaatOVy8qY+U9JEL5cIxc4JazpRyuQCgVQQeCkur9EK9cDQRC1UrQGM2h0ugBVEgsEg0ADu9AiAEciJSKGNwAAVACC0AA0jF-JK2fSsTjnijXoSuMTSZZdN88SZmOwOBEaZUKG0BCQmBSGVJZPJNiRi3WuO4YgAqUhMKlUGkYuLN5JzAykbImFNpskCGPSyslMrjrXs2WgGJ0igzNZKpmvWv1ihcXTqhZLFZrp6lcoT+ecxcrFdTm2gDf0ABuIL9qgAfGJQFu2A33M-pH6ISpHuNoHssqzQnekj2p0s5SnS-gxM6roel6bC+v6YwAErdAA4pAwbdFhMxYus6RkV8-YPgSRIkmSmb4Nm9DtlwNBkAI7ADP4ESbF4cRcLe1GVNUmh3DxnT8UIJrKqApBxGwBAAmwcTSbaiy+iCHFsFxoAHEcAh6cc4l8QJjSqTJhkCMZknmWpLFsVpOk3GJbC8ZJsxZoOfygMuHDfg2VlsIWPBtIJLxocFxZdMuJG4J5Rj4tefl0NuXCBZFbT+P+fphUmEVFiWMTXjMAjZXGcWMV5+K5pwAI8F4RBDiQAjFjYFC5cyxLeC1bBtf48IeZVCUmHVFANU1HCtRQFQkDwHWvJZo2DYQVUjbNY2NX8HC9a5RBbaYHTsUtx73uFOyeHcS0MStw30Elo3jVtO1kHtOQcAdDmjf4H1kLeSXOTNPDfYdwSOPFTWMKwnAYu6HDMGSSlQs0tbbKYZDuDV+ZBQVXRo7F+go-IBDSLSGNQ1jGVdMTtL41IhPDG4aiY-UwhYtWOwHBwD2bW9KwYeQMrqKJbNyBznD5I2aigjwAjS9NMTmgalqcPUUahFBd6FCoH4swrgIWkaMyNCL8gFjjk1MAARrI7hy7LRYCNyZBq2jQj+HbMTUzSate8b-ZMaAILSGxJKcGbIU+GWFYnfop4CPZ7FR2w3HYxHFvW-SOqySQ8mKd2t6MqnUXpzbahdT4dtJ9G5Ph1FpblvSbu2RrYS120JflWRizgTHLQwZHDeIQAspo1CmNIQy50pcSnZTYy058hd5YubdeBwQch8WcR9mkPyrfQwc0CwRCmBTOP19HkFhPT-7uAnF-J7P5u8BnjwtOq1G3wuckKdP5lCv3B+iFkJuk9E-COIwZjmTGJZAG-4-a71xPvRYNhdrFiRusemo1JY+TkMlOsP4dwCFdqRKQcdhLwkBjuRovdW5nXiIkHeLQwJHivhcemP13Dcwms9V6dB3qHQMocY42DjbqyeD9Vm4iLjUV4egt+i8pDkUTMyc8Mo3zqjUVnIqvAvArnVEKLWH4HBJX8kQtG-gKCc24VtPmfoBYKI1rI1BL15FAXVJqeCMpLx60UFoLm61Hq83QvYsgxp1hCj5u+T8VjaqBJ5vwuxP4wnuD5u49YnjYzaI3mQUOZ8I6KkFIHLQm8w5FzaB4lkXjtG+VXoUsIQpD7H1PqvSpWiFy+N4P4-IbQSQ5C4PU5wQoJbRIcLEjgIy1BMFMKYH8xxxkS38BLUGyjxRVKyR01WBiGYsDaXObxXIeleD6VsQZpoxYTNMFwSpgC1HAJdKAtCGEeASj4JYJSsVwbeVqeUnw8N3kYhTjSaoDd5r0H+YjJceC6lCHSiCis10A4sU7CQCm8LITIq7AE+qCSSBgt0sIlqF144dixTYnIfsvn4kxaisq20bAFBpdijaTV7DSOogDAGTLyV0EpUNCGTST4cBJpbJYssraHndhK6Q6Lbw3xBHfKkDkRVLHRVK0VyxZjNE-gq7+Odf7dm2YAlVMqq6LmdFPbsMhpVjBDOAcA3Qh4ACEAAy3QoEZPOrcUqIJloB0xgdKgDB9SPk4L1Ao4bq4I0BdajVAkTrkKqITJgdZ6URoZTQthBMtg1ncMm1N4aOBlQEOGxxSIzpGK-PGbuR5E3CulWmktGaC50xzaAbBtsaBHyFSa8Vcb1WqsLb20tZaVGvErdg6th5Vh1tXo2kdtCvxtq8O4H5lNxxvKUkC82haCxNtMAglo1FK2+TMWlLwoMvg1oguqQBkbzUPNQigg6rJ8SDFme25iVI2AMAzpAxx6QqU5nJkck5qLw37qjQCx+JquBLNmccv48a2H0z2FLLtzSBFBoEKBp6DLLn7rdqAXD-THH02mYdHBzAI3RIDV4INIaw0MpLVBrdsbDxNxbi0Ej-DC2gZzmlEdIEx30ErdM8eAwAkcB-l4CeAJgUACsmDPi4GQej-QBDN246YauBRTDRIKERijbFTKIuQTS9K5szWsSiGEuVbamB3xmXM+2MsYg0rVnOpORGbNeDs1iaiTAzO3UhnmCzX1IbRpg9KuDxGENgdi67E69NdHLlXdC35G6ov+CZQWdFVDD2SHlQBJj+mpmktpS+UrBWsTFb9BwQwqh1TCR4+B5jdLS3bMxq1xtHWGWsZjbB+DvSkNSU9XRhj1BQ2Nssn1g9A3otxsccekQ2tF2mJSoQtKqW5BZSqw10gwhR2SCOM+AW712IkOkcBCqN0IanZTWEi7xDfonQ2wQgKFivV3FPZtz7v0xG3f9eTYsMsIsQsGzF4biH+n+C9t9V7KG221kJN5NQoOKD4NRzkGrzQ609Ygyj-UvKW1FeR3QbH-DGtMxA-FvDBQid-F8FprjkgIeLclXFkbpHSGSBW6M8y73UoCHh0unOxPUWGCO7z5wD3ztoxe5esiU6e5ZtaO0WCEWYhOqODsf0n6cUQwBIHb9v7ZD-vjED5BGOcM6ZkJYWLXgHf4o9hjtW+R3YO+4s7hiAcMdY4lz1HgzKgm8pOhy4l-ueV4uCxDTGltjnkGsODzdkP+0GBJjSBH9n1oEn12oBPj3LAcHkmD9aji60msbaX9qpOxfbA7eh7tp9e1DfYzKod0qBA18K84fna21dcbjr9j7RDfZ19ZwoPBZ6Xv+FETLjWLCb2T-WHLp7CuSEs+YVvtIKvWG3o1z4LXOuZ6F6Twbll3ljcsR-X+he2IrchbP2OE1LuHYxGf5YNWr-ffIM-yX-0AQf-aPfFWBYlYA+JVlP1ZBYSXgGkOkOIYVB2HgBgCgSxTmOA-FYScuE4VAkQAAMnwIJX0hQPaiznGTgNj28j3W83DzOg9gLDVm81-xC2EjnQg1LToOXlgNpAQKQJlnvRiEYMGgDnYPwz3U4LYWojAO9SE0fwhnzWmjKjfzc0ULVmUJYKNyTRzRTUxw4IzS4OZB4PgOUn4OmkELUJEOQUULTSLSq0I0MIWkJQBjkKAwPi71oKkPoPfxNSYNBU0KvyqCr30IPUcP+CqDgL4LtkEN8KsJC2CPw2HQMK8OXhkLuFcP5W8kxhpBoEmhoCoQWwHWWGz2SzbRr1XRoF2AALLzmixErwbQgx7zrywXWhwUFRby7zbwSI6I1W739F73LWXkrSFy21nwvwEj3xnRnDYN+Wr36OaOXSCnS0x1Xiy2g23TTl3SCj6LmmO1OiGNWx1mnz+3MTIH8BH2FwLF7yX0XUAWP11xyLyIv1D3+C-RWDNySAA3kO+VyN2D7SWBUPlkeN2G-2lTiIhhyKqJrwEEhNyJALCOIPmWJVhJD1xT5Tu28lVHqHxV1nlE+UyPxB5GsHqD2xKxxNOEdiJJKg0O+OqnJmpFDQKMi3WJ2RKKR1zwLGWPyTrnZ38HqGZTRSTgK2WwrUOMXSVCJPuH4HOOONH3PSCgGKgjX04A31+gX2V1pOAzzAiB4E6EhBT2y1ZLMER2RkWJpC5NWN5J2QFLyyFKWhFIOIF0nxGICgLG+nyClIaD2KVGVOeyuy3xuzcIUGU0hCuIRI9gZKSCBXBOoP9D1PSkBMdh1N2AiE8wVICMSlOBtKCny35PhJSOZDSM9NRKgKoPxA9M8O1W8Lc3yD8IRQqgDhazpzehCKwKqBwM4MIPbQiN4NMLtkslLUQlrOgJCwJ3ww9LHNCILKcP0gBksknMaBHIhknMuV6QE1t25142SKrOXgBgXLLK1JVLaAIE6AYCZKtLb1a0SxNOzVzz4DRzMGPNPPXialx1jmmKqEnPjigMXXIwmmp1C3FmbK3MZSakKJ3xXzCEvOAtmj2P72MWkUn3vLeil1Bl9NVKVxXxuzSGvVuMPyZO111wQxPK8AYGeNxU-RN3eIznv0AwJJMGIufOQroAKwRIBiujBnovBXJjkRQv3iZLbytIgqgi+1FxJLi2Q1NNzxsH2EJSuh3OZBko6Q8y63JnC3WkKPb1i0WWNLGxaDGCUp8Td1UrzBtwNJZOgti1F1dkqUMq5E-zOSkCFHj0TzHHMrYzb2st+lspqV+JoEcpkmyL8vPNTw52KN0p8s2RDICtAGcvpJDJCsNPEpss9TspXjjNTJMrKV1IiESpZOSu8tSu0UYtIpirirzBKrPPcrT05x0pSv0sWHwq1xASfWjx2AGA-Wv1NzvyXO8hPjiDyWwSoVi0EtCpz1RnRjUDXXPitKdnv3pi9gtMy1mq9nmrbVhBpyi0dlVjIzbUmWZMhSvNiiku2HujYDKyn0x2j3pTQTeh+lqzbUxnOrJjzF4qp33gCzOmowqGiTOoKCoGZ0gpaCev+sgK2imgqE4yBrvCG2Epbl5Lho1gsURqgnhxRrvBJPRptGWShrvHn01O4rzGCLrC8AGH+NNUHnGPxRwKrzNXxqDN6jGnvPrTjR6j6lOjCSoFDVvADgOGkAQ2GqKOQ0QtbVzwxDamZVktnMZq1SXiMKqHqnk1LEZuZT0qeCFB4jYC5v1NaO+k8D+XJmJrGjJvFquo0qpqFrMhtDGE1u1uIX1o3TzGj2VolqWjn1aKI1gy+IUteCmizh-jzmUlAAAB9g7uyRJagpo1ahkOatbGT4R+pRJo79A7Q2pjlKAWbDwiVvUo7-A+aENerqVurZABAtwOgtB24poFsmhnEmaM7YNNMlQy6aAK614q7VJBatKxTB91h+rBrWjO7RqotvS6FuDWj1TsRC7Dy4ZQrLM04k5tKrl-Bm7W7JoZbSjc92cXroY2BYZ2dWZmgfhOhto3k57i4k5aNZ73MSlclixuS2gSovNQUNjz6G4Jjmh97Okg5VyYdTlYVlksRP7Rpv7rqkkBYSob8PjS6Upy7ZA27Gbq7ZaRMDqMQDy7pdFpp2d8VP7FA9ESoYz8Rpq04Z8rSn7L4fb6ALjRiiGeTQqX725vMCGTAko50SG6HwFX6KRSSco3tZThcaGSxSHZjvNuHO5kGGEMQ+wgz2isMzyuABhf0W7ocEtxr5Av4qKHJ5HFHpBlHRtPrl4v5LwA6-4IlGqHQ6gFHLYlGH0UIwFWtKLIGerKkiz4Flp6YaQyBECt6VAP7yZ971QPYmA1YP9gmbxAaWg7YGCf01Z45-BLYxTHMABSUAeJ8JpUD2FQGJpgOJhJrOeJ3G5wV3f0AAWktijFshtw9JiEyaIz3RCaI0UIEAAAZGg0mnhP9ybHYPG4hin0RPiCmLgLMYgVx3YHYqmIgGAZggVHYgnantj6nWnbIhmgnRmZY6mynFy2nBmKtHYynVnpo6mbxFm7xgT8je1hmSmNmBn1glxPHenGE-YWHZiZ9umZ7DT3M1YMAmmAA2WYJ5ymfBfhzxt5lkkJ-wAAFhad0Fwemleawd0AEbXheeBdmtme0CAA')">function lookup_prim(symbol, operations) {
     const val = assoc(symbol, operations);
-
     return val === undefined
-        ? error(symbol, "Unknown operation: ASSEMBLE")
+        ? error(symbol, "Unknown operation in assemble:")
         : head(tail(val));
 }
 
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      
+  
     <div class="permalink">
     <a name="ex_5.9" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.9">Exercise 5.9 </a></b> 
   
-  The treatment of machine operations above permits them to operate
-  on labels as well as on constants and the contents of registers.
-  Modify the expression-processing
-  functions
-  to enforce the condition
-  that operations can be used only with registers and constants.
+    The treatment of machine operations above permits them to operate
+    on labels as well as on constants and the contents of registers.
+    Modify the expression-processing
+    
       
+      functions
+    
+    to enforce the condition that operations can be used only with registers
+    and constants.
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_106_1_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_106_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2183,18 +2416,21 @@ function operation_exp_operands(operation_exp) {
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.10" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.10">Exercise 5.10 </a></b> 
   
-  Design a new syntax for register-machine instructions and modify the
-  simulator to use your new syntax.  Can you implement your new
-  syntax without changing any part of the simulator except the
-  syntax
-  functions
-  in this section?
-  
+    Design a new syntax for register-machine instructions and modify the
+    simulator to use your new syntax.  Can you implement your new
+    syntax without changing any part of the simulator except the
+    syntax
+    
       
+      functions
+    
+    in this section?
+    
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_106_2_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_106_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2203,47 +2439,73 @@ function operation_exp_operands(operation_exp) {
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.11" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.11">Exercise 5.11 </a></b> 
   
-  
-  
-  When we introduced save and restore in
-  section <REF NAME="sec:stack-recursion"><a class="superscript" id="5.2.3-sec-link-5.1.4" href="./5.1.4.html">5.1.4</a></REF>, we didn't specify what would happen
-  if you tried to restore a register that was not the last one saved, as
-  in the sequence
-
-  <div class='snippet' id='javascript_106_15_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0GYBQuBnAQwDcBTACgE8BKAbkNMoA97cAnMggFwHtPq9IA')">save(y);
+    
+    
+    When we introduced <kbd>save</kbd> and
+    restore in
+    section <REF NAME="sec:stack-recursion"><a class="superscript" id="5.2.3-sec-link-5.1.4" href="./5.1.4.html">5.1.4</a></REF>, we didn't specify
+    what would happen if you tried to restore a register that was not the last
+    one saved, as in the sequence
+    <div class='snippet' id='javascript_106_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+save(y);
 save(x);
 restore(y);
-
 </pre></div></div>
-  There are several reasonable possibilities for the meaning of restore:
-  <OL>
-    <LI>
-      restore(y) puts into y the last value saved on the
-      stack, regardless of what register that value came from.  This is the
-      way our simulator behaves.  Show how to take advantage of this
-      behavior to eliminate one instruction from the Fibonacci machine of
-      section <REF NAME="sec:stack-recursion"><a class="superscript" id="5.2.3-sec-link-5.1.4" href="./5.1.4.html">5.1.4</a></REF> (figure <REF NAME="fig:fib-machine"><a class="superscript" id="5.2.3-fig-link-5.12" href="./5.1.4.html#fig_5.12">5.12</a></REF>).
-    </LI>
-    <LI>
-      restore(y) puts into y the last value saved on the
-      stack, but only if that value was saved from y; otherwise, it
-      signals an error.  Modify the simulator to behave this way.  You will
-      have to change save to put the register name on the stack along
-      with the value.
-    </LI>
-    <LI>
-      restore(y) puts into y the last value saved from y regardless of what other registers were saved after y and not
-      restored.  Modify the simulator to behave this way.  You will have to
-      associate a separate stack with each register.  You should make the
-      <kbd>initialize_stack</kbd> operation initialize all the register stacks.
-    </LI>
-  </OL>
+    There are several reasonable possibilities for the meaning of
+    <kbd>restore</kbd>:
+    <OL>
+      <LI>
+	
+	  
+	  <kbd>restore(y)</kbd>
+	  
+	
+	puts into <kbd>>y</kbd> the last value saved on the
+	stack, regardless of what register that value came from.  This is the
+	way our simulator behaves.  Show how to take advantage of this
+	behavior to eliminate one instruction from the Fibonacci machine of
+	section <REF NAME="sec:stack-recursion"><a class="superscript" id="5.2.3-sec-link-5.1.4" href="./5.1.4.html">5.1.4</a></REF>
+	(figure <REF NAME="fig:fib-machine"><a class="superscript" id="5.2.3-fig-link-5.12" href="./5.1.4.html#fig_5.12">5.12</a></REF>).
+      </LI>
+      <LI>
+	
+	  
+	  <kbd>restore(y)</kbd>
+	  
+	
+	puts into <kbd>y</kbd> the last value saved on the
+	stack, but only if that value was saved from
+	<kbd>y</kbd>; otherwise, it signals an error.  Modify
+	the simulator to behave this way.  You will have to change
+	<kbd>save</kbd> to put the register name on the stack
+	along with the value.
+      </LI>
+      <LI>
+	
+	  
+	  <kbd>restore(y)</kbd>
+	  
+	
+	puts into <kbd>y</kbd> the last value saved from
+	<kbd>y</kbd> regardless of what other registers were
+	saved after <kbd>y</kbd> and not restored.  Modify the
+	simulator to behave this way.  You will have to associate a separate
+	stack with each register.  You should make the
+	
+	  
+	  
+	    <kbd>initialize_stack</kbd>
+	  
+	
+	operation initialize all the register stacks.
+      </LI>
+    </OL>
+    
   
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_106_3_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_106_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2252,41 +2514,64 @@ restore(y);
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.12" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.12">Exercise 5.12 </a></b> 
   
-  The simulator can be used to help determine the data paths required
-  for implementing a machine with a given controller.  Extend
-  the assembler to store the following information in the machine model:
-  <UL>
-    <LI>a list of all instructions, with duplicates removed, sorted by
-      instruction type (assign, <kbd>go_to</kbd>, and so on);
-
-    </LI>
-    <LI>a list (without duplicates) of the registers used to hold entry
-      points (these are the registers referenced by <kbd>go_to</kbd>
-      instructions);
-
-    </LI>
-    <LI>a list (without duplicates) of the registers that are saved
-      or restored;
-
-    </LI>
-    <LI>for each register, a list (without duplicates) of the sources from
-      which it is assigned (for example, the sources for register val
-      in the factorial machine of Figure <REF NAME="fig:fact-machine"><a class="superscript" id="5.2.3-fig-link-5.11" href="./5.1.4.html#fig_5.11">5.11</a></REF> are
-      constant(1) and <kbd>op("*", reg("n"), reg("val"))</kbd>).
-    </LI>
-
-  </UL>
-
-  Extend the
-  message-passing interface to the machine to provide access to this new
-  information.  To test your analyzer, define the Fibonacci machine from
-  figure <REF NAME="fig:fib-machine"><a class="superscript" id="5.2.3-fig-link-5.12" href="./5.1.4.html#fig_5.12">5.12</a></REF> and examine the lists you constructed.
+    The simulator can be used to help determine the data paths required
+    for implementing a machine with a given controller.  Extend
+    the assembler to store the following information in the machine model:
+    <UL>
+      <LI>
+	a list of all instructions, with duplicates removed, sorted by
+	instruction type
+	(<kbd>assign</kbd>,
+	
+	  
+	  <kbd>go_to</kbd>,
+	
+	and so on);
+      </LI>
+      <LI>
+	a list (without duplicates) of the registers used to hold entry points
+	(these are the registers referenced by
+	
+	  
+	  <kbd>go_to</kbd>
+	
+	instructions);
+      </LI>
+      <LI>
+	a list (without duplicates) of the registers that are
+	<kbd>save</kbd>d
+	or <kbd>restore</kbd>d;
+      </LI>
+      <LI>
+	for each register, a list (without duplicates) of the sources from
+	which it is assigned (for example, the sources for register
+	<kbd>val</kbd> in the factorial machine of
+	figure <REF NAME="fig:fact-machine"><a class="superscript" id="5.2.3-fig-link-5.11" href="./5.1.4.html#fig_5.11">5.11</a></REF> are
+	
+	  
+	  
+	    <kbd>constant(1)</kbd>
+	  
+	
+	and
+	
+	  
+	  
+	    <kbd>op("*", reg("n"), reg("val"))</kbd>).
+	  
+	
+      </LI>
+    </UL>
+    Extend the message-passing interface to the machine to provide access to
+    this new information.  To test your analyzer, define the Fibonacci machine
+    from figure <REF NAME="fig:fib-machine"><a class="superscript" id="5.2.3-fig-link-5.12" href="./5.1.4.html#fig_5.12">5.12</a></REF> and examine the lists you
+    constructed.
+    
   
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_106_4_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_106_4_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2295,17 +2580,26 @@ restore(y);
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.13" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.13">Exercise 5.13 </a></b> 
   
-  Modify the simulator so that it uses the controller sequence to
-  determine what registers the machine has rather than requiring a list
-  of registers as an argument to  <kbd>make_machine</kbd>.  Instead of
-  pre-allocating the registers in <kbd>make_machine</kbd>, you can allocate
-  them one at a time when they are first seen during assembly of the
-  instructions.
+    Modify the simulator so that it uses the controller sequence to determine
+    what registers the machine has rather than requiring a list of registers as
+    an argument to
+    
       
+      <kbd>make_machine</kbd>.
+    
+    Instead of pre-allocating the registers in
+    
+      
+      
+      <kbd>make_machine</kbd>,
+    
+    you can allocate them one at a time when they are first seen during assembly
+    of the instructions.
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_106_5_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_106_5_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2313,9 +2607,8 @@ restore(y);
     
 </EXERCISE></div>
 
-      
+  
 
-    
 </SUBSECTION></div></div>
 
     <div class='nav'>

@@ -1676,7 +1676,7 @@
       </div>
       <div class='chapter-text'>
         <div class='SECTION'><SECTION>
-    <div style="color:red" class="wip-stamp">Note: this section is a work in progress!</div>
+    
 
     <SECTIONCONTENT></SECTIONCONTENT>
 
@@ -1708,7 +1708,7 @@
       
       
       special-purpose machine for evaluating <span style="color:teal">Scheme</span><span style="color:blue">Source</span> expressions.
-      Figure <REF NAME="fig:Scheme-chip"><a class="superscript" id="5.4-fig-link-5.16" href="./5.4.html#fig_5.16">5.16</a></REF> shows such a hardware implementation: a
+      Figure <REF NAME="fig:Scheme-chip"><a class="superscript" id="5.4-fig-link-5.18" href="./5.4.html#fig_5.18">5.18</a></REF> shows such a hardware implementation: a
       silicon chip that acts as an evaluator for <span style="color:teal">Scheme</span><span style="color:blue">Scheme, the language for which this book was originally written.</span>.  The chip designers
       started with the data-path and controller specifications for a
       register machine similar to the evaluator described in this section
@@ -1731,7 +1731,7 @@
       operations to be used in our register machine.  We described the
       metacircular evaluator in terms of abstract syntax, using
       <span style="color:teal">procedures</span><span style="color:blue">functions</span>
-      such as <kbd>quoted?</kbd> and <kbd>make-procedure</kbd>.  In implementing the
+      such as <span style="color:teal"><kbd>quoted?</kbd></span><span style="color:blue"><kbd>is_self_evaluating</kbd></span> and <span style="color:teal"><kbd>make-procedure</kbd></span><span style="color:blue"><kbd>make_compound_function</kbd></span>.  In implementing the
       register machine, we could expand these
       <span style="color:teal">procedures</span><span style="color:blue">functions</span>
       into sequences of
@@ -1756,9 +1756,9 @@
 
     
     <FIGURE>
-      <img id="fig_5.16" src="../img_original/chip.jpg">
+      <img class="scale_factor_" id="fig_5.18" src="../img_original/chip.jpg">
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./5.4.html#fig_5.16">Figure 5.16 </a></b>A silicon-chip implementation of an evaluator for Scheme.</div>
+      <b><a class="caption" href="./5.4.html#fig_5.18">Figure 5.18 </a></b>A silicon-chip implementation of an evaluator for Scheme.</div>
     </FIGURE>
   
 

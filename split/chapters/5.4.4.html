@@ -1735,18 +1735,20 @@ read-eval-print-loop
       (goto (label read-eval-print-loop))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_115_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+/// FIXME: missing from PR39
 "read_eval_print_loop",
-          perform(op("initialize_stack")),
-          perform(op("prompt_for_input"), const("/// EC_Eval input:")),
-          assign("exp", op("read")),
-          assign("env", op("get_global_environment")),
-          assign("continue", label("print_result")),
-          go_to(label("eval_dispatch")),
-          <!__  \indcode*{print_result} __>
-      "print_result",
-          perform(op("announce_output"), const(";;; EC_Eval value:")),
-          perform(op("user_print"), reg("val")),
-          go_to(label("read_eval_print_loop")),
+    perform(op("initialize_stack")),
+    perform(op("prompt_for_input"), const("/// EC_Eval input:")),
+    assign("exp", op("read")),
+    assign("env", op("get_global_environment")),
+    assign("continue", label("print_result")),
+    go_to(label("eval_dispatch")),
+
+
+"print_result",
+    perform(op("announce_output"), const(";;; EC_Eval value:")),
+    perform(op("user_print"), reg("val")),
+    go_to(label("read_eval_print_loop")),
 </pre></div></div></td></tr></table>
       </p></div>
 
@@ -1783,19 +1785,19 @@ unknown-expression-type
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_115_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "unknown_expression_type",
-          assign("val", const("unknown_expression_type_error")),
-          go_to(label("signal_error")),
+    assign("val", list(constant("unknown_expression_type_error"))),
+    go_to(label("signal_error")),
+    
 
-      
-      "unknown_procedure_type",
-          restore("continue"),    /// clean up stack (from apply_dispatch)
-          assign(val(const("unknown_procedure_type_error"))),
-          go_to(label("signal_error")),
+"unknown_procedure_type",
+    restore("continue"), /// clean up stack (from apply_dispatch)
+    assign("val", list(constant("unknown_procedure_type_error"))),
+    go_to(label("signal_error")),
+    
 
-      
-      "signal_error",
-          perform(op("user_print"), reg("val")),
-          go_to(label("read_eval_print_loop")),
+"signal_error",
+    perform(list(op("user_print"), reg("val"))),
+    go_to(label("evaluator_done")),
 </pre></div></div></td></tr></table>
       </p></div>
 
@@ -1831,7 +1833,7 @@ unknown-expression-type
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_115_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function eceval() {
-    return make_machine(list("exp", "env", "val", "proc", "argl", "continue", "unev"),
+    return make_machine(list("exp", "env", "val", "proc", "argl", "continue", "unev", "temp"), // FIXME: remove temp?
                         eceval_operations,
                         list(read_eval_print_loop,
                              ... /* entire machine controller as given above */ 
@@ -1948,10 +1950,10 @@ print-result
       (op announce-output) (const ";;; EC-Eval value:"))
       ^$\ldots$^ ; same as before
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_115_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQBZMChsCIAHAJwEsA7AFwH0iBTAZwFcAbCvAGm1G594NqIAzAPZEAtgAphBCYVKUq9CgEMAxgGtFKiiSUlV9PAEoj7UCFDKAJldpXQ5JUUaqdwsl15f+Q0ZOmyymRkwoxkqrRUoRQEjGymoKruSrIgYACi0AC06QBuysyg+cyMtABcxqaeXjzAAFSgaE2g9MpitJb0oABGtCJ0jc11wEA')">"print_result",
-          perform(op("print_stack_statistics")), // added instruction
-          perform(op("announce_output"), const("/// EC-Eval value:")),
-          /* ... same as before ... */
+            <td><div class='snippet' id='javascript_115_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQBZMChsCIAHAJwEsA7AFwH0iBTAZwFcAbCvAGm1G9ANqIBmAeyIBbABRCC4wqUpV6FAIYBjANYLlFEopIr6eAJSH2oEKCUATS7UuhyiooxXahZLjz6CREqTKVkZEKMZCq0VMEUBIxsJqAqbooBFDIgYACi0AC06QBuSsyg+cyMtABcRiYe3MAAVKBojaD0SqK0FvSgAEa0wnQNTbXAQA')">"print_result",
+    perform(op("print_stack_statistics")), // added instruction
+    perform(op("announce_output"), constant("/// EC-Eval value:")),
+    /* ... same as before ... */
 
 </pre></div></div></td></tr></table>
       </p></div>
@@ -2109,7 +2111,7 @@ function factorial(n) {
   will be linear.)  Summarize your experiments by filling in the
   following table with the appropriate expressions in terms of $n$:
   
-        <img src="../img_original/527table.svg">
+        <img class="scale_factor_" src="../img_original/527table.svg">
       
 
   The maximum depth is a measure of the amount of space used by the
@@ -2227,7 +2229,7 @@ function fib(n) {
       access an unbound variable, could be caught by changing the lookup
       operation to make it return a distinguished condition code, which cannot
       be a possible value of any user variable.  The evaluator can test
-      for this condition code and then do what is necessary to go to <kbd>signal-error</kbd>.  Find all of the places in the evaluator where such a
+      for this condition code and then do what is necessary to go to <span style="color:teal"><kbd>signal-error</kbd></span><span style="color:blue"><kbd>signal_error</kbd></span>.  Find all of the places in the evaluator where such a
       change is necessary and fix them.  This is lots of work.
     </LI>
     <LI>
@@ -2243,8 +2245,8 @@ function fib(n) {
       for this in our register-machine simulator by making each primitive
       <span style="color:teal">procedure</span><span style="color:blue">function</span>
       check for applicability and returning an appropriate distinguished
-      condition code on failure. Then the <kbd>primitive-apply</kbd> code in the
-      evaluator can check for the condition code and go to <kbd>signal-error</kbd> if necessary.  Build this structure and make it work.
+      condition code on failure. Then the <span style="color:teal"><kbd>primitive-apply</kbd></span><span style="color:blue"><kbd>primitive_apply</kbd></span> code in the
+      evaluator can check for the condition code and go to <span style="color:teal"><kbd>signal-error</kbd></span><span style="color:blue"><kbd>signal_error</kbd></span> if necessary.  Build this structure and make it work.
       This is a major project.
     </LI>
   </OL>

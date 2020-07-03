@@ -1678,96 +1678,165 @@
         <div class='SECTION'><SECTION>
     
 
-      
-      
-
-      <div class='permalink'>
-<a name='p1' class='permalink'></a><p>
-  The assembler transforms the sequence of controller expressions for a
-  machine into a corresponding list of machine instructions, each with
-  its execution
-  function.  Overall, the assembler is much like the
-  evaluators we studied in chapter 4—there is an input language (in
-  this case, the register-machine language) and we must perform an
-  appropriate action for each type of expression in the language.
-      </p></div>
-
-      <div class='permalink'>
-<a name='p2' class='permalink'></a><p>
   
-  The technique of producing an execution
-  function
-  for each instruction
-  is just what we used in section <REF NAME="sec:separating-analysis"><a class="superscript" id="5.2.2-sec-link-4.1.7" href="./4.1.7.html">4.1.7</a></REF> to speed
-  up the evaluator by separating analysis from runtime execution.  As we
-  saw in chapter 4, much useful analysis of Scheme expressions could be
-  performed without knowing the actual values of variables.  Here,
-  analogously, much useful analysis of register-machine-language
-  expressions can be performed without knowing the actual contents of
-  machine registers.  For example, we can replace references to
-  registers by pointers to the register objects, and we can
-  replace references to labels by pointers to the place in the
-  instruction sequence that the label designates.
-      </p></div>
+  
 
-      <div class='permalink'>
-<a name='p3' class='permalink'></a><p>
-  Before it can generate the instruction execution
-  functions, the
-  assembler must know what all the labels refer to, so it begins by
-  scanning the controller text to separate the labels from the
-  instructions.  As it scans the text, it constructs both a list of
-  instructions and a table that associates each label with a pointer
-  into that list.  Then the assembler augments the instruction list by
-  inserting the execution
-  function
-  for each instruction.
-      </p></div>
-
-      <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
-  The assemble
-  function
-  is the main entry to the assembler.
-  It takes the controller text and the machine model as arguments and
-  returns the instruction sequence to be stored in the model.
-  Assemble calls
-  <kbd>extract_labels</kbd> to build the initial instruction list
-  and label table from the supplied controller text.  The second argument
-  to <kbd>extract_labels</kbd> is a
-  function
-  to be called to process these results:
-  This
-  function
-  uses <kbd>update_insts</kbd> to generate the instruction execution
-  functions
-  and insert them into the instruction list,
-  and returns the modified list.
-  <div class='snippet' id='javascript_105_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCZMChsDMBXAOwGMAXASwHsjQBDAZwYFMBbAIwBtmAKEmsgCcqnboID6ZZgA8yAGlCs6JABYUizAJSgA3tlAHQhUpRqhBzEswoA3XuoZkGCznXbNODbXsO-QBAAcAEzopcQcnHgjnUFd3TwUlVXUtAG59PwMLMgJBWmj03wBfDINS82YcvNAZIWUycTiPBj4BYVFmCSlZBQsrWzTsIqA')">function assemble(controller_text, machine) {
-    function receive(insts, labels) {
-        update_insts(insts, labels, machine);
-        return insts;
-    }
+  <div class='permalink'>
+<a name='p1' class='permalink'></a><p>
+    The assembler transforms the sequence of controller expressions for a
+    machine into a corresponding list of machine instructions, each with
+    its execution
     
-    return extract_labels(controller_text, receive);
+      
+      function.
+    
+    Overall, the assembler is much like the evaluators we studied in
+    chapter 4—there is an input language (in this case, the
+    register-machine language) and we must perform an appropriate action for
+    each type of expression in the language.
+  </p></div>
+
+  <div class='permalink'>
+<a name='p2' class='permalink'></a><p>
+    
+    The technique of producing an execution
+    
+      
+      function
+    
+    for each instruction is just what we used in
+    section <REF NAME="sec:separating-analysis"><a class="superscript" id="5.2.2-sec-link-4.1.7" href="./4.1.7.html">4.1.7</a></REF> to speed
+    up the evaluator by separating analysis from runtime execution.  As we
+    saw in chapter 4, much useful analysis of Scheme expressions could
+    be performed without knowing the actual values of variables.  Here,
+    analogously, much useful analysis of register-machine-language
+    expressions can be performed without knowing the actual contents of
+    machine registers.  For example, we can replace references to
+    registers by pointers to the register objects, and we can
+    replace references to labels by pointers to the place in the
+    instruction sequence that the label designates.
+  </p></div>
+
+  <div class='permalink'>
+<a name='p3' class='permalink'></a><p>
+    Before it can generate the instruction execution
+    
+      
+    functions,
+    the assembler must know what all the labels refer to, so it begins by
+    scanning the controller text to separate the labels from the
+    instructions.  As it scans the text, it constructs both a list of
+    instructions and a table that associates each label with a pointer
+    into that list.  Then the assembler augments the instruction list by
+    inserting the execution
+    
+      
+      function
+    
+    for each instruction.
+  </p></div>
+
+  <div class='permalink'>
+<a name='p4' class='permalink'></a><p>
+    The <kbd>assemble</kbd>
+    
+      
+      function
+    
+    is the main entry to the assembler. It takes the controller text and the
+    machine model as arguments and returns the instruction sequence to be stored
+    in the model.
+    
+      
+      
+	The function
+	<kbd>Assemble</kbd>
+      
+    
+    calls
+    
+      
+      
+	<kbd>extract_labels</kbd>
+      
+    
+    to build the initial instruction list and label table from the supplied
+    controller text.  The second argument
+    to
+    
+      
+      
+	<kbd>extract_labels</kbd>
+      
+    
+    is a
+    
+      
+      function
+    
+    to be called to process these results: This
+    
+      
+      function
+    
+    uses
+    
+      
+      
+	<kbd>update_insts</kbd>
+      
+    
+    to generate the instruction execution
+    
+      
+      functions
+    
+    and insert them into the instruction list, and returns the modified list.
+    <div class='snippet' id='javascript_105_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCZMChsDMBXAOwGMAXASwHsjQBzAUzIH0AnBuigZzIdYAoAtgEMSACwpEGAGlDs6zIsMEMAlKADe2UDrlMCrWiPGSG-AESMW87r1bnV-eYuVqA3NgC+uQqUo1QYS4uCjoiNg4XFX4gkLDmSR5WAnJqInUtXT0yA1oxBmEAE34yYQoAGxjg0PDEsmTUmlVVD298YkbaWJrmADdhcoIGZgYADwAHKrjaoiSU-3TNUG1ddhzDUFKKkrLK7vi6hoXm1p8OhdByqioAawJx5nHWCkF+LgBPQQAjKnLZKnGfGECy4GRWOhINB4oH65VAAF5AsEqCQ3p8fn9QACgSCWuDsrkYQMEfDEcRCgw8KZCvisgB+UB8VhUAQfb6-WTmACqRBuRCoAHdaNjWMC0qBJEiuAxvuUGAAuBy03Ty0D5Io7bawk5eM5+cVXW73ZjlYRfBiVU3m8pcWRWi1RNSafGQ2ZkIlwxGxFH8e3lR12s0W0EefFrQmwklkogUqlSGlZemM1jMgR+gOgbkxynUy5B8qqgCC4HAAFEALIAIQAMqWlYmVZtdvxtad2vqAiIbsMni8KJResMxpNh7JjBIpIHraDnVkKHhQPxuMxXTxhEQWMP+MPmrOG6BV+6SAiD1DShuRhM+gMhtuJnj9wSNvx1PCAHwHjxZTyMm0MCULkuXAmvml4jveYKPoeEpulwJ6GncDx+r6+a2nm1pgSB1p3uMOqPuGz6vh+dRcF+ug-sG-7zouy42DwfBgThu6ZPu0GsCeVgRJw9ECOOpiyHRdiYfITEPvuBG0C+CIfpxrq8BuXBOC0yzfr+0p7g2TIsjhnI8nygq0MO7DVAEZDvICMFSjKXxyoqYk6N4bS+J0oBdsMIpijQjGjq5ogTjI6HBv8gKiriGmnm6WLjPB1yIY8zyvB5CyYQCTHBTiaQhi6Z6BE8KJwYiIgjtJvndvFfYDkOEzbmOfn8YFNqqNIyqPq1SVpClIXroUik7niYb6IRJXCOM4zlO8CThOSfDjZICgAFbCP0XAkM84xkPwLWtYmAK1ZM0XvqAkxNblzIkKCeJOec4r7EQTgcLYDFKCoshcFQBgkE6LEQjlwgniNgIxr6tgWLd5gCQ9PGOidb0fe4A3rF0bbORcbnMLdS5urVJiTg1aHtVCsjjCQkG6NBpSsFYHFMFxj28XVuO3VxjqYzweFkzlsJDGB-3VPEXNVZMdT2RF0IC8wvgIlty4E+EW7izuW0MmjsuMQrEzY-5U5BVFGVQqoW2qmjvaCP2FCDox6rFOruGa-VfpZVkEmLkR4VZNKLByQwCk7JTTCyOLvgviLWRFP0pA9qixPKfinjI9dARh+un2PFHJPhR7K40PJZCKcTshbJUsnZ97uf8NHJzLFdHZGMIZW8DwrNkHbuMO+loWZbIeCmnQRPp99otHjQhRmwEiIN57w+j3dwtkTo1FAcwqtbq6I-HKTDbQav08S8QJ4q11yUr1PCzNdt58X75OMBW3usd-rc+Js7UmHQPj6Z17Pvd8IvcRWvHVB3ZttJOEdU7lxJm4FS+446xzUv+N+ugtICDqJySsRRNgMGhIceY4pJSxGsrZBwj9HJ6hchPfgu1LhiDQqwahG8ny0HKCDcwE9wZRTtNQgSdDTgo3FBPLOMZp4lEwSwbBnR6HO0LsIngk05jiPjjXUqwwviilIGIJuLcb6oS7j3Pu9DoIUmhIiFRycxDMEMRtWe+IF7LnTFuCxzEtrQRIjFI0SF8woWnNrf0w4sIWn4A4kOqxBqSVdggy+c5ALFw3KXRS386COIiZfD+Jcfb5xgjwR2SToFwLdtkhsICU7E3AUE-J3h8nfmIbk8JyZUwaMzGgwooATFqIyfUHBAQ8HBAIQqIhsddTthci08QniLQSJCZcZhwyxBsL9JdQZFxpnmJEfwJZYjjjhWdlbTUlQ1luiOGkHU1cXLLlKHQRghQTQgx4IIZumx8jMDOeMxGEpgLjDKKyMgtz1AADIflqgKMUG5ZBXyknucMM5CiXIiWel9BGhImGN3MPINhsL5m8M6cBQSDEtw7k2RM05P8LlXMbj5ZFHA+neAxbQbFrBhIcCYvil52ypF9ShRcQ864NoC2eQi5hnKNxsJ5TwhOtBlwCs3NVPFA9naEvOQwS5iKNpkolZShZ4oJWYQFoymVEyWXNjZQM6lDV+BoqZXypFfpUWuHRaK15fifFSvvOajYcriVKp0pmK1trFF2KvMhaV8KNj6u2Ia45qM67DDoFQR5VB6l8Vbtoo6-dsqRQsRxKgZAY0WKbiLGxwE-WTECXkn6kUXGIgQsaZCt9C0OoCSIoBT8Jkvw-CkmJaSSCyBIiLCif4AI0SxZDIS9iG30KyGxDg1NrBDr4EIBmAVaX0roPWtmpSGEuxKm2nOedO30Bpp-Mu8hG29vUjUpB9TzCNPoDGrNbSDmdK6N02UDA+nfiNXa6NsbRnlF5RsD1lgb1UFmfmH1Llo1ZuWY3cDMb1mHJdXkQFOz+DQdke08R8z1UBHGKlNcJAbi-toLhm4FhsPjDVZh2g4wCBcHUURgON44VOwmURkj1GZmOGFe+xRaMuBLTMCgq+WtQB0eTfonK8gp20x4nO6+r1Sh4dQ8zWFuaRbPzCVtc+VGaNvHkzcWQ0Tt33QSWu8+hTI4lMfpfGB4bxRo2Mlm9g8b51ydEHp0T4UJ10Ek7SmTQmiOKecMp4Wqnm3qYqcJ-dqTD0cCJjh3TjaklmbAdHSBGnHzWdIRcXjg4jMEcmUi7LL6IYJJFYo+zLIzBHvg-lja5KeAVbYUe0rLl-N1CU64HTrnUP3sWLq5liGpGtf2R09IGHjWpTNX1i1tWATWpUKBi4MtD4dVxc6qbrq3kfMZX8+1Zz3Ug22TuTks2xt2uXleVK53cLVZDZUbZV3mincUVdpeXUYyKQe9VqRD32W2cjY8PgeAWSvAEwmrRXi76eVmHojzv0XKIhCkD1ggh0adFzY-fNr29Zy2qqIdeJbB6BE6LvWghV-tXZiJ0TRZ9wu06yLfWWWSGxqZKhoKBdO8cAOIC+SBSXikpfZxUmBqlKIE-PQJy96DEfA7vSNyy+Dn2vvIlxly0vkeo4WLmr7zZZ5V0y39sqYwGAkAIMlal9Tb5g9kGlunOh0nxJc3h4KM4B7QVGCebZVimMvPd6SRE5gwZKyUejPmM8saCftkmgEaFo6G1AL7sFLCRHmCD2jchoPnN42dzon+ei48J-99MlPj5lb-emU52TWfQAO9E-nqMmZP1ZuL-uUvZVG9xoz5X2+sfHyqgL5mQrzeGyt+GIVivfndN597-H+vdWHMvtT-98rjnO8T9c1P-cffZ9q8EEPxMI+AesCRyD8PVuq-R43w2VU4vw9Zn0kKWXZDzJUUfdKZ9dlfsBHuIUYEwwSJNzQkt3nTE0imJm8xnXpkr3MGJiV1LWhHiXAO4jsF83qnMHiVgMJyI33nnQsCIwwOgmj2wOvgsEZz6VTWhEzgoAYAOgi1EWG2JyNxN2SjyhIEfmgjRmoOwMN1GGN1Ny5xrkfmdiKiXE3RpioKFhp1tyyA4KFnoOSl4FGEsSahtykJ0DbhUNUKtw0KkPzm0Ntwdz0Lpzo0MNp2j2aEkIvm7U-1rjKjsQ3FYHeG-QzG7Wq3eQoDTFAlhS7VgiexcjGHqDxwdUUgULuXYE+nNkY10GNXyHKBCgAO8Rd0F3HRyikEUNQw9wG38P6nwgJWAiSDmlNX8NQwNgvgZDCIYAiPiKOi2zRjsPqEcNSLoJ4G8MyROgdmaBUNVHKMqLcPpjKlgxoEKLSOFhaNzjaNQh7VwG90JBCPr2mjjAVVAAAB8lj7UiACByhKgQiSiW89Bwict1jNjZBDif049-DRRyAgikNtjZAYiQpfCI0yoWN6E5R3QsDEQTjQwshjUtN1FRgMgkjdB3jqj3D+BRhHd8NUsciXlzBCgaAX1iEpioi7VSMpIalMcTjOs8NElz5z1zBSxBB1p3hhNdNVRYAAB5WAMg9LapFQ8mAEDIjUIjEzIE3TE8QbeLSzcSCZLNcYLkhyfpfEY1SQM2AYCgAALzMDHVZNcxPE+K2mdlhPhPMERKFLtRHi4HeTIBGRUGCB-kiOZwmV1N40YG3zYz3xLyOjY06NckwRNP-D90zFIwtN2NRJ2O2iNjtP1NnxFMoDFMlJdOHxglFKYUlJfBtLxL0n5Af3YAAEchgeBVRwAAAVQsaAAAaTYWNP1MmKDVoA1K1PEGsODx80m3xFeIim3RPHMAACpiBboFUayVSkSdBjUCzgQdSvTGBpT55AJszTTHTLAmAHACdpiNgD1SIWzEwT14EVCF5+yHTE8PYRyaloSIwGNWdKzYkTwBZIEYEVCZzRz9xz0FzdJeRoyaUGB4yRFVQAAlUsAAcUgBTNLFvIwPSy2nKWVzzNAHbO1LEGLO9FRG7HeAhkhFYB6jy2XExLCJZEgptwZHmOpBt2v3jIGH4BAtuMQ22VgogoundO2gZBwuNzgtBA0NVCAowoYFAqbG2FwsgoePFAM1iSMzpjyx8yHLIHI2NS3RYtpXo0GANPXQ4uXI4wY0Ys7H+wGLum2NcK2xCOOI2J-WLOkseX8K13WwQw1CsRswfTkSPh4KYI6hYI0p-KkR0v1wCEoLkJW0Mr4K8hMoExYPoUznMvD2ctS10psOGCkAFGYDBzRPIPdDALJzKg4pgJFmggQNCuGA4vQMipymBJ410x53LKYHBW6xG2YGlGvIjjlKUsfgrLIAeUIIrRBn-V9IoH9NH10zYRMPPhbRJNcwsEquqocEbQrMXVKBsgdJq2BiRRgL0TtGYXQJz2My+ORMUQGCuBIF-yk2QLLMfAXkoq8L0CQIYm6rlFBWjFjGpB7KbXWrpU2t6t6P6o2lWrswgNNRtWUNUO2i6rNC2v5NAEPNXMQRTG0lWvMHLA2MoDGmJN2vjDWrplVHfOVzXI2HJUOvRk2JRF-0KGbLfW+LtUrQeFLJtQJ2gkjC9GRFRFWoep6rXQVImWxrBSQvjBUIZHPS+qjIMmBp4jshtNuxbAGGPTVMUUYNNylMxpynLT3UnnbTLhS2lkAmgqUoAJxPuomSVKkERpyVFzergOCrOhPFUs5uYLOn4E9x8JjgvhMt1vPmdnVqlOeq-IFLHKMC7IdLfC2gXNnzXFYC4qD0arZ14o7QLgeVUpyqGAjhZIhsMjst4B5xerjztsHLqGmsyuJ29u9k+kDNAAZBys3OKr-xsq8hjrysRByr3NDqttn2mrht4Hmr4HjoZALtmqLtpVzr1IHMT04lpVLsuFimNCrunzDsTwjs2Kx3vlmEbtKo-DZxTtewKlykBmKCHovyihDBDrbrzsHLwKDyI2rvtNn1IKDwnvGC4DOI+t4itrPPv0vOvMTIj1loku8v8pwMXVhXxk3tkDkmZE2I2qyNh0ijBy4J8oYD8oCpFiFJZBGD8lYqhlhRKgCoD1hortiogIcEAaEjRWKzpkdCZxPrMHME7v9FIMcDMMflAbQajuSgzrjscAVx6v4Hvt+DlCOv8M0R1B-LB2LIdo2jBzy1AYYegYWyYppkXQnJQNxivoxs0v5oEUM3rqurPz4fm3Yass4YgKEZYrEZkdWp5Qzki0FsUhEcOp4YXQUZtQEqGBCxhLhNlsAqfRIbIcfsocUOoedCNsUIuJYAdk2nPjMYobUssZtyqPaNZz0O-zmv-xIgSOoeeu5JeRIiCYcgw2gjoBIEuTfvhHxDRgCq2n-WEDYXMC+FSa4tuv3A9X-XYF31kBiFkC+Fdj+gAFJmksnz5-14Q2FCmKnhp69inKnEx-0J4ABadJiw1qchVKcwGpk6ESNJhwO+s8LlfgAABnMI0PL2QksGibacMZfSmcvgxhYVmRBl6byeGbWtBm2cGfScey6cfFWZSeGsbn2fauadalWc6b6sGcyeWYvnb2-QsHaYOaucfDmcKAWeVJ1Ezi4aizUeiYvqgNOdAAwHGYADY8R-mZHuGomYnM8hnZAAAWSZjwBh5DYFphjwdRhB+F7FpFlJloIAA')">function assemble(controller_text, machine) {
+return extract_labels(
+           controller_text,
+           (insts, labels) => {
+               update_insts(insts, labels, machine);
+               return insts;
+           });
 }
 
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-  <kbd>Extract_labels</kbd>
-  takes as arguments a list text (the sequence of controller
-  instruction expressions) and a receive
-  function.  Receive
-  will be called with two values: (1) a list insts of instruction
-  data structures, each containing an instruction from text; and
-  (2) a table called labels, which associates each label from
-  text
-  with the position in the list insts that the label designates.
-
-  <div class='snippet' id='javascript_105_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCZMChsDMBXAOwGMAXASwHsjQBTADzICcBDcgfQBtWAjOrgGcAFGUZkANKGZ0SdCgDc6ASlABvbKC2hCpSjVAALAQAc6zYRSKCygqT35DVa0Ju3uSNG6CLiOV7wBeIzpWABNRcWUAblx3dxkyAmZaCkEOG2YrAHNhXyZ-azJlN3j4gH5pWXklSyK7UBNWCgsAW1YAazpuPgEOOiIWAE88vwDJUHHBZXtepxKysoAuKrlFOmEmluF2rsLMgnJqIlGC8ZnJ+ouHAWnY9wBfOO1E5NoxJlBA79BiMLo8FY6GFQAAfUGTdJEAhcLiRJgLRaVGRrWrQ2FSdFcRHLehMNicG5CUTNOEfYpSYxcMzMGLYB5AA')">function extract_labels(text, receive) {
+    
+      
+      
+	The function
+	<kbd>extract_labels</kbd>
+      
+    
+    takes as arguments a list
+    <kbd>text</kbd> (the sequence of controller
+    instruction expressions) and a
+    
+      
+      <kbd>receive</kbd>
+    
+    
+      
+      function.
+    
+    
+      
+      The function
+      <kbd>receive</kbd>
+      
+    
+    will be called with two values: (1) a list
+    <kbd>insts</kbd> of instruction data structures, each
+    containing an instruction from <kbd>text</kbd>; and
+    (2) a table called <kbd>labels</kbd>, which associates each
+    label from <kbd>text</kbd> with the position in the list
+    <kbd>insts</kbd> that the label designates.
+    <div class='snippet' id='javascript_105_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQBsGAjFjtlkTIAnAJ4AKLr35EGdFgBpQFIgGcyqgJSgA3tlAHQwlmQLDaABwYVhknnzaz5Sleq0BubAF9chUpRp6ZnZ1BhImcW09Q1AOE1BQ8NAAXlAiAg4OT31DP3JqSwJVAAtxAA8o0ByYg0SmFNArG3KlOs13KprDY1NzUAAiABMaFn7PGJ9q0DyAyyoLSN0pmIo8UHEKVUcMjnE2qOWu0BZhYSpbfoBROgsyUQSyMKYALlBYAHlYfvbcI9AvY4cVQsJZ-GIkGjqUBkeYNYosBiDPaPcI-MGGOoNR4UXZtcboowmMy0GEWfFdHwTX65Yj5QIqCiUBgcCgALxYi2iR0xqXSmXJNR6xIGwyIowFkxiMwKoEGmysZBIpXkqlUDAA5iwDn8hX0VWrNSlkql+hYisV+ocugB+Rrmq01V76jUg40mizzS0E0C2j0LTQOmJOliql1Gk0Mpks9legm2yMUZlsjkB72vE5nC4AVSITCIVAA7rRjABHAghsivcAAFQAgtAANL9JTOzVowyS7pEvpy1QKpWeSbSwKMVhsYzqzZkE7iJxa0GGOJkUAQoSCDQNfoAKmIDFVFHVYsGW7G1IMw9ovf7ypDBvnXK6q3WrddxoGmrI3wX6N1tFX06EVRsj+AE+GBb8wSfcQX3DAZgU-bVvS7XpaAAN2ZcsUgAPl0FcaAAjdUnQjhyw6LxgIJUCgRBB8kIzc5oNvF0lH6HM80LYsWDLCtXgAJUuABxSAa0uXjvgFECHUpDsz0JFDZXlBhFWKQdfFpWZQD3VQqBIcRWFEJRjAhYRBi0CDf2ULY+V2IzzlM1N0VtYhBhYPAVBYQZAwMdMy2ZPSWAM0B4URcRgqRWyTK0TQHLjIKEXClhjPsrzDFeLSdP8wLsRsxK7Ki1T8HUmUPzYf911UcQJynE5EIMCyqvUGd+g-cTvDU-wZXg0r8PKyqWEnRrhCUYjy1quThQa6cLng75xBGrUCovIIx1cEQCDpIhxGnMoyDGiymlsbayCUayfiHIr6TUNaNrYI6Niuvbu1oML7vUM72o25QruEdbZgEMpEoIP6LDOXTVse+Tste3bFou2gutWn6bpYAGSCBgo2BBjLVqULGSDGrqoZxxpQfaKpzo6kdgkcFgCzYRglXczkplXKELBIBpR3YSamvZ1rwUhZc8C4dVOepnmLmFjV+cMVnlx5ZaQhRCJ2wMJdoXhNhEd+jHgW40hXTSHYBXVshNfmVQGhZdRJCncR+gTJN2TYOpm06JCPcWZIcLqe3HejUZotV2J4gl26eDiK27etsh7b53H8aUGP7al9U3dT6KKPPOHNMyHSlO5-rqtsOcxpWNZxHS3S50MovBvD7g4m0N1QGc1z3MGMujjDx5G8Ng7bZtmvFfHOuptnOQtU0BQUo9sEe4jhapMBcDaL+eiS8nliAFkMkoCwOHuFy3KPQkBqm14ZYpB0LP6MPmQ4fPp0GU8qSlHPH6oJgCAsUfz5nUuEEBZXVAMRBoVcJ7ODPsXBuTcJKGBvk9UBzJYJtxPh5WetoN6QMUAMNi+YizQMGs8b4s9XgvShsRTOUxpLZ0prQFGgNpzMz+HLL6bgGglTKoBcQ7Ng7l3WJsbYmRoZRSAd3JBQwRivyOFRVes82F4waNrZGqN0Y0ExqDUK8VRGZ3duiPGkQOizwsowtGzD+EyTfshYUMFvYOjsW+fooRhCfgdLaL2OEdAJBMN1NcPD2ZKDNuwFRf09blgNpY70pi1EWLIg6YMoZDQtwdldB+Wtvo6w0eEwQJBRjuJ8SWbCuFgkZPUEjMJXEIl5IaHreJfxEl3lgv0B+T9C7-2ELGG0udH4kALn-YuCT6BMWSU4kqEsuk1FtJ-b+v8JZDMcRGNJmQ2DzBOEpAoqhJkxFtBbYp3jSl7NSAwCwFhBBIkORYVQSgLZk1oY6YZSTXwmldgUuoCyRnPIGGs4QGzITbMMLaS5qghnYJfCxfBHFCTcXUE6MIxR3KtQpp9cZY8ZwMwRWKWu6pHCTwhrY+FTNmq+ImZoPqOLS6w3oZpfch4-64vkJXWlRAynXVmPivoFDrC7C0geFloSCjUORRpXldL5r-QWKK-lmSNqVCmBZKGUMpWsoqYK96hVqUzJ-poigdA9iiDoNwKgHAblnN+bMMytE2FgOOaqDKqgDVGpNaAH5fy1DBwsjat8aCO4FOwQ6w1xqIW5gIbQV1GkVA0uBIauIJCYoPK5TiOazIhUfQ0lq3+Ug+B2GkNc2I9gZB4ogtalBtrtK6SzYWqBlaPCyU9aW71RBj6+r+Fg04DFK0MtwaxJt7dT6VteLWcA4BLjbwAEIABlLikIadCblyaODqqWlzHVdBGQUFQuwFGCxt0tkJVi-NuaxpQSEXLBgQgJXiG3dFcRBg2Ec1SGei9262DzSvWUCwUTxp9E8SuCUK8QQnq2J27d77P1dzvYLdhhFYhUC-tqytOawJJwLRKzgBawPUJ1Eg39q0gI0IA8oCuQiw6gevRBvCIDhCcJJWi2wGL3LYpgS+icmGv0WV-VwnqPDhBkwI2BGiDpsG7rwSGqF27jD7kCHcM5X0o0sBjSwONEo2oas+iu8NGMyMfr3YzA9NbTXrItWNNhsJUgZtXeITTGiX3zEw4Z81mzg5sJOaDS2qRGA7uKSukGur12bsvbghj+mC1aBnnPP41mWW2bNee0ybGs7ftoL+k5B9RAZLYG3YQh8VA4oAFYMHQqoEgwgKC3HELPME8w90LAsMU-0ShXM6XyqppaUryUwOHtpMweSTNQYYOA055zB6xxacyt2YdS6tCoD1peMQLIMCpep6m7XibBdwQZl1sWLUJz6yAx4wgPw0bIAMwa0F924OVROLt0MsOyyg+K7d4DmWvowluj9t2BQlpIuwPwKQHRCKi5ex7H7407JHkD0DIOLC6cxRt0LDm3VaAWdTXza7KABdAy9aH08gh6fh0egUHHm5eIdF1bhGgtoMEOyYYab22B+EiF+xE6EDaY10nw4xEwlsisGKzvJ7PeH4wguT7jlPAlzqTVx-x4v8Z6NaznFd04bZrYuyh3NiOdvTBFrt4tUHVxyg0qkZXJ2DfrpoJ9qYQHVnba0x9s37KKP3poIbjGf2PPU0h-bl35uiDhYiwH9b6vkNbaM05+BdUcMk9vTUUXMuKqpyUA7t3xAmcR5qCz89Av2ZC74yBf9AmY-YOJv0MdiJoQVmg6qy68nFPKZoQr6lJurMw9iMUPNwh28ctoMnfoJu3bVbbx3rvqklom78a7i34+BU0G75L3Y0+ZXsp5zKFd3BfmkFKKr-HwegRKET40YXVqoMuShKkdfWfihsFP7HcGAprcgY+zfm9a97sgLw1bODsz0PSCQ3vw9DgL6iGz+7GUe+ylW6IUE0uBECeIsL+EBSEceMBQuLgV0taAeFIhGr+GBhgmebOOenOCBkkOBBg5E-G1ERe7atgJeZegwoAF+m+VeWStAkaWkCmfc9eVIwqMoDBSof+c+vevBFou+70S0Qh1+FY4g4hM+RAc+iauw0hS+aqK+9IWwjw6omogwnAds6gdAx0Gs7A6hc+QiA8uhu0oAAAZBYXFCFGYc3G+KUuoSoZxOqDggIXbHfP1G7JSm1EtCRnRoFqDuZEgkIuoZodoTbCJp4WnKITnKRh+n-JhsEfJPIQlo3p9E+rHPNO4TbP0JkW7NkaPjnKeoLOeidtpp+skcKKERqOEcnFEfkbEdSpkWhm+telUZyjolDORs4QAbsIArRBZL3pWt4XikUdSkIo-jukEYMSEWobUR5BEbHFESMU0Z9FMT-tmu0bMSkV0fOj0ekRpCuuqFQLdFQNDLDoxn0XmnwnriAjfpwlQDCBISrg9PfsRsBqhqBiATHmwh-uZl-ghhhpthscARWHdl0MTsUkgb1BLnhsHHIoBh8adlNJej8dgZRlCBOMdiieimrkQqiSxv1OICAenlCd7D4qbmLhVBLtAb1BOBCf8FgUJlQRcQMLQaACcWcUwZ9KwaqOwXEFfP8IccVKcTCPwR0T3h4VyTCG7JWmsRpCcc8TfuIEqacTIXIXsVLk8eqUobPkujnH6MiE8HPr7KaJ6AadSmaCUMaeEHTj9qacrHHOaLNIUSKVTGOGqJumyUHg8E8LrsflRv1DiRLOdjvn6eEKyvSnOLdh6mARSRiQSNaaUHUEoHSTxv1IyXPHgdnhzvjOnmCGQdwR6YXOoOcByNvnDq0MrAGSzFBtiakKih0mGVWRGUwFGddjGeDHGfJL+omeiDCRmeqLjHZvsAWeiDmewAQfmfoh7EWWmp1IVhyAyZKbEB4V6aMNigqTKJJjCMYOSjkaNrueWRNpmeMZ9HUB2f1DdpeRqauakbeXqbIZaZ9HZgMfKkgr3p6CdGMb4cUVsF7tMZUTsdUVsAPO0VYZZOHBoYscnC9NeixBab0YBTbi3mHjZjMR+bsSFFDC9IBUHMhbbhhb-K6k2hVPhauVDPhb0T5icHgOcHqpWVcZtlFjcUfnWSAmEEbo0HRQxWwFxQUJbgIhsABURdFh9gJfqb8f1jdO7hDmJZepJX7njlWUQSQX8CxWJegRIr2dHt4mpV0EpQzqnmTJOYLpzrOQHmQRMMyevKyTQeXmavRcIHQDyRGrQGwYpkKT4MWZYLxS5fxRtLdpRfOnfuTAuSWf9EwinvQmyZtr6QZXPBLgfqmVtpahxVCGUHCDonflhcKFlSklKgCgYLaCuqtldJcSFhrmlbtkMgVU4v3gUkrpIUxVVSHhbPvjrofmDqlKAPVSaEIcVT6CPEIT6fiZtgfnwnVc0jKVQENaVdTLNWNeGZtlNbOv1XBEufNSPBucta2alWtUcK8BtZ4WWcYNtSusefua1bggdfjNNSkk5QxRdajv5YxRVSpcxQjjVd1aCvZR9T2uxIQjIdCKILJnydGhwUihFbQD-IMP0nhqIrvnmutntmzA+pybRs2b6aaCQEKWwqnCGXRi2Vcf0KnPjVBgrOtvbK7M5lBkcp9WKPbKxa1BlfLL4hQCwHVqkAjE+VFeYhjHjF9lBiulzWLGOGYuoiyheETkgp5hsNCRzVzRsP7upTUKLQsDIbdCjLftPIlQHgZvrRFkHkbUlSQKrWrQSInqbR7KmTbUhLcnrXPPCb0Z5X3OIP+GcJkCcNrTtJVfeNgDEiIFxZsUCBVgSJ7canEMIL7cdClEjdcXpQgXDQjWgQnfFRdl+jpdUWgeOf8C+UcdTNTZNpPHmh1ZRiIFHT7UdGjcuOtuLewGKHTNTcHFMM5QIPCh1vXHON5hdvbK0n0tOLiZ0mSiXfILjmPSGMHNTakqECsizWSrcgKDPatOklrTkgbLNG7XEB7fhF7dHbHf7dQnlXqBdr0S4rHKjauTPRfbNNuYEE2TAhThVL6ZPXPumZTo-Wdq-QEaXPffDFjU-dSSTQepPfaaNCLr4s-aqYA9-fiW-eA3NjYn0FImKKeL5ccDtL8uQKHRVEdLXHkhugHe-NSvCBwGaunaFnKqwlBmKDtKytlThTrT8IgvJEIuUrlrODrayj1d0kZCwEQwnQPCuiBkIGIFw-Q8TPCcjdFGQoSIQ96cI9TDIRIyduDKgW4LjjWgiXWkgkdKgr2ugnQQAD7GNQXWRbTMMFL8OCPWQnQ7C8OgDphYMh01pU5Jo11KBkNmrqpsLqgkBaH13JBTArrU0Oi94MBuz9DcBRMIQW0xDJy97GB0BuyVxKDcDR4DYACk9BTt3oveyQqTDA6TmTsEGTeTXQveJuAAtDE-E38M3nZv0IUxPcSdE98EnqUUIOIAAAzRT1NHCjWIbNQBPVOiiBwVMTnMr2yfhJx2xNPJMdNnz91LOsbtNBwDOGXTMtJyl2xrMxMbOVbtbtNzM2xrMIT9OVZLXDM1MHOTNggjODBjPSLUJdRhzQP+OBP4k7NKAYA9MABsPwbzARHzAT9M3zdToAAALH054BfaqWC6jZ4F-aiaC18+GTs+0EAA')">function extract_labels(text, receive) {
     function helper(insts, labels) { 
         const next_inst = head(text);
 
@@ -1782,26 +1851,41 @@
 }
 
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
-  <kbd>Extract_labels</kbd> works by sequentially scanning the elements of
-  the text and accumulating the
-  insts and the labels.
-  If an element is a symbol (and thus a label) an appropriate entry is
-  added to the labels table.  Otherwise the element is accumulated
-  onto the insts list.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-      </p></div>
+    
+      
+      The function
+      <kbd>extract_labels</kbd>
+      
+    
+    works by sequentially scanning the elements of the
+    <kbd>text</kbd> and accumulating the
+    <kbd>insts</kbd> and the
+    <kbd>labels</kbd>. If an element is a symbol (and thus a
+    label) an appropriate entry is added to the
+    <kbd>labels</kbd> table.  Otherwise the element is
+    accumulated onto the <kbd>insts</kbd>
+    list.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
-  <kbd>Update_insts</kbd> modifies the instruction list, which initially
-  contains only the text of the instructions, to include the
-  corresponding execution
-  functions:
-
-  <div class='snippet' id='javascript_105_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCZMChsDMBXAOwGMAXASwHsjQCAHAEwEMyBTAfQqIGcyeAFNz48ANKAA2zAEZsJY0AFtmJABbc2ASlABvbKAOgSNPqHolQAXlABzNmQ4AnNjYp82jgcrUbxAInM-TQBufUNjXjJQPCkbK1t7Jxc3dk9vdSI2fxjmGyDQwyMTKL4VAGt49I0BP1KSMvywgwjTKnoeSpUMthq2j1ZqXkamosjQHkSKNnp4iYdhMkcCckGONgAPNhICShoOekcqEgLw4qVmMs5pzsu1ze3dog5CUkeTg2cyAkdaZXohKwAPnGk2mQlEI0KUOhMIMyluYIWSxWe3Y6zIQk0ENhONxOKksnk2LxJJJVUyxNJVJh5kp1PpBhyNjpDOpdTKLNZpLaPE0WMhuIWvNCAF8gA')">function update_insts(insts, labels, machine) {
+    
+      
+      
+	The function
+      <kbd>update_insts</kbd>
+    
+    modifies the instruction list, which initially contains only the text of the
+    instructions, to include the corresponding execution
+    
+      
+      functions:
+    
+    <div class='snippet' id='javascript_105_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCZMChsDMBXAOwGMAXASwHsjQBzAUzIH0AnBuigZzIdYAoAtgEMSACwpEGAGlDs6zIsMEMAlKADe2UDrlMCrWiPGSG-AESMW87r1bnV-eYuVqA3NgC+uQqUo1QYS4uCjoiNg4XFX4gkLDmSR5WAnJqInUtXT0yA1oxBmEAE34yYQoAGxjg0PDEsmTUmlVVD298YkbaWJrmADdhcoIGZgYADwAHKrjaoiSU-3TNUG1ddhzDUFKKkrLK7vi6hoXm1p8OhdByqioAawJx5nHWCkF+LgBPQQAjKnLZKnGfGECy4GRWOhINB4oH65VAAF5AsEqCQ3p8fn9QACgSCWuDsrkYQMEfDEcRCgw8KZCvisgB+UB8VhUAQfb6-WTmACqRBuRCoAHdaNjWMC0qBJEiuAxvuUGAAuBy03Ty0D5Io7bawk5eM5+cVXW73ZjlYRfBiVU3m8pcWRWi1RNSafGQ2ZkIlwxGxFH8e3lR12s0W0EefFrQmwklkogUqlSGlZemM1jMgR+gOgbkxynUy5B8qqgCC4HAAFEALIAIQAMqWlYmVZtdvxtad2vqAiIbsMni8KJResMxpNh7JjBIpIHraDnVkKHhQPxuMxXTxhEQWMP+MPmrOG6BV+6SAiD1DShuRhM+gMhtuJnj9wSNvx1PCAHwHjxZTyMm0MCULkuXAmvml4jveYKPoeEpulwJ6GncDx+r6+a2nm1pgSB1p3uMOqPuGz6vh+dRcF+ug-sG-7zouy42DwfBgThu6ZPu0GsCeVgRJw9ECOOpiyHRdiYfITEPvuBG0C+CIfpxrq8BuXBOC0yzfr+0p7g2TIsjhnI8nygq0MO7DVAEZDvICMFSjKXxyoqYk6N4bS+J0oBdsMIpijQjGjq5ogTjI6HBv8gKiriGmnm6WLjPB1yIY8zyvB5CyYQCTHBTiaQhi6Z6BE8KJwYiIgjtJvndvFfYDkOEzbmOfn8YFNqqNIyqPq1SVpClIXroUik7niYb6IRJXCOM4zlO8CThOSfDjZICgAFbCP0XAkM84xkPwLWtYmAK1ZM0XvqAkxNblzIkKCeJOec4r7EQTgcLYDFKCoshcFQBgkE6LEQjlwgniNgIxr6tgWLd5gCQ9PGOidb0fe4A3rF0bbORcbnMLdS5urVJiTg1aHtVCsjjCQkG6NBpSsFYHFMFxj28XVuO3VxjqYzweFkzlsJDGB-3VPEXNVZMdT2RF0IC8wvgIlty4E+EW7izuW0MmjsuMQrEzY-5U5BVFGVQqoW2qmjvaCP2FCDox6rFOruGa-VfpZVkEmLkR4VZNKLByQwCk7JTTCyOLvgviLWRFP0pA9qixPKfinjI9dARh+un2PFHJPhR7K40PJZCKcTshbJUsnZ97uf8NHJzLFdHZGMIZW8DwrNkHbuMO+loWZbIeCmnQRPp99otHjQhRmwEiIN57w+j3dwtkTo1FAcwqtbq6I-HKTDbQav08S8QJ4q11yUr1PCzNdt58X75OMBW3usd-rc+Js7UmHQPj6Z17Pvd8IvcRWvHVB3ZttJOEdU7lxJm4FS+446xzUv+N+ugtICDqJySsRRNgMGhIceY4pJSxGsrZBwj9HJ6hchPfgu1LhiDQqwahG8ny0HKCDcwE9wZRTtNQgSdDTgo3FBPLOMZp4lEwSwbBnR6HO0LsIngk05jiPjjXUqwwviilIGIJuLcb6oS7j3Pu9DoIUmhIiFRycxDMEMRtWe+IF7LnTFuCxzEtrQRIjFI0SF8woWnNrf0w4sIWn4A4kOqxBqSVdggy+c5ALFw3KXRS386COIiZfD+Jcfb5xgjwR2SToFwLdtkhsICU7E3AUE-J3h8nfmIbk8JyZUwaMzGgwooATFqIyfUHBAQ8HBAIQqIhsddTthci08QniLQSJCZcZhwyxBsL9JdQZFxpnmJEfwJZYjjjhWdlbTUlQ1luiOGkHU1cXLLlKHQRghQTQgx4IIZumx8jMDOeMxGEpgLjDKKyMgtz1AADIflqgKMUG5ZBXyknucMM5CiXIiWel9BGhImGN3MPINhsL5m8M6cBQSDEtw7k2RM05P8LlXMbj5ZFHA+neAxbQbFrBhIcCYvil52ypF9ShRcQ864NoC2eQi5hnKNxsJ5TwhOtBlwCs3NVPFA9naEvOQwS5iKNpkolZShZ4oJWYQFoymVEyWXNjZQM6lDV+BoqZXypFfpUWuHRaK15fifFSvvOajYcriVKp0pmK1trFF2KvMhaV8KNj6u2Ia45qM67DDoFQR5VB6l8Vbtoo6-dsqRQsRxKgZAY0WKbiLGxwE-WTECXkn6kUXGIgQsaZCt9C0OoCSIoBT8Jkvw-CkmJaSSCyBIiLCif4AI0SxZDIS9iG30KyGxDg1NrBDr4EIBmAVaX0roPWtmpSGEuxKm2nOedO30Bpp-Mu8hG29vUjUpB9TzCNPoDGrNbSDmdK6N02UDA+nfiNXa6NsbRnlF5RsD1lgb1UFmfmH1Llo1ZuWY3cDMb1mHJdXkQFOz+DQdke08R8z1UBHGKlNcJAbi-toLhm4FhsPjDVZh2g4wCBcHUURgON44VOwmURkj1GZmOGFe+xRaMuBLTMCgq+WtQB0eTfonK8gp20x4nO6+r1Sh4dQ8zWFuaRbPzCVtc+VGaNvHkzcWQ0Tt33QSWu8+hTI4lMfpfGB4bxRo2Mlm9g8b51ydEHp0T4UJ10Ek7SmTQmiOKecMp4Wqnm3qYqcJ-dqTD0cCJjh3TjaklmbAdHSBGnHzWdIRcXjg4jMEcmUi7LL6IYJJFYo+zLIzBHvg-lja5KeAVbYUe0rLl-N1CU64HTrnUP3sWLq5liGpGtf2R09IGHjWpTNX1i1tWATWpUKBi4MtD4dVxc6qbrq3kfMZX8+1Zz3Ug22TuTks2xt2uXleVK53cLVZDZUbZV3mincUVdpeXUYyKQe9VqRD32W2cjY8PgeAWSvAEwmrRXi76eVmHojzv0XKIhCkD1ggh0adFzY-fNr29Zy2qqIdeJbB6BE6LvWghV-tXZiJ0TRZ9wu06yLfWWWSGxqZKhoKBdO8cAOIC+SBSXikpfZxUmBqlKIE-PQJy96DEfA7vSNyy+Dn2vvIlxly0vkeo4WLmr7zZZ5V0y39sqYwGAkAIMlal9Tb5g9kGlunOh0nxJc3h4KM4B7QVGCebZVimMvPd6SRE5gwZKyUejPmM8saCftkmgEaFo6G1AL7sFLCRHmCD2jchoPnN42dzon+ei48J-99MlPj5lb-emU52TWfQAO9E-nqMmZP1ZuL-uUvZVG9xoz5X2+sfHyqgL5mQrzeGyt+GIVivfndN597-H+vdWHMvtT-98rjnO8T9c1P-cffZ9q8EEPxMI+AesCRyD8PVuq-R43w2VU4vw9Zn0kKWXZDzJUUfdKZ9dlfudn+yx+hcp3REZPCIAIHKHKFDCyGNS03UVGAyEF3dl0xPHeQoAEFGEd3w1S3wgmXMEKBoBfWIVwHALtVIykhqUxyAJAM6zw0SXPnPXMFLEEHWneGE101VFgAAHlYA+ktoT14EbdCcs0DoAUNQiMTNdAADx5mxhDLNxIJl+CpCHJ+l8RjVJAzYBgKAAAvMwMdUQ+AxEMg0AraZ2LAnA8wPAxQu1EeLgd5MgEZFQYIH+RjaQl5Ww3jRgbfNjPfEvI6NjXgo2TBFw-8P3TMUjDwlvI6VKA2C+Xwuw1wwI8wZQygVQjQkI4fGCFQphDQl8Hw2pbSO-fkB-dgAARyGB4FVHAAABVCxoAABpNhZw+wntfA4JF5Cwqw8QT-WuMqHzSbfEP-CKbdE8cwAAKmIFugVUGJMMaJ0GNRaOBBsL8PqIJwXjqJiMTysAcAJ290JAPVIkmMTG4I2N0CWPmJWP9w9nWJqQwJeQFlZz6NiRPAFkgRgV4P2IuP3HPWWIClyIMj0CKJEVVAACVSwABxSAco0sf4pXbacpaBBQzYjYGY6wsQdoqUH0bsd4CGSEVgHqPLZcPQ+6TE7Em3BkaaOMBVG3a-IogYfgNE2QbZbZdgAki6CIi+Bkek43FkQky+VUb0VEGkpsbYBkjki6ZEgzWJIzOmPLHzSwJgcjY1LdMU2lejQYBwnQZ2KUs4jjBjJ7FyNGWDGgYRUYEFarRAgQXgQ02QPQ7UxbYbYnM0yxN0PLT3B05EvUnHY3U3DqPKVEYWbXbYKxGzAITOV0y8d05KL0+pL0+hTOKRATSM1LAMjo4YKQAUZgMHYg1NaEYmfeJfGdAQcwYmSEwneJbMzo3MiweJQs6CMQ4PH-R+XosgB5YM6UX4iOQA4A-Q+nJgcFV7AqGrYGJFeIigRI0fXTNhXg7JFtJg1zCwQc4chwRtXoxdUoGyAIvs-9AsvRO0ZhCsnPYzMA3QY1AYK4EgYEYYLom1RYwCHk01VwYrOmR5M0OUUFaMWMakLQ5nXMh8lchArbD1WFWqUs7iOwG8+bJqccunJcx8+GdLapXg89f8zMcsYAygMaRg18+MPQICvgVUQst9S4wkclLCulI8lEU8woCYvCg8u1StB4c8+bAnaCSML0ZEVEBCyClctdAwiZJisFEk6kXghkeC28zMPSPImlXMuyLI27FsAYY9MwxRI3E3XgdMqCHKctPdSedtMuFLaWQCXE9spuC6A41UzA7AqQCinJUXV40tTMs6E8YMxSj0rycMp0zJSuXg8MmOC+Z2Ry5StdaE+QuEowY4gIt8LaD42fNcVgMgZI0ABkSctneUjtAuRsm05KZsoYCOEQ-CjYXyzQx4uPCK2IuoI87rEbZgDK72T6WKhkZsm4hs4YJshgFsz6E8Zsgq6fIqxPEik83gKTOwGqwIEA0ivq2lQqkK2fTiWlQami-qvgca6IgIxPEqkArHe+WYQa6Peqh5Lar0Uab2YoBqns53ZSAKxMKI-wyK0coPIjBay62IxnQao66POPd4kK3SXkMSn44osgI2edWUu1NGOxDcVgd4b9DMbtY0380CBC7tZEsYeoPHB1RSO0jEhgc2FU6vO1fIcoEKQy7xF3WAjmSKKQQ01DD3AbBG-qHKsVYCJIOaU1BG1DZk7aBkBk9GnLEiImLbIG0CUuUGxmsmgTbtAm5oLI9mjG8uHm-7V0wW0RB0rtWCE6B2BooNWgO0+vPijCgAH21vtTxLtJZv3z0E+klr0ItPbKNqyGv0NNFHIGRqQ0NtpItBCitJuifRXP4DkmZBAIYlRojykDBB8ttqRodk2nPm9t+DlDpVRpt3xrxjCwiXuEKFPNQ0Ui5qrzB2yqCraR2PPk8Ddq-zKjTMXVhXxnGDQkjt9pjqpth0ijBxLKTIYBTLTJFkUJZBGD8nFKhlhRKjTID2Gt6rPNzIcG7qEjRTvJ7tcCZwDrMDiLdFKsescGjxFn7pWv9CapapfUcAV09qrujseQRs0R1DVtnuRKio2izuq37ovtHoW3FCms-O2N83qlLovPW1oFFJ9kfqIpftxjftAuayyxpkXWfrPwAYCh5Qzkiy0sUh-rpj-oXU-Ino9CGBCxeSMPMuROTtTpInjst3nTE0iizMRHgekzP3zJIErJymLNIZAbLIoYrJFirJ0NnosCI2ocil2rYfMCXv3Jsv-xpgoAYAEKDLSpW1GFDM9LOkfmgjRhEcbpDKUq5xrkfmdiKiXE3SEZEaXBp1tyyHkaFnEa8jtKXDAv0cvjbnAttyt2sbp3zjsdpwd0cfCzoxcYqRXvMYiThoGWgjoBIEuQbvhHxDRjTK2n-WEDYXMC+CiZiq8YbA9X-XYF31kBiFkC+Fdj+gAFJml4ntp-14Q2E0ncnhp68Mm8n6dmEJ4ABaGJvR7achVKcwQpk6ESaJhwWQCVfgAABmaHqdanL2QksACeqbMu3oqcfAxhYVmRBiaeSY6cwtBgWbaZice36cmdDyWa3MbhWfnImf3Cmbqb7Labib6fHPb2-QsBqdWf2YbGGcKFGeMJ1EzlAaizgYCdTMzwDzYQwG6YADY8QXmn63nkMPmKGjmAAWXpjwC+0FwJwhjwMhoSZ+-x+Fyvb5loIAA')">function update_insts(insts, labels, machine) {
     const pc = get_register(machine, "pc");
     const flag = get_register(machine, "flag");
     const stack = machine("stack");
@@ -1821,18 +1905,36 @@
 }
 
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
-  The machine instruction data structure simply pairs the
-  instruction text with the corresponding execution
-  function.
-  The execution
-  function
-  is not yet available when <kbd>extract_labels</kbd>
-  constructs the instruction, and is inserted later by <kbd>update_insts</kbd>.
-  <div class='snippet' id='javascript_105_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQqIGcyAnA8tSIAKMiwAeZAJSgA3tlCLQvFmQK9aABwYVeoiWQA0oIgQA2ZqQG5sAX1yFSlGqE49+gmmzGThb6XIKSipqGqAAFiwMACZ+3NI29vjEnrT+Hs5EbBIsJASZbJq8VCRxPDLySsqq6rRkOmZlCXYOKZmgXKoc8RlC2eK5+X1FJU3GIyQVQYqdZN4NY6AT1qB2QA')">function make_instruction(text) {
+    The machine instruction data structure simply pairs the
+    instruction text with the corresponding execution
+    
+      
+      function.
+    
+    The execution
+    
+      
+      function
+    
+    is not yet available when
+    
+      
+      
+	<kbd>extract_labels</kbd>
+      
+    
+    constructs the instruction, and is inserted later by
+    
+      
+      
+	<kbd>update_insts</kbd>.
+      
+    
+    <div class='snippet' id='javascript_105_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQGcyGSmAKAJSgA3tlDjQAGxZlQXHk1ABeUEQKTJAblwTQhUpRqgADgQ4ALPgA8hw0GN0T5vZSYYUATtYA0c7rwFNe0cJDxkCD1oAIgATGhYo7V0AXx0JfXJqWmMqY0ERBxCKPFA+Cg42NQ0+ZyYBW0KQiRYPDyovKIBROmMyAE8-BQAuUFgAeVgowLSQ5NAWSQ4WAqbHEhouUDJc13MWBhia-zqk1adj124KSSOFabPQ8Mit3NPZxtTGjMNaCiIKSgMSQUABeLHyolWtVcVS0jV0YTIEWicSICTeoE+um+WVAMXKxgYZBIljoLA4HAYAHMWA1VojkfRyZSacolCooqYLFF4U0APwmMzmXkhEZkinU5bsjk5Yw8h7iAWywQixxi5mStkcv4AihA0EJVW6AU6wHAsEqhWgEYtNodACqRCYRCoAHdaGEAI4EclkEbgAAqAEFoABpKK+cUs2kYrGPJHPfEcQnE8zaT44oyMVhsMJU8pkFp8IgMMl0iTSWTrIiFmscVxRABUxAYFIoVLRMUbiRmemImSMSZTJL4Ucl5aKJVHGtZ0tAURpZCmKwVDOe1drZA42lVcwWSxXD2KpTHs-Z86WS4nVtAa9oADcgT7lAA+ESgDcsOuuR+SH1BZIdytPdFmWSEb3EW12mnCUaV8KJHWdN0PRYb1fRGAAlToAHFIEDToMKmDFVlSEiPl7O88QJIkSXTXBM1oVsOCoEg+FYPpfDCdYPBiDhr0o8pKnUG4uPaXiBCNRVQGIGIWDwP4WBiSTrXmb0gTYlgONAPYDj4HTDlEni+PqZSpP0vhDPE0yVKYliNK0q4RJYbjxOmDN+x+UBFzYT86wslh8y4Fp+KeFDAsLDpFyI7B3IMXFLx8mhNw4fzwpaXxfx9EKEzCgsiyiS8pj4TKYxi+iPNxbN2DRV02EYEkFIhRpq02YwSFcKrcwCvKOja6LdBa2Q8EkakOuYdg8x6vgomG6l+okQbBhcFROtqQQMUrLY9jYP4uA8AgByIThUJ9UgpVUYSNpkLb2FyesVGBLg+EeshptNPVzXYWoI2CCCb3yJQ3zWqJ3v1MEpnqK7ZEmoKPDYbgACNpFcF7noLaa+t8NqBF8VGZpGqkftmqlId7BjQCBSQWKJCbuth4tS1pQ9HGPPhbNYksyU4umIvhhgkaZucZLkhSYmvekeZaPmBdcQlPDRp7OZYSNxq6tKvCV+pvGsv6Qhh3nEeke4mhAg9wIeKCNcZ+CAFl1EoYxJAGWT5M7W9JY8EZ5veCWcvnfWpcp6nCxiHsUi+CqjCpqgmAIYw1amzXmYGjZZF-Vx2YZrn3fV6WjeIiRVUo9OhaIF3RdMgVLaz5X50Ql13RznqhimUyRnMxziqBUnw+xSPaBYKxnIIQsmtWRbdq3VxvN8rc+GxgvxFZwTYTKIguGM5Omko2J4jDk35lAreQkW4w2nalRJ-2w62EH4efjYM+7PMyfjKCUyn9YwJfoeSi75IEe4JjY+wkKReMjJTxShfKqSBWoLzcA8EuVUAoAZvjsAlWeKU2q+DINtK+B0H5LDQmdYBf0-5DwAaPb+YDRRMlglKc8IN17cA0DtZh19CEnS-CQQ0qwBRENfO+XB7B8E3yIadHhrgiEAVVOqehcCohBxIDTBOsN5T8gphoYOtN1ayLodGBR3kA4eHUSEAU0dY7x2MXo2Bc4mHyFYbkFoRIsgcFMY4AUd1BF2GEWwLxKgGDGGMF+Q4vi7q+DutQmxM4GEcm+sgpaTBonyLsU4jwLiNjuONDdPxxgOB6OrpA+C9dkLuzQlwMUPBzAKWirFQ6XkZCqIiqOKpCluZUkqIzbKEDWlommkYj2RU8ydLLHRfA-cKZtg7GrEZ4ImLtiOqIn43Tngd3cDceZ0yllZFJnUzymyjolVvlYPIBy2F7QITs98jRKKd07mc7ZNBdnlTilHKgMc46Pw8BQOgNQ+h0ARlQSQETgnpJ+HxZmi0S6TOYqxDg-zAXAtAGkjJ69SHFyBHA4WrtFIJOrvCgFQLilOgbrQFFnk-gwpYAC6QLcJKrHbvsUJ6yu6SGeeM15tALGfJGgjBYz1+b7lxoKyQszrxQsxQEikdleULFmcKvlixpg3NCqAEu55sUVz4fMVo0FZWiqVsS8ubt9UjCDOAcAnQbYACEAAynRW4Mq2Cy38bkXn1M6mfH5up7zsEHnkf1KsGpogVfua8y8KiDQYDWY5AaTn1GPh+VOH5XBRpjf6tgJU+D+tIQiVVqCPyxkPgeCNbB9WxuzfG8WC1k2vxRu8yxZaRUCsVRwUNoqM36srcYHu2981CEBqAV+Rb9zLFLcYitObq3iEWh4aejTjEtODbXCdGa8zdt7XrftgiZ5JS-HPDw38PjFrAqqauga64ktKf6sIbYjD9GCUOxiFJqUCzpbGMqHKPWq3JVkSdJyg3VJDVIEVbbkWgtRRC82SbmHgfrR8+OXrfm-poLG3JG6QXOPBaQxagTz73XoIE7NgjPXfLoD6v1Jzs2AbaSB1tOMdZnBQ0dDNKKy4pSnUBcBzwC2BMdn0NhbBhYeCdn8DpAArBgj4OAkG+b0PgjGQi5BVnkYwgi8g4wpp-N+n7yYHNSj1eVcgqARB4eK5NDAM5BJCQrV6iiplEB+hOzWvhmKmdKnmv2DAxnk06vpyeNHgP6rA8xsD2NIXJoQYuedZAmlFnqkB2uZzhlKzXlwTdMHNhHP9RnBzmanyUbyJPHDyajn6GUKqQSzGK3ZfjQkzq1X-Wsp9LGwLtdguYbBa4+lTRKk5iQxRit5las9ra+2viGJKIFug7oDBe6-JRZkBlArbB9CCFzRIA4j4zqP1YgvH+mIfMTK29Gnhu354kGvHNms+6sEkBwSy3dN2-LY0hvYPZlVVaFiegFwjy7xudcg74YmWNLsRdg9WfEnkVDfdi5D3UNA0tkFIaWxrVH4fLOnZlqsNAod-vKytH9EGH5NYx1kbWutKd-cSwD8DWHuuL3dn7abplrvJT4CDmDePUNrYy6sE7O22oXaPSREdR8ZvNF1V4X7URrUHC2L6J9Fz6mUqYq+2l3tMS6YmbDvgympDmDAx4Q3KyuXoyiLDn6+vJCG84ibui5NYeJTLgjogfAnePKIKb511x3e+nOWQDhOyjucsIzmBG6TSCWF+wl2jHW9AE1B+Z2DslNgqAj6d8wbBU+vWKxiUt5ams54TRLmdtbmEEe5fHLt8fC8nKbYqvgxeNviCmwOtBimmisye+z4mJfO8PDZ7di7vhX4t91qbU9VOzgC7O0LheA-HA0Kp4BY9o7E3Vxl3LmIoAM9R6V4Hy5RhVcvppSwd95EPtGD3yOfV3u8Y3-MD9O-DuJmP+z76Pg7-Pfe7Wb77-7CR+XubqX6FKFQ3AVINIMQZa6MXAdAZAOC20EB3ugkcsXgcByOoAAAZFgdpEykcPAQOueL4hASHvUuuknNBpRHjHmD9JrK-qHoJKulRjmszAJOAdSFATAU9BelELQW6uTMwVYgFBumwaqn-jcJxtrqHmmq9CVPfubrIT9PIQwSrpGqnNGrFk1qwVQaqoJBAVwajLwUoQIRMrIWhlmjoSqn7BIRuiAeTF2pQdYYyHjPqnQV0qoWAQ3nKtofGmIX7PoZwYpNwa9LwW4aYaHnXtXs2lYZ5oyLYVIVfrQJ1FSFQPDFQEjmNnRkKiYGDtBotDntPFQNsB-j9swijlOIJFEU3r6P3uPOXhvPBo2jXqBu2mhl2s3ozm3oIkPi9vdgfhNmvkfOOh7BWs3omrOgFDFnFl4LHsBkIWrDUeluPt0YOr0XPNgg0nDvNgegFBlpPhvlLpkfONvl5GkdsAfkHsfs+ksGfprqkEkWcekS2gsAoU9AuOcVQM-iKhEfUqkSUTnnwP8WkT-v4fEfgZ3MCQHlccAWQZ5MqLUN7sDLKLUu6vCUKLcLwMtn+EzLoX7MiUKEVCodId+jmJSL6scXMbXLUEnuDpsHmNMYulSa5scAHjMqlsVuituoOqXlaFyJYDSVsc7uznmHzhBLPuwPPpdozmcKvo8Z1LetsGEJSb0tSccLSfkcmgySoAMurEujTokmySlozEjhlqsR3tPusSlHmFjLkJiXUOPgqBKedvtp3nKWifFFJuCKKWCc8HjOSQkO0r8Z5Iqe0N6Xsb6Wbu8aGWEE5nsZ4fFKyZPOySabUNCUAb-hCSymmT-vYRMnaU4XEX6ebrkO4aMmVOTFVsTn+r4T2pGUOhUGgaITgQ2XzJAcEajOZDmvBKWXmaHmjvHHaQOZmbpJ3OZMOeyuTAObks4uxnrtWahrEdxrQJ3MOXCZ9v1i0HgO0L8jHqqbTqFhqc1BZvUioKCtuR4HQGwDwD8KafnpURUAOWzIdHUU0LhjfATmHrdAuSxlRjeeTtTm0ovtPiEPHqFisdyWggdtPv+TzsQOtBTDENtnPnttKdBRPmLmbGekcVvvLueTuZcUAU+lSncaQg8R6UYPhZedeYdKafWZ3Hnu9hRckarP-CPPjv3McfHsyehSBU0JsZzoKZEnSbIFYLsPgXns4c8GJXYgclkhIAKH5g5iqf9tkYsCCmFpdnojJYwpbvVl9p-nuapWBXksDonrkT1rQjpRyI-vJVJJ1I-ipQafHpztjNpYYp8XZaAIparKkc8UZc5a0RZe5XYgGV5T5WSV6U5bRoKW5U6tZf7L6GGeFV+V1FwGGdFcBrFVpfFQolRXQClZ6luTuZle1kFeEsFU6pvswsSkhI3J7lsH0I+ifrcW+qiaAbiHHDECoq-EjmBtxaqcnq1BfEKUyfufOH1CVrBsTIyR7PqbRvjHNFNZsNCITsutNN9MtbIP4oBX0lEKFtFMebBglBQCwGpioCdYATfGxQ-J-BiItJ1GdWNDmDdRxZypNqqowEVj0Y0qdUVhTnxSEI9UVldQ-IWFYLngxoDRBB1sBbrMyXDX9NgojRBCDijTeDSejVaJElDRBGPuuVmKrIXjWB4H0C8QatbAMd7k2eWoalTQTQPBDekuQN4YsH7hDdzDwhQL6teOTHsJIKCn1eNrYLxdjqoIPLFpPOJaORLcqr7IyIJHtGJsWBLQHpZWcAKFxCwNzeCK-FjO4LMUTSKrfCTWTWiBDQHqPhXppsFiZFaCMFrTrfPAbS0jmJ7irRbcVlbRvDbaBmRRRKquDbIKXMaopKAAAD7h2tmrxB3q3ZKO0Umwi+Cwhx0SA2hM03ms0pR3Ky2+D82gp9n1Jq5n58AbhtAaBSxB1tYNDkKB6Z3BYKYKhl1ArSBwxV3KRC1qUQo8mMZdU9UV6d0DXLqOlboBEV4yniDJCF2eSdRUkGawyzIhamUwaB4t2V2y0iW7XnSdQ1R1SqnrSNBfDtC3xVLz28xKwkb72KJaLKKFgzFDKjEuZNwL1KyDG6Bz32IsKioHUCDzlv0SAf2TyUzpliJcJnRFTF0Cyl1JTl2t3wwS3V1y3Llb0M2DCILzVoje4f3yCIJFTBm4i6mGaYIYMrqP1dL1k97D6EP0w8XOZdL4NGAJQTrEO0NkPZzyHMxWlAkLpzWsO5xP3ElFkoh7yoOdTu2x31lNlV0XQaDT24ie7wMQ10V4ngm6SSWPEKOvWoafzKNSUrksrqPMVyC-Wg01kULsXaPnzHGfxXaNIMU1UmDnxHqfCLRUgkDQFUkVbv2qxz2qh4wMA-RRAIyBNXgA2gXow0HUo-Rsy+AIzt4UygAACku+uNCoeMSg0TDAsT8Tlmc4cTqTjgeMsOAAtME2Ew8LrnaVEBk5puukE1ML4LIXwAAAxazWSOVdoLjuPFOogJBtM3j6YW7P7oxVNhAFW1MiGKINM5zTTBP1AFMz7KVTO4zox1NzP9NWiDNlNSCrOTNXgbMKh+XbDk3TQlPrPlNnBdMxA9N7ykxMOjHENuMePjXLOgAYDNMABs0w9zucjz7je9ql9TvgAALK09oDg69E8wC4ltMNQ7zH8884CwE4EEAA')">function make_instruction(text) {
     return pair(text, null);
 }
 
@@ -1849,24 +1951,25 @@ function set_instruction_execution_proc(inst, proc) {
 }
 
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p9' class='permalink'></a><p>
-  The instruction text is not used by our simulator, but it is handy to keep
-  around for debugging (see exercise <REF NAME="ex:reg-machine-instruction-trace"><a class="superscript" id="5.2.2-ex-link-5.16" href="./5.2.4.html#ex_5.16">5.16</a></REF>).
-      </p></div>
+    The instruction text is not used by our simulator, but it is handy to keep
+    around for debugging (see
+    exercise <REF NAME="ex:reg-machine-instruction-trace"><a class="superscript" id="5.2.2-ex-link-5.16" href="./5.2.4.html#ex_5.16">5.16</a></REF>).
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p10' class='permalink'></a><p>
-  Elements of the label table are pairs:
-  <div class='snippet' id='javascript_105_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQBsGAjFjtlkTIAnAJ4AKLr35EGdFgBpQFIgGcyqgJSgA3tlAHQwlmQLDaABwYVhknnzaz5Sleq0BubAF8gA')">function make_label_entry(label_name, insts) {
+    Elements of the label table are pairs:
+    <div class='snippet' id='javascript_105_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQGcyGSmAKAJSgA3tlDjQAGxZlQXHk1ABeUEQKTJAblwTQhUpRqgADgQ4ALPgA8hw0GN0T5vZSYYUATtYA0c7rwFNe0cJDxkCD1oAIgATGhYo7V0AXx0JfXJqWmMqY0ERBxCKPFA+Cg42NQ0+ZyYBW0KQiRYPDyovKIBROmMyAE8-BQAuUFgAeVgowLSQ5NAWSQ4WAqbHEhouUDJc13MWBhia-zqk1adj124KSSOFabPQ8Mit3NPZxtTGjMNaCiIKSgMSQUABeLHyolWtVcVS0jV0YTIEWicSICTeoE+um+WVAMXKxgYZBIljoLA4HAYAHMWA1VojkfRyZSacolCooqYLFF4U0APwmMzmXkhEZkinU5bsjk5Yw8h7iAWywQixxi5mStkcv4AihA0EJVW6AU6wHAsEqhWgEYtNodACqRCYRCoAHdaGEAI4EclkEbgAAqAEFoABpKK+cUs2kYrGPJHPfEcQnE8zaT44oyMVhsMJU8pkFp8IgMMl0iTSWTrIiFmscVxRABUxAYFIoVLRMUbiRmemImSMSZTJL4Ucl5aKJVHGtZ0tAURpZCmKwVDOe1drZA42lVcwWSxXD2KpTHs-Z86WS4nVtAa9oADcgT7lAA+ESgDcsOuuR+SH1BZIdytPdFmWSEb3EW12mnCUaV8KJHWdN0PRYb1fRGAAlToAHFIEDToMKmDFVlSEiPl7O88QJIkSXTXBM1oVsOCoEg+FYPpfDCdYPBiDhr0o8pKnUG4uPaXiBCNRVQGIGIWDwP4WBiSTrXmb0gTYlgONAPYDj4HTDlEni+PqZSpP0vhDPE0yVKYliNK0q4RJYbjxOmDN+x+UBFzYT86wslh8y4Fp+KeFDAsLDpFyI7B3IMXFLx8mhNw4fzwpaXxfx9EKEzCgsiyiS8pj4TKYxi+iPNxbN2D+LgPAIAciD4QsrDIbLGUJTwmpYFrfFhNzyriowarIOqGrYZqyDKIguDa55zOG-r8AqobppG+qfjYbrnIIDbjDaViFsPW9Qq2dwbgWuilsG2gEuG0aNq2kgdqyNg9rs4bfDekhrwSxypq4T79sCexYoa+hmHYNFXTYRgSQUiFGmrTZjBIVwqtzAK8o6FHot0JHZDwSRqTRiGMbSjpCepXGJHxwYXBUdHakEDFKy2PY2Du9aXqWNDSClVRhJZmQ2fYXJ6xUYEuD4SXJqiU09XNdhagjYIIJvfIlDfJm5f+M0DSmeohdkPMsfGhgACNpFcGXpYLPhORIFWUYEXwbaiSmqRVj3Dd7BjQCBSQWKJdgTaCrwSzLI7dGPPhbNYiOWE4zGw7Ny3aS1aSiFk+TO2velk4i1OrZUDqvBthPI1J0OIuLUtaRd6y1ZCauWiL0qSPmUCo6aKDw7r+CAFl1EoYxJAGbOFJiY7yZGan3nznL5xbjw2ADoPCxiHsUi+ZbaEDqgmAIYwyax2vI-AkJad-Vw47PxPp9N7g0-uJpVUo6+5xkuTJ9MgVe7v+CiEXTugfmHIYUxTIjHMn9X8Ptt7Yl3vMKw21CwI1WLTYa4svIyESjWL8W4+DO2IhIGOglYT-S3PUbuzcTqxHiFvJoIEDwXzOLTL6rhOZjUes9Ggr19p6X2IcTBhtVYPC+szURZxKLcNQS-eeEhSLxkZKeKUL5VQqIzgVbgHglyqgFBrN8dgEq+QISjXwZB2acI2jzH0fM5Fq2kcgp6siAKqnVLBKU54dbyA0BzVa91uaoVsSQQ0qwBQ81fO+Cx1V-Fc14TYr8ITXA81casdx0ZNFrxIMHE+Yd5T8n9hodeIcC4tDcUyDxmjvLL3ySEAU+9D7H2XuUjRc5vHcF8bkFoRIsgcFqY4AUYtIl2GiWwIZKgGDGGMF+Q4oyxa+DFsDRRooKkZLacrPRdMmAtJnJ4jkXSPA9I2P040IsxnGA4OU-+KjAFOmAShNCXAxQ8HMApaKoNPLVNKV4WGry0RJypJUOus1aC-PhguHBNSBCpSBWWS6fsmLtiIGTWF4JEUdj8bVOJRAQXaUEU1M6sc2wYqsVkH2HzcTouRSVTaVg8hUsxWtBqthJGUT+n9BlpKaDkoGmDBpR8+EUDoDUPodBzZUEkAs6Zhyfh8SOlfIEN8KR2Q4KK8VkrQAHKOdNex79FWfyzt-Tsmz-6qrFRK25SEQFas8n8f2FIWBiukOAiSaS8W6RgUCHlV0+VUAPgKom5sFjSwtvuV2obJCouvAqyQSrmKsUDQsVF4ag2LGmI0PVsaDUT2NWE+YrRoKJsjRXecjoc2KSkBGkYQZwDgE6APAAQgAGU6BAt1nrJCLT9ujPaQrdT3nYN1PIQ7K5w3+ZW1NcqWGkIqPjBgNZaXDrpVQlheMNhVlcHOhdQ62AlT4EO+xCIToGI-LGTuB4Z1sCLYu-dy68403XaATB1s-WNKvRGkNk6U1Jp3UW29xg4FNEoiezBZ79zLEvcvG9B773iFph4VwXzyajheQpAFpsd15n-YBmhi8T3eRMSlDwwMPjnrAqqf+I7S13OQkgvazJcT9GmU+xiDqnUsBdbGMqPrPLoxtS9Id-7R1-PvkWjgUrumyujY+nYEtX0Ct7cK-jvCd25GwxJmVvT7G00mftLBjBh2RJ7R4PtlAB3QeE2hid+4G5NyaMp5FqnpXzt4th9NR68NCE1v7KZY8-FsC-h4MefxAUACsGCPg4CQEzvQ+CN3s8YSueRjCRLyC7HzenvUIuJY1KDJbmIRBCdJ1a-sb5TJmbbKWUQqUqzy8C3wBWPBFYxJRBg8LEHoypRQyz46xMae1eJkw315WPu0YuRDkLvkobHffBleZUUUJwx+R9NKh1xqRbup8g66WLYxDGn0bB9DKFVIJBzN7VvLs2Xx5zD0dsXcS+DGb37Fj9aky00min+3bbyOZe76WwW9YjXxFrx6vOGNVMYpK+CUpjZkBlLbh3iCCEPRIA4j4+avVYkQyRgFuMIpiOjkJmPCHDZYZDvBfkzGnWuHwAjUPKffREXjjrpNCxSw+o9kTz3BsOcGx7T6pPEaPurPiTyKg2dkFwaLrIu3GiXrO4JkXupuWweWyVpXG0jsM1JgrnbGusjeHi3Z8QAPRNA9e1p4h4hgNg+oY4cnyU+D87V9L3h+hkdW8cGj+dROUYk5IyRMDXdV3NALV4DnUQG0HC2L6FjWKwZ2qYo6tOnHyIUqMBLvguRXbmEGx4XPuK3YS5VtnqQufOIF7on7CXUvleNRr1ynFR02WEob7E5l7XrrgxzObQ5pBLAc9N9z3wzvnYjZK7JTYKhe8+-MGwSfk0Lpy6nIJa9gmF8rtVBg1aWD+XHz-X16zkbf0fo3yj63oPhlG6aDHOnFOCHe1V8buQODCMk98MIz3asmHkef6sb3GOfuRC1+8iz+uOKQZGdu-8EeUeU8M+-eceTKtqrGSw7Gqe286etA8BI4RahedsUQ2B5gKsuBVeiChB8+vofA5BjeuK0ChK1B7ePwWWiCgk3AVINIMQV6dsXAdAZA5i7MbBuKgkpcRwvBQgAAZOIe6ocDwa1BnKMmwZ3mDFhgnHgVVnmCrKoaQV3oJFBoJges3idKwdSBwVwVLFRlEBof1H7HoXSmTNhoYYvHQTTjBkoZ5FupNCVGobLB4SrF4doQnrOuuvOpLvocuo4YyMYewYpGYZNBYb4dYYgh4Yuptn+OCAYSwpRM4TcK4czl3n+qoREc8G7EWpocCgEbahUGvjthkRmkYRUGwaYTbBYaUYkfkRGikX+rUR5oyNkW5m4ZVKTFSFQONFQN1pzlZofmPiwrTAvohlQNsBQezqtPYpetUXkGfnbtvlwLvvJvvh+ofuse+qmnwGfp7jbpEg7tDu-ogcDqRuBk+ivhULYRsb6Jvugo+nmBNpLsvNNlzqAoXJhgFKcW8efsdJ5pca-vTqYiQL4Hfo7nmEtj-lAWHuMZHtHsMaMYgQEitPaqgWnHPJiHkWDJidsJ+gsN4fbKSVQMQRGm0SSQsSMQvrToyYyjiU3pkSdH0cMYsTQV2ogsqLULitrLKO8ryp5FyJYLUPDmkcKccPbJKUVP4cSbxqTJSAOuMUPlsgLsVpsF8SoEhqfFqbUIyiignItrqpft5iHjeJKbcLwHCVCffkRgFEtmrAAb7ljt9F-oHiqYMTmGEFwO0OCIPqhuOtKUNrqcbAFN8bkjXMaccKafNuaQtJaRCdaSAS-pLm-nmJ9GpkKWCQqB6ewEAd6ZIjeLjpgXIBFuCIiUUXvPgeqQkACvSZ5IGdsGEKlJSZYb6MGbVq6RUfFImcNGaXXPaUwGydirQfin9CaXyQMUYGpoUZyYvG7LkGUXCmVH7KdjdgJjUeESuZERUCIQYZIU+g0SYTETbOZAevBOufyV3rrsfGpk+dOR6oSuZK+cwY+buSpnYVqlnClK+fWdTjcK+QuaCh9i0HgO0MKqGU9kfjzr+dNDqePpsDwGLiYNBbBavA1LLtHE8ecpJnufSsyqrjpmNFrt3qLMhTehhQbhMf8pmX-o4IfrzmCRcdaeWcbvRW7kjsDMWcTtjsxZiEHswhRqiTAdHtKjBR4HQNidiixnicntIISakFWTJThbxY1IdIec8H9BdCDOKf6dtigi9AxOMYflqSJVaFTs7hGYsmhbIFYLsPikvj0c8C5W0jVldqTF1vBf8WxRcjqeUl5V4sXr5TmJngFZMebpqsFXoETFSCFW6mFRyIQSchIAKOjIQZqWGWbl+oldSClU0CMGlfONSZlVJOjNSXlQhVMd9KFZok2VVaANlWqTWXVf8RGc7E1W0u2X2ZFSUkGZ2TFeGccCVSsuVZyNhXJa1e1TmJpXJV1bFYVfMpGVcpJatJavcgpWDExhBigSpRxmKTxriEfDEDkpghQoNlZflVGUNrGb8VqQ7ISbTB7E9VNi9R7G9Y+tCNrjNvbMrNpjJhciTIDVELztFELiVrdCwClioLdIwXuWZbwl9Hto+ujPDSTDmDIuZbvCDovAZmUJCZLhQPDWUIbixU0FjXkI3uNN1IvrZtTTeH1jZRBEPuzbabCVzVaPzrzQqNKQLQ8IsszTeJ-n6UYIzYcuQMcfuF1D1MdCEhQAOteH7HsJINKjddziylvo+miC1Iyq5R6oze5kBvUZwCNCFsWIzYyq6gqAKFxCwCrSGTvp9O4D8qTGvjWB4H0DbYbRzsIjrfbQ8CME7S7YQh7ShjmI3v7WTSsR-jvulmJvYnGBfovBNBnF-DnBWgAD653nlCTVATQh0DJK3O0amwi9TCSl26A2gtQy2S5iYEo04l2+Aa3SoPlgxJ7sZ8AbhtAaCtwTQ9bpyiCOIjQYVy2LBxYKj90SrSArzD3KTa2IW242mrAXVXU74r13UzaFm4aRE74+mYhd2qk5im6pSmwJxIWDZz2D2L2m1OWMX8zoxQwwz5XMyNBfDtCbQvKX0pwJxGYf3VZFLZKFhxktBFR1ZljoYAN1x3G6AX3tIBxEWabHLQqLIYhIPDQoP00JJ8xFQ91px91JQD0L0M2K2m4+x1FE35UQWDA6J-EKS4pIPyA6JFStm4iGkpxv5anQOj00OMjwnXHcPxn5WwOFyqGcNGAJRQa8PiMAmtwlpeFHRXF+SiNFh8PfJRoylZSE2Mh0Jog9hVnoze0jR+3XolrCIgUiGWP9y3GLS0xUgkCcGm7HaIOkwX2qhuwMAqwEF+NXhU1NA2xuxhB0Aqyxy+Dmy24MCgAACkoA0TQTCobsSgETDAUTMTGc0TYtrF+BEuAAtObBGNZJnmplEGk+llhv4+lh4XwAAAz1DJMPC5V-oLguMFOogJBNPWRdZRBLiux2zlNhNTAAr2y+NVPAk1M9M3h9O+ODNSzVPFP1C5NnB9PFMLOTTVNXgzNWi1VtOFPLOrOrDtMxCdP0I+yyPaNv7OOuMKPVYqwYD1MABs0wVz5MuCjutz79CF-jvgAALI09oGw5NN81Q9oBoyvDcy4z8-8Q84EEAA')">function make_label_entry(label_name, insts) {
     return pair(label_name, insts);
 }
 
 </pre></div></div>
-  Entries will be looked up in the table with
-  <div class='snippet' id='javascript_105_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCZMChsDMBXAOwGMAXASwHsjQAbKqgawIAcB9OgQwCMBTOgApu-OgGcANPV4D2RLgFs+ASlABvbKC2gSNMWVAA3LnVABeUFzFiqJYTLpzFfKSIFjlAblzbQAJz4yAj9aY1MzCNBiABM+PAoiPmjNX20AflA+Pz8qP3tRJyUpACIAVSJY+MTo6VEALlAAQXBwAFEAWQAhABlW4uUU1NAGsi4KITCvbABfIA')">function lookup_label(labels, label_name) {
+    Entries will be looked up in the table with
+    <div class='snippet' id='javascript_105_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQGcyGSmAKAJSgA3tlDjQAGxZlQXHk1ABeUEQKTJAblwTQhUpRqgADgQ4ALPgA8hw0GN0T5vZSYYUATtYA0c7rwFNe0cJDxkCD1oAIgATGhYo7V0AXx0JfXJqWmMqY0ERBxCKPFA+Cg42NQ0+ZyYBW0KQiRYPDyovKIBROmMyAE8-BQAuUFgAeVgowLSQ5NAWSQ4WAqbHEhouUDJc13MWBhia-zqk1adj124KSSOFabPQ8Mit3NPZxtTGjMNaCiIKSgMSQUABeLHyolWtVcVS0jV0YTIEWicSICTeoE+um+WVAMXKxgYZBIljoLA4HAYAHMWA1VojkfRyZSacolCooqYLFF4U0APwmMzmXkhEZkinU5bsjk5Yw8h7iAWywQixxi5mStkcv4AihA0EJVW6AU6wHAsEqhWgEYtNodACqRCYRCoAHdaGEAI4EclkEbgAAqAEFoABpKK+cUs2kYrGPJHPfEcQnE8zaT44oyMVhsMJU8pkFp8IgMMl0iTSWTrIiFmscVxRABUxAYFIoVLRMUbiRmemImSMSZTJL4Ucl5aKJVHGtZ0tAURpZCmKwVDOe1drZA42lVcwWSxXD2KpTHs-Z86WS4nVtAa9oADcgT7lAA+ESgDcsOuuR+SH1BZIdytPdFmWSEb3EW12mnCUaV8KJHWdN0PRYb1fRGAAlToAHFIEDToMKmDFVlSEiPl7O88QJIkSXTXBM1oVsOCoEg+FYPpfDCdYPBiDhr0o8pKnUG4uPaXiBCNRVQGIGIWDwP4WBiSTrXmb0gTYlgONAPYDj4HTDlEni+PqZSpP0vhDPE0yVKYliNK0q4RJYbjxOmDN+x+UBFzYT86wslh8y4Fp+KeFDAsLDpFyI7B3IMXFLx8mhNw4fzwpaXxfx9EKEzCgsiyiS8pj4TKYxi+iPNxbN2D+LgPAIAciD4QsrDIbLGUJTwmpYFrfFhNzyriowarIOqGrYZqyDKIguDa55zOG-r8AqobppG+qfjYbrnIIDbjDaViFsPW9Qq2dwbgWuilsG2gEuG0aNq2kgdqyNg9rs4bfDekhrwSxypq4T79sCexYoa+hmHYNFXTYRgSQUiFGmrTZjBIVwqtzAK8o6FHot0JHZDwSRqTRiGMbSjpCepXGJHxwYXBUdHakEDFKy2PY2Du9aXqWNDSClVRhJZmQ2fYXJ6xUYEuD4SXJqiU09XNdhagjYIIJvfIlDfJm5f+M0DSmeohdkPMsfGhgACNpFcGXpYLPhORIFWUYEXwbaiSmqRVj3Dd7BjQCBSQWKJdgTaCrwSzLI7dGPPhbNYiOWE4zGw7Ny3aS1aSiFk+TO2velk4i1OrZUDqvBthPI1J0OIuLUtaRd6y1ZCauWiL0qSPmUCo6aKDw7r+CAFl1EoYxJAGbOFJiY7yZGan3nznL5xbjw2ADoPCxiHsUi+ZbaEDqgmAIYwyax2vI-AkJad-Vw47PxPp9N7g0-uJpVUo6+5xkuTJ9MgVe7v+CiEXTugfmHIYUxTIjHMn9X8Ptt7Yl3vMKw21CwI1WLTYa4svIyESjWL8W4+DO2IhIGOglYT-S3PUbuzcTqxHiFvJoIEDwXzOLTL6rhOZjUes9Ggr19p6X2IcTBhtVYPC+szURZxKLcNQS-eeEhSLxkZKeKUL5VQqIzgVbgHglyqgFBrN8dgEq+QISjXwZB2acI2jzH0fM5Fq2kcgp6siAKqnVLBKU54dbyA0BzVa91uaoVsSQQ0qwBQ81fO+Cx1V-Fc14TYr8ITXA81casdx0ZNFrxIMHE+Yd5T8n9hodeIcC4tDcUyDxmjvLL3ySEAU+9D7H2XuUjRc5vHcF8bkFoRIsgcFqY4AUYtIl2GiWwIZKgGDGGMF+Q4oyxa+DFsDRRooKkZLacrPRdMmAtJnJ4jkXSPA9I2P040IsxnGA4OU-+KjAFOmAShNCXAxQ8HMApaKoNPLVNKV4WGry0RJypJUOus1aC-PhguHBNSBCpSBWWS6fsmLtiIGTWF4JEUdj8bVOJRAQXaUEU1M6sc2wYqsVkH2HzcTouRSVTaVg8hUsxWtBqthJGUT+n9BlpKaDkoGmDBpR8+EUDoDUPodBzZUEkAs6Zhyfh8SOlfIEN8KR2Q4KK8VkrQAHKOdNex79FWfyzt-Tsmz-6qrFRK25SEQFas8n8f2FIWBiukOAiSaS8W6RgUCHlV0wboz2kK3U952DdTyCGyucN-lSAtvua8pCKj4wYDWWloa6VUJYXjDYVZXAJqTSGtgJU+AhvsQiE6BiPyxk7geONbAibmwWMmwtqa8400zaATB1sqAHwFbWhY0to2LFdv25NNb+2NuMHApolEy2YIrfuZY1bl4NqLc28QtMPCuC+eTUcLyFIAtNnmvMY6J00MXmW7yJiUoeGBh8StYFVT-zDfOIByEkF7WZLifo0y22MQdU6lgLrYxlR9Z5dGNqXohrHeGv598e0Ds1dK7VcqWG0x2BLTtjTBXCrA7wvNuQj1Su6bK+xtNJn7SwYwUNkS-UeADZQINS6oO7qjXWxYDcm5NGw8i3DCGs4pWXUBJRzwy2TNHn0PxbAv4eDHn8QFAArBgj4OAkBo70PgjcOPGErnkYwkS8gu39l9Yy8LEFUtSqbCucgqARBCdeEjN8pkzNtlLKIVKVaLoTvp5i1n26CcYsZ664McymY+uDCNMH+0cAIzK3pn1vrytbdoxcG7IXfO3WF3wDK8yooocej8raaUhqVRwJF+anzBrpTljECq-zsH0MoVUglOMNoK6mzZoGEMPQqy1zToXoODpY5F+DhHemuqaM8nM-q6CBvK3kcy3X9NgsjbBviGIp1CE1tQuQOCL0Eo8IuDKZW2D6EEMWiQBxHx81eqxIhkjAJAYRTEC7ISruELiyw4xSV8EpTMada4fBz2fb8s7ER93EHo0LFLELi3wsDai4h3wHtYu2dbdWfEnkVAQ7ILgtHWRKuNGrU1iDqPdTcpXXl1a5Oce8LqwzUmhOKvE5+N4dT7HxDQ-6-uOHRHiHiDW8M0yH28F+UR5TknyLju5dWOdxNz2UavevSRWdXd03NFaNBELUQABCBwti+m-VisGdqmKOrTgB8iFKjCY74LkV25hBseDt7it2mOVY26kHbziju6J+0x9jsXXUuCMoCdyo6bLCW+65Ti-zvrSbm0OaQSwUOd1LYiwjomVIkfxYp7JTYKg48y-MGwHPk0Lr46nIJWDDbi9ptVBg1aWD+XH1g322HzH615ub9X07vPS3rcMSzpoMcAdC4Id7MnrOttY52z94RPOm5MLvRPqXj2ZfsDl0Qgf8iJ93ZSLezb-8Nfa6nvnhP+umW2p-UsP9Zvt4W9oCfkcsGnd2yiA-8wKsn-e8QW-ovvo+A-8j1xWgUJQANiWZUWj9kEm4CpBpBiBrTti4DoDIHMXZmgNxUElLiOCQKEAADIcD3VDhEDWoM5RloDo9PJD0PNQ8To3Y8wVYPMv8AtBJF0IMi1qDF4oDqRYD4CpZH0og6D+o-YWC6UyYj12DGRgC-t+NQcAsc1JoSpn9nM5CVYFDGDDd41M1E0sdWDU1xDnhOCYDFIeDJo+DlDBDEE5Dh0C02CWFKJJCbhpC7828bgqDbCaCX9YN6DgU1DbUKhK8dDx09DfgKhoDuCbY+DPDzCAt-CRDm8bDGg7D8U-pHDeUQNSYqQqBxoqAKFGMU9W9nYs9Nhi8N0qBthf9IdVp7Fq0Yi8gu9Ns68uAG90Nu1R1lsOdJBh1O9fRJdfNSg+9J9cFkpXtfBZ8b05021y8KhhDajuiyc10Apkssdl40s+tQFC4D0Ao+Au858+cNtBchifth8hi8xcsF9981cvBD8dcMisiz9g9fhL8TdpA55MQZCwYbjtgW8FhFDZYPiqAP9+0oj3jSjMji9-sQSg9sUgCkjCUMiyjACIDEFlRahcVtZZR3lUjcQuRLBagDsatUTjh7ZsSipVC3i0icxKQg0cjesmNcSTA3tEZW08xFjcka52ctlGUUUE4ctdVe9+cJ9sTbheBfAjivtUoeibxpdLt19vo58zg7snD0YwguB2hwQk90stlM9kMmSFiVBN1T52TahOSstuSFpeTT1+iVcbx9ixS8xPo8MUTu8rQpTZdrtZTJEbwFTMSjBKTwQTigipAX9fS3MAogSKDfRVTxSAzaCIywgQyqQwz4pjhjSApssjTACAz7ChSmBITwDyDcQ8NXCEj3DnNcgvC4UypICKh6cU1Ai3COCKhMC2C8C20QiuCjCbZzIi14IyzESAsazzlrcOtwNdD6yJCYS-tzIaz6g+ywYBytVeMhzhscNRzizF4-ppz8ysxSZpU8B2hhV1TVi2ihtosNgtTGSKceB0cTAWg9yPA6BV4Go8do5JjzllyuMKsryyU5jW0vzqdiASYcwazY4GpcjE5N8l8QhjzOMVs34+SNs7AILdA-zxdiAJEXS183SFcl8d8FE98rT5gLjqStcdddz9y7jsVv17Ur804XjUgnCyL7zHyfgcsAy-oLoQZvTQVSYZEXoGJqTjz2SkKbwfsRc6TFlCjZArBdh8VS8S1F5pK2lXM2tSZgtVowL2jBt5l6TRsVlFKvEXcVKcwrdDymNoKLk09qQkdyl9KOQ38TkJABR0Y39qT2TjyRdnYbKqlMjtgHKpJ0Y-jXLk8YdOcdKvL1kFNQkClGZIqgqNS6TPK3VbKl5Yyoq6lAsSkVSwg4rViErvpwqvFGK6A-LQAnKdzbz9ycqzLU94NBtEqxtCK7RiLn0QFI8tg+gv0jdf1TcMTgNcQj4YgclMEKFBtBLgrkcKcUYWTlj2SHYXjaYPZprUtZqPZ5rW1oRacwt7ZlZiNW1xkaS0R7YYLooLzNhboWAdMVBbowDOsUEXovoqtW10YLrALys7r-zrpVsToKMyhIlzq8gKBmdIKmhnqAabqXoJoyg2Ngabw2jhK1Z2d4aIIzEkabxEdUarRcSMaFRFloabxRjFTSZ-CawPA+gviOiLNhEAzMDK9Kb69ZzPJuoRoryR0BsuoepjoQkKAg1rw-Y9hJBpURrNKWVa9W00QWpGUZKPUmbpg4KGzOARoZNiwmbGVdKzgBQuIWBua1T69Pp3Afkiah18FSblaJaQthFha1a3VNbtbCF9bt0cxI9TascFoRj6bhbAM1zGQJoM4v4c5FJQAAAfQO1soSaoCaK2xyzmrWqk2EXqYSSO8QG0FqQ5cgVm-cAlP7CO3wfm6VBmylbq6QPgDcNoDQVuCaMChoRxZmtO5bNTBUEuiVaQFeCu5SIW5wuVBC9TAaoa+vdusasLJ0ydE6GdZSZIfO7cnMaHMzFOBOLSiy8nEaJu8umWySg6-mdGKGGGYK5mRoL4doTaF5GewuBOKjHelzIpbJQsVkloIqdzYFPdWeuuWC3Qae9pAON8086aIqRZDEN+4aD+yPTgIJRJBIaFY3P9YupKUu5u8aJmyu2W+S5RYKrcm6bRSaaHXFN++QHRIqRMowfUlOHbdk++8+L254UUvyQhtk4Kx+k+4FfBm6FLcmQYsUkh75VFPErKI6G0qh5hg02htY1uDzLhnzHvReOhNEHsJwxvdOm4Y82m4FNej+aiuyRRskD2iiE6D+c8P2n+MJRq6CdR++BCQ1f2qeWDEYIMcAcAToAeTXAAGU6AgTdU9UkEWlpipBIDgOh3q1ftJmntVDdgYBVlf1CavCBqaBthjOKt8Fjl8HNn6IYFAAAFJQBEnImFQ3YlAVZ4n0mkmM5Em8bHBndfQABac2CMayK3PDKIHJ-TQ9MJ-TOQvgAABnqEyYeBcubwXG8bKdRDAeKbOFMyiCXFdjtlqbCGKoac2JcymABXtkqZnM6eGeJUajmfGalkaaWY6eshGcqc2cmkaavF2ZvECp6cxwqYNhWdWF6ZiH6foR9gSkXR2y8Z8cEY2dAAwFaYADZphnmOHXnvHt6NSwnfAAAWdp7QHByaN5kF6DaYah1uIF950FkJwIIAA')">function lookup_label(labels, label_name) {
     const val = assoc(label_name, labels);
 
     return val === undefined
@@ -1875,32 +1978,49 @@ function set_instruction_execution_proc(inst, proc) {
 }
 
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      
+  
     <div class="permalink">
     <a name="ex_5.8" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.8">Exercise 5.8 </a></b> 
   
-  The following register-machine code is ambiguous, because the label
-  here is defined more than once:
-  <div class='snippet' id='javascript_105_7_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCZMChsCIBnAFwEMAnIvbUG0AcwHsB9IhgCgBsSAjAUw7YALXmV4BKMQBpqtPMNF5ptUCQIEAlnQB2bPCUWgO64mwDGDLSYDMEqTJqMW7LnwFF54u8rkjei+ypqmjp6BkYm5pZEbAAstkq0jqycPPxs7r4SCTR4GQqSQA')">"start"
+    The following register-machine code is ambiguous, because the label
+    <kbd>here</kbd> is defined more than once:
+    <div class='snippet' id='javascript_105_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"start",
     go_to(label(here)),
-    "here",
+"here",
     assign("a", list(const(3))),
     go_to(label(there)),
-    "here",
+"here",
     assign("a", list(const(4))),
     go_to(label(there)),
-    "there",
-
+"there",
 </pre></div></div>
-
-  With the simulator as written, what will the contents of register a
-  be when control reaches there?  Modify the <kbd>extract_labels</kbd>
-  function
-  so that the assembler will signal an error if the same label
-  name is used to indicate two different locations.
+    With the simulator as written, what will the contents of register
+    
       
+      <kbd>"a"</kbd>
+    
+    be when control reaches
+    
+      
+      <kbd>"there"</kbd>?
+    
+    Modify the
+    
+      
+      
+	<kbd>extract_labels</kbd>
+      
+    
+    
+      
+      function
+    
+    so that the assembler will signal an error if the same label
+    name is used to indicate two different locations.
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_105_1_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_105_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1908,22 +2028,34 @@ function set_instruction_execution_proc(inst, proc) {
     
 </EXERCISE></div>
 
-      
-
-    <hr>
+  
+<hr>
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
     <FOOTNOTE>
     
     
-    Using the receive
-    function
-    here is a way to get <kbd>extract_labels</kbd> to effectively return two values—labels and
-    insts—without explicitly making a compound data structure to
-    hold them.  An alternative implementation, which returns an explicit
-    pair of values, is
-    <div class='snippet' id='javascript_105_8_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCZMChsDMBXAOwGMAXASwHsjQBTADzICcBDcgfQBtWAjOrgGcAFGUZkANKGZ0SdCgDc6ASlABvUNlDbQFPKGEVBHIgS5dR45arVad9mWQLNaAB1YVmw0+ak+uygDcuPYAvvRCdOp29tokNIJk0nSCZkkAvPRMbJw8-EKiHhZiTNbBsTrxRIm61WSCoJkAFnSsACbCMqlcZEExsVU1eQINmWRFnSlpfRVxCUlE4hwUdY2gLe2WpcH9DnROLrrGicwrAObeSyuJyruzAPyg7p6GdYJSz14AtqwA1nTcPgCDh0IgsACelyYyzqUmu9WUUmGQmsdwqAC4nh4vJ9hD9-jCTgRyNQiFCyITenC3ojQMjBDMdKFsKEgA')">function extract_labels(text, receive) { 
+    Using the
+    <kbd>receive</kbd>
+    
+      
+      function
+    
+    here is a way to get
+    
+      
+      
+	<kbd>extract_labels</kbd>
+      
+    
+    to effectively return two
+    values—<kbd>labels</kbd> and
+    <kbd>insts</kbd>—without explicitly making a
+    compound data structure to hold them.  An alternative implementation, which
+    returns an explicit pair of values, is
+    <div class='snippet' id='javascript_105_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function extract_labels(text, receive) { 
     if (is_null(text)) {
         return pair(null, null);
 
@@ -1938,10 +2070,10 @@ function set_instruction_execution_proc(inst, proc) {
             : pair(pair(make_instruction(next_inst), insts), labels);
     }
 }
-
 </pre></div></div>
-    which would be called by assemble as follows:
-    <div class='snippet' id='javascript_105_9_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCZMChsDMBXAOwGMAXASwHsjQBDAZwYFMBbAIwBtmB9OzsswBOROpQBuzABQkaZIVU7chPQQA8yAGlCs6JABYUizAJSgA3tlDXQsogzKghzBgQGgAvKGYahesjycdOzMnAwycgpKwqo+ZCYA3FY2dg6gRg4MnqD6zHQAJlLOrgKJydapjkEhYdlkdBScRS5u8UnloAQADvlivBlk4QMM2tWhIzp6hsZlHc5kBCLp9oNJAL5AA')">function assemble_alternative(controller_text, machine) {
+    which would be called by <kbd>assemble</kbd> as follows:
+    <div class='snippet' id='javascript_105_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function assemble_alternative(controller_text, machine) {
     const result = extract_labels(controller_text);
     const insts = head(result);
     const labels = tail(result);
@@ -1950,19 +2082,23 @@ function set_instruction_execution_proc(inst, proc) {
 
     return insts;
 }
-
 </pre></div></div>
 
     
     
     
-    You can consider our use of receive as demonstrating an elegant
-    way to return multiple values, or simply an excuse to show off a
-    programming trick.  An argument like receive that is the next
-    function
+    You can consider our use of <kbd>receive</kbd> as
+    demonstrating an elegant way to return multiple values, or simply an excuse
+    to show off a programming trick.  An argument like
+    <kbd>receive</kbd> that is the next
+    
+      
+      function
+    
     to be invoked is called a <QUOTE>continuation.</QUOTE>  Recall that we
     also used continuations to implement the backtracking control
-    structure in the amb evaluator in section <REF NAME="sec:amb-implementation"><a class="superscript" id="5.2.2-sec-link-4.3.3" href="./4.3.3.html">4.3.3</a></REF>.
+    structure in the <kbd>amb</kbd> evaluator in
+    section <REF NAME="sec:amb-implementation"><a class="superscript" id="5.2.2-sec-link-4.3.3" href="./4.3.3.html">4.3.3</a></REF>.
     </FOOTNOTE></div>
 
     

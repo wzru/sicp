@@ -1678,26 +1678,28 @@
         <div class='SECTION'><SECTION>
     
 
-      
-      
-      
+  
+  
+  
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
-  When designing a machine to perform a computation, we would often
-  prefer to arrange for components to be shared by different parts of
-  the computation rather than duplicate the components.  Consider a
-  machine that includes two GCD computations—one that finds the GCD of
-  the contents of registers <kbd>a</kbd> and <kbd>b</kbd> and one that finds the
-  GCD of the contents of registers <kbd>c</kbd> and <kbd>d</kbd>.  We might start
-  by assuming we have a primitive <kbd>gcd</kbd> operation, then expand the
-  two instances of <kbd>gcd</kbd> in terms of more primitive operations.
-  Figure <REF NAME="fig:gcd-machine-1"><a class="superscript" id="5.1.3-fig-link-5.7" href="./5.1.3.html#fig_5.7">5.7</a></REF> shows just the GCD portions of the
-  resulting machine's data paths, without showing how they connect to
-  the rest of the machine.  The figure also shows the corresponding
-  portions of the machine's controller sequence.
-
-  <FIGURE><pre class='prettyprint no-eval'>
+    When designing a machine to perform a computation, we would often
+    prefer to arrange for components to be shared by different parts of
+    the computation rather than duplicate the components.  Consider a
+    machine that includes two GCD computations—one that finds the GCD of
+    the contents of registers <kbd>a</kbd> and
+    <kbd>b</kbd> and one that finds the
+    GCD of the contents of registers <kbd>c</kbd> and
+    <kbd>d</kbd>.  We might start
+    by assuming we have a primitive <kbd>gcd</kbd> operation,
+    then expand the two instances of <kbd>gcd</kbd> in terms
+    of more primitive operations. Figure <REF NAME="fig:gcd-machine-1"><a class="superscript" id="5.1.3-fig-link-5.8" href="./5.1.3.html#fig_5.8">5.8</a></REF>
+    shows just the GCD portions of the resulting machine's data paths,
+    without showing how they connect to the rest of the machine.  The figure
+    also shows the corresponding portions of the machine's controller
+    sequence.
+    <FIGURE><pre class='prettyprint no-eval'>
 list(...,      
      "gcd-1",
      test(list(op("="), reg("b"), constant(0))),
@@ -1719,49 +1721,52 @@ list(...,
      ...
 </pre>
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./5.1.3.html#fig_5.7">Figure 5.7 </a></b>Portions of the data paths and controller sequence for
-  a machine with two GCD computations.</div>
+      <b><a class="caption" href="./5.1.3.html#fig_5.8">Figure 5.8 </a></b>Portions of the data paths and controller sequence for
+      a machine with two GCD computations.</div>
     </FIGURE>
   
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-  This machine has two remainder operation boxes and two boxes for
-  testing equality.  If the duplicated components are complicated, as is the
-  remainder box, this will not be an economical way to build the
-  machine.  We can avoid duplicating the data-path components by using
-  the same components for both GCD computations, provided that doing so
-  will not affect the rest of the larger machine's computation.  If the
-  values in registers <kbd>a</kbd> and <kbd>b</kbd> are not needed by the time the
-  controller gets to <kbd>gcd-2</kbd> (or if these values can be moved to
-  other registers for safekeeping), we can change the machine so that
-  it uses registers <kbd>a</kbd> and <kbd>b</kbd>, rather than registers <kbd>c</kbd>
-  and <kbd>d</kbd>, in computing the second GCD as well as the first.  If we
-  do this, we obtain the controller sequence shown in
-  figure <REF NAME="fig:gcd-machine-2"><a class="superscript" id="5.1.3-fig-link-5.8" href="./5.1.3.html#fig_5.8">5.8</a></REF>.
-      </p></div>
+    This machine has two remainder operation boxes and two boxes for
+    testing equality.  If the duplicated components are complicated, as is the
+    remainder box, this will not be an economical way to build the
+    machine.  We can avoid duplicating the data-path components by using
+    the same components for both GCD computations, provided that doing so
+    will not affect the rest of the larger machine's computation.  If the
+    values in registers <kbd>a</kbd> and
+    <kbd>b</kbd> are not needed by the time the
+    controller gets to <kbd>gcd-2</kbd> (or if these values
+    can be moved to other registers for safekeeping), we can change the machine
+    so that it uses registers <kbd>a</kbd> and
+    <kbd>b</kbd>, rather than registers
+    <kbd>c</kbd> and <kbd>d</kbd>, in
+    computing the second GCD as well as the first.  If we do this, we obtain the
+    controller sequence shown in
+    figure <REF NAME="fig:gcd-machine-2"><a class="superscript" id="5.1.3-fig-link-5.9" href="./5.1.3.html#fig_5.9">5.9</a></REF>.
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-  We have removed the duplicate data-path components
-  (so that the data paths are again as in figure <REF NAME="fig:gcd-machine"><a class="superscript" id="5.1.3-fig-link-5.1" href="./5.1.html#fig_5.1">5.1</a></REF>),
-  but the controller
-  now has two GCD sequences that differ only in their entry-point
-  labels.  It would be better to replace these two sequences by branches
-  to a single sequence—a <kbd>gcd</kbd> <EM>subroutine</EM>—at the end of
-  which we branch back to the correct place in the main instruction
-  sequence.  We can accomplish this as follows: Before branching to <kbd>gcd</kbd>, we place a distinguishing value (such as 0 or 1) into a special
-  register, 
-  
-  <kbd>continue</kbd>.  At the end of the <kbd>gcd</kbd> subroutine we
-  return either to <kbd>after-gcd-1</kbd> or to <kbd>after-gcd-2</kbd>, depending
-  on the value of the <kbd>continue</kbd> register.
-  Figure <REF NAME="fig:gcd-machine-2cont"><a class="superscript" id="5.1.3-fig-link-5.9" href="./5.1.3.html#fig_5.9">5.9</a></REF> shows the relevant portion of the
-  resulting controller sequence, which includes only a single copy of the
-  <kbd>gcd</kbd> instructions.
-
-  <FIGURE><pre class='prettyprint no-eval'>
+    We have removed the duplicate data-path components (so that the data paths
+    are again as in figure <REF NAME="fig:gcd-machine"><a class="superscript" id="5.1.3-fig-link-5.1" href="./5.1.html#fig_5.1">5.1</a></REF>), but the
+    controller now has two GCD sequences that differ only in their entry-point
+    labels.  It would be better to replace these two sequences by branches to a
+    single sequence—a <kbd>gcd</kbd>
+    <EM>subroutine</EM>—at the end of which we branch back to the
+    correct place in the main instruction sequence.  We can accomplish this as
+    follows: Before branching to <kbd>gcd</kbd>, we place a
+    distinguishing value (such as 0 or 1) into a special register, 
+    
+    <kbd>continue</kbd>.  At the end of the
+    <kbd>gcd</kbd> subroutine we return either to
+    <kbd>after-gcd-1</kbd> or to <kbd>after-gcd-2</kbd>, depending
+    on the value of the <kbd>continue</kbd> register.
+    Figure <REF NAME="fig:gcd-machine-2cont"><a class="superscript" id="5.1.3-fig-link-5.10" href="./5.1.3.html#fig_5.10">5.10</a></REF> shows the relevant portion
+    of the resulting controller sequence, which includes only a single copy of
+    the <kbd>gcd</kbd> instructions.
+    <FIGURE><pre class='prettyprint no-eval'>
 list(...,
      "gcd-1",
      test(list(op("="), reg("b"), constant(0))),
@@ -1783,13 +1788,12 @@ list(...,
      ...
 </pre>
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./5.1.3.html#fig_5.8">Figure 5.8 </a></b>Portions of the controller sequence for a machine that
-  uses the same data-path components for two different GCD
-  computations.</div>
+      <b><a class="caption" href="./5.1.3.html#fig_5.9">Figure 5.9 </a></b>Portions of the controller sequence for a machine that
+      uses the same data-path components for two different GCD
+      computations.</div>
     </FIGURE>
   
-
-  <FIGURE><pre class='prettyprint no-eval'>
+    <FIGURE><pre class='prettyprint no-eval'>
 list(...,      
      "gcd",
      test(list(op("="), reg("b"), constant(0))),
@@ -1817,12 +1821,14 @@ list(...,
      ...)
 </pre>
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./5.1.3.html#fig_5.9">Figure 5.9 </a></b>Using a <kbd>continue</kbd> register to avoid
-  the duplicate controller sequence in figure <REF NAME="fig:gcd-machine-2"><a class="superscript" id="5.1.3-fig-link-5.8" href="./5.1.3.html#fig_5.8">5.8</a></REF>.</div>
+      <b><a class="caption" href="./5.1.3.html#fig_5.10">Figure 5.10 </a></b>
+	Using a <kbd>continue</kbd> register to avoid
+	the duplicate controller sequence in
+	figure <REF NAME="fig:gcd-machine-2"><a class="superscript" id="5.1.3-fig-link-5.9" href="./5.1.3.html#fig_5.9">5.9</a></REF>.
+      </div>
     </FIGURE>
   
-
-  <FIGURE><pre class='prettyprint no-eval'>
+    <FIGURE><pre class='prettyprint no-eval'>
 list(...,
      "gcd",
      test(list(op("="), reg("b"), constant(0))),
@@ -1847,61 +1853,76 @@ list(...,
      ...)
 </pre>
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./5.1.3.html#fig_5.10">Figure 5.10 </a></b>Assigning labels to the <kbd>continue</kbd> register simplifies
-  and generalizes the strategy shown in figure <REF NAME="fig:gcd-machine-2cont"><a class="superscript" id="5.1.3-fig-link-5.9" href="./5.1.3.html#fig_5.9">5.9</a></REF>.</div>
+      <b><a class="caption" href="./5.1.3.html#fig_5.11">Figure 5.11 </a></b>
+	Assigning labels to the <kbd>continue</kbd> register
+	simplifies  and generalizes the strategy shown in
+	figure <REF NAME="fig:gcd-machine-2cont"><a class="superscript" id="5.1.3-fig-link-5.10" href="./5.1.3.html#fig_5.10">5.10</a></REF>.
+      </div>
     </FIGURE>
   
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
-  This is a reasonable approach for handling small problems, but it
-  would be awkward if there were many instances of GCD computations in
-  the controller sequence.  To decide where to continue executing after
-  the <kbd>gcd</kbd> subroutine, we would need tests in the data paths and
-  branch instructions in the controller for all the places that use <kbd>gcd</kbd>.
-  A more powerful method for implementing subroutines is to have
-  the <kbd>continue</kbd> register hold the label of the entry point in the
-  controller sequence at which execution should continue when the subroutine is finished.
-  Implementing this strategy requires a new
-  kind of connection between the data paths and the controller of a
-  register machine: There must be a way to assign to a register a label
-  in the controller sequence in such a way that this value can be fetched
-  from the register and used to continue execution at the designated
-  entry point.
-      </p></div>
+    This is a reasonable approach for handling small problems, but it would be
+    awkward if there were many instances of GCD computations in the controller
+    sequence.  To decide where to continue executing after the
+    <kbd>gcd</kbd> subroutine, we would need tests in the data
+    paths and branch instructions in the controller for all the places that use
+    <kbd>gcd</kbd>. A more powerful method for implementing
+    subroutines is to have the <kbd>continue</kbd> register
+    hold the label of the entry point in the controller sequence at which
+    execution should continue when the subroutine is finished. Implementing this
+    strategy requires a new kind of connection between the data paths and the
+    controller of a register machine: There must be a way to assign to a
+    register a label in the controller sequence in such a way that this value
+    can be fetched from the register and used to continue execution at the
+    designated entry point.
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-  
-  
-  To reflect this ability, we will extend the <kbd>assign</kbd>
-  instruction of the register-machine language to allow a register to be
-  assigned as value a label from the controller sequence (as a special
-  kind of constant).  We will also extend the <span style="color:teal"><kbd>goto</kbd></span><span style="color:blue"><kbd>go_to</kbd></span> instruction to
-  allow execution to continue at the entry point described by the
-  contents of a register rather than only at an entry point described by
-  a constant label.  Using these new constructs we can terminate the
-  <kbd>gcd</kbd> subroutine with a branch to the location stored in the <kbd>continue</kbd> register.  This leads to the controller sequence shown in
-  figure <REF NAME="fig:gcd-mach-2labels"><a class="superscript" id="5.1.3-fig-link-5.10" href="./5.1.3.html#fig_5.10">5.10</a></REF>.
-      </p></div>
-
-      <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
-  A machine with more than one subroutine could use multiple
-  continuation registers (e.g., <kbd>gcd-continue</kbd>, <kbd>factorial-continue</kbd>) or we could have all subroutines share a single
-  <kbd>continue</kbd> register.  Sharing is more economical, but we must be
-  careful if we have a subroutine (<kbd>sub1</kbd>) that calls another
-  subroutine (<kbd>sub2</kbd>).  Unless <kbd>sub1</kbd> saves the contents of <kbd>continue</kbd> in some other register before setting up <kbd>continue</kbd> for
-  the call to <kbd>sub2</kbd>, <kbd>sub1</kbd> will not know where to go when it
-  is finished.  The mechanism developed in the next section to handle
-  recursion also provides a better solution to this problem of nested
-  subroutine calls.
-  
-  
-      </p></div>
-
     
+    
+    To reflect this ability, we will extend the
+    <kbd>assign</kbd>
+    instruction of the register-machine language to allow a register to be
+    assigned as value a label from the controller sequence (as a special
+    kind of constant).  We will also extend the
+    
+      <span style="color:teal"><kbd>goto</kbd></span>
+      <span style="color:blue"><kbd>go_to</kbd></span>
+    
+    instruction to allow execution to continue at the entry point described by
+    the contents of a register rather than only at an entry point described by
+    a constant label.  Using these new constructs we can terminate the
+    <kbd>gcd</kbd> subroutine with a branch to the location
+    stored in the <kbd>continue</kbd> register.  This leads
+    to the controller sequence shown in
+    figure <REF NAME="fig:gcd-mach-2labels"><a class="superscript" id="5.1.3-fig-link-5.11" href="./5.1.3.html#fig_5.11">5.11</a></REF>.
+  </p></div>
+
+  <div class='permalink'>
+<a name='p6' class='permalink'></a><p>
+    A machine with more than one subroutine could use multiple
+    continuation registers (e.g., <kbd>gcd-continue</kbd>,
+    <kbd>factorial-continue</kbd>) or we could have all
+    subroutines share a single
+    <kbd>continue</kbd> register.  Sharing is more economical,
+    but we must be careful if we have a subroutine
+    (<kbd>sub1</kbd>) that calls another subroutine
+    (<kbd>sub2</kbd>).  Unless
+    <kbd>sub1</kbd> saves the contents of
+    <kbd>continue</kbd> in some other register before setting
+    up <kbd>continue</kbd> for the call to
+    <kbd>sub2</kbd>, <kbd>sub1</kbd> will
+    not know where to go when it is finished.  The mechanism developed in the
+    next section to handle recursion also provides a better solution to this
+    problem of nested subroutine calls.
+    
+    
+  </p></div>
+
 </SUBSECTION></div></div>
 
     <div class='nav'>

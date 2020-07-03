@@ -1723,25 +1723,29 @@ eval-dispatch
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "eval_dispatch",
-          test(op("is_self_evaluating"), reg("exp")),
-          branch(label("ev_self_eval")),
-          test(op("is_variable"), reg("exp")),
-          branch(label("ev_variable")),
-          test(op("is_quoted"), reg("exp")),
-          branch(label("ev_quoted")), /// FIXME
-          test(op("is_assignment"), reg("exp")),
-          branch(label("ev_assignment")),
-          test(op("is_definition"), reg("exp")),
-          branch(label("ev_definition")),
-          test(op("is_conditional_statement"), reg("exp")),
-          branch(label("ev_if")),
-          test(op("is_function_expression"), reg("exp")),
-          branch(label("ev_lambda")),
-          test(op("is_block"), reg("exp")),
-          branch(label("ev_begin")),
-          test(op("is_application"), reg("exp")),
-          branch(label("ev_application")),
-          go_to(label("unknown_expression_type")),
+    test(op("is_self_evaluating"), reg("exp")), 
+    branch(label("ev_self_eval")),
+    test(op("is_name"), reg("exp")),
+    branch(label("ev_name")),
+    
+    test(op("is_variable_declaration"), reg("exp")),
+    branch(label("ev_variable_declaration")),
+    test(op("is_constant_declaration"), reg("exp")),
+    branch(label("ev_constant_declaration")),
+    test(op("is_assignment"), reg("exp")),
+    branch(label("ev_assignment")),
+    
+    test(op("is_conditional_expression"), reg("exp")),
+    branch(label("ev_if")),
+    test(op("is_function_definition"), reg("exp")),
+    branch(label("ev_lambda")),
+    test(op("is_sequence"), reg("exp")),
+    branch(label("ev_seq")),
+    test(op("is_block"), reg("exp")),
+    branch(label("ev_block")),
+    test(op("is_application"), reg("exp")),
+    branch(label("ev_application")),
+    go_to(label("unknown_expression_type")),
 </pre></div></div></td></tr></table>
       </p></div>
 
@@ -1788,21 +1792,19 @@ ev-self-eval
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_self_eval",
-    assign("val", reg("exp")),
+    assign("val", list(reg("exp"))),
     go_to(reg("continue")),
-
-"ev_variable",
-    assign("val", op("lookup_variable_value"), reg("exp"), reg("env")),
+    
+"ev_name",
+    assign("val", list(op("lookup_name_value"), reg("exp"), reg("env"))),
     go_to(reg("continue")),
-
-"ev_quoted",
-    assign("val", op("text_of_quotation"), reg("exp")),
-    go_to(reg("continue")),
-
+    
 "ev_lambda",
-    assign("unev", op("lambda_parameters"), reg("exp")),
-    assign("exp", op("lambda_body"), reg("exp")),
-    assign("val", op("make_procedure"), reg("unev"), reg("exp"), reg("env")),
+    assign("unev", list(op("function_definition_parameters"), reg("exp"))),
+    assign("exp", list(op("function_definition_body"), reg("exp"))),
+    assign("val",
+           list(op("make_compound_function"), 
+                reg("unev"), reg("exp"), reg("env"))),
     go_to(reg("continue")),
 </pre></div></div></td></tr></table>
       </p></div>
@@ -1860,10 +1862,10 @@ ev-self-eval
   to produce a
   <span style="color:teal">procedure</span><span style="color:blue">function</span>, which will later be applied to the evaluated
   operands.  To evaluate the operator, we move it to the <kbd>exp</kbd>
-  register and go to <kbd>eval-dispatch</kbd>.  The environment in the <kbd>env</kbd> register is already the correct one in which to evaluate the
+  register and go to <kbd>eval-dispatch</kbd><kbd>eval_dispatch</kbd>.  The environment in the <kbd>env</kbd> register is already the correct one in which to evaluate the
   operator.  However, we save <kbd>env</kbd> because we will need it later to
   evaluate the operands.  We also extract the operands into <kbd>unev</kbd>
-  and save this on the stack.  We set up <kbd>continue</kbd> so that <kbd>eval-dispatch</kbd> will resume at <kbd>ev-appl-did-operator</kbd> after the
+  and save this on the stack.  We set up <kbd>continue</kbd> so that <kbd>eval-dispatch</kbd><kbd>eval_dispatch</kbd> will resume at <kbd>ev-appl-did-operator</kbd><kbd>ev_appl_did_operator</kbd> after the
   operator has been evaluated.  First, however, we save the old value of
   <kbd>continue</kbd>, which tells the controller where to continue after the
   application.
@@ -1884,13 +1886,13 @@ ev-application
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_application",
-          save("continue"),
-          save("env"),
-          assign("unev", op("operands"), reg("exp")),
-          save("unev"),
-          assign("exp", op("operator"), reg("exp")),
-          assign("continue", label("ev_appl_did_operator")),
-          go_to(label("eval_dispatch")),
+    save("continue"),
+    save("env"),
+    assign("unev", list(op("operands"), reg("exp"))),
+    save("unev"),
+    assign("exp", list(op("operator"), reg("exp"))),
+    assign("continue", label("ev_appl_did_operator")),
+    go_to(label("eval_dispatch")),
 </pre></div></div></td></tr></table>
       </p></div>
 
@@ -1903,7 +1905,7 @@ ev-application
   the unevaluated operands and the environment.  We initialize <kbd>argl</kbd> to an empty list.  Then we assign to the <kbd>proc</kbd> register the
   <span style="color:teal">procedure</span><span style="color:blue">function</span>
   that was produced by evaluating the operator.  If there are
-  no operands, we go directly to <kbd>apply-dispatch</kbd>.  Otherwise we
+  no operands, we go directly to <kbd>apply-dispatch</kbd><kbd>apply_dispatch</kbd>.  Otherwise we
   save <kbd>proc</kbd> on the stack and start the argument-evaluation
   loop:<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
 
@@ -1923,13 +1925,13 @@ ev-appl-did-operator
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_appl_did_operator",
-           restore("unev"),                  // the operands
-           restore("env"),
-           assign("argl", op("empty_arglist")),
-           assign("fun", reg("val")),       // the operator
-           test(op("has_no_operands"), reg("unev")),
-           branch(label("apply_dispatch")),
-           save("fun"),
+    restore("unev"), // the operands
+    restore("env"),
+    assign("argl", list(op("empty_arglist"))),
+    assign("fun", list(reg("val"))), // the operator
+    test(op("has_no_operands"), reg("unev")),
+    branch(label("apply_dispatch")),
+    save("fun"),
 </pre></div></div></td></tr></table>
       </p></div>
 
@@ -1962,14 +1964,14 @@ ev-appl-operand-loop
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_appl_operand_loop",
-           save("argl"),
-           assign("exp", (op("first_operand"), reg("unev")),
-           test(op("is_last_operand"), reg("unev")),
-           branch(label("ev_appl_last_arg")),
-           save("env"),
-           save("unev"),
-           assign("continue", (label("ev_appl_accumulate_arg"))),
-           go_to(label("eval_dispatch")),
+    save("argl"),
+    assign("exp", list(op("first_operand"), reg("unev"))),
+    test(op("is_last_operand"), reg("unev")),
+    branch(label("ev_appl_last_arg")),
+    save("env"),
+    save("unev"),
+    assign("continue", label("ev_appl_accumulate_arg")),
+    go_to(label("eval_dispatch")),
 </pre></div></div></td></tr></table>
       </p></div>
 
@@ -1994,12 +1996,12 @@ ev-appl-accumulate-arg
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_appl_accumulate_arg",
-          restore("unev"),
-          restore("env"),
-          restore("argl"),
-          assign("argl", op("adjoin_arg"), reg("val"), reg("argl")),
-          assign("unev", op("rest_operands"), reg("unev")),
-          go_to(label("ev_appl_operand_loop")),
+    restore("unev"),
+    restore("env"),
+    restore("argl"),
+    assign("argl", list(op("adjoin_arg"), reg("val"), reg("argl"))),
+    assign("unev", list(op("rest_operands"), reg("unev"))),
+    go_to(label("ev_appl_operand_loop")),
 </pre></div></div></td></tr></table>
       </p></div>
 
@@ -2007,9 +2009,9 @@ ev-appl-accumulate-arg
 <a name='p9' class='permalink'></a><p>
   Evaluation of the last argument is handled differently.  There is no
   need to save the environment or the list of unevaluated operands
-  before going to <kbd>eval-dispatch</kbd>,
+  before going to <kbd>eval-dispatch</kbd><kbd>eval_dispatch</kbd>,
   since they will not be required after the last operand is evaluated.
-  Thus, we return from the evaluation to a special entry point <kbd>ev-appl-accum-last-arg</kbd>, which restores the argument list, accumulates
+  Thus, we return from the evaluation to a special entry point <span style="color:teal"><kbd>ev-appl-accum-last-arg</kbd></span><span style="color:blue"><kbd>ev_appl_accum_last_arg</kbd></span>, which restores the argument list, accumulates
   the new argument, restores the saved
   <span style="color:teal">procedure</span><span style="color:blue">function</span>, and goes off to
   perform the 
@@ -2031,14 +2033,14 @@ ev-appl-last-arg
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_appl_last_arg",
-      assign("continue", label("ev_appl_accum_last_arg")),
-      go_to(label("eval_dispatch")),
-
+    assign("continue", label("ev_appl_accum_last_arg")),
+    go_to(label("eval_dispatch")),
+    
 "ev_appl_accum_last_arg",
-      restore(argl),
-      assign("argl", op("adjoin_arg"), reg("val"), reg("argl")),
-      restore("fun"),
-      go_to(label("apply_dispatch")),
+    restore("argl"),
+    assign("argl", list(op("adjoin_arg"), reg("val"), reg("argl"))),
+    restore("fun"),
+    go_to(label("apply_dispatch")),
 </pre></div></div></td></tr></table>
       </p></div>
 
@@ -2050,9 +2052,9 @@ ev-appl-last-arg
   left to right or right to left—see
   exercise <REF NAME="ex:order-of-evaluation"><a class="superscript" id="5.4.1-ex-link-3.8" href="./3.1.3.html#ex_3.8">3.8</a></REF>).  This order is not determined
   by the metacircular evaluator, which inherits its control structure
-  from the underlying Scheme in which it is implemented.<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a> Because the <kbd>first\?operand</kbd>
-  selector (used in <kbd>ev-appl-operand-loop</kbd> to extract successive operands
-  from <kbd>unev</kbd>) is implemented as <span style="color:teal"><kbd>car</kbd></span><span style="color:blue"><kbd>head</kbd></span> and the <kbd>rest-operands</kbd> selector is implemented as <span style="color:teal"><kbd>cdr</kbd></span><span style="color:blue"><kbd>tail</kbd></span>, the
+  from the underlying Scheme in which it is implemented.<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a> Because the <span style="color:teal"><kbd>first-operand</kbd></span><span style="color:blue"><kbd>first_operand</kbd></span>
+  selector (used in <span style="color:teal"><kbd>ev-appl-operand-loop</kbd></span><span style="color:blue"><kbd>ev_appl_operand_loop</kbd></span> to extract successive operands
+  from <kbd>unev</kbd>) is implemented as <span style="color:teal"><kbd>car</kbd></span><span style="color:blue"><kbd>head</kbd></span> and the <span style="color:teal"><kbd>rest-operands</kbd></span><span style="color:blue"><kbd>rest_operands</kbd></span> selector is implemented as <span style="color:teal"><kbd>cdr</kbd></span><span style="color:blue"><kbd>tail</kbd></span>, the
   explicit-control evaluator will evaluate the operands of a combination
   in left-to-right order.
   
@@ -2069,14 +2071,14 @@ ev-appl-last-arg
       
       <div class='permalink'>
 <a name='p11' class='permalink'></a><p>
-  The entry point <kbd>apply-dispatch</kbd> corresponds to the <kbd>apply</kbd>
+  The entry point <span style="color:teal"><kbd>apply-dispatch</kbd></span><span style="color:blue"><kbd>apply_dispatch</kbd></span> corresponds to the <kbd>apply</kbd>
   <span style="color:teal">procedure</span><span style="color:blue">function</span>
-  of the metacircular evaluator.  By the time we get to <kbd>apply-dispatch</kbd>, the <kbd>proc</kbd> register contains the
+  of the metacircular evaluator.  By the time we get to <span style="color:teal"><kbd>apply-dispatch</kbd></span><span style="color:blue"><kbd>apply_dispatch</kbd></span>, the <kbd>proc</kbd> register contains the
   <span style="color:teal">procedure</span><span style="color:blue">function</span>
   to
   apply and <kbd>argl</kbd> contains the list of evaluated arguments to which
   it must be applied.  The saved value of <kbd>continue</kbd> (originally
-  passed to <kbd>eval-dispatch</kbd> and saved at <kbd>ev-application</kbd>),
+  passed to <span style="color:teal"><kbd>eval-dispatch</kbd></span><span style="color:blue"><kbd>eval_dispatch</kbd></span> and saved at <span style="color:teal"><kbd>ev-application</kbd></span><span style="color:blue"><kbd>ev_application</kbd></span>),
   which tells where to return with the result of the
   <span style="color:teal">procedure</span><span style="color:blue">function</span>
   application, is on the stack.  When the application is complete, the
@@ -2101,11 +2103,11 @@ apply-dispatch
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "apply_dispatch",
-          test(op("is_primitive_procedure"), reg("fun")),
-          branch(label("primitive_apply")),
-          test(op("is_compound_procedure"), reg("fun")),
-          branch(label("compound_apply")),
-          go_to(label("unknown_procedure_type")),
+    test(op("is_primitive_function"), reg("fun")),
+    branch(label("primitive_apply")),
+    test(op("is_compound_function"), reg("fun")),
+    branch(label("compound_apply")),
+    go_to(label("unknown_procedure_type")),
 </pre></div></div></td></tr></table>
       </p></div>
 
@@ -2132,13 +2134,13 @@ apply-dispatch
   
   Since we are interested in the structure of
   the evaluation process rather than the details of the primitives, we
-  will instead just use an <kbd>apply-primitive-procedure</kbd> operation
+  will instead just use an <span style="color:teal"><kbd>apply-primitive-procedure</kbd></span><span style="color:blue"><kbd>apply_primitive_procedure</kbd></span> operation
   that applies the
   <span style="color:teal">procedure</span><span style="color:blue">function</span>
   in <kbd>proc</kbd> to the arguments in <kbd>argl</kbd>.  For the purpose of simulating the evaluator with the simulator
   of section <REF NAME="sec:simulator"><a class="superscript" id="5.4.1-sec-link-5.2" href="./5.2.html">5.2</a></REF> we use the
   <span style="color:teal">procedure</span><span style="color:blue">function</span>
-  <kbd>apply-primitive-procedure</kbd>, which calls on the underlying Scheme
+  <span style="color:teal"><kbd>apply-primitive-procedure</kbd></span><span style="color:blue"><kbd>apply_primitive_procedure</kbd></span>, which calls on the underlying Scheme
   system to perform the application, just as we did for the metacircular
   evaluator in section <REF NAME="sec:running-eval"><a class="superscript" id="5.4.1-sec-link-4.1.4" href="./4.1.4.html">4.1.4</a></REF>.  After computing the
   value of the primitive application, we restore <kbd>continue</kbd> and go
@@ -2158,9 +2160,12 @@ primitive-apply
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "primitive_apply",
-          assign("val", op("apply_primitive_procedure"), reg("fun"), reg("argl")),
-          restore("continue"),
-          go_to(reg("continue")),
+    assign(
+    "val",
+    list(op("apply_primitive_function"), reg("fun"), reg("argl"))
+    ),
+    restore("continue"),
+    go_to(reg("continue")),
 </pre></div></div></td></tr></table>
       </p></div>
 
@@ -2175,7 +2180,7 @@ primitive-apply
   <span style="color:teal">procedure</span><span style="color:blue">function</span>, and evaluate in this
   extended environment the sequence of expressions that forms the body
   of the
-  <span style="color:teal">procedure</span><span style="color:blue">function</span>.  <kbd>Ev-sequence</kbd>, described below in
+  <span style="color:teal">procedure</span><span style="color:blue">function</span>.  <span style="color:teal"><kbd>Ev-sequence</kbd></span><span style="color:blue"><kbd>Ev_sequence</kbd></span>, described below in
   section <REF NAME="sec:sequence-evaluation"><a class="superscript" id="5.4.1-sec-link-5.4.2" href="./5.4.2.html">5.4.2</a></REF>, handles the evaluation
   of the sequence.
 
@@ -2194,17 +2199,31 @@ compound-apply
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "compound_apply",
-          assign("unev", op("procedure_parameters"), reg("fun")),
-          assign("env", op("procedure_environment") reg("fun")),
-          assign("env", op("extend_environment"), reg("unev"), reg("argl"), reg("env")),
-          assign("unev", op("procedure_body"), reg("fun")),
-          go_to(label("ev_sequence")),
+    assign("unev", list(op("function_parameters"), reg("fun"))), // params
+    // FIXME: A QUICK HACK HERE, UNSURE WHY IT'S NEEDED
+    assign("unev", list(op("all_names_of_names"), reg("unev"))), // params destructured
+    
+    assign("temp", list(op("function_body"), reg("fun"))), // body
+    assign("temp", list(op("local_names"), reg("unev"))), // locals
+    
+    assign("unev", list(op("insert_all"), reg("unev"), reg("temp"))), //names
+    assign("temp", list(op("get_temp_block_values"), reg("temp"))), // temp_values
+    
+    assign("temp", list(op("append"), reg("argl"), reg("temp"))), // values
+    assign("env", list(op("function_environment"), reg("fun"))),
+    
+    assign(
+    "env",
+    list(op("extend_environment"), reg("unev"), reg("temp"), reg("env"))
+    ),
+    assign("unev", list(op("function_body"), reg("fun"))),
+    go_to(label("ev_sequence")),
 </pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
 <a name='p14' class='permalink'></a><p>
-  <kbd>Compound-apply</kbd> is the only place in the interpreter where the
+  <span style="color:teal"><kbd>Compound-apply</kbd></span><span style="color:blue"><kbd>Compound_apply</kbd></span> is the only place in the interpreter where the
   <kbd>env</kbd> register is ever assigned a new value.  Just as in the
   metacircular evaluator, the new environment is constructed from the
   environment carried by the
@@ -2224,7 +2243,7 @@ compound-apply
     it could have been written in a data-directed style (and in a real
     system it probably would have been) to avoid the need to perform
     sequential tests and to facilitate the definition of new expression
-    types.  A machine designed to run <span style="color:teal">Lisp</span><span style="color:blue">JavaScript</span> would probably include a <kbd>dispatch-on-type</kbd> instruction that would efficiently execute such
+    types.  A machine designed to run <span style="color:teal">Lisp</span><span style="color:blue">JavaScript</span> would probably include a <span style="color:teal"><kbd>dispatch-on-type</kbd></span><span style="color:blue"><kbd>dispatch_on_type</kbd></span> instruction that would efficiently execute such
     data-directed dispatches.
     </FOOTNOTE></div>
     
@@ -2312,7 +2331,7 @@ function is_last_operand(ops) {
     initializing <kbd>argl</kbd> until after evaluating the first operand, so
     as to avoid saving <kbd>argl</kbd> in this case.  The compiler in
     section <REF NAME="sec:compilation"><a class="superscript" id="5.4.1-sec-link-5.5" href="./5.5.html">5.5</a></REF> performs this optimization.  (Compare
-    the <kbd>construct-arglist</kbd>
+    the <span style="color:teal"><kbd>construct-arglist</kbd></span><span style="color:blue"><kbd>construct_arglist</kbd></span>
     <span style="color:teal">procedure</span><span style="color:blue">function</span>
     of
     section <REF NAME="sec:compiling-combinations"><a class="superscript" id="5.4.1-sec-link-5.5.3" href="./5.5.3.html">5.5.3</a></REF>.)
@@ -2327,7 +2346,7 @@ function is_last_operand(ops) {
     determined by the order of evaluation of the arguments to <span style="color:teal"><kbd>cons</kbd></span><span style="color:blue"><kbd>pair</kbd></span>
     in the
     <span style="color:teal">procedure</span><span style="color:blue">function</span>
-    <kbd>list-of-values</kbd> of section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="5.4.1-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>
+    <span style="color:teal"><kbd>list-of-values</kbd></span><span style="color:blue"><kbd>list_of_values</kbd></span> of section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="5.4.1-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>
     (see exercise <REF NAME="ex:arg-eval-order"><a class="superscript" id="5.4.1-ex-link-4.2" href="./4.1.1.html#ex_4.2">4.2</a></REF>).
     </FOOTNOTE></div>
     

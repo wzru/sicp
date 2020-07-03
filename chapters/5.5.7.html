@@ -1692,7 +1692,7 @@
   a
   function
   
-  <kbd>compile-and-go</kbd> that compiles a Scheme expression, loads the
+  <kbd>compile_and_go</kbd> that compiles a Scheme expression, loads the
   resulting object code into the evaluator machine,
   and causes the machine to run the code in the
   evaluator global environment, print the result, and
@@ -1773,7 +1773,7 @@ ok
 
   <kbd class='snippet'>branch(label("external_entry")), // branches if flag is set
 "read_eval_print_loop",
-perform(op("initialize-stack")),
+perform(op("initialize_stack")),
 $\langle\ldots\rangle$</kbd>
       </p></div>
 
@@ -1817,9 +1817,9 @@ $\langle\ldots\rangle$</kbd>
   <kbd>flag</kbd> so that the evaluator will go to <kbd>external_entry</kbd>, and start
   the evaluator.
 
-  <div class='snippet' id='javascript_123_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsDMBXAOwGMAXASwHsjQSqBbABwoBsBTAfQEMiATTgHMqACnYAPJgCd2AZ1nUiASlABvbKE10assqApFdUguUWzQAXlDd57BgCMOI3dzJ32RMrJH1mbdmKSMvKKADSgAEQAbtysEeERMmQEUkQRSkoJ7CTsMXFKANwaWmQAFuwAtIKsVPaxFR5RFFI0DB56VrLsyUwNRE0tRG2eIoXFml1knDKCFLrsUpz0nu3eEdm5sfGRedsGRiaUOmNaoJPT7LPzi8tunmsbuwl4rNyC22TG7CdaSSm0LikZBE6xyuzGAF8gA')">function compile_and_go(expression) {
+  <div class='snippet' id='javascript_123_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsDMBXAOwGMAXASwHsjQSqBbABwoBsBTAfQEMiATTgHMqACnYAPJgCd2AZ1nUiASlABvbKE10assqApFdUguUWzQAXlDd57BgCMOI3dzJ32RMrJH1mbdmKSMvKKADSgAEQAbtysEeERMmQEUkQRSkoJ7CTsMXFKANwaWmQAFlyCrFT2sZweURRSNAweelay7MlMdUQNTUQtniKFxZodZJwyghS67FKc9J6t3hHZubHxkXmbBkYmlDojWqDjk+zTs-OLbp4ra9sJeKzcgptkxuxHWkkptC5SZBEqxy2xGAF8gA')">function compile_and_go(expression) {
     const instructions = assemble(statements(compile(expression, "val", "return")), "eceval");
-    the-global-environment = setup-environment();
+    the_global_environment = setup_environment();
     set_register_contents("eceval", "val", instructions);
     set_register_contents("eceval", "flag", true);
     return start("eceval");
