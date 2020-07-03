@@ -3219,13 +3219,15 @@ z2
             
             (define (cdr z) (z 'cdr))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_60_28_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhmAUzIFmtALagAvAD4RY9QsVbQAIgAWEhgBMdoNetEB+UO3MWAXKE3adZJgBsddi6Gs9vDqASzMxUbHLcOgCCzADmBHISRGSgRFQpAAygYaCYoBS0jCw6fADc2AC++MTk1LQGxqwAXgLC6pLSsqBNrPqGJmWV1aSUNKBuFO7NrXYdMrQ9rh4l5VXYJDQAzinsSvRMbJjcAEyDDUYcZUA')">function pair(x, y) {
-    return m =>
-        m === "head" 
-        ? x
-        : m === "tail"
-          ? y
-          : error(m, "Argument not 0 or 1 in pair");
+            <td><div class='snippet' id='javascript_60_28_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVAATCgGdGZEgAtWAWwHCxO0MwCmZAs1rrQAXkugARCv0MZ1kbpcB+UO2cudALlBnLcxsyJgAbJ29vdx4vSLE-fWZmKjZ1bmsAVSIZfTwKIn0ZUCo6RIYpWnz6JmYfaz4AbliAX1iDIxNZBSVVBoBIF2xWiXJqWjsHVgAvLTbDY1op1lt7R0ah-GJR6RCKUOnZnXaF0CXrXfD11uwSGnkyDwtqllZMbgAmdYmZDkagA')">function pair(x, y) {
+    function dispatch(m) {
+        return m === "head"
+            ? x
+            : m === "tail"
+              ? y
+              : error(m, "Undefined operation in pair:");
+    }
+    return dispatch;	      
 }
 function head(z) {
     return z("head");

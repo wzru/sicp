@@ -2167,7 +2167,7 @@ const W2 = make_withdraw(100);
     
     that returns a <QUOTE>bank-account object</QUOTE> with a specified initial
     balance:
-    <div class='snippet' id='javascript_51_14_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvLsHOjCPLzqNNp9IY6h9KvITrVAboDGojjZCsUyrZ7G9fv9pnMFmRQf5wRC0qdQJj5pp4dZEaVymtkpDaHUAKpEJhEKhqWipACOBBYJTItlojFYHC4vgGNPkVwUUoJNTuDyeL0Sw2w3Ca-M4JC2QvYmt8fAwAAZDRJEthjFw+ADNDCQRIJHwAKwm+JAA')">function make_account(balance) {
+    <div class='snippet' id='javascript_51_14_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFstEYrA4XF8dQkR1GKTSp1AOnuj2eWkSw2w3Ca3M4JC2fPYat8fAwAAY9SLcMYuHwAdDgWphRI+ABWQ3xIA')">function make_account(balance) {
     function withdraw(amount) {
         if (balance >= amount) {
             balance = balance - amount;
@@ -2181,13 +2181,11 @@ const W2 = make_withdraw(100);
         return balance;
     }
     function dispatch(m) {
-        if (m === "withdraw") {
-            return withdraw;
-        } else if (m === "deposit") {
-            return deposit;
-        } else {
-            return "Unknown request in make_account";
-        }
+        return m === "withdraw"
+            ? withdraw
+            : m === "deposit"
+              ? deposit
+              : error(m, "Unknown request in make_account");
     }
     return dispatch;
 }
@@ -2241,31 +2239,31 @@ const W2 = make_withdraw(100);
       
     
     can be used as follows:
-    <div class='snippet' id='javascript_51_15_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvLsHOjCPLzqNNp9IY6h9KvITrVAboDGojjZCsUyrZ7G9fv9pnMFmRQf5wRC0qdQJj5pp4dZEaVymtkpDaHUAKpEJhEKhqWipACOBBYJTItlojFYHC4vgGNPkVwUUoJNTuDyeL0Sw2w3Ca-M4JC2QvYmt8fAwAAZDRJ4kA')">const acc = make_account(100);
+    <div class='snippet' id='javascript_51_15_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFstEYrA4XF8dQkR1GKTSp1AOnuj2eWkSw2w3Ca3M4JC2fPYat8fAwAAY9SKgA')">const acc = make_account(100);
 
 </pre></div></div>
-    <div class='snippet' id='javascript_51_16_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvLsHOjCPLzqNNp9IY6h9KvITrVAboDGojjZCsUyrZ7G9fv9pnMFmRQf5wRC0qdQJj5pp4dZEaVymtkpDaHUAKpEJhEKhqWipACOBBYJTItlojFYHC4vgGNPkVwUUoJNTuDyeL0Sw2w3Ca-M4JC2QvYmt8fAwAAZDRJEthjFw+ADNDCQRIJHwAKwm+JAA')">(acc("withdraw"))(50);
+    <div class='snippet' id='javascript_51_16_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFstEYrA4XF8dQkR1GKTSp1AOnuj2eWkSw2w3Ca3M4JC2fPYat8fAwAAY9SLcMYuHwAdDgWphRI+ABWQ3xIA')">(acc("withdraw"))(50);
 
 </pre><pre class='prettyprintoutput'>
 
 50
       
 </pre></div></div>
-    <div class='snippet' id='javascript_51_17_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvLsHOjCPLzqNNp9IY6h9KvITrVAboDGojjZCsUyrZ7G9fv9pnMFmRQf5wRC0qdQJj5pp4dZEaVymtkpDaHUAKpEJhEKhqWipACOBBYJTItlojFYHC4vgGNPkVwUUoJNTuDyeL0Sw2w3Ca-M4JC2QvYmt8fAwAAZDRJEthjFw+ADNDCQRIJHwAKwms0WkhW6HAtSgh0ANhdQA')">(acc("withdraw"))(60);
+    <div class='snippet' id='javascript_51_17_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFstEYrA4XF8dQkR1GKTSp1AOnuj2eWkSw2w3Ca3M4JC2fPYat8fAwAAY9SLcMYuHwAdDgWphRI+ABWQ2JbAmkhmwEwkESG0ANgdQA')">(acc("withdraw"))(60);
 
 </pre><pre class='prettyprintoutput'>
 
 "Insufficient funds"
       
 </pre></div></div>
-    <div class='snippet' id='javascript_51_18_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvLsHOjCPLzqNNp9IY6h9KvITrVAboDGojjZCsUyrZ7G9fv9pnMFmRQf5wRC0qdQJj5pp4dZEaVymtkpDaHUAKpEJhEKhqWipACOBBYJTItlojFYHC4vgGNPkVwUUoJNTuDyeL0Sw2w3Ca-M4JC2QvYmt8fAwAAZDRJEthjFw+ADNDCQRIJHwAKwms0WkhW6HAtSgh0ANhduDdVpJ2J9fAALC6gA')">(acc("deposit"))(40);
+    <div class='snippet' id='javascript_51_18_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFstEYrA4XF8dQkR1GKTSp1AOnuj2eWkSw2w3Ca3M4JC2fPYat8fAwAAY9SLcMYuHwAdDgWphRI+ABWQ2JbAmkhmwEwkESG0ANgdxrVZrxGOtfAALA6gA')">(acc("deposit"))(40);
 
 </pre><pre class='prettyprintoutput'>
 
 90	
       
 </pre></div></div>
-    <div class='snippet' id='javascript_51_19_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvLsHOjCPLzqNNp9IY6h9KvITrVAboDGojjZCsUyrZ7G9fv9pnMFmRQf5wRC0qdQJj5pp4dZEaVymtkpDaHUAKpEJhEKhqWipACOBBYJTItlojFYHC4vgGNPkVwUUoJNTuDyeL0Sw2w3Ca-M4JC2QvYmt8fAwAAZDRJEthjFw+ADNDCQRIJHwAKwms0WkhW6HAtSgh0ANhduDdVpJ2J9fAALAHzZqPTavWH-aagA')">(acc("withdraw"))(60);
+    <div class='snippet' id='javascript_51_19_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFstEYrA4XF8dQkR1GKTSp1AOnuj2eWkSw2w3Ca3M4JC2fPYat8fAwAAY9SLcMYuHwAdDgWphRI+ABWQ2JbAmkhmwEwkESG0ANgdxrVZrxGOtfAALL6nf7zUDYcGfSKgA')">(acc("withdraw"))(60);
 
 </pre><pre class='prettyprintoutput'>
 
@@ -2291,7 +2289,7 @@ const W2 = make_withdraw(100);
 	call to <kbd>make_account</kbd>
       
     
-    <div class='snippet' id='javascript_51_20_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvLsHOjCPLzqNNp9IY6h9KvITrVAboDGojjZCsUyrZ7G9fv9pnMFmRQf5wRC0qdQJj5pp4dZEaVymtkpDaHUAKpEJhEKhqWipACOBBYJTItlojFYHC4vgGNPkVwUUoJNTuDyeL0Sw2w3Ca-M4JAATFshexNb4+BgAAzGiTxIA')">const acc2 = make_account(100);
+    <div class='snippet' id='javascript_51_20_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFstEYrA4XF8dQkR1GKTSp1AOnuj2eWkSw2w3Ca3M4JAATFs+ew1b4+BgAAwGkVAA')">const acc2 = make_account(100);
 
 </pre></div></div>
     will produce a completely separate account object, which maintains its

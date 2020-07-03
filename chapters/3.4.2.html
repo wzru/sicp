@@ -1974,7 +1974,7 @@ concurrent_execute( s(_ => { x = x * x; }),
     from section <REF NAME="sec:local-state-variables"><a class="superscript" id="3.4.2-sec-link-3.1.1" href="./3.1.1.html">3.1.1</a></REF>,
     where the deposits and withdrawals have been serialized:
     
-    <div class='snippet' id='javascript_67_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0GiK2APABQBKUAG9coSaDJ0AzhWlsANktABeUEqryBBJktlshAbglTi5anVAUAFp269BDEeKnvQAJzYUin+gzqahoARExkAI5EVN4hZh4JkgD8oAI2bPIcTCQAJhyGFAJkykpC8YkVoCl2Djz8AmGR0bEiIF4+ngCe5ZUJAFw2nkRsoGW9HgOBwaHeSmxMhnHjCSlkc0yeRSVjy+4DbJ6eNJsMADQ9u5IhAKokLCQ0AO703lEZClQBdXwhJuUAvuVvL5-DZ7FxvqZARZKLR6Gt5ptiipXOUChx7EwclsVKdQHoDEYofgYVYAqxOIZPFR9FQAF4HYRicoyEjyRjfdSMCkQpzCUzuYF+egAB3UAD5QBdEhsAOYS5mXKSOeqNKIxNi-AVK6RyBQAN30XJFAjlfx1HL5IVm80W5p1QtBhqU2vG-2JhFIsOszHYWTIMlIhQARvpssVUe5SXDQI8qHYcp4mI9TQwaEHI4kqARUqGlOGRpKmGmM4rxnmC1yK+QRgBaUDF9MkCiuyqO+jV4qt9z-UDKQxl3rt0AhSBsogEAhUMhUNjN-GkHKyELdqSAnvlaPWHJsEU0WTx1NNiiZhKdkYac+gADUDZLzdXkmH59b66krPZIqOvEoXN9lIOGktAZTZ7SfHxhUYBUpmCEc4wTJNHhCKUdRSL8aB-Qp4NsRNkx2S5JiCUIdz3A8KCWJU0O-NhKAEEj93jfDdkI6YR3PCjLhSc9pUqfZDmOAQzh48YbjuB5nnaN52U+bk-XCQNmz6LVcEBXAPwUBhOn9BSFA0f9tOPAQAEYAAYTL+NS6DIPxvGbDh+BouoBA4BVRFAHJtBFfNOkErT5MMkJ2KEPEQgAFSM0BzyUsCLQSTSDKDBpsNwpChAEABWczH1i9zPO83yEubBogpC8LIrDGtouy2L4v8xKQnosjfmMsyYpy0B-nOHKXLUSU3I82QvKYHzaoDAKSpHULsHK-NKuU9q4r8sb6uSxDmsytqFoGoaRqWnTioq4pflK6aovmhb3FG-aGt3BjyLS0ysuEpU3x1EwgA')">function make_account(balance) {
+    <div class='snippet' id='javascript_67_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0GiK2APABQBKUAG9coSaDJ0AzhWlsANktABeUEqryBBJktlshAbglTi5anVAUAFp269BDEeKnvQAJzYUin+gzqahoARExkAI5EVN4hZh4JkgD8oAI2bPIcTCQAJhyGFAJkykpC8YkVoCl2Djz8AmGR0bEiIF4+ngCe5ZUJAFw2nkRsoGW9HgOBwaHeSmxMhnHjCSlkc0yeRSVjy+4DbJ6eNJsMADQ9u5IhAKokLCQ0AO703lEZClQBdXwhJuUAvuVvL5-DZ7FxvqZARZKLR6Gt5ptiipXOUChx7EwclsVKdQHoDEYofgYVYAqxOIZPFR9FQAF4HYRicoyEjyRjfdSMCkQpzCUzuYF+egAB3UAD5QBdEhsAOYS5mXKSOeqNKIxNi-AVK6RyBQAN30XJFAjlfx1HL5IVm80W5p1QtBhqU2vG-2JhFIsOszHYWTIMlIhQARvpssVUe5SXDQI8qHYcp4mI9TQwaEHI4kqARUqGlOGRpKmGmM4rxnmC1yK+QRgBaUDF9MkCiuyqO+jV4qt9z-UDKQxl3rt0AhSBsogEAhUMhUNjN-GkHKyELdqSAnvlaPWHJsEU0WTx1NNiiZhKdkYac+gADUDZLzdXkmH59b66krPZIqOvEoXN9lIOGktAZTZ7UkLd6BybQRSYCgyFsAQXEHDxhymYIRzjBMk0eEIpWWFIvxoH9Ckw2xE2THZekmIJQh3PcDwoJZdgI782EoAQ6P3eNKPGajphHc8mMuFJz2lSp9kOY5EPOC0rlue4nheNg3nZT5uT9cJA2bPotQBIEfGFUAoNkGC4NsD0PwUBhOn9LSFA0f9bOPAQAEYAAY3L+XBWTIPxvGbDh+DYuoBA4BVRCM6D806RCbM05yQkEoQ8RCAAVFzQHPHSwNkjxrKcoMGlI8icKEAQAFZPMfXLjJFaLYoK5sGiSlL0sysMa2y6rZPy+LCpCTiGN+VyPJy3LQH+GTZLCtRJQi2r6t6gMEpakdUuwdr8063TxoSJa7KK+MyOw4bKrG3aFqYGL9pWjril+VqNqynbdvcG7+sG+NhvcqqxJ1N8dRMIA')">function make_account(balance) {
     function withdraw(amount) {
         if (balance > amount) {
             balance = balance - amount;
@@ -1988,14 +1988,17 @@ concurrent_execute( s(_ => { x = x * x; }),
         return balance;
     }
     const protect = make_serializer();
-    return m => m === "withdraw" 
-                ? protect(withdraw)
-                : m === "deposit"
-                ? protect(deposit)
-                : m === "balance"
+    function dispatch(m) {
+        return m === "withdraw" 
+            ? protect(withdraw)
+            : m === "deposit"
+              ? protect(deposit)
+              : m === "balance"
                 ? balance
                 : error(m,
                    "Unknown request in make_account:");
+    }
+    return dispatch;
 }
 
 </pre></div></div>
@@ -2081,7 +2084,7 @@ concurrent_execute( s(_ => { x = x * x;     }),
     
     Ben Bitdiddle worries that it would be better to implement the bank
     account as follows (where the commented line has been changed):
-    <div class='snippet' id='javascript_67_7_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0GiK2APABQBKUAG9coSaDJ0AzhWlsANktABeUEqryBBJktlshAbglTi5anVAUAFp269BDEeKnvQAJzYUin+gzqahoARExkAI5EVN4hZh4JkgD8oAI2bPIcTCQAJhyGFAJkykpC8YkVoCl2Djz8AmGR0bEiIF4+ngCe5ZUJAFw2nkRsoGW9HgOBwaHeSmxMhnHjCSlkc0yeRSVjy+4DbJ6eNJsMADQ9u5IhAKokLCQ0AO703lEZClQBdXwhJuUAvuVvL5-DZ7FxvqZARZKLR6Gt5ptiipXOUChx7EwclsVKdQHoDEYofgYVYAqxOIZPFR9FQAF4HYRicoyEjyRjfdSMCkQpzCUzuYF+egAB3UAD5QBdEhsAOYS5mXKSOeqNKIxNi-AVK6RyBQAN30XJFAjlfx1HL5IVm80W5p1QtBhqU2vG-2JhFIsOszHYWTIMlIhQARvpssVUe5SXDQI8qHYcp4mI9TQwaEHI4kqARUqGlOGRpKmGmM4rxnmC1yK+QRgBaUDF9MkCiuyqO+jV4qt9z-UDKQxl3rt0AhSBsogEAhUMhUNjN-GkHKyELdqSAnvlaPWHJsEU0WTx1NNiiZhKdkYac+gADUDZLzdXkmH59b66krPZIqOvEoXN9lIOGktAZTZ7SfHxhUYBUpmCEc4wTJNHiWJUUi-Ggf0KeDbETZMdkuSYglCHc9wPChkMuVDvzYSgBGI-d4zw3YCOmEdz3I3ZKPQ6jCg4BVzyEARFzYKcSDYHJWjAKkgPpMTpUqfZDmOAQzjk8YbjuB5nnaN52U+bk-XCQNmz6LVcEBXAPwUBhOn9IyFA0f9bOPAQAEYAAY3L+Cy6DIPxvGbDh+GouoBF4tRJVEUAcm0EV806ZSbMM5yQjYoQ8RCAAVFzQHPEywItBJrKcoMGiwnCkIEgBWTzHwKqKYrihLiubBpUvSrKcrDGs8tqgqiqSkqQjo0jflcjz8rq0B-nOOqwoi+rZFiph4v6gNkrakcMuwTr8260zJsKxK1sGsrENG6qJoO6LFsa1a7Narril+drtty-aDvcO7kuG+NRvcmrVKVN8dRMIA')">function make_account(balance) {
+    <div class='snippet' id='javascript_67_7_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0GiK2APABQBKUAG9coSaDJ0AzhWlsANktABeUEqryBBJktlshAbglTi5anVAUAFp269BDEeKnvQAJzYUin+gzqahoARExkAI5EVN4hZh4JkgD8oAI2bPIcTCQAJhyGFAJkykpC8YkVoCl2Djz8AmGR0bEiIF4+ngCe5ZUJAFw2nkRsoGW9HgOBwaHeSmxMhnHjCSlkc0yeRSVjy+4DbJ6eNJsMADQ9u5IhAKokLCQ0AO703lEZClQBdXwhJuUAvuVvL5-DZ7FxvqZARZKLR6Gt5ptiipXOUChx7EwclsVKdQHoDEYofgYVYAqxOIZPFR9FQAF4HYRicoyEjyRjfdSMCkQpzCUzuYF+egAB3UAD5QBdEhsAOYS5mXKSOeqNKIxNi-AVK6RyBQAN30XJFAjlfx1HL5IVm80W5p1QtBhqU2vG-2JhFIsOszHYWTIMlIhQARvpssVUe5SXDQI8qHYcp4mI9TQwaEHI4kqARUqGlOGRpKmGmM4rxnmC1yK+QRgBaUDF9MkCiuyqO+jV4qt9z-UDKQxl3rt0AhSBsogEAhUMhUNjN-GkHKyELdqSAnvlaPWHJsEU0WTx1NNiiZhKdkYac+gADUDZLzdXkmH59b66krPZIqOvEoXN9lIOGktAZTZ7UkLd6BybQRSYCgyFsAQXEHDxhymYIRzjBMk0eJZxhSL8aB-QpMNsRNkx2XpJiCUIdz3A8KFw5Z8O-NhKAEWj93jCjxio6YR3PRjdmYwjWMKDgFXPIQBEXNgpxINgclaMAqSA+kFOlSp9kOY5EPOC0rlue4nheNg3nZT5uT9cJA2bPotQBIEfGFUAoNkGC4NsD0PwUBhOn9GyFA0f9-OPAQAEYAAYIr+XBWTIPxvGbDh+FYuoBHEtRJVEFzoPzTpEL86zQpCAShDxEIABUwtAc87LA-SPF8kKgwaEiyJwqSAFZosfBrXJFPKCua5sGlK8qqpqsMazq3r9KaoqWpCDj6N+cKovqhrQH+PT9IyrKcrcwb5oDYqxpHCrsEm-NpvszaEmOgLWvjUjsNW7qNru-qjsKk7FrOyrLtq267vcB7iuW+NVsinqNJ1N8dRMIA')">function make_account(balance) {
     function withdraw(amount) {
         if (balance > amount) {
             balance = balance - amount;
@@ -2095,14 +2098,17 @@ concurrent_execute( s(_ => { x = x * x;     }),
         return balance;
     }
     const protect = make_serializer();
-    return m => m === "withdraw"
-                ? protect(withdraw)
-                : m === "deposit"
-                ? protect(deposit)
-                : m === "balance"
+    function dispatch(m) {
+        return m === "withdraw"
+            ? protect(withdraw)
+            : m === "deposit"
+              ? protect(deposit)
+              : m === "balance"
                 ? protect(_ => balance)(undefined) // serialized
                 : error(m,
                    "Unknown request in make_account:");
+    }
+    return dispatch;
 }
 
 </pre></div></div>
@@ -2153,7 +2159,7 @@ concurrent_execute( s(_ => { x = x * x;     }),
       
       function.
     
-    <div class='snippet' id='javascript_67_8_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0GiK2APABQBKUAG9coSaDJ0AzhWlsANktABeUEqryBBJktlshAbglTi5anVAUAFp269BDEeKnvQAJzYUin+gzqahoARExkAI5EVN4hZh4JkgD8oAI2bPIcTCQAJhyGFAJkykpC8YkVoCl2Djz8AmGR0bEiIF4+ngCe5ZUJAFw2nkRsoGW9HgOBwaHeSmxMhnHjCSlkc0yeRSVjy+4DbJ6eNJsMADQ9u5IhAKokLCQ0AO703lEZClQBdXwhJuUAvuVvL5-DZ7FxvqZARZKLR6Gt5ptiipXOUChx7EwclsVKdQHoDEYofgYVYAqxOIZPFR9FQAF4HYRicoyEjyRjfdSMCkQpzCUzuYF+egAB3UAD5QBdEhsAOYS5mXKSOeqNKIxNi-AVK6RyBQAN30XJFAjlfx1HL5IVm80W5p1QtBhqU2vG-2JhFIsOszHYWTIMlIhQARvpssVUe5SXDQI8qHYcp4mI9TQwaEHI4kqARUqGlOGRpKmGmM4rxnmC1yK+QRgBaUDF9MkCiuyqO+jV4qt9z-UDKQxl3rt0AhSBsogEAhUMhUNjN-GkHKyELdqSAnvlaPWHJsEU0WTx1NNiiZhKdkYac+gADUDZLzdXkmH59b66krPZIqOvEoXN9lIOGktAZTZ7UkD8FC-GgfwoDg4wTJNHmNb82EoAR4NsRNkzA3U2UglDKA4Hc9wPBQNCgmCBGI-d4xw4cpklKZghHDCsMeJYlRSCjUNg1jEOlSpJiCUJqNIjjLi4gjYNE+MBIqITphHc9xN2FJzzkxJ9kOY4BDODTKhuO4Hmedo3nZT5uT9cJA2bPotVwQFcAgxhOn9GyyMszhrOPAQAEYAAZ-L+Jy6DIPxvGbDh+FQuoBA4BVRFAHJtBFfNOl01zvKDBplKEPEQgAFV80BzzsnCLQ8BhMoDHyQj45NfgEABWILHwqpKUrSjK3Nq3L8qKkqwxrMq2oqqqeuykIZIoRqAta-Tdn+c52vitRJUS5LZFSph0vGrLmxyobil+frsEG-Nhvs9rEj2mrJvq9ihGa+broSTbtt26r3MOi7jrykcCrO0qrte9xbu+qbdxomanrm8r2rfHUTCAA')">function make_account(balance) {
+    <div class='snippet' id='javascript_67_8_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0GiK2APABQBKUAG9coSaDJ0AzhWlsANktABeUEqryBBJktlshAbglTi5anVAUAFp269BDEeKnvQAJzYUin+gzqahoARExkAI5EVN4hZh4JkgD8oAI2bPIcTCQAJhyGFAJkykpC8YkVoCl2Djz8AmGR0bEiIF4+ngCe5ZUJAFw2nkRsoGW9HgOBwaHeSmxMhnHjCSlkc0yeRSVjy+4DbJ6eNJsMADQ9u5IhAKokLCQ0AO703lEZClQBdXwhJuUAvuVvL5-DZ7FxvqZARZKLR6Gt5ptiipXOUChx7EwclsVKdQHoDEYofgYVYAqxOIZPFR9FQAF4HYRicoyEjyRjfdSMCkQpzCUzuYF+egAB3UAD5QBdEhsAOYS5mXKSOeqNKIxNi-AVK6RyBQAN30XJFAjlfx1HL5IVm80W5p1QtBhqU2vG-2JhFIsOszHYWTIMlIhQARvpssVUe5SXDQI8qHYcp4mI9TQwaEHI4kqARUqGlOGRpKmGmM4rxnmC1yK+QRgBaUDF9MkCiuyqO+jV4qt9z-UDKQxl3rt0AhSBsogEAhUMhUNjN-GkHKyELdqSAnvlaPWHJsEU0WTx1NNiiZhKdkYac+gADUDZLzdXkmH59b66krPZIqOvEoXN9lIOGktAZTZ7UkD8FC-GgfwoDg4wTJNHmNb82EoAR4NsRNkzA3U2UglDKA4Hc9wPBQNCgmCBGI-d4xwrd6BybQRSYCgyFsAQXEHDxhymYIRwwrDHiWcYUgo1DYIExDpQmRgglCajSOE5ZRII2CFPjaT+lk6YR3PJTdhSc9NMSfZDmODjzgtK5bnuJ4XjYN52U+bk-XCQNmz6LUASBHxhVARjZGY1jbA9CDGE6f13LIlzODc48BAARgABiSv5cFZMg-G8ZsOH4VC6gEDgFVEfymPzToOIiuKgwaPShDxEIABUEtAc9PJwqz3AYKqA3ikJJOTX4BAAVlSx9OoCkVysqyK+rqhrmtasMa3a8arO62aapCdSKCG5KxuMy5-ksqyirUSUSsm6aNuq5tauW4pfgW7AlvzFavM6xIbt6raBqEoQRoOz6EiupgKu+qL7rex76pHRqXraj7ga6nrIe23caN2gH9o6zq3x1EwgA')">function make_account(balance) {
     function withdraw(amount) {
         if (balance > amount) {
             balance = balance - amount;
@@ -2169,14 +2175,17 @@ concurrent_execute( s(_ => { x = x * x;     }),
     const protect = make_serializer();
     const protect_withdraw = protect(withdraw);
     const protect_deposit = protect(deposit);
-    return m => m === "withdraw"
-                ? protect_withdraw
-                : m === "deposit"
-                ? protect_deposit
-                : m === "balance"
+    function dispatch(m) {
+        return m === "withdraw"
+            ? protect_withdraw
+            : m === "deposit"
+              ? protect_deposit
+              : m === "balance"
                 ? balance
                 : error(m,
                    "Unknown request in make_account:");
+    }
+    return dispatch;
 }
 
 </pre></div></div>
@@ -2223,7 +2232,7 @@ concurrent_execute( s(_ => { x = x * x;     }),
     could implement this as
     follows:<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
     
-    <div class='snippet' id='javascript_67_9_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0GiK2APABQBKUAG9coSaDJ0AzhWlsANktABeUEqryBBJktlshAbglTi5anVAUAFp269BDEeKnvQAJzYUin+gzqahoARExkAI5EVN4hZh4JkgD8oAI2bPIcTCQAJhyGFAJkykpC8YkVoCl2Djz8AmGR0bEiIF4+ngCe5ZUJAFw2nkRsoGW9HgOBwaHeSmxMhnHjCSlkc0yeRSVjy+4DbJ6eNJsMADQ9u5IhAKokLCQ0AO703lEZClQBdXwhJuUAvuVvL5-DZ7FxvqZARZKLR6Gt5ptiipXOUChx7EwclsVKdQHoDEYofgYVYAqxOIZPFR9FQAF4HYRicoyEjyRjfdSMCkQpzCUzuYF+egAB3UAD5QBdEhsAOYS5mXKSOeqNKIxNi-AVK6RyBQAN30XJFAjlfx1HL5IVm80W5p1QtBhqU2vG-2JhFIsOszHYWTIMlIhQARvpssVUe5SXDQI8qHYcp4mI9TQwaEHI4kqARUqGlOGRpKmGmM4rxnmC1yK+QRgBaUDF9MkCiuyqO+jV4qt9z-UDKQxl3rt0AhSBsogEAhUMhUNjN-GkHKyELdqSAnvlaPWHJsEU0WTx1NNiiZhKdkYac+gADUDZLzdXkmH59b66krPZIqOvEoXN9lIOGktAZTZ7SfHxhUYBUpmCEc4wTJNHhCKUdRSL8aB-Qp4NsRNkx2S5JiCUIdz3A8KCWJU0O-NhKAEEj93jfDdkI6YR3PCjLhSc9pUqfZDmOAQzh48YbjuB5nnaN52U+bk-XCQNmz6LVcEBT1LBjfgyFsbJZTYU0A2PWRT11NkFHk48AEYuUxbFzKDIzjAASBZPUGwMoNsC5CgmCoJR9IUigHOc9wPwUHJswIA452KLk7ObCyGnYkR6ziihsESsMa2U9xUoSkJsNwpChDoiKoprMC3IC9KQnosjfhKycyojD1QobKyNH-f0AoECyAAZer+VqmE8jqeVSgRsH6wbXKYFA-zG9zmwEFAptMXBWTIPxvGbDh+BouoBA4BVRFAcLZBFfNOlNPKkrxEJYB8A5QCvJgrODNgCGONglIqi0PDOi6mCu4aMvzLKhDuh7eE8Z7Mpi4bno+r6fsfP6+z4LSdL0kUfM2V68WGoRfrRyQAcu67QYLX5IcemGXqspgCGhlHhItMmgdNarbpHKGnpezzGeZ7KSbXc40aOtRJRO9ngZuuHNQhnmmCIVR6cRz7vBZkX-u0QHgZQSnwch5XVflhs5vejXvuF7XJE07SSF0gQcZia6CZQInUb+mWKZCbn7pN2GwfhhmmYOLXbdJ3Xydmw3imppWVaDytZobMPPAj7W3x1EwgA')">function exchange(accounts) {
+    <div class='snippet' id='javascript_67_9_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0GiK2APABQBKUAG9coSaDJ0AzhWlsANktABeUEqryBBJktlshAbglTi5anVAUAFp269BDEeKnvQAJzYUin+gzqahoARExkAI5EVN4hZh4JkgD8oAI2bPIcTCQAJhyGFAJkykpC8YkVoCl2Djz8AmGR0bEiIF4+ngCe5ZUJAFw2nkRsoGW9HgOBwaHeSmxMhnHjCSlkc0yeRSVjy+4DbJ6eNJsMADQ9u5IhAKokLCQ0AO703lEZClQBdXwhJuUAvuVvL5-DZ7FxvqZARZKLR6Gt5ptiipXOUChx7EwclsVKdQHoDEYofgYVYAqxOIZPFR9FQAF4HYRicoyEjyRjfdSMCkQpzCUzuYF+egAB3UAD5QBdEhsAOYS5mXKSOeqNKIxNi-AVK6RyBQAN30XJFAjlfx1HL5IVm80W5p1QtBhqU2vG-2JhFIsOszHYWTIMlIhQARvpssVUe5SXDQI8qHYcp4mI9TQwaEHI4kqARUqGlOGRpKmGmM4rxnmC1yK+QRgBaUDF9MkCiuyqO+jV4qt9z-UDKQxl3rt0AhSBsogEAhUMhUNjN-GkHKyELdqSAnvlaPWHJsEU0WTx1NNiiZhKdkYac+gADUDZLzdXkmH59b66krPZIqOvEoXN9lIOGktAZTZ7UkLd6BybQRSYCgyFsAQXEHDxhymYIRzjBMk0eEIpWWFIvxoH9Ckw2xE2THZekmIJQh3PcDwoJZdgI782EoAQ6P3eNKPGajphHc8mMuFJz2lSp9kOY5EPOC0rlue4nheNg3nZT5uT9cJA2bPotQBIEfGFUAoNkGC4NsD0IL7Ph4OyWU2FNANj1kU9dTZBRNOPABGLlMWxDyg2c4wAEgWT1BtHKDbAuQoJgqCUBytIoQKQvcD8FCgycDjnYouX85tPIaQSRHrPKKGwQqwxrXT3FKgqQlI8icKEDjswILKazA8LEvKkJOIY34Wsy7wOo9NKG28jR-39RKBE8gAGOa-jGpgosmnlSoEbAFqWsKmBQP91oi5sBBQbbTFwVkyD8YaKA4fg2LqAQOAVUQjOg-NOlNOqirxEJYB8A5QCvJhvODNgCGONgdM62T3GMkUPtNHqfpHf7eE8IHKpylagfByHocfWH+Bskg7IEGCYi+vEVqEGHYckeHEZBir8yqoRfrRwHge8pgCHRgmxNkxmmE+laWYLX4OYBjHgai3n+eq+m1xk2TnrUSVXuF0XvqxzV2dRpgiFUbncYh7wBaVjwtdNFBxbZjnDeN3WG32sGzahxXLckYnbFs+yKc2EHqZQWnCaF96Ra+u3iklg2jcx1nsZ5vmDgtr2GYj0XbZCFG-sdhPKz2hsU88NPLbfHUTCAA')">function exchange(accounts) {
     const account1 = head(accounts);	
     const account2 = tail(accounts);	
     const difference = account1("balance") - account2("balance");
@@ -2346,7 +2355,7 @@ concurrent_execute( s(_ => { x = x * x;     }),
     function
     with the serializers for both accounts:
     
-    <div class='snippet' id='javascript_67_12_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0GiK2APABQBKUAG9coSaDJ0AzhWlsANktABeUEqryBBJktlshAbglTi5anVAUAFp269BDEeKnvQAJzYUin+gzqahoARExkAI5EVN4hZh4JkgD8oAI2bPIcTCQAJhyGFAJkykpC8YkVoCl2Djz8AmGR0bEiIF4+ngCe5ZUJAFw2nkRsoGW9HgOBwaHeSmxMhnHjCSlkc0yeRSVjy+4DbJ6eNJsMADQ9u5IhAKokLCQ0AO703lEZClQBdXwhJuUAvuVvL5-DZ7FxvqZARZKLR6Gt5ptiipXOUChx7EwclsVKdQHoDEYofgYVYAqxOIZPFR9FQAF4HYRicoyEjyRjfdSMCkQpzCUzuYF+egAB3UAD5QBdEhsAOYS5mXKSOeqNKIxNi-AVK6RyBQAN30XJFAjlfx1HL5IVm80W5p1QtBhqU2vG-2JhFIsOszHYWTIMlIFCyuXyBxpWgZmwARvpssVUe5SXDQI8qHYcp4mI9TQwaEHE4kqARUrGlPGRpKmHmC4rxmWK1yG+QRgBaUDV-MkCiujz-UDKQx13ohSBsogEAhUMhUNjd-GkHKyEK99yAtflZPWHJsEU0WTp3NdiiFhLN4pNuMt0AAag7Ne7q6kjvo57YvfXUlZ7LfYeptKjLlfUpcMAMZe1JBfRgFSmYJQBCNMMyzR4liVFJENsTNs2lSpJiCUIdz3A8KFQy4UkI-d0xwio8OmeC31I3YUjfajElouCQipCN6QORjlmYq9ij-bio1Y-oB0OY4BDOKULSuW57ieF42DedlPm5P1wkDbs+i1XBAU9SwU2A-1tMKN9TwXIzrAwrCc07Ws3CLEsBDfUAqwfE9h0qNyNDc9sHMfMT2hBV9BPfHD+0HEYnN6KDR3HSdp1necLCXFdIoBTcvTJUAKOIo9HJw3zQDcu9Ap7HCoLfD8WT1UARSOXhKCAnkuLAzYIJC4VoLUSVYNCWzkJCWS0Iapq2EoAQhuzHZLnYgjd0okjgvcFJGpoZrCny9M5t2Bb6PCvjxgE8sW1WqR9kkk5zjk+CFIeZ52lUj5yU0gNj10v4DK3eh+DIWxsllNhTQ+oNZEs78FC048AEYuUxbEYfBkwAEg6rZaGwe7bAuQoJgqCUUGzIh4x0fcKG8uLAgDjnC8NGR7tYYaBiRAC7GKGwFmjq6xmKGZhD00w4ahAEHJqdplteY5rmQh2kjRfFydJYTD1ftAdrIzYPJ-sBkhgeJ48Ie8ym+fhjREcNlGyYx9k+dxjR8cJq3u1J8mv3qzWeM8c2Ow5gWvajPSKc90Ctc8B2-bM2XA94rrY59gQE653WgaMUW+dJ-T8FN32TL5kM8gTgRYYABlLv5Tcj-OOcL4SOoEbBy8r+qmBQVr3rMuvi5QZvTFwVkyD8bxuw4fhJrqAQOAVUQqdkEVy06U0BdZvEQlgHwDlK8KO3h6M2AIY42C+p87rnhemCXphZdX+CN94Txt7Oi9r9Kg+j5Pi7lljnW+ABtOBAigJpsJgsM8TXyEF1M+khxbz0Xsvbmz9NRCDXvfLeblQEdgIA-T+0CPCwIvlfG+PNUGb0fhg3GTBsEHFwXg0A-xbpyWnn1MQ594GgMQRWX4qCmBEFUBgve79vC0LoWwy+poUCcJbNwu+vD+E7zbm-Q+wjg6iI1mHHiv9-76xBkAmIy9wEoEgafO6BD2ErxIbIvhT9GyYKoTg1RoizHiLblI4oMj15yJsdeRR9iaGOOgZ+HUJggA')">function serialized_exchange(accounts) {
+    <div class='snippet' id='javascript_67_12_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0GiK2APABQBKUAG9coSaDJ0AzhWlsANktABeUEqryBBJktlshAbglTi5anVAUAFp269BDEeKnvQAJzYUin+gzqahoARExkAI5EVN4hZh4JkgD8oAI2bPIcTCQAJhyGFAJkykpC8YkVoCl2Djz8AmGR0bEiIF4+ngCe5ZUJAFw2nkRsoGW9HgOBwaHeSmxMhnHjCSlkc0yeRSVjy+4DbJ6eNJsMADQ9u5IhAKokLCQ0AO703lEZClQBdXwhJuUAvuVvL5-DZ7FxvqZARZKLR6Gt5ptiipXOUChx7EwclsVKdQHoDEYofgYVYAqxOIZPFR9FQAF4HYRicoyEjyRjfdSMCkQpzCUzuYF+egAB3UAD5QBdEhsAOYS5mXKSOeqNKIxNi-AVK6RyBQAN30XJFAjlfx1HL5IVm80W5p1QtBhqU2vG-2JhFIsOszHYWTIMlIFCyuXyBxpWgZmwARvpssVUe5SXDQI8qHYcp4mI9TQwaEHE4kqARUrGlPGRpKmHmC4rxmWK1yG+QRgBaUDV-MkCiujz-UDKQx13ohSBsogEAhUMhUNjd-GkHKyEK99yAtflZPWHJsEU0WTp3NdiiFhLN4pNuMt0AAag7Ne7q6kjvo57YvfXUlZ7LfYeptKjLlfUpcMAMZe1JBfRgFSmYJQBCNMMyzR4liVFJENsTNs2lSpJiCUIdz3A8KFQy4UkI-d0xwio8OmeC31I3YUjfajElouCQipCN6QORjlmYq9ij-bio1Y-oB0OY4BDOKULSuW57ieF42DedlPm5P1wkDbs+i1XBAU9SwU2A-1tMKN9TwXIzrAwrCc07Ws3CLEsBDfUAqwfE9h0qNyNDc9sHMfMT2hBV9BPfHD+0HEYnN6KDR3HSdp1necLCXFdIoBTcvTJUAKOIo9HJw3zQDcu9Ap7HCoLfD8WT1UARSOXhKCAnkuLAzYIKs716BybQRSYCgyFsaTLMFHxhWguiEPTTDkJCWTxhSRqaGawpbOQnZenYgjd0okjguSBqmrYSgBHy9MtvGHb6PCviltK8LDqkfZJJOc45PghSHmedpVI+clNIDY9dK6z9IIm0E+tkAahtsD0t3ofhhuyWU2FNYGg1kSzvwULTjwARi5TFsXxrGTAASDqtk8cx7tsC5CgmCoJQMbM7HjCp9xcby4sCAOOcLw0MnuwJhoGJEAK6YobBxburqRYoMWZqQ7NfnOvmBZbBXpdlkILpIoQNcnLWEwRnKU3ayM2DyZHbFR9HFex7yecVomNBJtnjw5rmv3qxWGY0JmWa98nOep9krZ4zx3Y7aXlajqM9O5+rE4OQO47MvW088ZOpBzsWc9lu2HaEI2nb+AzXdjkzFZDPIc4EAmAAZm7+V2M9r6X6+EjqBGwVv2-9lBWqBsye8blBB9MXBWTIPxvG7Dh+FOuoBA4BVRF5mHy06U1lYlvEQlgHwDke8tryYInozYAhjjYUGn0+7eRV3009cP+CT94Txz8bJgGY3zvt4R+z1lhp1tnwFGJA0YCAGjEfeeIAFlyfp9aGr8mB7yvnLC+xRfhH2-mfNyV8OwEB-qA5+CR0FvwATgis+Cv6n1-sQhmTAyEHAoZQyQ-wPpyQ3moSUW9qGYP3nQlsDDj5MCIKoYh19b7304VwyQwisEoDEXgoQBCpEyPCh2EeQCFF5yUaACBy8oH2xgejeBmwr5IJQCgsB4wVGiJCJ-SR0i-6XyJmw8hRilHOKYGo1x8stEeOISPHxHC-HP3BkqEwQA')">function serialized_exchange(accounts) {
     const account1 = head(accounts);	
     const account2 = tail(accounts);	
     const serializer1 = account1("serializer");
@@ -2415,7 +2424,7 @@ concurrent_execute( s(_ => { x = x * x;     }),
     
     in the text above.
     
-    <div class='snippet' id='javascript_67_13_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0GiK2APABQBKUAG9coSaDJ0AzhWlsANktABeUEqryBBJktlshAbglTi5anVAUAFp269BDEeKnvQAJzYUin+gzqahoARExkAI5EVN4hZh4JkgD8oAI2bPIcTCQAJhyGFAJkykpC8YkVoCl2Djz8AmGR0bEiIF4+ngCe5ZUJAFw2nkRsoGW9HgOBwaHeSmxMhnHjCSlkc0yeRSVjy+4DbJ6eNJsMADQ9u5IhAKokLCQ0AO703lEZClQBdXwhJuUAvuVvL5-DZ7FxvqZARZKLR6Gt5ptiipXOUChx7EwclsVKdQHoDEYofgYVYAqxOIZPFR9FQAF4HYRicoyEjyRjfdSMCkQpzCUzuYF+egAB3UAD5QBdEhsAOYS5mXKSOeqNKIxNi-AVK6RyBQAN30XJFAjlfx1HL5IVm80W5p1QtBhqU2vG-2JhFIsOszHYWTIMlIFCyuXyBxpWgZmwARvpssVUe5SXDQI8qHYcp4mI9TQwaEHE4kqARUrGlPGRpKmHmC4rxmWK1yG+QRgBaUDV-MkCiujz-UDKQx13ohSBsogEAhUMhUNjd-GkHKyEK99yAtflZPWHJsEU0WTp3NdiiFhLN4pNuMt0AAag7Ne7q6kjvo57YvfXUlZ7LfYeptKjLlfUpcMAMZe1JBfRgFSmYJQBCNMMyzR4liVFJENsTNs2lSpJiCUIdz3A8KFQy4UkI-d0xwio8OmeC31I3YUjfajElouCQipCN6QORjlmYq9ij-bio1Y-oB0OY4BDOKULSuW57ieF42DedlPm5P1wkDbs+i1XBAU9SwU2A-1tMKN9TwXIzrAwrCc07Ws3CLEsBDfUAqwfE9h0qNyNDc9sHMfMT2hBV9BPfHD+0HEYnN6KDR3HSdp1necLCXFdIoBTcvTJUAKOIo9HJw3zQDcu9Ap7HCoLfD8WT1UARSOXhKCAnkuLAzYIJC4VoLUSVYNCWzkJCWS0Iapq2EoAQhuzHZLnYgjd0okjgvcFJGpoZrCny9M5t2Bb6PCvjxgE8sW1WqR9kkk5zjk+CFIeZ52lUj5yU0gNj10v4DK3egKCzNkCEZAgjgYUzjzxCgaHBoM8QqyyQZoMGtOPBoZpQoRCu7LqoZh7sGh2kjMfhj1vwUJgAEZWvesyBAwAAGem-jJjtsGpzgUaDAQKcZv5cFZMg-G8bsOH4Sa6gEDgFVEPLtBFctOlNCmGgYoQ8RCWAfAOUrwo7KnozYAhjjYL6nzu2XZHlphFaYbAVaOtX4M13hPB1s6L1t0rDeN02LuWf7slkIHNkpuHsDxABWJmzbunI5YVpX7fdzVHY1rXXbcymOwIF3ffNhI48thPbaTitfnV53tcztmmBzg48-zyR-luuSpb6sQLatm3lZCVWK6YIhVEzimG8byRC67007d7h3+8Ht3G1t0ex4n4ue77p2B6H3XKeXxvV+tqfS5bcvN-n6u9-zg-u+P4pT41reF+vXe9LHqRr6Pmfk-v2BH4v1+x6fh1CYIAA')">function transfer(from_account, to_account, amount) {
+    <div class='snippet' id='javascript_67_13_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0GiK2APABQBKUAG9coSaDJ0AzhWlsANktABeUEqryBBJktlshAbglTi5anVAUAFp269BDEeKnvQAJzYUin+gzqahoARExkAI5EVN4hZh4JkgD8oAI2bPIcTCQAJhyGFAJkykpC8YkVoCl2Djz8AmGR0bEiIF4+ngCe5ZUJAFw2nkRsoGW9HgOBwaHeSmxMhnHjCSlkc0yeRSVjy+4DbJ6eNJsMADQ9u5IhAKokLCQ0AO703lEZClQBdXwhJuUAvuVvL5-DZ7FxvqZARZKLR6Gt5ptiipXOUChx7EwclsVKdQHoDEYofgYVYAqxOIZPFR9FQAF4HYRicoyEjyRjfdSMCkQpzCUzuYF+egAB3UAD5QBdEhsAOYS5mXKSOeqNKIxNi-AVK6RyBQAN30XJFAjlfx1HL5IVm80W5p1QtBhqU2vG-2JhFIsOszHYWTIMlIFCyuXyBxpWgZmwARvpssVUe5SXDQI8qHYcp4mI9TQwaEHE4kqARUrGlPGRpKmHmC4rxmWK1yG+QRgBaUDV-MkCiujz-UDKQx13ohSBsogEAhUMhUNjd-GkHKyEK99yAtflZPWHJsEU0WTp3NdiiFhLN4pNuMt0AAag7Ne7q6kjvo57YvfXUlZ7LfYeptKjLlfUpcMAMZe1JBfRgFSmYJQBCNMMyzR4liVFJENsTNs2lSpJiCUIdz3A8KFQy4UkI-d0xwio8OmeC31I3YUjfajElouCQipCN6QORjlmYq9ij-bio1Y-oB0OY4BDOKULSuW57ieF42DedlPm5P1wkDbs+i1XBAU9SwU2A-1tMKN9TwXIzrAwrCc07Ws3CLEsBDfUAqwfE9h0qNyNDc9sHMfMT2hBV9BPfHD+0HEYnN6KDR3HSdp1necLCXFdIoBTcvTJUAKOIo9HJw3zQDcu9Ap7HCoLfD8WT1UARSOXhKCAnkuLAzYIKs716BybQRSYCgyFsaTLMFHxhWguiEPTTDkJCWTxhSRqaGawpbOQnZenYgjd0okjguSBqmrYSgBHy9MtvGHb6PCviltK8LDqkfZJJOc45PghSHmedpVI+clNIDY9dK6z9IIm0E+tkAahtsD0t3oCgszZAhGQII4GFM488QoGhsaDPEKssjGaCxrTjwaDbs1+Qruy6vGCe7BoLpIoQ6ZPD1vwUJgAEZWqBsyBAwAAGEW-m5jtsAFzgKaDARebFv5cFZMg-G8bsOH4U66gEDgFVEPL+vLTpTV5hoGKEPEQlgHwDke8trz50q2AIY42FBp9PqNmGTdNbALbuq34Nt3hPAdxsmGl6NXfdz3nuWZHslkNHNj5onsDxABWcWvc+6GRT9vnA8d4pfmt0P7bc52mAIMP4+9hIC6LgOQktiu7fD6vpdr+u9MbqR-g+uT9bUSVDebphTeLtug4rpgiFUaveYbgepEn6fW-bkOF6X8KpdXtefcLqezZLity53xeI6dlf+6P4+W-PltL5t3eb4vKPD7Xjez9n0vNTBzftfZe38B6-yjs-MuQDYDv27mAz64MlQmCAA')">function transfer(from_account, to_account, amount) {
     from_account("withdraw")(amount);
     to_account("deposit")(amount);
 }
