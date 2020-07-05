@@ -1764,20 +1764,20 @@
 
     <FIGURE><pre class='prettyprint no-eval'>
 data_paths(
-    registers(
-        list(
-            pair(name("a"),
-                 buttons(name("a<-b"), source(register("b")))),
-            pair(name("b"),
-                 buttons(name("b<-t"), source(register("t")))),
-            pair(name("t"),
-                 buttons(name("t<-r"), source(operation("rem"))))),
-    operations(
-        list(
-            pair(name("rem"),
-                 inputs(register("a"), register("b"))),
-            pair(name("="),
-                 inputs(register("b"), constant(0))))));
+  registers(
+    list(
+      pair(name("a"),
+           buttons(name("a<-b"), source(register("b")))),
+      pair(name("b"),
+           buttons(name("b<-t"), source(register("t")))),
+      pair(name("t"),
+           buttons(name("t<-r"), source(operation("rem"))))),
+  operations(
+    list(
+      pair(name("rem"),
+           inputs(register("a"), register("b"))),
+      pair(name("="),
+           inputs(register("b"), constant(0))))));
 
 controller(
   list(
@@ -1849,7 +1849,10 @@ controller(
     contents of register <kbd>b</kbd> and the
     constant 0.</QUOTE>  We will omit the data-path description, leaving only
     the controller sequence.  Thus, the GCD machine is described as follows:
-      
+    
+    
+    
+    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -1865,19 +1868,20 @@ controller(
    (goto (label test-b))
  gcd-done)
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_98_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-controller(
+            <td><div class='snippet' id='javascript_98_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEZMChsDMBXAOwGMAXASwHsjQSayAnKgGxYFNGAKAZ3YEcC7UuwCUoAN4BIbKDmhG7MgUa0WFHmS4AiekSasOjbQBpQfQcJJiA3NgC++YuWq09BtpwD6FoSK7uzJ6M4hKy8orKqqAAFuwAhgAmXGTxFCwBDEFGoqJ2jk6klDSgALbxANbsPqkkFVyh4XIcZOa1FaAAvKBEBGx28qCERa6gAA4EPDFcAB6hoE2DbfF1XeNp3DNmmisVeQtLEUoqtNqJNOzaA-KOg8MuJWNUYw2Si4MUeKBcGl69bLx2rk3odDpxmNxtABRUpjMgAT2WdQAXKBYAB5WDaPLvG6gdgsPgg0GDPSaUBkZ5rOJJQG7HEkwY7VbdVLpOl1BmMuSRE4U57XQ63G6Le7FWgUIgUSjxdQAL3YrzCJOZHW6-xYgqWvOiZwuV0WwrkYtGiQ0Y3iZBI01K7B4PHiAHMxMTDjraLb7U72F1Ot1tBMptpcYcAPzjSYxENLVGeh3O33+p5jYPcuTh5MNaODWN2+M+v3+yXSiiyigK1Np8PFmXyxWibPyVHgqiQgCqRAqRCoAHdaIpLOTJUiKsjTGU896uXIjQpjtEzTwLVaYvlcCaSuUql5FI6NGROFwiPFbY1Bi06AxhGQeGttAAqYjxe0UR1EdiJe8Gu7OcWgRfLtaXBxlOrravOHqTgmhagNozpkJW3Lhu4148I2ci5l60F+rBfAIeh8jhgAbrKQhdAAfJIl76KhawkSwQg2KAs7cs2jAQsBUHsGYBHctoHZdr2-YCEIQ4epU1S7vunBjtOzGLO6-7mpa1proUDy0M+PBUCQXBVPCZiKPQjCJDwZ5HFEEo8H8fQZEZramQ2VagMQiTsHgkofuhzaCLKensAZsQJMkNLJPZJlmbkvHhqFXDhY5vGolpOn+YFbJ2ewxmOTiBQbrQ8FeCh+g8HF7B7ponDmTyEFzuVB6QvB2Jrnl5hKIVV7FaVdWcGY9FCFVc6WbV0mQnh2JcH1tgOOuv6jFu1SSpojAEBpKTsDMZADYpFoUNwB4bWYGo5epf6LUwK3il4+1aGdW01bFt3NbNJRnctGleOtmUEJdYzMLpt1gYp6U-EQmjHS1eFeK9F2uB9MxfT9f0g5oZi-TpA2Q8DZ2o39+zTSdc0SX87A9l45TWp5SqLGSrRjCQazzTuZUjTodNNdTNDkngLBOgzRNSRVkLc067OkpzrSqnz26qg0WoXmQcRQ6D53vb4VgFj0tly0oFKK88t7dOomhcEbWjaDWpZ1jUuzjrxaaDK8nSUTL5tSrW5aXLkckXgL9VXfEABGHBrKbJv7qzJDjnTohmKH2jC4644J7kdiis9mlsDplqSczgtHieLrKqCnzfMlunHrahm537qRBy6MGue5nmJANJK+94tfB90O3cKHFfcWU-PV4e-e5CYdv223w+MP7ddyYM9j4oSPpF9yLbcP3ZjaAAsn0lBjCwiJuR576JMNguoqLoIsRZfLaO3M+yiwWcHok34ij+IwlM-VAVAQYxM26hvAurd5A01APRNYZd86V3PjXQOHB57yGjIpSBDciDH2bgRcM68YED34p2bsfY4EyWxARVEsVgb0RToaNOX9aCfRIN9esYExbK1AGdA2oACpFRvFwaOWoPhfB+NZDUyMbzAlXoyRSep3zvyFEvIkUiSTgLRvTbo0N3qMO+rDNRXAHrK0ikxAiei8b20Utog8stoyzlnIpEC0FyLRgcQWHC2gdiMHwiScMjtKISFamQdqNFOp0zMArBays3qXTViIJB5iaqWPrExG+GEJxYVcUWZWT8lZLRhjQHwIl1aISWOGCwFEqLhJySraJhSRBrAsMk6MmF8yJlgk-F+OcgHFMGOGdpJBs6AJGk0tJLSYJwTag-bphFQA-z-gAh+wyXGtNdjsNgXhnicEtK4HgUz0ygH1uU-xlSDndHiGMMYwhkjHLGDwMw+t9gpNAM070yzVS7NAKU9oiyuLLI2YwLZnN3nhmuWhEkbEOIuK3gJIhwlBxkFjCsGInl2a5XTtwiZ09gKIs8lXR0fwQGAxquTJF74dAFUmaILq+LTxqRalpV8RBAHUsVPSt8VSomuDukNShaQMissZZo8UNDHB0pfGyyacMXj8vZXkog8wFL3WCikXlyr2TSsFZy4VM16EzKoL-f+XhfoUFKLweEpQA6sDuRc-54ozJgXAWg0A0CeBmotSwK1mzbVyVQbKVpjcT5eW8fidirZTXmstbBaFQl9nWoBRKTS9p2Dmo4LJYZPL2TUOOgTb+eq5leB5gHAkJtA4EluTMktLBmUDQdb6059oUoFoJMy2OFazJah9SwP1GCm6n2jDgkNvcK3Nsjd2gNZ9G2duHFpJNddU1gopCq6htK0WMyNaUEsRFqjrReNuswxKcXlsLYSAaJcRFBJ2PoSVXBt2SOjOA9R1EL2BO3V4Sa16ZhjDiYNPkvi6BakXqWn0p7fgTqvTe0BchwGcJDrmg1E7i1HrLaBl98HwOCNvtEX9nD-2KKA8I34D8wMftvSo8WCg1jksxfu98uKRqSsAe+z9X7FK-p4R1PhIRjEL1w6w+QuDd0jsEsQ7digXwlARBcjhCa+DJvYLJf9+MWqMz+XGojYw93Ypo4e0tHqbXbOrWRqkhtYMALXVwFTl0X3PEYzHGNnr9NanAWcv6XDyg7vKauxgxqN1bo-dejTFMtMTrMuPSe3ILOwys7GjBJU0MKqGr+s5B94RKy8I3Rgh9JR4oAFbxBIjwEgXm4RcAnocZ4GmXhjHKS8WzzmdJGMU2i-lXU6Ob3MFQFQ1guV8jjvy8chG2vaU61NVFOrGbNexoPQLA9gu6bjWW6O9qyOpEYPBCjGKgFYum2YaVu5mXiJoWw8kErt1QLFYyk7fnHoc3YRK4YXRoy-Ai-k7dE1SK+c-X2we25nuMte5d9TU2SUzdbXNr1iyiZrp81e2KAPbPUZB4h71NVf3KPkJDXhJUVvwV6u9rwwwGhfqSCREQhrdICIODcZdOrifxFJ3TfhJAMZtUx4zsJKq2PBL4dHFOCxRsaW+9UA8xtJsI5bYhsH2yzAJ1Rkzpb7C9Bmj-KyO0gTFclhoAdrUwHrK-averoVEHH2tAN7De73RlOxss3503NBQthYd4MMX2nCSS85sxlH4gna8cdwEoJB5Ooy+okrs3xBCfod97T+n5Omdcd91Tw0PG0dyFwZN7QAAhJIFJVdSdyQLqdibZPydoSKtFwutAxK64Soacdy-jkryN7NtBy9BJD5rlvGqaDdeiOmjIHfImyq1U3wXXgA7-NINMUXmnEc6aGDzR0suDPsLcuSboY+6fWi8Cvm6ys5I6-zUO172+SOgig4YmD+qAHwdmy7+j8Hj8e4S17vxpXi7CM5wHvhycjfx796z0JueEiEejuAGy8Puv+TqiQJO1gZOjOX6Dujyk89gOGgG4BqeysW8meZ86+E+gBHKL00mM6KaV8M400LUOBQEE63eag4c2gFBMQ44VBT0Oq9BW+quXArBnecq1efIveHB4+m+XBQ+LUvwqQjozoiQ+a4cmgpQZAYSisYh1BHC1kPcgIsh4gAAZBoUFLSDIZtK0pUmIdTgLruHgkoXHLuOOKPMwfntZIRq9jejwdEKIU6BIVIcbAJvfGVCisPvYR+gxo4VIopHwXFqXjqjTHTloJNOYbQREfoOONETYadNZHEc+n5oEfFnyC4eIR+O4VoJ4akT4S1KkfRm+hkYMMEUqsDKEcPvBqPE4TQcbNoBOlYSAkkaMCBofukcRg0cof7DkZIaHJ4S0eDGishv4ahj0UEYqrSNUcRlmkpkTI6FQFdFQOIgFsDuLrPotlIuAtvhRlQJSGwSLrvtrvhtZOMS8A-uAWfpoFwrMnBhWghrPpcQfkelwA-sASxs-n-uxiVAAZwnJKAUSPvn4VcarifocOAruOtoEg-FtpsSQjPC+qYZ8Sgp7uUhjn8WzuimrtibuIdniKgcnsGhxGnlgdwisZSHgbKlJk6oXrOiQfJPzn+Msasc8SwDEU0WyZSIwRWqMTqssUcdvlwEKSsUIb0XwWKTKhpMIWipmKqEoS7MmEUfKZGByBULjgxIXJkdEMqZGONIkY1mNkTA6JuusUDgeqqIvvLuSDCd0JRpts7qqFUkyv3Adsjk-ocq-nIIGNMNabif7qhF1ISZHlARvtUAzgIq-sgWQSukPJoK2IqFPttiODabsWRvaYGfCc6e0K6Xtu6bdJ6T+j8SSWmFiVziVLuKjNZoqfAdyFHjAVGbHpTggcYX+GaYqASb0XHJ2f1mVAKSYarkmSGT2bQaJpSIoP2Y6IOR2XmWdG6QXBqTKUKpKVUSqi6UIQsWitZvUdMTXrQc8K0TSnGTqk9lbpFt0Z+r0b8KoY4VoX0WIW4aHLFDelvEebOaMHrlFuZheS9lMbqbQHwbFN+fMZ+SUKBQAipjFr+fZv+defuXyMDJBduSaduNangK2CaimYiTfr9gtnLhmewisMruMJwJhYwKUF4CRa4FrosPvpBVwDRV3kbk5u9ObiPoxcxUQBsTij6RAYcHhX+aDI-iWYcq2RAdxfjmHvsI2ZGTHmYhAbGdxsSdGOgSjLBBSRhVhTSfnoQbJkyY4GEQLtpZRUxbKWOU0aZaUOONxeBbQNZdRatADIhT3uueyEWcYiyYTNuJYqHvQhaTfs7vxWFgAUHgGfcmubSADGMn1l9uNudhac7kJQRU5KCBQkqjFW4nXvFUTOXkldPlsa7jGmWkHtHGmplbvssvQUCiPvQQVamTfmVUzhVdFVVWMjyVQLVYzJ1Q1bhaDuMC1fOgYmDK8nlpcLldLONX1Vae0Ivq1ckFlf6BOUmd1QmZOcmRgZaVpgGeVcNZVaNWMtZWteheRVhTNUFgNfrPNfOupXIYJjCrpX+BJkBvpYyahQLv-IkAMpwuIkhgNQjkvuSHTLCYMnnM7gGJHHJOAgnKDTmYVbBAnEyeApLBbtPjoG8tDYZjcnzNNjoPhcjWRpDBQOwFVt0MTQPlovDEwojDpI5mRozKTVLL5gjP5RpO2kSmcj8JiW1CTS8BQPbgJUsIzfzZTZdNdD8DHCFY7rNtLQ7mLnLaFSQILULWmDLorZPNaRrfbPclLQ7oCe2T5dUMhvoIwPCBycOoCb0aoaBm1gbcaQLutEwCRW8aWmtAdHONYBQJugNC1HECwNan9UVXav4nemRu+BtFUtSFUU7aJc4dZEtFlkeE7VUmlUhJ7ewN7ZtXcajBsFituCbUwObRHYEpNoCcHVFPbKiEZJneaaoYzFwcnZHbdGYOXS7m2rQhUTVNdF2pgqfKAAAD4D19FiLXRp0lIZ1Z1Hi2SHS2Tj05j4gbT-LkCu2Eiqp96x1mD+3WofV-jTqyaZCm2GAdxO28XviNAWJL0u3BaH0eBGBXSn1y1B3t2lna1fU-WGLP1BXT71kO6KTYZy32C71G1kzo0DYFxlrXXUR30n0bRA2tAI7M3EykwI7WJ3CtgfSIotaCzMrlITyoPaB9IDIUrYN+yjw8STzgOehyQENnTZIE2Ur3Jai0NZJrJcEFKWAiBkJphMUMkcC33ZCwP3WA3FnRAI6G0lAeJaCA29EENSPjT2XZnTxBmdTO5UM6ld1DQf7BmOksxqPKOjyKOQyEas76NALDrRFgQVmf4lS6Pg0I3qO2ZGmaN3znByJqTgKOgkCSGBDH2MAPbYC+PBAlbNDhyLDaDl4AC0AcpguI+Voc1m2gnQ2IuKOgMTtmqRXAAADF7CrXIPVfBnBN45E2457HrUsM1hE4weHIk4oDZbZqYYQyk7VGk9iGPLiJU-ENU8bI0+k+04cJUzE7HOHI0whLk7iL1YU1E30yrUU4kCU-qFFNgHYDIJ4946A9Ng9k7kTKg9GL1uOHQQc2M3k-IKHBYUmuOExWYAHD8fEKAAAKSgA3MnOghxzJNmBXNPO3OtI3PlNQlZB+McN+DWCinrNBM5A4jYDGPKOs5eOSEQ1dNmAABMWTAAbDiNC+Y7C+sxDUM6AAACw5N2BSOgvws-12B2N+zYtkuplNN5BAA')">controller(
   list(
     "test-b",
-      test(list(op("="), reg(b), constant(0))),
+      test(list(op("="), reg("b"), constant(0))),
       branch(label("gcd-done")),
       assign("t", list(op("rem"), reg("a"), reg("b"))),
-      assign("a", reg(b)),
-      assign("b", reg(t)),
-      go_to(label("test-b"))),
-    "gcd-done");
+      assign("a", list(reg("b"))),
+      assign("b", list(reg("t"))),
+      go_to(label("test-b")),
+    "gcd-done"))
+
 </pre></div></div></td></tr></table>
-  </p></div>
+    
+</p></div>
 
   <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
@@ -2032,7 +2036,7 @@ controller(
 (perform (op print) (reg a))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_98_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-perform(list(op("print"), reg("a")))
+perform(list(op("display"), reg("a")))
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -2073,22 +2077,22 @@ perform(list(op("print"), reg("a")))
           <td><span style="color:blue">
 	
     <FIGURE>
-      <img class="scale_factor_" id="fig_5.5" src="../img_javascript/Fig5.4c.std.svg"><pre class='prettyprint no-eval'>
-controller(
+      <img class="scale_factor_" id="fig_5.5" src="../img_javascript/Fig5.4c.std.svg"><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEZMChsDMBXAOwGMAXASwHsjQSayAnKgGxYFNGAKAZ3YEcC7UuwCUoAN4BIbKDmhG7MgUa0WFHmS4AiekSasOjbQBpQfQcJJiA3NgC++YuWq09BtpwD6FoSK7uzJ6M4hKy8orKqqAAFuwAhgAmXGTxFCwBDEFGoqJ2jk6klDSgALbxANbsPqkkFVyh4XIcZOa1FaAAvKBEBGx28qCERa6gAA4EPDFcAB6hoE2DbfF1XeNp3DNmmisVeQtLEUoqtNqJNOzaA-KOg8MuJWNUYw2Si4MUeKBcGl69bLx2rk3odDpxmNxtABRUpjMgAT2WdQAXKBYAB5WDaPLvG6gdgsPgg0GDPSaUBkZ5rOJJQG7HEkwY7VbdVLpOl1BmMuSRE4U57XQ63G6Le7FWgUIgUSjxdQAL3YrzCJOZHW6-xYgqWvOiZwuV0WwrkYtGiQ0Y3iZBI01K7B4PHiAHMxMTDjraLb7U72F1Ot1tBMptpcYcAPzjSYxENLVGeh3O33+p5jYPcuTh5MNaODWN2+M+v3+yXSiiyigK1Np8PFmXyxWibPyVHgqiQgCqRAqRCoAHdaIpLOTJUiKsjTGU896uXIjQpjtEzTwLVaYvlcCaSuUql5FI6NGROFwiPFbY1Bi06AxhGQeGttAAqYjxe0UR1EdiJe8Gu7OcWgRfLtaXBxlOrravOHqTgmhagNozpkJW3Lhu4148I2ci5l60F+rBfAIeh8jhgAbrKQhdAAfJIl76KhawkSwQg2KAs7cs2jAQsBUHsGYBHctoHZdr2-YCEIQ4epU1S7vunBjtOzGLO6-7mpa1proUDy0M+PBUCQXBVPCZiKPQjCJDwZ5HFEEo8H8fQZEZramQ2VagMQiTsHgkofuhzaCLKensAZsQJMkNLJPZJlmbkvHhqFXDhY5vGolpOn+YFbJ2ewxmOTiBQbrQ8FeCh+g8HF7B7ponDmTyEFzuVB6QvB2Jrnl5hKIVV7FaVdWcGY9FCFVc6WbV0mQnh2JcH1tgOOuv6jFu1SSpojAEBpKTsDMZADYpFoUNwB4bWYGo5epf6LUwK3il4+1aGdW01bFt3NbNJRnctGleOtmUEJdYzMLpt1gYp6U-EQmjHS1eFeK9F2uB9MxfT9f0g5oZi-TpA2Q8DZ2o39+zTSdc0SX87A9l45TWp5SqLGSrRjCQazzTuZUjTodNNdTNDkngLBOgzRNSRVkLc067OkpzrSqnz26qg0WoXmQcRQ6D53vb4VgFj0tly0oFKK88t7dOomhcEbWjaDWpZ1jUuzjrxaaDK8nSUTL5tSrW5aXLkckXgL9VXfEABGHBrKbJv7qzJDjnTohmKH2jC4644J7kdiis9mlsDplqSczgtHieLrKqCnzfMlunHrahm537qRBy6MGue5nmJANJK+94tfB90O3cKHFfcWU-PV4e-e5CYdv223w+MP7ddyYM9j4oSPpF9yLbcP3ZjaAAsn0lBjCwiJuR576JMNguoqLoIsRZfLaO3M+yiwWcHok34ij+IwlM-VAVAQYxM26hvAurd5A01APRNYZd86V3PjXQOHB57yGjIpSBDciDH2bgRcM68YED34p2bsfY4EyWxARVEsVgb0RToaNOX9aCfRIN9esYExbK1AGdA2oACpFRvFwaOWoPhfB+NZDUyMbzAlXoyRSep3zvyFEvIkUiSTgLRvTbo0N3qMO+rDNRXAHrK0ikxAiei8b20Utog8stoyzlnIpEC0FyLRgcQWHC2gdiMHwiScMjtKISFamQdqNFOp0zMArBays3qXTViIJB5iaqWPrExG+GEJxYVcUWZWT8lZLRhjQHwIl1aISWOGCwFEqLhJySraJhSRBrAsMk6MmF8yJlgk-F+OcgHFMGOGdpJBs6AJGk0tJLSYJwTag-bphFQA-z-gAh+wyXGtNdjsNgXhnicEtK4HgUz0ygH1uU-xlSDndHiGMMYwhkjHLGDwMw+t9gpNAM070yzVS7NAKU9oiyuLLI2YwLZnN3nhmuWhEkbEOIuK3gJIhwlBxkFjCsGInl2a5XTtwiZ09gKIs8lXR0fwQGAxquTJF74dAFUmaILq+LTxqRalpV8RBAHUsVPSt8VSomuDukNShaQMissZZo8UNDHB0pfGyyacMXj8vZXkog8wFL3WCikXlyr2TSsFZy4VM16EzKoL-f+XhfoUFKLweEpQA6sDuRc-54ozJgXAWg0A0CeBmotSwK1mzbVyVQbKVpjcT5eW8fidirZTXmstbBaFQl9nWoBRKTS9p2Dmo4LJYZPL2TUOOgTb+eq5leB5gHAkJtA4EluTMktLBmUDQdb6059oUoFoJMy2OFazJah9SwP1GCm6n2jDgkNvcK3Nsjd2gNZ9G2duHFpJNddU1gopCq6htK0WMyNaUEsRFqjrReNuswxKcXlsLYSAaJcRFBJ2PoSVXBt2SOjOA9R1EL2BO3V4Sa16ZhjDiYNPkvi6BakXqWn0p7fgTqvTe0BchwGcJDrmg1E7i1HrLaBl98HwOCNvtEX9nD-2KKA8I34D8wMftvSo8WCg1jksxfu98uKRqSsAe+z9X7FK-p4R1PhIRjEL1w6w+QuDd0jsEsQ7digXwlARBcjhCa+DJvYLJf9+MWqMz+XGojYw93Ypo4e0tHqbXbOrWRqkhtYMALXVwFTl0X3PEYzHGNnr9NanAWcv6XDyg7vKauxgxqN1bo-dejTFMtMTrMuPSe3ILOwys7GjBJU0MKqGr+s5B94RKy8I3Rgh9JR4oAFbxBIjwEgXm4RcAnocZ4GmXhjHKS8WzzmdJGMU2i-lXU6Ob3MFQFQ1guV8jjvy8chG2vaU61NVFOrGbNexoPQLA9gu6bjWW6O9qyOpEYPBCjGKgFYum2YaVu5mXiJoWw8kErt1QLFYyk7fnHoc3YRK4YXRoy-Ai-k7dE1SK+c-X2we25nuMte5d9TU2SUzdbXNr1iyiZrp81e2KAPbPUZB4h71NVf3KPkJDXhJUVvwV6u9rwwwGhfqSCREQhrdICIODcZdOrifxFJ3TfhJAMZtUx4zsJKq2PBL4dHFOCxRsaW+9UA8xtJsI5bYhsH2yzAJ1Rkzpb7C9Bmj-KyO0gTFclhoAdrUwHrK-averoVEHH2tAN7De73RlOxss3503NBQthYd4MMX2nCSS85sxlH4gna8cdwEoJB5Ooy+okrs3xBCfod97T+n5Omdcd91Tw0PG0dyFwZN7QAAhJIFJVdSdyQLqdibZPydoSKtFwutAxK64Soacdy-jkryN7NtBy9BJD5rlvGqaDdeiOmjIHfImyq1U3wXXgA7-NINMUXmnEc6aGDzR0suDPsLcuSboY+6fWi8Cvm6ys5I6-zUO172+SOgig4YmD+qAHwdmy7+j8Hj8e4S17vxpXi7CM5wHvhycjfx796z0JueEiEejuAGy8Puv+TqiQJO1gZOjOX6Dujyk89gOGgG4BqeysW8meZ86+E+gBHKL00mM6KaV8M400LUOBQEE63eag4c2gFBMQ44VBT0Oq9BW+quXArBnecq1efIveHB4+m+XBQ+LUvwqQjozoiQ+a4cmgpQZAYSisYh1BHC1kPcgIsh4gAAZBoUFLSDIZtK0pUmIdTgLruHgkoXHLuOOKPMwfntZIRq9jejwdEKIU6BIVIcbAJvfGVCisPvYR+gxo4VIopHwXFqXjqjTHTloJNOYbQREfoOONETYadNZHEc+n5oEfFnyC4eIR+O4VoJ4akT4S1KkfRm+hkYMMEUqsDKEcPvBqPE4TQcbNoBOlYSAkkaMCBofukcRg0cof7DkZIaHJ4S0eDGishv4ahj0UEYqrSNUcRlmkpkTI6FQFdFQOIgFsDuLrPotlIuAtvhRlQJSGwSLrvtrvhtZOMS8A-uAWfpoFwrMnBhWghrPpcQfkelwA-sASxs-n-uxiVAAZwnJKAUSPvn4VcarifocOAruOtoEg-FtpsSQjPC+qYZ8Sgp7uUhjn8WzuimrtibuIdniKgcnsGhxGnlgdwisZSHgbKlJk6oXrOiQfJPzn+Msasc8SwDEU0WyZSIwRWqMTqssUcdvlwEKSsUIb0XwWKTKhpMIWipmKqEoS7MmEUfKZGByBULjgxIXJkdEMqZGONIkY1mNkTA6JuusUDgeqqIvvLuSDCd0JRpts7qqFUkyv3Adsjk-ocq-nIIGNMNabif7qhF1ISZHlARvtUAzgIq-sgWQSukPJoK2IqFPttiODabsWRvaYGfCc6e0K6Xtu6bdJ6T+j8SSWmFiVziVLuKjNZoqfAdyFHjAVGbHpTggcYX+GaYqASb0XHJ2f1mVAKSYarkmSGT2bQaJpSIoP2Y6IOR2XmWdG6QXBqTKUKpKVUSqi6UIQsWitZvUdMTXrQc8K0TSnGTqk9lbpFt0Z+r0b8KoY4VoX0WIW4aHLFDelvEebOaMHrlFuZheS9lMbqbQHwbFN+fMZ+SUKBQAipjFr+fZv+defuXyMDJBduSaduNangK2CaimYiTfr9gtnLhmewisMruMJwJhYwKUF4CRa4FrosPvpBVwDRV3kbk5u9ObiPoxcxUQBsTij6RAYcHhX+aDI-iWYcq2RAdxfjmHvsI2ZGTHmYhAbGdxsSdGOgSjLBBSRhVhTSfnoQbJkyY4GEQLtpZRUxbKWOU0aZaUOONxeBbQNZdRatADIhT3uueyEWcYiyYTNuJYqHvQhaTfs7vxWFgAUHgGfcmubSADGMn1l9uNudhac7kJQRU5KCBQkqjFW4nXvFUTOXkldPlsa7jGmWkHtHGmplbvssvQUCiPvQQVamTfmVUzhVdFVVWMjyVQLVYzJ1Q1bhaDuMC1fOgYmDK8nlpcLldLONX1Vae0Ivq1ckFlf6BOUmd1QmZOcmRgZaVpgGeVcNZVaNWMtZWteheRVhTNUFgNfrPNfOupXIYJjCrpX+BJkBvpYyahQLv-IkAMpwuIkhgNQjkvuSHTLCYMnnM7gGJHHJOAgnKDTmYVbBAnEyeApLBbtPjoG8tDYZjcnzNNjoPhcjWRpDBQOwFVt0MTQPlovDEwojDpI5mRozKTVLL5gjP5RpO2kSmcj8JiW1CTS8BQPbgJUsIzfzZTZdNdD8DHCFY7rNtLQ7mLnLaFSQILULWmDLorZPNaRrfbPclLQ7oCe2T5dUMhvoIwPCBycOoCb0aoaBm1gbcaQLutEwCRW8aWmtAdHONYBQJugNC1HECwNan9UVXav4nemRu+BtFUtSFUU7aJc4dZEtFlkeE7VUmlUhJ7ewN7ZtXcajBsFituCbUwObRHYEpNoCcHVFPbKiEZJneaaoYzFwcnZHbdGYOXS7m2rQhUTVNdF2pgqfKAAAD4D19FiLXRp0lIZ1Z1Hi2SHS2Tj05j4gbT-LkCu2Eiqp96x1mD+3WofV-jTqyaZCm2GAdxO28XviNAWJL0u3BaH0eBGBXSn1y1B3t2lna1fU-WGLP1BXT71kO6KTYZy32C71G1kzo0DYFxlrXXUR30n0bRA2tAI7M3EykwI7WJ3CtgfSIotaCzMrlITyoPaB9IDIUrYN+yjw8STzgOehyQENnTZIE2Ur3Jai0NZJrJcEFKWAiBkJphMUMkcC33ZCwP3WA3FnRAI6G0lAeJaCA29EENSPjT2XZnTxBmdTO5UM6ld1DQf7BmOksxqPKOjyKOQyEas76NALDrRFgQVmf4lS6Pg0I3qO2ZGmaN3znByJqTgKOgkCSE9jSgxCGrMCwh4lH3BAPbYCBDH3cDhChyHCLBwTeMAC0P8KYKtcgzWhDjB4c1mAYgTcI2IY8uI6TAcmTxs2TaMQT+Tet8g2g5eCTxTqT2exsoc2TnQ2IuKOgxTtmqRXAAADF7A0-VfBvE4kAk2457FU4MOkwhLHFky8F4TZbZqYRk4s2VB05Uw0+k-ECU1oEs50wU4cEU9s11DoAhP07iL1UM7U3syrcM6M-qA09ZWHKU3MwBDzPCG07VDoFs2c4cBc08bc8k5Uw2NgHYFILE549414L4wrAE1QEE6A9Ng9k7kTKg9GL1uOHQRi6cw080OHBYUmuOExWYAHD8fEKAAAKSgAks4uCW0GtNmBEtUukutLUu8RxzlN5MMs-EWiMB8BKxaActmzXicCazmqkK2YYB9MTPchxyvPxDvNmByvwj7On5ZCRMcN+DWCimQvQv+OCv+6CMhA4jYBSPas+N+OwvwuA02BAA')">controller(
   list(      
     "gcd-loop",
-      assign("a", op("read")),
-      assign("b", op("read")),
+      assign("a", list(op("prompt"))),
+      assign("b", list(op("prompt"))),
     "test-b",
       test(list(op("="), reg("b"), constant(0))),
       branch(label("gcd-done")),
       assign("t", list(op("rem"), reg("a"), reg("b"))),
-      assign("a", reg("b")),
-      assign("b", reg("t")),
+      assign("a", list(reg("b"))),
+      assign("b", list(reg("t"))),
       go_to(label("test-b")),
     "gcd-done",
-         perform(list(op("print"), reg("a"))),
-         go_to(label("gcd-loop"))));
+      perform(list(op("display"), reg("a"))),
+      go_to(label("gcd-loop"))))
+
 </pre>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.1.1.html#fig_5.5">Figure 5.5 </a></b>A GCD machine that reads inputs and prints results.</div>
