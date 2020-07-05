@@ -1945,6 +1945,10 @@
     which enable us to select and to modify the front and rear pointers of a
     queue:
     
+            
+            
+            
+            
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -1952,14 +1956,11 @@
             <td><div class='snippet' id='javascript_61_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (front-ptr queue) (car queue))
 
-            
-            (define (rear-ptr queue) (cdr queue))
+(define (rear-ptr queue) (cdr queue))
 
-            
-            (define (set-front-ptr! queue item) (set-car! queue item))
+(define (set-front-ptr! queue item) (set-car! queue item))
 
-            
-            (define (set-rear-ptr! queue item) (set-cdr! queue item))
+(define (set-rear-ptr! queue item) (set-cdr! queue item))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_61_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToEwChsDMBXAOwGMAXASwHsjQ8AnGsgfQAcz6AKARwIFN+ASlABvbKAmh6fMgXq0AFnwCGAEx78hAbmwBffMXLVa05fTYcNAvsLGSpMubTLKKAGyva9B0pRqgAZxlmBiYLLl5rABpQCjI+AFtbcUkgliU1Tz4YuMTBHX1CX2NA4NNzdgjNbNj4pNEUiTTmF3csnLr872wSGgCyUG5QAF5QVlcuAEYYzC7m0KIWSp4YgBZZrQBIfEZF8J58oA')">function front_ptr(queue) {
     return head(queue);
@@ -1982,6 +1983,7 @@ function set_rear_ptr(queue, item) {
     Now we can implement the actual queue operations.  We will consider a
     queue to be empty if its front pointer is the empty list:
     
+            
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2015,6 +2017,7 @@ function set_rear_ptr(queue, item) {
     
     are both the empty list:
     
+            
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2038,15 +2041,16 @@ function set_rear_ptr(queue, item) {
     
     of the pair indicated by the front pointer:
     
+            
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_61_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (front-queue queue)
-            (if (empty-queue? queue)
-            (error "FRONT called with an empty queue" queue)
-            (car (front-ptr queue))))
+  (if (empty-queue? queue)
+      (error "FRONT called with an empty queue" queue)
+      (car (front-ptr queue))))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_61_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToEwChsDMBXAOwGMAXASwHsjQ8AnGsgfQAcz6AKARwIFN+ASlABvbKAmh6fMgXq0AFnwCGAEx78hAbmwBffMXLVa05fTYcNAvsLGSpMubTLKKAGyva9B0pRqgAZxlmBiYLLl5rABpQCjI+AFtbcUkgliU1Tz4YuMTBHX1CX2NA4NNzdgjNbNj4pNEUiTTmF3csnLr87x8jfwoA5kT2AE9mSP4s5PtpWXlYgaICNw9QohZKya79Hr9aVZZxvkmG6cc5-sGEkbHqycb7UAB+UD56Riro0AAifZvrUBIymWfFUoAA7nEFKBlLQhmRhqBDgAuL6Ce72JGgDLqX4bQ6CLa4Eg0AJkRGgAC8oFYri4NIoXAAjFFMIIYigur9Djx8kA')">function front_queue(queue) {
     return is_empty_queue(queue)
@@ -2114,23 +2118,24 @@ function set_rear_ptr(queue, item) {
   
       </span></td></tr></table>
     
+            
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_61_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (insert-queue! queue item)
-            (let ((new-pair (cons item '())))
-            (cond ((empty-queue? queue)
-            (set-front-ptr! queue new-pair)
-            (set-rear-ptr! queue new-pair)
-            queue)
-            (else
-            (set-cdr! (rear-ptr queue) new-pair)
-            (set-rear-ptr! queue new-pair)
-            queue))))
+  (let ((new-pair (cons item '())))
+    (cond ((empty-queue? queue)
+           (set-front-ptr! queue new-pair)
+           (set-rear-ptr! queue new-pair)
+           queue)
+          (else
+           (set-cdr! (rear-ptr queue) new-pair)
+           (set-rear-ptr! queue new-pair)
+           queue))))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_61_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToEwChsDMBXAOwGMAXASwHsjQ8AnGsgfQAcz6AKARwIFN+ASlABvbKAmh6fMgXq0AFnwCGAEx78hAbmwBffMXLVa05fTYcNAvsLGSpMubTLKKAGyva9B0pRqgAZxlmBiYLLl5rABpQCjI+AFtbcUkgliU1Tz4YuMTBHX1CX2NA4NNzdgjNbNj4pNEUiTTmF3csnLr87x8jfwoA5kT2AE9mSP4s5PtpWXlYgaICNw9QohZKya79Hr9aBOUAaz4x6s4pyRmnUFZXLkXlmPu3Ldwi3tpVPjcZY-G+SYa9goeFAnH6gwSIxO1k2gPskj49EYVWioAARJ9vvFofxQCRlMs+KpQAB3OIKUDKWhDMjDUB-ABcaK69l0oC+QTh8NKLFW60sfxirRWjDW4U2LO5DlmtD+OlZ3Teu1iRCC9BYf3atTyXLxNACZFARD4JLYt1AAF5rrcwXVHktnvLJMDQeCaaNNX9BOduc0+eLBUaTWaKPRJb6yioKgLqo9gzdQ+HQGyOXxdfZmsLOOUA9VBHHTQmw06IywcxtA8bC7ck-ppo45nLuiR9YbuABGS2gfZHHH-LoASAoqsRGtOHZiaOUzK09mwQ5H6r7PHbk4ARjO5wPMT9lx3BzvsZ72-kgA')">function insert_queue(queue, item) {
+            <td><div class='snippet' id='javascript_61_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToEwChsDMBXAOwGMAXASwHsjQ8AnGsgfQAcz6AKARwIFN+ASlABvbKAmh6fMgXq0AFnwCGAEx78hAbmwBffMXLVa05fTYcNAvsLGSpMubTLKKAGyva9B0pRqgAZxlmBiYLLl5rABpQCjI+AFtbcUkgliU1Tz4YuMTBHX1CX2NA4NNzdgjNbNj4pNEUiTTmF3csnLr87x8jfwoA5kT2AE9mSP4s5PtpWXlYgaICNw9QohZKya79Hr9aBOUAaz4x6s4pyRmnUFZXLkXlmPu3Ldwi3tpVPjcZY-G+SYa9goeFAnH6gwSIxO1k2gPskj49EYVWioAARJ9vvFofxQCRlMs+KpQAB3OIKUDKWhDMjDUB-ABcaK69l0oC+QTh8NKLFW60sfxirRWjDW4U2LO5DlmtD+OlZ3Teu1iRCC9BYf3atTyXLxNACZFARD4JLYt1AAF5rrcwXVHktnvLJMDQeCaaNNX9BOduc0+eLBUaTWaKPRJb6yioKgLqo9gzdQ+HQGyOXxdfZmsLOOUA9VBHHTQmw06IywcxtA8bC7ck-ppo45nLuiR9YbuABGS2gfZHHH-LoUVWIjWnDsxNHKZlaezYQdqkcwsfogBGU5nmJ+fZ47a6G+xnp3WiAA')">function insert_queue(queue, item) {
     const new_pair = pair(item, null);
     if (is_empty_queue(queue)) {
         set_front_ptr(queue, new_pair);
@@ -2188,19 +2193,20 @@ function set_rear_ptr(queue, item) {
     </FIGURE>
   
       </span></td></tr></table>
+            
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_61_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (delete-queue! queue)
-            (cond ((empty-queue? queue)
-            (error "DELETE! called with an empty queue" queue))
-            (else
-            (set-front-ptr! queue (cdr (front-ptr queue)))
-            queue)))
+  (cond ((empty-queue? queue)
+         (error "DELETE! called with an empty queue" queue))
+        (else
+         (set-front-ptr! queue (cdr (front-ptr queue)))
+         queue)))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_61_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToEwChsDMBXAOwGMAXASwHsjQ8AnGsgfQAcz6AKARwIFN+ASlABvbKAmh6fMgXq0AFnwCGAEx78hAbmwBffMXLVa05fTYcNAvsLGSpMubTLKKAGyva9B0pRqgAZxlmBiYLLl5rABpQCjI+AFtbcUkgliU1Tz4YuMTBHX1CX2NA4NNzdgjNbNj4pNEUiTTmF3csnLr87x8jfwoA5kT2AE9mSP4s5PtpWXlYgaICNw9QohZKya79Hr9aBOUAaz4x6s4pyRmnUFZXLkXlmPu3Ldwi3toKIiD6FnG+dtqeQa9hINACZFARD4AHc2LdQABea63Ti5BKPJbPHT2Ch4UCogZDMijP6bYH2VLBVbrSx-R4wuEUehdCmUljlcIAqGwm5MlmSXSgPhuILk1nNVoeDkbP6Cek82788VlFQVWnVeWM5nYgWNByzWh-AqvQy7UCqYUyY6k2Vi2J4gmDBIjE7WMl2VlC+iMKrRUAAIgtbitrv4oBIymWfFUoGhcQUoGUtCJw1AfwAXP6laBBcLRR7lSxqZy6aBJZxizLqoIazrWZc5ka9fptqCvhDuABGRGgfZHUP-LoASE+31+py7MX9yizWns2BHXz4PwHPE7U4ARrP50OgyGbZ3h3v4quu-kgA')">function delete_queue(queue) {
+            <td><div class='snippet' id='javascript_61_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToEwChsDMBXAOwGMAXASwHsjQ8AnGsgfQAcz6AKARwIFN+ASlABvbKAmh6fMgXq0AFnwCGAEx78hAbmwBffMXLVa05fTYcNAvsLGSpMubTLKKAGyva9B0pRqgAZxlmBiYLLl5rABpQCjI+AFtbcUkgliU1Tz4YuMTBHX1CX2NA4NNzdgjNbNj4pNEUiTTmF3csnLr87x8jfwoA5kT2AE9mSP4s5PtpWXlYgaICNw9QohZKya79Hr9aBOUAaz4x6s4pyRmnUFZXLkXlmPu3Ldwi3toKIiD6FnG+dtqeQa9hINACZFARD4AHc2LdQABea63Ti5BKPJbPHT2Ch4UCogZDMijP6bYH2VLBVbrSx-R4wuEUehdCmUljlcIAqGwm5MlmSXSgPhuILk1nNVoeDkbP6Cek82788VlFQVWnVeWM5nYgWNByzWh-AqvQy7UCqYUyY6k2Vi2J4gmDBIjE7WMl2VlC+iMKrRUAAIgtbitrv4oBIymWfFUoGhcQUoGUtCJw1AfwAXP6laBBcLRR7lSxqZy6aBJZxizLqoIazrWZc5ka9fptqCvhDuABGRGgfZHUP-Lqfb6-U5dmL+5RZrT2bDDvg-Ac8TsTgBG09nQZDNs7XS38SXXfyQA')">function delete_queue(queue) {
     if (is_empty_queue(queue)) {
         error(queue, "delete_queue called with an empty queue:");
     } else {
@@ -2363,11 +2369,11 @@ function set_rear_ptr(queue, item) {
           <tr>
             <td><div class='snippet' id='javascript_61_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (make-queue)
-            (let ((front-ptr ^$\ldots$^ )
-            (rear-ptr ^$\ldots$^ ))
-            ^definitions of internal procedures^
-            (define (dispatch m) ^$\ldots$^)
-            dispatch))
+  (let ((front-ptr ^$\ldots$^ )
+        (rear-ptr ^$\ldots$^ ))
+    ^definitions of internal procedures^
+    (define (dispatch m) ^$\ldots$^)
+    dispatch))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_61_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_queue() {

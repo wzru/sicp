@@ -2122,17 +2122,17 @@
     <span style="color:teal"><kbd>cons</kbd></span><span style="color:blue"><kbd>pair</kbd></span>.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
 
   
-  
+            
   <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_60_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (cons x y)
-            (let ((new (get-new-pair)))
-            (set-car! new x)
-            (set-cdr! new y)
-            new))
+  (let ((new (get-new-pair)))
+    (set-car! new x)
+    (set-cdr! new y)
+    new))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChslACoAWApqAC4kAe5ARgPb0DWoADgE72v0DOJPoAIZt2ASwC2o8qIBuZAGYBXAHYBjafWWgA5iXIB9ZSQDu+1oNHs0eMOFFqyCQTMHhVY1uVAATev1DK9F4c9DKi3mQ8iqpEQqBKahrKADSgADZ6AOQ8Nj4k8vZkUkIC8vRpafTGPKll7BSkoDyCTGT08g1k1ILirBnW2Anqopo6eoYmZhbsABQAlKAA3tigq6DseorsWuaWMyoRBUbeqQf5hd5zANzYAL64y2vxKsOju7NUqQCeC49Pa6pNDwvPINjxYgBeMYGIymd7zG7-NZ8AykQTeGag-hEVJUa4rJFNcbkCxpTFgnGgH6IwkbchbLRY8E01b3GwE1bw+GYVIAJjmqQALNcAJBPO5AA')">function pair(x, y) {
     const fresh = get_new_pair();
@@ -2161,15 +2161,16 @@
     section <REF NAME="sec:sequences"><a class="superscript" id="3.3.1-sec-link-2.2.1" href="./2.2.1.html">2.2.1</a></REF>:
     
     
+            
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_60_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (append x y)
-            (if (null? x)
-            y
-            (cons (car x) (append (cdr x) y))))
+  (if (null? x)
+    y
+    (cons (car x) (append (cdr x) y))))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cD1ZODWUyDkw+FDdQGKU4gFY+AHY+AE5BYKA')">function append(x, y) {
     return is_null(x)
@@ -2214,13 +2215,14 @@
     
     with an empty <kbd>x</kbd>.)
     
+    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_60_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (append! x y)
-            (set-cdr! (last-pair x) y)
+  (set-cdr! (last-pair x) y)
             x)
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAbAQwGcyB9ABwYoCcAKADwCUoAN7ZQE0NwCmZAt1oUmrIgTp1eZLhqGDxkgwH5Q-fQYkAueszacem7QMGCA3NgC+uQqUo1QDdnZpIgATVgBbAi0yKj5+ABpQAE9hMQMmWVYtCg1GFg4uOMFElLd3IA')">function append_mutator(x, y) {
@@ -2240,15 +2242,16 @@
     
     that returns the last pair in its argument:
     
+            
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_60_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (last-pair x)
-            (if (null? (cdr x))
-            x
-            (last-pair (cdr x))))
+  (if (null? (cdr x))
+      x
+      (last-pair (cdr x))))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAbAQwGcyB9ABwYoCcAKADwCUoAN7ZQE0NwCmZAt1oUmrIgTp1eZLhqGDxkgwH5Q-fQYkAueszacem7QMGCA3NgC+uRiw5c+dJTJeTAAaACYQlBCAFhCAVmcXIA')">function last_pair(x) {
     return is_null(tail(x))
@@ -2409,13 +2412,14 @@ w
       <span style="color:blue">function</span>
     
     defined in exercise <REF NAME="ex:append"><a class="superscript" id="3.3.1-ex-link-3.12" href="./3.3.1.html#ex_3.12">3.12</a></REF>:
+            
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_60_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (make-cycle x)
-            (set-cdr! (last-pair x) x)
+  (set-cdr! (last-pair x) x)
             x)
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_14_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAbAQwGcyB9ABwYoCcAKADwCUoAN7ZQE0NwCmZAt1oUmrIgTp1eZLhqGDxkgwH5Q-fQYkAueszacem7QMGCA3NgC+uQqUo1QAWwYAa2lWEgBPEjppJ1EzUCZZVi0KDUYWDi4+IQAaE1d4mTkFEzdPbBIaFlAAL1AAXgDg0IiomLolMl4AIgZuvO6AI37QbpJu5xcgA')">function make_cycle(x) {
@@ -2463,19 +2467,20 @@ w
     
     is quite useful, although obscure:
     
+    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_60_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (mystery x)
-            (define (loop x y)
-            (if (null? x)
-            y
-            (let ((temp (cdr x)))
-            (set-cdr! x y)
-            (loop temp x))))
-            (loop x '()))
+  (define (loop x y)
+    (if (null? x)
+        y
+        (let ((temp (cdr x)))
+          (set-cdr! x y)
+          (loop temp x))))
+  (loop x '()))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_16_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAN1AF5QAbAS3IAoAiAQzYBpQ2AjHnzxsAlAG5cAMwCuRPGUbFQAWwCe5AKYAnNSwAeo0AG9soc6FnzFy+gQIAHA7zVHTFj6EZTQLZgH0iGXp6A1E3M08o7U0yGW0iUDVJKPMAX1BNehJNE0jUi3pY0DJNFQdaEo5GUMMUgoscsn8yatqXCXyGmLiEhnsnUvLeOq6PNK6Jjx74xLtHZ1AgkM6J-GJyUAB3SvUtXRZKCSA')">function mystery(x) {
     function loop(x, y) {
@@ -2585,7 +2590,7 @@ w
           <tr>
             <td><div class='snippet' id='javascript_60_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define x (list 'a 'b))
-            (define z1 (cons x x))
+(define z1 (cons x x))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_19_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAD1AF5QAbAS3IAoAiAQzYBpQ2AjNgEoA3PmLlQAL0y1QABw6MATi0q9KooA')">const x = list("a", "b");
 const z1 = pair(x, x);
@@ -2797,8 +2802,8 @@ const z1 = pair(x, x);
           <tr>
             <td><div class='snippet' id='javascript_60_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (set-to-wow! x)
-            (set-car! (car x) 'wow)
-            x)
+  (set-car! (car x) 'wow)
+  x)
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_22_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBnAUzIH0yrmB3KjgCgA8AlKADe2UOPpNmACwYBDACY9Zi-gIA0oAERcOWgQG4xEgE5MCJ2nyMBfIA')">function set_to_wow(x) {
     set_head(head(x), "wow");
@@ -2884,7 +2889,7 @@ z1
 (set-to-wow! z1)
 </pre><pre class='prettyprintoutput'>
 
-            ((wow b) wow b)
+((wow b) wow b)
       
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_24_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBnAUzIH0yrmB3KjgCgA8AlKADe2UOPpNmACwYBDACY9Zi-gIA0oAERcOWgQG4xEgE5MCJ2nyMBfXCRp0yoPqAC8oADYUnPLXK1NLQAjfSMHIidQAC9Md1AABzkKE35NQSNsRhY2Tm4eWMMgA')">set_to_wow(z1);
@@ -2902,7 +2907,7 @@ z1
 z2
 </pre><pre class='prettyprintoutput'>
 
-            ((a b) a b)
+((a b) a b)
       
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_25_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUALwCZQBeUABwEMBLAJwAoAbV8zgETMBAGlACARgICUY3vyGjxU6dIDcuGmqA')">z2;
@@ -3064,17 +3069,18 @@ z2
       <span style="color:teal">procedure:</span>
       <span style="color:blue">function</span>
     
+            
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_60_27_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (count-pairs x)
-            (if (not (pair? x))
-            0
-            (+ (count-pairs (car x))
-            (count-pairs (cdr x))
-            1)))
+  (if (not (pair? x))
+      0
+      (+ (count-pairs (car x))
+         (count-pairs (cdr x))
+         1)))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_27_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQSriyB9ABwEMKAnAZwAoAPAJSgA3tlATQnAKZkCnWgEIK3Vh04DB4yTskB+UAAZtunQC46DIs3Zc+AC2lsAJpuEBqUCdM76jNXa8ZBwANm6gnpgA3NgAvkA')">function count_pairs(x) {
     return !is_pair(x)
@@ -3201,23 +3207,24 @@ z2
       <span style="color:teal">procedures:</span>
       <span style="color:blue">functions:</span>
     
+            
+            
+            
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_60_28_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (cons x y)
-            (define (dispatch m)
-            (cond ((eq? m 'car) x)
-            ((eq? m 'cdr) y)
-            (else (error "Undefined operation - - CONS" m))))
-            dispatch)
+  (define (dispatch m)
+    (cond ((eq? m 'car) x)
+          ((eq? m 'cdr) y)
+          (else (error "Undefined operation - - CONS" m))))
+  dispatch)
 
-            
-            (define (car z) (z 'car))
+(define (car z) (z 'car))
 
-            
-            (define (cdr z) (z 'cdr))
+(define (cdr z) (z 'cdr))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_28_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVAATCgGdGZEgAtWAWwHCxO0MwCmZAs1rrQAXkugARCv0MZ1kbpcB+UO2cudALlBnLcxsyJgAbJ29vdx4vSLE-fWZmKjZ1bmsAVSIZfTwKIn0ZUCo6RIYpWnz6JmYfaz4AbliAX1iDIxNZBSVVBoBIF2xWiXJqWjsHVgAvLTbDY1op1lt7R0ah-GJR6RCKUOnZnXaF0CXrXfD11uwSGnkyDwtqllZMbgAmdYmZDkagA')">function pair(x, y) {
     function dispatch(m) {
@@ -3265,37 +3272,38 @@ function tail(z) {
     
     in section <REF NAME="sec:local-state-variables"><a class="superscript" id="3.3.1-sec-link-3.1.1" href="./3.1.1.html">3.1.1</a></REF>:
     
+            
+            
+            
+            
+            
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_60_29_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (cons x y)
-            (define (set-x! v) (set! x v))
-            (define (set-y! v) (set! y v))
-            (define (dispatch m)
-            (cond ((eq? m 'car) x)
-            ((eq? m 'cdr) y)
-            ((eq? m 'set-car!) set-x!)
-            ((eq? m 'set-cdr!) set-y!)
-            (else (error "Undefined operation - - CONS" m))))
-            dispatch)
+  (define (set-x! v) (set! x v))
+  (define (set-y! v) (set! y v))
+  (define (dispatch m)
+    (cond ((eq? m 'car) x)
+          ((eq? m 'cdr) y)
+          ((eq? m 'set-car!) set-x!)
+          ((eq? m 'set-cdr!) set-y!)
+          (else (error "Undefined operation - - CONS" m))))
+  dispatch)
 
-            
-            (define (car z) (z 'car))
+(define (car z) (z 'car))
 
-            
-            (define (cdr z) (z 'cdr))
+(define (cdr z) (z 'cdr))
 
-            
-            (define (set-car! z new-value)
-            ((z 'set-car!) new-value)
-            z)
+(define (set-car! z new-value)
+  ((z 'set-car!) new-value)
+  z)
 
-            
-            (define (set-cdr! z new-value)
-            ((z 'set-cdr!) new-value)
-            z)
+(define (set-cdr! z new-value)
+  ((z 'set-cdr!) new-value)
+  z)
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_29_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AcLFbQ7UAF5QqgNwixAX1OiJ5arXlKeajZe099hk1otbmCgs1oAW30APhdtUWC9aNAAIgALOQYAE1jwiIB+HXTtAC5QKJjYsiYAGzSIyqyeHIj8woNY+0VElIrKqtkFZVrK+v0i5pKKct6OrOaajun8uWZmKjZA7ljiZLk8CiI5ZNAqOjmGKVot+iZmWL4TbzF8YhtpVuTWAC9nHz8A0BfWBKTUq7YCx3SS2UDDUqvd5iXxkfy0H7FMqXa64azHLpKJ6vbjbADuilUDFKBDk0NEr1+zSelz4rHxhOJpMBHzhXxeqJBDzs3QhONADKJJLJQhclKavORfDpgqZZM8MM+CM5JBoMjIOncjBYrEw3AATIDqf8ONwUIDsewrkA')">function pair(x, y) {
     function set_x(v) {
@@ -3361,10 +3369,10 @@ function set_tail(z, new_value) {
           <tr>
             <td><div class='snippet' id='javascript_60_30_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define x (cons 1 2))
-            (define z (cons x x))
-            (set-car! (cdr z) 17)
+(define z (cons x x))
+(set-car! (cdr z) 17)
 
-            (car x)
+(car x)
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_30_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AcLFbQ7UAF5QqgNwixAX1OiJ5arXlKeajZe099hk1otbmCgs1oAW30APhdtUWC9aNAAIgALOQYAE1jwiIB+HXTtAC5QKJjYsiYAGzSIyqyeHIj8woNY+0VElIrKqtkFZVrK+v0i5pKKct6OrOaajun8uWZmKjZA7ljiZLk8CiI5ZNAqOjmGKVot+iZmWL4TbzF8YhtpVuTWAC9nHz8A0BfWBKTUq7YCx3SS2UDDUqvd5iXxkfy0H7FMqXa64azHLpKJ6vbjbADuilUDFKBDk0NEr1+zSelz4rHxhOJpMBHzhXxeqJBDzs3QhONADKJJLJQhclKavORfDpgqZZM8MM+CM5JBoMjIOncjBYrEw3AATIDVUR1d8tecONx2IDqf9WHy3txMAB2K5AA')">const x = pair(1, 2);
 const z = pair(x, x);

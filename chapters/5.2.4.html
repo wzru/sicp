@@ -1705,9 +1705,13 @@
       <kbd>make_new_machine</kbd>
     
     to
+      
+      
     <div class='snippet' id='javascript_107_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-list(list("initialize-stack", () => stack("initialize")),
-     list("print-stack-statistics", () => stack("print-statistics")));
+list(list("initialize-stack", 
+          () => stack("initialize")),
+     list("print-stack-statistics", 
+          () => stack("print-statistics")));
 </pre></div></div>
   </p></div>
 
@@ -1719,7 +1723,8 @@ list(list("initialize-stack", () => stack("initialize")),
       
       <kbd>make_stack</kbd>:
     
-    <div class='snippet' id='javascript_107_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9QuUFNAAbNhVBdQAXlAkiMmQG5J0uQvUMARmwBOHAA5EuACzZLVABh3TZ8xkwAeHACZsLFDYqoM66UvqgZESmpmwkFL7+gcGhrsTk1HSgVrYCniKiYa6KwRZMVKZ5ADSKQi7FUoYm5jl2DmpExmaW1m2gANSgAIz1DVExcQl+AUGq47HxiTMDw6PFzN7TyarMgRwbAvOTS4E1uzb7XnVFAL5F6ZS09BY0FsJiRa5UBKACVFwcdSaARcIQFT4NUBmUw0SoAIgAogwAgBPRS8fgALlAsAA8rA4dcIVIblCZFw2B9IcUyHQeKAKK9gnYmD4Qddqa52rwqDJ2WtqUdFltZpFogspkkggBaVbE4qxCjReiMiwC6R3Vya6QPTL0KgkKjUJgyKgALzY70K1PaQO08qa3Va9hS6qkGxOotSkKFkuWTh08sVytAcJ8dDYcLW2qkuqe2VMBoSPCY1B4VDIXCt8p8-wsMiYKIEfCiDA0qctAiMNSYImUAD50YmSABzb5F2sravyznhf4UARwgA6JDhNThjN4MmlzvaY46XRavXsVR7veKw9H442VDLDGlIuC849IrBHI191Ijyyua4ZQoZBsAgY9i4TBbbHB1ODpnoL64b4fioyiqHCrRwmuUgAPzZL0kGgNi-6AZSIGgS8FgQeuoAwehwjwYhr7vihIGhgaRpUCa5qRvBMFkcapoWnhWEEQBRHAWhzYUNKKZptQmaYeuOGcdwvC8RmWZCPhUIxLCz6ER+44AKokCwJA0AA7vQsQAI5EPYFDYuAAAqACC0AANKEtGRQ-vQt73o+Og3EAA')">function make_stack() { 
+      
+    <div class='snippet' id='javascript_107_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9QuUFNAAbNhVBdQAXlAkiMmQG5J0uQvUMARmwBOHAA5EuACzZLVABh3TZ8xkwAeHACZsLFDYqoM66UvqgZESmpmwkFL7+gcGhrsTk1HSgVrYCniKiYa6KwRZMVKZ5ADSKQi7FUoYm5jl2DmpExmaW1m2gANSgAIz1DVExcQl+AUGq47HxiTMDw6PFzN7TyarMgRwbAvOTS4E1uzb7XnVFAL5F6ZS09BY0FsJiRa5UBKACVFwcdSaARcIQFT4NUBmUw0SoAIgAogwAgBPRS8figKjPV5w64QqQ3KEyLhsD6Q4pkOg8UAUV7BOxMHwg64U1ztXhUGQstYUo6LLazSLRBZTJJBAC0qwJxViFGi9DpFl50jurjV0gemXo2Ko1CYMioAC82O9ChT2kDtDKmt1WvYUiqpBsTkLUpD+WLlk4dDK5QrQHCfHQ2HC1hqpFqntlTNiEjwmNQeFQyFwzTKfP8LDImCiQRRYyQAObfPMytmyf4UARwgA6JDhNThdN4Mgl9vajY6XRavXsVXLFdcdYbTY2VAYnQlguCXZdgrBrNV91Ijyyma4ZQoZBsAgY9i4TCLbHBFP9pno+64h+PKmUqjhrThg6kAH5sr0X6AAFyMA9Hsl7wfF4LGfIdQHfEDhC-X8rxvQD70DXV9UNE0wKHd9kKoA1jVNIQYL-a8ALvYDCwoCUEyTahU3QitILI7heColM03w8Df2hWE93-Y8mwAVRIFgSBoAB3ehYgARyIewKF-cAABUAEFoAAaTxcMinPegNy3HcdBuIA')">function make_stack() { 
     let s = null;
     let number_pushes = 0;
     let max_depth = 0;
@@ -1732,7 +1737,7 @@ list(list("initialize-stack", () => stack("initialize")),
     }
     function pop() {
         if (is_null(s)) {
-            error("Empty stack: POP");
+            error("Empty stack in pop");
 
         } else {
             const top = head(s);
@@ -1750,9 +1755,9 @@ list(list("initialize-stack", () => stack("initialize")),
         return "done";
     }
     function print_statistics() {
-        display(accumulate((b, a) => stringify(a) + b,
-                   list("\n", "total-pushes = ", number_pushes,
-                        "\n", "maximum-depth = ", max_depth)));
+        display(stringify(
+                  list("\n", "total-pushes = ", number_pushes,
+                       "\n", "maximum-depth = ", max_depth)));
     }
     function dispatch(message) {
         return message === "push"
@@ -1945,7 +1950,7 @@ list(list("initialize-stack", () => stack("initialize")),
       
       function
     
-    <kbd class='snippet'>      set_breakpoint($machine$, $label$, $n$);</kbd>
+    <kbd class='snippet'>set_breakpoint($machine$, $label$, $n$);</kbd>
     that sets a breakpoint just before the $n$th
     instruction after the given label.  For example,
     <div class='snippet' id='javascript_107_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0BYBQuBnAUwBcB9AIwCciBDAawAcB7ASwDsSAKAcwGMAJmQC2tPgAsORADSgARCSIESAWgpzZ2AJQBuIA')">set_breakpoint(gcd_machine, "test-b", 4);
@@ -1981,11 +1986,11 @@ list(list("initialize-stack", () => stack("initialize")),
     
     to manipulate the state of the simulated machine.  She should then be able
     to continue execution by saying
-    <kbd class='snippet'>      proceed_machine($machine$);</kbd>
+    <kbd class='snippet'>proceed_machine($machine$);</kbd>
     She should also be able to remove a specific breakpoint by means of
-    <kbd class='snippet'>      cancel_breakpoint($machine$, $label$, $n$);</kbd>
+    <kbd class='snippet'>cancel_breakpoint($machine$, $label$, $n$);</kbd>
     or to remove all breakpoints by means of
-    <kbd class='snippet'>      cancel_all_breakpoints($machine$);</kbd>
+    <kbd class='snippet'>cancel_all_breakpoints($machine$);</kbd>
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_107_6_div" data-toggle="collapse">Add solution</button></div>

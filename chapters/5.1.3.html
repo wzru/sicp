@@ -1701,24 +1701,24 @@
     sequence.
     <FIGURE><pre class='prettyprint no-eval'>
 list(...,      
-     "gcd-1",
-     test(list(op("="), reg("b"), constant(0))),
-     branch(label("after-gcd-1")),
-     assign("t", list(op("rem"), reg("a"), reg("b"))),
-     assign("a", reg("b")),
-     assign("b", reg("t")),
-     go_to(label("gcd-1")),
-     "after-gcd-1",
-     ...
-     "gcd-2",
-     test(list(op("="), reg("d"), constant(0))),
-     branch(label("after-gcd-2")),
-     assign("s", list(op("rem"), reg("c"), reg("d"))),
-     assign("c", reg("d")),
-     assign("d", reg("s")),
-     go_to(label("gcd-2")),
-     "after-gcd-2",
-     ...
+  "gcd-1",
+    test(list(op("="), reg("b"), constant(0))),
+    branch(label("after-gcd-1")),
+    assign("t", list(op("rem"), reg("a"), reg("b"))),
+    assign("a", reg("b")),
+    assign("b", reg("t")),
+    go_to(label("gcd-1")),
+  "after-gcd-1",
+    ...
+  "gcd-2",
+    test(list(op("="), reg("d"), constant(0))),
+    branch(label("after-gcd-2")),
+    assign("s", list(op("rem"), reg("c"), reg("d"))),
+    assign("c", reg("d")),
+    assign("d", reg("s")),
+    go_to(label("gcd-2")),
+  "after-gcd-2",
+    ...
 </pre>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.1.3.html#fig_5.7">Figure 5.7 </a></b>Portions of the data paths and controller sequence for
@@ -1768,24 +1768,24 @@ list(...,
     the <kbd>gcd</kbd> instructions.
     <FIGURE><pre class='prettyprint no-eval'>
 list(...,
-     "gcd-1",
-     test(list(op("="), reg("b"), constant(0))),
-     branch(label("after-gcd-1")),
-     assign("t", list(op("rem"), reg("a"), reg("b"))),
-     assign("a", reg("b")),
-     assign("b", reg("t")),
-     go_to(label("gcd-1")),
-     "after-gcd-1",
-     ...
-     "gcd-2",
-     test(list(op("="), reg("b"), constant(0))),
-     branch(label("after-gcd-2")),
-     assign("t", list(op("rem"), reg("a"), reg("b"))),
-     assign("a", reg("b")),
-     assign("b", reg("t")),
-     go_to(label("gcd-2")),
-     "after-gcd-2",
-     ...
+  "gcd-1",
+    test(list(op("="), reg("b"), constant(0))),
+    branch(label("after-gcd-1")),
+    assign("t", list(op("rem"), reg("a"), reg("b"))),
+    assign("a", reg("b")),
+    assign("b", reg("t")),
+    go_to(label("gcd-1")),
+  "after-gcd-1",
+    ...
+  "gcd-2",
+    test(list(op("="), reg("b"), constant(0))),
+    branch(label("after-gcd-2")),
+    assign("t", list(op("rem"), reg("a"), reg("b"))),
+    assign("a", reg("b")),
+    assign("b", reg("t")),
+    go_to(label("gcd-2")),
+  "after-gcd-2",
+    ...
 </pre>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.1.3.html#fig_5.8">Figure 5.8 </a></b>Portions of the controller sequence for a machine that
@@ -1795,30 +1795,30 @@ list(...,
   
     <FIGURE><pre class='prettyprint no-eval'>
 list(...,      
-     "gcd",
-     test(list(op("="), reg("b"), constant(0))),
-     branch(label("gcd-done")),
-     assign("t", list(op("rem"), reg("a"), reg("b"))),
-     assign("a", reg("b")),
-     assign("b", reg("t")),
-     go_to(label("gcd")),
-     "gcd-done",
-     test(list(op("="), reg("continue"), constant(0))),
-     branch(label("after-gcd-1")),
-     go_to(label("after-gcd-2")),
-     ...
-     // Before branching to "gcd" from the first place where
-     // it is needed, we place 0 in the "continue" register
-     assign("continue", constant(0)),
-     go_to(label("gcd")),
-     "after-gcd-1",
-     ...
-     // Before the second use of "gcd", we place 1 in the
-     // "continue" register
-     assign("continue", const(1)),
-     go_to(label("gcd")),
-     "after-gcd-2",
-     ...)
+  "gcd",
+    test(list(op("="), reg("b"), constant(0))),
+    branch(label("gcd-done")),
+    assign("t", list(op("rem"), reg("a"), reg("b"))),
+    assign("a", reg("b")),
+    assign("b", reg("t")),
+    go_to(label("gcd")),
+  "gcd-done",
+    test(list(op("="), reg("continue"), constant(0))),
+    branch(label("after-gcd-1")),
+    go_to(label("after-gcd-2")),
+    ...
+    // Before branching to "gcd" from the first place where
+    // it is needed, we place 0 in the "continue" register
+    assign("continue", constant(0)),
+    go_to(label("gcd")),
+  "after-gcd-1",
+    ...
+    // Before the second use of "gcd", we place 1 in the
+    // "continue" register
+    assign("continue", const(1)),
+    go_to(label("gcd")),
+  "after-gcd-2",
+    ...)
 </pre>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.1.3.html#fig_5.9">Figure 5.9 </a></b>
@@ -1830,27 +1830,27 @@ list(...,
   
     <FIGURE><pre class='prettyprint no-eval'>
 list(...,
-     "gcd",
-     test(list(op("="), reg("b"), constant(0))),
-     branch(label("gcd-done")),
-     assign("t", list(op("rem"), reg("a"), reg("b"))),
-     assign("a", reg("b")),
-     assign("b", reg("t")),
-     go_to(label("gcd")),
-     "gcd-done",
-     go_to(reg("continue")),
-     ...
-     // Before calling "gcd", we assign to "continue"
-     // the label to which "gcd" should return.
-     assign("continue", label("after-gcd-1"))),
-     go_to(label("gcd")),
-     "after-gcd-1",
-     ...
-     // Here is the second call to "gcd", with a different continuation.
-     assign("continue", label("after-gcd-2")),
-     go_to(label("gcd")),
-     "after-gcd-2",
-     ...)
+  "gcd",
+    test(list(op("="), reg("b"), constant(0))),
+    branch(label("gcd-done")),
+    assign("t", list(op("rem"), reg("a"), reg("b"))),
+    assign("a", reg("b")),
+    assign("b", reg("t")),
+    go_to(label("gcd")),
+  "gcd-done",
+    go_to(reg("continue")),
+    ...
+    // Before calling "gcd", we assign to "continue"
+    // the label to which "gcd" should return.
+    assign("continue", label("after-gcd-1"))),
+    go_to(label("gcd")),
+  "after-gcd-1",
+    ...
+    // Here is the second call to "gcd", with a different continuation.
+    assign("continue", label("after-gcd-2")),
+    go_to(label("gcd")),
+  "after-gcd-2",
+    ...)
 </pre>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.1.3.html#fig_5.10">Figure 5.10 </a></b>

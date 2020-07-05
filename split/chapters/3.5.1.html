@@ -1708,17 +1708,18 @@
     sum of all the prime numbers in an interval.  The first program is
     written in standard iterative style:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
     
+        
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_69_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (sum-primes a b)
-        (define (iter count accum)
-        (cond ((> count b) accum)
-        ((prime? count) (iter (+ count 1) (+ count accum)))
-        (else (iter (+ count 1) accum))))
-        (iter a 0))
+  (define (iter count accum)
+    (cond ((> count b) accum)
+          ((prime? count) (iter (+ count 1) (+ count accum)))
+          (else (iter (+ count 1) accum))))
+  (iter a 0))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_69_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAAmflUNLUpael9-QLsHJxJwilMLa1THV1F3SWl6ZjYubiyzFOD2QQA+UBJC91bQAH4mlrbxAC5QXKpLU0rsmrTwl26e8U6qnKC06ZnQfqSAwbSw0Hnxx1AAalBsaPVCUnjdQeGGblZwgCMCos8S0AfQAFJQVlAAXgBoAADDFNBcdPR7OYAA7sKh6HguYTdYreegAv76IwmaqbEIuUHnbQJRhEPQwuEI273d7PcRxCGgKhZJxkGikCjhVhkMhkultVH0Nkc0CNB7LFadbm8vQSmb9KGw+E8YUkCj8OWSpks7iqiiHY7hPUG6V8zXy7WcVnstUG7Bcnl81TuDQvLyQnU0oGnDS4BhkinK24AdnC2AAHFFlEA')">function sum_primes(a, b) {
     function iter(count, accum) {
@@ -1741,15 +1742,16 @@
     The second program performs the same computation using the sequence
     operations of
     section <REF NAME="sec:sequences-conventional-interfaces"><a class="superscript" id="3.5.1-sec-link-2.2.3" href="./2.2.3.html">2.2.3</a></REF>:
+        
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_69_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (sum-primes a b)
-        (accumulate +
-        0
-        (filter prime? (enumerate-interval a b))))
+  (accumulate +
+              0
+              (filter prime? (enumerate-interval a b))))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_69_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAAmflUNLUpael9-QLsHJxJwilMLa1THV1F3SWl6ZjYubiyzFOD2QQA+UBJC91bQAH4mlrbxAC5QXKpLU0rsmrTwl26e8U6qnKC06ZnQfqSAwbSw0Hnxx1AAalBsaPVCUnjdQeGGblZwgCMCos8S0AfQAFJQVlAAXgBoAADDFNBcdPR7OYAA7sKh6HguYTdYreegAv76IwmaqbEIuUHnbQJUCcEhEBHsVhZcx+LLsGxGbiGGgAd3CAAsqABzDnPcSo+gs1mgRpc3nLVqdcnGSXufrQ1hUJzC0Jylak8mU6mcWkkemMwzMtmHY6cnl804aImXUoUmFwhG3e7vfliQU-MhkClEQw67h8cIAT0Ef0aciOQbVGpjwOjsZWvkM9O4UNh8M44XVCZ6ZIpnCpNLpBcNd0e-ArhIY9vTTu4AHZwtgABxRZRAA')">function sum_primes(a, b) {
     return accumulate((x, y) => x + y,
@@ -1790,7 +1792,7 @@
           <tr>
             <td><div class='snippet' id='javascript_69_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (car (cdr (filter prime?
-        (enumerate-interval 10000 1000000))))
+                  (enumerate-interval 10000 1000000))))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_69_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAAmflUNLUpael9-QLsHJxJwilMLa1THV1F3SWl6ZjYubiyzFOD2QQA+UBJC91bQAH4mlrbxAC5QXKpLU0rsmrTwl26e8U6qnKC06ZnQfqSAwbSw0Hnxx1AAalBsaPVCUnjdQeGGblZwgCMCos8S0AfQAFJQVlAAXgBoAADDFNBcdPR7OYAA7sKh6HguYTdYreegAv76IwmaqbEIuUHnbQJUCcEhEBHsVhZcx+LLsGxGbiGGgAd3CAAsqABzDnPcSo+gs1mgRpc3nLVqdcnGSXufrQ1hUJzC0Jylak8mU6mcWkkemMwzMtmHY6cnl804aXAczisSyVJVG3yGencKGw+GcNUanpkimcKk0umBw3cbBAyNA8IRqOR-gJ6JAA')">head(tail(filter(is_prime,
                  enumerate_interval(10000, 1000000))));
@@ -1880,25 +1882,26 @@
         chapter 2, such as <kbd>list-ref</kbd>,
 	<kbd>map</kbd>, and
 	<kbd>for-each</kbd>:<a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:teal">[3]</a>
+            
+            
+            
         <div class='snippet' id='javascript_69_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (stream-ref s n)
-            (if (= n 0)
-            (stream-car s)
-            (stream-ref (stream-cdr s) (- n 1))))
+  (if (= n 0)
+      (stream-car s)
+      (stream-ref (stream-cdr s) (- n 1))))
 
-            
-            (define (stream-map proc s)
-            (if (stream-null? s)
-            the-empty-stream
-            (cons-stream (proc (stream-car s))
-            (stream-map proc (stream-cdr s)))))
+(define (stream-map proc s)
+  (if (stream-null? s)
+      the-empty-stream
+      (cons-stream (proc (stream-car s))
+                   (stream-map proc (stream-cdr s)))))
 
-            
-            (define (stream-for-each proc s)
-            (if (stream-null? s)
-            'done
-            (begin (proc (stream-car s))
-            (stream-for-each proc (stream-cdr s)))))
+(define (stream-for-each proc s)
+  (if (stream-null? s)
+      'done
+      (begin (proc (stream-car s))
+             (stream-for-each proc (stream-cdr s)))))
 </pre></div></div>
       </p></div>
 
@@ -1906,14 +1909,15 @@
 <a name='p11' class='permalink'></a><p>
         <kbd>Stream-for-each</kbd> is useful for viewing
 	streams:
+            
+            
         <div class='snippet' id='javascript_69_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (display-stream s)
-            (stream-for-each display-line s))
+  (stream-for-each display-line s))
 
-            
-            (define (display-line x)
-            (newline)
-            (display x))
+(define (display-line x)
+  (newline)
+  (display x))
 </pre></div></div>
       </p></div>
 
@@ -1985,11 +1989,12 @@
         pair we will put there a promise to compute the rest if it is ever
         requested.  <kbd>Stream-car</kbd> and
 	<kbd>stream-cdr</kbd> can now be defined as procedures:
+            
+            
         <div class='snippet' id='javascript_69_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (stream-car stream) (car stream))
 
-            
-            (define (stream-cdr stream) (force (cdr stream)))
+(define (stream-cdr stream) (force (cdr stream)))
 </pre></div></div>
       </p></div>
 
@@ -2018,9 +2023,9 @@
 	in terms of streams:
         <div class='snippet' id='javascript_69_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (stream-car
-            (stream-cdr
-            (stream-filter prime?
-            (stream-enumerate-interval 10000 1000000))))
+ (stream-cdr
+  (stream-filter prime?
+                 (stream-enumerate-interval 10000 1000000))))
 </pre></div></div>
       </p></div>
 
@@ -2037,20 +2042,21 @@
 	<kbd>Stream-enumerate-interval</kbd> is the stream
 	analog of <kbd>enumerate-interval</kbd>
         (section <REF NAME="sec:sequence-operations"><a class="superscript" id="3.5.1-sec-link-2.2.3" href="./2.2.3.html">2.2.3</a></REF>):
+            
         <div class='snippet' id='javascript_69_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (stream-enumerate-interval low high)
-            (if (> low high)
-            the-empty-stream
-            (cons-stream
-            low
-            (stream-enumerate-interval (+ low 1) high))))
+  (if (> low high)
+      the-empty-stream
+      (cons-stream
+       low
+       (stream-enumerate-interval (+ low 1) high))))
 </pre></div></div>
         and thus the result returned by
 	<kbd>stream-enumerate-interval</kbd>, formed by the
 	<kbd>cons-stream</kbd>, is<a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:teal">[5]</a>
         <div class='snippet' id='javascript_69_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (cons 10000
-            (delay (stream-enumerate-interval 10001 1000000)))
+      (delay (stream-enumerate-interval 10001 1000000)))
 </pre></div></div>
       </p></div>
 
@@ -2063,14 +2069,15 @@
 	filtered for primes, using the stream analog of the
 	<kbd>filter</kbd> procedure
         (section <REF NAME="sec:sequence-operations"><a class="superscript" id="3.5.1-sec-link-2.2.3" href="./2.2.3.html">2.2.3</a></REF>):
+            
         <div class='snippet' id='javascript_69_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (stream-filter pred stream)
-            (cond ((stream-null? stream) the-empty-stream)
-            ((pred (stream-car stream))
-            (cons-stream (stream-car stream)
-            (stream-filter pred
-            (stream-cdr stream))))
-            (else (stream-filter pred (stream-cdr stream)))))
+  (cond ((stream-null? stream) the-empty-stream)
+        ((pred (stream-car stream))
+         (cons-stream (stream-car stream)
+                      (stream-filter pred
+                                     (stream-cdr stream))))
+        (else (stream-filter pred (stream-cdr stream)))))
 </pre></div></div>
       </p></div>
 
@@ -2087,7 +2094,7 @@
 	<kbd>stream-enumerate-interval</kbd>, which now returns
         <div class='snippet' id='javascript_69_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (cons 10001
-            (delay (stream-enumerate-interval 10002 1000000)))
+      (delay (stream-enumerate-interval 10002 1000000)))
 </pre></div></div>
       </p></div>
 
@@ -2102,18 +2109,18 @@
 	according to its definition, returns
         <div class='snippet' id='javascript_69_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (cons-stream (stream-car stream)
-            (stream-filter pred (stream-cdr stream)))
+             (stream-filter pred (stream-cdr stream)))
 </pre></div></div>
         which in this case is
         <div class='snippet' id='javascript_69_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (cons 10007
-            (delay
-            (stream-filter
-            prime?
-            (cons 10008
-            (delay
-            (stream-enumerate-interval 10009
-            1000000))))))
+      (delay
+       (stream-filter
+        prime?
+        (cons 10008
+              (delay
+               (stream-enumerate-interval 10009
+                                          1000000))))))
 </pre></div></div>
       </p></div>
 
@@ -2127,13 +2134,13 @@
 	<kbd>stream-car</kbd>	in our original expression is
         <div class='snippet' id='javascript_69_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (cons 10009
-            (delay
-            (stream-filter
-            prime?
-            (cons 10010
-            (delay
-            (stream-enumerate-interval 10011
-            1000000))))))
+      (delay
+       (stream-filter
+        prime?
+        (cons 10010
+              (delay
+               (stream-enumerate-interval 10011
+                                          1000000))))))
 </pre></div></div>
       </p></div>
 
@@ -2192,9 +2199,10 @@
         (of no arguments) produced by <kbd>delay</kbd>,
 	so we can implement <kbd>force</kbd> as
         a procedure:
+            
         <div class='snippet' id='javascript_69_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (force delayed-object)
-            (delayed-object))
+  (delayed-object))
 </pre></div></div>
       </p></div>
 
@@ -2218,15 +2226,16 @@
         (of no arguments) and returns a memoized version of the procedure. The
 	first time the memoized procedure is run, it saves the computed result.
 	On subsequent evaluations, it simply returns the result.
+            
         <div class='snippet' id='javascript_69_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (memo-proc proc)
-            (let ((already-run? false) (result false))
-            (lambda ()
-            (if (not already-run?)
-            (begin (set! result (proc))
+  (let ((already-run? false) (result false))
+    (lambda ()
+      (if (not already-run?)
+          (begin (set! result (proc))
             (set! already-run? true)
             result)
-            result))))
+          result))))
 </pre></div></div>
       </p></div>
 
@@ -2252,14 +2261,15 @@
 	<kbd>map</kbd> in
 	section <REF NAME="sec:sequence-operations"><a class="superscript" id="3.5.1-sec-link-2.2.3" href="./2.2.3.html">2.2.3</a></REF>,
 	footnote <REF NAME="foot:generalmap"><a class="superscript" id="3.5.1-foot-link-1" href="./2.2.1.html#footnote-1">1</a></REF>.
+            
 	<div class='snippet' id='javascript_69_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (stream-map proc . argstreams)
-            (if (^??^ (car argstreams))
-            the-empty-stream
-            (^??^
-            (apply proc (map ^??^ argstreams))
-            (apply stream-map
-            (cons proc (map ^??^ argstreams))))))
+  (if (^??^ (car argstreams))
+      the-empty-stream
+      (^??^
+       (apply proc (map ^??^ argstreams))
+       (apply stream-map
+              (cons proc (map ^??^ argstreams))))))
 </pre></div></div>
       
       <div class="Solution">
@@ -2280,17 +2290,17 @@
 	following procedure, which simply returns its argument after printing it:
 	<div class='snippet' id='javascript_69_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (show x)
-            (display-line x)
-            x)
+  (display-line x)
+  x)
 </pre></div></div>
 	What does the interpreter print in response to evaluating each
 	expression in the following sequence?<a class='superscript' id='footnote-link-7' href='#footnote-7'style="color:teal">[7]</a>
 	<div class='snippet' id='javascript_69_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define x (stream-map show (stream-enumerate-interval 0 10)))
 
-            (stream-ref x 5)
+(stream-ref x 5)
 
-            (stream-ref x 7)
+(stream-ref x 7)
 </pre></div></div>
       
       <div class="Solution">
@@ -2310,18 +2320,18 @@
         <div class='snippet' id='javascript_69_25_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define sum 0)
 
-            (define (accum x)
-            (set! sum (+ x sum))
-            sum)
+(define (accum x)
+  (set! sum (+ x sum))
+  sum)
 
-            (define seq (stream-map accum (stream-enumerate-interval 1 20)))
-            (define y (stream-filter even? seq))
-            (define z (stream-filter (lambda (x) (= (remainder x 5) 0))
-            seq))
+(define seq (stream-map accum (stream-enumerate-interval 1 20)))
+(define y (stream-filter even? seq))
+(define z (stream-filter (lambda (x) (= (remainder x 5) 0))
+                         seq))
 
-            (stream-ref y 7)
+(stream-ref y 7)
 
-            (display-stream z)
+(display-stream z)
 </pre></div></div>
         What is the value of <kbd>sum</kbd> after each of the
 	above expressions is evaluated?  What is the printed response to

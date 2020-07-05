@@ -1745,6 +1745,7 @@
     we made these guesses be the successive values of a state variable. Instead
     we can generate the infinite stream of guesses, starting with an initial
     guess of 1:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+	
     <div class='snippet' id='javascript_71_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgCGAbgKYBO9A5swBQAeANAE8AlKADeOUFNCtm5Qqzp9QAalAjQYAEwBuHAF88RMlVqgAzgEdW5APqUAtgAdW1Ftw6Fm58-1C9RCWkZOQU6JjZOHk9vX39NUBifYT1DHFJac3JQB3peWwATSnMnABt6QVAAXlAATj1jCho6IpLywVss2XoHbnNAyWlG0xbisorO8m6He3I2PvI-YgHg4Mp8UG5i22JCUtKF4RXVqX1QZlLzZlB1zboqh9AABmOT4NbxwW4Acm+-ACI0ED-ilBiczhcruIwW8pB92twABbMegFQ6g2HvMbtSbTWbzLoombkeiUA5ZYRLUAAWlAAEYMW9DMFmdJ4RNCT18aw+n5cvl2SJUkYSE0zFYbLiiXxXqAMsQsokvD5vNUYcEnKSeXS0E9+OrYdxRFUAHwWKZE2y5JweZXmapmiV2RwuNzRO1+AL6zE+31JK79RlSWTyRRK2LeYU4QVSnp9ax2Tm9LRHHRAA')">function sqrt_stream(x) {
     const guesses =
         pair(1.0,
@@ -1810,6 +1811,7 @@
       
     
     of exercise <REF NAME="ex:partial-sums"><a class="superscript" id="3.5.3-ex-link-3.55" href="./3.5.2.html#ex_3.55">3.55</a></REF>) and scale the result by 4:
+	
     <div class='snippet' id='javascript_71_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4MYD2AdgM4AuoAtgIYAeA+gCYCWpADgDY0CeoAvKACcAbhwAzAK7F85FiVCsO3HgwoAnAKY0qAClIBKUAG8coc6Cky5CpV15ryWnQxblN6-eQA0oYkdMLINAWcVBdNgZiSU5OLwMAs2DzAF9QTU5STRCw3WIBfkEABkTk5LsVXQByKt8AIjRGuoMxMtA0jKyTJLbzCt5dAAttJniWnt7+1Q1tKld3TxmXchoWOIoDX3yAWlAARnG2lInjoKnHZzm3D31fWkYp8eOJaVl5fNJ8Gk5NC9mvS6+cQ0WSEdSlCxaciSdQfJyzBi0di6OgCAB8oFRACpLCDyGDvBNer0llQnngrG8FFRNFRCLorAEAJBBCY-SjfZxMVTqaQCXGZTStCzs0BaUgxSiCaRMTTiFjETRMYXmKEw-K6Iz8DGBYnE0LhACEnJGPOkEL1lvFkv5Vk1KstxJNNG5DF5+UETkkQqJjrKathYs0Es45AdfosHUF3QjxID+WtofDseOLKOYmelJscMuDCIVAARgrNAzfKQ9mWAEwWoPQwORaKxfQHUAAMlbIVIURi62rvvMAH4-D3+6AAFyd7tN8tGAA+s8njd7BlHQ486jBeR79Wkmjo7E0siVoBo6gA5pIacRKArQKS84RC8Wx81RxP2KtPOIhiNm5thi6+jVpsoCjmUNJ0romrone8IuPmRaKqWsG5isax-oSsZYW095ocuCTki81jvCeTBMH8OikM2VY1vGKEIghxZQXQFaYtWMEsaAADUbFlqxpDVhmFKvNmoAfuocjfGol5UYYMaQpodb5B+LCeABoyGJhEbQdqpHkaSslwXMeH6JsYHYWU4mSZw0lULJBFCURVLKSwtm0MQTBUf48mqop6piZ+uh7GgRSgGAxC+OZyQ6Ri95IiiMHbHQWkWZa7CuRKVDuZ5eTcaAwFRUEhFEGQlDpRRVD8hMnzfL8pK6FZLBSZlVHlZl2VUQcIEACzjDg5z1W1RktEAA')">function pi_summands(n) {
     return pair(1.0 / n, 
                 () => stream_map(x => -x,
@@ -1873,6 +1875,7 @@ const pi_stream =
      
     Thus, if the original sequence is represented as a stream of values,
     the transformed sequence is given by
+	
     <div class='snippet' id='javascript_71_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgDOAjoQIYBOApgBQAeAlKADeOUKNCdyhNnR6gAVKB4BuHAF88RMlVqgAth13UumgYICQY0CLEAbDuVAsbnFgBMAngH02JUAF5QfCd6DhVLOwdOekIbBwCSVw58SmIOVzCxCSk6LgE-AD4ha0sS0stKfFAuAEInFw9vElNistayqJi4wJJcjLb+yzqONy8fOgDyH1CWgf6s6XEOaNi+2dLVUA4bEKK12fm6DpWZvdF1C1bVFXUcUlp6B10WHk9XSnoABxsWd39QAE4VJoKDQ6G9Pt8vA8XLouPRmpZgdowe8vj9PNDhrpPJRyBw2HDyAAaUDEBFlCpVd6eYgxGyEvjk9abbYcUCUrjjPwBAAMTLa4LR7i4AHIRSSAERoaUSvirSwbLY7YSzQWQrgAC2GrgZcpOpTV6MxLGxuPxhJhnnILEo9IefBJdAAtKAAIx6y4tdSWQ1QyZYnF4gn0ElPF6+vU3JGghikJwcDH+k0WrEkoIUahsfkHBhJ7FPD68fyFWQKdPkTNE-WnY26SMaEggnS1zx3XQAIxS3HwJPort7ACZs-Zsuz6DS6XD3aAAGQzscTmx2ofVgD8pLp1YAXAvaUupwIAD6H3eT+gr1rr-FsTOcumSkgcHgfDgUNKONgAc0I+mIDhSuaWm2napFusrbqAHw2gS+CatqB5ElqbhwkODpWKc+iGFwuTFoBAbAV2xi9nmVo2na7pVqcVH9C21q2ihjKMtcDZaDGbiuImML0FOg7DpICwtgRqTYTw-aKEOuGiaAADU4m9mJ571gQjbIpB7BUE4GI-tx8K7JkI4LFBlAEkhOrwpRpw4QUjiuBxtY6SRdF2g61bUW0UFsBpNhaboOmMcxymsToHyUD5TzEK43Fknpog5kZBKumgPKgGAxAkq5ZRWYULYFkW1lOjwFluWsIVhSwEVRTJoCoRlJRKXcxAPJBoW1n8LT0HGdicViXAeV5PncaV0S6OFkVcO6aEACx6oFTZ0BwMT4labDlfQ+CZrCukqmIDVNfQyUBC2nCwSGoB8qsu0OH2fxHUkcIku6F33FdA43SRx33dVHr6fxdDxVwtWiOeoAukwrCcChIMMNOYBwslslcE6EkKNdsmKUV-SYUYWWbItbDLat61sJtjlkXCjFKb63XJgtdj45MhMbb1LV5kxQA')">function euler_transform(s) {
     const s0 = stream_ref(s, 0);
     const s1 = stream_ref(s, 1);
@@ -1924,6 +1927,7 @@ const pi_stream =
     structure we'll call a 
     
     <EM>tableau</EM>) in which each stream is the transform of the preceding one:
+	
     <div class='snippet' id='javascript_71_8_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+uYwEYA2rjQgApyAJ0bEAzvmqj6AGlCSAlKADeOUFtCjW5QqLoAHRpVFDJioaoC8APgYsOXPgOFiJ02QtAepMuQtlYIBuHABfIA')">function make_tableau(transform, s) {
     return pair(s, () => make_tableau(transform, transform(s)));
 }
@@ -1950,6 +1954,7 @@ const pi_stream =
 <a name='p15' class='permalink'></a><p>
     Finally, we form a sequence by taking the first term in each row of
     the tableau:
+	
     <div class='snippet' id='javascript_71_9_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+uYwEYA2rjQgApyAJ0bEAzvmqj6AGlCSAlKADeOUFtCjW5QqLoAHRpVFDJioaoC8APgYsOXPgOFiJ02QtAepMuQtlYIBuHABfPCIyKlolAEdCRl0hAA9VDW0dPQM6VNAAKlBUsMiCEgoaOnpWemohaIyASCzNbX5yUEZeXUYAEwBPdlESUBtQfG7JVjCsjuzJQl5O8ZI+1nxKYlY+2e1dfUNQazGHTKyLy4vKfGOAQm7eweGSDLarj4-dReWxiZJrHtPsCso8BM8RnRxmJCDN3iCQQdcgsluQgQjLuFQKxeNN1PCMV8ckdvqj0YTtJEWh9wqUohVYnRWEtWKJOOJ-N4gvisqRaJJOpIAAx-AW9ejDDYWRRC5TovlSQUARlFYgEEt0+GloCVcvhCoFSgATKrxZKtZZQEa9VkkUcTGYhASPpITQBaBJJFKu0AeyS60BgCwigDUxzd1sKShVYddynkzquNTqQhO9mxLLZfi8gTF6s4pl4QWCerKBs6TFS7D6lEkRl4jAGfwAnGFopU4jW6w2hnnGPRuectO3GaAu-XG+w+xLKORWRZyIpiG8PjdjrX2MQlkWBcEeVcsTi8WuhFCbONZfvgeOe0IAOR3xQAIjQr6fNoP2NxrCvnxvjaEAALcEF1CRMLn-Xs1X7dhZ3nacC0oHdyHjUA6A9XVyUpeFIiySCp2gmc53MS1K2rWsJwGUt6RiKolFIboOGnBdxUUSYKFkFd9mJOgEKYIw0lOYoo3Y8hZATCkrmnajylouIEL5ehuC2VgGkUf11MjIdskOOgNy3XgdwDAAyYzQH07cLGtcCAH40O3cCAC5zMkTdLP9VQAB9PJctzDKs5RbOxURRFkU9t2fEhWFSIxWAoHYulEABzQgamITotiUQj2EU5Ttkc98nNAB1zC1YD+gsXV5HKvoAtQ8Ck1qeo0wcBTqCUlS1Kys0uCQyr4wayTJIQ3qd2tEs6Vkjs6H6PoCPFSRKs0ritDtXjstyzq0iVRRUkjdNUhjYojXUnbjRkkc6JMUQqG6KdUsWlRfzW4rTHMGqggkikWq6Po5unR7stGz7BqGq5rtu3h7voR6JoiGjpuKyhoaYYg+kW5dnp417HSVNARTAYhFFBi4fr4xgBPydM3VSL6wYxIxkcWehUfR09QDDcaSe0GTyyR+b1T+eFJAY-gBf7IQIcoO7mcWxmUYkNndVQgAWPUptHRhSFIHFWUYOd-tYRJWDIVTswCHwnu0l7yYEmrFCYNgC1cQQRA5HNLbAsp8OYrWdf4cQDanI3YVNoRmQD9lPAtun6cJeXpLlIA')">function accelerated_sequence(transform, s) {
     return stream_map(head, make_tableau(transform, s));
 }
@@ -2053,6 +2058,7 @@ function sqrt_stream(x) {
   finds two successive elements that differ in absolute value by less
   than the tolerance, and return the second of the two elements.  Using
   this, we could compute square roots up to a given tolerance by
+      
   <div class='snippet' id='javascript_71_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function sqrt(x, tolerance) {
     return stream_limit(sqrt_stream(x), tolerance);
@@ -2247,6 +2253,7 @@ stream_map(x => list(head(s), x),
     
     from section <REF NAME="sec:sequences"><a class="superscript" id="3.5.3-sec-link-2.2.1" href="./2.2.1.html">2.2.1</a></REF>:
     
+	
     <div class='snippet' id='javascript_71_15_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgDO5ATgKYCGAtgPpsAOvLYgBMAFPQCMAGgYAmAJSgA3jlCrQrcoSZ1K9LsUIAbQ2PFyVaywH5ZFy6oBcoXm0pMRAC3aiJc6XftA0BEFAF4APgZmdm4+AWExaM4uclcTX2l6eQCgtTkAbhwAXzxSWkZQWhZ6UFDnV3cpYLDIqvoCnDLiCvIAd2oaupc3ERlpENrIvoGOroq4wSEWIVqo1mSFhLbpafbCxnXuVnwRTaWhaXEABiuCoA')">function stream_append(s1, s2) {
     return is_null(s1)
         ? s2
@@ -2281,6 +2288,7 @@ stream_map(x => list(head(s), x),
     with the following <kbd>interleave</kbd>
     function:<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
     
+	
     <div class='snippet' id='javascript_71_17_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4MYD2AdgM4AuoAtgIYAeA+gCYCWpADgDY0CeoAvKACcAbhwAzAK7F85FiVCsO3HgwoAnAKY0qAClIBKUAG8coc6Cky5CpV15ryWnQxblN6-eQA0oYkdMLINAWcVBdNgZiSU5OLwMAs2DzAF9QTU5STRCw3WIBfkEABkTk5LsVXQByKt8AIjRGuoMxMtA0jKyTJLbzCt5dAAttJniWnt7+1Q1tKld3TxmXchoWOIoDX3yAWlAARnG2lInjoKnHZzm3D31fWkYp8eOJaVl5fJZiBc5tADdNfR7XykABMpQsWnIknUH1IURi6wOEyCAH5QKDkRYAFygdirTzDGijUgHXyY3q6Iz8AB8IS+Hh+NH++hBwKcswYKzWgIS5LKTzwRDIlBImlIAlx+N0QPCVNposMYiFFFA5AA7oRxYI8SxPKzZQJaerNeNlZRPt8-pomBKLQyrboFb5jYqcOclno7epGf8mC0gA')">function interleave(s1, s2) {
     return is_null(s1)
         ? s2
@@ -2303,6 +2311,7 @@ stream_map(x => list(head(s), x),
   <div class='permalink'>
 <a name='p27' class='permalink'></a><p>
     We can thus generate the required stream of pairs as
+	
     <div class='snippet' id='javascript_71_18_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGiXHkCmATgDZMCGAbkwBQBnAIwAaUAIBMASlABvHKEWgWTcoRZ1KAgPrFCbNoKFSFSswH5xE02cUAuUAAdOlFnwAWXACZGpYm7aBoHwyALwAfPSMrBw8-JJiAuQqnAC22uQuhsJSJkFBUgDcOAC+eKS0SaCpnAAe2l5ajmycAJ6goaAAnMVEZFS0oI0CzW3aSSmpgjLyZn0UNHTDo63jyVzplMxuSWLEMwFmlPjBWrr62eS5codKJaBMbAJM9Cd8dKGfoAAMB-lmyxarT4AHIQWIAERoaEQoq3RT3R7PG7-JSAtoebyCK5w1GKdGrCYbbRbVjYyYZLLYvygOgAWlAxmK+TKZlZaKaQLWFNJOzENXqBLhZQIJAWgwYzAA5qwdElOCwqMQpdp8CxqFN9iilCo1BonC43MQRPD-iEOpFJUwZSw5ZlFQwVWqNe9QABqRl5PFKYXlSrkKLS2UdQPW2VrBVKp3qqZMvDzAZ0ZyuASCMRXbWKXXqJOGvhsLTkTGcHwCGmeEt8HH+b1mc0RUPsLi8cnEmqOPi1C2gAtJYulmm1Pym2uj-5EtKUyiGasjsf-ZO21uTzLT6Y1+eb2wT9Krme5XLFEUE7kbPiL1NWm0CMRX2WHoA')">function pairs(s, t) {
     return pair(list(head(s), head(t)), 
                 () => interleave(stream_map(x => list(head(s), x),
@@ -2597,6 +2606,7 @@ function pairs(s, t) {
     is reminiscent of the <QUOTE>implicit style</QUOTE> definition of the
     stream of integers (section <REF NAME="sec:infinite-streams"><a class="superscript" id="3.5.3-sec-link-3.5.2" href="./3.5.2.html">3.5.2</a></REF>):
     
+	
     <div class='snippet' id='javascript_71_20_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0oFA4GYCuAdgMYAuAlgPbGgC2ApvdQBRHECUoA3gJChBoHENAAbRuVABDMQCdG0gCYBPAPpySoALyh8sgM6MA3CKESpCg4TFTdJJY3yVijJadELyhOXVbdtAD5eM1Ew8NFKfFBWAEJZBWV1TS4QiPSM0CsbOz0Sfw9MoqEExVUNLV1yTRNQ4syvHzps20L68IBfUEYxIzT2hskmrMZrVrqBwQ6cAXSO02mCEgoaOgNqxXo1Ump6ACMXRnYAGlADAEZTgwAmbh46xt9QSgM1YhsxVgvuADIf59e7zEnxunAmQgA-KAgWJwYIAFwAt4fL7nbgAH3RSJhX1ucNAUMYcjk1DkrBhpwARCRGAAPAAOjAobhkcgA5oQmMQpC4zhtpFsdvtDvDKWD0oj6dJKGT8KwABZlVGcY6K5S4zgq4QDJgsVj+HTBdaJQW7A6uE58k1qcjSkFo474ybO42bG12jWazgLPAcFa0GRKJRqV0Cgyoq63fqCR5rfmm4UW1i0y6gWlRoJp86gADUaeuV1ToJ9SzIVADBlIskYIfjX3jp30FFJdweQyeoa29Gk9OThrToAAVHppM25I7nWFO96cIs-eW6C5yIw2XJZKwlyu18QlKcXJQqLI1AA3WSERinJTkVuiHbEdbPbkrnSgKUy1hOor7w9iE9ni-apOMQBMEyjBp24afpOlbVrWJobk+q7SDul7XhOQHpJubLis6M6eO2i6ISW86rNCnJ7ESrzrNIchUMQbJqPgJL0Kw5CoTeQixq+0pkmxUFhAambvPslG1jRdEMUxuysbmoBXux-FCDO0x3g+V4vgADGgGnnMYfA4KpUhiIcNEvsJFFyFRtq0S4knMawGnsXpEQGbQD7Ga4NFqFha5iC+Pnrh5ijjqAjlydepggKAQr0oQEmPsuSF+VJ9ChaA5DUKgoDUNEcq0gEaY4FFrGKglW6yACoBssmBVaRgaYAHoFjIO7pYqCj4KSjBFWA5ClS0PIGNCwWhZgQ6oE1L4ACyYGCnYaE4rBBV5AViKc3Z9Ro1AOKwKCgGAV6asYQA')">function integral(integrand, initial_value, dt) {
     const integ = pair(
                     initial_value, 
@@ -2820,10 +2830,10 @@ const zero_crossings = make_zero_crossings(sense_data, 0);
 function make_zero_crossings(input_stream, last_value) {
     const avpt = (head(input_stream) + last_value) / 2;
     return pair(sign_change_detector(avpt, last_value),
-        () => make_zero_crossings(
-                  stream_tail(input_stream), 
-                  avpt);
-		 );
+                () => make_zero_crossings(
+                          stream_tail(input_stream), 
+                          avpt);
+	       );
 }
 </pre></div></div>
     This does not correctly implement Alyssa's plan.

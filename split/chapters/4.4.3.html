@@ -1703,7 +1703,7 @@
           <tr>
             <td><div class='snippet' id='javascript_94_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (and (job ?x (computer programmer))
-      (supervisor ?x ?y))
+     (supervisor ?x ?y))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(job(x, list("computer", "programmer")),
@@ -1716,7 +1716,7 @@ and(job(x, list("computer", "programmer")),
           <tr>
             <td><div class='snippet' id='javascript_94_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (and (supervisor ?x ?y)
-      (job ?x (computer programmer)))
+     (job ?x (computer programmer)))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(supervisor(x, y),
@@ -1822,7 +1822,7 @@ married("Mickey", who)
           <tr>
             <td><div class='snippet' id='javascript_94_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (assert! (rule (married ?x ?y)
-            (married ?y ?x)))
+         (married ?y ?x)))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assert(rule(married(x, y), married(y, x)))
@@ -1961,10 +1961,10 @@ married("Mickey", who)
           <tr>
             <td><div class='snippet' id='javascript_94_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (and (supervisor ?x ?y)
-      (not (job ?x (computer programmer))))
+     (not (job ?x (computer programmer))))
 
-      (and (not (job ?x (computer programmer)))
-      (supervisor ?x ?y))
+(and (not (job ?x (computer programmer)))
+     (supervisor ?x ?y))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(supervisor(x, y),
@@ -2095,8 +2095,8 @@ and(not(job(x, list("computer", "programmer"))),
             <td><div class='snippet' id='javascript_94_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (rule (outranked-by ?staff-person ?boss)
       (or (supervisor ?staff-person ?boss)
-            (and (outranked-by ?middle-manager ?boss)
-            (supervisor ?staff-person ?middle-manager))))
+          (and (outranked-by ?middle-manager ?boss)
+               (supervisor ?staff-person ?middle-manager))))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 rule(outranked_by(staff_person, boss),      
@@ -2155,21 +2155,23 @@ wheel(who)
           <tr>
             <td><div class='snippet' id='javascript_94_11_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
 
-      ;;; Query results:
-      (wheel (Warbucks Oliver))
-      (wheel (Bitdiddle Ben))
-      (wheel (Warbucks Oliver))
-      (wheel (Warbucks Oliver))
-      (wheel (Warbucks Oliver))
+;;; Query results:
+(wheel (Warbucks Oliver))
+(wheel (Bitdiddle Ben))
+(wheel (Warbucks Oliver))
+(wheel (Warbucks Oliver))
+(wheel (Warbucks Oliver))
       
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_94_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-// Query results:
+            <td><div class='snippet' id='javascript_94_11_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
+
+Query results:
 wheel(list("Warbucks", "Oliver"))
 wheel(list("Bitdiddle", "Ben"))
 wheel(list("Warbucks", "Oliver"))
 wheel(list("Warbucks", "Oliver"))
 wheel(list("Warbucks", "Oliver"))
+      
 </pre></div></div></td></tr></table>
     Why is Oliver Warbucks listed four times?
     
@@ -2196,8 +2198,8 @@ wheel(list("Warbucks", "Oliver"))
           <tr>
             <td><div class='snippet' id='javascript_94_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (sum ?amount
-      (and (job ?x (computer programmer))
-            (salary ?x ?amount)))
+     (and (job ?x (computer programmer))
+          (salary ?x ?amount)))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 sum(amount,      
@@ -2205,7 +2207,8 @@ sum(amount,
         salary(x, amount)))
 </pre></div></div></td></tr></table>
     In general, Ben's new system allows expressions of the form
-    <kbd class='snippet'>accumulation_function($\textit{variable}$, $\textit{query-pattern}$)</kbd>
+    <kbd class='snippet'>accumulation_function($\textit{variable}$, 
+                      $\textit{query-pattern}$)</kbd>
     where
     
       <span style="color:teal">

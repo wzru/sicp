@@ -1723,10 +1723,10 @@
 	    strings:
 	    <div class='snippet' id='javascript_77_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (self-evaluating? exp)
-		(cond ((number? exp) true)
-		((string? exp) true)
-		((null? exp) true)
-		(else false)))
+  (cond ((number? exp) true)
+        ((string? exp) true)
+        ((null? exp) true)
+        (else false)))
 </pre></div></div>
           </LI>
 	  
@@ -1743,18 +1743,18 @@
 	    text-of-quotation<kbd>) 	    </kbd>:<a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:teal">[1]</a>
 	    <div class='snippet' id='javascript_77_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (quoted? exp)
-		(tagged-list? exp \'quote))
+  (tagged-list? exp \'quote))
 
-		(define (text-of-quotation exp) (cadr exp))
+(define (text-of-quotation exp) (cadr exp))
 </pre></div></div>
 	    <kbd>Quoted?</kbd> is defined in terms of the
 	    procedure <kbd>tagged-list?</kbd>, which
 	    identifies lists beginning with a designated symbol:
 	    <div class='snippet' id='javascript_77_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (tagged-list? exp tag)
-		(if (pair? exp)
-		(eq? (car exp) tag)
-		false))
+  (if (pair? exp)
+      (eq? (car exp) tag)
+      false))
 </pre></div></div>
           </LI>
 
@@ -1764,11 +1764,11 @@
 	    var value<kbd>)</kbd>:
 	    <div class='snippet' id='javascript_77_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (assignment? exp)
-		(tagged-list? exp \'set!))
+  (tagged-list? exp \'set!))
 
-		(define (assignment-variable exp) (cadr exp))
+(define (assignment-variable exp) (cadr exp))
 
-		(define (assignment-value exp) (caddr exp))
+(define (assignment-value exp) (caddr exp))
 </pre></div></div>
           </LI>
 
@@ -1780,7 +1780,7 @@
 	    or the form
 	    <div class='snippet' id='javascript_77_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (^var^ ^parameter$_{1}$^ ^$\ldots$^ ^parameter$_{n}$^)
-		^body^)
+  ^body^)
 </pre></div></div>
 	    
 	    
@@ -1788,26 +1788,26 @@
 	    procedure definition) is syntactic sugar for
 	    <div class='snippet' id='javascript_77_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define ^var^
-		(lambda (^parameter$_{1}$^ ^$\ldots$^ ^parameter$_{n}$^)
-		^body^))
+  (lambda (^parameter$_{1}$^ ^$\ldots$^ ^parameter$_{n}$^)
+    ^body^))
 </pre></div></div>
 	    The corresponding syntax
 	    procedures
 	    are the following:
 	    <div class='snippet' id='javascript_77_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (definition? exp)
-		(tagged-list? exp \'define))
+  (tagged-list? exp \'define))
 
-		(define (definition-variable exp)
-		(if (symbol? (cadr exp))
-		(cadr exp)
-		(caadr exp)))
+(define (definition-variable exp)
+  (if (symbol? (cadr exp))
+      (cadr exp)
+      (caadr exp)))
 
-		(define (definition-value exp)
-		(if (symbol? (cadr exp))
-		(caddr exp)
-		(make-lambda (cdadr exp)
-                (cddr exp))))
+(define (definition-value exp)
+  (if (symbol? (cadr exp))
+      (caddr exp)
+      (make-lambda (cdadr exp)
+                   (cddr exp))))
 </pre></div></div>
           </LI>
 
@@ -1817,18 +1817,19 @@
 	    <div class='snippet' id='javascript_77_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (lambda? exp) (tagged-list? exp \'lambda))
 
-		(define (lambda-parameters exp) (cadr exp))
-		(define (lambda-body exp) (cddr exp))
+(define (lambda-parameters exp) (cadr exp))
+(define (lambda-body exp) (cddr exp))
 
-		(define (make-lambda parameters body)
-		(cons \'lambda (cons parameters body)))
+(define (make-lambda parameters body)
+  (cons \'lambda (cons parameters body)))
 </pre></div></div>
 	    We also provide a constructor for
 	    <kbd>lambda</kbd> expressions, which is used by
 	    <kbd>definition-value</kbd>, above:
+		
 	    <div class='snippet' id='javascript_77_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (make-lambda parameters body)
-		(cons 'lambda (cons parameters body)))
+  (cons 'lambda (cons parameters body)))
 </pre></div></div>
 
           </LI>
@@ -1842,25 +1843,26 @@
 	  <div class='snippet' id='javascript_77_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (if? exp) (tagged-list? exp \'if))
 
-	      (define (if-predicate exp) (cadr exp))
+(define (if-predicate exp) (cadr exp))
 
-	      (define (if-consequent exp) (caddr exp))
+(define (if-consequent exp) (caddr exp))
 
-	      (define (if-alternative exp)
-	      (if (not (null? (cdddr exp)))
-	      (cadddr exp)
-	      \'false))
+(define (if-alternative exp)
+  (if (not (null? (cdddr exp)))
+      (cadddr exp)
+      \'false))
 
-	      (define (make-if predicate consequent alternative)
-	      (list \'if predicate consequent alternative))
+(define (make-if predicate consequent alternative)
+  (list \'if predicate consequent alternative))
 </pre></div></div>
 
 	  We also provide a constructor for <kbd>if</kbd> expressions,
 	  to be used by <kbd>cond->if</kbd> to transform <kbd>cond</kbd> expressions
 	  into <kbd>if</kbd> expressions:
+	      
 	  <div class='snippet' id='javascript_77_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (make-if predicate consequent alternative)
-	      (list 'if predicate consequent alternative))
+  (list 'if predicate consequent alternative))
 </pre></div></div>
           </LI>
 
@@ -1874,11 +1876,11 @@
 	    <div class='snippet' id='javascript_77_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (begin? exp) (tagged-list? exp \'begin))
 
-		(define (begin-actions exp) (cdr exp))
+(define (begin-actions exp) (cdr exp))
 
-		(define (last-exp? seq) (null? (cdr seq)))
-		(define (first-exp seq) (car seq))
-		(define (rest-exps seq) (cdr seq))
+(define (last-exp? seq) (null? (cdr seq)))
+(define (first-exp seq) (car seq))
+(define (rest-exps seq) (cdr seq))
 </pre></div></div>
 	    We also include a constructor 
 	    <kbd>sequence->exp</kbd> (for use by
@@ -1887,11 +1889,11 @@
 	    using <kbd>begin</kbd> if necessary:
 	    <div class='snippet' id='javascript_77_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (sequence->exp seq)
-		(cond ((null? seq) seq)
-		((last-exp? seq) (first-exp seq))
-		(else (make-begin seq))))
+  (cond ((null? seq) seq)
+        ((last-exp? seq) (first-exp seq))
+        (else (make-begin seq))))
 
-		(define (make-begin seq) (cons \'begin seq))
+(define (make-begin seq) (cons \'begin seq))
 </pre></div></div>
           </LI>
 
@@ -1902,12 +1904,12 @@
 	    <kbd>cdr</kbd> is the list of operands:
 	    <div class='snippet' id='javascript_77_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (application? exp) (pair? exp))
-		(define (operator exp) (car exp))
-		(define (operands exp) (cdr exp))
+(define (operator exp) (car exp))
+(define (operands exp) (cdr exp))
 
-		(define (no-operands? ops) (null? ops))
-		(define (first-operand ops) (car ops))
-		(define (rest-operands ops) (cdr ops))
+(define (no-operands? ops) (null? ops))
+(define (first-operand ops) (car ops))
+(define (rest-operands ops) (cdr ops))
 </pre></div></div>
           </LI>
 	</UL>
@@ -2192,19 +2194,19 @@ function rest_args(ops) {
 	expression
 	<div class='snippet' id='javascript_77_28_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (cond ((> x 0) x)
-	    ((= x 0) (display 'zero) 0)
-	    (else (- x)))
+      ((= x 0) (display 'zero) 0)
+      (else (- x)))
 </pre></div></div>
 	to the problem of evaluating the following expression involving
 	<kbd>if</kbd> and <kbd>begin</kbd>
 	expressions:
 	<div class='snippet' id='javascript_77_29_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (if (> x 0)
-	    x
-	    (if (= x 0)
-	    (begin (display 'zero)
-            0)
-	    (- x)))
+    x
+    (if (= x 0)
+        (begin (display 'zero)
+               0)
+        (- x)))
 </pre></div></div>
 	Implementing the evaluation of <kbd>cond</kbd> in this
 	way simplifies the evaluator because it reduces the number of special
@@ -2224,31 +2226,31 @@ function rest_args(ops) {
 	<div class='snippet' id='javascript_77_30_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (cond? exp) (tagged-list? exp \'cond))
 
-	    (define (cond-clauses exp) (cdr exp))
+(define (cond-clauses exp) (cdr exp))
 
-	    (define (cond-else-clause? clause)
-	    (eq? (cond-predicate clause) \'else))
+(define (cond-else-clause? clause)
+  (eq? (cond-predicate clause) \'else))
 
-	    (define (cond-predicate clause) (car clause))
+(define (cond-predicate clause) (car clause))
 
-	    (define (cond-actions clause) (cdr clause))
+(define (cond-actions clause) (cdr clause))
 
-	    (define (cond->if exp)
-	    (expand-clauses (cond-clauses exp)))
+(define (cond->if exp)
+  (expand-clauses (cond-clauses exp)))
 
-	    (define (expand-clauses clauses)
-	    (if (null? clauses)
-	    \'false                          ; no else clause
-	    (let ((first (car clauses))
+(define (expand-clauses clauses)
+  (if (null? clauses)
+      \'false                          ; no else clause
+      (let ((first (car clauses))
             (rest (cdr clauses)))
-            (if (cond-else-clause? first)
+        (if (cond-else-clause? first)
             (if (null? rest)
-            (sequence->exp (cond-actions first))
-            (error "ELSE clause isn\'t last - - COND->IF"
-            clauses))
+                (sequence->exp (cond-actions first))
+                (error "ELSE clause isn\'t last - - COND->IF"
+                       clauses))
             (make-if (cond-predicate first)
-            (sequence->exp (cond-actions first))
-            (expand-clauses rest))))))
+                     (sequence->exp (cond-actions first))
+                     (expand-clauses rest))))))
 </pre></div></div>
       </p></div>
 
@@ -2579,7 +2581,7 @@ list("constant_declaration", list("name", "x"), 1);
 	example
 	<div class='snippet' id='javascript_77_33_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (cond ((assoc 'b '((a 1) (b 2))) => cadr)
-	    (else false))
+      (else false))
 </pre></div></div>
 	returns 2. Modify the handling of <kbd>cond</kbd> 
 	so that it supports this extended syntax.
@@ -2638,15 +2640,15 @@ list("constant_declaration", list("name", "x"), 1);
 	because
 	<div class='snippet' id='javascript_77_34_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (let ((^var$_{1}$^ ^exp$_{1}$^) ^$\ldots$^ (^var$_{n}$^ ^exp$_{n}$^))
-	    ^body^)
+  ^body^)
 </pre></div></div>
 	is equivalent to
 	<div class='snippet' id='javascript_77_35_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ((lambda (^var$_{1}$^ ^$\ldots$^ ^var$_{n}$^)
-	    ^body^)
-	    ^exp$_{1}$^
-	    ^$\vdots$^
-	    ^exp$_{n}$^)
+   ^body^)
+ ^exp$_{1}$^
+ ^$\vdots$^
+ ^exp$_{n}$^)
 </pre></div></div>
 	Implement a syntactic transformation
 	<kbd>let->combination</kbd> that reduces evaluating
@@ -2699,9 +2701,9 @@ list("constant_declaration", list("name", "x"), 1);
 	all of the preceding bindings are visible.  For example
 	<div class='snippet' id='javascript_77_36_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (let* ((x 3)
-	    (y (+ x 2))
-	    (z (+ x y 5)))
-	    (* x z))
+       (y (+ x 2))
+       (z (+ x y 5)))
+  (* x z))
 </pre></div></div>
 	returns 39.  Explain how a <kbd>let*</kbd> expression
 	can be rewritten as a set of nested <kbd>let</kbd>
@@ -2825,12 +2827,12 @@ display(1);
 	can be rewritten using named <kbd>let</kbd> as follows:
 	<div class='snippet' id='javascript_77_41_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (fib n)
-	    (let fib-iter ((a 1)
-            (b 0)
-            (count n))
-	    (if (= count 0)
-            b
-            (fib-iter (+ a b) a (- count 1)))))
+  (let fib-iter ((a 1)
+                 (b 0)
+                 (count n))
+    (if (= count 0)
+        b
+        (fib-iter (+ a b) a (- count 1)))))
 </pre></div></div>
 	Modify <kbd>let->combination</kbd> of
 	exercise <REF NAME="ex:implement-let"><a class="superscript" id="4.1.2-ex-link-4.9" href="./4.1.2.html#ex_4.9">4.9</a></REF> to also support named

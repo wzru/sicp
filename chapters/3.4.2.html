@@ -1974,6 +1974,7 @@ concurrent_execute( s(_ => { x = x * x; }),
     from section <REF NAME="sec:local-state-variables"><a class="superscript" id="3.4.2-sec-link-3.1.1" href="./3.1.1.html">3.1.1</a></REF>,
     where the deposits and withdrawals have been serialized:
     
+            
     <div class='snippet' id='javascript_67_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0GiK2APABQBKUAG9coSaDJ0AzhWlsANktABeUEqryBBJktlshAbglTi5anVAUAFp269BDEeKnvQAJzYUin+gzqahoARExkAI5EVN4hZh4JkgD8oAI2bPIcTCQAJhyGFAJkykpC8YkVoCl2Djz8AmGR0bEiIF4+ngCe5ZUJAFw2nkRsoGW9HgOBwaHeSmxMhnHjCSlkc0yeRSVjy+4DbJ6eNJsMADQ9u5IhAKokLCQ0AO703lEZClQBdXwhJuUAvuVvL5-DZ7FxvqZARZKLR6Gt5ptiipXOUChx7EwclsVKdQHoDEYofgYVYAqxOIZPFR9FQAF4HYRicoyEjyRjfdSMCkQpzCUzuYF+egAB3UAD5QBdEhsAOYS5mXKSOeqNKIxNi-AVK6RyBQAN30XJFAjlfx1HL5IVm80W5p1QtBhqU2vG-2JhFIsOszHYWTIMlIhQARvpssVUe5SXDQI8qHYcp4mI9TQwaEHI4kqARUqGlOGRpKmGmM4rxnmC1yK+QRgBaUDF9MkCiuyqO+jV4qt9z-UDKQxl3rt0AhSBsogEAhUMhUNjN-GkHKyELdqSAnvlaPWHJsEU0WTx1NNiiZhKdkYac+gADUDZLzdXkmH59b66krPZIqOvEoXN9lIOGktAZTZ7UkLd6BybQRSYCgyFsAQXEHDxhymYIRzjBMk0eEIpWWFIvxoH9Ckw2xE2THZekmIJQh3PcDwoJZdgI782EoAQ6P3eNKPGajphHc8mMuFJz2lSp9kOY5EPOC0rlue4nheNg3nZT5uT9cJA2bPotQBIEfGFUAoNkGC4NsD0PwUBhOn9LSFA0f9bOPAQAEYAAY3L+XBWTIPxvGbDh+DYuoBA4BVRCM6D806RCbM05yQkEoQ8RCAAVFzQHPHSwNkjxrKcoMGlI8icKEAQAFZPMfXLjJFaLYoK5sGiSlL0sysMa2y6rZPy+LCpCTiGN+VyPJy3LQH+GTZLCtRJQi2r6t6gMEpakdUuwdr8063TxoSJa7KK+MyOw4bKrG3aFqYGL9pWjril+VqNqynbdvcG7+sG+NhvcqqxJ1N8dRMIA')">function make_account(balance) {
     function withdraw(amount) {
         if (balance > amount) {
@@ -2084,6 +2085,7 @@ concurrent_execute( s(_ => { x = x * x;     }),
     
     Ben Bitdiddle worries that it would be better to implement the bank
     account as follows (where the commented line has been changed):
+            
     <div class='snippet' id='javascript_67_7_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0GiK2APABQBKUAG9coSaDJ0AzhWlsANktABeUEqryBBJktlshAbglTi5anVAUAFp269BDEeKnvQAJzYUin+gzqahoARExkAI5EVN4hZh4JkgD8oAI2bPIcTCQAJhyGFAJkykpC8YkVoCl2Djz8AmGR0bEiIF4+ngCe5ZUJAFw2nkRsoGW9HgOBwaHeSmxMhnHjCSlkc0yeRSVjy+4DbJ6eNJsMADQ9u5IhAKokLCQ0AO703lEZClQBdXwhJuUAvuVvL5-DZ7FxvqZARZKLR6Gt5ptiipXOUChx7EwclsVKdQHoDEYofgYVYAqxOIZPFR9FQAF4HYRicoyEjyRjfdSMCkQpzCUzuYF+egAB3UAD5QBdEhsAOYS5mXKSOeqNKIxNi-AVK6RyBQAN30XJFAjlfx1HL5IVm80W5p1QtBhqU2vG-2JhFIsOszHYWTIMlIhQARvpssVUe5SXDQI8qHYcp4mI9TQwaEHI4kqARUqGlOGRpKmGmM4rxnmC1yK+QRgBaUDF9MkCiuyqO+jV4qt9z-UDKQxl3rt0AhSBsogEAhUMhUNjN-GkHKyELdqSAnvlaPWHJsEU0WTx1NNiiZhKdkYac+gADUDZLzdXkmH59b66krPZIqOvEoXN9lIOGktAZTZ7UkLd6BybQRSYCgyFsAQXEHDxhymYIRzjBMk0eJZxhSL8aB-QpMNsRNkx2XpJiCUIdz3A8KFw5Z8O-NhKAEWj93jCjxio6YR3PRjdmYwjWMKDgFXPIQBEXNgpxINgclaMAqSA+kFOlSp9kOY5EPOC0rlue4nheNg3nZT5uT9cJA2bPotQBIEfGFUAoNkGC4NsD0PwUBhOn9GyFA0f9-OPAQAEYAAYIr+XBWTIPxvGbDh+FYuoBHEtRJVEFzoPzTpEL86zQpCAShDxEIABUwtAc87LA-SPF8kKgwaEiyJwqSAFZosfBrXJFPKCua5sGlK8qqpqsMazq3r9KaoqWpCDj6N+cKovqhrQH+PT9IyrKcrcwb5oDYqxpHCrsEm-NpvszaEmOgLWvjUjsNW7qNru-qjsKk7FrOyrLtq267vcB7iuW+NVsinqNJ1N8dRMIA')">function make_account(balance) {
     function withdraw(amount) {
         if (balance > amount) {
@@ -2159,6 +2161,7 @@ concurrent_execute( s(_ => { x = x * x;     }),
       
       function.
     
+            
     <div class='snippet' id='javascript_67_8_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0GiK2APABQBKUAG9coSaDJ0AzhWlsANktABeUEqryBBJktlshAbglTi5anVAUAFp269BDEeKnvQAJzYUin+gzqahoARExkAI5EVN4hZh4JkgD8oAI2bPIcTCQAJhyGFAJkykpC8YkVoCl2Djz8AmGR0bEiIF4+ngCe5ZUJAFw2nkRsoGW9HgOBwaHeSmxMhnHjCSlkc0yeRSVjy+4DbJ6eNJsMADQ9u5IhAKokLCQ0AO703lEZClQBdXwhJuUAvuVvL5-DZ7FxvqZARZKLR6Gt5ptiipXOUChx7EwclsVKdQHoDEYofgYVYAqxOIZPFR9FQAF4HYRicoyEjyRjfdSMCkQpzCUzuYF+egAB3UAD5QBdEhsAOYS5mXKSOeqNKIxNi-AVK6RyBQAN30XJFAjlfx1HL5IVm80W5p1QtBhqU2vG-2JhFIsOszHYWTIMlIhQARvpssVUe5SXDQI8qHYcp4mI9TQwaEHI4kqARUqGlOGRpKmGmM4rxnmC1yK+QRgBaUDF9MkCiuyqO+jV4qt9z-UDKQxl3rt0AhSBsogEAhUMhUNjN-GkHKyELdqSAnvlaPWHJsEU0WTx1NNiiZhKdkYac+gADUDZLzdXkmH59b66krPZIqOvEoXN9lIOGktAZTZ7UkD8FC-GgfwoDg4wTJNHmNb82EoAR4NsRNkzA3U2UglDKA4Hc9wPBQNCgmCBGI-d4xwrd6BybQRSYCgyFsAQXEHDxhymYIRwwrDHiWcYUgo1DYIExDpQmRgglCajSOE5ZRII2CFPjaT+lk6YR3PJTdhSc9NMSfZDmODjzgtK5bnuJ4XjYN52U+bk-XCQNmz6LUASBHxhVARjZGY1jbA9CDGE6f13LIlzODc48BAARgABiSv5cFZMg-G8ZsOH4VC6gEDgFVEfymPzToOIiuKgwaPShDxEIABUEtAc9PJwqz3AYKqA3ikJJOTX4BAAVlSx9OoCkVysqyK+rqhrmtasMa3a8arO62aapCdSKCG5KxuMy5-ksqyirUSUSsm6aNuq5tauW4pfgW7AlvzFavM6xIbt6raBqEoQRoOz6EiupgKu+qL7rex76pHRqXraj7ga6nrIe23caN2gH9o6zq3x1EwgA')">function make_account(balance) {
     function withdraw(amount) {
         if (balance > amount) {
@@ -2301,6 +2304,7 @@ concurrent_execute( s(_ => { x = x * x;     }),
     section <REF NAME="sec:local-state-variables"><a class="superscript" id="3.4.2-sec-link-3.1.1" href="./3.1.1.html">3.1.1</a></REF>, except that a
     serializer is provided to protect the balance variable, and the serializer
     is exported via message passing:
+            
     <div class='snippet' id='javascript_67_10_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0GiK2APABQBKUAG9coSaDJ0AzhWlsANktABeUEqryBBJktlshAbglTi5anVAUAFp269BDEeKnvQAJzYUin+gzqahoARExkAI5EVN4hZh4JkgD8oAI2bPIcTCQAJhyGFAJkykpC8YkVoCl2Djz8AmGR0bEiIF4+ngCe5ZUJAFw2nkRsoGW9HgOBwaHeSmxMhnHjCSlkc0yeRSVjy+4DbJ6eNJsMADQ9u5IhAKokLCQ0AO703lEZClQBdXwhJuUAvuVvL5-DZ7FxvqZARZKLR6Gt5ptiipXOUChx7EwclsVKdQHoDEYofgYVYAqxOIZPFR9FQAF4HYRicoyEjyRjfdSMCkQpzCUzuYF+egAB3UAD5QBdEhsAOYS5mXKSOeqNKIxNi-AVK6RyBQAN30XJFAjlfx1HL5IVm80W5p1QtBhqU2vG-2JhFIsOszHYWTIMlIFCyuXyBxpWgZmwARvpssVUe5SXDQI8qHYcp4mI9TQwaEHE4kqARUrGlPGRpKmHmC4rxmWK1yG+QRgBaUDV-MkCiujz-UDKQx13ohSBsogEAhUMhUNjd-GkHKyEK99yAtflZPWHJsEU0WTp3NdiiFhLN4pNuMt0AAag7Ne7q6kjvo57YvfXUlZ7LfYeptKjLlfUpcMAMZe1JBfRgFSmYJQBCNMMyzR4liVFJENsTNs2lSpJiCUIdz3A8KFQy4UkI-d0xwio8OmeC31I3YUjfajElouCQipCN6QORjlmYq9ij-bio1Y-oB0OY4BDOKULSuW57ieF42DedlPm5P1wkDbs+i1XB-iAA')">function make_account_and_serializer(balance) {
     function withdraw(amount) {
         if (balance > amount) {
@@ -2337,6 +2341,7 @@ concurrent_execute( s(_ => { x = x * x;     }),
     serialization, for example as
     follows:<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
     
+            
     <div class='snippet' id='javascript_67_11_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0GiK2APABQBKUAG9coSaDJ0AzhWlsANktABeUEqryBBJktlshAbglTi5anVAUAFp269BDEeKnvQAJzYUin+gzqahoARExkAI5EVN4hZh4JkgD8oAI2bPIcTCQAJhyGFAJkykpC8YkVoCl2Djz8AmGR0bEiIF4+ngCe5ZUJAFw2nkRsoGW9HgOBwaHeSmxMhnHjCSlkc0yeRSVjy+4DbJ6eNJsMADQ9u5IhAKokLCQ0AO703lEZClQBdXwhJuUAvuVvL5-DZ7FxvqZARZKLR6Gt5ptiipXOUChx7EwclsVKdQHoDEYofgYVYAqxOIZPFR9FQAF4HYRicoyEjyRjfdSMCkQpzCUzuYF+egAB3UAD5QBdEhsAOYS5mXKSOeqNKIxNi-AVK6RyBQAN30XJFAjlfx1HL5IVm80W5p1QtBhqU2vG-2JhFIsOszHYWTIMlIFCyuXyBxpWgZmwARvpssVUe5SXDQI8qHYcp4mI9TQwaEHE4kqARUrGlPGRpKmHmC4rxmWK1yG+QRgBaUDV-MkCiujz-UDKQx13ohSBsogEAhUMhUNjd-GkHKyEK99yAtflZPWHJsEU0WTp3NdiiFhLN4pNuMt0AAag7Ne7q6kjvo57YvfXUlZ7LfYeptKjLlfUpcMAMZe1JBfRgFSmYJQBCNMMyzR4liVFJENsTNs2lSpJiCUIdz3A8KFQy4UkI-d0xwio8OmeC31I3YUjfajElouCQipCN6QORjlmYq9ij-bio1Y-oB0OY4BDOKULSuW57ieF42DedlPm5P1wkDbs+i1XBAU9SwUwo4jTQDY88U7Ws3C-PVQFkLktOPBouLAzw9Pcb8FByRzzKDBoTPTDypFkARsSs7shD+AyvMYTp-W0hQNGAhLjxDPJXMjRkAEYAAZcr+XBAsKBh4qcoM8WwfLCpybQRXLTppLKvzuwaBiouMIA')">function deposit(account, amount) {
     const s = account("serializer");
     const d = account("deposit");
@@ -2355,6 +2360,7 @@ concurrent_execute( s(_ => { x = x * x;     }),
     function
     with the serializers for both accounts:
     
+            
     <div class='snippet' id='javascript_67_12_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0GiK2APABQBKUAG9coSaDJ0AzhWlsANktABeUEqryBBJktlshAbglTi5anVAUAFp269BDEeKnvQAJzYUin+gzqahoARExkAI5EVN4hZh4JkgD8oAI2bPIcTCQAJhyGFAJkykpC8YkVoCl2Djz8AmGR0bEiIF4+ngCe5ZUJAFw2nkRsoGW9HgOBwaHeSmxMhnHjCSlkc0yeRSVjy+4DbJ6eNJsMADQ9u5IhAKokLCQ0AO703lEZClQBdXwhJuUAvuVvL5-DZ7FxvqZARZKLR6Gt5ptiipXOUChx7EwclsVKdQHoDEYofgYVYAqxOIZPFR9FQAF4HYRicoyEjyRjfdSMCkQpzCUzuYF+egAB3UAD5QBdEhsAOYS5mXKSOeqNKIxNi-AVK6RyBQAN30XJFAjlfx1HL5IVm80W5p1QtBhqU2vG-2JhFIsOszHYWTIMlIFCyuXyBxpWgZmwARvpssVUe5SXDQI8qHYcp4mI9TQwaEHE4kqARUrGlPGRpKmHmC4rxmWK1yG+QRgBaUDV-MkCiujz-UDKQx13ohSBsogEAhUMhUNjd-GkHKyEK99yAtflZPWHJsEU0WTp3NdiiFhLN4pNuMt0AAag7Ne7q6kjvo57YvfXUlZ7LfYeptKjLlfUpcMAMZe1JBfRgFSmYJQBCNMMyzR4liVFJENsTNs2lSpJiCUIdz3A8KFQy4UkI-d0xwio8OmeC31I3YUjfajElouCQipCN6QORjlmYq9ij-bio1Y-oB0OY4BDOKULSuW57ieF42DedlPm5P1wkDbs+i1XBAU9SwU2A-1tMKN9TwXIzrAwrCc07Ws3CLEsBDfUAqwfE9h0qNyNDc9sHMfMT2hBV9BPfHD+0HEYnN6KDR3HSdp1necLCXFdIoBTcvTJUAKOIo9HJw3zQDcu9Ap7HCoLfD8WT1UARSOXhKCAnkuLAzYIKs716BybQRSYCgyFsaTLMFHxhWguiEPTTDkJCWTxhSRqaGawpbOQnZenYgjd0okjguSBqmrYSgBHy9MtvGHb6PCviltK8LDqkfZJJOc45PghSHmedpVI+clNIDY9dK6z9IIm0E+tkAahtsD0t3ofhhuyWU2FNYGg1kSzvwULTjwARi5TFsXxrGTAASDqtk8cx7tsC5CgmCoJQMbM7HjCp9xcby4sCAOOcLw0MnuwJhoGJEAK6YobBxburqRYoMWZqQ7NfnOvmBZbBXpdlkILpIoQNcnLWEwRnKU3ayM2DyZHbFR9HFex7yecVomNBJtnjw5rmv3qxWGY0JmWa98nOep9krZ4zx3Y7aXlajqM9O5+rE4OQO47MvW088ZOpBzsWc9lu2HaEI2nb+AzXdjkzFZDPIc4EAmAAZm7+V2M9r6X6+EjqBGwVv2-9lBWqBsye8blBB9MXBWTIPxvG7Dh+FOuoBA4BVRF5mHy06U1lYlvEQlgHwDke8tryYInozYAhjjYUGn0+7eRV3009cP+CT94Txz8bJgGY3zvt4R+z1lhp1tnwFGJA0YCAGjEfeeIAFlyfp9aGr8mB7yvnLC+xRfhH2-mfNyV8OwEB-qA5+CR0FvwATgis+Cv6n1-sQhmTAyEHAoZQyQ-wPpyQ3moSUW9qGYP3nQlsDDj5MCIKoYh19b7304VwyQwisEoDEXgoQBCpEyPCh2EeQCFF5yUaACBy8oH2xgejeBmwr5IJQCgsB4wVGiJCJ-SR0i-6XyJmw8hRilHOKYGo1x8stEeOISPHxHC-HP3BkqEwQA')">function serialized_exchange(accounts) {
     const account1 = head(accounts);	
     const account2 = tail(accounts);	
@@ -2570,6 +2576,7 @@ concurrent_execute( s(_ => { x = x * x;     }),
     
     produced by the serializer can be running at once, which is
     precisely the serialization property that we need to guarantee.
+            
     <div class='snippet' id='javascript_67_16_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0GiK2APABQBKUAG9coSaDJ0AzhWlsANktABeUEqryBBJktlshAbglTi5anVAUAFp269BDEeKnvQAJzYUin+gzqahoARExkAI5EVN4hZh4JkgD8oAI2bPIcTCQAJhyGFAJkykpC8YkVoCl2Djz8AmGR0bEiIF4+ngCe5ZUJAFw2nkRsoGW9HgOBwaHeSmxMhnHjCSlkc0yeRSVjy+4DbJ6eNJsMADQ9u5IhAKokLCQ0AO703lEZClQBdXwhJuUAvuVvL5-DZ7FxvqZARZKLR6Gt5ptiipXOUChx7EwclsVKdQHoDEYofgYVYAqxOIZPFR9FQAF4HYRicoyEjyRjfdSMCkQpzCUzuYF+egAB3UAD5QBdEhsAOYS5mXKSOeqNKIxNi-AVK6RyBQAN30XJFAjlfx1HL5IVm80W5p1QtBhqU2vG-yhQA')">function make_serializer() {
     const mutex = make_mutex();
     return p => 
@@ -2611,7 +2618,7 @@ concurrent_execute( s(_ => { x = x * x;     }),
     true and proceed. Otherwise, we wait in a loop, attempting to acquire over
     and over again, until we find that the mutex is available.<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a>
     To release the mutex, we set the cell contents to false.
-
+            
     <div class='snippet' id='javascript_67_17_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0GiK2APABQBKUAG9coSaDJ0AzhWlsANktABeUEqryBBJktlshAbglTi5anVAUAFp269BDEeKnvQAJzYUin+gzqahoARExkAI5EVN4hZh4JkgD8oAI2bPIcTCQAJhyGFAJkykpC8YkVoCl2Djz8AmGR0bEiIF4+ngCe5ZUJAFw2nkRsoGW9HgOBwaHeSmxMhnHjCSlkc0yeRSVjy+4DbJ6eNJsMADQ9u5IhAKokLCQ0AO703lEZClQBdXwhJuUAvuVvL5-DZ7FxvqZARZKLR6Gt5ptiipXOUChx7EwclsVKdQHoDEYoUA')">function make_mutex() {
     const cell = list(false);
     function the_mutex(m) {
@@ -2652,6 +2659,7 @@ function clear(cell) {
       
       function:
     
+            
     <div class='snippet' id='javascript_67_18_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0CgUwGcKB9AQxIBM3nGKACjKMANqICUoAN65Q80FQKhBAC0YduwsZKmyFB0ACcBRI-QpGijANxyFAX1Bj+M+4dD926zdvEAaBitGCTsPeRMKM3oCDlF+MMdcByA')">function test_and_set(cell) {
     if (head(cell)) {
         return true;

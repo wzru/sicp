@@ -2059,7 +2059,7 @@ job(x, list("computer", "programmer"))
           <tr>
             <td><div class='snippet' id='javascript_93_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (and (can-do-job ?x (computer programmer trainee))
-      (job ?person ?x))
+     (job ?person ?x))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_93_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(can_do_job(x, list("computer", "programmer", "trainee")),
@@ -2278,7 +2278,7 @@ not(job(x, list("computer", "programmer")))
           <tr>
             <td><div class='snippet' id='javascript_93_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (and (supervisor ?x ?y)
-      (not (job ?x (computer programmer))))
+     (not (job ?x (computer programmer))))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_93_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(supervisor(x, y),
@@ -2744,8 +2744,8 @@ lives_near(x, list("Hacker", "Alyssa", "P"))
             <td><div class='snippet' id='javascript_93_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (rule (lives-near ?person-1 ?person-2)
       (and (address ?person-1 (?town . ?rest-1))
-            (address ?person-2 (?town . ?rest-2))
-            (not (same ?person-1 ?person-2))))
+           (address ?person-2 (?town . ?rest-2))
+           (not (same ?person-1 ?person-2))))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_93_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 rule(lives_near(person_1, person_2),
@@ -3065,9 +3065,9 @@ rule(lives_near(person_1, person_2),
             <td><div class='snippet' id='javascript_93_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (assert! (job (Bitdiddle Ben) (computer wizard)))
 
-      (assert! (rule (wheel ?person)
-            (and (supervisor ?middle-manager ?person)
-            (supervisor ?x ?middle-manager))))
+(assert! (rule (wheel ?person)
+         (and (supervisor ?middle-manager ?person)
+              (supervisor ?x ?middle-manager))))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_93_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assert(job(list("Bitdiddle", "Ben"), list("computer", "wizard")))

@@ -1690,6 +1690,8 @@
     represent sequences that are infinitely long.  For instance, consider
     the following definition of the stream of positive integers:
     
+        
+        
     <div class='snippet' id='javascript_70_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KkigUwHNmAnAZwH0uKAhh2olWPAhxoBbABQkAlKADeuUGtAdmFIh3oAHAVQ5yANKvUXL6mYoC8APgZM2nXvyEixE6XNABqUABGeXMrMPkAblwAX3wyOn5QbykebAAGUFsnFnZuPkFhRi9JWXTI3GYANwEAG3zNAVlk1LSTUAw0yKA')">function integers_starting_from(n) {
     return pair(n,
                 () => integers_starting_from(n + 1)
@@ -1697,6 +1699,7 @@
 }
 
 </pre></div></div>
+        
     <div class='snippet' id='javascript_70_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KkigUwHNmAnAZwH0uKAhh2olWPAhxoBbABQkAlKADeuUGtAdmFIh3oAHAVQ5yANKvUXL6mYoC8APgZM2nXvyEixE6XNABqUABGeXMrMPkAblwAX3wyOn4nFnZuUFskl24+QWFGL0lZYKjcZgA3AQAbbM0BWUZk1xNQDAAGSKA')">const integers = integers_starting_from(1);
 
 </pre></div></div>
@@ -1727,6 +1730,7 @@
     Using <kbd>integers</kbd> we can define other infinite
     streams, such as the stream of integers that are not divisible by 7:
     
+        
     
     <div class='snippet' id='javascript_70_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KkigUwHNmAnAZwH0uKAhh2olWPAhxoBbABQkAlKADeuUGtAdmFIh3oAHAVQ5yANKvUXL6mYoC8APgZM2nXvyEixE6XNABqUABGeXMrMPkAblwAX3wyOn4nFnZuUFskl24+QWFGL0lZYKjCUkpaeipeABMqADdKqgAjABtmGQAPE1AAT0UVC01tXVB20ABSHrTbdIAGKNjceJJEkho+ZlrmZbTQ0H5NASlxKmaWY1GHUABCBmq6hpa2ztAAdnkzMM-1RmTXSPwNgJmtkDrJVutNssutgUJEgA')">const no_sevens =
     stream_filter(x => ! is_divisible(x, 7),
@@ -1754,6 +1758,7 @@
     In analogy with <kbd>integers</kbd>, we can define the
     infinite stream of Fibonacci numbers:
     
+        
     <div class='snippet' id='javascript_70_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AqgIwHMBTEgCgEMAaUJgEpQAb1ygJoAE5sKRKfQAO3KlJ79OwgLwA+Bs3Zcm-bqADUAwYIDcuAL74ydAM4V9TZ6C3vDnAAz8AIw2+GwAbtwANgD6rjLcALacjB78GH42QA')">function fibgen(a, b) {
     return pair(a, () => fibgen(b, a + b));
 }
@@ -1838,6 +1843,7 @@ const fibs = fibgen(0, 1);
 
     
     
+        
     <div class='snippet' id='javascript_70_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0ATKgNyaoCMAbAKYAKAB4AaUAE8AlKADeuUEtAAnARSIr6I0AFIpoALzHQABgDcuAL75i5anQYkKAgOYCVLRhQCGK6iSuzAQqNAC2QiSyCsqq6pr0AA4+VCqRYoqxWdlCsoYAfE4u7p7M3n4BQSHhkaAA1KAAjNKZ2W3SljaEpJS09IxUAhzC3mo+YdGtcRpaoMmpQgAWAj6sQqMrExltO6C5RoUDQyMUY2HBVHwuaVO7d206BaAAhExsnNz8wuK39393y1W61Om2k0m2-0hSg242YvkuwLOYN+UOyLShHWsuDIdG8cxUVDCAkYRlAR2GQiozjcHi8vn8VKqoQi2DBllwQx8fDKIPGQkSBKJjAkGFMHSAA')">function sieve(stream) {
     return pair(head(stream),
                 () => sieve(stream_filter(
@@ -1920,6 +1926,7 @@ const primes = sieve(integers_starting_from(2));
     streams implicitly. For example, the following expression defines the
     stream <kbd>ones</kbd> to be an infinite stream of ones:
     
+        
     <div class='snippet' id='javascript_70_8_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuBjAewDsBnAF1FIFMzQBeUABwEMBLAJwAoBGAGlDcAlIwB81EnWEBufDQBurADYB9SpxqsAtt1plBGAAyygA')">const ones = pair(1, () => ones);
 
 </pre></div></div>
@@ -1962,6 +1969,7 @@ const primes = sieve(integers_starting_from(2));
     which produces the elementwise sum of two given streams:<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
 
     
+      
     <div class='snippet' id='javascript_70_9_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGcJSSlp6QxqlBnUyGgYAI1cmDgAaUEMARjPDbB5eeqa-UCpDdRJbcTZLngAyH+fXu9xJ8blxJsIAPygIHicFCABcALeHy+Fx4AB90UiYV9bnDQFCmPJ5DR5GwYWcAESkJgADwADkxKO5ZPIAOZEZgkaSuc6bGTbXYHI7wylgjKI+kyKhkghsAAW5VRXBOipUuK4KpEg2YrDYAV0IQ2SUFe0OblOfJN6go0pBaJO+KmzuNWxtdo1mq4i3wnFWdFkymU6ldAsMqOutwGQke635puFFrYtKuoFpUeCaYuoAA1GnsNdU6CfbhdiQNqA6GNdKApTK2KmDZmq4ZvaW6BWKAB3GiGGt1skF2KBELd3ttsud+WKat6FTB0MMcMts5j1tmJgANzkIfjbAo06YYzOGAADN6gA')">function add_streams(s1, s2) {
     return stream_combine((x1, x2) => x1 + x2, s1, s2);
 }
@@ -1973,6 +1981,7 @@ const primes = sieve(integers_starting_from(2));
 <a name='p13' class='permalink'></a><p>
     Now we can define the integers as follows:
     
+        
     <div class='snippet' id='javascript_70_10_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGcJSSlp6QxqlBnUyGgYAI1cmDgAaUEMARjPDbB5eeqa-UCpDdRJbcTZLngAyH+fXu9xJ8blxJsIAPygIHicFCABcALeHy+Fx4AB90UiYV9bnDQFCmPJ5DR5GwYWcAESkJgADwADkxKO5ZPIAOZEZgkaSuc6bGTbXYHI7wylgjKI+kyKhkghsAAW5VRXBOipUuK4KpEg2YrDYAV0IQ2SUFe0OblOfJN6go0pBaJO+KmzuNWxtdo1mq4i3wnFWdFkymU6ldAsMqOutwGQke635puFFrYtKuoFpUeCaYuoAA1GnsNdU6CfbhdiQNqA6GNdKApTK2KmDZmq4ZvfgyxXXBQmGyiYYa3WyY3AiEVMHQwxwy2zl2e33NWZcEwAG5yEPxtiz3vyQxnDAABm9QA')">const integers = pair(1, () => add_streams(ones, integers));
 
 </pre></div></div>
@@ -1996,6 +2005,7 @@ const primes = sieve(integers_starting_from(2));
 <a name='p15' class='permalink'></a><p>
     We can define the Fibonacci numbers in the same style:
     
+        
     <div class='snippet' id='javascript_70_11_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGcJSSlp6QxqlBnUyGgYAI1cmDgAaUEMARjPDbB5eeqa-UCpDdRJbcTZLngAyH+fXu9xJ8blxJsIAPygIHicFCABcALeHy+Fx4AB90UiYV9bnDQFCmPJ5DR5GwYWcAESkJgADwADkxKO5ZPIAOZEZgkaSuc6bGTbXYHI7wylgjKI+kyKhkghsAAW5VRXBOipUuK4KpEg2YrDYAV0IQ2SUFe0OblOfJN6go0pBaJO+KmzuNWxtdo1mq4i3wnFWdFkymU6ldAsMqOutwGQke635puFFrYtKuoFpUeCaYuoAA1GnsNdU6CfbhdiQNvoqPtDLpQFKZWwAAyO52xQIhetkq5O1tCA2ZlTB0MMcM93sZYfuqifFzVlVj8cRWeGTUL8Le-BMABuchD8Y4VcMZ2wje9QA')">const fibs = pair(0,
                   () => pair(1,
                              () => add_streams(
@@ -2034,6 +2044,7 @@ const primes = sieve(integers_starting_from(2));
     in formulating such stream definitions. This multiplies each item in a
     stream by a given constant:
     
+        
     <div class='snippet' id='javascript_70_12_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AZzIEMAbAUwH0GKAnd5gFsAFD35CANKALNKNXgEpQAb1yh1ofhSK96YgYM6DmAB2EAPUAF4AfKEsAqabIryJajZ6-eN+oQoBuXABffDI6HlAKAHcaBmtQE2YqXmFsKWElWyjYhkDccJJIhipzdnirRhYObj4DYRi4qRR89gA3NlrxERKyhikMAAZAoA')">function scale_stream(stream, factor) {
     return stream_map(x => x * factor,
                       stream);
@@ -2059,6 +2070,7 @@ const primes = sieve(integers_starting_from(2));
     starting with the integers and filtering them by testing for
     primality.  We will need the first prime, 2, to get started:
     
+        
     <div class='snippet' id='javascript_70_14_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQSPETOUmUtABSZ6AAvMGgAAyqGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CX25e4tLdyCgQB8egnJqemZ7Nm5+UUloADUoACM-M2trfwRmtE6cYbV7FSFPKXC81oxulSJDdUMZQseXvTMbFzcABacrEbc5-yC3STzV+IA-KAKOwiJxfn9QAAuPSGEzmBhWWyNUDPV7vC5zCELQEEVjWBhgrGtaEnVLcDJcViFAyZKjWdGfVTuDTuSreUlnLY7C7LXBkOgZUCbbacBhBIV1BrYJpEq7tILdCkvakEOmnbjg2VY-QGYU7RyarV-eKJFJpAwZLLxEYFYooT6GrFLfCcUx4i3A5XvLmixwYUJLIA')">const primes = pair(2,
                     () => stream_filter(
                               is_prime, 
@@ -2075,6 +2087,7 @@ const primes = sieve(integers_starting_from(2));
     whether $n$ is divisible by a prime (not by just
     any integer) less than or equal to $\sqrt{n}$:
     
+        
     <div class='snippet' id='javascript_70_15_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQSPETOUmUtABSZ6AAvMGgAAyqGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CX25e4tLdyCgQB8egnJqemZ7Nm5+UUloADUoACM-M2trfwRmtE6cYbV7FSFPKXC81oxulSJDdUMZQseXvTMbFzcABacrEbc5-yC3STzV+IA-KAKOwiJxfn9QAAuPSGEzmBhWWyNUDPV7vC5zCELQEEVjWBhgrGtaEnVLcDJcViFAyZKjWdGfVTuDTuSreUlnLY7C7LMh0DKgTbbTgMIKCuoNbBNIlXdpBboUl7Ugh007ccEyrH6AxCnaODWav7xRIpNIGDJZeIjArFFCfA1Ypb4bW6njTUIe0J25RAA')">function is_prime(n) {
     function iter(ps) {
         return square(head(ps)) > n
@@ -2276,6 +2289,7 @@ function partial_sums(s) {
     <kbd>merge</kbd> that combines two ordered
     streams into one ordered result stream, eliminating repetitions:
     
+        
     <div class='snippet' id='javascript_70_19_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KkigUwHNmAnAZwH0uKAhh2olWPAhxoBbABQkAlKADeuUGtAdmFIh3oAHAVQ5yANKvUXL6mYoC8APgZM2nXvyEixE6XNABqUABGeXMrMPkAblwAX3xicmo6UC4yAQAbZj4KTQFZfhypE1ACAUoaDkUVC01tXWTs5lyeKQE9GQAPUAdQToAqYtKKcrMw0bD8xqlImLjSSlp6KU52GS5Aoq5sStCGAlAZKl4SIjS01eDt0Zqdek2oi2jQZjSuZl39w55j09Wty7DrnU1vd1I9nq9lDsLGQ6PxkoEABaNAAmXVASIEyPO01GMJIcM2GNRtnRKN+OIBWhu8KJoAAPMlsESoWNQAB+UAGIznIkjVn8mxdRxLDgrCZNQRUM5reQbP4ssYALhpKNAjkJKIVrI5XOMGsxfP5ArswuWzHOGwaEsM0r+ISNlmVup5KMNDtGgu6IrFVqkPEl0uCloK-pt5PkFLUsViuDxcL0NC4VGoADdMowWOxuGiMy5uFkPIwvJJZMEonGKKApCdqHoMrwaAR-QjNG8SSl0plxbIE0nU+nnFmuEUUJEAJCx2GV6tpWv1niN8RUNNojsZLIFGS95PLgeZ1xFDDTCugCgt5jMXgCEjIpdprho73mmdzy8Lptn1tFF9UOtvxcELu0zMCm6QbpMMifheV43nel6HgADJEQA')">function merge(s1, s2) {
     if (is_null(s1)) {
         return s2;

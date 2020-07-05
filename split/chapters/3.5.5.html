@@ -1715,10 +1715,10 @@
           <tr>
             <td><div class='snippet' id='javascript_73_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define rand
-	(let ((x random-init))
-	(lambda ()
-	(set! x (rand-update x))
-	x)))
+  (let ((x random-init))
+    (lambda ()
+      (set! x (rand-update x))
+    x)))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_73_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFZMChslAIKgBuApgE4CeoAzgJYC2ADgDamjkCGAdgCYD6AVya9OAF3YAzQdwDGYugHtuoWYuaCJNUJ1DdBDAEYU8YSeXWgADKAAUdOS0H0yASlBjFoAExWrGADYrABYATisARhQIu10WTnIAc3YmckZSV1NQc0tdYk4ndgAPUENqBkEWBVZKB0TQOjFQAHdGgAsdVWUaMR4mzgAaLM5eXjrOtW4evtKBnT4PNtIVXoBrcbEljlIGTgdeE3xFSVAx4jox7nrG0upN9niklLSGUjRQAHV2Z1JeBqaluR2FlJIpyA0WE4elwFMpQMoWJQ5jw-rwvNxFE1ZPFGPNqFlpgoenRZAVQKlFEwKApSDQ0NhJj1QAxQABeHx+QIhcJRCIAblADO6-TZoAiESsKAwEQw3mCGD5QqmTUMooi3hQ8sV2GkclhKi4fCEInEpFsRXcAG9sKBbdsxIJyCpbLoAFSgEoAalK7gApMzFQBfXCMpqGtEMfgOG7s9WawIAdgAHKFtbr5EoVLtVqR+OHbFabba2E0Suzw+oo9xGoq7UCHU67O5WQA+UDWu2dsscFHG0QSc2uWud231x0qIrD0CBoNKpnh0XZ3P5oe4MY0VicSi2Fer9eb7e7xX7+KHlEFodAA')">function make_rand() {
    let x = random_init;
@@ -1742,14 +1742,16 @@ const rand = make_rand();
       <span style="color:blue"><kbd>rand_update</kbd>:
       </span>
     
+	
+	
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_73_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define random-numbers
-	(cons-stream random-init
-        (stream-map rand-update random-numbers)))
+  (cons-stream random-init
+               (stream-map rand-update random-numbers)))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_73_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFZMChslAIKgBuApgE4CeoAzgJYC2ADgDamjkCGAdgCYD6AVya9OAF3YAzQdwDGYugHtuoWYuaCJNUJ1DdBDAEYU8YSeXWgADKAAUdOS0H0yASlBjFoAExWrGADYrABYATisARhQIu10WTnIAc3YmckZSV1NQc0tdYk4ndgAPUENqBkEWBVZKB0TQOjFQAHdGgAsdVWUaMR4mzgAaLM5eXjrOtW4evtKBnT4PNtIVXoBrcbEljlIGTgdeE3xFSVAx4jox7nrG0upN9niklLSGUjRQAHV2Z1JeBqaluR2FlJIpyA0WE4elwFMpQMoWJQ5jw-rwvNxFE1ZPFGPNqFlpgoenRZAVQKlFEwKApSDQ0NhJj1QAxQABeHx+QIhcJRCIAblADO6-TZoAiESsKAwEQw3mCGD5QqmTUMooi3hQ8sV2GkclhKi4fCEInEpFsRXcAG9sKBbdsxIJyCpbLoAFSgEoAalK7gApMzFQBfXCMpqGtEMfgOG7s9WawIAdgAHKFtaGOCj1Px9EYKNpWTa7Uw9uRbOGs9GxEM7TXbbZ3KyAHy0MRAziR3ZMMso42iCRzcuRnPGcg0VyubWkfIsfjQ0jt7t8LPDvNzDAToA')">const random_numbers =
     pair(random_init,
@@ -1772,20 +1774,21 @@ const rand = make_rand();
       </span>
     
     stream:
+	
+	
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_73_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define cesaro-stream
-	(map-successive-pairs (lambda (r1 r2) (= (gcd r1 r2) 1))
-        random-numbers))
+  (map-successive-pairs (lambda (r1 r2) (= (gcd r1 r2) 1))
+                        random-numbers))
 
-	
-	(define (map-successive-pairs f s)
-	(cons-stream
-	(f (stream-car s) (stream-car (stream-cdr s)))
-	(map-successive-pairs f (stream-cdr (stream-cdr s)))))
+(define (map-successive-pairs f s)
+  (cons-stream
+   (f (stream-car s) (stream-car (stream-cdr s)))
+      (map-successive-pairs f (stream-cdr (stream-cdr s)))))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_73_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFZMChslAIKgBuApgE4CeoAzgJYC2ADgDamjkCGAdgCYD6AVya9OAF3YAzQdwDGYugHtuoWYuaCJNUJ1DdBDAEYU8YSeXWgADKAAUdOS0H0yASlBjFoAExWrGADYrABYATisARhQIu10WTnIAc3YmckZSV1NQc0tdYk4ndgAPUENqBkEWBVZKB0TQOjFQAHdGgAsdVWUaMR4mzgAaLM5eXjrOtW4evtKBnT4PNtIVXoBrcbEljlIGTgdeE3xFSVAx4jox7nrG0upN9niklLSGUjRQAHV2Z1JeBqaluR2FlJIpyA0WE4elwFMpQMoWJQ5jw-rwvNxFE1ZPFGPNqFlpgoenRZAVQKlFEwKApSDQ0NhJj1QAxQABeHx+QIhcJRCIAblADO6-TZoAiESsKAwEQw3mCGD5QqmTUMooi3hQ8sV2GkclhKi4fCEInEpFsRXcAG9sKBbdsxIJyCpbLoAFSgEoAalK7gApMzFQBfXCMpqGtEMfgOG7s9WawIAdgAHKFtaGOCj1Px9EYKNpWTa7Uw9uRbOGs9GxEM7TXbbZ3KyAHy0MRAziR3ZMMso42iCRzcuRnPGcg0VyubW6+RKFSJWS8F1zQxWwu2oEOp2lNms9k2AD8nQAXKA5wvDMjQP7l0HcFP9czOEx+DRBLJZLSXKR+MW6KPbJI5jHUBrRrddHRUH9S0kWwlhGWwxzmWCF2hUh234Xo6BYeDx1cOZa1XWtCLrBtm07Z9X3fGhP2-EsaFsAiiMY2sAMFJi2NrFC0IwrDOMjbjsJwm900ohJFGfVtUJZAsazIl83w-OgyBo386LscgIgHbwSJPecyw0jgtO3WNq3Y0y10zIcDBHMdtVIfIWHEtsGFsESLEcyS5l8CcgA')">function map_successive_pairs(f, s) {
     return pair(f(head(s), head(stream_tail(s))),      
@@ -1823,25 +1826,26 @@ const cesaro_stream =
     trials to perform.  Better estimates of $\pi$
     (from performing more experiments) are obtained by looking farther into the
     <kbd>pi</kbd> stream:
+	
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_73_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (monte-carlo experiment-stream passed failed)
-	(define (next passed failed)
-	(cons-stream
-        (/ passed (+ passed failed))
-        (monte-carlo
-        (stream-cdr experiment-stream) passed failed)))
-	(if (stream-car experiment-stream)
-	(next (+ passed 1) failed)
-	(next passed (+ failed 1))))
+  (define (next passed failed)
+    (cons-stream
+     (/ passed (+ passed failed))
+     (monte-carlo
+      (stream-cdr experiment-stream) passed failed)))
+  (if (stream-car experiment-stream)
+      (next (+ passed 1) failed)
+      (next passed (+ failed 1))))
 
-	(define pi
-	(stream-map 
-	(lambda (p) (sqrt (/ 6 p)))
-	(monte-carlo cesaro-stream 0 0)))
+(define pi
+  (stream-map 
+   (lambda (p) (sqrt (/ 6 p)))
+   (monte-carlo cesaro-stream 0 0)))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_73_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFZMChslAIKgBuApgE4CeoAzgJYC2ADgDamjkCGAdgCYD6AVya9OAF3YAzQdwDGYugHtuoWYuaCJNUJ1DdBDAEYU8YSeXWgADKAAUdOS0H0yASlBjFoAExWrGADYrABYATisARhQIu10WTnIAc3YmckZSV1NQc0tdYk4ndgAPUENqBkEWBVZKB0TQOjFQAHdGgAsdVWUaMR4mzgAaLM5eXjrOtW4evtKBnT4PNtIVXoBrcbEljlIGTgdeE3xFSVAx4jox7nrG0upN9niklLSGUjRQAHV2Z1JeBqaluR2FlJIpyA0WE4elwFMpQMoWJQ5jw-rwvNxFE1ZPFGPNqFlpgoenRZAVQKlFEwKApSDQ0NhJj1QAxQABeHx+QIhcJRCIAblADO6-TZoAiESsKAwEQw3mCGD5QqmTUMooi3hQ8sV2GkclhKi4fCEInEpFsRXcAG9sKBbdsxIJyCpbLoAFSgEoAalK7gApMzFQBfXCMpqGtEMfgOG7s9WawIAdgAHKFtaGOCj1Px9EYKNpWTa7Uw9uRbOGs9GxEM7TXbbZ3KyAHy0MRAziR3ZMMso42iCRzcuRnPGcg0VyubW6+RKFSJWS8F1zQxWwu2oEOp2lNms9k2AD8nQAXKA5wvDMjQP7l0HcFP9czOEx+DRBLJZLSXKR+MW6KPbJI5jHUBrRrddHRUH9S0kWwlhGWwxzmWCF2hUh234Xo6BYeDx1cOZa1XWtCLrBtm07Z9X3fGhP2-EsaFsAiiMY2sAMFJi2NrFC0IwrDOMjbjsJwm900ohJFGfVtUJZAsazIl83w-OgyBo386LscgIgHbwSJPecyw0jgtO3WNq3Y0y10zIcDBHMdJxkac4QYZQJH4UlyBYRRbFIIoqReZYxHEtsGDmYsqN+OZJD2NheCtQiCLvGc9C8sRbBCmgwuySLfhXRiwM3SCUs4UK-jAAqitAb0IswrKTLM2t6zZUinK-Vz3PgiSuMizzvIodJuH83jcIY2rhprVL0sqqLx0VGtg1A0gNxUJCup83r+vahhMnYg9uCS0q0r+b19ImrKhtrY8dqKZKxt4cLMoOsUJ2wYMlSZJg6FFXj+E7FKGofTZnwAR3IZKAlAMAmEGkbCMcvrmoSVqRIsALJLmKxUam3BPqBaC3rmCUrAnIA')">function monte_carlo(experiment_stream, passed, failed) {      
     function next(passed, failed) {
@@ -1976,15 +1980,16 @@ const pi = stream_map(p => math_sqrt(6 / p),
     monitors the balance in a bank account.  In
     section <REF NAME="sec:costs-of-assignment"><a class="superscript" id="3.5.5-sec-link-3.1.3" href="./3.1.3.html">3.1.3</a></REF> we implemented a
     simplified version of such a processor:
+	
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_73_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (make-simplified-withdraw balance)
-	(lambda (amount)
-	(set! balance (- balance amount))
-	balance))
+  (lambda (amount)
+    (set! balance (- balance amount))
+    balance))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_73_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_simplified_withdraw(balance) {
@@ -2024,16 +2029,17 @@ function make_simplified_withdraw(balance) {
     
     that takes as input a balance and a stream of amounts to withdraw and
     produces the stream of successive balances in the account:
+	
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_73_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (stream-withdraw balance amount-stream)
-	(cons-stream
-	balance
-	(stream-withdraw (- balance (stream-car amount-stream))
-        (stream-cdr amount-stream))))
+  (cons-stream
+   balance
+   (stream-withdraw (- balance (stream-car amount-stream))
+                    (stream-cdr amount-stream))))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_73_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFZMChsDMBXAOwGMAXASwHsjQBnMgJwFMBDAWwH0B3CsgCwAmjVtwAUAI1YAbVqWYAaUByrEynBiw4BKUAG9Qho9iOgWZAo1oAHVhUaSZckopOn3HsboC8APnpMbFy8AsKiYm4eUdFGUrLyoAC0oPxsgmIqahqBOgqRMQWmmkGcZHbSGeyqROrFOtraANzGAL64JDQMoOwAnpyZNXSg3qDSFAylVNla7GJjDGIYAAxKAIxLK6AALEsNjdgdRF29-SQdWXXswwEzPHxCIuIATBtKJwNkdE0AkNjMAG4yaZBMTvM7VWo5dhKFBNIA')">function stream_withdraw(balance, amount_stream) {      
     return pair(balance,

@@ -1780,14 +1780,14 @@ data_paths(
                  inputs(register("b"), constant(0))))));
 
 controller(
-    list(
-        "test-b",                   // label
-        test("="),                  // test
-        branch(label("gcd-done")),  // conditional branch
-        "t<-r",                     // button push
-        "a<-b",                     // button push
-        "b<-t",                     // button push
-        go_to(label("test-b"))),    // unconditional branch
+  list(
+    "test-b",                   // label
+      test("="),                  // test
+      branch(label("gcd-done")),  // conditional branch
+      "t<-r",                     // button push
+      "a<-b",                     // button push
+      "b<-t",                     // button push
+      go_to(label("test-b"))),    // unconditional branch
     "gcd-done");                    // label
 </pre>
       <div class="chapter-text-CAPTION">
@@ -1849,16 +1849,18 @@ controller(
     contents of register <kbd>b</kbd> and the
     constant 0.</QUOTE>  We will omit the data-path description, leaving only
     the controller sequence.  Thus, the GCD machine is described as follows:
+      
     <div class='snippet' id='javascript_98_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 controller(
-     "test-b",
-     list(test(list(op("="), reg(b), constant(0))),
-          branch(label("gcd-done")),
-          assign("t", list(op("rem"), reg("a"), reg("b"))),
-          assign("a", reg(b)),
-          assign("b", reg(t)),
-          go_to(label("test-b"))),
-     "gcd-done");
+  list(
+    "test-b",
+      test(list(op("="), reg(b), constant(0))),
+      branch(label("gcd-done")),
+      assign("t", list(op("rem"), reg("a"), reg("b"))),
+      assign("a", reg(b)),
+      assign("b", reg(t)),
+      go_to(label("test-b"))),
+    "gcd-done");
 </pre></div></div>
   </p></div>
 
@@ -2032,20 +2034,20 @@ perform(list(op("print"), reg("a")))
     <FIGURE>
       <img class="scale_factor_" id="fig_5.4" src="../img_javascript/Fig5.4c.std.svg"><pre class='prettyprint no-eval'>
 controller(
-    list(      
-       "gcd-loop",
-       assign("a", op("read")),
-       assign("b", op("read")),
-       "test-b",
-       test(list(op("="), reg("b"), constant(0))),
-       branch(label("gcd-done")),
-       assign("t", list(op("rem"), reg("a"), reg("b"))),
-       assign("a", reg("b")),
-       assign("b", reg("t")),
-       go_to(label("test-b")),
-       "gcd-done",
-       perform(list(op("print"), reg("a"))),
-       go_to(label("gcd-loop"))));
+  list(      
+    "gcd-loop",
+      assign("a", op("read")),
+      assign("b", op("read")),
+    "test-b",
+      test(list(op("="), reg("b"), constant(0))),
+      branch(label("gcd-done")),
+      assign("t", list(op("rem"), reg("a"), reg("b"))),
+      assign("a", reg("b")),
+      assign("b", reg("t")),
+      go_to(label("test-b")),
+    "gcd-done",
+         perform(list(op("print"), reg("a"))),
+         go_to(label("gcd-loop"))));
 </pre>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.1.1.html#fig_5.4">Figure 5.4 </a></b>A GCD machine that reads inputs and prints results.</div>

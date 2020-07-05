@@ -1840,8 +1840,8 @@
           <tr>
             <td><div class='snippet' id='javascript_64_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define C (make-connector))
-            (define F (make-connector))
-            (celsius-fahrenheit-converter C F)
+(define F (make-connector))
+(celsius-fahrenheit-converter C F)
 </pre><pre class='prettyprintoutput'>
 
             ok
@@ -1866,24 +1866,25 @@ celsius_fahrenheit_converter(C, F);
       <span style="color:blue">function</span>
     
     that creates the network is defined as follows:
+            
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_64_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (celsius-fahrenheit-converter c f)
-            (let ((u (make-connector))
-            (v (make-connector))
-            (w (make-connector))
-            (x (make-connector))
-            (y (make-connector)))
-            (multiplier c w u)
-            (multiplier v x u)
-            (adder v y f)
-            (constant 9 w)
-            (constant 5 x)
-            (constant 32 y)
-            'ok))
+  (let ((u (make-connector))
+        (v (make-connector))
+        (w (make-connector))
+        (x (make-connector))
+        (y (make-connector)))
+    (multiplier c w u)
+    (multiplier v x u)
+    (adder v y f)
+    (constant 9 w)
+    (constant 5 x)
+    (constant 32 y)
+    'ok))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_64_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToKwChsDMBXAOwGMAXASwHsjQ8qAnAfQFMBDEgC1YA8SWADmQAULPoMo0ANHWIyANhQDOZAJSgA3tlA7ZpSbXlUqA4RTIsAtkvVbd90BTygzSpkQLz5Zi9dW3tByCGFjICBloAIgATGhZIgG5AoIBfUBZ5JRZHZ2FOdmifKxtQAF5y9PEhaiIAoODQ8MNjUzI2Cm9zYv8k+tA0jKzNZL69PIKiv1Ve0Z0QsIjQIxNhNo7Jm2mR+xSR3ft5pqWW4UUVLd38YnIaxyJ6BksmNgAjKgIyJgA3NnkCFmEJBoKgY7SIamGB0aiyBRBBYJEkUgAFpOGwvixkWxkT8-vELrhCPpbhR7ownq93p8iFRvr9-oDgWRQaSIXZdIcYUyWeDhEjkUYVMjLABPHH0-FJS5Em40UBoty4hmwogsciMOoc6G0FVqsiMPkKul4yIEq7EuUAc1CxuVNFV6oYmrm2tAusdfKVkuw0uuBlAWU+XsZRAd+oYMlVAHdbSwZKSHpY2ODnaBObQQ2GDZFA7HTaphNHY-GyY9k2opYS-bcHtagxLM3rGDJ5qDHan0y53eG+bXQvnhK2OOGzTL-d3G47IywY7D4ayO67Jz3It2B0W58yEaPq3KkwBrFhMbsG1PyUKgL1lOi-LIzHTnsh3RPl694W8se9LC+bnlkJTXh4XhfmOty5qKsaFjOuIyIGFhOpC9ROC4ACERrBpYLD+IhsxXqUoDRriX59Am5KvvhcEsAwxH1J2DysBw3BiPwQjCJREbbLMXGjKRjzPG8HzFpx3EifYv4IjYNE6AMmTZMhwhXihFSEb8qZ9FRDDZtANBbtEFCylEoAANTCVxkR8sZAbMqSlpOCKCkSuoRmgJEMiRJZpmiToII2XZUFRriTkuaoppSf06SyThoydpEFCWjSITRIkpn7LoqU6KBcp9p8EHBkO7ZRfY8n5eGZQVLxSYpoVSGlpVT74e+slhVCCy0PR7BcLwLEiCVzaeV5XEVfxVLuLSXpSP1A2jOJrKSSlEVDOyswxXFCUsElYXpf0IyZTq9p6v5x46X+am6PJyjuJ43iYZYLxUYdsJbqyE1TQNM3gpsp1BO9-7XgI7QMA9x0IjIP1zX0MmLSlpnyehDaYdhS08bVw2CcGG7Awum0LdkSM7LgfQxbEqrJfj9i7aAmGDiwACO-znNVOjFbT9P1RUkRwyaX0OJ2FWvkpDUftjgxybkIR0ywKhlfhkReqajM866XrC5FzMS1L5Qy7mcvcy1RzgSKsYq0Maus9LLnZfLeO0a62VMLlErG6LLji2bmsuWuutaq1br7eQTsK-YGkGq7ktkG5ACqRD7jSUa0CYVFsP6pK+6GTYMKF0Nk97RyYZW5oGZTniUAIij3ZYACMMiWAATDIAiadEBDkKmFMN1Q-BKG4RbBtz8l5GwirwxX6gAGSj6AdaQZX6juwADKonkAD5Ly4nMMrXY8T1PGE17PFQL173k2sG7dN+QMhz9XWEB7Dg-TyPoDj-K9+74jk0BifDZn834egB-swd7D3UAAKknl-PEwhN4yGwAASFgUEBGt9cjrwBD-FuT8J6oKgSPI+n96yQNrjA169ggGQPQRCMAZCN4j2ISQnQSD5oixyGvV+39G6-y3i-IehC954O1sPGBCCRLULQRwjBVCIEbz3hNYR3FGEQxxgrLaW026aU7m4O2vcFZaPYVQc+f8FH1F0YQqulMb6mRMdI6+Ww+jtw0e4GckFbFpR2ruWgVNQ4M2tkzMWLMw7m35GiDEWJxRc0Droexktu5ON7sgl2-iNbsxRIKMgwoxQ6wiToKJXcmBWIBC41ISifEOGDoDLxf9IhRxjlQOOaZElPhTpYYuFBS4UCopnCGewRgTkrjYr8vS67mMKanMMwgKH9JGJ2POPoqwWloGwaI0R7psDMWwIZSgCCWFbu40AOSYkxm0SUu+PCGSrK4dg9Z79uICMgZsywMhRHCHOZZJ5VzJmKOYScyCLzn7YPudcrityzlDKeQC0AyJwEELObQ4Z8SB6nIBFczB3DIIAv4VIpFZiwVbPUJCt5Mi4VMMiiUlRbj5l7PUdEvJjAnnc3yWxLZHzjG0sxc8sxRiggMvWcyoI+zHGHIbCM1RuzPENL7n49WbMZYomCZibEmSSn2H5T3IV8KKmBJSVQIUoown-Cth-flDKRk7GKR-Mp1MpWR2jrHWgGqU6LOWRnE1rjs46AnKs3loyDo8qJWJP2Ih7leumZ+WZBdxxMnLA5PEoMA0aiihTMVUruYWoqdampdT7V7ThG0cEnTXW6AnCeCMfrdDAoBMWmQ41S0uh9jM30FL+CZAoAQTRbBOAhCIPkcwR0iAYgYPBQEMg8Cpk3KAAg14DxHmLcIEZY6viTrYIeXtWZAZzqZKAKMi7l0zvXTm0APBt3TrjWugZG6RRHpXenWdX5mnyBLmXQGJAZBRhkAQEZd6H3tMBl8GQPA30jMdfdX9oARTDr3SoKNABOF9EHc0iEwH+uDUaUBDJFCMmKVB9zJUuGO6Al7d1JDHQAMQIyem92Am1KBbW2jtLAu0sB7bCftg7oAyGI9MIAA')">function celsius_fahrenheit_converter(c, f) {
     const u = make_connector();
@@ -1946,7 +1947,7 @@ celsius_fahrenheit_converter(C, F);
           <tr>
             <td><div class='snippet' id='javascript_64_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (probe "Celsius temp" C)
-            (probe "Fahrenheit temp" F)
+(probe "Fahrenheit temp" F)
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_64_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToKwChsDMBXAOwGMAXASwHsjQALAQwGcB9ANwYBsCBTAChI0iPclQBOASlABvbKHmgxPMgTG1BRYaLF8ARI1YduPXRIDc2AL65CpSjVABzZey68BQkWXFTZCxcqq6p7aeka8phbW+MTk1LRMLuH8GlreYgA0oMIA7q7GWRREeOIAtgxEZL5yCkoqaqAeml7ieolk+RESEny5nTyFxWUVVVE2sfa0JWLOHclNaeJZdWIM2tX+dUGNqS06utOzpj0ra+nmVuN28aC75At7WX0aTGSrRVUyNfJbDQ+hujuZGOvR4eRebwYHwu0VscQcAAcxFQAEb8IgMUoDW4hc5ffxwyagJEfFhI1H8ZIbfwKAAmFCYCM4DAAnnpYMi0QAuUC6UAAamymJ4At5oAAvGLBa8xEVHBQ8GyqRd-NYCRMbuSSDwmKw+vNqTTibLKmTOfxZv1-ucVQo1QpCZrkdrdSxDkk3PxDTSSabyWi9AB+SLfUD2+SOhxYvhKACOvFe3s2gQacYTZAl4slukgAFpGGweLmGLnkrpQ0aaYHjVQXXqwVaJBXKwoeWmdRms9m85wqK9c6UWaXPeWW2Pq1qdax3XNPXwm2OWzyeGJkTp268Ms3F2PdABVIgAayIVBytA3GaKNbRIdVoaB1qWoCxtp+KdoWLGMWuDmmLB4ax0P+AAe2oImQfA8KBPDgfEWS2FknAMp8fgOhqDi9lQCJ8BQZA8KUTBJgoCqNAyLBEAQnCcDheEEd0+I7r8tC6LSNAmBYLaWKAPCcIkoAkXwdAAbSNH4YRmaSlBYGTERRpMaAmHYWQULUbhYndBxlZcTxfGoYutiCcJol0a+Y7yYpfDKRQqm0YRpl3g5tTvgpVBYXwSGJl+ka0EU0ylCwDAolQBCzsYTQylClTevJELvJUeh5gWRYlmWMJXPCPlDGI-mBcFHQnlasWRShoYxTQEUfAlua9v2g7DsYIawuhH4MIePAsECrTepwyigMkEqgHgXCJJp8g9ZeWXlJUA1DbxPCjQpvVFR8TADRRVELd5oDtCwg5WrkRhZO0eGSAxRoCQAhAYVovrJNL9ZKB1cAtLa+cM02SsdK4vZW8l-gBJBAVJMEQV9mTbjukM0m92UBUFIX9FuUPIy2y2VIRP3yNpc38XgjT9RdWbZGCRh3f4K5rno0A0JC9IZVKEOLroeiijKcoKkqnpSIKuhZHygqMyjbNEPKiqgjkpOiqYt5adxON6WZzm6BQjgnkotK6JjYahuGg3NYN4iWnt8ynOsZ3Q3jMbKKs2gSfxk0jGTxEOx9g3DfNgtvvUUziP+gEgdJVuQtoSMo2Hzt+XDeXkVQiOe+HlZo2QGMQ9junx-Jyuq+IPAa1ruu61tD7PDTcUla9ltket1FYqUaI6CXlRl6HCdQ0ndlO-I7cDQiUINw2GiQh8WTt-Zdpy+nnEQwJ13zLd5uvZNUcI-MjdD1F+cTyKCt3hDmescIms66GW3Rhed0CRedv6Mw-SmAvv3OTDU0ZoTkqzSNqdb7jjRX12vKpQfnJZyyRN46RFJfHg8YOzXx2oAnej9vbbRcMbT0YCcaQOga8a+M574IOAUgmcu0WT9HQXxTB6Zr5AjwRnZyQIyHb3jhTVoF4+YHmPKeWgWEVwMCJFeTqYgZZGgLqVZyn5LjfnpqUSilAmQUBXHwUoABGLIpQABMWRyS0gIOQb0W1Jyun1HOC+ltBK3znkoqQAAyKxTgPRhWUVIf+AAGBcLYAA+7jGizznOo6xtjLRzzUU4omrjO7INCu4LROiyBZGcaongY8sbfxnuY3xljQA2PoGkhxwTwlwLnNE8gWR46LkCekqQAAqOxkT+B+JKQASAaUaF8DCf5mMMIU5E2jdGZNsT4hxlj8n2PcOokprcFDlLCkUz4YApmjMseMiZz5EltNSZ06Z3SYn+OyRs0ZeSgE0gKYMxpyN5n8BmVIOZIy6nBK3M0qGrSv7gMOSI9UP5aAGOnIbG585DlEPmDMhJSSDYzF+co4FWsAW+I0SskFXzyINgNAtQu+sz5QPTCY3+GKYH-xzPmBghZiz1S6Ic-wCKjFhRBWnCBls-5E3xTVMgA4hzwPjgi6FVK2n4JpMw9cOLNy8nYSeM8AQsETWfDIigciVxCJpG8hQD4IVwoWkq2FTz-APiBSq0RSDxFNQ+aABgtJaQKIYCoo1sKmAEFKHo-WFKkXGMOesq05qdkDPcAwA5PL-DHPcNa0oWRzl8DdaKYNXqJCQueRgy2Hr+ChqyXGvgAb6I+oUH6+NsLg0ptALmGprrFk6s4ik2NOTPXBL6bsq0Kbhm1JDRa7NNqpB5vDXcotssXk8oVRGe1zopxuh+XWu6nL-U2qjS2Ed8aLUasrJOkN6rVkQwdXkZFx93lSP4OfZ1dKBWdgZYlQlyUSUmHCcuxsayd3iuvj2PszK6psshhywd57o2Tx3Hyq24q2FHhFeeXd9sjUmtldStdircT1vHWB5o9wvWQa7uBgNcGAh6o9ga+mEIRh8GSCPXEPhzan03buu6H7WFCp-ZwsVlD+HlWUpUOVusHwCKQxmx8mQ+qeiQ-JfV6UiTal4hQAg04GB0CUEQISuEOo0ELGIE6Ah4LeghKAAgA1yhtUk9B9I85VU0b6ip1q7UBFafvDpnIem1OGdMop4CZmDO4Z0JZnTLIbPqcWPZha0jOCyKQgokgWQchZAIKZDzXn5E6DYFkYCAXTLGtNWFrILJ5PaaIK8TDABOPzDnku0YgpgCLmWUvxRQLClkplM5UEPEfaIinoDOYsxYRTAAxWrdmjN8aYAJoTImeBiZ4BJjQ0nZPQCyA1i42B-T8F0NAHSHXQC0QRLzUA0ALjjb0A14TonxMZjmwtkbZggA')">probe("Celsius temp", C);
 probe("Fahrenheit temp", F);
@@ -1972,9 +1973,9 @@ probe("Fahrenheit temp", F);
 (set-value! C 25 'user)
 </pre><pre class='prettyprintoutput'>
 
-            Probe: Celsius temp = 25
-            Probe: Fahrenheit temp = 77
-            done
+Probe: Celsius temp = 25
+Probe: Fahrenheit temp = 77
+done
       
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_64_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToKwChsDMBXAOwGMAXASwHsjQALAQwGcB9ANwYBsCBTAChI0iPclQBOASlABvbKHmgxPMgTG1BRYaLF8ARI1YduPXRIDc2AL65CpSjVABzZey68BQkWXFTZCxcqq6p7aeka8phbW+MTk1LRMLuH8GlreYgA0oMIA7q7GWRREeOIAtgxEZL5yCkoqaqAeml7ieolk+RESEny5nTyFxWUVVVE2sfa0JWLOHclNaeJZdWIM2tX+dUGNqS06utOzpj0ra+nmVuN28aC75At7WX0aTGSrRVUyNfJbDQ+hujuZGOvR4eRebwYHwu0VscQcAAcxFQAEb8IgMUoDW4hc5ffxwyagJEfFhI1H8ZIbfwKAAmFCYCM4DAAnnpYMi0QAuUC6UAAamymJ4At5oAAvGLBa8xEVHBQ8GyqRd-NYCRMbuSSDwmKw+vNqTTibLKmTOfxZv1-ucVQo1QpCZrkdrdSxDkk3PxDTSSabyWi9AB+SLfUD2+SOhxYvhKACOvFe3s2gQacYTZAl4slukgAFpGGweLmGLnkrpQ0aaYHjVQXXqwVaJBXKwoeWmdRms9m85wqK9c6UWaXPeWW2Pq1qdax3XNPXwm2OWzyeGJkTp268Ms3F2PdABVIgAayIVBytA3GaKNbRIdVoaB1qWoCxtp+KdoWLGMWuDmmLB4ax0P+AAe2oImQfA8KBPDgfEWS2FknAMp8fgOhqDi9lQCJ8BQZA8KUTBJgoCqNAyLBEAQnCcDheEEd0+I7r8tC6LSNAmBYLaWKAPCcIkoAkXwdAAbSNH4YRmaSlBYGTERRpMaAmHYWQULUbhYndBxlZcTxfGoYutiCcJol0a+Y7yYpfDKRQqm0YRpl3g5tTvgpVBYXwSGJl+ka0EU0ylCwDAolQBCzsYTQylClTevJELvJUeh5gWRYlmWMJXPCPlDGI-mBcFHQnlasWRShoYxTQEUfAlua9v2g7DsYIawuhH4MIePAsECrTepwyigMkEqgHgXCJJp8g9ZeWXlJUA1DbxPCjQpvVFR8TADRRVELd5oDtCwg5WrkRhZO0eGSAxRoCQAhAYVovrJNL9ZKB1cAtLa+cM02SsdK4vZW8l-gBJBAVJMEQV9mTbjukM0m92UBUFIX9FuUPIy2y2VIRP3yNpc38XgjT9RdWbZGCRh3f4K5rno0A0JC9IZVKEOLroeiijKcoKkqnpSIKuhZHygqMyjbNEPKiqgjkpOiqYt5adxON6WZzm6BQjgnkotK6JjYahuGg3NYN4iWnt8ynOsZ3Q3jMbKKs2gSfxk0jGTxEOx9g3DfNgtvvUUziP+gEgdJVuQtoSMo2Hzt+XDeXkVQiOe+HlZo2QGMQ9junx-Jyuq+IPAa1ruu61tD7PDTcUla9ltket1FYqUaI6CXlRl6HCdQ0ndlO-I7cDQiUINw2GiQh8WTt-Zdpy+nnEQwJ13zLd5uvZNUcI-MjdD1F+cTyKCt3hDmescIms66GW3Rhed0CRedv6Mw-SmAvv3OTDU0ZoTkqzSNqdb7jjRX12vKpQfnJZyyRN46RFJfHg8YOzXx2oAnej9vbbRcMbT0YCcaQOga8a+M574IOAUgmcu0WT9HQXxTB6Zr5AjwRnZyQIyHb3jhTVoF4+YHmPKeWgWEVwMCJFeTqYgZZGgLqVZyn5LjfnpqUSilAmQUBXHwUoABGLIpQABMWRyS0gIOQb0W1Jyun1HOC+ltBK3znkoqQAAyKxTgPRhWUVIf+AAGBcLYAA+7jGizznOo6xtjLRzzUU4omrjO7INCu4LROiyBZGcaongY8sbfxnuY3xljQA2PoGkhxwTwlwLnNE8gWR46LkCekqQAAqOxkT+B+JKQASAaUaF8DCf5mMMIU5E2jdGZNsT4hxlj8n2PcOokprcFDlLCkUz4YApmjMseMiZz5EltNSZ06Z3SYn+OyRs0ZeSgE0gKYMxpyN5n8BmVIOZIy6nBK3M0qGrSv7gMOSI9UP5aAGOnIbG585DlEPmDMhJSSDYzF+co4FWsAW+I0SskFXzyINgNAtQu+sz5QPTCY3+GKYH-xzPmBghZiz1S6Ic-wCKjFhRBWnCBls-5E3xTVMgA4hzwPjgi6FVK2n4JpMw9cOLNy8nYSeM8AQsETWfDIigciVxCJpG8hQD4IVwoWkq2FTz-APiBSq0RSDxFNQ+aABgtJaQKIYCoo1sKmAEFKHo-WFKkXGMOesq05qdkDPcAwA5PL-DHPcNa0oWRzl8DdaKYNXqJCQueRgy2Hr+ChqyXGvgAb6I+oUH6+NsLg0ptALmGprrFk6s4ik2NOTPXBL6bsq0Kbhm1JDRa7NNqpB5vDXcotssXk8oVRGe1zopxuh+XWu6nL-U2qjS2Ed8aLUasrJOkN6rVkQwdXkZFx93lSP4OfZ1dKBWdgZYlQlyUSUmHCcuxsayd3iuvj2PszK6psshhywd57o2Tx3Hyq24q2FHhFeeXd9sjUmtldStdircT1vHWB5o9wvWQa7uBgNcGAh6o9ga+mEIRh8GSCPXEPhzan03buu6H7WFCp-ZwsVlD+HlWUpUOVusHwCKQxmx8mQ+qeiQ-JfV6UiTal4hQAg04GB0CUEQISuEOo0ELGIE6Ah4LeghKAAgA1yhtUk9B9I85VU0b6ip1q7UBFafvDpnIem1OGdMop4CZmDO4Z0JZnTLIbPqcWPZha0jOCyKQgokgWQchZAIKZDzXn5E6DYFkYCAXTLGtNWFrILJ5PaaIK8TDABOPzDnku0YgpgCLmWUvxRQLClkplM5UEPEfaIinoDOYsxYRTAAxWrdmjN8aYAJoTImeBiZ4BJjQ0nZPQCyA1i42B-T8F0NAHSHXQC0QRLzUA0ALjjb0A14TonxMZjmwtkbFhsAsaG6ANRuXeSCeA2YIAA')">set_value(C, 25, "user");
@@ -2008,7 +2009,7 @@ probe("Fahrenheit temp", F);
 (set-value! F 212 'user)
 </pre><pre class='prettyprintoutput'>
 
-            Error! Contradiction (77 212)
+Error! Contradiction (77 212)
       
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_64_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToKwChsDMBXAOwGMAXASwHsjQALAQwGcB9ANwYBsCBTAChI0iPclQBOASlABvbKHmgxPMgTG1BRYaLF8ARI1YduPXRIDc2AL65CpSjVABzZey68BQkWXFTZCxcqq6p7aeka8phbW+MTk1LRMLuH8GlreYgA0oMIA7q7GWRREeOIAtgxEZL5yCkoqaqAeml7ieolk+RESEny5nTyFxWUVVVE2sfa0JWLOHclNaeJZdWIM2tX+dUGNqS06utOzpj0ra+nmVuN28aC75At7WX0aTGSrRVUyNfJbDQ+hujuZGOvR4eRebwYHwu0VscQcAAcxFQAEb8IgMUoDW4hc5ffxwyagJEfFhI1H8ZIbfwKAAmFCYCM4DAAnnpYMi0QAuUC6UAAamymJ4At5oAAvGLBa8xEVHBQ8GyqRd-NYCRMbuSSDwmKw+vNqTTibLKmTOfxZv1-ucVQo1QpCZrkdrdSxDkk3PxDTSSabyWi9AB+SLfUD2+SOhxYvhKACOvFe3s2gQacYTZAl4slukgAFpGGweLmGLnkrpQ0aaYHjVQXXqwVaJBXKwoeWmdRms9m85wqK9c6UWaXPeWW2Pq1qdax3XNPXwm2OWzyeGJkTp268Ms3F2PdABVIgAayIVBytA3GaKNbRIdVoaB1qWoCxtp+KdoWLGMWuDmmLB4ax0P+AAe2oImQfA8KBPDgfEWS2FknAMp8fgOhqDi9lQCJ8BQZA8KUTBJgoCqNAyLBEAQnCcDheEEd0+I7r8tC6LSNAmBYLaWKAPCcIkoAkXwdAAbSNH4YRmaSlBYGTERRpMaAmHYWQULUbhYndBxlZcTxfGoYutiCcJol0a+Y7yYpfDKRQqm0YRpl3g5tTvgpVBYXwSGJl+ka0EU0ylCwDAolQBCzsYTQylClTevJELvJUeh5gWRYlmWMJXPCPlDGI-mBcFHQnlasWRShoYxTQEUfAlua9v2g7DsYIawuhH4MIePAsECrTepwyigMkEqgHgXCJJp8g9ZeWXlJUA1DbxPCjQpvVFR8TADRRVELd5oDtCwg5WrkRhZO0eGSAxRoCQAhAYVovrJNL9ZKB1cAtLa+cM02SsdK4vZW8l-gBJBAVJMEQV9mTbjukM0m92UBUFIX9FuUPIy2y2VIRP3yNpc38XgjT9RdWbZGCRh3f4K5rno0A0JC9IZVKEOLroeiijKcoKkqnpSIKuhZHygqMyjbNEPKiqgjkpOiqYt5adxON6WZzm6BQjgnkotK6JjYahuGg3NYN4iWnt8ynOsZ3Q3jMbKKs2gSfxk0jGTxEOx9g3DfNgtvvUUziP+gEgdJVuQtoSMo2Hzt+XDeXkVQiOe+HlZo2QGMQ9junx-Jyuq+IPAa1ruu61tD7PDTcUla9ltket1FYqUaI6CXlRl6HCdQ0ndlO-I7cDQiUINw2GiQh8WTt-Zdpy+nnEQwJ13zLd5uvZNUcI-MjdD1F+cTyKCt3hDmescIms66GW3Rhed0CRedv6Mw-SmAvv3OTDU0ZoTkqzSNqdb7jjRX12vKpQfnJZyyRN46RFJfHg8YOzXx2oAnej9vbbRcMbT0YCcaQOga8a+M574IOAUgmcu0WT9HQXxTB6Zr5AjwRnZyQIyHb3jhTVoF4+YHmPKeWgWEVwMCJFeTqYgZZGgLqVZyn5LjfnpqUSilAmQUBXHwUoABGLIpQABMWRyS0gIOQb0W1Jyun1HOC+ltBK3znkoqQAAyKxTgPRhWUVIf+AAGBcLYAA+7jGizznOo6xtjLRzzUU4omrjO7INCu4LROiyBZGcaongY8sbfxnuY3xljQA2PoGkhxwTwlwLnNE8gWR46LkCekqQAAqOxkT+B+JKQASAaUaF8DCf5mMMIU5E2jdGZNsT4hxlj8n2PcOokprcFDlLCkUz4YApmjMseMiZz5EltNSZ06Z3SYn+OyRs0ZeSgE0gKYMxpyN5n8BmVIOZIy6nBK3M0qGrSv7gMOSI9UP5aAGOnIbG585DlEPmDMhJSSDYzF+co4FWsAW+I0SskFXzyINgNAtQu+sz5QPTCY3+GKYH-xzPmBghZiz1S6Ic-wCKjFhRBWnCBls-5E3xTVMgA4hzwPjgi6FVK2n4JpMw9cOLNy8nYSeM8AQsETWfDIigciVxCJpG8hQD4IVwoWkq2FTz-APiBSq0RSDxFNQ+aABgtJaQKIYCoo1sKmAEFKHo-WFKkXGMOesq05qdkDPcAwA5PL-DHPcNa0oWRzl8DdaKYNXqJCQueRgy2Hr+ChqyXGvgAb6I+oUH6+NsLg0ptALmGprrFk6s4ik2NOTPXBL6bsq0Kbhm1JDRa7NNqpB5vDXcotssXk8oVRGe1zopxuh+XWu6nL-U2qjS2Ed8aLUasrJOkN6rVkQwdXkZFx93lSP4OfZ1dKBWdgZYlQlyUSUmHCcuxsayd3iuvj2PszK6psshhywd57o2Tx3Hyq24q2FHhFeeXd9sjUmtldStdircT1vHWB5o9wvWQa7uBgNcGAh6o9ga+mEIRh8GSCPXEPhzan03buu6H7WFCp-ZwsVlD+HlWUpUOVusHwCKQxmx8mQ+qeiQ-JfV6UiTal4hQAg04GB0CUEQISuEOo0ELGIE6Ah4LeghKAAgA1yhtUk9B9I85VU0b6ip1q7UBFafvDpnIem1OGdMop4CZmDO4Z0JZnTLIbPqcWPZha0jOCyKQgokgWQchZAIKZDzXn5E6DYFkYCAXTLGtNWFrILJ5PaaIK8TDABOPzDnku0YgpgCLmWUvxRQLClkplM5UEPEfaIinoDOYsxYRTAAxWrdmjN8aYAJoTImeBiZ4BJjQ0nZPQCyA1i42B-T8F0NAHSHXQC0QRLzUA0ALjjb0A14TonxMZjmwtkbFhsAsaG6ANRuXeSCeA3tljDWshqKUbC3QZ3BHmCAA')">set_value(F, 212, "user");
@@ -2034,9 +2035,9 @@ probe("Fahrenheit temp", F);
 (forget-value! C 'user)
 </pre><pre class='prettyprintoutput'>
 
-            Probe: Celsius temp = ?
-            Probe: Fahrenheit temp = ?
-            done
+Probe: Celsius temp = ?
+Probe: Fahrenheit temp = ?
+done
       
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_64_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToKwChsDMBXAOwGMAXASwHsjQALAQwGcB9ANwYBsCBTAChI0iPclQBOASlABvbKHmgxPMgTG1BRYaLF8ARI1YduPXRIDc2AL65CpSjVABzZey68BQkWXFTZCxcqq6p7aeka8phbW+MTk1LRMLuH8GlreYgA0oMIA7q7GWRREeOIAtgxEZL5yCkoqaqAeml7ieolk+RESEny5nTyFxWUVVVE2sfa0JWLOHclNaeJZdWIM2tX+dUGNqS06utOzpj0ra+nmVuN28aC75At7WX0aTGSrRVUyNfJbDQ+hujuZGOvR4eRebwYHwu0VscQcAAcxFQAEb8IgMUoDW4hc5ffxwyagJEfFhI1H8ZIbfwKAAmFCYCM4DAAnnpYMi0QAuUC6UAAamymJ4At5oAAvGLBa8xEVHBQ8GyqRd-NYCRMbuSSDwmKw+vNqTTibLKmTOfxZv1-ucVQo1QpCZrkdrdSxDkk3PxDTSSabyWi9AB+SLfUD2+SOhxYvhKACOvFe3s2gQacYTZAl4slukgAFpGGweLmGLnkrpQ0aaYHjVQXXqwVaJBXKwoeWmdRms9m85wqK9c6UWaXPeWW2Pq1qdax3XNPXwm2OWzyeGJkTp268Ms3F2PdABVIgAayIVBytA3GaKNbRIdVoaB1qWoCxtp+KdoWLGMWuDmmLB4ax0P+AAe2oImQfA8KBPDgfEWS2FknAMp8fgOhqDi9lQCJ8BQZA8KUTBJgoCqNAyLBEAQnCcDheEEd0+I7r8tC6LSNAmBYLaWKAPCcIkoAkXwdAAbSNH4YRmaSlBYGTERRpMaAmHYWQULUbhYndBxlZcTxfGoYutiCcJol0a+Y7yYpfDKRQqm0YRpl3g5tTvgpVBYXwSGJl+ka0EU0ylCwDAolQBCzsYTQylClTevJELvJUeh5gWRYlmWMJXPCPlDGI-mBcFHQnlasWRShoYxTQEUfAlua9v2g7DsYIawuhH4MIePAsECrTepwyigMkEqgHgXCJJp8g9ZeWXlJUA1DbxPCjQpvVFR8TADRRVELd5oDtCwg5WrkRhZO0eGSAxRoCQAhAYVovrJNL9ZKB1cAtLa+cM02SsdK4vZW8l-gBJBAVJMEQV9mTbjukM0m92UBUFIX9FuUPIy2y2VIRP3yNpc38XgjT9RdWbZGCRh3f4K5rno0A0JC9IZVKEOLroeiijKcoKkqnpSIKuhZHygqMyjbNEPKiqgjkpOiqYt5adxON6WZzm6BQjgnkotK6JjYahuGg3NYN4iWnt8ynOsZ3Q3jMbKKs2gSfxk0jGTxEOx9g3DfNgtvvUUziP+gEgdJVuQtoSMo2Hzt+XDeXkVQiOe+HlZo2QGMQ9junx-Jyuq+IPAa1ruu61tD7PDTcUla9ltket1FYqUaI6CXlRl6HCdQ0ndlO-I7cDQiUINw2GiQh8WTt-Zdpy+nnEQwJ13zLd5uvZNUcI-MjdD1F+cTyKCt3hDmescIms66GW3Rhed0CRedv6Mw-SmAvv3OTDU0ZoTkqzSNqdb7jjRX12vKpQfnJZyyRN46RFJfHg8YOzXx2oAnej9vbbRcMbT0YCcaQOga8a+M574IOAUgmcu0WT9HQXxTB6Zr5AjwRnZyQIyHb3jhTVoF4+YHmPKeWgWEVwMCJFeTqYgZZGgLqVZyn5LjfnpqUSilAmQUBXHwUoABGLIpQABMWRyS0gIOQb0W1Jyun1HOC+ltBK3znkoqQAAyKxTgPRhWUVIf+AAGBcLYAA+7jGizznOo6xtjLRzzUU4omrjO7INCu4LROiyBZGcaongY8sbfxnuY3xljQA2PoGkhxwTwlwLnNE8gWR46LkCekqQAAqOxkT+B+JKQASAaUaF8DCf5mMMIU5E2jdGZNsT4hxlj8n2PcOokprcFDlLCkUz4YApmjMseMiZz5EltNSZ06Z3SYn+OyRs0ZeSgE0gKYMxpyN5n8BmVIOZIy6nBK3M0qGrSv7gMOSI9UP5aAGOnIbG585DlEPmDMhJSSDYzF+co4FWsAW+I0SskFXzyINgNAtQu+sz5QPTCY3+GKYH-xzPmBghZiz1S6Ic-wCKjFhRBWnCBls-5E3xTVMgA4hzwPjgi6FVK2n4JpMw9cOLNy8nYSeM8AQsETWfDIigciVxCJpG8hQD4IVwoWkq2FTz-APiBSq0RSDxFNQ+aABgtJaQKIYCoo1sKmAEFKHo-WFKkXGMOesq05qdkDPcAwA5PL-DHPcNa0oWRzl8DdaKYNXqJCQueRgy2Hr+ChqyXGvgAb6I+oUH6+NsLg0ptALmGprrFk6s4ik2NOTPXBL6bsq0Kbhm1JDRa7NNqpB5vDXcotssXk8oVRGe1zopxuh+XWu6nL-U2qjS2Ed8aLUasrJOkN6rVkQwdXkZFx93lSP4OfZ1dKBWdgZYlQlyUSUmHCcuxsayd3iuvj2PszK6psshhywd57o2Tx3Hyq24q2FHhFeeXd9sjUmtldStdircT1vHWB5o9wvWQa7uBgNcGAh6o9ga+mEIRh8GSCPXEPhzan03buu6H7WFCp-ZwsVlD+HlWUpUOVusHwCKQxmx8mQ+qeiQ-JfV6UiTal4hQAg04GB0CUEQISuEOo0ELGIE6Ah4LeghKAAgA1yhtUk9B9I85VU0b6ip1q7UBFafvDpnIem1OGdMop4CZmDO4Z0JZnTLIbPqcWPZha0jOCyKQgokgWQchZAIKZDzXn5E6DYFkYCAXTLGtNWFrILJ5PaaIK8TDABOPzDnku0YgpgCLmWUvxRQLClkplM5UEPEfaIinoDOYsxYRTAAxWrdmjN8aYAJoTImeBiZ4BJjQ0nZPQCyA1i42B-T8F0NAHSHXQC0QRLzUA0ALjjb0A14TonxMZjmwtkbFhsAsaG6ANRuXeSCeA3tudh3dBncEeYIAA')">forget_value(C, "user");
@@ -2082,9 +2083,9 @@ probe("Fahrenheit temp", F);
 (set-value! F 212 'user)
 </pre><pre class='prettyprintoutput'>
 
-            Probe: Fahrenheit temp = 212
-            Probe: Celsius temp = 100
-            done
+Probe: Fahrenheit temp = 212
+Probe: Celsius temp = 100
+done
       
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_64_7_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToKwChsDMBXAOwGMAXASwHsjQALAQwGcB9ANwYBsCBTAChI0iPclQBOASlABvbKHmgxPMgTG1BRYaLF8ARI1YduPXRIDc2AL65CpSjVABzZey68BQkWXFTZCxcqq6p7aeka8phbW+MTk1LRMLuH8GlreYgA0oMIA7q7GWRREeOIAtgxEZL5yCkoqaqAeml7ieolk+RESEny5nTyFxWUVVVE2sfa0JWLOHclNaeJZdWIM2tX+dUGNqS06utOzpj0ra+nmVuN28aC75At7WX0aTGSrRVUyNfJbDQ+hujuZGOvR4eRebwYHwu0VscQcAAcxFQAEb8IgMUoDW4hc5ffxwyagJEfFhI1H8ZIbfwKAAmFCYCM4DAAnnpYMi0QAuUC6UAAamymJ4At5oAAvGLBa8xEVHBQ8GyqRd-NYCRMbuSSDwmKw+vNqTTibLKmTOfxZv1-ucVQo1QpCZrkdrdSxDkk3PxDTSSabyWi9AB+SLfUD2+SOhxYvhKACOvFe3s2gQacYTZAl4slukgAFpGGweLmGLnkrpQ0aaYHjVQXXqwVaJBXKwoeWmdRms9m85wqK9c6UWaXPeWW2Pq1qdax3XNPXwm2OWzyeGJkTp268Ms3F2PdABVIgAayIVBytA3GaKNbRIdVoaB1qWoCxtp+KdoWLGMWuDmmLB4ax0P+AAe2oImQfA8KBPDgfEWS2FknAMp8fgOhqDi9lQCJ8BQZA8KUTBJgoCqNAyLBEAQnCcDheEEd0+I7r8tC6LSNAmBYLaWKAPCcIkoAkXwdAAbSNH4YRmaSlBYGTERRpMaAmHYWQULUbhYndBxlZcTxfGoYutiCcJol0a+Y7yYpfDKRQqm0YRpl3g5tTvgpVBYXwSGJl+ka0EU0ylCwDAolQBCzsYTQylClTevJELvJUeh5gWRYlmWMJXPCPlDGI-mBcFHQnlasWRShoYxTQEUfAlua9v2g7DsYIawuhH4MIePAsECrTepwyigMkEqgHgXCJJp8g9ZeWXlJUA1DbxPCjQpvVFR8TADRRVELd5oDtCwg5WrkRhZO0eGSAxRoCQAhAYVovrJNL9ZKB1cAtLa+cM02SsdK4vZW8l-gBJBAVJMEQV9mTbjukM0m92UBUFIX9FuUPIy2y2VIRP3yNpc38XgjT9RdWbZGCRh3f4K5rno0A0JC9IZVKEOLroeiijKcoKkqnpSIKuhZHygqMyjbNEPKiqgjkpOiqYt5adxON6WZzm6BQjgnkotK6JjYahuGg3NYN4iWnt8ynOsZ3Q3jMbKKs2gSfxk0jGTxEOx9g3DfNgtvvUUziP+gEgdJVuQtoSMo2Hzt+XDeXkVQiOe+HlZo2QGMQ9junx-Jyuq+IPAa1ruu61tD7PDTcUla9ltket1FYqUaI6CXlRl6HCdQ0ndlO-I7cDQiUINw2GiQh8WTt-Zdpy+nnEQwJ13zLd5uvZNUcI-MjdD1F+cTyKCt3hDmescIms66GW3Rhed0CRedv6Mw-SmAvv3OTDU0ZoTkqzSNqdb7jjRX12vKpQfnJZyyRN46RFJfHg8YOzXx2oAnej9vbbRcMbT0YCcaQOga8a+M574IOAUgmcu0WT9HQXxTB6Zr5AjwRnZyQIyHb3jhTVoF4+YHmPKeWgWEVwMCJFeTqYgZZGgLqVZyn5LjfnpqUSilAmQUBXHwUoABGLIpQABMWRyS0gIOQb0W1Jyun1HOC+ltBK3znkoqQAAyKxTgPRhWUVIf+AAGBcLYAA+7jGizznOo6xtjLRzzUU4omrjO7INCu4LROiyBZGcaongY8sbfxnuY3xljQA2PoGkhxwTwlwLnNE8gWR46LkCekqQAAqOxkT+B+JKQASAaUaF8DCf5mMMIU5E2jdGZNsT4hxlj8n2PcOokprcFDlLCkUz4YApmjMseMiZz5EltNSZ06Z3SYn+OyRs0ZeSgE0gKYMxpyN5n8BmVIOZIy6nBK3M0qGrSv7gMOSI9UP5aAGOnIbG585DlEPmDMhJSSDYzF+co4FWsAW+I0SskFXzyINgNAtQu+sz5QPTCY3+GKYH-xzPmBghZiz1S6Ic-wCKjFhRBWnCBls-5E3xTVMgA4hzwPjgi6FVK2n4JpMw9cOLNy8nYSeM8AQsETWfDIigciVxCJpG8hQD4IVwoWkq2FTz-APiBSq0RSDxFNQ+aABgtJaQKIYCoo1sKmAEFKHo-WFKkXGMOesq05qdkDPcAwA5PL-DHPcNa0oWRzl8DdaKYNXqJCQueRgy2Hr+ChqyXGvgAb6I+oUH6+NsLg0ptALmGprrFk6s4ik2NOTPXBL6bsq0Kbhm1JDRa7NNqpB5vDXcotssXk8oVRGe1zopxuh+XWu6nL-U2qjS2Ed8aLUasrJOkN6rVkQwdXkZFx93lSP4OfZ1dKBWdgZYlQlyUSUmHCcuxsayd3iuvj2PszK6psshhywd57o2Tx3Hyq24q2FHhFeeXd9sjUmtldStdircT1vHWB5o9wvWQa7uBgNcGAh6o9ga+mEIRh8GSCPXEPhzan03buu6H7WFCp-ZwsVlD+HlWUpUOVusHwCKQxmx8mQ+qeiQ-JfV6UiTal4hQAg04GB0CUEQISuEOo0ELGIE6Ah4LeghKAAgA1yhtUk9B9I85VU0b6ip1q7UBFafvDpnIem1OGdMop4CZmDO4Z0JZnTLIbPqcWPZha0jOCyKQgokgWQchZAIKZDzXn5E6DYFkYCAXTLGtNWFrILJ5PaaIK8TDABOPzDnku0YgpgCLmWUvxRQLClkplM5UEPEfaIinoDOYsxYRTAAxWrdmjN8aYAJoTImeBiZ4BJjQ0nZPQCyA1i42B-T8F0NAHSHXQC0QRLzUA0ALjjb0A14TonxMZjmwtkbFhsAsaG6ANRuXeSCeA3tudh3dBncEaNljDWshqKUbC67iRbtmCAA')">set_value(F, 212, "user");
@@ -2228,42 +2229,42 @@ probe("Fahrenheit temp", F);
       <span style="color:blue">function</span>
     
     <kbd>me</kbd> below):
-
+            
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_64_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (adder a1 a2 sum)
-            (define (process-new-value)
-            (cond ((and (has-value? a1) (has-value? a2))
+  (define (process-new-value)
+    (cond ((and (has-value? a1) (has-value? a2))
             (set-value! sum
-            (+ (get-value a1) (get-value a2))
-            me))
-            ((and (has-value? a1) (has-value? sum))
-            (set-value! a2
-            (- (get-value sum) (get-value a1))
-            me))
-            ((and (has-value? a2) (has-value? sum))
-            (set-value! a1
-            (- (get-value sum) (get-value a2))
-            me))))
-            (define (process-forget-value)
-            (forget-value! sum me)
-            (forget-value! a1 me)
-            (forget-value! a2 me)
-            (process-new-value))
-            (define (me request)
-            (cond ((eq? request 'I-have-a-value)  
-            (process-new-value))
-            ((eq? request 'I-lost-my-value) 
+                        (+ (get-value a1) (get-value a2))
+                        me))
+          ((and (has-value? a1) (has-value? sum))
+           (set-value! a2
+                       (- (get-value sum) (get-value a1))
+                       me))
+          ((and (has-value? a2) (has-value? sum))
+           (set-value! a1
+                       (- (get-value sum) (get-value a2))
+                       me))))
+  (define (process-forget-value)
+    (forget-value! sum me)
+    (forget-value! a1 me)
+    (forget-value! a2 me)
+    (process-new-value))
+  (define (me request)
+    (cond ((eq? request 'I-have-a-value)  
+           (process-new-value))
+          ((eq? request 'I-lost-my-value) 
             (process-forget-value))
-            (else 
+          (else 
             (error "Unknown request - - ADDER" request))))
-            (connect a1 me)
-            (connect a2 me)
-            (connect sum me)
-            me)
+  (connect a1 me)
+  (connect a2 me)
+  (connect sum me)
+  me)
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_64_8_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToKwChsDMBXAOwGMAXASwHsjQALAQwGcB9ANwYBsCBTAChI0iPclQBOASlABvbKHmgxPMgTG1BRYaLF8ARI1YduPXRIDc2AL65CpSjVABzZey68BQkWXFTZCxcqq6p7aeka8phbW+MTk1LRMLuH8GlreYgA0oMIA7q7GWRREeOIAtgxEZL5yCkoqaqAeml7ieolk+RESEny5nTyFxWUVVVE2sfa0JWLOHclNaeJZdWIM2tX+dUGNqS06utOzpj0ra+nmVuN28aC75At7WX0aTGSrRVUyNfJbDQ+hujuZGOvR4eRebwYHwu0VscQcDAAJoieDoGABGLIMABMWSYBFKGwUcMmoAADmIqCQeExWH15kT-PIKHhGgZ+nwMVIAGTc+jMDk47pfJmi0DtDn40pZWaC9FSADUTiSbn4QqypR4FzFoEsoB4nESoBZbIF8y5oF5-MMqr4UuFfh1Cgl5txyrmtvtoAAtO65RINVqLDq9QajSa+OzXTy+VHPQSHd8nS7bRiZSrjHaEz6-dHA9qxaHDTwRYWk9Z-CSbhSqTTWIcM+5GUyGx7M1L88Gxa25Z2k5XxLLXX2dTXqbSWPTbQX5BXiRMbpq+EoAI68V7N-wR1frsigAC8h9Aukg3sYbB43oY3uSplLTvJlPHdLBHJnTKL4dZy54a5pe8Pfdj1PTgqFeb1SgATxvVU70dB8xzrFgewZLtRU-Et4KdVFKR0Hd-yyXQAFUiAAayIKgclofDXmNWgkRRMRIn7BQ51nJMgU5TFQE1d9OJxEcFE4jseKDJNfloTUoiAA')">function adder(a1, a2, sum) {
     function process_new_value() {
@@ -2319,17 +2320,18 @@ probe("Fahrenheit temp", F);
     footnote <REF NAME="foot:object-syntax"><a class="superscript" id="3.3.5-foot-link-1" href="./3.3.4.html#footnote-1">1</a></REF> in
     section <REF NAME="sec:circuit-simulator"><a class="superscript" id="3.3.5-sec-link-3.3.4" href="./3.3.4.html">3.3.4</a></REF>) are used in conjunction
     with the dispatch:
+            
+            
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_64_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (inform-about-value constraint)
-            (constraint 'I-have-a-value))
+  (constraint 'I-have-a-value))
 
-            
-            (define (inform-about-no-value constraint)
-            (constraint 'I-lost-my-value))
+(define (inform-about-no-value constraint)
+  (constraint 'I-lost-my-value))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_64_9_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToKwChsDMBXAOwGMAXASwHsjQKi8qAnAWwH0BDAIyoLLYBuHADYEApgAoSNAM5kmHemQCUoAN7ZQW0EzFkCTWtKJyFSiQCJIAWgAWHAWOsdrQ0WIvKA3NgC+uQlJKGjoGZnZuXn4iKkERcSlZeUUiFXVNbV19Q1BjUxSySxthKjlrFgBPV3iPbz8gA')">function inform_about_value(constraint) {
     return constraint("I-have-a-value");
@@ -2390,44 +2392,45 @@ function inform_about_no_value(constraint) {
     A multiplier is very similar to an adder. It will set its
     <kbd>product</kbd> to 0 if either of the factors is 0,
     even if the other factor is not known.
+            
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_64_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (multiplier m1 m2 product)
-            (define (process-new-value)
+  (define (process-new-value)
             (cond ((or (and (has-value? m1) (= (get-value m1) 0))
-            (and (has-value? m2) (= (get-value m2) 0)))
-            (set-value! product 0 me))
-            ((and (has-value? m1) (has-value? m2))
-            (set-value! product
-            (* (get-value m1) (get-value m2))
-            me))
-            ((and (has-value? product) (has-value? m1))
-            (set-value! m2
-            (/ (get-value product) (get-value m1))
-            me))
-            ((and (has-value? product) (has-value? m2))
-            (set-value! m1
-            (/ (get-value product) (get-value m2))
-            me))))
-            (define (process-forget-value)
-            (forget-value! product me)
-            (forget-value! m1 me)
-            (forget-value! m2 me)
-            (process-new-value))
-            (define (me request)
-            (cond ((eq? request 'I-have-a-value)
-            (process-new-value))
-            ((eq? request 'I-lost-my-value)
-            (process-forget-value))
-            (else
+                       (and (has-value? m2) (= (get-value m2) 0)))
+                   (set-value! product 0 me))
+                  ((and (has-value? m1) (has-value? m2))
+                   (set-value! product
+                               (* (get-value m1) (get-value m2))
+                               me))
+                  ((and (has-value? product) (has-value? m1))
+                   (set-value! m2
+                               (/ (get-value product) (get-value m1))
+                               me))
+                  ((and (has-value? product) (has-value? m2))
+                   (set-value! m1
+                               (/ (get-value product) (get-value m2))
+                               me))))
+  (define (process-forget-value)
+    (forget-value! product me)
+    (forget-value! m1 me)
+    (forget-value! m2 me)
+    (process-new-value))
+  (define (me request)
+    (cond ((eq? request 'I-have-a-value)
+           (process-new-value))
+          ((eq? request 'I-lost-my-value)
+           (process-forget-value))
+          (else
             (error "Unknown request - - MULTIPLIER" request))))
-            (connect m1 me)
-            (connect m2 me)
-            (connect product me)
-            me)
+  (connect m1 me)
+  (connect m2 me)
+  (connect product me)
+  me)
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_64_10_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToKwChsDMBXAOwGMAXASwHsjQALAQwGcB9ANwYBsCBTAChI0iPclQBOASlABvbKHmgxPMgTG1BRYaLF8ARI1YduPXRIDc2AL65CpSjVABzZey68BQkWXFTZCxcqq6p7aeka8phbW+MTk1LRMLuH8GlreYgA0oMIA7q7GWRREeOIAtgxEZL5yCkoqaqAeml7ieolk+RESEny5nTyFxWUVVVE2sfa0JWLOHclNaeJZdWIM2tX+dUGNqS06utOzpj0ra+nmVuN28aC75At7WX0aTGSrRVUyNfJbDQ+hujuZGOvR4eRebwYHwu0VscQcpQInEoAAdOBQeDpSgBGLKlABMWRRYioABMCOQNgo4ZNQMSqCQeExWH15lT-PIKHhGnwDP0+DipAAyIVOJJufiC0AAXlloAADBJvhzQAAfVWNPnzAnC0Wzfk6mVyxXslUKdr8+nk8hZeV4ngXM2gSygHicRKgLma5gG7G6+g+7X47pfJ3+C3zK0UshZZVhsP67V+0AAKjFcwlAuDsYAkDmVaUHRYnS63R6vbzA5mo5TQCKA4ZM4LTU6I03CaA4-GzYnqyTrZ8wL3jAK-bHu93C46zaX3TxPdzK42RzXPvWte2Q35u22RzjcxP5MP3KupEPxXvs9h84ep8WZ6656GZ8rrP4aTd6YzmSxDhf3C21LiMe-Crva04qn+GZ7rioB3l28hQQaHbwU6X5MiyYL8hBzrKh+CL8EoACOvCvIBnKLsRpFkEa0qgLokAALSMGwPCMQwjHJKYz7xuhP6spmOH+LO5aUTwJFMjRsp0QxjGcFQryMaUACenEStx268SS36sEhbL3iqInzppYaYiSOhUZJWS6AAqkQADWRBUDktCWa8nq0IiyIUGiGJiJECG4cJypAqO4EGbcIRkFm4UhVFfBgXBRbKr8nk8FEQA')">function multiplier(m1, m2, product) {
     function process_new_value() {
@@ -2495,17 +2498,18 @@ function inform_about_no_value(constraint) {
       </span>
     
     message sent to the constant box will produce an error.
+            
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_64_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (constant value connector)
-            (define (me request)
-            (error "Unknown request - - CONSTANT" request))
-            (connect connector me)
-            (set-value! connector value me)
-            me)
+  (define (me request)
+    (error "Unknown request - - CONSTANT" request))
+  (connect connector me)
+  (set-value! connector value me)
+  me)
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_64_11_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToKwChsDMBXAOwGMAXASwHsjQALAQwGcB9ANwYBsCBTAChI0iPclQBOASlABvbKHmgxPMgTG1BRYaLF8ARI1YduPXRIDc2AL65CpSjVABzZey68BQkWXFTZCxcqq6p7aeka8phbW+MTk1LRMLuH8GlreYgA0oMIA7q7GWRREeOIAtgxEZL5yCkoqaqAeml7ieolk+RESEny5nTyFxWUVVVE2sfa0JWLOHclNaeJZdWIM2tX+dUGNqS06utOzpj0ra+nmVuN28aC75At7WX0aTGSrRVUyNfJbDQ+hujuZGOvR4eRebwYHwu0VscQcEJGfGSWSBPi+-jhk1ApX4SgAjrxXht-AoeGIxK0CUSyFldABVIgAayIVBytGpPFeoCKtxorxGkW+oGs-iB-3SWVxF387X6EqWoBROJ4MtqgQauKiQA')">function constant(value, connector) {
     function me(request) {
@@ -2524,31 +2528,32 @@ function inform_about_no_value(constraint) {
     Finally, a probe prints a message about the setting or unsetting of
     the designated connector:
     
+            
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_64_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (probe name connector)
-            (define (print-probe value)
-            (newline)
-            (display "Probe: ")
-            (display name)
-            (display " = ")
-            (display value))
-            (define (process-new-value)
-            (print-probe (get-value connector)))
-            (define (process-forget-value)
-            (print-probe "?"))
-            (define (me request)
-            (cond ((eq? request 'I-have-a-value)
-            (process-new-value))
-            ((eq? request 'I-lost-my-value)
-            (process-forget-value))
-            (else
-            (error "Unknown request - - PROBE" request))))
-            (connect connector me)
-            me)
+  (define (print-probe value)
+    (newline)
+    (display "Probe: ")
+    (display name)
+    (display " = ")
+    (display value))
+  (define (process-new-value)
+    (print-probe (get-value connector)))
+  (define (process-forget-value)
+    (print-probe "?"))
+  (define (me request)
+    (cond ((eq? request 'I-have-a-value)
+           (process-new-value))
+          ((eq? request 'I-lost-my-value)
+           (process-forget-value))
+          (else
+           (error "Unknown request - - PROBE" request))))
+  (connect connector me)
+  me)
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_64_12_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToKwChsDMBXAOwGMAXASwHsjQALAQwGcB9ANwYBsCBTAChI0iPclQBOASlABvbKHmgxPMgTG1BRYaLF8ARI1YduPXRIDc2AL65CpSjVABzZey68BQkWXFTZCxcqq6p7aeka8phbW+MTk1LRMLuH8GlreYgA0oMIA7q7GWRREeOIAtgxEZL5yCkoqaqAeml7ieolk+RESEny5nTyFxWUVVVE2sfa0JWLOHclNaeJZdWIM2tX+dUGNqS06utOzpj0ra+nmVuN28aC75At7WX0aTGSrRVUyNfJbDQ+hujuZGOvR4eRebwYHwu0VscQcAAcxFQAEb8IgMUoDW4hc5ffxwyagJEfFhI1H8ZIbfwKAAmFCYCM4DAAnnpYMi0QAuUC6UAAamymJ4At5oAAvGLBa8xEVHBQ8GyqRd-NYCRMbuSSDwmKw+vNqTTibLKmTOfxZv1-ucVQo1QpCZrkdrdSxDkk3PxDTSSabyWi9AB+SLfUD2+SOhxYvhKACOvFe3s2gQacYTZAl4slukgAFpGGweLmGLnkrpQ0aaYHjVQXXqwVaJBXKwoeWmdRms9m85wqK9c6UWaXPeWW2Pq1qdax3XNPXwm2OWzyeGJkTp268Ms3F2PdABVIgAayIVBytA3GaKNbRIdVoaB1qWoCxtp+KdoWKiQA')">function probe(name, connector) {
     function print_probe(value) {
@@ -2591,47 +2596,48 @@ function inform_about_no_value(constraint) {
     <kbd>informant</kbd>, the object that set the
     connector's value; and <kbd>constraints</kbd>,
     a list of the constraints in which the connector participates.
+            
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_64_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (make-connector)
-            (let ((value false) (informant false) (constraints '()))
-            (define (set-my-value newval setter)
-            (cond ((not (has-value? me))
-            (set! value newval)
-            (set! informant setter)
-            (for-each-except setter
-            inform-about-value
-            constraints))
+  (let ((value false) (informant false) (constraints '()))
+    (define (set-my-value newval setter)
+      (cond ((not (has-value? me))
+             (set! value newval)
+             (set! informant setter)
+             (for-each-except setter
+                              inform-about-value
+                              constraints))
             ((not (= value newval))
-            (error "Contradiction" (list value newval)))
+             (error "Contradiction" (list value newval)))
             (else 'ignored)))
-            (define (forget-my-value retractor)
-            (if (eq? retractor informant)
-            (begin (set! informant false)
+    (define (forget-my-value retractor)
+      (if (eq? retractor informant)
+          (begin (set! informant false)
             (for-each-except retractor
-            inform-about-no-value
-            constraints))
-            'ignored))
-            (define (connect new-constraint)
-            (if (not (memq new-constraint constraints))
-            (set! constraints 
-            (cons new-constraint constraints)))
-            (if (has-value? me)
-            (inform-about-value new-constraint))
-            'done)
-            (define (me request)
-            (cond ((eq? request 'has-value?)
-            (if informant true false))
+                             inform-about-no-value
+                             constraints))
+          'ignored))
+    (define (connect new-constraint)
+      (if (not (memq new-constraint constraints))
+          (set! constraints 
+                (cons new-constraint constraints)))
+      (if (has-value? me)
+          (inform-about-value new-constraint))
+      'done)
+    (define (me request)
+      (cond ((eq? request 'has-value?)
+             (if informant true false))
             ((eq? request 'value) value)
             ((eq? request 'set-value!) set-my-value)
             ((eq? request 'forget) forget-my-value)
             ((eq? request 'connect) connect)
             (else (error "Unknown operation - - CONNECTOR"
-            request))))
-            me))
+                         request))))
+    me))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_64_13_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToKwChsDMBXAOwGMAXASwHsjQ8qAnAfQFMBDEgC1YA8SWADmQAULPoMo0ANHWIyANhQDOZAJSgA3tlA7ZpSbXlUqA4RTIsAtkvVbd90BTygzSpkQLz5Zi9dW3tByCGFjICBloAIgATGhZIgG5AoIBfUBZ5JRZHZ2FOdmifKxtQAF5y9PEhaiIAoODQ8MNjUzI2Cm9zYv8k+tA0jKzNZL69PIKiv1Ve0Z0QsIjQIxNhNo7Jm2mR+xSR3ft5pqWW4UUVLd38YnIaxyJ6BksmNgAjKgIyJgA3NnkCFmEJBoKgY7SIamGB0aiyBRBBYJEkUgAFpOGwvixkWxkT8-vELrhCPpbhR7ownq93p8iFRvr9-oDgWRQaSIXZdIcYUyWeDhEjkUYVMjLABPHH0-FJS5Em40UBoty4hmwogsciMOoc6G0FVqsiMPkKul4yIEq7EuUAc1CxuVNFV6oYmrm2tAusdfKVkuw0uuBlAWU+XsZRAd+oYMlVAHdbSwZKSHpY2ODnaBObQQ2GDZFA7HTaphNHY-GyY9k2opYS-bcHtagxLM3rGDJ5qDHan0y53eG+bXQvnhK2OOGzTL-d3G47IywY7D4ayO67Jz3It2B0W58yEaPq3KkwBrFhMbsG1PyUKgL1lOi-LIzHTnsh3RPl694W8se9LC+bnlkJTXh4XhfmOty5qKsaFjOuIyIGFhOpC9ROC4ACERrBpYLD+IhsxXqUoDRriX59Am5KvvhcEsAwxH1J2DysBw3BiPwQjCJREbbLMXGjKRjzPG8HzFpx3EifYv4IjYNE6AMmTZMhwhXihFSEb8qZ9FRDDZtANBbtEFCylEoAANTCVxkR8sZAbMqSlpOCKCkSuoRmgJEMiRJZpmiToII2XZUFRriTkuaoppSf06SyThoydpEFCWjSITRIkpn7LoqU6KBcp9p8EHBkO7ZRfY8n5eGZQVLxSYpoVSGlpVT74e+slhVCCy0PR7BcLwLEiCVzaeV5XEVfxVLuLSXpSP1A2jOJrKSSlEVDOyswxXFCUsElYXpf0IyZTq9p6v5x46X+am6PJyjuJ43iYZYLxUYdsJbqyE1TQNM3gpsp1BO9-7XgI7QMA9x0IjIP1zX0MmLSlpnyehDaYdhS08bVw2CcGG7Awum0LdkSM7LgfQxbEqrJfj9i7aAmGDiwACO-znNVOjFbT9P1RUkRwyaX0OJ2FWvkpDUftjgxybkIR0ywKhlfhkReqajM866XrC5FzMS1L5Qy7mcvcy1RzgSKsYq0Maus9LLnZfLeO0a62VMLlErG6LLji2bmsuWuutaq1br7eQTsK-YGkGq7ktkG5ACqRD7jSUa0CYVFsP6pK+6GTYMKF0Nk97RyYVKQA')">function make_connector() {
     let value = false;
@@ -2719,21 +2725,19 @@ function inform_about_no_value(constraint) {
       <span style="color:blue">function</span>
     
     to all items in a list except a given one:
+            
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_64_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (for-each-except exception
-            procedure
-            list)
-            (define (loop items)
-            (cond ((null? items) 'done)
-            ((eq? (car items) exception) (loop (cdr items)))
-            (else (procedure
-            (car items))
-            (loop (cdr items)))))
-            (loop list))
+(define (for-each-except exception procedure list)
+  (define (loop items)
+    (cond ((null? items) 'done)
+          ((eq? (car items) exception) (loop (cdr items)))
+          (else (procedure (car items))
+                (loop (cdr items)))))
+  (loop list))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_64_14_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToKwChsDMBXAOwGMAXASwHsjQ8qAnAfQFMBDEgC1YA8SWADmQAULPoMo0ANHWIyANhQDOZAJSgA3tlA7ZpSbXlUqA4RTIsAtkvVbd90BTygzSpkQLz5Zi9dW3tByCGFjICBloAIgATGhZIgG5AoIBfUBZ5JRZHZ2FOdmifKxtQAF5y9PEhaiIAoODQ8MNjUzI2Cm9zYv8k+tA0jKzNZL69PIKiv1Ve0Z0QsIjQIxNhNo7Jm2mR+xSR3ft5pqWW4UUVLZSgA')">function for_each_except(exception, fun, list) {
     function loop(items) {
@@ -2800,29 +2804,30 @@ function inform_about_no_value(constraint) {
       <span style="color:blue">functions</span>
     
     provide a syntax interface for the dispatch:
+            
+            
+            
+            
+            
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_64_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (has-value? connector)
-            (connector 'has-value?))
+  (connector 'has-value?))
 
-            
-            (define (get-value connector)
-            (connector 'value))
+(define (get-value connector)
+  (connector 'value))
 
-            
-            (define (set-value! connector new-value informant)
-            ((connector 'set-value!) new-value informant))
+(define (set-value! connector new-value informant)
+  ((connector 'set-value!) new-value informant))
 
-            
-            (define (forget-value! connector retractor)
-            ((connector 'forget) retractor))
+(define (forget-value! connector retractor)
+  ((connector 'forget) retractor))
 
-            
-            (define (connect connector new-constraint)
-            ((connector 'connect) new-constraint))
+(define (connect connector new-constraint)
+  ((connector 'connect) new-constraint))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_64_15_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToKwChsDMBXAOwGMAXASwHsjQALAQwGcB9ANwYBsCBTAChI0iPclQBOASlABvbKHmgxPMgTG1BRYaLF8ARI1YduPXRIDc2AL65CpSjVABzZey68BQkWXFTZCxcqq6p7aeka8phbW+MTk1LRMLuH8GlreYgA0oMIA7q7GWRREeOIAtgxEZL5yCkoqaqAeml7ieolk+RESEny5nTyFxWUVVVE2sfa0JWLOHclNaeJZdWIM2tX+dUGNqS06utOzpj0ra+nmVuN28aC75At7WX0aTGSrRVUyNfJbDQ+hujuZGOvR4eRebwYHwuliAA')">function has_value(connector) {
     return connector("has_value");
@@ -2890,7 +2895,7 @@ function connect(connector, new_constraint) {
           <tr>
             <td><div class='snippet' id='javascript_64_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (squarer a b)
-            (multiplier a a b))
+  (multiplier a a b))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_64_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function squarer(a, b) {
@@ -2928,16 +2933,16 @@ function squarer(a, b) {
           <tr>
             <td><div class='snippet' id='javascript_64_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (squarer a b)
-            (define (process-new-value)
-            (if (has-value? b)
-            (if (< (get-value b) 0)
+  (define (process-new-value)
+    (if (has-value? b)
+        (if (< (get-value b) 0)
             (error "square less than 0 - - SQUARER" (get-value b))
             ^alternative1^)
-            ^alternative2^))
-            (define (process-forget-value) ^body1^)
-            (define (me request) ^body2^)
-            ^rest of definition^
-            me)
+        ^alternative2^))
+  (define (process-forget-value) ^body1^)
+    (define (me request) ^body2^)
+  ^rest of definition^
+  me)
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_64_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function squarer(a, b) {
@@ -2988,8 +2993,8 @@ function squarer(a, b) {
           <tr>
             <td><div class='snippet' id='javascript_64_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define a (make-connector))
-            (define b (make-connector))
-            (set-value! a 10 'user)
+(define b (make-connector))
+(set-value! a 10 'user)
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_64_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 const a = make_connector();
@@ -3045,18 +3050,19 @@ for_each_except(setter, inform_about_value, constraints);
     
     is cumbersome when
     compared with a more expression-oriented style of definition, such as
+        
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_64_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (celsius-fahrenheit-converter x)
-            (c+ (c* (c/ (cv 9) (cv 5))
-            x)
-            (cv 32)))
+  (c+ (c* (c/ (cv 9) (cv 5))
+          x)
+      (cv 32)))
 
-            (define C (make-connector))
-            (define F (celsius-fahrenheit-converter C))
+(define C (make-connector))
+(define F (celsius-fahrenheit-converter C))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_64_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function celsius_fahrenheit_converter(x) {
@@ -3086,9 +3092,9 @@ function celsius_fahrenheit_converter(x) {
           <tr>
             <td><div class='snippet' id='javascript_64_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (c+ x y)
-            (let ((z (make-connector)))
-            (adder x y z)
-            z))
+  (let ((z (make-connector)))
+    (adder x y z)
+    z))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_64_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function cplus(x, y) {
@@ -3201,8 +3207,8 @@ function cplus(x, y) {
           <tr>
             <td><div class='snippet' id='javascript_64_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (v-sum a b temp1)
-              (v-sum c d temp2)
-              (v-prod temp1 temp2 answer)
+(v-sum c d temp2)
+(v-prod temp1 temp2 answer)
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_64_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 v_sum('a', 'b', temp1);

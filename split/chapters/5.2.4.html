@@ -1705,6 +1705,8 @@
       <kbd>make_new_machine</kbd></span>
     
     to
+      
+      
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -1716,8 +1718,10 @@
             (lambda () (stack 'print-statistics))))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_107_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-list(list("initialize-stack", () => stack("initialize")),
-     list("print-stack-statistics", () => stack("print-statistics")));
+list(list("initialize-stack", 
+          () => stack("initialize")),
+     list("print-stack-statistics", 
+          () => stack("print-statistics")));
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -1729,49 +1733,50 @@ list(list("initialize-stack", () => stack("initialize")),
       <span style="color:blue">
       <kbd>make_stack</kbd>:</span>
     
+      
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_107_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (make-stack)
-      (let ((s '())
-            (number-pushes 0)
-            (max-depth 0)
-            (current-depth 0))
-      (define (push x)
+  (let ((s '())
+        (number-pushes 0)
+        (max-depth 0)
+        (current-depth 0))
+    (define (push x)
       (set! s (cons x s))
       (set! number-pushes (+ 1 number-pushes))
       (set! current-depth (+ 1 current-depth))
       (set! max-depth (max current-depth max-depth)))
-      (define (pop)
+    (define (pop)
       (if (null? s)
-            (error "Empty stack - - POP")
-            (let ((top (car s)))
+          (error "Empty stack - - POP")
+          (let ((top (car s)))
             (set! s (cdr s))
             (set! current-depth (- current-depth 1))
             top)))    
-      (define (initialize)
+    (define (initialize)
       (set! s '())
       (set! number-pushes 0)
       (set! max-depth 0)
       (set! current-depth 0)
       'done)
-      (define (print-statistics)
+    (define (print-statistics)
       (newline)
       (display (list 'total-pushes  '= number-pushes
-            'maximum-depth '= max-depth)))
-      (define (dispatch message)
+                     'maximum-depth '= max-depth)))
+    (define (dispatch message)
       (cond ((eq? message 'push) push)
             ((eq? message 'pop) (pop))
             ((eq? message 'initialize) (initialize))
             ((eq? message 'print-statistics)
-            (print-statistics))
+             (print-statistics))
             (else
-            (error "Unknown request - - STACK" message))))
-      dispatch))
+             (error "Unknown request - - STACK" message))))
+    dispatch))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_107_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9QuUFNAAbNhVBdQAXlAkiMmQG5J0uQvUMARmwBOHAA5EuACzZLVABh3TZ8xkwAeHACZsLFDYqoM66UvqgZESmpmwkFL7+gcGhrsTk1HSgVrYCniKiYa6KwRZMVKZ5ADSKQi7FUoYm5jl2DmpExmaW1m2gANSgAIz1DVExcQl+AUGq47HxiTMDw6PFzN7TyarMgRwbAvOTS4E1uzb7XnVFAL5F6ZS09BY0FsJiRa5UBKACVFwcdSaARcIQFT4NUBmUw0SoAIgAogwAgBPRS8fgALlAsAA8rA4dcIVIblCZFw2B9IcUyHQeKAKK9gnYmD4Qddqa52rwqDJ2WtqUdFltZpFogspkkggBaVbE4qxCjReiMiwC6R3Vya6QPTL0KgkKjUJgyKgALzY70K1PaQO08qa3Va9hS6qkGxOotSkKFkuWTh08sVytAcJ8dDYcLW2qkuqe2VMBoSPCY1B4VDIXCt8p8-wsMiYKIEfCiDA0qctAiMNSYImUAD50YmSABzb5F2sravyznhf4UARwgA6JDhNThjN4MmlzvaY46XRavXsVR7veKw9H442VDLDGlIuC849IrBHI191Ijyyua4ZQoZBsAgY9i4TBbbHB1ODpnoL64b4fioyiqHCrRwmuUgAPzZL0kGgNi-6AZSIGgS8FgQeuoAwehwjwYhr7vihIGhgaRpUCa5qRvBMFkcapoWnhWEEQBRHAWhzYUNKKZptQmaYeuOGcdwvC8RmWZCPhUIxLCz6ER+44AKokCwJA0AA7vQsQAI5EPYFDYuAAAqACC0AANKEtGRQ-vQt73o+Og3EAA')">function make_stack() { 
+            <td><div class='snippet' id='javascript_107_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9QuUFNAAbNhVBdQAXlAkiMmQG5J0uQvUMARmwBOHAA5EuACzZLVABh3TZ8xkwAeHACZsLFDYqoM66UvqgZESmpmwkFL7+gcGhrsTk1HSgVrYCniKiYa6KwRZMVKZ5ADSKQi7FUoYm5jl2DmpExmaW1m2gANSgAIz1DVExcQl+AUGq47HxiTMDw6PFzN7TyarMgRwbAvOTS4E1uzb7XnVFAL5F6ZS09BY0FsJiRa5UBKACVFwcdSaARcIQFT4NUBmUw0SoAIgAogwAgBPRS8figKjPV5w64QqQ3KEyLhsD6Q4pkOg8UAUV7BOxMHwg64U1ztXhUGQstYUo6LLazSLRBZTJJBAC0qwJxViFGi9DpFl50jurjV0gemXo2Ko1CYMioAC82O9ChT2kDtDKmt1WvYUiqpBsTkLUpD+WLlk4dDK5QrQHCfHQ2HC1hqpFqntlTNiEjwmNQeFQyFwzTKfP8LDImCiQRRYyQAObfPMytmyf4UARwgA6JDhNThdN4Mgl9vajY6XRavXsVXLFdcdYbTY2VAYnQlguCXZdgrBrNV91Ijyyma4ZQoZBsAgY9i4TCLbHBFP9pno+64h+PKmUqjhrThg6kAH5sr0X6AAFyMA9Hsl7wfF4LGfIdQHfEDhC-X8rxvQD70DXV9UNE0wKHd9kKoA1jVNIQYL-a8ALvYDCwoCUEyTahU3QitILI7heColM03w8Df2hWE93-Y8mwAVRIFgSBoAB3ehYgARyIewKF-cAABUAEFoAAaTxcMinPegNy3HcdBuIA')">function make_stack() { 
     let s = null;
     let number_pushes = 0;
     let max_depth = 0;
@@ -1784,7 +1789,7 @@ list(list("initialize-stack", () => stack("initialize")),
     }
     function pop() {
         if (is_null(s)) {
-            error("Empty stack: POP");
+            error("Empty stack in pop");
 
         } else {
             const top = head(s);
@@ -1802,9 +1807,9 @@ list(list("initialize-stack", () => stack("initialize")),
         return "done";
     }
     function print_statistics() {
-        display(accumulate((b, a) => stringify(a) + b,
-                   list("\n", "total-pushes = ", number_pushes,
-                        "\n", "maximum-depth = ", max_depth)));
+        display(stringify(
+                  list("\n", "total-pushes = ", number_pushes,
+                       "\n", "maximum-depth = ", max_depth)));
     }
     function dispatch(message) {
         return message === "push"
@@ -1997,7 +2002,7 @@ list(list("initialize-stack", () => stack("initialize")),
       <span style="color:teal">procedure</span>
       <span style="color:blue">function</span>
     
-    <kbd class='snippet'>      set_breakpoint($machine$, $label$, $n$);</kbd>
+    <kbd class='snippet'>set_breakpoint($machine$, $label$, $n$);</kbd>
     that sets a breakpoint just before the $n$th
     instruction after the given label.  For example,
     <table width="100%">
@@ -2040,11 +2045,11 @@ list(list("initialize-stack", () => stack("initialize")),
     
     to manipulate the state of the simulated machine.  She should then be able
     to continue execution by saying
-    <kbd class='snippet'>      proceed_machine($machine$);</kbd>
+    <kbd class='snippet'>proceed_machine($machine$);</kbd>
     She should also be able to remove a specific breakpoint by means of
-    <kbd class='snippet'>      cancel_breakpoint($machine$, $label$, $n$);</kbd>
+    <kbd class='snippet'>cancel_breakpoint($machine$, $label$, $n$);</kbd>
     or to remove all breakpoints by means of
-    <kbd class='snippet'>      cancel_all_breakpoints($machine$);</kbd>
+    <kbd class='snippet'>cancel_all_breakpoints($machine$);</kbd>
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_107_6_div" data-toggle="collapse">Add solution</button></div>

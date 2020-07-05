@@ -1729,7 +1729,7 @@
           <tr>
             <td><div class='snippet' id='javascript_84_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (try a b)
-	(if (= a 0) 1 b))
+  (if (= a 0) 1 b))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_84_1_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&variant=lazy&prgrm=PTAEGUEkGEAVQFLlAFgHQCY0EYBQuQIB7AVwCcBjAU1AEEKBDAEyoFsBPUIgByoDsAzqAAuACwCWQ7mSIBzMg1YEw4vqAA2DAF6dWRFmlDRRRIgJoAicKUo0A5Rgsiiy56ApFW3BmRoB3cTFQAWEycQphUD0WXAAzEj4I8SI1UPYAfVYqAAoGABpQACMASlAAb1xQKtBfYXI1BlAAXhbQAAZQAH5QbFAALiKAbgBIXABffDTMnLaC0SpmbL4SdXVi4sGgA')">function try_me(a, b) {
     return a === 0 ? 1 : b;	
@@ -1774,7 +1774,7 @@
           <tr>
             <td><div class='snippet' id='javascript_84_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (unless condition usual-value exceptional-value)
-	(if condition exceptional-value usual-value))
+  (if condition exceptional-value usual-value))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_84_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&variant=lazy&prgrm=PTAEGUEkGEAVQFLlAFgHQCY0EYBQuBjAewDsBnAF1AA8zQBeUEgVwBtWBufECI5gJwIBTUAEECAQwAmQgLYBPUEQAOQ8qAoALAJZ1l-IgHN+E2bh7aSoVhIBei2URlpQ0TUSJkRAInB9BIgDlGN4aROZgFESgxLLKEvwiAO7aWqCU-NoEVI4yuABmzCTZ2qSgRaxCZGQAFMQkUqmlJAA05WTMEqwA+gBuXcxCbULUwsoUzV19A0IAlKAA3qDLK7groIkUAlb1jRNlAPygI2P7JFP9rIOgAFztnT2Xg1wAvvgVVbW0DPSMLOwtNbrZaaITSGq0WYtACQQOBjTIyhs8hq3iE-AM-Du3zI7jYUiYRCoACMRP9WN5ZrMOEA')">function unless(condition, usual_value, exceptional_value) {      
     return condition ? exceptional_value : usual_value;
@@ -1791,7 +1791,7 @@
 (unless (= b 0)
         (/ a b)
         (begin (display "exception: returning 0")
-        0))
+               0))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_84_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&variant=lazy&prgrm=PTAEGUEkGEAVQFLlAFgHQCY0EYBQuQIB7AVwCcBjAU1AEEKBDAEyoFsBPUIgByoDsAzqAAuACwCWQ7mSIBzMg1YEw4vqAA2DAF6dWRFmlDRRRIgJoAicKUo0A5Rgsiiy56ApFW3BmRoB3cTFQAWEycQphUD0WXAAzEj4I8SI1BPUqAQEACg8+JkDkvgAaUBIBEgZ1AH0AN0qSKhKqAA9qbmFCytr6qgBKUABvUGGR3BHQX2FyNVz8jpTQAH5QFrb5vi669QbQAC5S8s2egG5cAF98XJDQZqEAXlA+EnV1U9w0jOzb0Dvfx+f1EUxuNhqIqMwsrdekUAJDAkH5ATcTTsLIWKhkGRkfbfAQmZ5MR5ESIAIxoTxeFl6vWOQA')">unless(xs === null,
        head(xs),	
@@ -1923,9 +1923,9 @@
           <tr>
             <td><div class='snippet' id='javascript_84_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (factorial n)
-	(unless (= n 1)
-        (* n (factorial (- n 1)))
-        1))
+  (unless (= n 1)
+          (* n (factorial (- n 1)))
+          1))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_84_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=2&variant=lazy&prgrm=PTAEGUEkGEAVQFLlAFgHQCY0EYBQuQIB7AVwCcBjAU1AEEKBDAEyoFsBPUIgByoDsAzqAAuACwCWQ7mSIBzMg1YEw4vqAA2DAF6dWRFmlDRRRIgJoAicKUo0A5Rgsiiy56ApFW3BmRoB3cTFQAWEycQphUD0WXAAzEj4I8SI1BPUqAQEACg8+JkDkvgAaUBIBEgZ1AH0AN0qSKhKqAA9qbmFCytr6qgBKUABvUGGR3BHQX2FyNVz8jpTQAH5QFrb5vi669QbQAC5S8s2egG5cAF98QmtyajpGFg4uXkERCSkZeUVXVQ1tXX0qIZjKZzKArDZbg4nMIXIQYe5PN5fKAAkEQmEIlEAfh4ol1qBYgwIkQwpUsnx+gMxiNJtNSnx0plyaAALxs0DYIrU8Y83mgNQAKgJRJhpPUzIAtBzely+XKRtheqcLnERSTxGSAKxKoA')">function factorial(n) {
     return unless(n === 1,

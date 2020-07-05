@@ -1774,13 +1774,15 @@ list(1, "a") list(1, "b") list(2, "a") list(2, "b") list(3, "a") list(3, "b")
     Using this idea, we can express the requirement that a particular predicate
     expression <kbd>p</kbd> must be true as follows:
     
+      
+      
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_88_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (require p)
-      (if (not p) (amb)))
+  (if (not p) (amb)))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_88_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AJwFMBHIq5gCgAcBKUAN65QIxkwpEG9AIShuoAPygAhgFsARp34AuUACJwy6gGcCVJgBMxbDkz0BuUaNwBffGTrGKoAB6gAvCoanNgANKAY4QCs4QDs4QCcvPa4zDZcfgB8gSjJuD4pIKCwzMbG+gBKpHqgBDQMoBQAFky1HF6gxjQANkTUdGigACoAntxMuEUUDCMqAObKVCSTYEuNLaAVAKKwADKgdOutDFRzTRThdQ2q9a1dvf0kxkA')">function require(p) {
     return ! p ? amb() : "Satisfied require";      
@@ -1800,14 +1802,16 @@ list(1, "a") list(1, "b") list(2, "a") list(2, "b") list(3, "a") list(3, "b")
     
     used above:
     
+      
+      
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_88_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (an-element-of items)
-      (require (not (null? items)))
-      (amb (car items) (an-element-of (cdr items))))
+  (require (not (null? items)))
+  (amb (car items) (an-element-of (cdr items))))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_88_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AQxIH0BTAG1YFtWSLmaBABRUK3AM4BKUAG9coBaABOrAI5EqKoQEJQVccxJF27EWK5TJAbnmKVFIkvoMuAIyEALVgwAmZiZIANIwsHNy8-IJCFAxUpqIBkta4AL74ZHTiFKAAHuKgALyg7PoUQgBEDAAOVZzlweWuTM31oOVkSkyurEpKAJ7lyUxsnDx8AsJ51gCQuCCgsCri+eUASqTloAQ0SqAUXluaWaDiNOxE1HRooAAqfVWsc2AU-YwA5rEkT3r0+6ygqwAorAADKgOh7A5KKhvDwUYLbXZcHb-U7nS4kcRAA')">function an_element_of(items) {
     require(! is_null(items));
@@ -1839,13 +1843,15 @@ list(1, "a") list(1, "b") list(2, "a") list(2, "b") list(3, "a") list(3, "b")
     potentially returns any integer greater than or equal to some
     given $n$:
     
+      
+      
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_88_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (an-integer-starting-from n)
-      (amb n (an-integer-starting-from (+ n 1))))
+  (amb n (an-integer-starting-from (+ n 1))))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_88_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AQxIH0qSKBTAcw4CdmAzhQa9qJLswK8aAWwAUJAJSgA3rlAbQvDhSK96DGQCMFAGkYs2nHvyEixEqbIWgA1KGyLFAblwBffDI6IVAAD1AAXgtWdm4+QWFRNkdpeU9fbQBHIiptOXCAPij0AFYfXFDfEFBYbQEBUAAiACVSRtACGl5QCgALDg7ckIEaABsiajo0UAAVAE8ABw5caopeOcYuBjYVsDYe-tBmgFFYABlQOgOB3iouXopzTu6ZLoGR8cmSASA')">function an_integer_starting_from(n) {
     return amb(n, an_integer_starting_from(n + 1));
@@ -2034,7 +2040,7 @@ list(1, "a") list(1, "b") list(2, "a") list(2, "b") list(3, "a") list(3, "b")
 
 </pre><pre class='prettyprintoutput'>
 
-// amb-evaluate input:
+amb-evaluate input:
       
 </pre></div></div></td></tr></table>
     <table width="100%">
@@ -2053,7 +2059,7 @@ try-again
 
 </pre><pre class='prettyprintoutput'>
 
-// amb-evaluate value:
+amb-evaluate value:
 [3, [110, null]]
       
 </pre></div></div></td></tr></table>
@@ -2072,7 +2078,7 @@ try-again
 
 </pre><pre class='prettyprintoutput'>
 
-// amb-evaluate input:
+amb-evaluate input:
       
 </pre></div></div></td></tr></table>
     <table width="100%">
@@ -2186,17 +2192,18 @@ prime_sum_pair([1, [3, [5, [8, null]]]], [20, [35, [110, null]]])
     that $i \leq j$ and
     $i^2 + j^2 =k^2$, as follows:
     
+      
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_88_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (a-pythagorean-triple-between low high)
-      (let ((i (an-integer-between low high)))
-      (let ((j (an-integer-between i high)))
+  (let ((i (an-integer-between low high)))
+    (let ((j (an-integer-between i high)))
       (let ((k (an-integer-between j high)))
-            (require (= (+ (* i i) (* j j)) (* k k)))
-            (list i j k)))))
+        (require (= (+ (* i i) (* j j)) (* k k)))
+        (list i j k)))))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_88_15_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AQwH0AHATwoAsaBzGgJwCmDEkwr8qLADaCmAI0EUA7oMEkAFFJpKANKE5UenAJSgA3qEtXcV0GToBnCqCqgAvI1FUSFQT0H88ooqapraegZGxgDcNlb2JE6gAFbunkzevv6BCsqqGlQRhiaxtglJANZpIhk+fgFBeaHJRVGlVkIAjkRUQuquAFQuoADUKaBDqW7ToFVDFTFxlkIURPz0UlRO-Xots4sAvvjM7Fy8AsKi4pIyjSEaAKx62A+LIKCwQg4OoABEAEqkX6gAgCUBcQQg3pJBw0KREah0NCgAAqbBYglw73EbEYPAY3ixYG84M4kP+AFFYAAZUB0UmQiRGCh6UH8UAAWwuoFh8MRiSAA')">function a_pythogorean_triple_between(low, high) {      
     const i = an_integer_between(low, high);
@@ -2297,14 +2304,14 @@ prime_sum_pair([1, [3, [5, [8, null]]]], [20, [35, [110, null]]])
           <tr>
             <td><div class='snippet' id='javascript_88_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (a-pythagorean-triple-between low high)
-      (let ((i (an-integer-between low high))
-            (hsq (* high high)))
-      (let ((j (an-integer-between i high)))
+  (let ((i (an-integer-between low high))
+        (hsq (* high high)))
+    (let ((j (an-integer-between i high)))
       (let ((ksq (+ (* i i) (* j j))))
-            (require (>= hsq ksq))
-            (let ((k (sqrt ksq)))
-            (require (integer? k))
-            (list i j k))))))
+        (require (>= hsq ksq))
+        (let ((k (sqrt ksq)))
+          (require (integer? k))
+          (list i j k))))))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_88_16_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AQwH0AHATwoAsGBzGgJwCmDEkwr8qLADaCmAI0EUA7oMEkAFFJpKANKE5UenAJSgA3rlBXQZOgGcKoKqAC8jUVRIVBPQf3mKKmqa2noGRsYA3JbWtiQO+nYAjq76hpygAFRpRtHWNvaOAFapIkye3r7+CsqqGlRh6VExVnEJANbJqc7ZzgDUoCXZRXnWQklEVELqnF0AfG6dSc35bY7tqQC2DFxMyfwU6ksrY4ITU4LqVHblXj5+R8YnVlLXhw2Deu3NAL74xORqHQnDcKvd+OoAB6mCz5IQUIj8eiQ1wuNzbXYELQCKG-XDMdhcXgCYSicSSGQBWrBACsemwNKiQA')">function a_pythagorean_triple_between(low, high) {
     const i = an_integer_between(low, high);

@@ -1712,7 +1712,7 @@
           <tr>
             <td><div class='snippet' id='javascript_101_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (factorial n)
-      (if (= n 1)
+  (if (= n 1)
       1
       (* (factorial (- n 1)) n)))
 </pre></div></div>    </td>
@@ -1745,7 +1745,7 @@
           <tr>
             <td><div class='snippet' id='javascript_101_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (gcd a b)
-      (if (= b 0)
+  (if (= b 0)
       a
       (gcd b (remainder a b))))
 </pre></div></div>    </td>
@@ -1972,7 +1972,7 @@
           <tr>
             <td><div class='snippet' id='javascript_101_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (fib n)
-      (if (< n 2)
+  (if (< n 2)
       n
       (+ (fib (- n 1)) (fib (- n 2)))))
 </pre></div></div>    </td>
@@ -2017,6 +2017,7 @@
         </tr>
         <tr><td><span style="color:teal">
 	
+	
     <FIGURE>
       <img class="scale_factor_" id="fig_5.12" src="../img_original/Fig5.11b.std.svg">
       <div class="chapter-text-CAPTION">
@@ -2028,30 +2029,30 @@
           <td><span style="color:blue">
 	
     <FIGURE>
-      <img class="scale_factor_" id="fig_5.13" src="../img_javascript/Fig5.11b.std.svg"><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0BYBQuBjAewDsAXAJyIBtqBTCgCl1FdGoEsBnMxttlv1YBDLlw4BzEowBExchxIBXOjIA07YQCM61WQDNhBMgFoAJqVUBKKxpCgudMqCUAHUPsXDqoCk6UUJKDCZmZ+YoJCMobGJtRERK7qkfxkdDyMnBmJsgC8Mra+dBKyJAUa8jzC5IwYNrYpbFoU1QQAFpnaurJaonQmBH0FDUKs9uBOLu76RBSgZG10RQQB4gBuS4O0oFoAng7Ca4oSoDJlwSRmp-JkiioyaI1jYBPObtekt8qqDkTzbcJnAtNkQALauJRkQEcUigADuHG2NzudCeoHsgNOwn0aQoJhiZBk8MWQWBDiUzSIkMUSz8ZACJC4j1GBw2smR33KaK4hzopS5LNE4ik-I0WV4ORkJnKRRKZxllV4dRsajRQsk0jknxR6k0Oj0MmxuPxRkJKrREiIAH0yEROvqDKa4gkkuaWYacQwTcZkizwra-PyRqN-bM+VqFJzg0J1SKZGtvLrxYxJQAqGV+OVlQqZ2QJ6jDaP8ezxxOgEhEOGgG7CRRccuMEgmOoAQgt1ttjFzEa+9xVLPRYDpDPmfy29AoaJkvUcAyGqsFYg1ecTFVIVRqyo0o3sM82fQAXKB86BcqAMO2bXbuxy+4UWfZh4FR9XvBOpwTzJZhgBuIA')">controller(
-    list(      
-       assign("continue", label("fact-done")), // set up final return address
-       "fact-loop",
-       test(list(op("="), reg("n"), constant(1))),
-       branch(label("base-case")),
-       // Set up for the recursive call by saving "n" and "continue".
-       // Set up "continue" so that the computation will continue
-       // at "after-fact" when the subroutine returns.
-       save("continue"),
-       save("n"),
-       assign("n", list(op("-"), reg("n"), const(1))),
-       assign("continue", label("after-fact")),
-       go_to(label("fact-loop")),
-       "after-fact",
-       restore("n"),
-       restore("continue"),
-       assign("val", list(op("*"), reg("n"), reg("val"))),
-       // "val" now contains n(n-1)!
-       go_to(reg("continue")),        // return to caller
-       "base-case",
-       assign("val", constant(1)),       // base case: val = 1
-       go_to(reg("continue")),        // return to caller
-       "fact-done"));
+      <img class="scale_factor_" id="fig_5.13" src="../img_javascript/Fig5.11b.std.svg"><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0BYBQuBjAewDsAXAJyIBtqBTCgCl1FGoEsBnMx1v0Fv1ABDTp3YBzEowBExcuxIBXOjIA0bYQCM61WQDNhBMgFoAJqVUBKKxpChOdMqCUAHUPsXDqoCk6UUJCJmZn5igqwyhsYm1EREruoRfGR03Iwc6QmyALwytr50ErIk+Rry3MLkjBg2tsmsWhRVBAAWGdq6slqidCYEvfn1QqD24E4u7vpEFKBkrXSFBAHiAG6LA7SgWgCeDsKrihKgMqUiJGYn8mSKKjJoDaNg485uV6Q3yqoORHOtws55hsiABbVxKMgA9ikUAAd3YW2utzoj3sAJOwn0qQoJmiZBkcIWQSBDiUTSIEMUiz8ZACJE4DxGnAOdFkSK+ZUezPWJU5I1E4ikvI0mR42RkJjKhWKpylFR4tRsakeAsk0jkH2R6k0Oj0Mkx2NxRnxSseEiIAH0yEQOrqDMbYvFEqb+PqsQwjcYkiMwta-LzhkJfTNWRqFBzA-xVUKZKtvNrRYxxQAqKV+GWlArp2Rx6hDSN8eyx+OgEhEWGga7CRScUuMEgmWoAQjNlutjGzYc+dyVI1Y9hpdLmv029AoyRkPUc-UGyv5YjVOfj5VIlWqio0I3sU42vQAXKBc6AcqAMK2rTbO+yewU+wP-IFh5XvGOJ3jzJYhkA')">controller(
+  list(      
+      assign("continue", label("fact-done")), // set up final return address
+    "fact-loop",
+      test(list(op("="), reg("n"), constant(1))),
+      branch(label("base-case")),
+      // Set up for the recursive call by saving "n" and "continue".
+      // Set up "continue" so that the computation will continue
+      // at "after-fact" when the subroutine returns.
+      save("continue"),
+      save("n"),
+      assign("n", list(op("-"), reg("n"), const(1))),
+      assign("continue", label("after-fact")),
+      go_to(label("fact-loop")),
+    "after-fact",
+      restore("n"),
+      restore("continue"),
+      assign("val", list(op("*"), reg("n"), reg("val"))),
+      // "val" now contains n(n-1)!
+      go_to(reg("continue")),        // return to caller
+    "base-case",
+      assign("val", constant(1)),       // base case: val = 1
+      go_to(reg("continue")),        // return to caller
+    "fact-done"))
 
 </pre>
       <div class="chapter-text-CAPTION">
@@ -2062,38 +2063,38 @@
     
     <FIGURE><pre class='prettyprint no-eval'>
 controller(
-    list(      
-       assign("continue", label("fib-done")),
-       "fib-loop",
-       test(list(op("<"), reg("n"), constant(2))),
-       branch(label("immediate-answer")),
-       // set up to compute Fib(n-1)
-       save("continue"),
-       assign("continue", label("afterfib-n-1")),
-       save("n"),                  // save old value of n
-                                   // clobber n to n - 1       
-       assign("n", list(op("-"), reg("n"), constant(1))), 
-       go_to(label("fib-loop")),   // perform recursive call
-       "afterfib-n-1",                                
-                                   // upon return, "val" contains Fib(n-1)
-       restore("n"),
-       restore("continue"),        // set up to compute Fib(n-2)
-       assign("n", list(op("-"), reg("n"), constant(2))),
-       save("continue"),
-       assign("continue", label("afterfib-n-2")),
-       save("val"),                // save Fib(n-1)
-       go_to(label("fib-loop")),
-       "afterfib-n-2",             // upon return, "val" contains Fib(n-2)
-       assign("n", reg("val")),    // "n" now contains Fib(n-2)
-       restore("val"),             // "val" now contains Fib(n-1)
-       restore("continue"),
-       assign("val",               // Fib(n-1) + Fib(n-2)
-           list(op("+"), reg("val"), reg("n"))),
-       go_to(reg("continue")),     // return to caller, answer is in "val"
-       "immediate-answer",
-       assign("val", reg("n")),    // base case: Fib(n) = n
-       go_to(reg("continue")),
-       "fib-done"));
+  list(      
+    assign("continue", label("fib-done")),
+  "fib-loop",
+    test(list(op("<"), reg("n"), constant(2))),
+    branch(label("immediate-answer")),
+    // set up to compute Fib(n-1)
+    save("continue"),
+    assign("continue", label("afterfib-n-1")),
+    save("n"),                  // save old value of n
+    // clobber n to n - 1       
+    assign("n", list(op("-"), reg("n"), constant(1))), 
+    go_to(label("fib-loop")),   // perform recursive call
+  "afterfib-n-1",                                
+    // upon return, "val" contains Fib(n-1)
+    restore("n"),
+    restore("continue"),        // set up to compute Fib(n-2)
+    assign("n", list(op("-"), reg("n"), constant(2))),
+    save("continue"),
+    assign("continue", label("afterfib-n-2")),
+    save("val"),                // save Fib(n-1)
+    go_to(label("fib-loop")),
+  "afterfib-n-2",             // upon return, "val" contains Fib(n-2)
+    assign("n", reg("val")),    // "n" now contains Fib(n-2)
+    restore("val"),             // "val" now contains Fib(n-1)
+    restore("continue"),
+    assign("val",               // Fib(n-1) + Fib(n-2)
+    list(op("+"), reg("val"), reg("n"))),
+    go_to(reg("continue")),     // return to caller, answer is in "val"
+  "immediate-answer",
+    assign("val", reg("n")),    // base case: Fib(n) = n
+    go_to(reg("continue")),
+  "fib-done"))
 </pre>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.1.4.html#fig_5.14">Figure 5.14 </a></b>Controller for a machine to compute Fibonacci numbers.</div>
@@ -2123,9 +2124,9 @@ controller(
           <tr>
             <td><div class='snippet' id='javascript_101_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (expt b n)
-    (if (= n 0)
-    1
-    (* b (expt b (- n 1)))))
+  (if (= n 0)
+      1
+      (* b (expt b (- n 1)))))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_101_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0BYBQuAzAVwDsBjAFwEsB7E0AUwA8AHCgCgCMAaUEgSlABvXKDGgATgwpEJ9egF4loAAyjxGgPygM6jWIBcoTqABUjVhx59QAWh38A3LgC++Zm3YBmXtidA')">function expt(b, n) {
     return n === 0
@@ -2137,7 +2138,6 @@ controller(
       </LI>
       <LI>
 	Iterative exponentiation:
-
 	
 	<table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
@@ -2145,11 +2145,11 @@ controller(
           <tr>
             <td><div class='snippet' id='javascript_101_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (expt b n)
-    (define (expt-iter counter product)
+  (define (expt-iter counter product)
     (if (= counter 0)
-    product
-    (expt-iter (- counter 1) (* b product))))
-    (expt-iter n 1))
+        product
+        (expt-iter (- counter 1) (* b product))))
+  (expt-iter n 1))
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_101_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0BYBQuAzAVwDsBjAFwEsB7E0AUwA8AHCgCgCMAaUEgSlABvAJChQuceOLlqdRqwoB9KhQYAndmRqk163i3U0AJkUqChkqdfUMKRdfW26NoALwfQABivW-oAH5QQxMzCl9-KQAuBTYVPS0dEj1QAFpQDF5OUAAqYKNTcwBuCIBfCNt7R1jlVQ12El4MfhLy3GY2dgBmXmwWoA')">function expt(b, n) {	  
     function expt_iter(counter, product) {
