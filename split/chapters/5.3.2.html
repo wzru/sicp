@@ -1678,21 +1678,20 @@
         <div class='SECTION'><SECTION>
     
 
-      
-      
-      <div class='permalink'>
+  
+  
+  <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
-  The representation method outlined in
-  section <REF NAME="sec:memory-as-vectors"><a class="superscript" id="5.3.2-sec-link-5.3.1" href="./5.3.1.html">5.3.1</a></REF> solves the problem of implementing
-  list structure, provided that we have an infinite amount of memory.
-  With a real computer we will eventually run out of free space in which
-  to construct new pairs.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-  However, most of the pairs generated in a typical
-  computation are used only to hold intermediate results.  After these
-  results are accessed, the pairs are no longer needed—they are <EM>
+    The representation method outlined in
+    section <REF NAME="sec:memory-as-vectors"><a class="superscript" id="5.3.2-sec-link-5.3.1" href="./5.3.1.html">5.3.1</a></REF> solves the problem of
+    implementing list structure, provided that we have an infinite amount of
+    memory. With a real computer we will eventually run out of free space in
+    which to construct new pairs.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a> However, most of the pairs
+    generated in a typical computation are used only to hold intermediate
+    results.  After these
+    results are accessed, the pairs are no longer needed—they are <EM>
     garbage</EM>.  For instance, the computation
-
-  <table width="100%">
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -1702,101 +1701,153 @@
             <td><div class='snippet' id='javascript_110_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))
 </pre></div></div></td></tr></table>
-  constructs two lists: the enumeration and the result of filtering
-  the enumeration.  When the accumulation is complete, these lists are
-  no longer needed, and the allocated memory can be reclaimed.  If we
-  can arrange to collect all the garbage periodically, and if this turns
-  out to recycle memory at about the same rate at which we construct new
-  pairs, we will have preserved the illusion that there is an infinite
-  amount of memory.
-      </p></div>
+    constructs two lists: the enumeration and the result of filtering
+    the enumeration.  When the accumulation is complete, these lists are
+    no longer needed, and the allocated memory can be reclaimed.  If we
+    can arrange to collect all the garbage periodically, and if this turns
+    out to recycle memory at about the same rate at which we construct new
+    pairs, we will have preserved the illusion that there is an infinite
+    amount of memory.
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-  In order to recycle pairs, we must have a way to determine which
-  allocated pairs are not needed (in the sense that their contents can
-  no longer influence the future of the computation).  The method we
-  shall examine for accomplishing this is known as <EM>garbage
+    In order to recycle pairs, we must have a way to determine which
+    allocated pairs are not needed (in the sense that their contents can
+    no longer influence the future of the computation).  The method we
+    shall examine for accomplishing this is known as <EM>garbage
     collection</EM>.  Garbage collection is based on the observation that, at
-  any moment in a <span style="color:teal">Lisp</span><span style="color:blue">JavaScript</span> interpretation, the only objects that can
-  affect the future of the computation are those that can be reached by
-  some succession of <span style="color:teal"><kbd>car</kbd></span><span style="color:blue"><kbd>head</kbd></span> and <span style="color:teal"><kbd>cdr</kbd></span><span style="color:blue"><kbd>tail</kbd></span> operations starting from
-  the pointers that are currently in the machine registers.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>  Any memory cell
-  that is not so accessible may be recycled.
-      </p></div>
+    any moment in a
+    
+      <span style="color:teal">Lisp</span>
+      <span style="color:blue">JavaScript</span>
+    
+    interpretation, the only objects that can
+    affect the future of the computation are those that can be reached by
+    some succession of
+    
+      <span style="color:teal"><kbd>car</kbd></span>
+      <span style="color:blue"><kbd>head</kbd></span>
+    
+    and
+    
+      <span style="color:teal"><kbd>cdr</kbd></span>
+      <span style="color:blue"><kbd>tail</kbd></span>
+    
+    operations starting from the pointers that are currently in the machine
+    registers.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>  Any memory cell that is not so accessible may be
+    recycled.
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-  There are many ways to perform garbage collection.  The method we
-  shall examine here is called 
+    There are many ways to perform garbage collection.  The method we
+    shall examine here is called 
+    
+    
+    <EM>stop-and-copy</EM>.  The basic idea is to divide memory into two
+    halves: <QUOTE>working memory</QUOTE> and <QUOTE>free memory.</QUOTE>  When
+    
+      <span style="color:teal"><kbd>cons</kbd></span>
+      <span style="color:blue"><kbd>pair</kbd></span>
+    
+    constructs pairs, it allocates these in working memory.  When working memory
+    is full, we perform garbage collection by locating all the useful pairs in
+    working memory and copying these into consecutive locations in free memory.
+    (The useful pairs are located by tracing all the
+    
+      <span style="color:teal"><kbd>car</kbd></span>
+      <span style="color:blue"><kbd>head</kbd></span>
+     and
+    
+      <span style="color:teal"><kbd>cdr</kbd></span>
+      <span style="color:blue"><kbd>tail</kbd></span>
+    
+    pointers, starting with the machine registers.)  Since we do not copy the
+    garbage, there will presumably be additional free memory that we can
+    use to allocate new pairs.  In addition, nothing in the working memory
+    is needed, since all the useful pairs in it have been copied.  Thus,
+    if we interchange the roles of working memory and free memory, we can
+    continue processing; new pairs will be allocated in the new working
+    memory (which was the old free memory).  When this is full, we can
+    copy the useful pairs into the new free memory (which was the old
+    working memory).<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
   
-  
-  <EM>stop-and-copy</EM>.  The basic idea is
-  to divide memory into two halves: <QUOTE>working memory</QUOTE> and <QUOTE>free
-    memory.</QUOTE>  When <span style="color:teal"><kbd>cons</kbd></span><span style="color:blue"><kbd>pair</kbd></span> constructs pairs, it allocates these in
-  working memory.  When working memory is full, we perform garbage
-  collection by locating all the useful pairs in working memory and
-  copying these into consecutive locations in free memory.  (The useful
-  pairs are located by tracing all the <span style="color:teal"><kbd>car</kbd></span><span style="color:blue"><kbd>head</kbd></span> and <span style="color:teal"><kbd>cdr</kbd></span><span style="color:blue"><kbd>tail</kbd></span> pointers,
-  starting with the machine registers.)  Since we do not copy the
-  garbage, there will presumably be additional free memory that we can
-  use to allocate new pairs.  In addition, nothing in the working memory
-  is needed, since all the useful pairs in it have been copied.  Thus,
-  if we interchange the roles of working memory and free memory, we can
-  continue processing; new pairs will be allocated in the new working
-  memory (which was the old free memory).  When this is full, we can
-  copy the useful pairs into the new free memory (which was the old
-  working memory).<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
-      </p></div>
 
-      
+  
       <div class='permalink'>
         <a name='h1' class='permalink'></a><h2>
      
-  Implementation of a stop-and-copy garbage collector
-      </h2></div>
+    Implementation of a stop-and-copy garbage collector
+  </h2></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
-  We now use our register-machine language to describe the stop-and-copy
-  algorithm in more detail.  We will assume that there is a register
-  called 
-  
-  <kbd>root</kbd> that contains a pointer to a structure that
-  eventually points at all accessible data.  This can be arranged by
-  storing the contents of all the machine registers in a
-  pre-allocated list pointed at by <kbd>root</kbd> just before starting
-  garbage collection.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a> We also assume that, in addition to the
-  current working memory, there is free memory available into which we
-  can copy the useful data.  The current working memory consists of
-  vectors whose base addresses are in 
-  
-  
-  registers called
-  <span style="color:teal"><kbd>the-cars</kbd></span><span style="color:blue"><kbd>the_heads</kbd></span>
-  and <span style="color:teal"><kbd>the-cdrs</kbd></span><span style="color:blue"><kbd>the_tails</kbd></span>, and the free memory is in registers called 
-  
-  
-  <span style="color:teal"><kbd>new-cars</kbd></span><span style="color:blue"><kbd>new_heads</kbd></span> and <span style="color:teal"><kbd>new-cdrs</kbd></span><span style="color:blue"><kbd>new_tails</kbd></span>.
-      </p></div>
+    We now use our register-machine language to describe the stop-and-copy
+    algorithm in more detail.  We will assume that there is a register
+    called 
+    
+    <kbd>root</kbd> that contains a pointer to a structure
+    that eventually points at all accessible data.  This can be arranged by
+    storing the contents of all the machine registers in a pre-allocated list
+    pointed at by <kbd>root</kbd> just before starting
+    garbage collection.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
+    We also assume that, in addition to the current working memory, there is
+    free memory available into which we can copy the useful data.  The current
+    working memory consists of vectors whose base addresses are in 
+    
+    
+    registers called
+    
+      <span style="color:teal"><kbd>the-cars</kbd></span>
+      <span style="color:blue"><kbd>the_heads</kbd></span>
+    
+    and
+    
+      <span style="color:teal"><kbd>the-cdrs</kbd>,</span>
+      <span style="color:blue"><kbd>the_tails</kbd>,</span>
+    
+    and the free memory is in registers called 
+    
+    
+    
+      <span style="color:teal"><kbd>new-cars</kbd></span>
+      <span style="color:blue"><kbd>new_heads</kbd></span>
+    
+    and
+    
+      <span style="color:teal"><kbd>new-cdrs</kbd>.</span>
+      <span style="color:blue"><kbd>new_tails</kbd>.</span>
+    
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-  Garbage collection is triggered when we exhaust the free cells in the
-  current working memory, that is, when a <span style="color:teal"><kbd>cons</kbd></span><span style="color:blue"><kbd>pair</kbd></span> operation attempts
-  to increment the <kbd>free</kbd> pointer beyond the end of the memory
-  vector.  When the garbage-collection process is complete, the <kbd>root</kbd> pointer will point into the new memory, all objects accessible
-  from the <kbd>root</kbd> will have been moved to the new memory, and the
-  <kbd>free</kbd> pointer will indicate the next place in the new memory
-  where a new pair can be allocated.  In addition, the roles of working
-  memory and new memory will have been interchanged—new pairs will be
-  constructed in the new memory, beginning at the place indicated by
-  <kbd>free</kbd>, and the (previous) working memory will be available as the
-  new memory for the next garbage collection.
-  Figure <REF NAME="fig:memory-reconfig"><a class="superscript" id="5.3.2-fig-link-5.17" href="./5.3.2.html#fig_5.17">5.17</a></REF> shows the arrangement of memory just
-  before and just after garbage collection.
-
-  <table width="100%">
+    Garbage collection is triggered when we exhaust the free cells in the
+    current working memory, that is, when a
+    
+      <span style="color:teal"><kbd>cons</kbd></span>
+      <span style="color:blue"><kbd>pair</kbd></span>
+    
+    operation attempts to increment the <kbd>free</kbd>
+    pointer beyond the end of the memory vector.  When the garbage-collection
+    process is complete, the <kbd>root</kbd> pointer will
+    point into the new memory, all objects accessible from the
+    <kbd>root</kbd> will have been moved to the new memory,
+    and the <kbd>free</kbd> pointer will indicate the next
+    place in the new memory where a new pair can be allocated.  In addition,
+    the roles of working memory and new memory will have been
+    interchanged—new pairs will be constructed in the new memory,
+    beginning at the place indicated by <kbd>free</kbd>, and
+    the (previous) working memory will be available as the new memory for the
+    next garbage collection.
+    
+      <span style="color:teal">Figure <REF NAME="fig:memory-reconfig_scheme"><a class="superscript" id="5.3.2-fig-link-5.18" href="./5.3.2.html#fig_5.18">5.18</a></REF></span>
+      <span style="color:blue">Figure <REF NAME="fig:memory-reconfig"><a class="superscript" id="5.3.2-fig-link-5.19" href="./5.3.2.html#fig_5.19">5.19</a></REF></span>
+    
+    shows the arrangement of memory just before and just after garbage
+    collection.
+    <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
           <td class="meta" style = "color:grey; text-align: center">Original</td>
@@ -1804,213 +1855,355 @@ accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))
           <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
         </tr>
         <tr><td><span style="color:teal">
-      
+	
     <FIGURE>
-      <img class="scale_factor_" id="fig_5.17" src="../img_original/Fig5.15c.std.svg">
+      <img class="scale_factor_" id="fig_5.18" src="../img_original/Fig5.15c.std.svg">
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./5.3.2.html#fig_5.17">Figure 5.17 </a></b>Reconfiguration of memory by the garbage-collection process.</div>
+      <b><a class="caption" href="./5.3.2.html#fig_5.18">Figure 5.18 </a></b>
+	    Reconfiguration of memory by the garbage-collection process.
+	  </div>
     </FIGURE>
   
-    </span>    </td>
+      </span>    </td>
           <td></td>
           <td><span style="color:blue">
-      
+	
     <FIGURE>
-      <img class="scale_factor_3" id="fig_5.17" src="../img_javascript/Fig5.15c.std.svg">
+      <img class="scale_factor_3" id="fig_5.19" src="../img_javascript/Fig5.15c.std.svg">
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./5.3.2.html#fig_5.17">Figure 5.17 </a></b>Reconfiguration of memory by the garbage-collection process.</div>
+      <b><a class="caption" href="./5.3.2.html#fig_5.19">Figure 5.19 </a></b>
+	    Reconfiguration of memory by the garbage-collection process.
+	  </div>
     </FIGURE>
   
-    </span></td></tr></table>
-  
-      </p></div>
+      </span></td></tr></table>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
-  
-  
-  The state of the garbage-collection process is controlled by
-  maintaining two pointers: <kbd>free</kbd> and <kbd>scan</kbd>.  These are
-  initialized to point to the beginning of the new memory.  The
-  algorithm begins by relocating the pair pointed at by <kbd>root</kbd> to
-  the beginning of the new memory.  The pair is copied, the <kbd>root</kbd>
-  pointer is adjusted to point to the new location, and the <kbd>free</kbd>
-  pointer is incremented.  In addition, the old location of the pair is
-  marked to show that its contents have been moved.  This marking is
-  done as follows: In the <span style="color:teal"><kbd>car</kbd></span><span style="color:blue"><kbd>head</kbd></span> position, we place a special tag
-  that signals that this is an already-moved object.  (Such an object is
-  traditionally called a 
-  
-  <EM>broken heart</EM>.)<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
-  In the <span style="color:teal"><kbd>cdr</kbd></span><span style="color:blue"><kbd>tail</kbd></span> position we place a 
-  
-  <EM>forwarding
-    address</EM> that points at the location to which the object has been
-  moved.
-      </p></div>
+    
+    
+    The state of the garbage-collection process is controlled by
+    maintaining two pointers: <kbd>free</kbd> and
+    <kbd>scan</kbd>.  These are initialized to point to the
+    beginning of the new memory.  The algorithm begins by relocating the pair
+    pointed at by <kbd>root</kbd> to the beginning of the new
+    memory.  The pair is copied, the <kbd>root</kbd> pointer
+    is adjusted to point to the new location, and the
+    <kbd>free</kbd> pointer is incremented.  In addition, the
+    old location of the pair is marked to show that its contents have been
+    moved.  This marking is done as follows: In the
+    
+      <span style="color:teal"><kbd>car</kbd></span>
+      <span style="color:blue"><kbd>head</kbd></span>
+    
+    position, we place a special tag that signals that this is an already-moved
+    object.  (Such an object is traditionally called a 
+    
+    <EM>broken heart</EM>.)<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
+    In the
+    
+      <span style="color:teal"><kbd>cdr</kbd></span>
+      <span style="color:blue"><kbd>tail</kbd></span>
+    
+    position we place a 
+    
+    <EM>forwarding address</EM> that points at the location to which the object
+    has been moved.
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
-  After relocating the root, the garbage collector enters its basic
-  cycle.  At each step in the algorithm, the <kbd>scan</kbd> pointer
-  (initially pointing at the relocated root) points at a pair that has
-  been moved to the new memory but whose <span style="color:teal"><kbd>car</kbd></span><span style="color:blue"><kbd>head</kbd></span> and <span style="color:teal"><kbd>cdr</kbd></span><span style="color:blue"><kbd>tail</kbd></span>
-  pointers still refer to objects in the old memory.  These objects are
-  each relocated, and the <kbd>scan</kbd> pointer is incremented.  To
-  relocate an object (for example, the object indicated by the <span style="color:teal"><kbd>car</kbd></span><span style="color:blue"><kbd>head</kbd></span>
-  pointer of the pair we are scanning) we check to see if the object has
-  already been moved (as indicated by the presence of a broken-heart tag
-  in the <span style="color:teal"><kbd>car</kbd></span><span style="color:blue"><kbd>head</kbd></span> position of the object).  If the object has not
-  already been moved, we copy it to the place indicated by <kbd>free</kbd>,
-  update <kbd>free</kbd>, set up a broken heart at the object's old location,
-  and update the pointer to the object (in this
-  example, the <span style="color:teal"><kbd>car</kbd></span><span style="color:blue"><kbd>head</kbd></span> pointer of the pair we are scanning) to point
-  to the new location.  If the object has already been moved, its
-  forwarding address (found in the <span style="color:teal"><kbd>cdr</kbd></span><span style="color:blue"><kbd>tail</kbd></span> position of the broken
-  heart) is substituted for the pointer in the pair being scanned.
-  Eventually, all accessible objects will have been moved and scanned,
-  at which point the <kbd>scan</kbd> pointer will overtake the <kbd>free</kbd>
-  pointer and the process will terminate.
-      </p></div>
-      
-      <div class='permalink'>
+    After relocating the root, the garbage collector enters its basic
+    cycle.  At each step in the algorithm, the
+    <kbd>scan</kbd> pointer
+    (initially pointing at the relocated root) points at a pair that has
+    been moved to the new memory but whose
+    
+      <span style="color:teal"><kbd>car</kbd></span>
+      <span style="color:blue"><kbd>head</kbd></span>
+    
+    and
+    
+      <span style="color:teal"><kbd>cdr</kbd></span>
+      <span style="color:blue"><kbd>tail</kbd></span>
+    
+    pointers still refer to objects in the old memory.  These objects are each
+    relocated, and the <kbd>scan</kbd> pointer is incremented.
+    To relocate an object (for example, the object indicated by the
+    
+      <span style="color:teal"><kbd>car</kbd></span>
+      <span style="color:blue"><kbd>head</kbd></span>
+    
+    pointer of the pair we are scanning) we check to see if the object has
+    already been moved (as indicated by the presence of a broken-heart tag
+    in the
+    
+      <span style="color:teal"><kbd>car</kbd></span>
+      <span style="color:blue"><kbd>head</kbd></span>
+    
+    position of the object).  If the object has not
+    already been moved, we copy it to the place indicated by
+    <kbd>free</kbd>,
+    update <kbd>free</kbd>, set up a broken heart at the
+    object's old location, and update the pointer to the object (in this
+    example, the
+    
+      <span style="color:teal"><kbd>car</kbd></span>
+      <span style="color:blue"><kbd>head</kbd></span>
+    
+    pointer of the pair we are scanning) to point
+    to the new location.  If the object has already been moved, its
+    forwarding address (found in the
+    
+      <span style="color:teal"><kbd>cdr</kbd></span>
+      <span style="color:blue"><kbd>tail</kbd></span>
+    
+    position of the broken heart) is substituted for the pointer in the pair
+    being scanned. Eventually, all accessible objects will have been moved and
+    scanned, at which point the <kbd>scan</kbd> pointer will
+    overtake the <kbd>free</kbd> pointer and the process will
+    terminate.
+  </p></div>
+  
+  <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
-  We can specify the stop-and-copy algorithm as a sequence of
-  instructions for a register
-  machine.  The basic step of relocating an object is accomplished by a
-  subroutine called <span style="color:teal"><kbd>relocate-old-result-in-new</kbd></span><span style="color:blue"><kbd>relocate_old_result_in_new</kbd></span>.  This
-  subroutine gets its argument, a pointer to the object to be relocated,
-  from a register named 
-  
-  <kbd>old</kbd>.  It relocates the designated object
-  (incrementing <kbd>free</kbd> in the process),
-  puts a pointer to the relocated object into a register called 
-  
-  <kbd>new</kbd>, and returns by branching to the entry point stored in the register
-  <kbd>relocate-continue</kbd>.  To begin garbage collection, we invoke this
-  subroutine to relocate the <kbd>root</kbd> pointer, after initializing <kbd>free</kbd> and <kbd>scan</kbd>.  When the relocation of <kbd>root</kbd> has been
-  accomplished, we install the new pointer as the new <kbd>root</kbd> and
-  enter the main loop of the garbage collector.
-
-  <table width="100%">
+    We can specify the stop-and-copy algorithm as a sequence of instructions for
+    a register machine.  The basic step of relocating an object is accomplished
+    by a subroutine called
+    
+      <span style="color:teal"><kbd>relocate-old-result-in-new</kbd>.</span>
+      <span style="color:blue">
+	<kbd>relocate_old_result_in_new</kbd>.
+      </span>
+    
+    This subroutine gets its argument, a pointer to the object to be relocated,
+    from a register named 
+    
+    <kbd>old</kbd>.  It relocates the designated object
+    (incrementing <kbd>free</kbd> in the process),
+    puts a pointer to the relocated object into a register called 
+    
+    <kbd>new</kbd>, and returns by branching to the entry
+    point stored in the register
+    
+      <span style="color:teal"><kbd>relocate-continue</kbd>.</span>
+      <span style="color:blue"><kbd>relocate_continue</kbd>
+      </span>
+    
+    To begin garbage collection, we invoke this subroutine to relocate the
+    <kbd>root</kbd> pointer, after initializing
+    <kbd>free</kbd> and <kbd>scan</kbd>.
+    When the relocation of <kbd>root</kbd> has been
+    accomplished, we install the new pointer as the new
+    <kbd>root</kbd> and enter the main loop of the garbage
+    collector.
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_110_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 begin-garbage-collection
-      (assign free (const 0))
-      (assign scan (const 0))
-      (assign old (reg root))
-      (assign relocate-continue (label reassign-root))
-      (goto (label relocate-old-result-in-new))
-      reassign-root
-      (assign root (reg new))
-      (goto (label gc-loop))
+  (assign free (const 0))
+  (assign scan (const 0))
+  (assign old (reg root))
+  (assign relocate-continue (label reassign-root))
+  (goto (label relocate-old-result-in-new))
+reassign-root
+  (assign root (reg new))
+  (goto (label gc-loop))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_110_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"begin_garbage_collection",
-    assign("free", constant(0)),
-    assign("scan", constant(0)),
-    assign("old", reg("root")),
-    assign("relocate_continue", label("reassign_root")),
-    go_to(label("relocate_old_result_in_new")),
+            <td><div class='snippet' id='javascript_110_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0CYBQuAiAIwFMBzASwDsB9MgQwCcj6ySaBjAewBseSOAFwpcqBADS5QoegGdZFMlQAUBAGaMSJCaG5VZg+lUHKADAEpzk6XIVLVsjkZ16DRkxatSZ8xSoK8ACY6mmSqjFxcggSW1j52-po8XE6C7HrCVACu2uKgPPSkPOEktn40EVExXtJkXDSCXMoFRSXJqexBFSSyWTyCNNQ0VCQA7tWSBJplShWR0XEzifMh5Koj47HedQ1NLSTFBGQcNMlcAA4TQA')">"begin_garbage_collection",
+  assign("free", constant(0)),
+  assign("scan", constant(0)),
+  assign("old", reg("root")),
+  assign("relocate_continue", label("reassign_root")),
+  go_to(label("relocate_old_result_in_new")),
 "reassign_root",
-    assign("root", reg("new")),
-    go_to(label("gc_loop")),
+  assign("root", reg("new")),
+  go_to(label("gc_loop")),
+
 </pre></div></div></td></tr></table>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p9' class='permalink'></a><p>
-  In the main loop of the garbage collector we must determine whether
-  there are any more objects to be scanned.  We do this by testing
-  whether the <kbd>scan</kbd> pointer is coincident with the <kbd>free</kbd>
-  pointer.  If the pointers are equal, then all accessible objects have
-  been relocated, and we branch to <kbd>gc-flip</kbd><kbd>gc_flip</kbd>, which cleans things up
-  so that we can continue the interrupted computation.  If there are
-  still pairs to be scanned, we call the relocate subroutine to relocate
-  the <span style="color:teal"><kbd>car</kbd></span><span style="color:blue"><kbd>head</kbd></span> of the next pair (by placing the <span style="color:teal"><kbd>car</kbd></span><span style="color:blue"><kbd>head</kbd></span> pointer in <kbd>old</kbd>).  The <span style="color:teal"><kbd>relocate-continue</kbd></span><span style="color:blue"><kbd>relocate_continue</kbd></span> register is set up so that the
-  subroutine will return to update the <span style="color:teal"><kbd>car</kbd></span><span style="color:blue"><kbd>head</kbd></span> pointer.
-
-  <table width="100%">
+    In the main loop of the garbage collector we must determine whether
+    there are any more objects to be scanned.  We do this by testing
+    whether the <kbd>scan</kbd> pointer is coincident with
+    the <kbd>free</kbd> pointer.  If the pointers are equal,
+    then all accessible objects have been relocated, and we branch to
+    
+      <span style="color:teal"><kbd>gc-flip</kbd>,</span>
+      <span style="color:blue"><kbd>gc_flip</kbd>,</span>
+    
+    which cleans things up so that we can continue the interrupted computation.
+    If there are still pairs to be scanned, we call the relocate subroutine to
+    relocate the
+    
+      <span style="color:teal"><kbd>car</kbd></span>
+      <span style="color:blue"><kbd>head</kbd></span>
+    
+    of the next pair (by placing the
+    
+      <span style="color:teal"><kbd>car</kbd></span>
+      <span style="color:blue"><kbd>head</kbd></span>
+    
+    pointer in <kbd>old</kbd>).  The
+    
+      <span style="color:teal"><kbd>relocate-continue</kbd></span>
+      <span style="color:blue"><kbd>relocate_continue</kbd>
+      </span>
+    
+    register is set up so that the subroutine will return to update the
+    
+      <span style="color:teal"><kbd>car</kbd></span>
+      <span style="color:blue"><kbd>head</kbd></span>
+    
+    pointer.
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_110_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 gc-loop
-      (test (op =) (reg scan) (reg free))
-      (branch (label gc-flip))
-      (assign old (op vector-ref) (reg new-cars) (reg scan))
-      (assign relocate-continue (label update-car))
-      (goto (label relocate-old-result-in-new))
+  (test (op =) (reg scan) (reg free))
+  (branch (label gc-flip))
+  (assign old (op vector-ref) (reg new-cars) (reg scan))
+  (assign relocate-continue (label update-car))
+  (goto (label relocate-old-result-in-new))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_110_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"gc_loop",
-    test(list(op("==="), reg("scan"), reg("free"))),
-    branch(label("gc_flip")),
-    assign("old", list(op("vector_ref"), reg("new_heads"), reg("scan"))),
-    assign("relocate_continue", label("update_head")),
-    go_to(label("relocate_old_result_in_new")),
-</pre></div></div></td></tr></table>
-      </p></div>
-      
-      <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
-  At <span style="color:teal"><kbd>update-car</kbd></span><span style="color:blue"><kbd>update_head</kbd></span>, we modify the <span style="color:teal"><kbd>car</kbd></span><span style="color:blue"><kbd>head</kbd></span> pointer of the pair being
-  scanned, then proceed to relocate the <span style="color:teal"><kbd>cdr</kbd></span><span style="color:blue"><kbd>tail</kbd></span> of the pair.  We
-  return to <span style="color:teal"><kbd>update-cdr</kbd></span><span style="color:blue"><kbd>update_tail</kbd></span> when that relocation has been accomplished.
-  After relocating and updating the <span style="color:teal"><kbd>cdr</kbd></span><span style="color:blue"><kbd>tail</kbd></span>, we are finished scanning
-  that pair, so we continue with the main loop.
+            <td><div class='snippet' id='javascript_110_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0CYBQuAiAcwGMB9AGwHsqAHAgGl1FABcBTAZ1YAoKBLbjzo8CAXgkEAlA1AAndkVGcSAQwB202QqUEAZgvbSpM5qABGcjSQAWfVefYVRpMnoH0TTFqs6d+ROqiVBQAJoygAkIiBABu7CSsVHJkCnpa8oqi6uwA7mQ27KqhnBk6ymqaJqY+fgFBBArUahxkJFTqrPzqAK5GshQOTqI9tKGqrYXFxt6gRFRkSfaOzo1OVC3sZCGhqVw9FKxk3WQ5uTNAA')">"gc_loop",
+  test(list(op("==="), reg("scan"), reg("free"))),
+  branch(label("gc_flip")),
+  assign("old", list(op("vector_ref"), reg("new_heads"), reg("scan"))),
+  assign("relocate_continue", label("update_head")),
+  go_to(label("relocate_old_result_in_new")),
 
-  <table width="100%">
+</pre></div></div></td></tr></table>
+  </p></div>
+  
+  <div class='permalink'>
+<a name='p10' class='permalink'></a><p>
+    At
+    
+      <span style="color:teal"><kbd>update-car</kbd>,</span>
+      <span style="color:blue"><kbd>update_head</kbd>,</span>
+    
+    we modify the
+    
+      <span style="color:teal"><kbd>car</kbd></span>
+      <span style="color:blue"><kbd>head</kbd></span>
+    
+    pointer of the pair being scanned, then proceed to relocate the
+    
+      <span style="color:teal"><kbd>cdr</kbd></span>
+      <span style="color:blue"><kbd>tail</kbd></span>
+    
+    of the pair.  We return to
+    
+      <span style="color:teal"><kbd>update-cdr</kbd></span>
+      <span style="color:blue"><kbd>update_tail</kbd></span>
+    
+    when that relocation has been accomplished. After relocating and updating
+    the
+    
+      <span style="color:teal"><kbd>cdr</kbd>,</span>
+      <span style="color:blue"><kbd>tail</kbd>,</span>
+    
+    we are finished scanning that pair, so we continue with the main loop.
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_110_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 update-car
-      (perform
-      (op vector-set!) (reg new-cars) (reg scan) (reg new))
-      (assign old (op vector-ref) (reg new-cdrs) (reg scan))
-      (assign relocate-continue (label update-cdr))
-      (goto (label relocate-old-result-in-new))
+  (perform
+  (op vector-set!) (reg new-cars) (reg scan) (reg new))
+  (assign old (op vector-ref) (reg new-cdrs) (reg scan))
+  (assign relocate-continue (label update-cdr))
+  (goto (label relocate-old-result-in-new))
 
-      update-cdr
-      (perform
-      (op vector-set!) (reg new-cdrs) (reg scan) (reg new))
-      (assign scan (op +) (reg scan) (const 1))
-      (goto (label gc-loop))
+update-cdr
+  (perform
+  (op vector-set!) (reg new-cdrs) (reg scan) (reg new))
+  (assign scan (op +) (reg scan) (const 1))
+  (goto (label gc-loop))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_110_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"update_head",
-     perform(list(op("vector_set"), reg("new_heads"), reg("scan"), reg("new"))),
-     assign("old", list(op("vector_ref"), reg("new_tails"), reg("scan"))),
-     assign("relocate_continue", label("update_tail")),
-     go_to(label("relocate_old_result_in_new")),
+            <td><div class='snippet' id='javascript_110_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0CYBQuAiAVwAcATAQwBcBTAfQAsaKyCAaXUUEmgJwDMA9rwC2ACgA2ASwDOVMYJJiCANxoBjKsLoyaVAgEo2oTlzPmLvGgHNlAOxoB3RszIzDxq7YIz1FOx6gXvZOhgZGphQyMlLWdsqCEqzG0nIKSqoaWrx0VvyBphZFxUE2Ic5UFFIS7kal3r7+YRFcUTFxylYSgn60dOqCdlRSdkQ07KASFABGNBLKpJR9ldVhHFzWgnRakjNznXM91PSJZLk0MkQSVHQjdA6Oa-jE5MfbVRLspjwCwuKp8kUyjUmm0un0dUKJXMwQID3e1VqnjKPj8ATqsIezXWoDasXiqKaKVkgIyAGpArDGujjAM7HJ-PIAIzhFqgTbbQS7WbzAjWdR0bqKNZAA')">"update_head",
+  perform(list(op("vector_set"), 
+               reg("new_heads"), reg("scan"), reg("new"))),
+  assign("old", list(op("vector_ref"), 
+                     reg("new_tails"), reg("scan"))),
+  assign("relocate_continue", label("update_tail")),
+  go_to(label("relocate_old_result_in_new")),
 
 "update_tail",
-     perform(list(op("vector_set"), reg("new_tails"), reg("scan"), reg("new"))),
-     assign("scan", list(op("+"), reg("scan"), constant(1))),
-     go_to(label("gc_loop")),
-</pre></div></div></td></tr></table>
-      </p></div>
+  perform(list(op("vector_set"), 
+               reg("new_tails"), reg("scan"), reg("new"))),
+  assign("scan", list(op("+"), reg("scan"), constant(1))),
+  go_to(label("gc_loop")),
 
-      <div class='permalink'>
+</pre></div></div></td></tr></table>
+  </p></div>
+
+  <div class='permalink'>
 <a name='p11' class='permalink'></a><p>
-  The subroutine <span style="color:teal"><kbd>relocate-old-result-in-new</kbd></span><span style="color:blue"><kbd>relocate_old_result_in_new</kbd></span> relocates objects as
-  follows: If the object to be relocated (pointed at by <kbd>old</kbd>) is
-  not a pair, then we return the same pointer to the object unchanged
-  (in <kbd>new</kbd>).  (For example, we may be scanning a pair whose <span style="color:teal"><kbd>car</kbd></span><span style="color:blue"><kbd>head</kbd></span> is the number 4.  If we represent the <span style="color:teal"><kbd>car</kbd></span><span style="color:blue"><kbd>head</kbd></span> by <kbd>n4</kbd>, as
-  described in section <REF NAME="sec:impl-list-ops"><a class="superscript" id="5.3.2-sec-link-5.3.1" href="./5.3.1.html">5.3.1</a></REF>, then we want the
-  <QUOTE>relocated</QUOTE> <span style="color:teal"><kbd>car</kbd></span><span style="color:blue"><kbd>head</kbd></span> pointer to still be <kbd>n4</kbd>.)  Otherwise, we
-  must perform the relocation.  If the <span style="color:teal"><kbd>car</kbd></span><span style="color:blue"><kbd>head</kbd></span> position of the pair to
-  be relocated contains a broken-heart tag, then the pair has in fact
-  already been moved, so we retrieve the forwarding address (from the
-  <span style="color:teal"><kbd>cdr</kbd></span><span style="color:blue"><kbd>tail</kbd></span> position of the broken heart) and return this in <kbd>new</kbd>.
-  If the pointer in <kbd>old</kbd> points at a yet-unmoved pair, then we move
-  the pair to the first free cell in new memory (pointed at by <kbd>free</kbd>) and set up the broken heart by storing a broken-heart tag and
-  forwarding address at the old location.
-  <span style="color:teal">Relocate-old-result-in-new</span><span style="color:blue"><kbd>Relocate_old_result_in_new</kbd></span> uses a register 
-  <table width="100%">
+    The subroutine
+    
+      <span style="color:teal"><kbd>relocate-old-result-in-new</kbd>
+      </span>
+      <span style="color:blue">
+	<kbd>relocate_old_result_in_new</kbd>
+      </span>
+    
+    relocates objects as follows: If the object to be relocated (pointed at by
+    <kbd>old</kbd>) is not a pair, then we return the same
+    pointer to the object unchanged (in <kbd>new</kbd>).
+    (For example, we may be scanning a pair whose
+    
+      <span style="color:teal"><kbd>car</kbd></span>
+      <span style="color:blue"><kbd>head</kbd></span>
+    
+    is the number 4.  If we represent the
+    
+      <span style="color:teal"><kbd>car</kbd></span>
+      <span style="color:blue"><kbd>head</kbd></span>
+    
+    by <kbd>n4</kbd>, as described in
+    section <REF NAME="sec:impl-list-ops"><a class="superscript" id="5.3.2-sec-link-5.3.1" href="./5.3.1.html">5.3.1</a></REF>, then we want the
+    <QUOTE>relocated</QUOTE>
+    
+      <span style="color:teal"><kbd>car</kbd></span>
+      <span style="color:blue"><kbd>head</kbd></span>
+    
+    pointer to still be <kbd>n4</kbd>.)  Otherwise, we
+    must perform the relocation.  If the
+    
+      <span style="color:teal"><kbd>car</kbd></span>
+      <span style="color:blue"><kbd>head</kbd></span>
+    
+    position of the pair to be relocated contains a broken-heart tag, then the
+    pair has in fact already been moved, so we retrieve the forwarding address
+    (from the
+    
+      <span style="color:teal"><kbd>cdr</kbd></span>
+      <span style="color:blue"><kbd>tail</kbd></span>
+    
+    position of the broken heart) and return this in
+    <kbd>new</kbd>. If the pointer in
+    <kbd>old</kbd> points at a yet-unmoved pair, then we move
+    the pair to the first free cell in new memory (pointed at by
+    <kbd>free</kbd>) and set up the broken heart by storing a
+    broken-heart tag and forwarding address at the old location.
+    
+      <span style="color:teal">Relocate-old-result-in-new</span>
+      <span style="color:blue">The subroutine
+      <kbd>Relocate_old_result_in_new</kbd>
+      </span>
+    
+    uses a register 
+    <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
           <td class="meta" style = "color:grey; text-align: center">Original</td>
@@ -2018,93 +2211,122 @@ update-car
           <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
         </tr>
         <tr><td><span style="color:teal">
-      
-    </span>    </td>
+	
+      </span>    </td>
           <td></td>
           <td><span style="color:blue">
-      
-    </span></td></tr></table> 
-  <span style="color:teal"><kbd>oldcr</kbd></span><span style="color:blue"><kbd>oldhr</kbd></span>
-  to hold the <span style="color:teal"><kbd>car</kbd></span><span style="color:blue"><kbd>head</kbd></span> or the <span style="color:teal"><kbd>cdr</kbd></span><span style="color:blue"><kbd>tail</kbd></span> of the object pointed at by
-  <kbd>old</kbd>.<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a>
+	
+      </span></td></tr></table> 
+    
+      <span style="color:teal"><kbd>oldcr</kbd></span>
+      <span style="color:blue"><kbd>oldht</kbd></span>
+    
+    to hold the
+    
+      <span style="color:teal"><kbd>car</kbd></span>
+      <span style="color:blue"><kbd>head</kbd></span>
+    
+    or the
+    
+      <span style="color:teal"><kbd>cdr</kbd></span>
+      <span style="color:blue"><kbd>tail</kbd></span>
+    
+    of the object pointed at by <kbd>old</kbd>.<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a>
 
-  <table width="100%">
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_110_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 relocate-old-result-in-new
-      (test (op pointer-to-pair?) (reg old))
-      (branch (label pair))
-      (assign new (reg old))
-      (goto (reg relocate-continue))
-      pair
-      (assign oldcr (op vector-ref) (reg the-cars) (reg old))
-      (test (op broken-heart?) (reg oldcr))
-      (branch (label already-moved))
-      (assign new (reg free)) 
-      
-      (assign free (op +) (reg free) (const 1))
-      
-      (perform (op vector-set!)
-            (reg new-cars) (reg new) (reg oldcr))
-      (assign oldcr (op vector-ref) (reg the-cdrs) (reg old))
-      (perform (op vector-set!)
-            (reg new-cdrs) (reg new) (reg oldcr))
-      
-      (perform (op vector-set!)
-            (reg the-cars) (reg old) (const broken-heart))
-      (perform
-      (op vector-set!) (reg the-cdrs) (reg old) (reg new))
-      (goto (reg relocate-continue))
-      already-moved
-      (assign new (op vector-ref) (reg the-cdrs) (reg old))
-      (goto (reg relocate-continue))
+  (test (op pointer-to-pair?) (reg old))
+  (branch (label pair))
+  (assign new (reg old))
+  (goto (reg relocate-continue))
+pair
+  (assign oldcr (op vector-ref) (reg the-cars) (reg old))
+  (test (op broken-heart?) (reg oldcr))
+  (branch (label already-moved))
+  (assign new (reg free)) 
+  
+  (assign free (op +) (reg free) (const 1))
+  
+  (perform (op vector-set!)
+  (reg new-cars) (reg new) (reg oldcr))
+  (assign oldcr (op vector-ref) (reg the-cdrs) (reg old))
+  (perform (op vector-set!)
+  (reg new-cdrs) (reg new) (reg oldcr))
+  
+  (perform (op vector-set!)
+  (reg the-cars) (reg old) (const broken-heart))
+  (perform
+  (op vector-set!) (reg the-cdrs) (reg old) (reg new))
+  (goto (reg relocate-continue))
+already-moved
+  (assign new (op vector-ref) (reg the-cdrs) (reg old))
+  (goto (reg relocate-continue))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_110_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"relocate_old_result_in_new",
-    test(list(op("is_pointer_to_pair"), reg("old"))),
-    branch(label("pair")),
-    assign("new", reg("old")),
-    go_to(reg("relocate_continue")),
+            <td><div class='snippet' id='javascript_110_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0CYBQuAiAJwFMAbAewGMBDAFxIH0KyATR0gZwFcy7GAlgDtGQkgHcCAGlyhQDTnQAUZAYqUUADkoJrGmisIZFGdCvpoCiBAJRTQpAOY6WrWzbuzQAIyI0hVAAWKjTe5DqaltYeMnI0nJwCjkI6YpL2Ti5s7rGgjuZmSpnE5NT0TFQUQnTC3CQ5hJFW0l7xiclZrIF00qCq6lo6AG4kVGYmpABmtvZecvMLi0sOJM4EdIFMmzSsnDMra67unnIKyv3Kg7qcjL4UANYkIttEPXYHnd3Hub7+QSFhMg6GhkUg7ACejAAthQRm4Yq0EkkUgQ0r1ipNSPUYosQKA0n0yjUqqBJhQiKAmkQvHiAKqaVjlUAETEkeqUwzVEhENCI9oo1n1ewXJQabQEADU+wxWP2lSEin8ygAjB4TqA8dAtOD5JtQNtWKB-Ia6JYyPIKPiJKAoSQYURwV5NNyyUQoSo1JdxSMxuTGJwSG9ZnJimlGAa9u9QxJpatPm8EXEkR0CK4vsLPWLhqNxhwSNN3nNlsXFsUNkxTQIyJGMnHU9k1blnURXe6RVcfbmA0HQF5o+JTGaax9UTGo3W0wn1ZqqooiNwxrqSD4iA8nvqSDRXk6XeS25mOzm-d2ZkWSyG6+Xw5vdrHDg3g+eFvLFdUdHdHs9N69vjuW3uPQGb0jxME91TLTZByrYdiiOcc1jRRsvHyUwKCKOtSEoWgGEYeUaiEOoGgIEEwVYSEYThFok35VIYwzIDs19CZ832M8n1LS9IMras706X85BQwpikwokKiqfDCJiIA')">"relocate_old_result_in_new",
+  test(list(op("is_pointer_to_pair"), reg("old"))),
+  branch(label("pair")),
+  assign("new", reg("old")),
+  go_to(reg("relocate_continue")),
 "pair",
-    assign("oldhr", list(op("vector_ref"), reg("the_heads"), reg("old"))),
-    test(list(op("is_broken_heart"), reg("oldhr"))),
-    branch(label("already_moved")),
-    assign("new", reg("free")),       // new location for pair
-    // Update "free" pointer.
-    assign("free", list((op("+"), reg("free"), constant(1))),
-    // Copy the head and tail to new memory
-    perform(list(op("vector_set"), 
-                 reg("new_heads"), reg("new"), reg("oldhr"))),
-    assign("oldhr", list(op("vector_ref"), reg("the_tails"), reg("old"))),
-    perform(list(op("vector_set"), 
-                 reg("new_tails"), reg("new"), reg("oldhr"))),
-    // Construct the broken heart
-    perform(list(op("vector_set"),
-                 reg("the_heads"), reg("old"), constant("broken_heart"))),
-    perform(list(op("vector_set"),
-		 reg("the_tails"), reg("old"), reg("new"))),
-    go_to(reg("relocate_continue")),
+  assign("oldht", list(op("vector_ref"), 
+                       reg("the_heads"), reg("old"))),
+  test(list(op("is_broken_heart"), reg("oldht"))),
+  branch(label("already_moved")),
+  assign("new", reg("free")),     // new location for pair
+  // Update "free" pointer.
+  assign("free", list((op("+"), reg("free"), constant(1))),
+  // Copy the head and tail to new memory
+  perform(list(op("vector_set"), 
+  reg("new_heads"), reg("new"), reg("oldht"))),
+  assign("oldht", list(op("vector_ref"), 
+                       reg("the_tails"), reg("old"))),
+  perform(list(op("vector_set"), 
+  reg("new_tails"), reg("new"), reg("oldht"))),
+  // Construct the broken heart
+  perform(list(op("vector_set"),
+               reg("the_heads"), reg("old"), 
+               constant("broken_heart"))),
+  perform(list(op("vector_set"),
+  reg("the_tails"), reg("old"), reg("new"))),
+  go_to(reg("relocate_continue")),
 "already_moved",
-    assign("new", list(op("vector_ref"), reg("the_tails"), reg("old"))),
-    go_to(reg("relocate_continue")),
+  assign("new", list(op("vector_ref"), 
+                     reg("the_tails"), reg("old"))),
+  go_to(reg("relocate_continue")),
+
 </pre></div></div></td></tr></table>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p12' class='permalink'></a><p>
-  At the very end of the garbage collection process, we interchange the
-  role of old and new memories by interchanging pointers: interchanging
-  <span style="color:teal"><kbd>the-cars</kbd></span><span style="color:blue"><kbd>the_heads</kbd></span>
-  with
-  <span style="color:teal"><kbd>new-cars</kbd></span><span style="color:blue"><kbd>new_heads</kbd></span>, and
-  <span style="color:teal"><kbd>the-cdrs</kbd></span><span style="color:blue"><kbd>the_tails</kbd></span> with
-  <span style="color:teal"><kbd>new-cdrs</kbd></span><span style="color:blue"><kbd>new_tails</kbd></span>.
-  We will then be ready to perform another garbage
-  collection the next time memory runs out.
-
-  <table width="100%">
+    At the very end of the garbage collection process, we interchange the
+    role of old and new memories by interchanging pointers: interchanging
+    
+      <span style="color:teal"><kbd>the-cars</kbd></span>
+      <span style="color:blue"><kbd>the_heads</kbd></span>
+    
+    with
+    
+      <span style="color:teal"><kbd>new-cars</kbd>,</span>
+      <span style="color:blue"><kbd>new_heads</kbd>,</span>
+    
+    and
+    
+      <span style="color:teal"><kbd>the-cdrs</kbd></span>
+      <span style="color:blue"><kbd>the_tails</kbd></span>
+    
+    with
+    
+      <span style="color:teal"><kbd>new-cdrs</kbd>.</span>
+      <span style="color:blue"><kbd>new_tails</kbd>.</span>
+    
+    We will then be ready to perform another garbage
+    collection the next time memory runs out.
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -2117,7 +2339,7 @@ gc-flip
       (assign the-cars (reg new-cars))
       (assign new-cars (reg temp))
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_110_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0CYBQuRQAVATVgFEARUWAeUgDkjyAlcfAYwHsA7AZwAuoBgFUAsgCFWAfVIVQAXlAAiHgFcAtgCMApgCdlAblzd+QibVoAZWWXKKVWrlwA2Rk70EQiLRgHFbeSVlQT0ASx4Ac3dTL1gfQPtggAcBA2NYoVgWWgC5JJVkvS5ojM8hUSsbfIdVNRc3MrNQEQZKcgAxRipE2rUeABMdADMInQGY8uFaaQA1AEErEXJpEnIiXuCeLmkANwBDFzUdaQBPHQFJ5okcgGlyBmkACXJ5lg2a4K1igGsdHmkAAsdPs9JdjLhhv0OAIwrxQBp9n9pKk9Ci0gAKMIDAAeAEpQABvXCgUmgPQXNR6HigZL7MJ6DHxFiJAA0oGx+OMAF98FCeDC4TTEcj1A10YyCcSyeTKdTafTGZVqnZ2WKXHieXzobD4SKTts9odjmcLhKMVKSWSKQIqTS6QyMQwZgslis1h9VaB1ZrcLzITqhQikSciiVzZzLTKbXaFY7srk2Rzcb7-fzBXqQ9Jvlw-gDgaCBBGU0SraSY-KHYybrR7o8Xm9PRR2ZGtQGBbqaZEzToXDoNNIBKdkjoMb3+1HrXKaWE+NJ1Np9GO+xoCQB+YTiKQsmoALjLMo5c6crhBPGXE9AG4s1l6+8PZNn0lCEUiF9XV+8vgYeTsoHvD5HvO9QuO+66blUd4HjKT79EMow8OMYGfq07RdAwPR7tBZL6MUjLjho7LKJAPAHC42KgEOI4DKABHKKm2odkGADuej7Mk5oEZO5bTnGjLdkWBGDsOo5ceyXFtumnagP0rHseaqLcbKtrygI9KgYpkmBvCT6ohiimltGvG6Yq+lpASABkFnYaSACEJmOgWAxmXoeKWdZgGgPZc5VhialhBp5nuTZoAYk5LkEgoUWbpIMg1AAPvFIXhQZUVKDeKryIlyUgs5qXReAPj+L02WeSl5mKNFzIlUlZW5RFlVKMqNU5fseUVWlLRtJ03SUC1dVtQ1nUJr+WW1YB5WuY10xzIsyyrOs-UTfV+XpXcDzPK87yJAx7YZjOc4LroaJ6QZ0pTipB0KRVVmgJNkXRaIsU7nYWlMTpx7OC411TedPGXUBp03RZd0rR10UZYkb37UBL5RD9SkVldQNTbd93TYV36jeQ0PSbpaQI4ZF2xvjjIGWjYNTcNCT5LjQZPuqhN-cpJM+Zi5Mg+jnXNbTfqMTDsGDCMYwDEzB5I4D7PA6Dg2rV1aG9VDfN7XjPnFJEYtGQDpMNRTsvg0oI1K2m2lXYaZEmucRYo4jxls2T0tc49Lpze6i28yb71XTmeZAiCYKa8T8o6xzMvtVTEPrfWW1NjjyuELA4QaGEsK7DooBSUKfCgPsgygJkucCHwnBTEUYTJ6nJyZ7w877BoOhzqCKdhA3DjkYIGI2b5ygDLOyQuPspzKOyACMeKsl3pnKLhXAGKP4+T46ygANTD6A2AL4B3cALRrxvE9b1PABUe+bw+3fAKfB-n1PACkV+L4yyhpQ-h9L7ZUWvzfS8ADxf4e3cf4KH-jKbuAA+EBZJwHAPZPvR+GJlC2TXmPa+ACp6JUgaSbuVlT64F9B4ZoZcK5hDTtIAuPAi5t1nAITugF240OUHBYWiEJjsiYQhcYZ9Dz0IQYiAQgJpCwEgMoUk7I+ECKEXibCvpAIqyDPqFESdm6kOruecu-dbYAx4coIhyidBr3URqOm8I+CUg4v8XYDJeD1woRaImpJMi0iUZXaQqja712zgoEKiJkhhVyuyXRLi3E8Drg3aQTdYQNxkWSRxgSSFV1NkaI4rcvGeR8RiEJ9dFBgL4hiBRcSVGmwyaE8eGdDimK4Z5Jx5c9GuMSZkqJxgZSxOcfEsh5RC7uJSd49ifi2oBNaaQ8hRdokONLoMk4wyknHE8T03xwxsm5PCv5UCww3LsmGOUnQlTPIFMmR0ihfBRks0rKZXyIVALsRHIMfSEy6ley6XwdkFyqmgLuVMhpRzUGvNJFc-4eU7luItg3Z5Pyfl7PaWYTpwKjk7NeT6NshAXhWAoGwORH1pA6AAI5qEOBifY7ItCaNjFiHypl9juUBqZIloArIvNJE+bFuLQLhQpeycKRLKWMpxXilZ+LSl8s5VIn5iVQD0v2NNLQWpPLoppPsPgfAuAcAxH8U47IKTcD0AMI59iTlmxAhiDVs9tXCteRudhIt6W7iAkyvFqr2X1XCkarVsLTU-I3E6nQmqTX0tJNa+VirlX2soupQ1XrjWwuMVdNSkRuyix4ToHEyR2QxuJcHMljpE3JEpeFLND0lAxqjRnAeAgBD-GkPQwcOw04wlnnwPywI-ZtSeZRRtKyW0uEEGIrMqJXE8HZIIQsr5pARCGPiXVfYhDDApOnJQg6wTDtHYmppZJVGgxcCORknaBBKRggsjE3kUSmW3W5XVnkJZyQ4npE9K6Hzclop29OzNPKOKXTiBw06dA6FvVUz9s6M4ztAMvUAI8f0vqmARBw4Ub2+v4ScJyfAADab6AC6UHeybrAmBwCcHBzqSQ6h9DG6lx8pPcc89vF8kE2GGooWXIQq8hlIxskwJiNbsEMciWf7EVgDEPMaATxuiytAAJSFZbDlhsiNQ-QaaaQUik4IJcygBL0SLaYosphxNF0k9JvQ7JgWydlApstT91P0QxAZotCjB0cB+HY5mk7QA2Z+A4dUEIZRruSGoPggIMTjsJGKzyzmHC+RxAOtStnNSBcAhLHuvB9E-v9B502tIuC+N3Y+fdDMDXOdPc+wCM8n7kA0KkU4TmIs-GtXQWAqn8CeXvb2UxZ7AKOIEGl9Dg1cvYYfMFgtoauu+olm15I3XQDMdJEl1dKWIjN0OGEAAXqODLpJevehAqN2LAx4vuCY3VqbXtQC9z4HSAQHBfMeL4Psbsy29UIgbpd7s00dHecBMoX1G4vM+d9dai7V3Z3RR0Wlt7YKPtpYtN9u7Cq-tPZm7CObi3gfuo5DwWb5FFvg7BT9+70POohAq4js15X9i2Yh4VhBIgeA-G2MxOTTKG4CGtYVfjtw16-eu4lvb-1YxHZO2dotyQwe5d1RLZzCCBfJFq57GGn3fPOf08abZwveKi+ez58zlnlZroUfJ3TxT65KUc5p-4lDghH36AGsIkQWEn3c-tmGPP9infO9j67zWGX7rZ-94IKmbta1jEbw5tu70Pqa-lh8YQPcu69yoMzvuYu8WBYsgLAeTegGBYYMbQeqkNcfW7qpZPPdEQp1TrgNPZQ4vp9alg5A-CQEKqwWrYLxuHmb5Nrn8oHdO6s1mRCzFpCIjO2MezB5HFQAAFoFG1zoYzSnx-kEbzE0uHAHBT5n0-ZIHAF9jOaMMAekQV9Zh14pp+u+rtb-zlMVb1mKsWh-Y45z0gKQW6t4opVB-kRH5Mwgh-T+FWW4BGGJvsco4n+u-icJ-kpn+ufo4sUFwEIEoKvrrsoLAZcMAVMCgSiGlvUI7qGMUMvggYftPkgRgeLtgWWq-kAXfugc4EWBSIILPLgW-gQR-kQcfgghgXQW1hSBQdAVMJEBwI-qwSZp4qADwiFNolARsjOnCqSNonwBwLnKzoQWvt-goTwPRDIaIdQggq4KwsGCwSocoLoRod8jKNor3koQYUgRYesuIdocgb2EqjgWJhEMcJYeAUIUphSC4E4eQZpq4forYZ5NomWiVu4YIYYaERLkEXQvYboYCHPPoR4YYfEQYG5AeGgc0FmmAREUgVmrwVkaRDkRAU-BYgUV4DoBbI7rPLkcfiIWIcEfYfkeJEmpodomUeJKRG0fYWROESUQgr0TEQ+Nov4eoPot2lYWwcoKMW4UMdwvYYAX0Z4evngSYXYR3MoKCJEG4BMckUgVsW4HMWYfYf0JUUsYYacbsGsY0RsfyOcUgXcekTKJkV4PsGoDiLUcIVQh3OsQwnQfcVMYMd0RsbhACV-tPHoGkcCQwvsGCUprCUcWSNoloHCU-CiYibIfYZvrsZ8UpkAdCQgnoYgVMRMBiVoSCaiQgoEQScoMMJSbSRoRkVQc0LhghsUcsQgqyblHwOUUILhu2uyZEW2vhufupmJsbvWlyc2jiTWlwRaMcmKSnpKcKQFC2gorKbPPKcyV4L3k2tqoKdYToH3ghryd6EaXhqqQaVMbqe2qKWaEqRkuaQhjKV6nKW5D+oqbwFpvWjafhi6bWpKC8UIGGBrGycwXsVMSGXqTyUGU4uGAKeGbiSsfGSKcco5rhhEKEGoPtM+HTgKP+m5geOmY2mlvUdodorDmEPDicM5mvHYgoDkirpWdWRoccrhqWQ4H8jcu2ckC2hqWiKWWmRcEZrpnhloH2N8TQtonPmvHPqUtohvmvBvvOfYaftEBsnvpoWCq8toigWvCgSuRsSQVgSWowdieSDQZgV5qeRQVuduTcX8ZeZwQwTweqk+fTi+YAYeQwj-iCH-i-oseFsTj8IIc-gAXgXefecMfYVKdqmvLBV8uSQwvySKSmiqZ2pBVBccRsbqSaWqE6dyd+Qgr6aqWvCRRhaYVhVUguerNGUubRQhkRTorRbaQMimaqe6eLMsWOROUoF2c5CUTxToOyPwUmUcj+oJWpOOf+vxTpsfkJeJFUVwWJZxtxVJbxTnMkNcgJWpfsNJeyG8R8SUeJZzhnClocD4QoeQf0Q0jdhHqFAGkqnrsJSOfJepYrp1BaiwnHjxGvkJSFsetoQ0jiTZSUqUpJXpX2ORmSDnqHr6mTsFSoGIPULCP3GVvBCLK5SZtaufrthRgDA4X5RZb4eMDtjFQeGuj4bmGoBxKFfrnno4mRJ2Qqk5YlRFdJdFe3jSE1Z5ULBwgMO9rRJCZqYlcoMXtTrTmvruPRBDssqGmRJxXlXbtJIml6moGWsPuBs0JmanqJg6cuaNvZaSsBA0FiGYLCnnn7vKHFohGVcHo1k+r6i0kwcjlmTmatRwOtUKBQX0s5DtZGr6oAbftFq8hLB9etUtqNq3hVSlp3mdnklHjdhLJ7k9vOpcL6jKBuPWTksntQXAWJZ2Vpf8viu8WJYpcaNUWiMZZ1VRStvaV6RKfpBwGhScDtXoNmZ2LmRXvmTTbTZ6RQozX+pRbTTKFRidJiKfqWuWpWm1nsK6XWg2vBtyQgj7izRaZ2irRcPRMLSLT1mYpiqRFYjwDYjQqUmLRKOyH2FEPwoau+Wvq6rzVRfzd6WOKRDib2tev8JEDbRwcsa6qNrTWusedec4YAX2ptbrVUjAZeaiB+jOpragQHZHSgd-lrXiLbfjZpBjVRY5oJfQg4L7fbUnbrcxICAFOnAetlqdXndQnltnbrY4inh1s5Hyp6n5fQm5OncpmncXZHdvl4G+g4LJGxFehLfHd3agY7X3aSAhQnfRMhnRmhkoE3bjmbiEv+dbgTtPfeRuAoozHpASNainr3X3X+qnagXkj2gTHpIPcBmPFPdPShaqXPXiAvWOkvQBl+i-SfcndxfnX1gFHJSZhWrXT-Vhc3tvTPehfWhPfPcPfJHpGfbA6etvCBh-XvSBOaA-feRA5HUHe+fQdwWHTRhHZA0icOSQWkAXTQd-fXVBbnX-dQtQ-jcZWA1BaXeXaFIeuqEA-oCAxxj5dPa+nRkPTwJeuaJQ65Gw7TY1Qrg4LPcg2-YmihtI1RXNYA23aOR3W5Ofergrtg8nTHVQwWtAy-UoziCo3Q7TTXV4AA6BDYzuqo03lY9ni455Gur+WBRQeHYI7TY5pZYcM+BVg4CrrWQY1hRwxOZXYdAagE99Llr45HbI8ks3RiHE0E8BeEyLUdaTOaAZok9vcI2OqI+I3pBrmQ2Co4rqbHSYycO2mY6hk4yLWKdBk4fExVvhX3lnRU4BLFU+rgz0+k6tqRm0xk5Fk068gMyLVM3zfTQLRJsHWQWeW+ZnSeaHXgX2lk68s7Yzb7YQ8sxeSwx+UQxszRls1UjsxJp4xvRQUBbZqBTc8QzwOc-lbGODRtVFpAzM2SFjlDo9rjjtRZSOmYOzTmaYtzRwPonQxuOC0nq2qzSCxzd9eC8cPmSE9ihnt836pDg9tHpsQ0CVUmVvSDjnAS1ZRGSZhDijbjqJiUcS0jlVT8DVUmVS1HjDlCuKGlvoI7lnPS4Th2Q2USPC9IAK5pdpYrSK72eyIOZi6y383i7WdC0TiTpjjizjgDly2xJ2DyUqz2cXKqwXlHkXpThNeXjMgzqAHxgJt0Ofs3hLHDYCN3siAPmXYhLw2iJ8tK1KxfhQsUA0Hw2WjiDurqo4i62MDkbqWG26-gqLb0vJl0oslG6OPiwE9ZcseZvG7ZeqtxZ8sckmwgoC5y5ujy54OZjKwePm8oIW99GzUizXCi-8JC+ZgGv2NJRiJpn632GiIGwIN2oPohJxVxQDEm2pmpGCJff24rszMjcTq68m2jeZrtGurS9xQ6Um9m35bZUrgDHtQzRJiuyoeu1lXw7ZUuylmKYJWu7O2MBu6OYlQZrqpc9pge7rke4JVm2nvoxJbxDdQlprili+2wW+9Pl0oZpW4ByZhmyB7ZTxqAPMOAOAOQJIFYKwPzNJC29oH2O216Z2wG4mr28GJO0pEHV6joPEmdYIB2npY1jdjVQMM4f9RR0XJbdR52n23OzTRLP9RzjKEO280G2xDCBWqx-Wh264F24OPh9m5C-Emewdvh4J0WAPLoBrT29J2R2nMRylqxphv9SxypzqgFiFFU-h8C7Y2HH5PhzG-HtrHOHDG+IhEG2ZzuoNRqhp6OHp7kgosp72AbWkKcI6U5ztS2OdfOSJ08T8tam5+R75AorW-tIF0WDtaUv9WFwZ8cm3rdj29NF5eMKAKKlXaBD226oeBuNF2nBkiBGqCBCVzKNagp8TkpyJ35KGsVw6mxnJzDHRwx+dUx1RwZ+x2MEpLEvgSJmaP0UezopQSPlMGuQ4BB0uJN2uaaVfte263jsBaaaK5W5qyW-wLVjN80GKS3MkOi0l4i+9TiGtZzYAdqUIAojoKd4me899aot+8O70mEIssd491iDrbrQ974vF5zT21iJhdvT52x241Reu9D1hRvv9xU2uYj2Q3LnD1BYOeDwyqF06wi29Z2JZ0G4Zr5Gp2tg0J13jBdyD-h0x4ZuFMl0WsD99S9zXEDcl9u7GHygz-+wdsd1T8z1d59Td3gUx2xRwEpGKVz2YGL1FjzzDN56x353oAF5D10iF5R8T8eor4lal0Woy8y5D2kyJ-p751u8zMk81YGkbyp2r6IeF1nhLD1dFLlwNZ5BuGTqr6NRThlSwnbyp9avB4h8h-PrVz8yGoAwtbj5ioL19TXKoqL3741oN4hAEszcWldncz8F64Z4d14O+koPT2YNZ11aAPnwDmBXy5+AomBQn0e5Dy2qWan6H9i2X8EGWoIJX7vVmO3zQsF4R3Oyb2x6AI3+n5EE3yFNaq344GxAKK9iFF38iN8LnPDX33X8b6P+P55JP09pEDsG1p30kdILv21rX2ty5fX5v4BNv7jpdmnAf9ZvsBV6v2f5n5fw+NfwDs+RSPf4Qfs6f5O6-1pDi8J+pfJ7JumGCzwNAP-ZEOAMgH-8B+ifIfiP2XIgCp+PcTQBxHrgaBZ4Q8UAIQHmADAhgNENrKSx8LMRqkFCV8PCzuzYDleaeeWnoH1aAQsakUHGr6h5wDwAuC3NEFewAEqAEKGhXuhwMHgYhuB4pCTJNyfqdpBBvqNqAcHzIohlUB1BjCALJx98xqJrUvDOH57wgqIOgAPghyQ4SAUOkuNDvIizA19n+fAi-sP2Lbasm+IbKYGOwEjzdxuHJI9l40zahJaesZYFNHye45wbmfgrNLTzu6ftkk9yBwE+F26c0QhwQ1oi8gX4nAYhAvXxPEOTT98b2iAhvnYKzjN8w++SO5HEIVz+Dk+5-e3qZU8z6AIBegAcNXw3qkNDwT7SUlsQuDy4Ih-ILUiFDkHL9QwSg8XhngPCZcJYsA2of3gsEb0i0ng6Dt4K8ZM9eAdPeqHyjmE6DnmFPIMF43SH4obm8w55kKz47yh1GRXUNCsPx5ChO6UwhoV4PrjtCTQeaDnvKG0QV8N2tvdIesPhADAMB-efsDgMaESxtEnwkrN8NoFDwiIAgsEdA1MHCYehCgjfEzQl5zMXaCPcPqBF3bzNtMy5d0iDTFRS5pICiHvvAKyE2CUhngDchnyAHDcpgpgXuNJALT05IUNIoUKENMo5M5wJIgECEOpHNwFhN2RurwEZFx9+gORdkf4Ow6DBuR-aTISn2yFetuW2rYvoeCqF6AahdQ7vvTkaFBZERgtPfGwjEYj1zQXIzmp0IuGyCBg8gyFooPhGDD6splK6vaGqGQDxhyIHvtaJioh5HqnkNQdLxUASA2oxAcgIVFeppA62PAAwUH2MEh8OcuIoMD3wZESjLOggZzqC07CLDBofKWMbsM4rRjdB6ow0ecIeE0gQi9ONeHmIWFR8l+s-QkdKJsHI8KRjg5oEMHM4Vizs0gRsb3yL4-oDwrI4TjbxCFti66W1AeudTbjOAmWHEQ3jYNV5ZoexvYDEP2IVHJYDsow1UYvxn7w1BGR1NES7TXIDioKzQpmurxGRZ56s7oy6pcjNG9DLRyg5xjaJCgjCHRYwhRM2MdamU+meeL0V2h9F+ibg8wBgAJiDHJihQYYowSYIy5y9pIz41seqMgmZiCxFnQVGuIESZj3hNIZ8XOPpyGZkSiEteP2Kj7H8uAVY8oQNzrHm8pgbY+bnAR2BtjmRXYrLHOCnFJp0JAjBqlMH+ojjqq441jtbyT6ID-BM40CPOI2y8RsaTmLURJmRG69Xxp47sYJT7EYTeR6BafK4NoLuCX+x7NENOPkxMSd0nHYSawNEkaY92GItPluN2bT5B2TGU8WHiGp4QE+ygX0TRD8C0AiAtAACSGOAnB9bW4EoMPhKgkdxfJsE6drxCOGiDKJSYkMVmLMHwhd+VabSZhPsIxT9+7IXCd5MzDIhb+Hnb0UezlwkTc+QgeTMpKTITsEBD+HahES6Q+Cs8SolUU6JrKP8lseeGXBiBymmSFm5kmmjCItFwjrx5VA4faOVGOiH+acKPl-0ymfjspHTXKc0kUn74lA3A4qVkNKlmBypDSSqZUJSzLjapghP-jdn3HyYAkguCrItXPHmi+hVo7EcMN4ibSp8+zUdsBWc4rTvBS0s4QsLgkhTnpwY-aJFOEwZT3WoHOCXIXqn7kc2JSItKNL+lm8+pSFdgsc3GLqTQOUfZcYRMH45C5RWcBwaROaCNcgwSgTadjN4A0S90oUaIbkJrghD8ZawliVjJzL8hhRpMjkYxIpllCUZsorVnkKEkAwRJAWCmfcmBqdSzpB1TPFJIervjhqjIdQQ5JoCsAOgtAFgGIDcn7QPJEYrydmP6k1SKZtPN6UsNDTJdZeqs2kA+I0AYg0s8UjYsuLXgmy2wwmQoTUhcQhCs0zM7IUpG7FTJ7ZrRBSc0FG6uyk00yUSK0Q5kkp9JHAUbEMOkl0T+JoovNB7KHGUd2JY4-idxKH4MTOJKnMcO7IDnygRJ3HYWbnhkncU3Z2aaOflMKkTc1Jskn2VpKjkZyaQIk1qdpikZipQ5Is6yWTgdkqBxqWg2iEmjoJ8AYxIkJWaBKjFRSro5c3xPcKCm2c8MsacYPwxoRtzCqUIkjn5U0nT4052aLWWmNDRVzUpk1ZyqbL+LT4yKoMneUBG9ljzWicEp8DGjjSzy15REYZIvJSxnzfZa81MS3S3npyT5wyCzPowBlYkDklwdkKU0xD5NGe9ExXgXMMxXyrsN8hNEmiIiQ9H5B2ZOQnPHlQyQp28-WYb3s77yEEiC8LOECiAoTD+IoguY7OJH0yc+005oO1iUD68r0ScY2fTL4lg480rMvbiZWoWvFACIhdJLOhyQ2ziEpCe2eQvC4o8wUpCn2bt0GD1pt5MNJcYbK2mSL0seeCWGDnSRPcck6WAyjwuOkTYDwUM66VmGUVgLJWaMsmYxLQV2igI18meTwlzStEiIQOYhcoslZMLzFDM9eRPNjAhTwoyik0frNcXSLtU7itmRYq8VQy+U-iotGDkhnWLtEQONUMfKwWjjmWRCZqacG0CuB2F8o+sV4B6qBCrefATJU4BcA5L2ZplR3ocBy59VLUbvGyZqWKVZKyl7czQWXnZEDyQ+IAkKQtV2gJx5gkAFgKAFoCop5gRASALQAYDsACAYAJyMjhUCwkU06keZcoBRIEIvAVYMTLhz0CTlaEZIHRIqGHgHhfp0xL0gEW1oHga+pyygWMTXiG8DlDIcJMMGAb8FriZIAkTwjBzPxP44VVebSRnTa0jMCCGcp3W+RoT7lugKTACEiCggtAf2dpP632hvLSQDytEPsGeV8NXl3ycGdcthC3LKkSMz5b4mUD9lcyqBDdpyUbQmlflb4f5V+kBVaTNirZb5ISu0JfLSVseClcoCkExkuVUBGlQgnRJzErl-xPlQCuFUNC6VcMolQWwFASgGVfy-lXMUSkETGVMxakngghDCYmEegFwKcGHQAArR-vKg4DhBUgZCHwnwCpCjgzmcErYp4hyRXI9VwLaQDqr1WGrjV8hM1TQhowGU9AkQEyvrPgYcR7VGIW1d4vlD2rFkJDdJMGoto5x-VANfWeIyRgvzw1UMqNYK2AWMgSG9q76Z5kBRFJ011ilNdOBflxrQ1bq-VfDCNUHAvVYQc1RwEtXWqw1awvpWAHQAYBLWSHWWSQEta-j5gfgJDg8CIDDz6BAZQQsMAswMCWwJYCNd1QYGIY41N9FMJY31kcqLg06gMrOrCzhClI-ZJdXqIQaYhIwH9MiFH37J-DeIiGNdWOoiACEbYcE82npGXVSwpod9XaI1QYGSsyyPxbCgwlJUUg6SuooYLqurUaxa1Jq71Raq4BWqKQW65SkBrmLaIN1gCmSELDA0eq61pqhtRpmbXwbUNyG+wvevlUgb9A7qmtZ6pw2Nr8NmUh9UFE1X4BCAVrQTBhAgDrARAsAdZcGQJiisGiSJews+rSBrwK1iajEFWqw1QbcNMGuDaOCE2uQiNGxDBuKFRAiaMNFGiDVRug1NrYNLa5Td9EUiVJtEe9atCUKtikb0NoGjTdIEg31qaNum+DSZt9mmhrYQUb5MZp7S0VVNZGzDZRuw3abaNl9GAV5rc1FlBNWYH2OWgLABxvNlm8jeBps1abpNOm2TUFpOCRb8w-sVzQpvc3EaYmi4cWokVLWXRy16mhLbZuo14aHNHnfLcdAlCgqwtGxJ8CeAM3CagF+o1NcCnE1lbJNdmqralua1fR6timhhE+Hs4WbitdoUrVZvK1Jb7NA2uzmkGHSGajNeWiUBNo61lqutEmvzVJvm0trcmK23LU1piYqa2toASbdSGm3xbetlWmTQdtO2taFNq2k7a6tqUsINt8kTrQrm60zbbtAW6rcdRd7DaXto2tWOGFi2XaAQ22nrbtr633b4NukELc9uO1g75wpmiIeZsh2baStMOv7XDru0paHt6O5zVjqCig6C2x4X4FFqy2fbaqW2n7Tts03+bktgW5rdTsy2FgQdjG7jdUiEXJDeyuyxrQwmEGgi+dtSePqLpG1UkxZ9FW2W0nj6FZpdK8OXfzvuQJc-M7IU4PpPfTAZtdFO5QLvAGTy7CkXsDEJrtADa7Fk76VBvrtR0IIT4xutXfHwt1W7BW76I+JbuV2XwndEuopK7p114CvdBu++L7qCT+7d1bunJO+lvjB77d3ymBOLvD1m6A91u6aHbuF0IIP4ieiFC7sj2B7s9cezPcoD-hh6FdEerXYHp-hF7-1CCIBKrr90p789aeoBDXoE0bEIEZe03Rrub3u7QAOSDPbXuUBgIc9hapvZXrT0j629mJDYkgi70JIzd+fHJLZHxAG6ME8+9XQT1T197RUg+9vQwhwQb689E+vvbdH1087HEolPjdoWL0KEVNqxHzdZoq0A7UtgBRZEDU7oX6+CAhMTv6x2V0Kb9MoVZUQWhWwr4V3ARFZ2COWgJDZaTNlcSrv0GbViAq5AjHTWbkFFiDWmUFcskLQyvl8mwFd-IAAMWBskFcvkKKFLa8B3hFfUK2EGAFGIEgxKt7lW4dCLgPQoyr3LMH-8MM1NvshuVuFB+MMzwTQWRUiY9+BE+5d4UJa6FtpKVF1TYUqQOERDcBaA2QclV7kuVih75CqsTkq0BCVVaIkodEqGG1DM9dUTKoT0KraVFB9QigaVWVJwVXE5TAIV3wNqxDVy4wlQY7jsrv1QG6w8RQIrNoAjIQNQsysuUaHHC5LFwrcqEOMJkg9Hcgk5DEO6GpDUR5wrIboLyGIg84I0mIfiOJGlabUMwwbIGm1C4DPh4lahpCO4VuSIR2wzUbyOkHfkkqrw3gaqN+GRgjRvvLaRQMNHmjhSngw4T4MxHBDiAhBN13IIrIUjEhvQ8MZkPsG5DLgc7rkeYj5HJjdTdSCUdZWVGBi36zlUCtUDmlejXK-o1oaaPcHWDoRyg+0dlX0a0ipxsIwMdSPOGTDzgIw98nmPRHMjDcbIwCAsLfIPl1BqtvbHlUoHjCAxpw6nJcNHoGQHhyVQCcOMQnKkuhzg+kb8JnL8Vxhh9Ycu+SeH2DCRO5cCcA1dGUDAg8E+wfCMyggTuxkE9mA51NoYtwmikwMEJOQnEJcxw4E-gGCnB+8XANOKSUqRXLETjKpVd8kIC95RCvhIMDUL4gHhCAIgBIzgRUBQFUsEQEzGgAiMsHzwUqok7SZI2qb7D4quYoQGgBpYyscGMODnDzgrJKIXAM0uQKwE4CDwOxmhL4YnWcqrGjK2o8EZQM2EuVqRKk+oe1NsHWTiRSwySbpJknIRLJoM1glgMRn9jadcRYeG9PHHUy5xtYyybZMmmwAZpqntQIy0ywwQWpoY4Ge8NuniVT4hk9Fuy1xnSjKoio5Wb2MenkzXpv5eSYDOUnszUJAlQmeJNJnyV7Z2lTypCMQnMz9Z1E38ukPRH1V+Rrk7lF5PYCBTJR4U3kYrNMKWziG0k1ytHOxnnjsxtEyMbnNzEYTbhiXCyv7O0nEDPBPoxVgebanbzlxnU1EWBkjmYzQpyVaOczPq0Yyn5kM0cZ6OoVDjr5585yX7AXmQLVKuo2Be5XQXgjP56lf+aGM+m4Ku5iC2IddObnpiQLTA1yr2ZcEzyk5w838pPNSJ8EjiQrFsvE76AhdQBwrNsavPNmISeEEI-8RQOgkDzsU+5f8kxRKUhQjJCi1MEhU5Hf9XbBwNDNpKW5pAKAaQCPAAAsJRipqisUspnaaVyxZT60HS2J5LZJaelcpRIbn8DPeTBoab0t90rlc5uIzCr0BwruwI8MQxUxePQmqwjlshiADABEBgQGccTqXioGmqQQ7fHOCJjAPdh0eVSDy3xFCgABOWK9FfZBxXorBIDhmdgu0BQXA4VzyJFe2BCB0VwwV0loTTjD8tABqgq9wH6C5WBAmVwCJFctP-Jh+CyS0yGTYgaA0AoAEgFwDUD5xc41Vh8JFbTjhBhgZWLQGVjai9wogCIBgiFdst-Zerh4SK7PFlDLn04-CWcFoUQhtXaAegOazKEivQguAGgE2tQO8zpwuAwwHa2SEiuAjMBPw5XnYhU6l5CUIwKa7nFd49NSQkV9FSZlAB+BoAmp96yipst2WdADltS1RQ0sliGDiV8y5HQMuQ2oUtiaG1j3BuSqrL4x1FdgDcuQNnLs41FVje3oY2lLZDCG+yG-kYAYbutOG-hYbj439LqNzE2MfuVA2-smNimyLRxugQ8b6ybERU0iteX04EAglsxH8tP4grEqZm2FYBt4DCAVYGK3FYStxXkrZdVK8LYaAXWPrEpuAjnGGD5WYQhV06yVbKudWKEOcKq1LdqveX6rZ16gc1brhtWOrXVtQureltgABrEeYa6NcIFUDaB6cCWzoGdsLWdlFIZa62jWvkQNrwy7a+bcID7XDrxuY601jOsB3CA114Eb8IJAPXmIT1moenFevJ2wAX12i79f+vvXlMoVnQJjbBtYUSbWltSIjcVvI3q7kqwy7XcLgYgkbVdqCpZYZvSrnDVYAAOy02+6HNsXIcrZu01UVg9zu-eSuWvnqbf56e9uRrvfyN4jdru83b1PMX9NYJ8eyjYAto37lVYFAEPcjoj2uba9+8qiuPuL2wUy9hg-fRvs-Iqbhx9ixfaXv02BDvdly4qAcu72sKZ91y3-agqorQbztmu2iYXtgON76FsIkA5nsf28VjN5w1tlupwPtyADse2-bBS-sibkDFO18KdN3XSkMdgUAdaOskCXBEqa6w1bDjZxXrKI7OP2SYHvXu7n9u5c4cLtohXlaDsFGfZEugGZr3YBFX2CRU8OfkmxDFVw+xLJ3DsBD26wF2IdgBY75D+05Q9kclYaHbJehwKSYfO2z7vFyohTSgMmjedvFsS7RYAN-r9lBj-i7wDexCWaFguvihwE+oaAlm+KImoMGq4NANzB4UlY3xdO8apWB4K-cE7eQm6BdxcQdnyN9Y0X-9OcFx5oHcf8VvHLS-jaSH4fUW-9LKxUFk67Y6Gf9OHOJ98iovmO9MB4Mx0U7-14J8EWuLMIY6OCU1xhk7ZqQtinZ5TaISlGokmxyL5t1Q2fUm1U67YKk3BflB0g09xTKVJuM5drcesZC9zFsei27BM6acjtlYlFrp2iB6fPdNnzTudhiBHhEGjnJBiEBe1XZGTZFuzybppezUYhsARBgAGycUznYzi52OCudqTVla8W5-JaYOnOx2c8j50R2MBiDxnQLhAbqd9CEBEMoAAAOSohYXo8IgwAA5QAaGfm2tgK00PyIRVrgIbZhDZwIgNt9WC1dNuUR9AycEJJ2CAA')">"gc_flip",
+            <td><div class='snippet' id='javascript_110_6_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0oBJsANZK+hzC3NYkbBLcapo6oAIGoGR0FNwkFIygnqAARABUpGyMjFQcJHw1VUE54ZS09LxMFhRk8iIZjZyZGlo5OvqGxtHc4zwVPlU8FFXTMzMA-AVFJWXbOzoAXIvL3KuVVYwGW6en+wBubAJE154AfBoHpUdypU3h9uAFQKEnjsLildDRrGNGBNZCcoVCqgBVEixEg0ADu9H0AEdPuIGPQYvFmIlkrozlUVJ0dJDZgYjH0BmwhvIgqFCKQelEzDQzDY2GRYlkTnN2aBxOLYiIqsKzAzefyIr1QGYiIwRvKJbIQZ8pTkZQsDYrlbr5AyRMbMuqNYL6A1GDQyCJ4gBPWT6Qq6XiMU2s+YmFgkIgCAQif3woMqVE7fakXjcAhUVq8JMzGEk95e7i+5zcVwiFxuOOB4MqRNonT7Cux7gBhM56GgN0ewvF9hUGNVhOMkL4ECgAAqAE1YABRAAioFgAHlIAA5cczgBK4HwhRIZNXGIAsgAhLfMKezirVSMSABGKQ6uD3ZJPS6XABkL9OZ9eqneaBoAQnxfCgIHHTc1wAcW-K9bnEXRMw4EC6DJWAINg39bjMChdBQ-cwNgTclxgy8sOqMw4WQoJQNAQ8Py-Mi-0jaN8LJDFVznGcADE13nTC-1TdNMz4NiwNXJdmAANQAQQ-DEZ2YScZ3HATblxZgHWYb0Hho1CwJPYiAGkZ1XZgAAkZxkzdVKY247zheISGYFxdE2IJnUiCk4iUHDdHMXCRCoXgAA8Q20c16AsKwRHQzdMNkYKwqdbovOiHzmBYgQAuscK9DZBZousejGJ-WQsuHPlUq1SklA0rSdIoHKRDyyLtUsYrJNk+TFOU2yytACqUoFNLavMKjmqS1qCqijrYuI0iBqm4bNSiMaHJoJyXNLNzJtC6aw3amLDKXEyzMs6z+tnRL9pWl1QA2ZhuDyCRWG9MxuBEZ7uAkA7ZVMW8H2sb7ftAfZD1Pc8mLOdtTAAoDSxIL6XrUfY30-ASYaeUwEKQ5GftR8DINXRaryx04AajGMQcJkrMdhlghIzLN8dB-YOK43jV346H21heFWdkKpIBIEFgrkd6+FAEG1RHTytTxXQ2DMZqaamM0ZqO6xHpBt6PtZlRZBpu60tIRXleavy-oWPsYytk2tVMPyRCt9XQ3+lgipd3CHHsdsAEInbmpsrd9gOg5i23vd0WtQEcdty1LNxXe8SoIbPeKmIAHyz9sQ59m5QHR0qrxzvOk+jrwfHACDoIEsunnzmPC7i+vc8biuU58Ons-b04m6ryoOZ4vi5zb8uyy7yoiJI8eO8ngvU7orq5IUpSVLn-vO8XnwTrOiyrJszDKrCEbHYjIh7xSS2C+yd2FidwLXccEsF+bpf06hn8HaiOHAOy52rs74RU1o-awz8nAD0LsXTCP9wzMFxiQDgN9m7APyodMBlc46QO3u-autcSawLltVX+ntcIoOtvAwBBcX5QKXq3MicCGAX2jBQt2ICMFkPATQnBb9B50QxAxIhVUz6kOYEzES-BqGoOlKArhWDaG4P4cPLmPNv7ENEVQia0jKHMLYYovhLcFrCNPqteB9V3ifG0gYNhaC2qYIga-ZOO804rx6uvK6M4mFw0ciUbabBdo6PYegj2+jeHOLwZUPepkD6XRMbgMcsBEISCoNQF41wSH7k7CQXg-x5SlEYLufS2pkmpKoOk5gmTMrpCWMwAJZSljXiEOIEQOYvZVH6IwMwAg2DeiqLIAAjIbNpc0qj8zwoM4Zpx2kAGp+mgGwFMnY7SAC08zFnSBGTFWo6ylkzHacAXZmzpmjIAKRHK2dYKoqcLknO2f7bwtzlmjIADxPP2a8zw7ycjtO+N8nQvyvmyA2ZcpU-t5lDOOc87ZOd-naHaY4XZuBhzPmKZRKgKS0lKFAmwApTThCtNOM00QVQJFZnmWSvgeycjEqVDEBQzBYCQCqNoWQ9L5CMsgHWGYw5TjyzWhldFmLylKEyUFCQ3TdG0uVKUrF8yMWSqYfcQwKsSgvCsHQDIpQWrBNokKspFSqlpDGBUdsMRRQVlkPqrFlTNHVLGHUxC1Ali8p0Hq2VIrbVmM0pYxpngzXKxEMar4vwvZjWtZ6sVwbDagAIO8e41KngRsNXa4NwYmTaHdRig12L9K4qamm01TxzWJ1cFaj1FScUFNdZmtFFbc0EXzT60EQIA2igIBUUNwcK5RwILWWQcaBAJqhWiZNDb8llBrSEwqc0vbtlOMrD6OSXb1q9S6e1SwUT1nrGO5gVaC01ODCO7di6SjJ1XVUh0jAt3bqhLu-dzbST9vnTsIaGizGxp6RQYozliWsBoJpFsFB4SMBEAoJQFZr2+CULbKDQ6ZAvtvWicN5CCAkFkPKNySFmCZjTGFYJeQwIEH0F8OU7AsNIJwzk7gIUM2xs0SWAQH1rDwbyjkKgHaRCB09nNVjbHThtXNirZ2rG6M5GCNLId1w0FPForhmj15iPcDBIh2NJHFPqZmaAAZYnTi0RBteJsonVPgf8UGAA2vJkKABdQzz1mMG10zsUzsHLPUZs3ZpjKQwOWBjHxpzMw2oof8mhoK7mp3iZOCybQigvMsfEFOtqSmVN8jHEeGS0BzJ8X5fQR6e4f1lGbEkcQKRdE0hK1cjYssREfuVXuw4BSiu0iNL6sr3BivFCucqu0DoT45fSlSS0Oq0GEbIwqa8WUPJdAYzqPUIh8PqFAO2S014vYhQw+wCUjIltPDah0ug3AnyRZOJk7UIphuw045TaMYotv8Z2OMpUM4JUUG9GNiUFxlywFlu2CTz17jBNk8U4DZg7NlktBF04K3KhRwhwFjWh0QcBeixCfA02P2ZjKe8KgAAvT6933uxAm1TALe3eAHaO8yNHOhTudMGMMUYSwkQ8AJ0FpnExC7Wj1I8es+xZvyFUxcREHOl7KhFDztEfPzvcrREL9nKxReY+oNjvHEuoT7CV1QFX+PBeXGZ18NYlo1dPH2JaXXj3MTYlxASfKJIlgUAuDXDLRl5nC5Z3RvkCPZR065MMJhY1Wh4mYDEYYIkLs5FolAAAWuRMa5XOtKmjzOWWEe0VkGvHH9rtIlRmDICnt1xSCA9I4BnjK8fvNVCL5wfPtaCKE9L4Nzbiop20UtNSUsjRmjOUoh6BvCQs8VaVG3-Qbou-jQ9DXvJRH1OVEzx1ivyXJ+0ThDQMCs+y8D4T1UFfmwW-FJ3+YEUUYuS+ThOn9fVJy9XIPyqY-xRx95733Xg-+hxDwlP73i--f5-X8Ak1V-wG+gD+S+xSHAZA7eP+QIuQBK7Y0qi+A6JGiaOg0qjAZAuKruG+P+Q+aBJADISB2g0qQEvAGBl+m+FeRBeBx6NKBKVQgeJB3+2etB3AeIlBsBNB+gAgHoJ+9WpQmYnw9BEBjBHBXB9++WfBh2z6Tw0qxQEqAhV+SoMhqokhRKNBRB8gmwbKmBjBahu+MuoAT+ZINGoOX+ghg+YyIUShdG+mosfephW+aqIBde3AxoXI8IdhKQUBtKbBLS5hqoRsFh+B0BPhDhRsosgR0qIIchZBVykRyhOw0qYhkYh2mhpBWBVQiR-BcRMw0qPeeeKRDBZhuRrBUhNBASHAwE+R7hVyZRwEWR1BPhpAzhURaRjRLwxRKhPh4QzRjBXRtYJwBhYEbARAIUVRnhMBJRPhr+3RZhsR4RNBsI0x9hugeEdRyBpRixFebA7R8RNBd4GxVyexqxBBNBeRA2BRW+j+cxPhxBlR8hHS2x2R8x+xSoEhVxJKBAzxleeB-RVhwOfgkGthdxpmkGjhZILmvmUBc+jB4J-YjAk+dW+WgIYG-xScUGY06SlAAstYdGCJDWhWMJQ6lRGJgBLUAxg0zBZmkJWhZhgelJoJYEtJsGgJ0RSojJEJ8JNiiJjWtJkGRJQGWJU6uJAI3JFJsGfJmJuUZJPeyCAJJhdx0pdJUpE0TJcpLJMqNAyCsGk+o2pmmYCERA669wdu5ApGk2JwOpfgIoYxLS0qmu2uCCTe-SqmSG2gOqPwhOSodpQgqutYU6pmVp14p6y6-pZgUGxJbhVpU6o2V+ygd4eQRaUItK0qSe8ySegRHRJKue8yue6ZOxnRxe8yVeHAuZjxkxf+8yO+JZ9RJKN+R+X6H+pxtZOo9ZD+VZaxZZq+7eb+QBRRfof+XZgBDZbZxxPhw+HeTQLQwBG2Co7eo+k5uRw5QRJKwJqJ8yK5rgR6zpI5y5fgWpsgBJm5Lp0qPJq55UFJkGi5x5op7JZ5QesGl5NBCpIJ5aGplJD5PhCpe5JSr595iW0RsZ8ZlQQZlY-57AcZ3AsgYBoxf5P+AFpGwFTWFWcFRsLhgB0FdGMZYFgFnYZgS6IFsFWFEFnYwx6F1O2gp2mGogBOy+-ZV+UBW52gCFQxIxdFKFlirh-kdFkO2gQpBWoGue+5fgepuEBpXkCC3AxpZAjoy2nJeJoGyWVBLpZxOUzUVe36fif6wGgGEpoGDFSlMw65QYSoVWi5+lOQB5xlDwplZlPFbIqqosGqJAWqVFN6NlLpwWOUilblaIeQSCCgsYtF0RNY2JMlTUXJhWaqlRfkzUvlHA-lL+QVvpAWp2TZd+DZlSSMBOqez+-ZfkGmymllu+8Oswf+Q+VlAVnZ9sqm0Z-5xK14CVkBxV2geI8g-Y1wXG12A4tVwgscMm9YtE4VYObgUcTYMZxKvphVk+26cm7m14ZsSswmgUyWk1IVSlhloG6wVlbmeGtmlQelteBWnOdQaQneLQbQxut6+wAeVMzUagFw4VTVMwy1dw5VHlzsVmoAWmQy3FUIFlm1u+21NGu1amBV-1U19YY1wg14UckNCWj1KOTwf1Jl5m81Fszsz1JlagKy2mu1W511rCzsP1CNNODGCV3Z6VoWWVyB+QN+uE9VpVYNP1NKNN3VZIlQDVtIjAj1LVbVoAHVLCXVsF41VNOwM1eGc1JAQmzUtNMcj12VZIDo0NKJG5K1gNNmctOgTYI1FcsNdgtYZVu+9orWGtEUuVdNMOu5EJqtVm1mJt+UQtUNMOvmiFnWggPV8Nv27YFFTes5p13eZ+GV4e9Yo2nBaB2U0OHpdwjpTNOgPN8Z-NmUVMIgod7wDpCovVeltEitlQRmXB4dTeMdOwHGfNYCzUvWItUIYtCmlQqNi11gvWdt8tDJFJeVFtMGVtjNattt+1OgdWudYdadho5JQeVVSlf2UmGgxNPledg9ROTt-YydM9cOqmU9qOTwvFSJqVLZuRfZlVdZ3BuRGVP1G9jWZNg5D+u9-+9u7+D+R9AWJ9hWY5c5-tHo05EovtE5L94BaGP1bUNGLYRAxQLU4IO2zIoD5FDG7wKd9+8h0agOOgxdIgXYnowafooFbA4F-ClKvArO6D4Fq2vGBKqDylsDNSRx3lICBFGDeQRNkmAOfVD2yxAsxDVQR4UY1A3Sb2aYzMUsV+Fw4N2gq9e2MZUDIhokHuJ2DGnBm0RAKspDGQ1FxSIIgZjQ3YxDmF1D0lu2msyjS82Dqm+wj2LDWIOI+IhI0R9IehTwFwWtztIIq1VO6O90-9ZAgD+O8DteZIwlUBeWclLsZAP1iDnVYW4gNYHjgWms+2rQlOOw499Dqm7qn+5I+p66LjgDvQD+pabg3jDjo6Z+wD4DUIf9IUADQDRNUWkjH6Pu3IjOVwuDh0buBu8E5GmwBjY2bkuujTnOwlUDVGKTYlRpnwJpF1yYcoElnafwupBEugolGTgzJQUl14Rp4Iq9OQcuVwnOojaBMD0RIzewnY0YYjVRnT8uTT1Qj0V+ezOQ+w0jsQsjxz266z+u3TjarCIoKQXIvQcJbTAZ7pi2IZUBCFALsgkZKzJzGzouRubTZujzeuIuaw7zSsXk3z26+wAL5uTDCIpzQsJj1u5jdu4gFw6WmWfEk+KObU1Tfu7690Y0IerVrQLt18aaILoZsg+WcI0Y18xQIUdguqxSdLIkthtJArDLKKOQJaiQG6EzIrn0VQWz3BlzKgRWG6MaMZaaU6Mrnprz2UiLnzqEdooLJwmrVQPTrCwlMzhpElQzUldoboP04FIg7LQEeQ-k3LMg6UoerQIVsiDT4o9LKWpi90lFowfrIkuixrlFdofWp2Fz-54VoGMraDsFcDdimsvjwphWsbWBib9ttIKr0bDGdWMZ8bIbnrRFarNSLWoIeUD9oGWb2eObFbCjVbJoGFkT5O0TTC9bg+jb7WKrwSQWobDL-1VRdokr0aToCSYAMk4A4AM4p4H4W4gbaUdr94eQjrRQHLLrrANG7rMreUKVLY3AIqITZQsgPSD4Q6BOsjvA3B3jp7cGGD-2mhZbv9oCBEXNFTOQPrsou7SslAggT7Q6G7pQW7XLu7aDUlIqBbH6f74oTUF7-2YGEH+UUH6SB7DGsWDm3j57QHwYfw7YtErQPLfTa+TiyHPLYrAmciDpiESCQau7pHVjzwqHx76SD7Vqc0Y0iH2URwug3oDHJHwliUH7MaPHNYuu-obHn0YaGU5rszdAgnTUwlMaOTuHl76aFTP7Nsu7hc2DoAOceiWUFHdg7Y+wUnJ7WU5UVMzH2gMIPL-7CHeHPmC9brMaWHpWTCN7d7H7HHuQeHL7-reUeq5+D0Ni8hObyoj+vxdeRZ143bCekXRZ9J9e6+ZbQ+0dMXZIvzHr-rSouryLP2TdYzyn3AxhJXpHFrYlaTYluRWXYEY0ZXthNXGTmSbbvrooVAEzdWVAZXQUXl3ljXnX0zCnzkbrQU1lNl4nA3FDOwibPdZlAlC3+lRZM3s3OQloa3632gkZi5OT-ucnI3LoJnuiXsbr1n0YMH908n6643KnA7msTYKn3iR31XJTrjtX+T93qbiOztz31LaUPXr3GTLXdAmTwn35ATwSdWUcEPC54IAPNUGUPHT0oHAnKPxDOTD3h0XsGPlbyTk6TCtz9zPHydAX-nl7-baCWd7wKj7onoePGQ6n-2VHHCsoujPg+jJu0smLZPlPxj1GPDuSPHFwM7c7C7yetnoAFwUc9jB3VIoPzkYqEP03uXIkVqZAA6xeb9sQLL+H1PxSIUQ1p7rP069ARvouz9ezV1GUz9p7gX6vFPz7oAVpGvUvFwFvawxQ4g1vyl3vogEPObqvrvn6nAbv7YHvnODkuKwwvv60Ss5AIwgfQ7RFqvq32oATEfoAnvtwHAAGwGcfGUefwG9vavrQzPhJGf7v2fnOSI6Shfg2bA7HyfZbOv4f1jNfouAB7+Df-e5NpfObm3VfWfOfFEKQBA8IEgvf5g4-k-A-KfFfUGIfOZI-nOvAl8KsGQEg8IfSoAY4MkvAaYuSwGBznBeIJSmY1ASC0Giw2--HoA4ZughS3PbpvwDDMwdOPSAnCX18JbkX61eBR6p-16QiAf+-kP-gv2qAHlABqmVwG8BNLmBPQOZZHFn0ewQ9LcpjG3DdzSivYPoovWdvOxPCLtqsy7JHlSDt4t9-Wi-Flh82RZu8+WdecjBsHi7hcWSObZ+hAQ3Qm8ySWkIwnTzHy8CLCJverg-19ReprwpgAriDyEGCCzAUvbQDbypBSCweRhI2qCCegWEHe5fJ3pX2UH7h5B0vZSrulUGyCtBqfPDqb1OzMYJ+ugV6GNDt4E5a2PmXQBsBbaipSApJALHAJj6+QkBATBHsdi9yFRZ+tg4PLbz9pMIOB47GpEgz9qVdRuuiWxgvQ4HYDegIVGrPdA4GyDYhn9eIS6CyCFM2oSQmMFHBSHA86ASVRHlEDt7RCmeog9QUYSlSlE-aFZPtsQ1kFXc0o6-CVMHh+g78g6bPBYNKm6Gb8+h-HeZFUAAFCxoBnQrUN4IQG55-GNbWShm34qa85AztdNnxSWHYlCmVQ7yFSH97z9W+Ogpfsxj1b7gteYfKvgwLJB7h+gaUGHPbh4IPDegwgsigwCuwsA9BGg0UPcLKQVDguxSf4WJXCC2EfhqgkEb0DMFbdtuiZcnnoM05e0ZsIQuwRlCOEV0nB6fWus1ChFg9wgpJQup2F4DwCpKiApYQENOCe5qOOPVEWEMOH25KRgjOhtJj5i890BJ4VwHIHtwE8qujsV0I0HtZ5BLGEjDITgOeF4ikY-vPIV5ESE9pna0o1IYCKYRHDJRTQnwv73mRqj5eSgaPon2OFUDThVwjgPQIN5140wbNUAHqOGDMALRAfAiFOhOBBMWAKPVQXaIzpA4683jJpIBDuYqxSeqvV0RYUA6XsRA7o03k4zSjWDJ+9I3UQnwZwV1EGWwpEkWQ9EuknBAlAnkiO3RxNWRSleYWSMWHICV6ntdsG1GjGhD4+MfHkB8NzHhM0BBEIWJyNyTWj5AvI0buSE7CCi123AEURUzFFahWxto+3CICHFKiSAcossFHDHHlCJxswqIK2LDH251RJKVsfMndE6jmAxfGgAaMd6q8cytwsCHaPi6r4AMdo94U6K+EhjnovwpcQlkUZeiP2PomRv6KA589neQY18aGPDGk5NYr-CriW0zH7daxLIz4SXRYAxk3Ry4h8WSESAsCr62bSAZBODGJA7xetX8YdH-EZj1hyY0+u1m9biZQJ7-BseICbFcioIS4ccEuHbEuh8B4vIgZL1FGkCog244cS0lYnjjJxw1TYaeJlFpD5xuWfPjuPdHY9ZQ0qPPv+nXHLjNxdfT6JQMd5D8DxZo2Ce1nglVFS2hotvMJU4HBpuBU2Emh+grFojG+7HAnPzluy68wuYVPxokFyYzACxvgikVpyCFRQ6RY0WSZuO776Bdx2gxSVD2UlgQ4JlQMARpIUk+1tJtQuSQ6MsEojdANg4yX30HIDCZgTgxIFanOwQ4fqDk8kcgMKbUjBhrkuKTGMzzk0lU4UgiDpJiFaTZxXElzjGGqn9N+JSqJvp9CbaTAfuYkmgrJNaHJsyGTCLya1P-IpttO9AaVANJ6l5sJ2+wowaiJ8nmCNONApFl81NEnBaI8HLUJUCMl1Jju-3S8eBOYAQihB60wEeEzWnrowRJhQ6aKGOnoYy+RFZbnCOD7nDkWb7TCV4Df6dhzpHg7bNlKLH+CIQ+k5kf9jzGnASJ7rKoM2MXBbhuIS4TcEeBoleQ6JhA4gVOlCADihQdIm6Sb1EkLBihekpbOjMKnxSRAIoFcTnlRHzJSZk7U7OGlXSqCjCMI04XlGdE8EJ0t4xoTBLAihcH0RhR9J9EaEYTZQ-4sgAFiiygSWZn4r6AEU5lZjnxfo68X5nJ6fiFZUsuQa9KFnvSsxgMiEOLKvHITRQHM06fvjUkRckJ-5XmahI5mCyFg-43CYVllpLYxZwM+sbzwZnVBcWZjaWBYVfxNAoguA3saADF7IzGJ-Y5ifAn1mqzdEpgdgFwD4Bu0Wkbs7fO1hIH9Z9ZEBSOTjPoB4yrZ001CcNJclLklQiQeZFNMJl6IeZQgxoZnL0QxyeA-AWlInP3QpzTsFclWA6AzkdTcZ8ohejnLLn7o1BJoauQkTzSlB5kUtZ2OXW8QuigO7MgItXOjmcA658c0QInJ47NypGM83maTyrmdys53c6mNLKJ5vjEExZIeTQTXkbY6OxZTcVdNVmMynptAr5kCLrwig5Z9zIVCTOenSCVY52RoYtIuGadiuysM-FSQNnStBUdMyuffIsGwj6wV0g6ecJySgYc5lTe6FtLGi3z6msoc7CWmMKhoWosgYBR6BrASNv2Bc9BRlCulTyEFj8lQZXLnm7ya5i8uObSibB-zqg4uASS7y-l0Kf5ooK6bVO1plgBF6QsOdwtoXOReZurJBZ-IkW-DdEUcARUwnOz5z74o01Qn4UGh9TppxPYTMkjEDeh7wQEf+S9MPH1C6e3YRgIYoAgCATFT87WW1A5411BekiMzjzzhDWArFRi2xe7Ktyey9BSMiXgyCz54z7GfWRJDJEgCbhQAS4WcJuBkjjhIAS4VcDuCnZOJOxcrNcr5gyV7FUUdeIqDwVwjOsUg+KFpNMGVAdQnSG3FqUqAyISFj0dvdIkUHELzJSeFSqwHUgICu0wCDxI4bSnOzXJHkqrdrEqEXzDKOAieSADHjwLUpFxbSh8EkGcgcAAkd4CYPVk5Yuh2i7S-yGwC6XXwelx6AabUuaVJEGQx6IycnQJQDLH+4lXfEmwULK0gwZy+2qMpIzPLUJmS30uctmn9LRQVQG5d1nGUPL26sJd5SMsrxvKgV-4GZQ0r9pFylgPU15cpgeKNL4ChcgZZmHAJ+QwVEyiFciq+UnAJJJfD5XUu+Iop+sQkXQAIG9DYYAAVk3waBkBEIOEPdJwUYBGBPoP9auWUSBC-BF01KqjOImoxUqaVlGelW8FQLMrRAaGQhS4M05lycRPKkQFysYU8qJmoWEtDiL8iyqOAJC6aVLUih8zlVE47lXKombjylqSMHlaIv6y7oxUKqkaaAANUzQjViquVSIEpXUq6VDKyVVQBZVkA2VHK41ZUNSxgB0AGAUAEeHnawzJwkamSKuBkhQR52pkccGIpuX6ACA9ofkroBugLZHVj-FGpLQWp7Qwo3dMuQCoMBZqJSuaqtnlALVarAoU0YGiCE3GP9kpbUczGWrEWYrbEjqt6oFAbXcJm4X1PrFnWzUILrSogc0jQXTXpgKUwqr1WKp9VMq-VYVQNd5NnV9pqUERcdd1lkCerRVyCcVYyqlWsqaA7KjdbuoMBZFbS5AHKPOrTAirvVEqldf6vXVRSsVPsRMCijSwZYss3MCACpAxCwA8lZIaKr82mBeFqydKQVOQmxUzc3Vuqj1QusPXMBj1vqt9eeqDX9qY4N6mgvjQAS4QqlTwA9c+pPWrqz1F6z6ARpyh4afCAeADA1BsTwb50pGpdS+tPUBqsN3khjXzOsRNRQ4x6aVLTNfLwbQAbGo9cus43vqQ2VIBUoJunX0aMoG0LaK5AE1EaENKGsjRhrXXcbqNym3xM5DU20bt1NBSmFfH8gsaoQzqsMK6q03sbyNmGqjUFAvgWaTNpmnwn-CAj3qZuNm9kHZsfWLrJNHGijVxuc1ebCNuGjzSShxi4RsMVmp4H5uMABaUgQWtDVJtC0ybYtV89zUJrM1cIfN86JLc5HbkSb0tIWpzUGtLqhxotnpAWoVus3FrDVpW+zcFsc26bwt9WmrXls82MwXFWYBrYlqa0uqWtgW1DehtfUdaqtfW7hpIly2KaYtnsbRBpqK3DbbNo21LeNoy2VbvJTsZbVFp62LbMojGsQY1EG2nBitKWp9Q5p02Ubptx2vjWdu60La6tzAFTX4mM0JaLta2-zRtuu1tbbtYW+7e9qM07R1NUW5FB5CzTCoKkOXKDe2RJTAC+k5abNDajFRI66NJKcZNmQvSaIvomLTHUqDmQo6Yd7gsxCIHmyyBvQmso3lpmp21aqgayEnTmjXReQKd62UANTomZG9sa9Ow7UqHaDM60deOynZzpp2gAagYuhnYciF2RoRdHOrne6SN5gA+dL2qoOcll0ppydouxXb8CN6nIpd-OwZUCgv6k7WdbwnXeLqXiq7oNVQB5CbrtXy6qd4u+3YbrV1vJNdZO47pbu52gAXkbu23S8gd247tdCu8XUHoD0I6lQfyT3ebsU4+6ldoAX4Dbqj1VBvgwe1HXLtD3O7fd6eyPduTBQ47M9Wu47hb1+D+wwoDO2FLHrFQJ69dBnLOPnsLlVBEUNep3WLt90vx6dkOopHXigpw7xiqesOgAjPwPrNt2mybXdu8m5EJmuRQkT3tA1gQoKTrTlroFKVTrtA-4LPEspWVrLCgGyryMRvhQ-Krlfy4fcAShVb0D6o+glTkFRVvLz2p+mDXJrg1EaY0-cgAAy36dAjS1AugUf0tIBlOG55Z-u-2MU4VVQCgvcu3zlksijS4QtswbRX9+CFfeFVENgPUoiVO4tpQge4JEEuy7DQVXQWUJJz0Dq+I-V2M-pFzyy0B4g5gaEnviYw6wcAtIyUJLJmDggQCH4ROB9Kn9xunFdgXQJQqxlWROZW+I4NF4-VKKiA1AfRV-LN1AhpgkHhBJQq-9uBMA5Qa7zwroGSBlpagdJRmBb29+CsA8SwOMHtDRzfA6-kIOZhMozBLZd52MNJwKDFy35UqArV3KXlShxUtAbUOKG6D1KRpbIbcP-Lx1Ga-w9eVBWqGcCMKk4PAeehHNSV+hxwyCtqL0H-05hpOToYOkCB+A1hgQMp2ch0GoUBhow6kZcMn7AD8hq9Z4Y+VskojvhmI1CoCOwqqDdwGIwAdEAYq712K6I0IayJmG2lUFVg1stwP34rDSwGw0UfsPHpeDVR17dFV6PQGKCGhsQ6GI4NFRpDbRugssdyOmGGDHysY7odOUkGoKmx1o1ocgO5H1CrSvgwoahUACoVKxrInMa6N-KfEm0D7WDvvVPHrjuhWZfGJGBtL3gI+XgN6GDw0B0kxBOAxAZ2NeGRDx6McIHlyAiEtQNgrWCcDHAYhDDJ+aoIvjOyX8UgaAOIxAbRUhGe1Sx+E5CqyJjhoAIoN7OBnSW4pj+2Sk-sia3478Tgrhu4zUbOX7U6j55Vcs0fsO-HeANxjQ0Eb+O3H5joRiUu3g+IPHLaDRrw88epTcmZTHhvk-pQFN3l2SwplgqKfFM0mwAdJ17jfxB2vwOmd+mQ1Kc6Ofzn9cYz46DoCTg7YjPySo28fcO8nrKHyx47sehP+mjTapj0-adlNoVAVsCjWLipmH+mIjBpgYwcfBVHHClLSkgyCaTjgnt+UJig40rhMhH7j0BmMyqb2MaGzDhxhI4gZTMnH2DUFSQ9wfdNFTbBlymU+fqKKqGfaI+OIW2ZhNtHFCiKyYUqaHRbHLj0A2g5EaHM9nLj9Roc4WZ+hsGLjLQBQnOf7OPHAjEBqYV4ZPIblhzi57w8+S8N9msi6pz0+kV6ZtnoDZ9G+t2fSPErwVpKvoiin0yYtClYHNfZUHh2b7sd3yxsxIGbMnnsdl+hFVCoWKlmGDbSs9E9FQq9AyVUO4pAstsMr6XW14QueUozDIIUAzAAZAABZiN2ynCwuaRiZK2WI80QFhcnO7m9idpoAxlCyg-HyLhFpIzoOMq76eAAyfYxkbaWbHjTYAccIoFjTOt8QSEAoCPm96dgHoLF7gJibHBFQ+aAATnkuyXZACl2S2oB5rDAnV-YAQFJbAC4hBiBAAgEBmgLpIXed4WlYZcKCkBBiFAbSzfzPQu8O0jJ6UkrAkBoBQAk4GgEQAKC4obL6SRCAQDex3g3srgfoNfzv7XBllugVZTwBsvwh8oWZ64AoCYDQFWgrlpcLoBssCgaAEgZyjf11DXAaABAGyyMN6F38BOagS9viFkAPgbB1wZkzZd2WdZQAUEaAMSc30RWor3ANiwRaVBbFiLjabVMpfotKhKLU+fNCIEGtrm2jjFzix1GwDsWS+M1qwFsqKhzXurRF0a9qgwBDXoVF5oC5NcuPTXxD7ViYHNYTMcXxDXFmNDZd4sZIBLeIIS0ytLCiW2A4lyKxMBssyXxrClpSwpdUutV1L916MDZd0udh9LhloQMZZoCmXzLHl0oJ2Gss5AQAYARk3ZYKs38nL6QVy+5c8s4EfLKQDjAFaCuH8hLYV16x1Zitr79A8V3wElaEApWYl6VxG2OEyvZWjguVgHAVaKsb8Sr-Q8qwkbxBVX0w7+bJNmCZtgAGrJS5q61fOYSXVrJJto71Y2uiAJra1ka-3JVvy2DrJylA0xe2UAB2ea9gYuuVKSDRUA22tb7O7W4S21xW-3MWT7WKL0pk8zRt6PbXDr6xoqCgENuZHLrJRz2zmYgO22SLIgb6qrf7NTE3b2t5IrraKhsWzrC1420tdNsdQurmt3c4rfLPW2HbhFka76eXOR3eCpy-Qx21eLHpBjidlYuwZLsUGxwxVjk-xwIV78wALNnKyf2YEvWRh9lpxOUGZMbDYSD-bNc-x-0QH3bz0Hq3sv8g9L47Rt9Y-BZ31vWeA6yvIJsrTMT2txeRKS6ADrtjCyrsgZm+QCyut2aAVksS53bRsAle7TJR-kPe0Dl31jEF5wuxUP2VDF90sHJC+eKVvmULOQMZO-cfsfALhWwR88Uhy7ihXGEgNKkg1wpnoLuPij8wPblOu8uT5CJBzkH72ssuTq6K0simAd15ELJSoCmQHAeQPgKsDu0ycDnsf3V95yjqFQ5dZl3wC+DnNScHGR0OUgx6CC0w5wceQaZGUf+0QA4phD0uTQPHM-MMKoU3CMrWwpqys7cKoMTDwUqwNgolt+HgjyLimVkAWrPFuOTIH+UOiqO0KMrJ0Ppgkf+QpHJhAx5I5T4h2P9tjr-R5CLZxs-Gljsx5APWtaORA2AD-QADYQqjj5R849MdCPDRO1p1cWudhYWv9KKYNi4+CdhsggYAwpUiVidJdIVQQMcOZlAAAByPyFk8GQf6AAHKAFsw3XBol8IGF3Yhv5XoblAcoJmHRtURnL8N7kbYMzAXCgAA')">"gc_flip",
     assign("temp", reg("the_tails")),
     assign("the_tails", reg("new_tails")),
     assign("new_tails", reg("temp")),
@@ -2126,14 +2348,13 @@ gc-flip
     assign("new_heads", reg("temp")),
 
 </pre></div></div></td></tr></table>
-  
-  
-  
-  
-  
-      </p></div>
-
-    <hr>
+    
+    
+    
+    
+    
+  </p></div>
+</p></div><hr>
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1' >[1] </a>
@@ -2141,25 +2362,31 @@ gc-flip
     This may not be true eventually,
     because memories may get large enough so that it would be impossible
     to run out of free memory in the lifetime of the computer.  For
-    example, there are about $3\times 10^{13}$, microseconds in a year, so
-    if we were to <span style="color:teal"><kbd>cons</kbd></span><span style="color:blue"><kbd>pair</kbd></span> once per microsecond we would need about
-    $10^{15}$ cells of memory to build a machine that could operate for 30
-    years without running out of memory.  That much memory seems absurdly
-    large by today's standards, but it is not physically impossible.  On
-    the other hand, processors are getting faster and a future computer
-    may have large numbers of processors operating in parallel on a single
-    memory, so it may be possible to use up memory much faster than we
-    have postulated.
+    example, there are about $3\times 10^{13}$,
+    microseconds in a year, so if we were to
+    
+      <span style="color:teal">
+      <kbd>cons</kbd></span>
+      <span style="color:blue"><kbd>pair</kbd></span>
+    
+    once per microsecond we would need about
+    $10^{15}$ cells of memory to build a machine
+    that could operate for 30 years without running out of memory.  That much
+    memory seems absurdly large by today's standards, but it is not
+    physically impossible.  On the other hand, processors are getting faster
+    and a future computer may have large numbers of processors operating in
+    parallel on a single memory, so it may be possible to use up memory much
+    faster than we have postulated.
     </FOOTNOTE></div>
     
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2' >[2] </a>
     <FOOTNOTE>
-    We
-    assume here that the stack is represented as a list as described in
-    section <REF NAME="sec:memory-as-vectors"><a class="superscript" id="5.3.2-sec-link-5.3.1" href="./5.3.1.html">5.3.1</a></REF>, so that items on the stack are
-    accessible via the pointer in the stack register.
+    We assume here that the stack is represented as a list
+    as described in section <REF NAME="sec:memory-as-vectors"><a class="superscript" id="5.3.2-sec-link-5.3.1" href="./5.3.1.html">5.3.1</a></REF>, so that
+    items on the stack are accessible via the pointer in the stack
+    register.
     </FOOTNOTE></div>
     
     
@@ -2167,52 +2394,51 @@ gc-flip
       <a class='footnote-number' id='footnote-3' href='#footnote-link-3' >[3] </a>
     <FOOTNOTE>
     This idea was invented and first implemented
-      
-      by Minsky, as part of the implementation of 
-      
-      Lisp for the PDP-1 at the
-      
-      MIT Research Laboratory of Electronics.  It was further developed by
-      
-      Fenichel and Yochelson (1969) for use in the Lisp implementation for
-      
-      the Multics time-sharing system.  Later, 
-      
-      Baker (1978) developed a
-      <QUOTE>real-time</QUOTE> version of the method, which does not require the
-      computation to stop during garbage collection. Baker's idea was
-      extended by 
-      
-      Hewitt, Lieberman, and Moon (see Lieberman and Hewitt
-      1983) to take advantage of the fact that some structure is more volatile
-      and other structure is more permanent.  
-
-      An alternative commonly used garbage-collection technique is the 
-      
-      
-      <EM>
-        mark-sweep</EM> method. This consists of tracing all the structure
-      accessible from the machine registers and marking each pair we reach.
-      We then scan all of memory, and any location that is unmarked is
-      <QUOTE>swept up</QUOTE> as garbage and made available for reuse.  A full
-      
-      discussion of the mark-sweep method can be found in 
-      <CITATION>Allen 1978</CITATION>.
-
-      The Minsky-Fenichel-Yochelson algorithm is the dominant algorithm in
-      use for large-memory systems because it examines only the useful part
-      of memory.  This is in contrast to mark-sweep, in which the sweep
-      phase must check all of memory.  A second advantage of stop-and-copy
-      is that it is a 
-      
-      
-      <EM>compacting</EM> garbage collector.  That is, at the
-      end of the garbage-collection phase the useful data will have been
-      moved to consecutive memory locations, with all garbage pairs
-      compressed out.  This can be an extremely important performance
-      consideration in machines with virtual memory, in which accesses to
-      widely separated memory addresses may require extra paging
-      operations.
+    
+    by Minsky, as part of the implementation of 
+    
+    Lisp for the PDP-1 at the
+    
+    MIT Research Laboratory of Electronics.  It was further developed by
+    
+    Fenichel and Yochelson (1969) for use in the Lisp implementation for
+    
+    the Multics time-sharing system.  Later, 
+    
+    Baker (1978) developed a <QUOTE>real-time</QUOTE> version of the method,
+    which does not require the computation to stop during garbage collection.
+    Baker's idea was extended by 
+    
+    
+    Hewitt, Lieberman, and Moon (see Lieberman and Hewitt 1983) to take
+    advantage of the fact that some structure is more volatile
+    and other structure is more permanent.  
+    <p></p>
+    An alternative commonly used garbage-collection technique is the 
+    
+    
+    <EM>mark-sweep</EM> method. This consists of tracing all the structure
+    accessible from the machine registers and marking each pair we reach.
+    We then scan all of memory, and any location that is unmarked is
+    <QUOTE>swept up</QUOTE> as garbage and made available for reuse.  A full
+    
+    discussion of the mark-sweep method can be found in 
+    <CITATION>Allen 1978</CITATION>.
+    <p></p>
+    The Minsky-Fenichel-Yochelson algorithm is the dominant algorithm in
+    use for large-memory systems because it examines only the useful part
+    of memory.  This is in contrast to mark-sweep, in which the sweep
+    phase must check all of memory.  A second advantage of stop-and-copy
+    is that it is a 
+    
+    
+    <EM>compacting</EM> garbage collector.  That is, at the
+    end of the garbage-collection phase the useful data will have been
+    moved to consecutive memory locations, with all garbage pairs
+    compressed out.  This can be an extremely important performance
+    consideration in machines with virtual memory, in which accesses to
+    widely separated memory addresses may require extra paging
+    operations.
     </FOOTNOTE></div>
     
     
@@ -2220,8 +2446,17 @@ gc-flip
       <a class='footnote-number' id='footnote-4' href='#footnote-link-4' >[4] </a>
     <FOOTNOTE>
     This list of registers does not include
-    the registers used by the storage-allocation system—<kbd>root</kbd>, <span style="color:teal"><kbd>the-cars</kbd></span><span style="color:blue"><kbd>the-heads</kbd></span>, <span style="color:teal"><kbd>the-cdrs</kbd></span><span style="color:blue"><kbd>the-tails</kbd></span>, and the other registers that will be
-    introduced in this section.
+    the registers used by the storage-allocation
+    system—<kbd>root</kbd>,
+    
+      <span style="color:teal"><kbd>the-cars</kbd>,</span>
+      <span style="color:blue"><kbd>the-heads</kbd>,</span>
+    
+    
+      <span style="color:teal"><kbd>the-cdrs</kbd>,</span>
+      <span style="color:blue"><kbd>the-tails</kbd>,</span>
+    
+    and the other registers that will be introduced in this section.
     </FOOTNOTE></div>
     
     
@@ -2229,41 +2464,50 @@ gc-flip
       <a class='footnote-number' id='footnote-5' href='#footnote-link-5' >[5] </a>
     <FOOTNOTE>
     The term <EM>
-      
-      broken heart</EM> was coined by David Cressey, who wrote a garbage
-    collector for 
     
-    MDL, a dialect of <span style="color:teal">Lisp</span><span style="color:blue">JavaScript</span> developed at MIT during the early
-    1970s.
+    broken heart</EM> was coined by David Cressey, who wrote a garbage collector
+    for 
+    
+    
+    MDL, a dialect of Lisp developed at MIT during the early 1970s.
     </FOOTNOTE></div>
     
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-6' href='#footnote-link-6' >[6] </a>
     <FOOTNOTE>
-    The garbage collector uses the low-level predicate
-  <span style="color:teal"><kbd>pointer-to-pair?</kbd></span>
-  <span style="color:blue"><kbd>is_pointer_to_pair</kbd></span>
-  instead of the list-structure
-  <span style="color:teal"><kbd>pair?</kbd>
-  <span style="color:blue"><kbd>is_pair</kbd></span>
-</span>
+    The
+    garbage collector uses the low-level predicate
+    
+      <span style="color:teal"><kbd>pointer-to-pair?</kbd></span>
+      <span style="color:blue"><kbd>is_pointer_to_pair</kbd>
+      </span>
+    
+    instead of the list-structure
+    
+      <span style="color:teal"><kbd>pair?</kbd></span>
+      <span style="color:blue"><kbd>is_pair</kbd></span>
+    
     operation because in a real system there might be various things
     that are treated as pairs for garbage-collection purposes.
-    For example, in a <span style="color:teal">Scheme</span><span style="color:blue">JavaScript</span> system that conforms to the 
-    <span style="color:teal">IEEE standard
-    a procedure</span><span style="color:blue">ECMAScript standard a function</span>
-    object may be implemented as a special kind of <QUOTE>pair</QUOTE>
-    that doesn't satisfy the
-    <span style="color:teal"><kbd>pair?</kbd></span>
-    <span style="color:blue"><kbd>is_pair</kbd></span>
+    For example, in a Scheme system that conforms to the 
+    IEEE standard a procedure object may be implemented as a special kind of
+    <QUOTE>pair</QUOTE> that doesn't satisfy the
+    
+      <span style="color:teal"><kbd>pair?</kbd></span>
+      <span style="color:blue"><kbd>is_pair</kbd></span>
     
     predicate.
     For simulation purposes,
-  <span style="color:teal"><kbd>pointer-to-pair?</kbd></span>
-  <span style="color:blue"><kbd>is_pointer_to_pair</kbd></span>
+    
+      <span style="color:teal"><kbd>pointer-to-pair?</kbd></span>
+      <span style="color:blue"><kbd>is_pointer_to_pair</kbd>
+      </span>
+    
     can be implemented as
-    <span style="color:teal"><kbd>pair?</kbd></span><span style="color:blue"><kbd>is_pair</kbd></span>.
+    
+      <span style="color:teal"><kbd>pair?</kbd>.</span>
+      <span style="color:blue"><kbd>is_pair</kbd>.</span>
     
     </FOOTNOTE></div>
     

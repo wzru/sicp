@@ -1678,59 +1678,88 @@
         <div class='SECTION'><SECTION>
     
 
-    <SECTIONCONTENT></SECTIONCONTENT>
+  <SECTIONCONTENT></SECTIONCONTENT>
 
-    
-    
-    
+  
+  
+  
 
-    <div class='permalink'>
+  <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
-      In section <REF NAME="sec:eceval"><a class="superscript" id="5.3-sec-link-5.4" href="./5.4.html">5.4</a></REF>, we will show how to implement a
-      <span style="color:teal">Lisp</span><span style="color:blue">JavaScript</span>      
-      evaluator as a register machine.  In order to simplify the discussion,
-      we will assume that our register machines can be equipped with a <EM>
-  list-structured memory</EM>, in which the basic operations for
-      manipulating list-structured data are primitive.  Postulating the
-      existence of such a memory is a useful abstraction when one is
-      focusing on the mechanisms of control in a
-      <span style="color:teal">Lisp</span><span style="color:blue">JavaScript</span>
-      interpreter, but this does not reflect a realistic view of the actual primitive data
-      operations of contemporary computers.  To obtain a more complete
-      picture of how a <span style="color:teal">Lisp</span><span style="color:blue">JavaScript</span> system operates, we must investigate how list
-      structure can be represented in a way that is compatible with
-      conventional computer memories.
-    </p></div>
-
-    <div class='permalink'>
-<a name='p2' class='permalink'></a><p>
-      There are two considerations in implementing list structure.  The
-      first is purely an issue of representation: how to represent the
-      <QUOTE>box-and-pointer</QUOTE> structure of <span style="color:teal">Lisp</span><span style="color:blue">JavaScript</span> pairs, using only the storage
-      and addressing capabilities of typical computer memories.  The second
-      issue concerns the management of memory as a computation proceeds.
-      The operation of a <span style="color:teal">Lisp</span><span style="color:blue">JavaScript</span> system depends crucially on the ability to
-      continually create new data objects.  These include objects that are
-      explicitly created by the <span style="color:teal">Lisp</span><span style="color:blue">JavaScript</span>
-      <span style="color:teal">procedures</span><span style="color:blue">functions</span>
-      being interpreted as well
-      as structures created by the interpreter itself, such as environments
-      and argument lists.  Although the constant creation of new data
-      objects would pose no problem on a computer with an infinite amount of
-      rapidly addressable memory, computer memories are available only in
-      finite sizes (more's the pity).  <span style="color:teal">Lisp</span><span style="color:blue">JavaScript</span> systems
-      thus provide an 
-      
-      <EM>automatic storage allocation</EM> facility to
-      support the illusion of an infinite memory.  When a data object is no
-      longer needed, the memory allocated to it is automatically recycled
-      and used to construct new data objects.  There are various
-      techniques for providing such automatic storage allocation.  The
-      method we shall discuss in this section is called <EM>garbage
-  collection</EM>.
-    </p></div>
-
+    In section <REF NAME="sec:eceval"><a class="superscript" id="5.3-sec-link-5.4" href="./5.4.html">5.4</a></REF>, we will show how to implement a
     
+      <span style="color:teal">Lisp</span>
+      <span style="color:blue">JavaScript</span>
+          
+    evaluator as a register machine.  In order to simplify the discussion, we
+    will assume that our register machines can be equipped with a
+    <EM>list-structured memory</EM>, in which the basic operations for
+    manipulating list-structured data are primitive.  Postulating the existence
+    of such a memory is a useful abstraction when one is focusing on the
+    mechanisms of control in a
+    
+      <span style="color:teal">Lisp</span>
+      <span style="color:blue">JavaScript</span>
+    
+    interpreter, but this does not reflect a realistic view of the actual
+    primitive data operations of contemporary computers.  To obtain a more
+    complete picture of how 
+    
+      <span style="color:teal">a Lisp system operates,</span>
+      <span style="color:blue">systems can support list-structured memory
+      efficiently,</span>
+    
+    we must investigate how list structure can be represented in a way that is
+    compatible with conventional computer memories.
+  </p></div>
+
+  <div class='permalink'>
+<a name='p2' class='permalink'></a><p>
+    There are two considerations in implementing list structure.  The first is
+    purely an issue of representation: how to represent the
+    <QUOTE>box-and-pointer</QUOTE> structure of
+    
+      <span style="color:teal">Lisp</span>
+      <span style="color:blue">JavaScript</span>
+    
+    pairs, using only the storage and addressing capabilities of typical computer
+    memories.  The second issue concerns the management of memory as a
+    computation proceeds. The operation of a
+    
+      <span style="color:teal">Lisp</span>
+      <span style="color:blue">JavaScript</span>
+    
+    system depends crucially on the ability to
+    continually create new data objects.  These include objects that are
+    explicitly created by the
+    
+      <span style="color:teal">Lisp</span>
+      <span style="color:blue">JavaScript</span>
+    
+    
+      <span style="color:teal">procedures</span>
+      <span style="color:blue">functions</span>
+    
+    being interpreted as well as structures created by the interpreter itself,
+    such as environments and argument lists.  Although the constant creation of
+    new data objects would pose no problem on a computer with an infinite amount
+    of rapidly addressable memory, computer memories are available only in
+    finite sizes (more's the pity).
+    
+      <span style="color:teal">Lisp</span>
+      <span style="color:blue">JavaScript</span>
+    
+    thus provide an 
+    
+    <EM>automatic storage allocation</EM> facility to
+    support the illusion of an infinite memory.  When a data object is no longer
+    needed, the memory allocated to it is automatically recycled and used to
+    construct new data objects.  There are various techniques for providing such
+    automatic storage allocation.  The method we shall discuss in this section
+    is called <EM>garbage collection</EM>.
+  </p></div>
+
+  
 </SECTION></div></div>
 
     <div class='nav'>

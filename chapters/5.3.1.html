@@ -1678,316 +1678,545 @@
         <div class='SECTION'><SECTION>
     
 
-      
-      <div class='permalink'>
+  
+  <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
-  A conventional computer memory can be thought of as an array of
-  cubbyholes, each of which can contain a piece of information.  Each
-  cubbyhole has a unique name, called its 
-  
-  <EM>address</EM> or 
-  
-  <EM>
-    location</EM>.  Typical memory systems provide two primitive operations:
-  one that fetches the data stored in a specified location and one that
-  assigns new data to a specified location.  Memory addresses can be
-  incremented to support sequential access to some set of the
-  cubbyholes.  More generally, many important data operations require
-  that memory addresses be treated as data, which can be stored in
-  memory locations and manipulated in machine registers.  The
-  representation of list structure is one application of such 
-  
-  
-  <EM>
-    address arithmetic</EM>.
-      </p></div>
+    A conventional computer memory can be thought of as an array of
+    cubbyholes, each of which can contain a piece of information.  Each
+    cubbyhole has a unique name, called its 
+    
+    <EM>address</EM> or 
+    
+    <EM>
+      location</EM>.  Typical memory systems provide two primitive operations:
+      one that fetches the data stored in a specified location and one that
+      assigns new data to a specified location.  Memory addresses can be
+      incremented to support sequential access to some set of the
+      cubbyholes.  More generally, many important data operations require
+      that memory addresses be treated as data, which can be stored in
+      memory locations and manipulated in machine registers.  The
+      representation of list structure is one application of such 
+      
+      
+      <EM>address arithmetic</EM>.
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-  To model computer memory, we use a new kind of data
-  structure called a 
-  
-  <EM>vector</EM> (in JavaScript, a vector is essentially just a wrapper around an array).  Abstractly, a vector is a compound
-  data object whose individual elements can be accessed by means of an
-  integer index in an amount of time that is independent of the
-  index.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a> In order to describe memory operations, we use two
-  primitive 
-  JavaScript functions
-  for manipulating vectors:
-
-  <UL>
+    To model computer memory, we use a new kind of data structure called a 
     
+    <EM>vector</EM>.  Abstractly, a vector is a compound data object whose
+    individual elements can be accessed by means of an integer index in an
+    amount of time that is independent of the index.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a> In order to describe memory operations, we use two
+    primitive 
     
-    <LI><kbd>vector_ref(</kbd><EM>vector</EM>, <EM>n</EM><kbd>)</kbd> returns the $n$th
-      element of the vector.
-
+      
+      JavaScript functions
+    
+    for manipulating vectors:
+    <UL>
       
       
-    </LI>
-    <LI><kbd>vector_set(</kbd><EM>vector</EM>, <EM>n</EM>, <EM>value</EM><kbd>)</kbd> sets
-      the $n$th element of the vector to the designated value.
-    </LI>
+      <LI>
+	
+	  
+	  
+	    <kbd>vector_ref(</kbd>
+	    $\textit{vector}$,
+	    $\textit{n}$
+	    <kbd>)</kbd>
+	  
+	
+	returns the $n$th element of the vector.
+	
+	
+      </LI>
+      <LI>
+	
+	  
+	  
+	    <kbd>vector_set(</kbd>
+	    $\textit{vector}$,
+	    $\textit{n}$,
+	    $\textit{value}$
+	    <kbd>)</kbd>
+	  
+	
+	sets the $n$th element of the vector to the
+	designated value.
+      </LI>
+    </UL>
+  </p></div>
 
-  </UL>
-      </p></div>
-
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-  For example, if <kbd>v</kbd> is a vector, then <kbd>vector_ref(v, 5)</kbd> gets
-  the fifth entry in the vector <kbd>v</kbd> and <kbd>vector_set(v, 5, 7)</kbd>
-  changes the value of the fifth entry of the vector <kbd>v</kbd> to 7.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-  For computer memory, this access can be implemented
-  through the use of address arithmetic to combine a <EM>base address</EM>
-  that specifies the beginning location of a vector in memory with an
-  <EM>index</EM> that specifies the offset of a particular element of the vector.
-      </p></div>
-
+    For example, if <kbd>v</kbd> is a vector, then
+    
       
+      <kbd>vector_ref(v, 5)</kbd>
+      
+    
+    gets the fifth entry in the vector <kbd>v</kbd> and
+    
+      
+      
+	<kbd>vector_set(v, 5, 7)</kbd>
+      
+    
+    changes the value of the fifth entry of the vector
+    <kbd>v</kbd>
+    to 7.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a> For computer memory, this access can be implemented
+    through the use of address arithmetic to combine a <EM>base address</EM>
+    that specifies the beginning location of a vector in memory with an
+    <EM>index</EM> that specifies the offset of a particular element of the
+    vector.
+  </p></div>
+
+  
       <div class='permalink'>
         <a name='h1' class='permalink'></a><h2>
      
-  Representing JavaScript data
-      </h2></div>
+    Representing
+    
+      
+      list-structured
+    
+    data
+  </h2></div>
 
-      
-      
-      <div class='permalink'>
+  
+  
+  <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
-  We can use vectors to implement the basic pair structures required for
-  a list-structured memory.  Let us imagine that computer memory is
-  divided into two vectors: 
-  
-  <kbd>the_heads</kbd> and 
-  
-  <kbd>the_tails</kbd>.  We will
-  represent list structure as follows: A pointer to a pair is an index
-  into the two vectors.  The 
-  head of the pair is the entry in <kbd>the_heads</kbd> with the designated index, and the 
-  tail of the pair is
-  the entry in <kbd>the_tails</kbd> with the designated index.  We also need a
-  representation for objects other than pairs (such as numbers and
-  strings) and a way to distinguish one kind of data from another.
-  There are many methods of accomplishing this, but they all reduce to
-  using 
-  
-  
-  <EM>typed pointers</EM>, that is, to extending the notion of
-  <QUOTE>pointer</QUOTE> to include information on data type.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a> The data type enables the system to
-  distinguish a pointer to a pair (which consists of the <QUOTE>pair</QUOTE> data
-  type and an index into the memory vectors) from pointers to other
-  kinds of data (which consist of some other data type and whatever is
-  being used to represent data of that type).  Two data objects are
-  
-  considered to be the same (<kbd>===</kbd>) if their pointers are
-  identical.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a> 
-  Figure <REF NAME="fig:box-and-pointer-memory"><a class="superscript" id="5.3.1-fig-link-5.14" href="./5.3.1.html#fig_5.14">5.14</a></REF>
-  illustrates the use of this method to represent the list <kbd>list(list(1, 2), 3, 4)</kbd>, whose box-and-pointer diagram is also shown.  We use letter
-  prefixes to denote the data-type information.  Thus, a pointer to the
-  pair with index 5 is denoted <kbd>p5</kbd>, the empty list is denoted by
-  the pointer <kbd>e0</kbd>, and a pointer to the number 4 is denoted <kbd>n4</kbd>.  In the box-and-pointer diagram, we have indicated at the lower
-  left of each pair the vector index that specifies where the <kbd>head</kbd>
-  and <kbd>tail</kbd> of the pair are stored.  The blank locations in <kbd>the_heads</kbd> and <kbd>the_tails</kbd> may contain parts of other list
-  structures (not of interest here).
-
-  
+    We can use vectors to implement the basic pair structures required for a
+    list-structured memory.  Let us imagine that computer memory is divided into
+    two vectors: 
     
     
       
+      <kbd>the_heads</kbd>
+    
+    and 
+    
+    
+      
+      <kbd>the_tails</kbd>.
+    
+    We will represent list structure as follows: A pointer to a pair is an index
+    into the two vectors.  The 
+    
+      
+      <kbd>head</kbd>
+    
+    of the pair is the entry in
+    
+      
+      <kbd>the_heads</kbd>
+    
+    with the designated index, and the 
+    
+      
+      tail
+    
+    of the pair is the entry in
+    
+    <kbd>the_tails</kbd>
+    
+    with the designated index.  We also need a representation for objects other
+    than pairs (such as numbers and
+    
+      
+      strings)
+    
+    and a way to distinguish one kind of data from another. There are many
+    methods of accomplishing this, but they all reduce to using 
+    
+    
+    <EM>typed pointers</EM>, that is, to extending the notion of
+    <QUOTE>pointer</QUOTE> to include information on data type.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a> The data type enables the system to
+    distinguish a pointer to a pair (which consists of the <QUOTE>pair</QUOTE>
+    data type and an index into the memory vectors) from pointers to other
+    kinds of data (which consist of some other data type and whatever is
+    being used to represent data of that type).  Two data objects are
+    
+    considered to be the same
+    
+      
+      (<kbd>===</kbd>)
+    
+    if their pointers are identical.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
+    
+      
+      
+	Figure <REF NAME="fig:box-and-pointer-memory"><a class="superscript" id="5.3.1-fig-link-5.14" href="./5.3.1.html#fig_5.14">5.14</a></REF>
+      
+    
+    illustrates the use of this method to represent the list
+    
+      
+      <kbd>list(list(1, 2), 3, 4)</kbd>,
+      
+    
+    whose box-and-pointer diagram is also shown.  We use letter prefixes to
+    denote the data-type information.  Thus, a pointer to the pair with
+    index 5 is denoted <kbd>p5</kbd>, the empty list
+    is denoted by the pointer <kbd>e0</kbd>, and a pointer to
+    the number 4 is denoted <kbd>n4</kbd>.  In the
+    box-and-pointer diagram, we have indicated at the lower left of each pair
+    the vector index that specifies where the
+    
+      
+      <kbd>head</kbd>
+    
+    and
+    
+      
+      <kbd>tail</kbd>
+    
+    of the pair are stored.  The blank locations in
+    
+      
+      <kbd>the_heads</kbd>
+    
+    and
+    
+      
+      <kbd>the_tails</kbd>
+    
+    may contain parts of other list structures (not of interest here).
+    
+      
+      
+	
     <FIGURE>
       <img class="scale_factor_2" id="fig_5.14" src="../img_javascript/Fig5.14b.std.svg">
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.3.1.html#fig_5.14">Figure 5.14 </a></b>Box-and-pointer and memory-vector representations 
-        of the list <kbd>list(list(1, 2), 3, 4)</kbd>.</div>
+          of the list
+	  <kbd>list(list(1, 2), 3, 4)</kbd>.</div>
     </FIGURE>
   
-    
-  
-      </p></div>
-
-      <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
-  A pointer to a number, such as <kbd>n4</kbd>,
-  might consist of a type indicating numeric data together with the
-  actual representation of the number 4.<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
-  To deal with numbers that are too large to
-  be represented in the fixed amount of space allocated for a single
-  pointer, we could use a distinct 
-  
-  <EM>bignum</EM> data type, for which the
-  pointer designates a list in which the parts of the number are
-  stored.<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
-  
-  A string
-  might be represented as a typed pointer that designates a
-  sequence of the characters that form the
-  string's
-  printed representation.
-  This sequence is constructed by the JavaScript reader when the character string
-  is initially encountered in input.  Since we want two instances of a
-  string
-  to be recognized as the <QUOTE>same</QUOTE>
-  string
-  by <kbd>===</kbd> and we
-  
-  want <kbd>===</kbd> to be a simple test for equality of pointers, we must
-  ensure that if the reader sees the same character string twice, it
-  will use the same pointer (to the same sequence of characters) to
-  represent both occurrences.  To accomplish this, the reader maintains
-  a table, traditionally called the 
-  
-  <EM>obarray</EM>, of all the symbols it
-  has ever encountered.  When the reader encounters a character string
-  and is about to construct a symbol, it checks the obarray to see if it
-  has ever before seen the same character string.  If it has not, it
-  uses the characters to construct a new symbol (a typed pointer to a
-  new character sequence) and enters this pointer in the obarray.  If the
-  reader has seen the string before, it returns the symbol pointer
-  stored in the obarray.  This process of replacing character strings by
-  unique pointers is called 
-  
-  
-  <EM>interning</EM> symbols.
-      </p></div>
-
       
+    
+  </p></div>
+
+  <div class='permalink'>
+<a name='p5' class='permalink'></a><p>
+    A pointer to a number, such as <kbd>n4</kbd>,
+    might consist of a type indicating numeric data together with the
+    actual representation of the number 4.<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
+    To deal with numbers that are too large to be represented in the fixed
+    amount of space allocated for a single pointer, we could use a distinct 
+    
+    <EM>bignum</EM> data type, for which the pointer designates a list in which
+    the parts of the number are stored.<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p6' class='permalink'></a><p>
+    
+    A
+    
+      
+      string
+    
+    might be represented as a typed pointer that designates a
+    sequence of the characters that form the
+    
+      
+      string's
+    
+    printed representation. This sequence is constructed by the
+    
+      
+      JavaScript
+    
+    reader when the character string is initially encountered in input.  Since
+    we want two instances of a
+    
+      
+      string
+    
+    to be recognized as the <QUOTE>same</QUOTE>
+    
+      
+      string
+    
+    by
+    
+      
+      <kbd>===</kbd>
+    
+    and we
+    
+    want
+    
+      
+      <kbd>===</kbd>
+    
+    to be a simple test for equality of pointers, we must ensure that if the
+    reader sees the same character string twice, it will use the same pointer
+    (to the same sequence of characters) to represent both occurrences.  To
+    accomplish this, the reader maintains a table, traditionally called the 
+    
+    <EM>obarray</EM>, of all the
+    
+      
+      string
+    
+    it has ever encountered.  When the reader encounters a character string
+    and is about to construct a
+    
+      
+      string,
+    
+    it checks the obarray to see if it
+    has ever before seen the same character string.  If it has not, it
+    uses the characters to construct a new
+    
+      
+      string
+    
+    (a typed pointer to a
+    new character sequence) and enters this pointer in the obarray.  If the
+    reader has seen the string before, it returns the
+    
+      
+      string
+    
+    pointer stored in the obarray.  This process of replacing character strings
+    by unique pointers is called 
+    
+    
+    <EM>interning</EM>
+    
+      
+      strings.
+    
+  </p></div>
+
+  
       <div class='permalink'>
         <a name='h2' class='permalink'></a><h2>
      
-      
-  Implementing the primitive list operations
-      </h2></div>
+    
+    Implementing the primitive list operations
+  </h2></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
-  
-  
-  Given the above representation scheme, we can replace each
-  <QUOTE>primitive</QUOTE> list operation of a register machine with one or more
-  primitive vector operations.  We will use two registers, <kbd>the_heads</kbd> and
-  <kbd>the_tails</kbd>, to identify the memory vectors, and will
-  assume that <kbd>vector_ref</kbd> and <kbd>vector_set</kbd> are available as
-  primitive operations.  We also assume that numeric operations on
-  pointers (such as incrementing a pointer, using a pair pointer to
-  index a vector, or adding two numbers) use only the index portion of
-  the typed pointer.
-      </p></div>
-
-      <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
-  For example, we can make a register machine support the instructions
-
-  
-  
-  <kbd class='snippet'>assign(reg1, list(op("head"), reg2))
-assign(reg1, list(op("tail"), reg2))</kbd>
-
-  if we implement these, respectively, as
-
-  <kbd class='snippet'>assign(reg1, list(op("vector_ref"), reg("the_heads"), reg2))
-assign(reg1, list(op("vector_ref"), reg("the_tails"), reg2))</kbd>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
-  The instructions
-  
-  
-  <kbd class='snippet'>perform(list(op("set_head"), reg(reg1), reg(reg2)))
-perform(list(op("set_tail"), reg(reg1), reg(reg2)))</kbd>
-  are implemented as
-  <kbd class='snippet'>perform(op("vector_set"), list(reg("the_heads"), reg(reg1), reg(reg2)))
-perform(op("vector_set"), list((reg("the_tails"), reg(reg1), reg(reg2)))</kbd>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
-  
-  The operation <kbd>pair</kbd> is performed by allocating an unused index and storing the
-  arguments to <kbd>pair</kbd> in <kbd>the_heads</kbd> and <kbd>the_tails</kbd> at that
-  indexed vector position.  We presume that there is a special register,
-  
-  <kbd>free</kbd>, that always holds a pair pointer containing the next
-  available index, and that we can increment the index part of that
-  pointer to find the next free location.<a class='superscript' id='footnote-link-7' href='#footnote-7'>[7]</a>
-  For example, the instruction
-
-  <kbd class='snippet'>assign(reg1, list(op("pair"), reg(reg2), reg(reg3)))</kbd>
-  is implemented as the following sequence of vector
-  operations:<a class='superscript' id='footnote-link-8' href='#footnote-8'>[8]</a>
-
-  <kbd class='snippet'>perform(op("vector_set"), list(reg("the_heads"), reg("free"), reg(reg2))),
-perform(op("vector_set"), list(reg("the_tails"), reg("free"), reg(reg3))),
-assign(reg1, reg("free")),
-assign("free", list(op("+"), reg("free"), constant(1)))</kbd>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
-  The <kbd>===</kbd> operation
-
-  <kbd class='snippet'>list(op("==="), reg(reg1), reg(reg2))</kbd>
-  simply tests the equality of all fields in the registers, and
-  
-  
-  
-  
-  predicates such as <kbd>is_pair</kbd>, <kbd>is_null</kbd>, <kbd>is_string</kbd>, and <kbd>is_number</kbd> need only check the type field.
-      </p></div>
-
+    
+    
+    Given the above representation scheme, we can replace each
+    <QUOTE>primitive</QUOTE> list operation of a register machine with one or
+    more primitive vector operations.  We will use two registers,
+    
       
+      <kbd>the_heads</kbd>
+    
+    and
+    
+      
+      <kbd>the_tails</kbd>,
+    
+    to identify the memory vectors, and will
+    assume that
+    
+      
+      <kbd>vector_ref</kbd>
+    
+    and
+    
+      
+      <kbd>vector_set</kbd>
+    
+    are available as primitive operations.  We also assume that numeric
+    operations on pointers (such as incrementing a pointer, using a pair pointer
+    to index a vector, or adding two numbers) use only the index portion of
+    the typed pointer.
+  </p></div>
+
+  <div class='permalink'>
+<a name='p8' class='permalink'></a><p>
+    For example, we can make a register machine support the instructions
+    
+    
+    <kbd class='snippet'>assign($\textit{reg}_1$, list(op("head"), $\textit{reg}_2$))
+assign($\textit{reg}_1$, list(op("tail"), $\textit{reg}_2$))</kbd>
+    if we implement these, respectively, as
+    <kbd class='snippet'>assign($\textit{reg}_1$, list(op("vector_ref"), reg("the_heads"), $\textit{reg}_2$))
+assign($\textit{reg}_1$, list(op("vector_ref"), reg("the_tails"), $\textit{reg}_2$))</kbd>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p9' class='permalink'></a><p>
+    The instructions
+    
+    
+    <kbd class='snippet'>perform(list(op("set_head"), reg($\textit{reg}_1$), reg($\textit{reg}_2$)))
+perform(list(op("set_tail"), reg($\textit{reg}_1$), reg($\textit{reg}_2$)))</kbd>
+    are implemented as
+    <kbd class='snippet'>perform(op("vector_set"), list(reg("the_heads"), reg($\textit{reg}_1$), reg($\textit{reg}_2$)))
+perform(op("vector_set"), list((reg("the_tails"), reg($\textit{reg}_1$), reg($\textit{reg}_2$)))</kbd>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p10' class='permalink'></a><p>
+    
+    
+      
+      The operation <kbd>pair</kbd>
+      
+    
+    is performed by allocating an unused index and storing the arguments to
+    
+      
+      <kbd>pair</kbd>
+    
+    in
+    
+      
+      <kbd>the_heads</kbd>
+    
+    and
+    
+      
+      <kbd>the_tails</kbd>
+    
+    at that indexed vector position.  We presume that there is a special
+    register,
+    
+    <kbd>free</kbd>, that always holds a pair pointer
+    containing the next available index, and that we can increment the index
+    part of that pointer to find the next free location.<a class='superscript' id='footnote-link-7' href='#footnote-7'>[7]</a>
+    For example, the instruction
+    <kbd class='snippet'>assign($\textit{reg}_1$, list(op("pair"), reg($\textit{reg}_2$), reg($\textit{reg}_3$)))</kbd>
+    is implemented as the following sequence of vector
+    operations:<a class='superscript' id='footnote-link-8' href='#footnote-8'>[8]</a>
+    <kbd class='snippet'>perform(op("vector_set"), list(reg("the_heads"), reg("free"), reg($\textit{reg}_2$))),
+perform(op("vector_set"), list(reg("the_tails"), reg("free"), reg($\textit{reg}_3$))),
+assign($\textit{reg}_1$, reg("free")),
+assign("free", list(op("+"), reg("free"), constant(1)))</kbd>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p11' class='permalink'></a><p>
+    The
+    
+      
+      <kbd>===</kbd>
+    
+    operation
+    <kbd class='snippet'>list(op("==="), reg($\textit{reg}_1$), reg($\textit{reg}_2$))</kbd>
+    simply tests the equality of all fields in the registers, and
+    
+    
+    
+    
+    predicates such as
+    
+      
+      <kbd>is_pair</kbd>,
+    
+    
+      
+      <kbd>is_null</kbd>,
+    
+    
+      
+      <kbd>is_string</kbd>,
+    
+    and
+    
+      
+      <kbd>is_number</kbd>
+    
+    need only check the type field.
+  </p></div>
+
+  
       <div class='permalink'>
         <a name='h3' class='permalink'></a><h2>
     
-  Implementing stacks
-      </h2></div>
+    Implementing stacks
+  </h2></div>
 
-      
-      <div class='permalink'>
+  
+  <div class='permalink'>
 <a name='p12' class='permalink'></a><p>
-  Although our register machines use stacks, we need do nothing special
-  here, since stacks can be modeled in terms of lists.  The stack can be
-  a list of the saved values, pointed to by a special register <kbd>the_stack</kbd>.  Thus, <kbd>save(</kbd>$\textit{reg}$<kbd>)</kbd> can be implemented as
-
-  
-  <kbd class='snippet'>assign("the_stack", list(op("pair"), reg(reg1), reg("the_stack")))</kbd>
-  
-  Similarly, <kbd>restore(</kbd>$\textit{reg}$<kbd>)</kbd> can be implemented as
-  <kbd class='snippet'>assign($\textit{reg}$, list(op("head"), reg("the_stack")))
-assign("the_stack", list(op("tail"), reg("the_stack")))</kbd>
-
-  and <kbd>perform(op("initialize_stack"))</kbd> can be implemented as
-  <kbd class='snippet'>assign("the_stack", constant(null))</kbd>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
-  These operations can be further expanded in terms of the vector
-  operations given above.  In conventional computer architectures,
-  however, it is usually advantageous to allocate the stack as a
-  separate vector.  Then pushing and popping the stack can be
-  accomplished by incrementing or decrementing an index into that
-  vector.
-      </p></div>
-
+    Although our register machines use stacks, we need do nothing special
+    here, since stacks can be modeled in terms of lists.  The stack can be
+    a list of the saved values, pointed to by a special register
+    
       
+      <kbd>the_stack</kbd>.
+    
+    Thus,
+    
+      
+      <kbd>save(</kbd>
+      $\textit{reg}$
+      <kbd>)</kbd>
+    
+    can be implemented as
+    
+    <kbd class='snippet'>assign("the_stack", list(op("pair"), reg($\textit{reg}$), reg("the_stack")))</kbd>
+    
+    Similarly,
+    
+      
+      
+	<kbd>restore(</kbd>
+	$\textit{reg}$
+      <kbd>)</kbd>
+    
+    can be implemented as
+    <kbd class='snippet'>assign($\textit{reg}$, list(op("head"), reg("the_stack")))
+assign("the_stack", list(op("tail"), reg("the_stack")))</kbd>
+    and
+    
+      
+      
+	<kbd>perform(op("initialize_stack"))</kbd>
+      
+    
+    can be implemented as
+    <kbd class='snippet'>assign("the_stack", constant(null))</kbd>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p13' class='permalink'></a><p>
+    These operations can be further expanded in terms of the vector
+    operations given above.  In conventional computer architectures,
+    however, it is usually advantageous to allocate the stack as a
+    separate vector.  Then pushing and popping the stack can be
+    accomplished by incrementing or decrementing an index into that
+    vector.
+  </p></div>
+
+  
     <div class="permalink">
     <a name="ex_5.20" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.20">Exercise 5.20 </a></b> 
   
-  Draw the box-and-pointer representation and the memory-vector
-  representation (as in Figure <REF NAME="fig:box-and-pointer-memory"><a class="superscript" id="5.3.1-fig-link-5.14" href="./5.3.1.html#fig_5.14">5.14</a></REF>) of the
-  list structure produced by
+    Draw the box-and-pointer representation and the memory-vector representation
+    
+      
+      
+	(as in figure <REF NAME="fig:box-and-pointer-memory"><a class="superscript" id="5.3.1-fig-link-5.14" href="./5.3.1.html#fig_5.14">5.14</a></REF>)
+      
+    
+    of the list structure produced by
 
-  <div class='snippet' id='javascript_109_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_109_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 const x = pair(1, 2);
 const y = list(x, x);
 </pre></div></div>
-  with the <kbd>free</kbd> pointer initially <kbd>p1</kbd>.  What is the final
-  value of <kbd>free</kbd>$\,$?  What pointers represent the values of <kbd>x</kbd> and <kbd>y</kbd>$\,$?
-      
+    with the <kbd>free</kbd> pointer initially
+    <kbd>p1</kbd>.  What is the final value of
+    <kbd>free</kbd>$\,$?  What
+    pointers represent the values of <kbd>x</kbd> and
+    <kbd>y</kbd>?
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_109_1_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_109_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1996,21 +2225,29 @@ const y = list(x, x);
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.21" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.21">Exercise 5.21 </a></b> 
   
-  
-  Implement register machines for the following
-  functions.
-  Assume that the list-structure memory operations are available as
-  machine primitives.
-  <OL>
-    <LI>
-      Recursive <kbd>count_leaves</kbd>:
+    
+    
+    Implement register machines for the following
+    
+      
+      functions.
+    
+    Assume that the list-structure memory operations are available as
+    machine primitives.
+    <OL>
+      <LI>
+	Recursive
+	
+	  
+	  <kbd>count_leaves</kbd>:
+	  
+	
 
-      <div class='snippet' id='javascript_109_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function count_leaves(tree) {
+	<div class='snippet' id='javascript_109_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0EYBQuAzAVwDsBjAFwEsB7E0Mm0igfQBsBTAQwDcOBnABQUAThw4BKUAG9coeaDEUiI+lX4sSRNm2FjJchUYD8oAAyGj8gFygAhKHUsADlyoi94ibgCQ803hWVraMzOzcfEIAFtwAJp6SUgDUoJZBCqEkrJy8AsJuuqJeEgDcuAC++JnZEXmu7oJs6hSC2AA0oABMEh1N-C0YHQAsEqMlQA')">function count_leaves(tree) {
     return is_null(tree)
         ? 0
         : ! is_pair(tree)
@@ -2018,27 +2255,33 @@ function count_leaves(tree) {
           : count_leaves(head(tree)) + 
             count_leaves(tail(tree));
 }
-</pre></div></div>
-    </LI>
-    <LI>
-      Recursive <kbd>count_leaves</kbd> with explicit counter:
 
-      <div class='snippet' id='javascript_109_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function count_leaves(tree) {
+</pre></div></div>
+      </LI>
+      <LI>
+	Recursive
+	
+	  
+	  <kbd>count_leaves</kbd>
+	  
+	
+	with explicit counter:
+	<div class='snippet' id='javascript_109_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0EYBQuAzAVwDsBjAFwEsB7E0Mm0igfQBsBTAQwDcOBnABQUAThw4BKUAG9coeaGLlqdBkxKsqFDiOFiOAGlAkpshedBiKREfSr8WJImzZ7xEuRa8B+Y56-mAFygAISg9iwADlxUuqLuoP4B5r70ANSgeACQXsGMzCxaOsIxrvGSBknJ1V75GoXaugAW3AAmbhXGEhIA3EkAvklWNvR1mo0dRgAMvbiDuGPs3HxC0bGCbPYUgthGAEwSRpv82xhGACzdvUA')">function count_leaves(tree) {
     function count_iter(tree, n) {
         return is_null(tree)
             ? n
             : ! is_pair(tree) 
               ? n + 1
 	      : count_iter(tail(tree),
-                           count_iter(head(tree), n)));
+                           count_iter(head(tree), n));
     }
-    count_iter(tree, 0);
+    return count_iter(tree, 0);
 }
+
 </pre></div></div>
-    </LI>
-  </OL>
-      
+      </LI>
+    </OL>
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_109_2_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_109_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2047,29 +2290,36 @@ function count_leaves(tree) {
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.22" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.22">Exercise 5.22 </a></b> 
   
-  
-  
-  Exercise <REF NAME="ex:append"><a class="superscript" id="5.3.1-ex-link-3.12" href="./3.3.1.html#ex_3.12">3.12</a></REF> of section <REF NAME="sec:mutable-list-structure"><a class="superscript" id="5.3.1-sec-link-3.3.1" href="./3.3.1.html">3.3.1</a></REF>
-  presented an <kbd>append</kbd>
-  function
-  that appends two lists to form a
-  new list and an
-  
     
     
-      <kbd>append_mutator</kbd>      
+    Exercise <REF NAME="ex:append"><a class="superscript" id="5.3.1-ex-link-3.12" href="./3.3.1.html#ex_3.12">3.12</a></REF> of
+    section <REF NAME="sec:mutable-list-structure"><a class="superscript" id="5.3.1-sec-link-3.3.1" href="./3.3.1.html">3.3.1</a></REF>
+    presented an <kbd>append</kbd>
+    
+      
       function
     
-  
-  that splices two lists
-  together.  Design a register machine to implement each of these
-  functions.  Assume that the list-structure memory operations are
-  available as primitive operations.
+    that appends two lists to form a new list and an
+    
       
+      
+	<kbd>append_mutator</kbd>      
+	function
+      
+    
+    that splices two lists together.  Design a register machine to implement
+    each of these
+    
+      
+      functions.
+    
+    Assume that the list-structure memory operations are
+    available as primitive operations.
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_109_3_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_109_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2077,17 +2327,22 @@ function count_leaves(tree) {
     
 </EXERCISE></div>
 
-      
-      
-
-    <hr>
+  
+  
+<hr>
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
     <FOOTNOTE>
-    We could represent memory as lists of items.
-    However, the access time would then not be independent of the index,
-    since accessing the $n$th element of a list requires $n-1$ <kbd>tail</kbd>
+    We could represent
+    memory as lists of items. However, the access time would then not be
+    independent of the index, since accessing the
+    $n$th element of a list requires
+    $n-1$
+    
+      
+      <kbd>tail</kbd>
+    
     operations.
     </FOOTNOTE></div>
 
@@ -2095,10 +2350,14 @@ function count_leaves(tree) {
     <div class='footnote'>
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
     <FOOTNOTE>
-    For completeness, we should specify a <kbd>make_vector</kbd>
-    operation that constructs vectors.  However, in the present
-    application we will use vectors only to model fixed divisions of the
-    computer memory.
+    For completeness, we should specify a
+    
+      
+      <kbd>make_vector</kbd>
+    
+    operation that constructs vectors.  However, in the present application we
+    will use vectors only to model fixed divisions of the computer
+    memory.
     </FOOTNOTE></div>
 
     
@@ -2119,16 +2378,23 @@ function count_leaves(tree) {
     <div class='footnote'>
       <a class='footnote-number' id='footnote-4' href='#footnote-link-4'>[4] </a>
     <FOOTNOTE>
-    Type information may be encoded in a variety of
-    ways, depending on the details of the machine on which the JavaScript
-    system is to be implemented.  The execution efficiency of JavaScript
-    programs will be strongly dependent on how cleverly this choice is
-    made, but it is difficult to formulate general design rules for good
-    choices.  The most straightforward way to implement typed pointers is
-    to allocate a fixed set of bits in each pointer to be a 
+    Type information may be encoded in
+    a variety of ways, depending on the details of the machine on which the
     
-    <EM>type
-      field</EM> that encodes the data type.  Important questions to be
+      
+      JavaScript
+    
+    system is to be implemented.  The execution efficiency of
+    
+      
+      JavaScript
+    
+    programs will be strongly dependent on how cleverly this choice is made, but
+    it is difficult to formulate general design rules for good choices.  The
+    most straightforward way to implement typed pointers is to allocate a fixed
+    set of bits in each pointer to be a 
+    
+    <EM>type field</EM> that encodes the data type.  Important questions to be
     addressed in designing such a representation include the following:
     How many type bits are required?  How large must the vector indices
     be?  How efficiently can the primitive machine instructions be used to
@@ -2146,10 +2412,14 @@ function count_leaves(tree) {
     
     
     
-    representation of numbers determines whether <kbd>===</kbd>, which tests
-    equality of pointers, can be used to test for equality of numbers.  If
-    the pointer contains the number itself, then equal numbers will have
-    the same pointer.  But if the pointer contains the index of a location
+    representation of numbers determines whether
+    
+      
+      <kbd>===</kbd>,
+    
+    which tests equality of pointers, can be used to test for equality of
+    numbers.  If the pointer contains the number itself, then equal numbers will
+    have the same pointer.  But if the pointer contains the index of a location
     where the number is stored, equal numbers will be guaranteed to have
     equal pointers only if we are careful never to store the same number
     in more than one location.
@@ -2159,22 +2429,23 @@ function count_leaves(tree) {
     <div class='footnote'>
       <a class='footnote-number' id='footnote-6' href='#footnote-link-6'>[6] </a>
     <FOOTNOTE>
-    This is just like writing a number as a sequence of
-    digits, except that each <QUOTE>digit</QUOTE> is a number between 0 and the
-    largest number that can be stored in a single pointer.
+    This is just like writing a
+    number as a sequence of digits, except that each <QUOTE>digit</QUOTE> is a
+    number between 0 and the largest number that can be stored in a single
+    pointer.
     </FOOTNOTE></div>
 
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-7' href='#footnote-link-7'>[7] </a>
     <FOOTNOTE>
-    There are other ways
-    of finding free storage.  For example, we could link together all the
-    unused pairs into a 
+    There are
+    other ways of finding free storage.  For example, we could link together
+    all the unused pairs into a 
     
-    <EM>free list</EM>.  Our free locations are
-    consecutive (and hence can be accessed by incrementing a pointer)
-    because we are using a compacting garbage collector, as we will see in
+    <EM>free list</EM>.  Our free locations are consecutive (and hence can be
+    accessed by incrementing a pointer) because we are using a compacting
+    garbage collector, as we will see in
     section <REF NAME="sec:gc"><a class="superscript" id="5.3.1-sec-link-5.3.2" href="./5.3.2.html">5.3.2</a></REF>.
     </FOOTNOTE></div>
 
@@ -2182,8 +2453,30 @@ function count_leaves(tree) {
     <div class='footnote'>
       <a class='footnote-number' id='footnote-8' href='#footnote-link-8'>[8] </a>
     <FOOTNOTE>
-    This is essentially the implementation of <kbd>pair</kbd> in terms of <kbd>set_head</kbd> and <kbd>set_tail</kbd>, as described in
-    section <REF NAME="sec:mutable-list-structure"><a class="superscript" id="5.3.1-sec-link-3.3.1" href="./3.3.1.html">3.3.1</a></REF>.  The operation <kbd>get_new_pair</kbd> used in that implementation is realized here by the <kbd>free</kbd> pointer.
+    This is essentially the implementation of
+    
+      
+      <kbd>pair</kbd>
+    
+    in terms of
+    
+      
+      <kbd>set_head</kbd>
+    
+    and
+    
+      
+      <kbd>set_tail</kbd>,
+    
+    as described in section <REF NAME="sec:mutable-list-structure"><a class="superscript" id="5.3.1-sec-link-3.3.1" href="./3.3.1.html">3.3.1</a></REF>.
+    The operation
+    
+      
+      <kbd>get_new_pair</kbd>
+      
+    
+    used in that implementation is realized here by the
+    <kbd>free</kbd> pointer.
     </FOOTNOTE></div>
 
     
