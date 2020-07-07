@@ -1703,12 +1703,12 @@
           <tr>
             <td><div class='snippet' id='javascript_114_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ev-if
-      (save exp)                    
-      (save env)
-      (save continue)
-      (assign continue (label ev-if-decide))
-      (assign exp (op if-predicate) (reg exp))
-      (goto (label eval-dispatch))</pre></div></div>    </td>
+(save exp)                    
+(save env)
+(save continue)
+(assign continue (label ev-if-decide))
+(assign exp (op if-predicate) (reg exp))
+(goto (label eval-dispatch))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_114_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_if",
     save("exp"),                    // save expression for later
@@ -1734,17 +1734,17 @@ ev-if
           <tr>
             <td><div class='snippet' id='javascript_114_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ev-if-decide
-      (restore continue)
-      (restore env)
-      (restore exp)
-      (test (op true?) (reg val))
-      (branch (label ev-if-consequent))
-      ev-if-alternative
-      (assign exp (op if-alternative) (reg exp))
-      (goto (label eval-dispatch))
-      ev-if-consequent
-      (assign exp (op if-consequent) (reg exp))
-      (goto (label eval-dispatch))</pre></div></div>    </td>
+(restore continue)
+(restore env)
+(restore exp)
+(test (op true?) (reg val))
+(branch (label ev-if-consequent))
+ev-if-alternative
+(assign exp (op if-alternative) (reg exp))
+(goto (label eval-dispatch))
+ev-if-consequent
+(assign exp (op if-consequent) (reg exp))
+(goto (label eval-dispatch))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_114_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_if_decide",
     restore("continue"),
@@ -1783,21 +1783,21 @@ ev-if-decide
           <tr>
             <td><div class='snippet' id='javascript_114_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ev-assignment
-      (assign unev (op assignment-variable) (reg exp))
-      (save unev)                   
-      (assign exp (op assignment-value) (reg exp))
-      (save env)
-      (save continue)
-      (assign continue (label ev-assignment-1))
-      (goto (label eval-dispatch))  
-      ev-assignment-1
-      (restore continue)
-      (restore env)
-      (restore unev)
-      (perform
-      (op set-variable-value!) (reg unev) (reg val) (reg env))
-      (assign val (const ok))
-      (goto (reg continue))</pre></div></div>    </td>
+(assign unev (op assignment-variable) (reg exp))
+(save unev)                   
+(assign exp (op assignment-value) (reg exp))
+(save env)
+(save continue)
+(assign continue (label ev-assignment-1))
+(goto (label eval-dispatch))  
+ev-assignment-1
+(restore continue)
+(restore env)
+(restore unev)
+(perform
+(op set-variable-value!) (reg unev) (reg val) (reg env))
+(assign val (const ok))
+(goto (reg continue))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_114_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_assignment",
     assign("unev", list(op("assignment_name"), reg("exp"))),
@@ -1829,21 +1829,21 @@ ev-assignment
           <tr>
             <td><div class='snippet' id='javascript_114_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ev-definition
-      (assign unev (op definition-variable) (reg exp))
-      (save unev)                   
-      (assign exp (op definition-value) (reg exp))
-      (save env)
-      (save continue)
-      (assign continue (label ev-definition-1))
-      (goto (label eval-dispatch))  
-      ev-definition-1
-      (restore continue)
-      (restore env)
-      (restore unev)
-      (perform
-      (op define-variable!) (reg unev) (reg val) (reg env))
-      (assign val (const ok))
-      (goto (reg continue))</pre></div></div>    </td>
+(assign unev (op definition-variable) (reg exp))
+(save unev)                   
+(assign exp (op definition-value) (reg exp))
+(save env)
+(save continue)
+(assign continue (label ev-definition-1))
+(goto (label eval-dispatch))  
+ev-definition-1
+(restore continue)
+(restore env)
+(restore unev)
+(perform
+(op define-variable!) (reg unev) (reg val) (reg env))
+(assign val (const ok))
+(goto (reg continue))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_114_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_variable_declaration",
     assign("unev", list(op("variable_declaration_name"), reg("exp"))),
