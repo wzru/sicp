@@ -1925,7 +1925,7 @@
 	    The self-evaluating items are numbers, strings, boolean values, and
 	    <kbd>null</kbd>.
 	    
-	    <div class='snippet' id='javascript_77_17_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH1GBTAGwObYDcBDDkX7USAcwAUjCgFsKASlABvXKDWgATmwpEN9JsxJEZAIzYapshWoA+N1esfqD0jVXGW5i0HYdPHBiY0NBxs-CSe1r7+TgZGHByR8gDcuAC++GR00qAyAJ7MAA4aNGIa-DKgALyghfwa7BIARBQaRGzJoBjJTSm4WSQ5+cyt7awUImwybCQU1aAcTBTMWgQSw8Wl5TIANKAADH0unNx8gsKiksOjbOOT07MpQA')">function is_self_evaluating(stmt) {
+	    <div class='snippet' id='javascript_77_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH1GBTAGwObYDcBDDkX7USAcwAUjCgFsKASlABvXKDWgATmwpEN9JsxJEZAIzYapshWoA+N1esfqD0jVXGW5i0HYdPHBiY0NBxs-CSe1r7+TgZGHByR8gDcuAC++GR00qAyAJ7MAA4aNGIa-DKgALyghfwa7BIARBQaRGzJoBjJTSm4WSQ5+cyt7awUImwybCQU1aAcTBTMWgQSw8Wl5TIANKAADH0unNx8gsKiksOjbOOT07MpQA')">function is_self_evaluating(stmt) {
     return is_number(stmt)  ||
            is_string(stmt)  ||
            is_boolean(stmt) ||
@@ -1942,7 +1942,7 @@
 	    expression, and the function
 	    <kbd>symbol_of_name</kbd> accesses
 	    the JavaScript string that represents the name.
-	    <div class='snippet' id='javascript_77_18_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCwkbBLc7nYaWjr6hsbR-jz8QuKJsgBEsfEFKkGh4ZS09IwAnhIARjQCzDQEzMUJ4h7JOnoGRvQubuxUAokqZSH4ZHTioBK1HXFK4mwU3PEkFKCeoBa6jAkFAB4BpUG8TGYCbLUipp0ii8vxzGsbW3ZTV4w3d2J6k0Wm1XgkXp13uxPtxtpMAkA')">function is_name(stmt) {
+	    <div class='snippet' id='javascript_77_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCwkbBLc7nYaWjr6hsbR-jz8QuKJsgBEsfEFKkGh4ZS09IwAnhIARjQCzDQEzMUJ4h7JOnoGRvQubuxUAokqZSH4ZHTioBK1HXFK4mwU3PEkFKCeoBa6jAkFAB4BpUG8TGYCbLUipp0ii8vxzGsbW3ZTV4w3d2J6k0Wm1XgkXp13uxPtxtpMAkA')">function is_name(stmt) {
     return is_tagged_list(stmt, "name");
 }
 function symbol_of_name(stmt) {
@@ -1956,7 +1956,7 @@ function symbol_of_name(stmt) {
 	    <kbd>is_tagged_list</kbd>,
 	    which identifies lists beginning with a designated string that
 	    we call <EM>tag</EM>:
-	    <div class='snippet' id='javascript_77_19_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvim7Fx8gsIiQuIiAEQkbBLcCbIJAB4JKhnJqTkBQA')">function is_tagged_list(stmt, the_tag) {
+	    <div class='snippet' id='javascript_77_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvim7Fx8gsIiQuIiAEQkbBLcCbIJAB4JKhnJqTkBQA')">function is_tagged_list(stmt, the_tag) {
     return is_pair(stmt) && head(stmt) === the_tag;
 }
 
@@ -1969,7 +1969,7 @@ function symbol_of_name(stmt) {
 	    $\textit{name}$
 	    <kbd>=</kbd>
 	    $\textit{value}$:
-	    <div class='snippet' id='javascript_77_20_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCxsjIxUHCQS3CSi4h4aWtr6hsbR-jz8QuLuMqAARLHxicmp5SpBoeGUtPRVCUkpFMyMAJ4SAEY0AqVqmjo5RvQubuxUIzMicyPpdirrjYSkLVHtNV3MAG5sAkTco5kTBlPO3K5LliPLoxsh+GR04qASvcx7nakeuwKNxahRQJ5QBZdIxzuUAB4Q0AYAL1IK8JhmARsXoif5gnr9IYjH5-OIdAniNggsGvDGMLE4vHk-aA46nc6k-EHKk0robIA')">function is_assignment(stmt) {
+	    <div class='snippet' id='javascript_77_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCxsjIxUHCQS3CSi4h4aWtr6hsbR-jz8QuLuMqAARLHxicmp5SpBoeGUtPRVCUkpFMyMAJ4SAEY0AqVqmjo5RvQubuxUIzMicyPpdirrjYSkLVHtNV3MAG5sAkTco5kTBlPO3K5LliPLoxsh+GR04qASvcx7nakeuwKNxahRQJ5QBZdIxzuUAB4Q0AYAL1IK8JhmARsXoif5gnr9IYjH5-OIdAniNggsGvDGMLE4vHk-aA46nc6k-EHKk0robIA')">function is_assignment(stmt) {
    return is_tagged_list(stmt, "assignment");
 }
 function assignment_symbol(stmt) {
@@ -2000,7 +2000,7 @@ function assignment_value(stmt) {
 	    for
 	    <kbd class='snippet'>const $\textit{name}$ = ($\textit{parameter}_{1}$, $\ldots$, $\textit{parameter}_{n}$) => { $\textit{body}$; };</kbd>
 	    The corresponding syntax functions are the following:
-	    <div class='snippet' id='javascript_77_21_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCxkdOJsJBTMvNxkAmy6bJEk7nYaWtr6hsbR-jz8QuK5sgBEsSTxicmp6ZnZNSpBoeGUtPT1jUkpaRlZfcyMAJ4SAEY0ArlqmjpFRvQubuxUCxsiWwviHirHXYSkvVED7E3DrWN0zABubAJE3Iv5KwZrztyue5YFvtFicQmcIn1Ss9dFQ2DMBEpbqNsh9loVviVTOwuHxBMJqqAatDYfDES1kX0OqcetlQMS4QjmiM2uMprN5qiCnoMes-ptASJdsDDnZjp0wTTIfTSUy7tkni83pyvsVef9gcLbGLTrgrqAJJNZRSHvEKNwJNxEqBPKALLpGO8agiKKAAB7W0AYAJU3C8JhmdKTESmaWMpEsugiA1GiMkCbsM0WxKgv2MANsIOhsnM+5xtlzBbR8O5+NZc2W0VBVPpzMZElh8mxhWvd5Fxsl03l5OdIA')">function is_constant_declaration(stmt) {
+	    <div class='snippet' id='javascript_77_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCxkdOJsJBTMvNxkAmy6bJEk7nYaWtr6hsbR-jz8QuK5sgBEsSTxicmp6ZnZNSpBoeGUtPT1jUkpaRlZfcyMAJ4SAEY0ArlqmjpFRvQubuxUCxsiWwviHirHXYSkvVED7E3DrWN0zABubAJE3Iv5KwZrztyue5YFvtFicQmcIn1Ss9dFQ2DMBEpbqNsh9loVviVTOwuHxBMJqqAatDYfDES1kX0OqcetlQMS4QjmiM2uMprN5qiCnoMes-ptASJdsDDnZjp0wTTIfTSUy7tkni83pyvsVef9gcLbGLTrgrqAJJNZRSHvEKNwJNxEqBPKALLpGO8agiKKAAB7W0AYAJU3C8JhmdKTESmaWMpEsugiA1GiMkCbsM0WxKgv2MANsIOhsnM+5xtlzBbR8O5+NZc2W0VBVPpzMZElh8mxhWvd5Fxsl03l5OdIA')">function is_constant_declaration(stmt) {
    return is_tagged_list(stmt, "constant_declaration");
 }
 function constant_declaration_symbol(stmt) {
@@ -2026,7 +2026,7 @@ function variable_declaration_value(stmt) {
           <LI>
 	    Function definitions are objects tagged with the
 	    string <kbd>lambda</kbd>:
-	    <div class='snippet' id='javascript_77_22_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvggoABikAAaALIAogBcetxmAmxk3KAARMTk1HTMvNwEVCRUBSTZoADuFfI56RIARrxs2bjhbAQU3Lq+TAyMjERZg-JsJLwCfImdYPIUFGaMiSAc9UTNaGQ0EsCMNEaZALQZrtwSAJ7AAFaMJ4zpJBzATCPcjMAAbADMKPNIjEEsl9BIaAA3LIKLLNAQ0MgAa1ABF0e1ATVabGYzRovCuoDomV83EBFl0jD6tV0bBWJNAuPxDHobAZ8KRtUUJG4UP63L4fDQhFIlFoJhYmLa7jsGi02n0hmMQ38PH4QnE0tkuRFlSKJTKFTF2RUQVCeVFdAxbBabXMbBpEgMfUY0rUmh0CqM9AktLEVxaNAEzBoBGYJGt3FkLjc7CoAldKhNIWF+TFVpt2MZV1dso9Bi9oB9iKUcIRiJE0ZEsfj1YTidN+F2JHEhaugmtWNAnlA5MpImyAA8uwA+UADgLGoK8JhpNjZ0yStgia7tjP13DTxiz7OLu0Op0U5dtxfrzfbkS7rNH1dY+tAA')">// FIXME: replace "function_definition" with "lambda"
+	    <div class='snippet' id='javascript_77_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvggoABikAAaALIAogBcetxmAmxk3KAARMTk1HTMvNwEVCRUBSTZoADuFfI56RIARrxs2bjhbAQU3Lq+TAyMjERZg-JsJLwCfImdYPIUFGaMiSAc9UTNaGQ0EsCMNEaZALQZrtwSAJ7AAFaMJ4zpJBzATCPcjMAAbADMKPNIjEEsl9BIaAA3LIKLLNAQ0MgAa1ABF0e1ATVabGYzRovCuoDomV83EBFl0jD6tV0bBWJNAuPxDHobAZ8KRtUUJG4UP63L4fDQhFIlFoJhYmLa7jsGi02n0hmMQ38PH4QnE0tkuRFlSKJTKFTF2RUQVCeVFdAxbBabXMbBpEgMfUY0rUmh0CqM9AktLEVxaNAEzBoBGYJGt3FkLjc7CoAldKhNIWF+TFVpt2MZV1dso9Bi9oB9iKUcIRiJE0ZEsfj1YTidN+F2JHEhaugmtWNAnlA5MpImyAA8uwA+UADgLGoK8JhpNjZ0yStgia7tjP13DTxiz7OLu0Op0U5dtxfrzfbkS7rNH1dY+tAA')">// FIXME: replace "function_definition" with "lambda"
 // after this issue is handled:
 // https://github.com/source-academy/js-slang/issues/634
 // FIXME: remove the block from lambda_body once the
@@ -2049,7 +2049,7 @@ function lambda_body(stmt) {
 	    <kbd>return</kbd> statements are objects
 	    tagged with the string 
 	    <kbd>"return"</kbd>:
-	    <div class='snippet' id='javascript_77_23_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCz6hsbudhpa2rFGJizsXHyCwgmyAESpxszibBTcEtwkFPkqQaHhlLT0RSTM3AAeZvqMjM0Japo6rc7criLsVAIDdSH4ZHTioBIAnsyNkW283GQCbLplzaCeoBa6jNwi+RtHBCIdg3oGaaAdAaDBtUELJEurgmwJAAjXhsY6gITiZj6O7-G50ZjbXb7Q50WTYWY-P5rEYnSEUaHcWFrPbA0Ho2amVoif6tWatdpdHp9Og0nHPYx1IA')">function is_return(stmt) {
+	    <div class='snippet' id='javascript_77_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCz6hsbudhpa2rFGJizsXHyCwgmyAESpxszibBTcEtwkFPkqQaHhlLT0RSTM3AAeZvqMjM0Japo6rc7criLsVAIDdSH4ZHTioBIAnsyNkW283GQCbLplzaCeoBa6jNwi+RtHBCIdg3oGaaAdAaDBtUELJEurgmwJAAjXhsY6gITiZj6O7-G50ZjbXb7Q50WTYWY-P5rEYnSEUaHcWFrPbA0Ho2amVoif6tWatdpdHp9Og0nHPYx1IA')">function is_return(stmt) {
    return is_tagged_list(stmt, "return_statement");
 }
 function return_expression(stmt) {
@@ -2064,7 +2064,7 @@ function return_expression(stmt) {
 	    Conditional expressions are tagged with 
 	    <kbd>"conditional_expression"</kbd>
 	    and have a predicate, a consequent, and an alternative. 
-	    <div class='snippet' id='javascript_77_24_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCxkdLxUkSRsAszcAB5m+oyMtCTudhpa2vqGxtH+PPxC4vmyRToNjdoARLEk8YnJqRlZOXTNKkGh4ZS5oG386Znm+m7iHoU6JUb01RTM+gS1oBiDIYSko1ET3dNtjPlqmksGK6BrG9xb8zKg2HvDh4njcae6zMlRC8rvVlmUHpttgBmD74c4UUASACezBOU10oE8oHqoAsukY3BEzQouiI3FAAH4dqAAFxvAIDILxRhmARsJEiUwTBK5Lro7jZXIiZGo37olR7Zms9kiNE9GZ8YUouWZCVMpjSjkq-7nJWi9p-NW4KVsrVi+WAvXatVAA')">function is_conditional_expression(stmt) {
+	    <div class='snippet' id='javascript_77_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCxkdLxUkSRsAszcAB5m+oyMtCTudhpa2vqGxtH+PPxC4vmyRToNjdoARLEk8YnJqRlZOXTNKkGh4ZS5oG386Znm+m7iHoU6JUb01RTM+gS1oBiDIYSko1ET3dNtjPlqmksGK6BrG9xb8zKg2HvDh4njcae6zMlRC8rvVlmUHpttgBmD74c4UUASACezBOU10oE8oHqoAsukY3BEzQouiI3FAAH4dqAAFxvAIDILxRhmARsJEiUwTBK5Lro7jZXIiZGo37olR7Zms9kiNE9GZ8YUouWZCVMpjSjkq-7nJWi9p-NW4KVsrVi+WAvXatVAA')">function is_conditional_expression(stmt) {
    return is_tagged_list(stmt, 
                 "conditional_expression");
 }
@@ -2090,7 +2090,7 @@ function cond_expr_alt(stmt) {
 	    selectors that return the first statement and the rest of the
 	    statements in the sequence, and predicates that test whether a
 	    sequence is empty or has only one statement.<a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:blue">[5]</a>
-	    <div class='snippet' id='javascript_77_25_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCyM3ACORNzk3O52Glra+obG0f48-ELiqbIARLEJSWTcJSpBoeGUtPQSbADWSuWJyamMapo6WUb0haJl8V1VJbLiUr11hKSNUZ2VHewU3BJJFIypfToZegZDztyuIuxUAnu1IQsRTaAEVuLM4mwbWySiMzt9h4Mci43L85ncGpF6PpXu9PttdqD-gNjjlLtdEfMIY9TJszBQAJ5vcarHpIzIokwsEhEATo2xg+qLSG5ARsGHrTbbUnpZHZSnMam0i6WOmzFS3UK4Mh0cSgCSElbJUCeUAWXSxEQlDABOS6RI6lAAVgCNSCvCYZlZ+JEpkVVRE8qJFWS4qC0pIssdbCWHuVoDtaw+nO+u0dAdu5sYlrY1pxEjxCuJ3S9Pt6EYtVptLFZ7KDX1EKchabNGZjIme6oobw5+YdhO9RdduEj0et0KrsODOzrzAbTWLQA')">function is_sequence(stmt) {
+	    <div class='snippet' id='javascript_77_25_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCyM3ACORNzk3O52Glra+obG0f48-ELiqbIARLEJSWTcJSpBoeGUtPQSbADWSuWJyamMapo6WUb0haJl8V1VJbLiUr11hKSNUZ2VHewU3BJJFIypfToZegZDztyuIuxUAnu1IQsRTaAEVuLM4mwbWySiMzt9h4Mci43L85ncGpF6PpXu9PttdqD-gNjjlLtdEfMIY9TJszBQAJ5vcarHpIzIokwsEhEATo2xg+qLSG5ARsGHrTbbUnpZHZSnMam0i6WOmzFS3UK4Mh0cSgCSElbJUCeUAWXSxEQlDABOS6RI6lAAVgCNSCvCYZlZ+JEpkVVRE8qJFWS4qC0pIssdbCWHuVoDtaw+nO+u0dAdu5sYlrY1pxEjxCuJ3S9Pt6EYtVptLFZ7KDX1EKchabNGZjIme6oobw5+YdhO9RdduEj0et0KrsODOzrzAbTWLQA')">function is_sequence(stmt) {
    return is_tagged_list(stmt, "sequence");
 }
 function make_sequence(stmts) {
@@ -2118,7 +2118,7 @@ function is_last_statement(stmts) {
 
           <LI>
 	    A block contains its body statement.
-	    <div class='snippet' id='javascript_77_26_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCwARgI0ZADW7nYaWjr6hsbR-jz8QuIpsgBEcQmJxSpBoeGUtPQSbIlKZUkpapoZBkb0BaKl8UnFsuIe1YSkdVGticwxNLwAnu1pOnrd2S5u7FQC7VUh+GR04qASi3ODiaCeoBa6jNwixeqgGAFyukTcHygArB9gpUgrwmGYBGxlqYZiJzpdyioDqDGODISIZnMFss4TNEQEgA')">function is_block(stmt) {
+	    <div class='snippet' id='javascript_77_26_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCwARgI0ZADW7nYaWjr6hsbR-jz8QuIpsgBEcQmJxSpBoeGUtPQSbIlKZUkpapoZBkb0BaKl8UnFsuIe1YSkdVGticwxNLwAnu1pOnrd2S5u7FQC7VUh+GR04qASi3ODiaCeoBa6jNwixeqgGAFyukTcHygArB9gpUgrwmGYBGxlqYZiJzpdyioDqDGODISIZnMFss4TNEQEgA')">function is_block(stmt) {
     return is_tagged_list(stmt, "block");
 }
 function make_block(stmt) {
@@ -2139,7 +2139,7 @@ function block_body(stmt) {
 	    <kbd>operator</kbd>, the
 	    <kbd>operands</kbd>, and three
 	    functions for iterating  through the operand list:
-	    <div class='snippet' id='javascript_77_27_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCxsZmZCZGyRJO52Glra+obG0f48-ELiqbIARLHxVInJJSpBoeGUtPQNyczcAB5m+oyMTalqmjpZRvQubuxUAv21IYSkjVFsuhyM-elDBiPO3K4iE1P70zP188mgJDTMSysiNGaMAxl6mzmmJEQCU3cPdXMRTaACFZxFdlrd7o8NtlRjs3N9jn8FvRuhRQTd4etMi96Id4b9cGQ6OJQBIAJ5XOIJJIAzygCy6RjcEQlCRJeTmGgAdxEAGZZChajUgrwmPE2KSRKZylTkiIyRSKlUmioZiLGGKJS0mm1Ot1enQUvLpZVqXQVUFCSRiUbloxQLTrqsjZSTclVaKBOKRBc0U7yY6Hu71Z7NcDUY65f7bebcGqNSIUb7I77zUA')">function is_application(stmt) {
+	    <div class='snippet' id='javascript_77_27_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCxsZmZCZGyRJO52Glra+obG0f48-ELiqbIARLHxVInJJSpBoeGUtPQNyczcAB5m+oyMTalqmjpZRvQubuxUAv21IYSkjVFsuhyM-elDBiPO3K4iE1P70zP188mgJDTMSysiNGaMAxl6mzmmJEQCU3cPdXMRTaACFZxFdlrd7o8NtlRjs3N9jn8FvRuhRQTd4etMi96Id4b9cGQ6OJQBIAJ5XOIJJIAzygCy6RjcEQlCRJeTmGgAdxEAGZZChajUgrwmPE2KSRKZylTkiIyRSKlUmioZiLGGKJS0mm1Ot1enQUvLpZVqXQVUFCSRiUbloxQLTrqsjZSTclVaKBOKRBc0U7yY6Hu71Z7NcDUY65f7bebcGqNSIUb7I77zUA')">function is_application(stmt) {
    return is_tagged_list(stmt, "application");
 }
 function function_expression(stmt) {
@@ -2855,7 +2855,7 @@ display(1);
 	this syntax, we can for example compute the greatest common divisor
 	of two numbers using the following function:
 	
-	<div class='snippet' id='javascript_77_42_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AczIBMAKAQwBpQAjASlABvXKFGgA7gAsqAGwCmHUAEIAvCt4DhY7aCoFFAPg1CROs+1DqLAWl4BuU2YC+oOTIDOck2bM9LvUFt2Bx9QJwBIUUcw6IAnOQoiWPpg8NwnfCY2FGxuDGw+OyA')">function gcd(a, b) {
+	<div class='snippet' id='javascript_77_42_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AczIBMAKAQwBpQAjASlABvXKFGgA7gAsqAGwCmHUAEIAvCt4DhY7aCoFFAPg1CROs+1DqLAWl4BuU2YC+oOTIDOck2bM9LvUFt2Bx9QJwBIUUcw6IAnOQoiWPpg8NwnfCY2FGxuDGw+OyA')">function gcd(a, b) {
     while(a !== b) {
         if(a > b) {
             a = a - b;
@@ -2875,7 +2875,7 @@ display(1);
 	    <kbd>while</kbd> loop. The
 	    <kbd>gcd</kbd> function would then
 	    look as follows:
-	    <div class='snippet' id='javascript_77_43_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AczIBMAKAQwBpQAjASlABvXKFGgA7gAsqAGwCmAfRk0aAB1ahWAgLwA+UO1ABCbdt6cRYq9bFbQeoaKoFNh-fyGWb3nzcNnDAFpeAG4vXwixAF9QORkAZzlPSJSbHnteUGD2MNSUqIBIUXC8qyiS3z5csQAnOQoiGvocgtwooA')">function gcd(a, b) {
+	    <div class='snippet' id='javascript_77_43_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AczIBMAKAQwBpQAjASlABvXKFGgA7gAsqAGwCmAfRk0aAB1ahWAgLwA+UO1ABCbdt6cRYq9bFbQeoaKoFNh-fyGWb3nzcNnDAFpeAG4vXwixAF9QORkAZzlPSJSbHnteUGD2MNSUqIBIUXC8qyiS3z5csQAnOQoiGvocgtwooA')">function gcd(a, b) {
     while_loop( () => a !== b,
                 () => {  if (a > b) {
                              a = a - b;
@@ -2959,7 +2959,7 @@ display(1);
 	that reverses a list, using a <kbd>for</kbd>
 	loop. 
 	
-	<div class='snippet' id='javascript_77_44_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDjQAGyYVGTDkUmyAvKBKLJAbjESCNBt2myyRBsxIrQ-TaACEoKhwD66yZO4mzTCwJufzlhQAhlTu-t4UAkKiErFyCkqgqgAOIQYAFkxBACYepgECADTxipHasQC+OuLMFKb0zAkU2lW4zGycPJKOFNwYxdjFAMxRmkA')">function reverse(xs) {
+	<div class='snippet' id='javascript_77_44_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDjQAGyYVGTDkUmyAvKBKLJAbjESCNBt2myyRBsxIrQ-TaACEoKhwD66yZO4mzTCwJufzlhQAhlTu-t4UAkKiErFyCkqgqgAOIQYAFkxBACYepgECADTxipHasQC+OuLMFKb0zAkU2lW4zGycPJKOFNwYxdjFAMxRmkA')">function reverse(xs) {
     let result = null;
     for(let current = xs; ! is_null(current); current = tail(current)) {
         result = pair(head(current), result);
@@ -3038,7 +3038,7 @@ display(1);
 	the variable declared in the initialization part of
 	<kbd>for</kbd> loops. Consider the following
 	example.
-	<div class='snippet' id='javascript_77_45_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDjQAGyYVGTDkUmyAvKBKLJAbjESCNBt2myyRBsxIrQ-TaACEoKhwD66yZO4mzTCwJufzlhQAhlTu-t4UAkKiErFyCkqgqgAOIQbcQsoAfKAAFkxBACYepgECADTxipHasQC+OuLMFKb0zAkU2nVAA')">function reverse(xs) {
+	<div class='snippet' id='javascript_77_45_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDjQAGyYVGTDkUmyAvKBKLJAbjESCNBt2myyRBsxIrQ-TaACEoKhwD66yZO4mzTCwJufzlhQAhlTu-t4UAkKiErFyCkqgqgAOIQbcQsoAfKAAFkxBACYepgECADTxipHasQC+OuLMFKb0zAkU2nVAA')">function reverse(xs) {
     let result = null;
     for(let current = xs; ! is_null(current); current = tail(current)) {
         result = pair(() => head(current), result);

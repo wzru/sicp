@@ -1865,7 +1865,7 @@ function f(x) {
 	not appear in the user's program. Consider the
 	<kbd>solve</kbd> function
 	from section <REF NAME="sec:streams-and-delayed-evaluation"><a class="superscript" id="4.1.6-sec-link-3.5.4" href="./3.5.4.html">3.5.4</a></REF>:
-	<div class='snippet' id='javascript_81_2_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzAVwDsBjAFwEsB7E0AZxoBsA3AUwAoCAaUATwAMfACYUAlKADeuUHNBk6DCgNABeUFRIV2AcwBOAQ2adQnSWoB8oEfz5DREgNyz5ikspv91jCvvaGALYA+oGGAA7c9uIu8qD+FET69PwuAL5AA')">function solve(f, y0, dt) {
+	<div class='snippet' id='javascript_81_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzAVwDsBjAFwEsB7E0AZxoBsA3AUwAoCAaUATwAMfACYUAlKADeuUHNBk6DCgNABeUFRIV2AcwBOAQ2adQnSWoB8oEfz5DREgNyz5ikspv91jCvvaGALYA+oGGAA7c9uIu8qD+FET69PwuAL5AA')">function solve(f, y0, dt) {
     const y = integral( () => dy, y0, dt);
     const dy = stream_map(f, y);
     return y;
@@ -1988,7 +1988,7 @@ function f(x) {
 	 
 	Ben Bitdiddle, Alyssa P. Hacker, and Eva Lu Ator are arguing about
 	the desired result of evaluating the expression
-	<div class='snippet' id='javascript_81_3_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAbAUwBdQBDUAXlAwG5cAzAVwDsBjEgSwHtXRGACgAeASlABvUNJm4ZoYmQBG1CqADUoYQ3mK1NAKw6ZAJ1LMT-SpqUMAvk0EYADKLpA')">let a = 1;
+	<div class='snippet' id='javascript_81_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAbAUwBdQBDUAXlAwG5cAzAVwDsBjEgSwHtXRGACgAeASlABvUNJm4ZoYmQBG1CqADUoYQ3mK1NAKw6ZAJ1LMT-SpqUMAvk0EYADKLpA')">let a = 1;
 function f(x) {      
     let b = a + x;
     let a = 5;
@@ -2052,7 +2052,7 @@ f(10);
 	10 factorial by applying a recursive
 	
 	factorial function:<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-	<div class='snippet' id='javascript_81_4_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAKAO1AF4A+UAgMwEMBjAFzMrqZocYBpQiBKPrlDCRBKtW6gA1nxbSypUqAxCRa9RoD8y1Rr1qAXPIBUoCTUlTQAWmWzdIwYIIYADHwDcQA')">(n => (fact => fact(fact, n))
+	<div class='snippet' id='javascript_81_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAKAO1AF4A+UAgMwEMBjAFzMrqZocYBpQiBKPrlDCRBKtW6gA1nxbSypUqAxCRa9RoD8y1Rr1qAXPIBUoCTUlTQAWmWzdIwYIIYADHwDcQA')">(n => (fact => fact(fact, n))
       ( (ft, k) => k === 1
                    ? 1
                    : k * ft(ft, k - 1) 
@@ -2071,7 +2071,7 @@ f(10);
 	    Consider the following function, which includes mutually recursive
 	    internal definitions:
 	    
-	    <div class='snippet' id='javascript_81_5_div'><div class='pre-prettyprint'><pre class='prettyprint' title='Evaluate Javascript expression'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzAVwDsBjAFwEsB7E0AgCgA8BKUAb11B4dMtr0qAZwD6AUwBu4koxLsuvJaABO4ikRX16AXj2gADN2UneAflAUVRccdMmAXKBGiaAEzdzQAWlAZWANx2oAC+wcTk1HTOYu6e8pzBSmoaWqC6+kb2phYEAIYANsK22Y4xEtKy9L7+QUphyeqaQmJSMiyBuGGEjACcvYFAA')">function f(x) {
+	    <div class='snippet' id='javascript_81_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzAVwDsBjAFwEsB7E0AgCgA8BKUAb11B4dMtr0qAZwD6AUwBu4koxLsuvJaABO4ikRX16AXj2gADN2UneAflAUVRccdMmAXKBGiaAEzdzQAWlAZWANx2oAC+wcTk1HTOYu6e8pzBSmoaWqC6+kb2phYEAIYANsK22Y4xEtKy9L7+QUphyeqaQmJSMiyBuGGEjACcvYFAA')">function f(x) {
     function is_even(n) {
         return n === 0
                ? true
