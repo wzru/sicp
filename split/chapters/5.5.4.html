@@ -1705,8 +1705,7 @@
 
       
       (define (statements s)
-      (if (symbol? s) (list s) (caddr s)))
-</pre></div></div>    </td>
+      (if (symbol? s) (list s) (caddr s)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_120_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function registers_needed(s) {
      return is_symbol(s) ? null : head(s);
@@ -1720,8 +1719,7 @@ function registers_modified(s) {
 
 function statements(s) {
      return is_symbol(s) ? list(s) : head(tail(tail(s));
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
 
   and to determine whether a given
   sequence needs or modifies a given register we use the predicates
@@ -1735,8 +1733,7 @@ function statements(s) {
 
       
       (define (modifies-register? seq reg)
-      (memq reg (registers-modified seq)))
-</pre></div></div>    </td>
+      (memq reg (registers-modified seq)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_120_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function needs_register(seq, reg) {
     return is_null(member(reg, registers_needed(seq)));
@@ -1745,8 +1742,7 @@ function needs_register(seq, reg) {
 
 function modifies_register(seq, reg) {
     return is_null(member(reg, registers_modified(seq)));
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -1801,8 +1797,7 @@ function modifies_register(seq, reg) {
             (empty-instruction-sequence)
             (append-2-sequences (car seqs)
             (append-seq-list (cdr seqs)))))
-      (append-seq-list seqs))
-</pre></div></div>    </td>
+      (append-seq-list seqs))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_120_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function append_instruction_sequences( . seqs) {
     function append_2_sequences(seq1, seq2) {
@@ -1824,8 +1819,7 @@ function append_instruction_sequences( . seqs) {
     }
     
     return append_seq_list(seqs);
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -1850,8 +1844,7 @@ function append_instruction_sequences( . seqs) {
       (cond ((null? s1) '())
             ((memq (car s1) s2) (list-difference (cdr s1) s2))
             (else (cons (car s1)
-            (list-difference (cdr s1) s2)))))
-</pre></div></div>    </td>
+            (list-difference (cdr s1) s2)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_120_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function list_union(s1, s2) {
     return is_null(s1)
@@ -1868,8 +1861,7 @@ function list_difference(s1, s2) {
         : is_null(member(head(s1), s2))
         ? list_difference(tail(s1), s2)
         : pair(head(s1), list_difference(tail(s1), s2));
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -1910,8 +1902,7 @@ function list_difference(s1, s2) {
             (statements seq1)
             `((restore ,first-reg))))
             seq2)
-            (preserving (cdr regs) seq1 seq2)))))
-</pre></div></div>    </td>
+            (preserving (cdr regs) seq1 seq2)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_120_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function preserving(regs, seq1, seq2) {
     if (is_null(regs)) {
@@ -1935,8 +1926,7 @@ function preserving(regs, seq1, seq2) {
             return preserving(tail(regs), seq1, seq2);
         }
     }
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -1964,16 +1954,14 @@ function preserving(regs, seq1, seq2) {
       (make-instruction-sequence
       (registers-needed seq)
       (registers-modified seq)
-      (append (statements seq) (statements body-seq))))
-</pre></div></div>    </td>
+      (append (statements seq) (statements body-seq))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_120_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function tack_on_instruction_sequence(seq, body_seq) {
     return make_instruction_sequence(
         registers_needed(seq),
         registers_modified(seq),
         append(statements(seq), statements(body_seq)));
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -1996,8 +1984,7 @@ function tack_on_instruction_sequence(seq, body_seq) {
             (registers-needed seq2))
       (list-union (registers-modified seq1)
             (registers-modified seq2))
-      (append (statements seq1) (statements seq2))))
-</pre></div></div>    </td>
+      (append (statements seq1) (statements seq2))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_120_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function parallel_instruction_sequences(seq1, seq2) {
     return make_instruction_sequence(
@@ -2010,8 +1997,7 @@ function parallel_instruction_sequences(seq1, seq2) {
         append(
             statements(seq1),
             statements(seq2)));
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
   
       </p></div>
 

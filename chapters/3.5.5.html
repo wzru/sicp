@@ -1717,7 +1717,6 @@
    };
 }
 const rand = make_rand();
-
 </pre></div></div>
   </p></div>
 
@@ -1735,7 +1734,6 @@ const rand = make_rand();
     <div class='snippet' id='javascript_73_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFZMChslAIKgBuApgE4CeoAzgJYC2ADgDamjkCGAdgCYD6AVya9OAF3YAzQdwDGYugHtuoWYuaCJNUJ1DdBDAEYU8YSeXWgADKAAUdOS0H0yASlBjFoAExWrGADYrABYATisARhQIu10WTnIAc3YmckZSV1NQc0tdYk4ndgAPUENqBkEWBVZKB0TQOjFQAHdGgAsdVWUaMR4mzgAaLM5eXjrOtW4evtKBnT4PNtIVXoBrcbEljlIGTgdeE3xFSVAx4jox7nrG0upN9niklLSGUjRQAHV2Z1JeBqaluR2FlJIpyA0WE4elwFMpQMoWJQ5jw-rwvNxFE1ZPFGPNqFlpgoenRZAVQKlFEwKApSDQ0NhJj1QAxQABeHx+QIhcJRCIAblADO6-TZoAiESsKAwEQw3mCGD5QqmTUMooi3hQ8sV2GkclhKi4fCEInEpFsRXcAG9sKBbdsxIJyCpbLoAFSgEoAalK7gApMzFQBfXCMpqGtEMfgOG7s9WawIAdgAHKFtaGOCj1Px9EYKNpWTa7Uw9uRbOGs9GxEM7TXbbZ3KyAHy0MRAziR3ZMMso42iCRzcuRnPGcg0VyubWkfIsfjQ0jt7t8LPDvNzDAToA')">const random_numbers =
     pair(random_init,
          () => stream_map(rand_update, random_numbers));
-
 </pre></div></div>
     
   </p></div>
@@ -1762,7 +1760,6 @@ const rand = make_rand();
 const cesaro_stream =
     map_successive_pairs( (r1, r2) => gcd(r1, r2) === 1,
                           random_numbers);
-
 </pre></div></div>
     
   </p></div>
@@ -1803,7 +1800,6 @@ const cesaro_stream =
 
 const pi = stream_map(p => math_sqrt(6 / p),
                       monte_carlo(cesaro_stream, 0, 0));
-
 </pre></div></div>
     
   </p></div>
@@ -1926,8 +1922,7 @@ function make_simplified_withdraw(balance) {
                balance = balance - amount;
                return balance;
            };
-}
-</pre></div></div>
+}</pre></div></div>
   </p></div>
 
   <div class='permalink'>
@@ -1963,7 +1958,6 @@ function make_simplified_withdraw(balance) {
                           balance - head(amount_stream),
                           stream_tail(amount_stream)));   
 }
-
 </pre></div></div>
     
   </p></div>

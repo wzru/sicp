@@ -1795,12 +1795,10 @@
     have the property that, for any complex number
     <kbd>z</kbd>, both
     <div class='snippet' id='javascript_42_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-make_from_real_imag(real_part(z),imag_part(z));
-</pre></div></div>
+make_from_real_imag(real_part(z),imag_part(z));</pre></div></div>
     and
     <div class='snippet' id='javascript_42_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-make_from_mag_ang(magnitude(z), angle(z));
-</pre></div></div>
+make_from_mag_ang(magnitude(z), angle(z));</pre></div></div>
     produce complex numbers that are equal to <kbd>z</kbd>.
   </p></div>
   <div class='permalink'>
@@ -1832,8 +1830,7 @@ function div_complex(z1, z2) {
     return make_from_mag_ang(
                magnitude(z1) / magnitude(z2),
                angle(z1) - angle(z2));
-}
-</pre></div></div>
+}</pre></div></div>
   </p></div>
   <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
@@ -1887,7 +1884,6 @@ function make_from_real_imag(x, y) {
 function make_from_mag_ang(r, a) {
     return pair(r * math_cos(a), r * math_sin(a));
 }
-
 </pre></div></div>
 
     
@@ -1921,7 +1917,6 @@ function make_from_real_imag(x, y) {
 function make_from_mag_ang(r, a) {
     return pair(r, a);
 }
-
 </pre></div></div>
     The discipline of data abstraction ensures that the same implementation of
     

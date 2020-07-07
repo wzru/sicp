@@ -1724,8 +1724,7 @@
   (cond ((= n 0) 0)
         ((= n 1) 1)
         (else (+ (fib (- n 1))
-                 (fib (- n 2))))))
-</pre></div></div>    </td>
+                 (fib (- n 2))))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_15_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCZMChsDMBXAOwGMAXASwHsjQ8KAjACiIEpQBvbUH0AJwCmZAn1q0AvJNAAGbr3m8A-DLkL5ALlASpKVWvnLd+tZvrNaAWlTsA1HUYtQVjKwDc2AL64zTAGxugA')">function fib(n) {
     return n === 0
            ? 0
@@ -1733,7 +1732,6 @@
              ? 1
              : fib(n - 1) + fib(n - 2);
 }
-
 </pre></div></div></td></tr></table>
 
     
@@ -1897,8 +1895,7 @@
 (define (fib-iter a b count)
   (if (= count 0)
       b
-      (fib-iter (+ a b) a (- count 1))))
-</pre></div></div>    </td>
+      (fib-iter (+ a b) a (- count 1))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_15_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCZMChsDMBXAOwGMAXASwHsjQ8KAjACiIEpQBvbUH0AJwCmZAn1r0GAfQpkBfJigA0oAAxK2AbmwBffMXLUxjKTLkBDJQyUkqxMuy69+QkbWu3QAXi8rujv6AB+UAZff14ALjojaVkmU1AAamClc1A3IjJQAFpUVk0dfEYmADY8oA')">function fib(n) {
     return fib_iter(1, 0, n);
 }
@@ -1907,7 +1904,6 @@ function fib_iter(a, b, count) {
            ? b
            : fib_iter(a + b, a, count - 1);
 }
-
 </pre></div></div></td></tr></table>
     This second method for computing $\textrm{Fib}(n)$
     is a linear iteration. The difference in number of steps required by the two
@@ -2060,8 +2056,7 @@ function fib_iter(a, b, count) {
         ((= kinds-of-coins 2) 5)
         ((= kinds-of-coins 3) 10)
         ((= kinds-of-coins 4) 25)
-        ((= kinds-of-coins 5) 50)))
-</pre></div></div>    </td>
+        ((= kinds-of-coins 5) 50)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_15_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCZMChsDMBXAOwGMAXASwHsjQSriyB9EgCwEMiBzAUwAp2AWwZEyASlABvbKFmgATjzIF5tEiQHDGAGlABWMQG5sAX3zFy1NRqEiyugNYUiAEwDOTKnhZVnbidJyCkoqtLaMoAC80aAADDJBiaAA-KgJSXIAXKDhoqAAPHGgAD7F6RlyTq4eXj5+UTHxFYmpTc1ZdDZaoo7O7p7e9PUAtKhi5e2gANQT7eqadqCjeBTybswuPERUgs7slDR8s5MnslX9tUNE-trHk+c1g77XRqbmpAe0K2sbWzt7nz4DwGdReUnKimUqlAwMuzzcDUiqBSyMyd0qfUeoIR0SRGBRelAaPumJBVxxMQAzCiULEieizqS4fVcaAACwojCE4ntWFPFkxQmpPR07KxYxmbD0RgsDjcfi02JGIA')">function count_change(amount) {
     return cc(amount, 5);
 }
@@ -2084,7 +2079,6 @@ function first_denomination(kinds_of_coins) {
            kinds_of_coins === 4 ? 25 :
            kinds_of_coins === 5 ? 50 : 0;
 }
-
 </pre></div></div></td></tr></table>
     
   </p></div>
@@ -2110,19 +2104,11 @@ function first_denomination(kinds_of_coins) {
           
           <tr>
             <td><div class='snippet' id='javascript_15_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(count-change 100)
-</pre><pre class='prettyprintoutput'>
-
-292	    
-      
-</pre></div></div>    </td>
+(count-change 100)</pre><pre class='prettyprintoutput'>
+292</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_15_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCZMChsDMBXAOwGMAXASwHsjQSriyB9EgCwEMiBzAUwAp2AWwZEyASlABvbKFmgATjzIF5tEiQHDGAGlABWMQG5sAX3zFy1NRqEiyugNYUiAEwDOTKnhZVnbidJyCkoqtLaMoAC80aAADDJBiaAA-KgJSXIAXKDhoqAAPHGgAD7F6RlyTq4eXj5+UTHxFYmpTc1ZdDZaoo7O7p7e9PUAtKhi5e2gANQT7eqadqCjeBTybswuPERUgs7slDR8s5MnslX9tUNE-trHk+c1g77XRqbmpAe0K2sbWzt7nz4DwGdReUnKimUqlAwMuzzcDUiqBSyMyd0qfUeoIR0SRGBRelAaPumJBVxxMQAzCiULEieizqS4fVcaAACwojCE4ntWFPFkxQmpPR07KxYxmbD0RgsDjcfi02JGIA')">count_change(100);
-
 </pre><pre class='prettyprintoutput'>
-
-292	    
-      
-</pre></div></div></td></tr></table>
+292</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -2198,7 +2184,6 @@ function f_iterative_impl(a, b, c, count) {
            ? a
            : f_iterative_impl(a + 2 * b + 3 * c, a, b, count - 1);
 }
-
 </pre></div></div>
 
       <div class='snippet' id='javascript_15_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCZMChsgE4CmAxgK74DOAlgG6GgBmpAdsQC5UD2z2TrH3RgH0iZSrUIAKZgEpQAb2yhloIm3LNQmgDygAzEpVGVAfi2HjRgFzDR5anWmgAtKjkBqbAEhjGUACpbEnsJJ1cMD29jPQCgsQcpTVc9GQBubABfXAYRYPFHAFY0oA')">//recursive function
@@ -2209,7 +2194,6 @@ function f_recursive(n) {
 	     2 * f_recursive(n - 2) +
 	     3 * f_recursive(n - 3);
 }
-
 </pre></div></div>
     </SOLUTION></div></div>
 </EXERCISE></div>
@@ -2255,7 +2239,6 @@ function f_recursive(n) {
           
           <tr>
             <td><div class='snippet' id='javascript_15_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_15_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCZMChsDMBXAOwGMAXASwHsjQAHAQwGcSGAbAfTICcKGiA5mwCmACm5UA7gBpQFIgBNhADwCUoAN7ZQO0N2FkC3WvKXLQAPj1Ttuu7oD8oPOybDb9uwC45ilaABeINRQAB9Q3zMggIlJD087JxR4hJ0fRhZ2Ll5+ITFY0ABaVFlTf2KUVWwASASAahqEjNZOHj5BEXEpIpLIlVUAbmwAX1xmrLbczoBWaQAWQaA')">function pascal_triangle(row, index) {
     return index > row
@@ -2266,7 +2249,6 @@ function f_recursive(n) {
 	       +
 	       pascal_triangle(row - 1, index);
 }
-
 </pre></div></div></td></tr></table>
     </SOLUTION></div></div>
 </EXERCISE></div>

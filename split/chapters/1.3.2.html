@@ -1705,12 +1705,10 @@
 	which creates procedures. Using <kbd>lambda</kbd> we
 	can describe what we want as
         <div class='snippet' id='javascript_22_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(lambda (x) (+ x 4))
-</pre></div></div>
+(lambda (x) (+ x 4))</pre></div></div>
         and 
         <div class='snippet' id='javascript_22_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(lambda (x) (/ 1.0 (* x (+ x 2))))
-</pre></div></div>
+(lambda (x) (/ 1.0 (* x (+ x 2))))</pre></div></div>
       </p></div>
     </span>    </td>
           <td></td>
@@ -1731,11 +1729,9 @@
 	by introducing <EM>lambda expressions</EM>, which create functions.
 	Using lambda expressions, we can describe what we want as
         <div class='snippet' id='javascript_22_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAPUAXgD5QiBqUAFgG4g')">x => x + 4;
-
 </pre></div></div>
         and 
         <div class='snippet' id='javascript_22_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAPUAXgD5U0AGUMACiICpR7QBqUbASk4G4g')">x => 1.0 / (x * (x + 2));
-
 </pre></div></div>
       </p></div>
     </span></td></tr></table>
@@ -1766,15 +1762,13 @@
   (sum (lambda (x) (/ 1.0 (* x (+ x 2))))
        a
        (lambda (x) (+ x 4))
-       b))
-</pre></div></div>    </td>
+       b))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_22_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AZyIFsAKCgUwCdmAaUAIb8SHAB4V+AIwCUoAN65QS0Fw4UiXegNAA+UJMXKjygPygADIeNGAXKE49WA2QGpGLdtz6gR4p9OExCX1pAG5cAF98YnJqOlAAByoAfSY2IRD5KxU1DXo01lFQAF49dHNQMELQACpQardsaQDs62MhVrblItLQIrcAFl5OrpDwqNwADlrElIKUfhRzZbCgA')">function pi_sum(a, b) {
     return sum(x => 1.0 / (x * (x + 2)),
                a,
                x => x + 4,
                b);
 }
-
 </pre></div></div></td></tr></table>
     
   </p></div>
@@ -1809,8 +1803,7 @@
           (+ a (/ dx 2.0))
           (lambda (x) (+ x dx))
           b)
-     dx))
-</pre></div></div>    </td>
+     dx))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_22_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AZyIFsAKCgUwCdmAaUAIb8SHAB4V+AIwCUoAN65QS0Fw4UiXegNAA+UJMXKjygPygADIeNGAXKE49WA2QGpGLdtz6gR4p9OExCX1pAG5cAF98YnJqOlAyIkkOVlFZBSNVdU1QUVAAKlyC3PCowlJKWnoqEk4Acy4BABtWAn4hfX4AEzT5KxU1DXomNjb+62NtNx7QMGw0c15xieU8gF49POnRJZWJmWXjfMOjHtL8GvrGlsTk-kXUe4WUMKA')">function integral(f, a, b, dx) {
     return sum(f,
                a + dx / 2.0,
@@ -1819,7 +1812,6 @@
            *
            dx;
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
   
@@ -1839,8 +1831,7 @@
         
         no name is specified for the procedure:
         <div class='snippet' id='javascript_22_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(lambda (^formal-parameters^) ^body^)
-</pre></div></div>
+(lambda (^formal-parameters^) ^body^)</pre></div></div>
       </p></div>
     </span>    </td>
           <td></td>
@@ -1884,12 +1875,10 @@
           
           <tr>
             <td><div class='snippet' id='javascript_22_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (plus4 x) (+ x 4))
-</pre></div></div>    </td>
+(define (plus4 x) (+ x 4))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_22_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0ABwBsiBnAFgAoAPASlADeoXKFGgATgFMKRcfW6gA1KHYBuYQF98zNlwy9VQA')">function plus4(x) { 
     return x + 4; 
 }
-
 </pre></div></div></td></tr></table>
     
     is
@@ -1905,10 +1894,8 @@
           
           <tr>
             <td><div class='snippet' id='javascript_22_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define plus4 (lambda (x) (+ x 4)))
-</pre></div></div>    </td>
+(define plus4 (lambda (x) (+ x 4)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_22_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuBjAewDsBnAF1AAcAbAVzIBZQBeUADzYD5PQBqUEwDc+OoyYAKDAEphQA')">const plus4 = x => x + 4;
-
 </pre></div></div></td></tr></table>
   </p></div>
   <div class='permalink'>
@@ -1937,8 +1924,7 @@
         <div class='snippet' id='javascript_22_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 x         =>                   x    +   4
 // read as:             ^         ^                    ^    ^   ^
-// the function of an argument x that results in the value plus 4
-</pre></div></div>
+// the function of an argument x that results in the value plus 4</pre></div></div>
 	</div>
 	<div class='pdfonly'>
       <kbd class='snippet'>$\;\;$                    x              =>             x    +   4</kbd>
@@ -1975,19 +1961,11 @@ x         =>                   x    +   4
           <tr>
             <td><div class='snippet' id='javascript_22_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ((lambda (x y z) (+ x y (square z))) 
- 1 2 3)
-</pre><pre class='prettyprintoutput'>
-
-12
-      
-</pre></div></div>    </td>
+ 1 2 3)</pre><pre class='prettyprintoutput'>
+12</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_22_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4Avvm58ANKACeugF6CAvAD4loANT7rjFhx7H+3FLuy6M-ZUA')">((x, y, z) => x + y + square(z))(1, 2, 3);
-
 </pre><pre class='prettyprintoutput'>
-
-12
-      
-</pre></div></div></td></tr></table>
+12</pre></div></div></td></tr></table>
     or, more generally, in any context where we would normally use a
     <span style="color:teal">procedure</span><span style="color:blue">function</span> name.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
   </p></div>
@@ -2069,8 +2047,7 @@ x         =>                   x    +   4
        (* y b)
        (* a b)))
   (f-helper (+ 1 (* x y)) 
-            (- 1 y)))
-</pre></div></div>    </td>
+            (- 1 y)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_22_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUAT4AaUAE9BI8XtKVa9AgH0AFpwA2AB07turIwCMzoi3FJaVkFRhYOHlZBAGpQAMDEsWMwn1A4hKTA1lTVCw0LYJk9Rxd3TxR0pTDjA0ysrMqAWhN+VQ1CbgwjABY2oA')">function f(x, y) {
     function f_helper(a, b) {
         return x * square(a) + 
@@ -2080,7 +2057,6 @@ x         =>                   x    +   4
     return f_helper(1 + x * y,
                     1 - y);
 }
-
 </pre></div></div></td></tr></table>
     
   </p></div>
@@ -2113,15 +2089,13 @@ x         =>                   x    +   4
         (* y b)
         (* a b)))
    (+ 1 (* x y))
-   (- 1 y)))
-</pre></div></div>    </td>
+   (- 1 y)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_22_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUAT4AaAJ6CR4iZykzQ3G6wOgARoIC8APiULGLDj1aCAalBRc1CwsKMvR1AgkPD40NYouPj+bhQYz0UjBwyAWlATVQ1CbgwHABZ+ZSA')">function f(x,y) {
     return ( (a, b) => x * square(a) + 
                       y * b + 
                       a * b
            )(1 + x * y, 1 - y);
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -2145,8 +2119,7 @@ x         =>                   x    +   4
        (b (- 1 y)))
     (+ (* x (square a))
        (* y b)
-       (* a b))))
-</pre></div></div>
+       (* a b))))</pre></div></div>
       </p></div>
     </span>    </td>
           <td></td>
@@ -2170,7 +2143,6 @@ x         =>                   x    +   4
            y * b + 
            a * b;
 }
-
 </pre></div></div>
       </p></div>
     </span></td></tr></table>
@@ -2192,8 +2164,7 @@ x         =>                   x    +   4
       (^var$_2$^ ^exp$_2$^)
       ^$\vdots$^
       (^var$_n$^ ^exp$_n$^))
-   ^body^)
-</pre></div></div>
+   ^body^)</pre></div></div>
         which can be thought of as saying
         
           \begin{tabular}{ll}
@@ -2220,8 +2191,7 @@ x         =>                   x    +   4
    ^body^)
  ^exp$_1$^
  ^$\vdots$^
- ^exp$_n$^)
-</pre></div></div>
+ ^exp$_n$^)</pre></div></div>
       </p></div>
       <div class='permalink'>
 <a name='p16' class='permalink'></a><p>
@@ -2248,8 +2218,7 @@ x         =>                   x    +   4
             <div class='snippet' id='javascript_22_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (+ (let ((x 3))
      (+ x (* x 10)))
-   x)
-</pre></div></div> 
+   x)</pre></div></div> 
             is 38. Here, the <kbd>x</kbd> in the body of the
 	    <kbd>let</kbd> is 3, so the value of the
 	    <kbd>let</kbd> expression is 33.  On the other
@@ -2268,8 +2237,7 @@ x         =>                   x    +   4
             <div class='snippet' id='javascript_22_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (let ((x 3)
       (y (+ x 2)))
-  (* x y))
-</pre></div></div> 
+  (* x y))</pre></div></div> 
             will have the value 12 because, inside the body of the
 	    <kbd>let</kbd>, <kbd>x</kbd>
 	    will be 3 and <kbd>y</kbd> will be 4 (which is the
@@ -2290,8 +2258,7 @@ x         =>                   x    +   4
   (define b (- 1 y))
   (+ (* x (square a))
      (* y b)
-     (* a b)))
-</pre></div></div>
+     (* a b)))</pre></div></div>
       </p></div>
       <div class='permalink'>
 <a name='p18' class='permalink'></a><p>
@@ -2354,12 +2321,10 @@ x         =>                   x    +   4
                * expmod(base, exp - 1, m) 
                % m;
 }
-
 </pre></div></div>
       This function is unnecessarily inefficient, because it contains two
       identical calls:
       <div class='snippet' id='javascript_22_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuBTADwAcBbAewBMAKAIwEMBnAgGlGJNDG3bIEogA')">expmod(base, exp / 2, m)
-
 </pre></div></div>
       While this can be easily fixed in this example using the
       <kbd>square</kbd> function, this is not so easy
@@ -2377,7 +2342,6 @@ x         =>                   x    +   4
                * expmod(base, exp - 1, m) 
                % m;
 }
-
 </pre></div></div>
       This would make the function not just inefficient, but actually
       non-terminating! The problem is that the constant declaration appears
@@ -2400,7 +2364,6 @@ x         =>                   x    +   4
         }
     }	    
 }
-
 </pre></div></div>
       The general form of a conditional statement is
       <kbd class='snippet'>if ($\textit{predicate}$) { $\textit{consequent}$ } else { $\textit{alternative}$ }</kbd>
@@ -2428,12 +2391,10 @@ x         =>                   x    +   4
           <tr>
             <td><div class='snippet' id='javascript_22_25_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (f g)
-  (g 2))
-</pre></div></div>    </td>
+  (g 2))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_22_25_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AgCgHMBKUAb11B4CcBTCkV71mjbKwDcuAL5A')">function f(g) {
    return g(2);
 }
-
 </pre></div></div></td></tr></table>
     Then we have
     <table width="100%">
@@ -2441,38 +2402,22 @@ x         =>                   x    +   4
           
           <tr>
             <td><div class='snippet' id='javascript_22_26_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(f square)
-</pre><pre class='prettyprintoutput'>
-
-4
-      
-</pre></div></div>    </td>
+(f square)</pre><pre class='prettyprintoutput'>
+4</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_22_26_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AgCgHMBKUAb11B4CcBTCkV71mjbKwDcuAL75i5anVABnAI5EAhgMYAPdlx59Bw+rtAAqULulzCjdVoFSgA')">f(square);
-
 </pre><pre class='prettyprintoutput'>
-
-4
-      
-</pre></div></div></td></tr></table>
+4</pre></div></div></td></tr></table>
 
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_22_27_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(f (lambda (z) (* z (+ z 1))))
-</pre><pre class='prettyprintoutput'>
-
-              6
-      
-</pre></div></div>    </td>
+(f (lambda (z) (* z (+ z 1))))</pre><pre class='prettyprintoutput'>
+              6</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_22_27_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AgCgHMBKUAb11B4CcBTCkV71mjbKwDcuAL74mAL1ABeAHyglAKlCMlAalSspQA')">f(z => z * (z + 1));
-
 </pre><pre class='prettyprintoutput'>
-
-6
-      
-</pre></div></div></td></tr></table>
+6</pre></div></div></td></tr></table>
     What happens if we (perversely) ask the interpreter to evaluate the
     
       <span style="color:teal">combination <kbd>(f f)</kbd>?</span>
@@ -2492,8 +2437,7 @@ x         =>                   x    +   4
 	<div class='snippet' id='javascript_22_28_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 f(f)
 f(2)
-2(2)
-</pre></div></div>
+2(2)</pre></div></div>
 	The application <kbd>2(2)</kbd> leads to an
 	error, since 2 is neither a primitive nor a compound function. 
       </p></div>
@@ -2616,7 +2560,6 @@ f(2)
     return i();
 }
 h();
-
 </pre></div></div>
       leads to an error, because the <kbd>x</kbd> in
       <kbd>x + 1</kbd> is used before its declaration

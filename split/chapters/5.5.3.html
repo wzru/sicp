@@ -1742,8 +1742,7 @@ $\langle \textit{compilation of procedure call with given target and linkage}\ra
       proc-code
       (preserving '(proc continue)
       (construct-arglist operand-codes)
-      (compile-procedure-call target linkage)))))
-</pre></div></div>    </td>
+      (compile-procedure-call target linkage)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_119_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_application(exp, target, linkage) {
     const proc_code = compile(operator(exp), "proc", "next"); 
@@ -1753,8 +1752,7 @@ function compile_application(exp, target, linkage) {
                       preserving(list("proc", "continue"), 
                                  construct_arglist(operand_codes),
                                  compile_procedure_call(target, linkage)));
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -1803,11 +1801,9 @@ assign("argl", list(op("pair"), reg("val"), reg("argl")));</kbd>
           
           <tr>
             <td><div class='snippet' id='javascript_119_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(assign argl (const ()))
-</pre></div></div>    </td>
+(assign argl (const ()))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_119_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assign(argl, list(constant("null")));
-</pre></div></div></td></tr></table>
+assign(argl, list(constant("null")));</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -1851,8 +1847,7 @@ assign(argl, list(constant("null")));
             code-for-next-arg
             (preserving '(env)
             code-for-next-arg
-            (code-to-get-rest-args (cdr operand-codes))))))
-</pre></div></div>    </td>
+            (code-to-get-rest-args (cdr operand-codes))))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_119_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function construct_arglist(operand_codes) {
     const operand_codes = reverse(operand_codes);
@@ -1894,8 +1889,7 @@ function code_to_get_rest_args(operand_codes) {
         : preserving(list("env"),
                      code_for_next_arg,
                      code_to_get_rest_args(tail(operand_codes)));
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
       </p></div>
 
       
@@ -1981,8 +1975,7 @@ $\langle\textit{linkage}\rangle$
             (op apply-primitive-procedure)
             (reg proc)
             (reg argl)))))))
-      after-call))))
-</pre></div></div>    </td>
+      after-call))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_119_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_procedure_call(target, linkage) {
     const primitive_branch = make_label("primitive_branch");
@@ -2008,8 +2001,7 @@ function compile_procedure_call(target, linkage) {
                                               list(target),
                                               assign(target, list(op("apply_primitive_procedure"), reg("proc"), reg("argl"))))))),
         "after_call");
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -2125,12 +2117,10 @@ function compile_procedure_call(target, linkage) {
           <tr>
             <td><div class='snippet' id='javascript_119_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (assign val (op compiled-procedure-entry) (reg proc))
-      (goto (reg val))
-</pre></div></div>    </td>
+      (goto (reg val))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_119_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assign("val", list(op("compiled_procedure_entry"), reg("proc"))),
-      go_to(reg("val")),
-</pre></div></div></td></tr></table>
+      go_to(reg("val")),</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -2210,8 +2200,7 @@ assign("val", list(op("compiled_procedure_entry"), reg("proc"))),
             (goto (reg val)))))
             ((and (not (eq? target 'val)) (eq? linkage 'return))
             (error "return linkage, target not val - - COMPILE"
-            target))))
-</pre></div></div>    </td>
+            target))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_119_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_proc_appl(target, linkage) {
     if (target === "val" && linkage !== "return") {
@@ -2245,8 +2234,7 @@ function compile_proc_appl(target, linkage) {
     } else if (target !== "val" && linkage === "return") {
         error(target, "return linkage, target not val - - COMPILE");
     }
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
   
   
       </p></div>
@@ -2317,11 +2305,9 @@ function compile_proc_appl(target, linkage) {
           
           <tr>
             <td><div class='snippet' id='javascript_119_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define all-regs '(env proc val argl continue))
-</pre></div></div>    </td>
+(define all-regs '(env proc val argl continue))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_119_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-const all_regs = list("env", "proc", "val", "argl", "continue");
-</pre></div></div></td></tr></table>
+const all_regs = list("env", "proc", "val", "argl", "continue");</pre></div></div></td></tr></table>
   
     </FOOTNOTE></div>
     

@@ -1732,8 +1732,7 @@ read-eval-print-loop
       (perform
       (op announce-output) (const ";;; EC-Eval value:"))
       (perform (op user-print) (reg val))
-      (goto (label read-eval-print-loop))
-</pre></div></div>    </td>
+      (goto (label read-eval-print-loop))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_115_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 /// FIXME: missing from PR39
 "read_eval_print_loop",
@@ -1748,8 +1747,7 @@ read-eval-print-loop
 "print_result",
     perform(op("announce_output"), const(";;; EC_Eval value:")),
     perform(op("user_print"), reg("val")),
-    go_to(label("read_eval_print_loop")),
-</pre></div></div></td></tr></table>
+    go_to(label("read_eval_print_loop")),</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -1781,8 +1779,7 @@ unknown-expression-type
       
       signal-error
       (perform (op user-print) (reg val))
-      (goto (label read-eval-print-loop))
-</pre></div></div>    </td>
+      (goto (label read-eval-print-loop))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_115_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "unknown_expression_type",
     assign("val", list(constant("unknown_expression_type_error"))),
@@ -1797,8 +1794,7 @@ unknown-expression-type
 
 "signal_error",
     perform(list(op("user_print"), reg("val"))),
-    go_to(label("evaluator_done")),
-</pre></div></div></td></tr></table>
+    go_to(label("evaluator_done")),</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -1829,8 +1825,7 @@ unknown-expression-type
       '(
       read-eval-print-loop
       ^entire machine controller as given above^
-      )))
-</pre></div></div>    </td>
+      )))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_115_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function eceval() {
     return make_machine(list("exp", "env", "val", "proc", "argl", "continue", "unev", "temp"), // FIXME: remove temp?
@@ -1838,8 +1833,7 @@ function eceval() {
                         list(read_eval_print_loop,
                              ... /* entire machine controller as given above */ 
                              ));
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -1860,14 +1854,12 @@ function eceval() {
             <td><div class='snippet' id='javascript_115_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define eceval-operations
       (list (list 'self-evaluating? self-evaluating)
-            ))
-</pre></div></div>    </td>
+            ))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_115_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 const eceval_operations = 
     list(list("is_self_evaluating", is_self_evaluating),
          ... /* complete list of operations for eceval machine */
-         );
-</pre></div></div></td></tr></table>
+         );</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -1880,9 +1872,7 @@ const eceval_operations =
             <td><div class='snippet' id='javascript_115_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define the-global-environment (setup-environment))
 
-      (start eceval)
-</pre><pre class='prettyprintoutput'>
-
+      (start eceval)</pre><pre class='prettyprintoutput'>
       ;;; EC-Eval input:
       (define (append x y)
       (if (null? x)
@@ -1895,14 +1885,11 @@ const eceval_operations =
       ;;; EC-Eval input:
       (append '(a b c) '(d e f))
       ;;; EC-Eval value:
-      (a b c d e f)
-    
-</pre></div></div>    </td>
+      (a b c d e f)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_115_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 const the_global_environment = setup_environment();
 
-start(eceval);
-</pre></div></div></td></tr></table>
+start(eceval);</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -1948,13 +1935,11 @@ print-result
       (perform (op print-stack-statistics))
       (perform
       (op announce-output) (const ";;; EC-Eval value:"))
-      ^$\ldots$^ ; same as before
-</pre></div></div>    </td>
+      ^$\ldots$^ ; same as before</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_115_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQBZMChsCIAHAJwEsA7AFwH0iBTAZwFcAbCvAGm1G9ANqIBmAeyIBbABRCC4wqUpV6FAIYBjANYLlFEopIr6eAJSH2oEKCUATS7UuhyiooxXahZLjz6CREqTKVkZEKMZCq0VMEUBIxsJqAqbooBFDIgYACi0AC06QBuSsyg+cyMtABcRiYe3MAAVKBojaD0SqK0FvSgAEa0wnQNTbXAQA')">"print_result",
     perform(op("print_stack_statistics")), // added instruction
     perform(op("announce_output"), constant("/// EC-Eval value:")),
     /* ... same as before ... */
-
 </pre></div></div></td></tr></table>
       </p></div>
 
@@ -1966,7 +1951,6 @@ print-result
           
           <tr>
             <td><div class='snippet' id='javascript_115_7_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
-
       ;;; EC-Eval input:
       (define (factorial n)
       (if (= n 1)
@@ -1980,9 +1964,7 @@ print-result
       (factorial 5)
       (total-pushes = 144 maximum-depth = 28)
       ;;; EC-Eval value:
-      120
-    
-</pre></div></div>    </td>
+      120</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_115_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 /// EC-Eval input:
 function factorial (n) {
@@ -1997,8 +1979,7 @@ ok
 factorial(5);
 (total-pushes = 144 maximum-depth = 28)
 /// EC-Eval value:
-120
-</pre></div></div></td></tr></table>
+120</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -2034,8 +2015,7 @@ factorial(5);
             product
             (iter (* counter product)
             (+ counter 1))))
-      (iter 1 1))
-</pre></div></div>    </td>
+      (iter 1 1))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_115_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function factorial(n) {
     function iter(product, counter, max_count) {
@@ -2047,8 +2027,7 @@ function factorial(n) {
     }
 
     return iter(1, 1, n);
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
 
   Run the
   <span style="color:teal">procedure</span><span style="color:blue">function</span>
@@ -2094,15 +2073,13 @@ function factorial(n) {
 (define (factorial n)
       (if (= n 1)
       1
-      (* (factorial (- n 1)) n)))
-</pre></div></div>    </td>
+      (* (factorial (- n 1)) n)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_115_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function factorial(n) {
     return n === 1 
            ? 1
            : n * factorial(n - 1);
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
   By running this
   <span style="color:teal">procedure</span><span style="color:blue">function</span>
   with the monitored stack, determine, as a
@@ -2168,13 +2145,11 @@ function factorial(n) {
 (define (fib n)
       (if (< n 2)
       n
-      (+ (fib (- n 1)) (fib (- n 2)))))
-</pre></div></div>    </td>
+      (+ (fib (- n 1)) (fib (- n 2)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_115_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function fib(n) {
     return n < 2 ? n : fib(n - 1) + fib(n - 2);
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
   <OL>
     <LI>
       Give a formula in terms of $n$ for the maximum depth of the stack
@@ -2284,16 +2259,14 @@ function fib(n) {
 
     
     (define (get-global-environment)
-    the-global-environment)
-</pre></div></div>    </td>
+    the-global-environment)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_115_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 const the_global_environment = setup_environment();
 
 
 function get_global_environment() {
     return the_global_environment;
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
     </p>
   
     </FOOTNOTE></div>

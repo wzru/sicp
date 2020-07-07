@@ -1721,14 +1721,12 @@
 (define (remainder n d)
   (if (< n d)
       n
-      (remainder (- n d) d)))
-</pre></div></div>    </td>
+      (remainder (- n d) d)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_99_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMBbAQypIBMmGAKEgBpQXAJSgA3rlAzGTCkQb16AHhHTZmgPygSGzTIBcc9px796AWhHCxAblwBffM1PdefbAE5hKUXaA')">function remainder(n, d) {
     return n < d
         ? n
         : remainder(n - d, d);
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -1752,11 +1750,9 @@
           
           <tr>
             <td><div class='snippet' id='javascript_99_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(assign t (op rem) (reg a) (reg b))
-</pre></div></div>    </td>
+(assign t (op rem) (reg a) (reg b))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_99_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assign("t", list(op("rem"), reg("a"), reg("b")))
-</pre></div></div></td></tr></table>
+assign("t", list(op("rem"), reg("a"), reg("b")))</pre></div></div></td></tr></table>
     in the GCD controller definition is replaced by a sequence of
     instructions that contains a loop, as shown in
     figure <REF NAME="fig:gcd-machine-rem-controller"><a class="superscript" id="5.1.2-fig-link-5.7" href="./5.1.2.html#fig_5.7">5.7</a></REF>.
@@ -1777,7 +1773,6 @@ assign("t", list(op("rem"), reg("a"), reg("b")))
       assign("b", reg("t")),
       go_to(label("test-b")),
     "gcd-done"))
-
 </pre>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.1.2.html#fig_5.7">Figure 5.7 </a></b>Controller instruction sequence for the GCD machine in
@@ -1807,8 +1802,7 @@ assign("t", list(op("rem"), reg("a"), reg("b")))
     (if (good-enough? guess)
         guess
         (sqrt-iter (improve guess))))
-  (sqrt-iter 1.0))
-</pre></div></div>    </td>
+  (sqrt-iter 1.0))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_99_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUKwBundqwDmPXgBoAnoJHiJnKTNB9QAalA3QYbKo2FSSlp6ZnYKPltRcS0g3RMaGgATAH1OEhoiEwALbhMiTgYGSPt7SWl6AFtWCizk1gAjBm5mNi5c-MLBAFolQQAeUAAGNEHBjFV7DXsYnXoqCoAHdhpDdoKi4SiShyd6AyNTHjz1iyVvUGPOifEp6MDZxiYw5KoKIzXOze2xMud4pNS6UyOUuRS23zEAH4Lh0GOCIQAuR7PV7veZLFZHWH8fjXMS3H6OcpiUIUF5vdjcLCDXHqfCk7goXFAA')">function sqrt(x) {
     function good_enough(guess) {
         return math_abs(square(guess) - x) < 0.001;
@@ -1823,7 +1817,6 @@ assign("t", list(op("rem"), reg("a"), reg("b")))
     }
     return  sqrt_iter(1.0);
 }
-
 </pre></div></div></td></tr></table>
     Begin by assuming that
     

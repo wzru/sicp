@@ -2240,12 +2240,10 @@ assign("the_stack", list(op("tail"), reg("the_stack")))</kbd>
           <tr>
             <td><div class='snippet' id='javascript_109_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define x (cons 1 2))
-(define y (list x x))
-</pre></div></div>    </td>
+(define y (list x x))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_109_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 const x = pair(1, 2);
-const y = list(x, x);
-</pre></div></div></td></tr></table>
+const y = list(x, x);</pre></div></div></td></tr></table>
     with the <kbd>free</kbd> pointer initially
     <kbd>p1</kbd>.  What is the final value of
     <kbd>free</kbd>$\,$?  What
@@ -2291,8 +2289,7 @@ const y = list(x, x);
   (cond ((null? tree) 0)
         ((not (pair? tree)) 1)
         (else (+ (count-leaves (car tree))
-                 (count-leaves (cdr tree))))))
-</pre></div></div>    </td>
+                 (count-leaves (cdr tree))))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_109_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0EYBQuAzAVwDsBjAFwEsB7E0Mm0igfQBsBTAQwDcOBnABQUAThw4BKUAG9coeaDEUiI+lX4sSRNm2FjJchUYD8oAAyGj8gFygAhKHUsADlyoi94ibgCQ803hWVraMzOzcfEIAFtwAJp6SUgDUoJZBCqEkrJy8AsJuuqJeEgDcuAC++JnZEXmu7oJs6hSC2AA0oABMEh1N-C0YHQAsEqMlQA')">function count_leaves(tree) {
     return is_null(tree)
         ? 0
@@ -2301,7 +2298,6 @@ const y = list(x, x);
           : count_leaves(head(tree)) + 
             count_leaves(tail(tree));
 }
-
 </pre></div></div></td></tr></table>
       </LI>
       <LI>
@@ -2323,8 +2319,7 @@ const y = list(x, x);
           ((not (pair? tree)) (+ n 1))
           (else (count-iter (cdr tree)
                             (count-iter (car tree) n)))))
-  (count-iter tree 0))
-</pre></div></div>    </td>
+  (count-iter tree 0))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_109_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0EYBQuAzAVwDsBjAFwEsB7E0Mm0igfQBsBTAQwDcOBnABQUAThw4BKUAG9coeaGLlqdBkxKsqFDiOFiOAGlAkpshedBiKREfSr8WJImzZ7xEuRa8B+Y56-mAFygAISg9iwADlxUuqLuoP4B5r70ANSgeACQXsGMzCxaOsIxrvGSBknJ1V75GoXaugAW3AAmbhXGEhIA3EkAvklWNvR1mo0dRgAMvbiDuGPs3HxC0bGCbPYUgthGAEwSRpv82xhGACzdvUA')">function count_leaves(tree) {
     function count_iter(tree, n) {
         return is_null(tree)
@@ -2336,7 +2331,6 @@ const y = list(x, x);
     }
     return count_iter(tree, 0);
 }
-
 </pre></div></div></td></tr></table>
       </LI>
     </OL>

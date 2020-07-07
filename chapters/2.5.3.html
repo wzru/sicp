@@ -1835,7 +1835,6 @@ function mul_poly(p1, p2) {
            : error(list(p1, p2),
                    "Polys not in same var in mul_poly");
 }
-
 </pre></div></div>
   </p></div>
   <div class='permalink'>
@@ -1892,7 +1891,6 @@ function mul_poly(p1, p2) {
             tag(make_poly(variable, terms)));
     return "done";
 }
-
 </pre></div></div>
     Polynomial addition is performed termwise.  Terms of the same order
     (i.e., with the same power of the indeterminate) must be combined.
@@ -1985,7 +1983,6 @@ function mul_poly(p1, p2) {
         }
     }
 }
-
 </pre></div></div>
     The most important point to note here is that we used the generic addition
     
@@ -2028,7 +2025,6 @@ function mul_term_by_all_terms(t1, L) {
                    mul_term_by_all_terms(t1, rest_terms(L)));
     }
 }
-
 </pre></div></div>
   </p></div>
   <div class='permalink'>
@@ -2225,7 +2221,6 @@ function order(term) {
 function coeff(term) {
     return head(tail(term));
 }
-
 </pre></div></div>
     where
     
@@ -2247,7 +2242,6 @@ function coeff(term) {
     <div class='snippet' id='javascript_48_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAJgHQFY0GYBQuRRIA7CAewFcAnAYwFMAaUAWzIGcAXUAMwuJo4BLMsTagAFgEMAbnVCSeggB50AJqGIVmAIzpVQZbvKoBzLXWIc2aAmAAUAFXFze-ISNAAbQZ1A-QHM4GxJ4AnqB0SvQADu7ETBxkAeL+bEncklRoAJS2oE4ufALCpJLR0WEA+oLElXyqemE1JpUAVjKSbDRUgrHynp5kAO5iFGKJeWUV4ZLE4SaCsqSuxR6uAUmSAxGedMwWVgZGgXKZZvuWoHnevmdsTJ1+x87hQ3pybHTRmZIcp6bmSxsXArOLycphOyuB6mNjZUAAb1woBRoCodA41FKENC1Vq9UaoWabQ6XR6sShfBhJjhAG5cABffCgkrg6aVEwWPSCGh2MjRalwxHI1E0ES+DihaJ0SocSQ00AAXhYZTskulsvlguy9NRoDFoi462VnI4fIFASlMrlNJ1IpR6MxVGWfFAAEJFcqCdwamp7XrQAB+NmQ6Eq6J2A1-IHa3IB1EALgiVCoZCodhuZv5CStmttDH98fjACIAHJJfaBMjqbhp5J0T6W6ViGoh3Gc4jcmjFu1MkFFMGSVSqOxKJiheFI1GOrFtjlcnq84tD1TFpiZ0fj7K9-tuVlsCjaTegCfC6cY2dTKodrt2YsH7Rrrw+M1jk-b+lMlkeZgUTzH08pwdC9nTnG9FzvX9PCfDc3wnHdv1IVRFgAyd7RnUCr3bBceTvZDpBgl9UJ3PJ+T0X4Sk1bRdiYaIKC4WZ1FNPJuFTZh9SkWI9FAbBQDsT5VlIbAcBwXJd0E+Q2DSXkAGs6FCJh0TFKhVCFIDgKdUgfEqTQBjsJS01UuMi1RYNvV9VRC3jJM6AARwoLY7DkhSJDoIc7GcdyDJUuFtysotg08kdvKM-zrMk6SnPkhJJEEf8Qt8z9mQHVlmEkOSqN2Ow0L1A1fEGGgtkyuRlQ3YsACo5Wouhyp7XVUUQrwyDIGSKAjZzKgARiYDqUByos8q4B8qt2JUIrIWT5K6mK4ozCaipGugPzCwQjH4w9FqVT1QHMztVH6kyNNnXa1Hq+MGR2Rt1MOwa0ToZT1GVTpIt6mb-2GyRquWw7UVWviQq2r1iAaH09oOn7z00nbgboUHTrCvULroTwroRosMNIOVZpCu0IdAJkTIJ1EiZRRqak+KgzQ67rQFe0BpC2CglrPAbxSGjbPtGp6pImqLcRprH-wKhbOaW3Giz+9btE2z0gZBizwZMz4OE1Wbhc8YqCzxw7vkEdMN2p2jYvTOmGc8Jnty17W8cFubCo1xbt3F87Lrka6TNugHuZeqaUDeqXHedw7Ja97aTv2lm9QASCVjFVfejnqoLGPrZM3X03TvnKj9+nGaWq3U+122Pq+5aU5RJGUbdtH42V+P9PuwymDNi2zsOkmAw7jvGuQthvg4GhxDsZhFch2d2Nl0Bi0GFq2uLGu9WDGfWuiBfExYQGp-JvQOHnwugz8UQd7XvUbJTNNh6YYsAFViBk4hhlIMiqAojxW0WhM6v9DuMdAXv+8HklXAt1n6v1qDLFUGVFrZXpLdU0Y1QFxGKneZec87S3TolwZUiDKLQOLNvSmX9xKDg4HKQeeY1S5htEwKMBw1L+l-pndU1otT6hENGKwCEUoeGYRQ1QvwtDg1-tpTO-DMQjxroFNyI4xGCJrmfVM6ZZHMCvtoIcAR5ScnUMow+TYWEmC-l+bhpBaFAjsMooRIEtJsEqKIgREiIbBlthY+RyZFHmPsao9RNotF-3sbo0xVhDHJT3G-Q0WwNbtAZmSXoKtNA6D0LYyQNAZLyjoNlSOPBjEaJMKOUeR1MKkOSeIChxYomdG6LEnSWhdBUCfEoIOHdMF3hXIRTgd5ykxNiNUhJdSr6dMqd0+JtSexMDCqhJUAA+HJo5QAAGp3xB2afeQ8bSzRlNJIMuJNS9BPg2dErZPSRnZDGSZCZippk2lmQAWkWW3ZZUE1kdM2eSbZvS9kDNeUc3ZJyrhnLgvCC5MylCgHKnc-0yz8JPP2RUr5wzdn9JeVU+FdTfnjIBVM4FoAwDwXufRSC6U6AfKRUMnZfS-lFhBUCq5DSg6-2LKoEQRKkrkzlAMEkBy4VkqSSktJMCQkSTShlT5yKyV2GIJYqGpoCVyWJZy0V7zsjipImTGxDMeiizyZk4RNjOA9GILkhpQDVWVDYJIfYlR1WCE1dIGm0g+raqsX4NVmRrXVTsLa+EAAyL1NdtJWptQ6n19NOqb3tca7JrKIkcthQq2p1QbF2Qcg7MglQABeegyAZOuss7SSaFqpozamaFIrSWKtOZSzFVLtoAAY6VOoZUy4sLLwnstLW8+Neb7IFvTZm-lxDWRduTbKQtfaGmOqhlhecnYIL4MTd2lNvbi3riIrSiNoStKto1tEMgYQH7MGtdu5JqTOTZvwHqQgNQ-jOi2FkjdwJ-SEHRNEdEnxLBgKOKAHdYR-SNSFTKb9oQPWutFgkPQzBKiZnyXdKGmcA1JwCOByDL5Gm-uyfBrK0RJwwdnEFOwWHaT4zQxuxDVAIMbiw4iHDoFbYEaI4+sAz7X0HA-YYUjzAxCMXY8+TgwI9SNSHK0MgNRZTgbVOBsDZHkOcGgzqyo+bF1FqzWKWG3BxNkb8qnJxSHMwn1AEmJhEn2PSY4Kh3KbN6zyeYLEXE17mCZjGrpTwbdGo+ioJwUTZH1PkZQ5kvUv88N2ZM2Zhq2TX0qzs2wbzwW-Njxo7Ff8QWoNt27pGxN1nJSefs0RJLvn3ZxesdUvSuWZMpeI4KwlWW+QqT0DQsgqnZNOo3IZWrbCGtlf49klr6Y7ONahoF8DIXSbZJU9wNTvXYsFNIIFhL3nvrE3PaFkjK5bG7qA9EGm0QHX5am86015qZQYfSUd-DnVfkna25p62wZ-2rchBds7Bd95FhW5F6LFHHt6ee3qErZpLtXe1goi+H3aJ9Se994ssA1tiAflwVsZr9i530K2FbgGv6I0W8N5bw4stRYADI0zx9tlaa080Zds+BjcBPtyTYK6AInbdEYUvjMjRsksyc2ay1Tvq0HdsE8Z8TZnAZWfVzxrdDgoblRuY83Zuw1OBfxnFygMa0uItiaJ0HEyktutqjO6AaZOuOA89pyZX+gnhPgLExLh4OO3vhdx3Lx79OecK87q7J4fFDd64ADwGBqz143O3Dpm9UEJkTsujc29UA7gnikGxq7I-jnnmuiyV1RoXEPYfLdedu7Lr3aLvuF-jCuSM9Wxu65OV9ovYuy-jeT+D6vJlXvgai-bt71OG+N4z-HmPyfXcY8Jt-f05WwRQTu+tzbxPTdOu0gjw7IH3UPfOwvzDPO9M3cq4B4DGr3Ubcr131EY+3u-dO-vg-EMT--eMoDtxwOiIbdB2fovkPocaDIHD0gc+ke6LH2j1DI-Uo-wY9Ccp90YZ90tOc7Mqczt19LM9hIDKcXw9Mkxm9E9h4gCgttBcRo03sq9C9VcqsO9ncn8u8j8W8G4ZdyCiCNchs71BUMCkMsDKgcDyDrd6doN2cIDMsoCiI8cacg9-MnUTgrMECyNMxXc09RcIYlcVc9ZKCvM+D+86dzdw8xM8CAxc8xN895k-cGgA8SDz9D8-xS9VMK86tTCjcnZO9C4yCpMmCWC0C2C28qCnYJCh8o5y49QGND5r0Mh6ANg7pfA2MThQA2BQhOA9gACeF5R8M+tLwilyErlixAN91D0nwCMh89RllWkV12lki1tUitg9kUiyAD0iiDDURTtH9MUrlUc1sqiv0+8IV8VixHlcj1kSiyjoIr5Oi0iKiUQGjLsaiYjf96iH9GjXDmj1l-1iiCjSi0jrDt83UaJ2MhQLkF4rlbst8jtJMONJjBCoZG1Oxm1GRcAo12VeiipvheVT07QB0fxN85iuiljQNVjJVZxpVWjCVZi915jyiXiENIsSIMFJdIEAMnjD07wlA1wo49MNwNwc5bt21vl0wAAWS2dQnjM0GmJEklDtPQOwbADEwvDcGtJgXE+VMtWpOwAAdidnQQsy2zGi2IhMcmLGhIYFhNTnhKIkRMq2RJRTsAwGJO+w3BxP5LxJRLsB52sLxlJPJIlMpPxPTE6jrUmNwCgkGL6lpCAA')">function make_polynomial(variable, terms) {
     return get("make", "polynomial")(variable, terms);
 }
-
 </pre></div></div>
     
   </p></div>
@@ -2453,8 +2447,7 @@ function div_terms(L1, L2) {
             // form complete result
         }
     }
-}
-</pre></div></div>
+}</pre></div></div>
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_48_5_div" data-toggle="collapse">Add solution</button></div>
@@ -2604,8 +2597,7 @@ const p1 = make_polynomial("x", list(list(2, 1),
                                      list(0, 1)));
 const p2 = make_polynomial("x", list(list(3, 1),
                                      list(0, 1)));
-const rf = make_rational(p2, p1);
-</pre></div></div>
+const rf = make_rational(p2, p1);</pre></div></div>
     Now add <kbd>rf</kbd> to itself, using
     <kbd>add</kbd>. You will observe that this addition
     
@@ -2644,8 +2636,7 @@ function gcd(a, b) {
     return b === 0
            ? a
            : gcd(b, remainder(a, b));
-}
-</pre></div></div>
+}</pre></div></div>
     Using this, we could make the obvious modification to define a GCD
     operation that works on term lists:
     <div class='snippet' id='javascript_48_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
@@ -2653,8 +2644,7 @@ function gcd_terms(a, b) {
     return is_empty_termlist(b)
            ? a
            : gcd_terms(b, remainder_terms(a, b));
-}
-</pre></div></div>
+}</pre></div></div>
     where
     
       
@@ -2731,8 +2721,7 @@ const p1 = make_polynomial("x", list(make_term(4, 1),
                                      make_term(1, 2)));
 const p2 = make_polynomial("x", list(make_term(3, 1),
                                      make_term(1, -1)));
-greatest_common_divisor(p1, p2);
-</pre></div></div>
+greatest_common_divisor(p1, p2);</pre></div></div>
     and check your result by hand.
     
   
@@ -3033,8 +3022,7 @@ greatest_common_divisor(p1, p2);
 function reduce_integers(n, d) {
     const g = gcd(n, d);
     return list(n / g, d / g);
-}
-</pre></div></div>
+}</pre></div></div>
         and define
         <kbd>reduce</kbd> as a generic operation that calls
 	
@@ -3083,8 +3071,7 @@ const p4 = make_polynomial("x", list(make_term(2, 1),
 const rf1 = make_rational(p1, p2);
 const rf2 = make_rational(p3, p4);
 
-add(rf1, rf2);
-</pre></div></div>
+add(rf1, rf2);</pre></div></div>
         See if you get the correct answer, correctly reduced to lowest terms.
       </LI>
     </OL>

@@ -1701,8 +1701,7 @@
 ev-begin
       (assign unev (op begin-actions) (reg exp))
       (save continue)
-      (goto (label ev-sequence))
-</pre></div></div>
+      (goto (label ev-sequence))</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1762,8 +1761,7 @@ ev-sequence
       (goto (label ev-sequence))
       ev-sequence-last-exp
       (restore continue)
-      (goto (label eval-dispatch))
-</pre></div></div>    </td>
+      (goto (label eval-dispatch))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_113_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_seq", //FIXME: not part of original book -- explain why needed
     save("continue"),
@@ -1786,8 +1784,7 @@ ev-sequence
     
 "ev_sequence_last_exp",
     restore("continue"),
-    go_to(label("eval_dispatch")),
-</pre></div></div></td></tr></table>
+    go_to(label("eval_dispatch")),</pre></div></div></td></tr></table>
       </p></div>
 
       
@@ -1814,15 +1811,13 @@ ev-sequence
       (if (good-enough? guess x)
       guess
       (sqrt-iter (improve guess x)
-            x)))
-</pre></div></div>    </td>
+            x)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_113_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function sqrt_iter(guess, x) {
     return is_good_enough(guess, x)
         ? guess
         : sqrt_iter(improve(guess, x), x);
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
   is an iterative process.  Even though the
   <span style="color:teal">procedure</span><span style="color:blue">function</span>
   is syntactically
@@ -1894,8 +1889,7 @@ ev-sequence
       (goto (label ev-sequence))
       ev-sequence-end
       (restore continue)
-      (goto (reg continue))
-</pre></div></div>    </td>
+      (goto (reg continue))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_113_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_sequence",
      test(op("has_no_more_exps"), reg("unev")),
@@ -1912,8 +1906,7 @@ ev-sequence
      go_to(label("ev_sequence")),
 "ev_sequence_end",
      restore("continue"),
-     go_to(reg("continue")),
-</pre></div></div></td></tr></table>
+     go_to(reg("continue")),</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -1943,14 +1936,12 @@ ev-sequence
 (define (count n)
       (newline)
       (display n)
-      (count (+ n 1)))
-</pre></div></div>    </td>
+      (count (+ n 1)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_113_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function count(n) {
     display(n, "\n");
     count(n + 1);
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
   Without tail recursion, such a
   <span style="color:teal">procedure</span><span style="color:blue">function</span>
   would eventually run out of
@@ -2001,13 +1992,11 @@ function count(n) {
           
           <tr>
             <td><div class='snippet' id='javascript_113_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (no-more-exps? seq) (null? seq))
-</pre></div></div>    </td>
+(define (no-more-exps? seq) (null? seq))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_113_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function has_no_more_exps(seq) {
     return is_null(seq);
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
   
     </FOOTNOTE></div>
     

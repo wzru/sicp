@@ -1714,14 +1714,12 @@
 (define (factorial n)
   (if (= n 1)
       1
-      (* (factorial (- n 1)) n)))
-</pre></div></div>    </td>
+      (* (factorial (- n 1)) n)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_101_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0BYBQuAzAVwDsBjAFwEsB7E0AgQ0poCcrGAbAChIEpQAb1yhRoVgFMKRVvXoBeRaAygRY9WID8ytRvUAuUPQBUDZhTYce9ALTK+AblwBffExbsu3FI6A')">function factorial(n) {
     return n === 1 
            ? 1
            : n * factorial(n - 1);
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -1747,12 +1745,10 @@
 (define (gcd a b)
   (if (= b 0)
       a
-      (gcd b (remainder a b))))
-</pre></div></div>    </td>
+      (gcd b (remainder a b))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_101_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0BYBQuAzAVwDsBjAFwEsB7E0AczIBMAKAQwBpQAjASlABvXKFGgATgFMKRcfR6gAvMtAAGUAH5Q7UAC5GLVj246ApLz4BuXAF98TNgCZV3DI6tA')">function gcd(a, b) {
     return b === 0 ? a : gcd(b, a % b);
 }
-
 </pre></div></div></td></tr></table>
 
     similarly had to compute another GCD.  But there is an important
@@ -1974,8 +1970,7 @@
 (define (fib n)
   (if (< n 2)
       n
-      (+ (fib (- n 1)) (fib (- n 2)))))
-</pre></div></div>    </td>
+      (+ (fib (- n 1)) (fib (- n 2)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_101_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0BYBQuAzAVwDsBjAFwEsB7E0AqgIwAoSBKUAb11D9ABOAUwpEB9egF5poAAy9+i-gH45CpYoBcoKTIzqNi1fsMbtjVvQC0oDJwDUDZm1A2ATOwDcuAL74LLABsXkA')">function fib(n) {
     return n === 0
            ? 0
@@ -1983,7 +1978,6 @@
              ? 1
              : fib(n - 1) + fib(n - 2);
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -2053,7 +2047,6 @@
       assign("val", constant(1)),     // base case: val = 1
       go_to(reg("continue")),         // return to caller
     "fact-done"))
-
 </pre>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.1.4.html#fig_5.13">Figure 5.13 </a></b>A recursive factorial machine.</div>
@@ -2094,7 +2087,6 @@
     assign("val", reg("n")),       // base case: Fib(n) = n
     go_to(reg("continue")),
   "fib-done"))
-
 </pre>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.1.4.html#fig_5.14">Figure 5.14 </a></b>Controller for a machine to compute Fibonacci numbers.</div>
@@ -2126,14 +2118,12 @@
 (define (expt b n)
   (if (= n 0)
       1
-      (* b (expt b (- n 1)))))
-</pre></div></div>    </td>
+      (* b (expt b (- n 1)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_101_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0BYBQuAzAVwDsBjAFwEsB7E0AUwA8AHCgCgCMAaUEgSlABvXKDGgATgwpEJ9egF4loAAyjxGgPygM6jWIBcoTqABUjVhx59QAWh38A3LgC++Zm3YBmXtidA')">function expt(b, n) {
     return n === 0
         ? 1
         : b * expt(b, n - 1);
 }
-
 </pre></div></div></td></tr></table>
       </LI>
       <LI>
@@ -2149,8 +2139,7 @@
     (if (= counter 0)
         product
         (expt-iter (- counter 1) (* b product))))
-  (expt-iter n 1))
-</pre></div></div>    </td>
+  (expt-iter n 1))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_101_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0BYBQuAzAVwDsBjAFwEsB7E0AUwA8AHCgCgCMAaUEgSlABvAJChQuceOLlqdRqwoB9KhQYAndmRqk163i3U0AJkUqChkqdfUMKRdfW26NoALwfQABivW-oAH5QQxMzCl9-KQAuBTYVPS0dEj1QAFpQDF5OUAAqYKNTcwBuCIBfCNt7R1jlVQ12El4MfhLy3GY2dgBmXmwWoA')">function expt(b, n) {	  
     function expt_iter(counter, product) {
         return counter === 0
@@ -2159,7 +2148,6 @@
     }
     return expt_iter(n, 1);
 }
-
 </pre></div></div></td></tr></table>
       </LI>
     </OL>

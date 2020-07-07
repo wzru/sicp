@@ -1744,8 +1744,7 @@ function compile(exp, target, linkage) {
         : is_application(exp)
         ? compile_application(exp, target, linkage)
         : error(exp, "Unknown expression type - - COMPILE");
-}
-</pre></div></div>
+}</pre></div></div>
       </p></div>
 
       
@@ -1798,8 +1797,7 @@ function compile(exp, target, linkage) {
   linkage of <kbd>next</kbd> should produce the instruction
 
   <div class='snippet' id='javascript_117_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assign("val", constant(5));
-</pre></div></div>
+assign("val", constant(5));</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1809,8 +1807,7 @@ assign("val", constant(5));
 
   <div class='snippet' id='javascript_117_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assign("val", constant(5));
-      go_to(reg("continue"));
-</pre></div></div>
+      go_to(reg("continue"));</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1981,8 +1978,7 @@ $\textit{seq}_2$</kbd>
   <div class='snippet' id='javascript_117_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_instruction_sequence(needs, modifies, statements) {
     return list(needs, modifies,statements);
-}
-</pre></div></div>
+}</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1996,8 +1992,7 @@ function make_instruction_sequence(needs, modifies, statements) {
 make_instruction_sequence(list("env", "continue"),
                           list("val"),
                           list(assign("val", op("lookup_variable_value"), constant("x"), reg("env")),
-                               go_to(reg("continue"))));
-</pre></div></div>
+                               go_to(reg("continue"))));</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -2006,8 +2001,7 @@ make_instruction_sequence(list("env", "continue"),
   <div class='snippet' id='javascript_117_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function empty_instruction_sequence() {
     return make_instruction_sequence(list(), list(), list());
-}
-</pre></div></div>
+}</pre></div></div>
       </p></div>
 
       <div class='permalink'>

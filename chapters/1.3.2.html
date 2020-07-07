@@ -1699,11 +1699,9 @@
 	by introducing <EM>lambda expressions</EM>, which create functions.
 	Using lambda expressions, we can describe what we want as
         <div class='snippet' id='javascript_22_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAPUAXgD5QiBqUAFgG4g')">x => x + 4;
-
 </pre></div></div>
         and 
         <div class='snippet' id='javascript_22_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAPUAXgD5U0AGUMACiICpR7QBqUbASk4G4g')">x => 1.0 / (x * (x + 2));
-
 </pre></div></div>
       </p></div>
     
@@ -1732,7 +1730,6 @@
                x => x + 4,
                b);
 }
-
 </pre></div></div>
     
   </p></div>
@@ -1765,7 +1762,6 @@
            *
            dx;
 }
-
 </pre></div></div>
   </p></div>
   
@@ -1810,7 +1806,6 @@
     <div class='snippet' id='javascript_22_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0ABwBsiBnAFgAoAPASlADeoXKFGgATgFMKRcfW6gA1KHYBuYQF98zNlwy9VQA')">function plus4(x) { 
     return x + 4; 
 }
-
 </pre></div></div>
     
     is
@@ -1822,7 +1817,6 @@
     equivalent to
     
     <div class='snippet' id='javascript_22_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuBjAewDsBnAF1AAcAbAVzIBZQBeUADzYD5PQBqUEwDc+OoyYAKDAEphQA')">const plus4 = x => x + 4;
-
 </pre></div></div>
   </p></div>
   <div class='permalink'>
@@ -1835,8 +1829,7 @@
         <div class='snippet' id='javascript_22_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 x         =>                   x    +   4
 // read as:             ^         ^                    ^    ^   ^
-// the function of an argument x that results in the value plus 4
-</pre></div></div>
+// the function of an argument x that results in the value plus 4</pre></div></div>
 	
 	
       
@@ -1860,12 +1853,8 @@ x         =>                   x    +   4
     expression can be used as the function expression in an application
      such as
     <div class='snippet' id='javascript_22_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4Avvm58ANKACeugF6CAvAD4loANT7rjFhx7H+3FLuy6M-ZUA')">((x, y, z) => x + y + square(z))(1, 2, 3);
-
 </pre><pre class='prettyprintoutput'>
-
-12
-      
-</pre></div></div>
+12</pre></div></div>
     or, more generally, in any context where we would normally use a
     function name.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
   </p></div>
@@ -1939,7 +1928,6 @@ x         =>                   x    +   4
     return f_helper(1 + x * y,
                     1 - y);
 }
-
 </pre></div></div>
     
   </p></div>
@@ -1967,7 +1955,6 @@ x         =>                   x    +   4
                       a * b
            )(1 + x * y, 1 - y);
 }
-
 </pre></div></div>
   </p></div>
 
@@ -1988,7 +1975,6 @@ x         =>                   x    +   4
            y * b + 
            a * b;
 }
-
 </pre></div></div>
       </p></div>
     
@@ -2034,12 +2020,10 @@ x         =>                   x    +   4
                * expmod(base, exp - 1, m) 
                % m;
 }
-
 </pre></div></div>
       This function is unnecessarily inefficient, because it contains two
       identical calls:
       <div class='snippet' id='javascript_22_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuBTADwAcBbAewBMAKAIwEMBnAgGlGJNDG3bIEogA')">expmod(base, exp / 2, m)
-
 </pre></div></div>
       While this can be easily fixed in this example using the
       <kbd>square</kbd> function, this is not so easy
@@ -2057,7 +2041,6 @@ x         =>                   x    +   4
                * expmod(base, exp - 1, m) 
                % m;
 }
-
 </pre></div></div>
       This would make the function not just inefficient, but actually
       non-terminating! The problem is that the constant declaration appears
@@ -2080,7 +2063,6 @@ x         =>                   x    +   4
         }
     }	    
 }
-
 </pre></div></div>
       The general form of a conditional statement is
       <kbd class='snippet'>if ($\textit{predicate}$) { $\textit{consequent}$ } else { $\textit{alternative}$ }</kbd>
@@ -2106,24 +2088,15 @@ x         =>                   x    +   4
     <div class='snippet' id='javascript_22_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AgCgHMBKUAb11B4CcBTCkV71mjbKwDcuAL5A')">function f(g) {
    return g(2);
 }
-
 </pre></div></div>
     Then we have
     <div class='snippet' id='javascript_22_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AgCgHMBKUAb11B4CcBTCkV71mjbKwDcuAL75i5anVABnAI5EAhgMYAPdlx59Bw+rtAAqULulzCjdVoFSgA')">f(square);
-
 </pre><pre class='prettyprintoutput'>
-
-4
-      
-</pre></div></div>
+4</pre></div></div>
 
     <div class='snippet' id='javascript_22_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AgCgHMBKUAb11B4CcBTCkV71mjbKwDcuAL74mAL1ABeAHyglAKlCMlAalSspQA')">f(z => z * (z + 1));
-
 </pre><pre class='prettyprintoutput'>
-
-6
-      
-</pre></div></div>
+6</pre></div></div>
     What happens if we (perversely) ask the interpreter to evaluate the
     
       
@@ -2143,8 +2116,7 @@ x         =>                   x    +   4
 	<div class='snippet' id='javascript_22_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 f(f)
 f(2)
-2(2)
-</pre></div></div>
+2(2)</pre></div></div>
 	The application <kbd>2(2)</kbd> leads to an
 	error, since 2 is neither a primitive nor a compound function. 
       </p></div>
@@ -2248,7 +2220,6 @@ f(2)
     return i();
 }
 h();
-
 </pre></div></div>
       leads to an error, because the <kbd>x</kbd> in
       <kbd>x + 1</kbd> is used before its declaration

@@ -1746,8 +1746,7 @@
             ((application? exp)
             (compile-application exp target linkage))
             (else
-            (error "Unknown expression type - - COMPILE" exp))))
-</pre></div></div>    </td>
+            (error "Unknown expression type - - COMPILE" exp))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_117_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile(exp, target, linkage) {
     return is_self_evaluating(exp)
@@ -1771,8 +1770,7 @@ function compile(exp, target, linkage) {
         : is_application(exp)
         ? compile_application(exp, target, linkage)
         : error(exp, "Unknown expression type - - COMPILE");
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
       </p></div>
 
       
@@ -1829,11 +1827,9 @@ function compile(exp, target, linkage) {
           
           <tr>
             <td><div class='snippet' id='javascript_117_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(assign val (const 5))
-</pre></div></div>    </td>
+(assign val (const 5))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_117_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assign("val", constant(5));
-</pre></div></div></td></tr></table>
+assign("val", constant(5));</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -1847,12 +1843,10 @@ assign("val", constant(5));
           <tr>
             <td><div class='snippet' id='javascript_117_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (assign val (const 5))
-      (goto (reg continue))
-</pre></div></div>    </td>
+      (goto (reg continue))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_117_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assign("val", constant(5));
-      go_to(reg("continue"));
-</pre></div></div></td></tr></table>
+      go_to(reg("continue"));</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -2034,13 +2028,11 @@ $\textit{seq}_2$</kbd>
           <tr>
             <td><div class='snippet' id='javascript_117_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (make-instruction-sequence needs modifies statements)
-      (list needs modifies statements))
-</pre></div></div>    </td>
+      (list needs modifies statements))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_117_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_instruction_sequence(needs, modifies, statements) {
     return list(needs, modifies,statements);
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -2058,14 +2050,12 @@ function make_instruction_sequence(needs, modifies, statements) {
 (make-instruction-sequence '(env continue) '(val)
       '((assign val
             (op lookup-variable-value) (const x) (reg env))
-      (goto (reg continue))))
-</pre></div></div>    </td>
+      (goto (reg continue))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_117_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 make_instruction_sequence(list("env", "continue"),
                           list("val"),
                           list(assign("val", op("lookup_variable_value"), constant("x"), reg("env")),
-                               go_to(reg("continue"))));
-</pre></div></div></td></tr></table>
+                               go_to(reg("continue"))));</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -2077,13 +2067,11 @@ make_instruction_sequence(list("env", "continue"),
           <tr>
             <td><div class='snippet' id='javascript_117_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (empty-instruction-sequence)
-      (make-instruction-sequence '() '() '()))
-</pre></div></div>    </td>
+      (make-instruction-sequence '() '() '()))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_117_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function empty_instruction_sequence() {
     return make_instruction_sequence(list(), list(), list());
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -2121,8 +2109,7 @@ function empty_instruction_sequence() {
 
       (f (g 'x) y)
 
-      (f (g 'x) 'y)
-</pre></div></div>
+      (f (g 'x) 'y)</pre></div></div>
       
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_117_1_div" data-toggle="collapse">Add solution</button></div>

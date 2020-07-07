@@ -1939,11 +1939,9 @@
           
           <tr>
             <td><div class='snippet' id='javascript_93_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(job ?x (computer programmer))
-</pre></div></div>    </td>
+(job ?x (computer programmer))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_93_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-job(x, list("computer", "programmer"))
-</pre></div></div></td></tr></table>
+job(x, list("computer", "programmer"))</pre></div></div></td></tr></table>
     we scan through all assertions in the data base and select those that
     match the pattern with respect to an initially empty frame.  For each
     match we find, we use the frame returned by the match to instantiate
@@ -2059,12 +2057,10 @@ job(x, list("computer", "programmer"))
           <tr>
             <td><div class='snippet' id='javascript_93_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (and (can-do-job ?x (computer programmer trainee))
-     (job ?person ?x))
-</pre></div></div>    </td>
+     (job ?person ?x))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_93_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(can_do_job(x, list("computer", "programmer", "trainee")),
-    job(person, x))
-</pre></div></div></td></tr></table>
+    job(person, x))</pre></div></div></td></tr></table>
     (informally, <QUOTE>Find all people who can do the job of a computer
     programmer trainee</QUOTE>), we first find all entries that match the
     pattern
@@ -2073,11 +2069,9 @@ and(can_do_job(x, list("computer", "programmer", "trainee")),
           
           <tr>
             <td><div class='snippet' id='javascript_93_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(can-do-job ?x (computer programmer trainee))
-</pre></div></div>    </td>
+(can-do-job ?x (computer programmer trainee))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_93_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-can_do_job(x, list("computer", "programmer", "trainee"))
-</pre></div></div></td></tr></table>
+can_do_job(x, list("computer", "programmer", "trainee"))</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -2094,11 +2088,9 @@ can_do_job(x, list("computer", "programmer", "trainee"))
           
           <tr>
             <td><div class='snippet' id='javascript_93_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(job ?person ?x)
-</pre></div></div>    </td>
+(job ?person ?x)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_93_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-job(person, x)
-</pre></div></div></td></tr></table>
+job(person, x)</pre></div></div></td></tr></table>
     in a way that is consistent with the given binding for
     
       <span style="color:teal"><kbd>?x</kbd>.</span>
@@ -2241,11 +2233,9 @@ job(person, x)
           
           <tr>
             <td><div class='snippet' id='javascript_93_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(not (job ?x (computer programmer)))
-</pre></div></div>    </td>
+(not (job ?x (computer programmer)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_93_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-not(job(x, list("computer", "programmer")))
-</pre></div></div></td></tr></table>
+not(job(x, list("computer", "programmer")))</pre></div></div></td></tr></table>
     we attempt, for each frame in the input stream, to produce extension
     frames that satisfy
     
@@ -2278,12 +2268,10 @@ not(job(x, list("computer", "programmer")))
           <tr>
             <td><div class='snippet' id='javascript_93_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (and (supervisor ?x ?y)
-     (not (job ?x (computer programmer))))
-</pre></div></div>    </td>
+     (not (job ?x (computer programmer))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_93_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(supervisor(x, y),
-    not(job(x, list("computer", "programmer"))))
-</pre></div></div></td></tr></table>
+    not(job(x, list("computer", "programmer"))))</pre></div></div></td></tr></table>
     the first clause will generate frames with bindings for
     
       <span style="color:teal"><kbd>?x</kbd></span>
@@ -2718,11 +2706,9 @@ and(supervisor(x, y),
           
           <tr>
             <td><div class='snippet' id='javascript_93_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(lives-near ?x (Hacker Alyssa P))
-</pre></div></div>    </td>
+(lives-near ?x (Hacker Alyssa P))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_93_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-lives_near(x, list("Hacker", "Alyssa", "P"))
-</pre></div></div></td></tr></table>
+lives_near(x, list("Hacker", "Alyssa", "P"))</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -2745,14 +2731,12 @@ lives_near(x, list("Hacker", "Alyssa", "P"))
 (rule (lives-near ?person-1 ?person-2)
       (and (address ?person-1 (?town . ?rest-1))
            (address ?person-2 (?town . ?rest-2))
-           (not (same ?person-1 ?person-2))))
-</pre></div></div>    </td>
+           (not (same ?person-1 ?person-2))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_93_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 rule(lives_near(person_1, person_2),
      and(address(person_1, pair(town, rest_1)),
          address(person_2, list(town, rest_2)),
-         not(same(person_1, person_2))))
-</pre></div></div></td></tr></table>
+         not(same(person_1, person_2))))</pre></div></div></td></tr></table>
     resulting in a frame specifying that
     
       <span style="color:teal"><kbd>?person-2</kbd></span>
@@ -3067,15 +3051,13 @@ rule(lives_near(person_1, person_2),
 
 (assert! (rule (wheel ?person)
          (and (supervisor ?middle-manager ?person)
-              (supervisor ?x ?middle-manager))))
-</pre></div></div>    </td>
+              (supervisor ?x ?middle-manager))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_93_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assert(job(list("Bitdiddle", "Ben"), list("computer", "wizard")))
 
 assert(rule(wheel(person),
             and(supervisor(middle_manager, person),
-                supervisor(x, middle_manager))))
-</pre></div></div></td></tr></table>
+                supervisor(x, middle_manager))))</pre></div></div></td></tr></table>
     
   </p></div>
 <hr>

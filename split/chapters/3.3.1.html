@@ -1981,10 +1981,8 @@
           
           <tr>
             <td><div class='snippet' id='javascript_60_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define z (cons y (cdr x)))
-</pre></div></div>    </td>
+(define z (cons y (cdr x)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAD1AF5QAbAS3IAonWAiAQw4BpQOAIw4BKfhzyiA3PmLlQAT1oNmZFhwCmfAQDNpuQqQoAvZQAcujAE4sF-MpfotKIkVKA')">const z = pair(y, tail(x));
-
 </pre></div></div></td></tr></table>
     with <kbd>x</kbd> and <kbd>y</kbd>
     bound to the original lists of
@@ -2132,15 +2130,13 @@
   (let ((new (get-new-pair)))
     (set-car! new x)
     (set-cdr! new y)
-    new))
-</pre></div></div>    </td>
+    new))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChslACoAWApqAC4kAe5ARgPb0DWoADgE72v0DOJPoAIZt2ASwC2o8qIBuZAGYBXAHYBjafWWgA5iXIB9ZSQDu+1oNHs0eMOFFqyCQTMHhVY1uVAATev1DK9F4c9DKi3mQ8iqpEQqBKahrKADSgADZ6AOQ8Nj4k8vZkUkIC8vRpafTGPKll7BSkoDyCTGT08g1k1ILirBnW2Anqopo6eoYmZhbsABQAlKAA3tigq6DseorsWuaWMyoRBUbeqQf5hd5zANzYAL64y2vxKsOju7NUqQCeC49Pa6pNDwvPINjxYgBeMYGIymd7zG7-NZ8AykQTeGag-hEVJUa4rJFNcbkCxpTFgnGgH6IwkbchbLRY8E01b3GwE1bw+GYVIAJjmqQALNcAJBPO5AA')">function pair(x, y) {
     const fresh = get_new_pair();
     set_head(fresh, x);
     set_tail(fresh, y);
     return fresh;
 }
-
 </pre></div></div></td></tr></table>
 
   
@@ -2170,14 +2166,12 @@
 (define (append x y)
   (if (null? x)
     y
-    (cons (car x) (append (cdr x) y))))
-</pre></div></div>    </td>
+    (cons (car x) (append (cdr x) y))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cD1ZODWUyDkw+FDdQGKU4gFY+AHY+AE5BYKA')">function append(x, y) {
     return is_null(x)
            ? y
            : pair(head(x), append(tail(x), y));
 }
-
 </pre></div></div></td></tr></table>
     
       <span style="color:teal"><kbd>Append</kbd></span>
@@ -2223,12 +2217,10 @@
             <td><div class='snippet' id='javascript_60_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (append! x y)
   (set-cdr! (last-pair x) y)
-            x)
-</pre></div></div>    </td>
+            x)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAbAQwGcyB9ABwYoCcAKADwCUoAN7ZQE0NwCmZAt1oUmrIgTp1eZLhqGDxkgwH5Q-fQYkAueszacem7QMGCA3NgC+uQqUo1QDdnZpIgATVgBbAi0yKj5+ABpQAE9hMQMmWVYtCg1GFg4uOMFElLd3IA')">function append_mutator(x, y) {
     set_tail(last_pair(x), y);
 }
-
 </pre></div></div></td></tr></table>
     Here
     
@@ -2251,14 +2243,12 @@
 (define (last-pair x)
   (if (null? (cdr x))
       x
-      (last-pair (cdr x))))
-</pre></div></div>    </td>
+      (last-pair (cdr x))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAbAQwGcyB9ABwYoCcAKADwCUoAN7ZQE0NwCmZAt1oUmrIgTp1eZLhqGDxkgwH5Q-fQYkAueszacem7QMGCA3NgC+uRiw5c+dJTJeTAAaACYQlBCAFhCAVmcXIA')">function last_pair(x) {
     return is_null(tail(x))
         ? x
         : last_pair(tail(x));
 }
-
 </pre></div></div></td></tr></table>
     Consider the interaction
     <table width="100%">
@@ -2266,113 +2256,73 @@
           
           <tr>
             <td><div class='snippet' id='javascript_60_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define x (list 'a 'b))
-</pre></div></div>    </td>
+(define x (list 'a 'b))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zCWMudItY+MTkux8KP0FgsIjicmpaD1Y2FQBbAh8yKjteAWExfSVZFTrtOISkm2G3UZDw7BIaBNAuUABeWOUyDgAiOmO+Y4AjY+CgA')">const x = list("a", "b");
-
 </pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_60_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define y (list 'c 'd))
-</pre></div></div>    </td>
+(define y (list 'c 'd))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zCWMudItY+MTkux8KP0FgsIjicmpaD1Y2FQBbAh8yKjteAWExfSVZFTrtOISkm2G3UZDw7BIaBNAuUABeWOUyDgAiOmO+Y4AjY6b1zbIBPYOEk5Jz0GO2G6CgA')">const y = list("c", "d");
-
 </pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_60_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define z (append x y))
-</pre></div></div>    </td>
+(define z (append x y))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zCWMudItY+MTkux8KP0FgsIjicmpaD1Y2FQBbAh8yKjteAWExfSVZFTrtOISkm2G3UZDw7BIaBNAuUABeWOUyDgAiOmO+Y4AjY6b1zbIBPYOEk5Jz0GO2G5C7oi2ALyenS8IyEQSAA')">const z = append(x, y);
-
 </pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_60_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-z
-</pre><pre class='prettyprintoutput'>
-
-(a b c d)
-      
-</pre></div></div>    </td>
+z</pre><pre class='prettyprintoutput'>
+(a b c d)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zCWMudItY+MTkux8KP0FgsIjicmpaD1Y2FQBbAh8yKjteAWExfSVZFTrtOISkm2G3UZDw7BIaBNAuUABeWOUyDgAiOmO+Y4AjY6b1zbIBPYOEk5Jz0GO2G5C7oi2ALyenS8IyEP3+QSAA')">z;
-
 </pre><pre class='prettyprintoutput'>
-
-["a", ["b", ["c", ["d, null]]]]	
-      
-</pre></div></div></td></tr></table>
+["a", ["b", ["c", ["d, null]]]]</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_60_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(cdr x)
-</pre><pre class='prettyprintoutput'>
-
-<response>
-      
-</pre></div></div>    </td>
+(cdr x)</pre><pre class='prettyprintoutput'>
+<response></pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zCWMudItY+MTkux8KP0FgsIjicmpaD1Y2FQBbAh8yKjteAWExfSVZFTrtOISkm2G3UZDw7BIaBNAuUABeWOUyDgAiOmO+Y4AjY6b1zbIBPYOEk5Jz0GO2G5C7oi2ALyenS8IyEP3+PxmOiCQA')">tail(x);
-
 </pre><pre class='prettyprintoutput'>
-
-<response>
-      
-</pre></div></div></td></tr></table>
+<response></pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_60_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define w (append! x y))
-</pre></div></div>    </td>
+(define w (append! x y))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zCWMudItY+MTkux8KP0FgsIjicmpaD1Y2FQBbAh8yKjteAWExfSVZFTrtOISkm2G3UZDw7BIaBNAuUABeWOUyDgAiOmO+Y4AjY6b1zbIBPYOEk5Jz0GO2G5C7oi2ALyenS8IyEP3+PxmOh+Gz+DwA7kCmF1ev06INhgFgkA')">const w = append_mutator(x, y);
-
 </pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_60_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-w
-</pre><pre class='prettyprintoutput'>
-
-(a b c d)
-      
-</pre></div></div>    </td>
+w</pre><pre class='prettyprintoutput'>
+(a b c d)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zCWMudItY+MTkux8KP0FgsIjicmpaD1Y2FQBbAh8yKjteAWExfSVZFTrtOISkm2G3UZDw7BIaBNAuUABeWOUyDgAiOmO+Y4AjY6b1zbIBPYOEk5Jz0GO2G5C7oi2ALyenS8IyEP3+PxmOh+Gz+DwA7kCmF1ev06INhgFbvCgkA')">w;
-
 </pre><pre class='prettyprintoutput'>
-
-["a", ["b", ["c", ["d", null]]]]      
-      
-</pre></div></div></td></tr></table>
+["a", ["b", ["c", ["d", null]]]]</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_60_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(cdr x)
-</pre><pre class='prettyprintoutput'>
-
-<response>
-      
-</pre></div></div>    </td>
+(cdr x)</pre><pre class='prettyprintoutput'>
+<response></pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBDABwYFMiATACgA8AaUATwCUoAN7ZQE0ACdmZAlNoUAzgH0iBADYbug8ZP2SA-AL0H9ALlAM6FKRwAWzOpy6C+jFuw5kb213yFBAG5sAF9cQlJKGlANOiUyFWtbHVFTaVl5RVV1LW9fHV0zCWMudItY+MTkux8KP0FgsIjicmpaD1Y2FQBbAh8yKjteAWExfSVZFTrtOISkm2G3UZDw7BIaBNAuUABeWOUyDgAiOmO+Y4AjY6b1zbIBPYOEk5Jz0GO2G5C7oi2ALyenS8IyEP3+PxmOh+Gz+DwA7kCmF1ev06INhgFbvDIQVXEEgA')">tail(x);
-
 </pre><pre class='prettyprintoutput'>
-
-<response>
-      
-</pre></div></div></td></tr></table>
+<response></pre></div></div></td></tr></table>
     What are the missing <kbd><response></kbd>?
     Draw box-and-pointer diagrams to explain your answer.
   
@@ -2420,13 +2370,11 @@ w
             <td><div class='snippet' id='javascript_60_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (make-cycle x)
   (set-cdr! (last-pair x) x)
-            x)
-</pre></div></div>    </td>
+            x)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAbAQwGcyB9ABwYoCcAKADwCUoAN7ZQE0NwCmZAt1oUmrIgTp1eZLhqGDxkgwH5Q-fQYkAueszacem7QMGCA3NgC+uQqUo1QAWwYAa2lWEgBPEjppJ1EzUCZZVi0KDUYWDi4+IQAaE1d4mTkFEzdPbBIaFlAAL1AAXgDg0IiomLolMl4AIgZuvO6AI37QbpJu5xcgA')">function make_cycle(x) {
     set_tail(last_pair(x), x);
     return x;
 }
-
 </pre></div></div></td></tr></table>
     Draw a box-and-pointer diagram that shows the structure
     <kbd>z</kbd> created by
@@ -2435,10 +2383,8 @@ w
           
           <tr>
             <td><div class='snippet' id='javascript_60_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define z (make-cycle (list 'a 'b 'c)))
-</pre></div></div>    </td>
+(define z (make-cycle (list 'a 'b 'c)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAbAQwGcyB9ABwYoCcAKADwCUoAN7ZQE0NwCmZAt1oUmrIgTp1eZLhqGDxkgwH5Q-fQYkAueszacem7QMGCA3NgC+uQqUo1QAWwYAa2lWEgBPEjppJ1EzUCZZVi0KDUYWDi4+IQAaE1d4mTkFEzdPbBIaFlAAL1AAXgDg0IiomLolMl4AIgZuvO6AI37QbpJu5xcgA')">const z = make_cycle(list("a", "b", "c"));
-
 </pre></div></div></td></tr></table>
     What happens if we try to compute
     
@@ -2480,8 +2426,7 @@ w
         (let ((temp (cdr x)))
           (set-cdr! x y)
           (loop temp x))))
-  (loop x '()))
-</pre></div></div>    </td>
+  (loop x '()))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAN1AF5QAbAS3IAoAiAQzYBpQ2AjHnzxsAlAG5cAMwCuRPGUbFQAWwCe5AKYAnNSwAeo0AG9soc6FnzFy+gQIAHA7zVHTFj6EZTQLZgH0iGXp6A1E3M08o7U0yGW0iUDVJKPMAX1BNehJNE0jUi3pY0DJNFQdaEo5GUMMUgoscsn8yatqXCXyGmLiEhnsnUvLeOq6PNK6Jjx74xLtHZ1AgkM6J-GJyUAB3SvUtXRZKCSA')">function mystery(x) {
     function loop(x, y) {
         if (is_null(x)) {
@@ -2494,7 +2439,6 @@ w
     }
     return loop(x, null);
 }
-
 </pre></div></div></td></tr></table>
     
       <span style="color:teal"><kbd>Loop</kbd></span>
@@ -2524,10 +2468,8 @@ w
           
           <tr>
             <td><div class='snippet' id='javascript_60_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define v (list 'a 'b 'c 'd))
-</pre></div></div>    </td>
+(define v (list 'a 'b 'c 'd))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAN1AF5QAbAS3IAoAiAQzYBpQ2AjHnzxsAlAG4gA')">const v = list("a", "b", "c");
-
 </pre></div></div></td></tr></table>
     Draw the box-and-pointer diagram that represents the list to which
     <kbd>v</kbd> is bound.  Suppose that we now evaluate
@@ -2536,10 +2478,8 @@ w
           
           <tr>
             <td><div class='snippet' id='javascript_60_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define w (mystery v))
-</pre></div></div>    </td>
+(define w (mystery v))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAN1AF5QAbAS3IAoAiAQzYBpQ2AjHnzxsAlAG5cAMwCuRPGUbFQAWwCe5AKYAnNSwAeo0AG9soc6FnzFy+gQIAHA7zVHTFj6EZTQLZgH0iGXp6A1E3M08o7U0yGW0iUDVJKPMAX1BNehJNE0jUi3pY0DJNFQdaEo5GUMMUgoscsn8yatqXCXyGmLiEhnsnUvLeOq6PNK6Jjx74xLtHZ1AgkM6J-GJyUAB3SvUtXRZKCSA')">const w = mystery(v);
-
 </pre></div></div></td></tr></table>
     Draw box-and-pointer diagrams that show the structures
     <kbd>v</kbd> and <kbd>w</kbd> after
@@ -2590,11 +2530,9 @@ w
           <tr>
             <td><div class='snippet' id='javascript_60_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define x (list 'a 'b))
-(define z1 (cons x x))
-</pre></div></div>    </td>
+(define z1 (cons x x))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAD1AF5QAbAS3IAoAiAQzYBpQ2AjNgEoA3PmLlQAL0y1QABw6MATi0q9KooA')">const x = list("a", "b");
 const z1 = pair(x, x);
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -2729,10 +2667,8 @@ const z1 = pair(x, x);
           
           <tr>
             <td><div class='snippet' id='javascript_60_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define z2 (cons (list 'a 'b) (list 'a 'b)))
-</pre></div></div>    </td>
+(define z2 (cons (list 'a 'b) (list 'a 'b)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUALwCZQBeUABwEMBLAJwAoAbV8zgETMBAGlACARgICUY3vyGjxU6dIDcQA')">const z2 = pair(list("a", "b"), list("a", "b"));
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -2764,10 +2700,8 @@ const z1 = pair(x, x);
           
           <tr>
             <td><div class='snippet' id='javascript_60_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-((a b) a b)
-</pre></div></div>    </td>
+((a b) a b)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsBsBLAZwBcAKQ0sgIgENqAaUagI2oEom7Hm32BuIA')">list(list("a", "b"), "a", "b")
-
 </pre></div></div></td></tr></table>
     In general, sharing is completely undetectable if we operate on lists using
     only
@@ -2803,13 +2737,11 @@ const z1 = pair(x, x);
             <td><div class='snippet' id='javascript_60_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (set-to-wow! x)
   (set-car! (car x) 'wow)
-  x)
-</pre></div></div>    </td>
+  x)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBnAUzIH0yrmB3KjgCgA8AlKADe2UOPpNmACwYBDACY9Zi-gIA0oAERcOWgQG4xEgE5MCJ2nyMBfIA')">function set_to_wow(x) {
     set_head(head(x), "wow");
     return x;
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -2868,73 +2800,41 @@ const z1 = pair(x, x);
           
           <tr>
             <td><div class='snippet' id='javascript_60_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-z1
-</pre><pre class='prettyprintoutput'>
-
-            ((a b) a b)
-      
-</pre></div></div>    </td>
+z1</pre><pre class='prettyprintoutput'>
+            ((a b) a b)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAD1AF5QAbAS3IAoAiAQzYBpQ2AjNgEoA3PmLlQAL0y1QABw6MATi0q9Ko3DJFA')">z1;
-
-</pre><pre class='prettyprintoutput'>
-      
-[["a", ["b", null]], ["a", ["b", null]]]
-      
-</pre></div></div></td></tr></table>
+</pre><pre class='prettyprintoutput'>      
+[["a", ["b", null]], ["a", ["b", null]]]</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_60_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(set-to-wow! z1)
-</pre><pre class='prettyprintoutput'>
-
-((wow b) wow b)
-      
-</pre></div></div>    </td>
+(set-to-wow! z1)</pre><pre class='prettyprintoutput'>
+((wow b) wow b)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBnAUzIH0yrmB3KjgCgA8AlKADe2UOPpNmACwYBDACY9Zi-gIA0oAERcOWgQG4xEgE5MCJ2nyMBfXCRp0yoPqAC8oADYUnPLXK1NLQAjfSMHIidQAC9Md1AABzkKE35NQSNsRhY2Tm4eWMMgA')">set_to_wow(z1);
-
 </pre><pre class='prettyprintoutput'>
-
-[["wow", ["b", null]], ["wow", ["b", null]]]
-      
-</pre></div></div></td></tr></table>
+[["wow", ["b", null]], ["wow", ["b", null]]]</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_60_25_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-z2
-</pre><pre class='prettyprintoutput'>
-
-((a b) a b)
-      
-</pre></div></div>    </td>
+z2</pre><pre class='prettyprintoutput'>
+((a b) a b)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_25_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUALwCZQBeUABwEMBLAJwAoAbV8zgETMBAGlACARgICUY3vyGjxU6dIDcuGmqA')">z2;
-
-</pre><pre class='prettyprintoutput'>
->
-      [["a", ["b", null]], ["a", ["b", null]]]
-      
-</pre></div></div></td></tr></table>
+</pre><pre class='prettyprintoutput'>>
+      [["a", ["b", null]], ["a", ["b", null]]]</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_60_26_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(set-to-wow! z2)
-</pre><pre class='prettyprintoutput'>
-
-((wow b) a b)
-      
-</pre></div></div>    </td>
+(set-to-wow! z2)</pre><pre class='prettyprintoutput'>
+((wow b) a b)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_26_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQBnAUzIH0yrmB3KjgCgA8AlKADe2UOPpNmACwYBDACY9Zi-gIA0oAERcOWgQG4xEgE5MCJ2nyMBfXCRp0yoAF4AmUAF5QABzkUTHgAbCiceLTktTS0AI31NELCIqO04gUNcRhY2Tm4ed0MgA')">set_to_wow(z2);
-
 </pre><pre class='prettyprintoutput'>
-
-[["wow", ["b", null]], ["a", ["b", null]]]
-      
-</pre></div></div></td></tr></table>
+[["wow", ["b", null]], ["a", ["b", null]]]</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -3080,15 +2980,13 @@ z2
       0
       (+ (count-pairs (car x))
          (count-pairs (cdr x))
-         1)))
-</pre></div></div>    </td>
+         1)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_27_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQSriyB9ABwEMKAnAZwAoAPAJSgA3tlATQnAKZkCnWgEIK3Vh04DB4yTskB+UAAZtunQC46DIs3Zc+AC2lsAJpuEBqUCdM76jNXa8ZBwANm6gnpgA3NgAvkA')">function count_pairs(x) {
     return !is_pair(x)
            ? 0
            : count_pairs(head(x)) + 
              count_pairs(tail(x)) + 1;
 }
-
 </pre></div></div></td></tr></table>
     Show that this
     
@@ -3224,8 +3122,7 @@ z2
 
 (define (car z) (z 'car))
 
-(define (cdr z) (z 'cdr))
-</pre></div></div>    </td>
+(define (cdr z) (z 'cdr))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_28_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVAATCgGdGZEgAtWAWwHCxO0MwCmZAs1rrQAXkugARCv0MZ1kbpcB+UO2cudALlBnLcxsyJgAbJ29vdx4vSLE-fWZmKjZ1bmsAVSIZfTwKIn0ZUCo6RIYpWnz6JmYfaz4AbliAX1iDIxNZBSVVBoBIF2xWiXJqWjsHVgAvLTbDY1op1lt7R0ah-GJR6RCKUOnZnXaF0CXrXfD11uwSGnkyDwtqllZMbgAmdYmZDkagA')">function pair(x, y) {
     function dispatch(m) {
         return m === "head"
@@ -3242,7 +3139,6 @@ function head(z) {
 function tail(z) {
     return z("tail");
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -3303,8 +3199,7 @@ function tail(z) {
 
 (define (set-cdr! z new-value)
   ((z 'set-cdr!) new-value)
-  z)
-</pre></div></div>    </td>
+  z)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AcLFbQ7UAF5QqgNwixAX1OiJ5arXlKeajZe099hk1otbmCgs1oAW30APhdtUWC9aNAAIgALOQYAE1jwiIB+HXTtAC5QKJjYsiYAGzSIyqyeHIj8woNY+0VElIrKqtkFZVrK+v0i5pKKct6OrOaajun8uWZmKjZA7ljiZLk8CiI5ZNAqOjmGKVot+iZmWL4TbzF8YhtpVuTWAC9nHz8A0BfWBKTUq7YCx3SS2UDDUqvd5iXxkfy0H7FMqXa64azHLpKJ6vbjbADuilUDFKBDk0NEr1+zSelz4rHxhOJpMBHzhXxeqJBDzs3QhONADKJJLJQhclKavORfDpgqZZM8MM+CM5JBoMjIOncjBYrEw3AATIDqf8ONwUIDsewrkA')">function pair(x, y) {
     function set_x(v) {
         x = v;
@@ -3341,7 +3236,6 @@ function set_tail(z, new_value) {
     (z("set_tail"))(new_value);
     return z;
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -3372,31 +3266,21 @@ function set_tail(z, new_value) {
 (define z (cons x x))
 (set-car! (cdr z) 17)
 
-(car x)
-</pre></div></div>    </td>
+(car x)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_30_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AcLFbQ7UAF5QqgNwixAX1OiJ5arXlKeajZe099hk1otbmCgs1oAW30APhdtUWC9aNAAIgALOQYAE1jwiIB+HXTtAC5QKJjYsiYAGzSIyqyeHIj8woNY+0VElIrKqtkFZVrK+v0i5pKKct6OrOaajun8uWZmKjZA7ljiZLk8CiI5ZNAqOjmGKVot+iZmWL4TbzF8YhtpVuTWAC9nHz8A0BfWBKTUq7YCx3SS2UDDUqvd5iXxkfy0H7FMqXa64azHLpKJ6vbjbADuilUDFKBDk0NEr1+zSelz4rHxhOJpMBHzhXxeqJBDzs3QhONADKJJLJQhclKavORfDpgqZZM8MM+CM5JBoMjIOncjBYrEw3AATIDVUR1d8tecONx2IDqf9WHy3txMAB2K5AA')">const x = pair(1, 2);
 const z = pair(x, x);
 set_head(tail(z), 17);
-
 </pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_60_31_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(car x)
-</pre><pre class='prettyprintoutput'>
-
-            17
-      
-</pre></div></div>    </td>
+(car x)</pre><pre class='prettyprintoutput'>
+            17</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_60_31_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AcLFbQ7UAF5QqgNwixAX1OiJ5arXlKeajZe099hk1otbmCgs1oAW30APhdtUWC9aNAAIgALOQYAE1jwiIB+HXTtAC5QKJjYsiYAGzSIyqyeHIj8woNY+0VElIrKqtkFZVrK+v0i5pKKct6OrOaajun8uWZmKjZA7ljiZLk8CiI5ZNAqOjmGKVot+iZmWL4TbzF8YhtpVuTWAC9nHz8A0BfWBKTUq7YCx3SS2UDDUqvd5iXxkfy0H7FMqXa64azHLpKJ6vbjbADuilUDFKBDk0NEr1+zSelz4rHxhOJpMBHzhXxeqJBDzs3QhONADKJJLJQhclKavORfDpgqZZM8MM+CM5JBoMjIOncjBYrEw3AATIDVUR1d8tecONx2IDqf9WHy3txMAB2QHYbHWoxAA')">head(x);
-
 </pre><pre class='prettyprintoutput'>
-
-17
-      
-</pre></div></div></td></tr></table>
+17</pre></div></div></td></tr></table>
     using the 
     
       <span style="color:teal">

@@ -1705,15 +1705,13 @@
         <div class='snippet' id='javascript_37_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (a b c d)
 (23 45 17)
-((Norah 12) (Molly 9) (Anna 7) (Lauren 6) (Charlotte 4))
-</pre></div></div>
+((Norah 12) (Molly 9) (Anna 7) (Lauren 6) (Charlotte 4))</pre></div></div>
         Lists containing symbols can look just like the expressions of our
         language:
         <div class='snippet' id='javascript_37_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (* (+ 23 45) (+ x 9))
 
-(define (fact n) (if (= n 1) 1 (* n (fact (- n 1)))))
-</pre></div></div>
+(define (fact n) (if (= n 1) 1 (* n (fact (- n 1)))))</pre></div></div>
       </p></div>
       <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
@@ -1762,31 +1760,18 @@
         <div class='snippet' id='javascript_37_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define a 1)
 
-(define b 2)
-</pre></div></div>
+(define b 2)</pre></div></div>
 
         <div class='snippet' id='javascript_37_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(list a b)
-</pre><pre class='prettyprintoutput'>
-
-                (1 2)
-          
-</pre></div></div>
+(list a b)</pre><pre class='prettyprintoutput'>
+(1 2)</pre></div></div>
 
         <div class='snippet' id='javascript_37_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(list 'a 'b)
-</pre><pre class='prettyprintoutput'>
-
-                (a b)
-          
-</pre></div></div>
+(list 'a 'b)</pre><pre class='prettyprintoutput'>
+(a b)</pre></div></div>
         <div class='snippet' id='javascript_37_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(list 'a b)
-</pre><pre class='prettyprintoutput'>
-
-                (a 2)
-          
-</pre></div></div>
+(list 'a b)</pre><pre class='prettyprintoutput'>
+(a 2)</pre></div></div>
       </p></div>
       <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
@@ -1794,20 +1779,12 @@
         Quotation also allows us to type in compound objects, using the
         conventional printed representation for lists:<a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:teal">[3]</a>
 	<div class='snippet' id='javascript_37_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(car '(a b c))
-</pre><pre class='prettyprintoutput'>
-
-a
-          
-</pre></div></div>
+(car '(a b c))</pre><pre class='prettyprintoutput'>
+a</pre></div></div>
 
         <div class='snippet' id='javascript_37_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(cdr '(a b c))
-</pre><pre class='prettyprintoutput'>
-
-(b c)
-          
-</pre></div></div>
+(cdr '(a b c))</pre><pre class='prettyprintoutput'>
+(b c)</pre></div></div>
 
         
         
@@ -1835,16 +1812,13 @@ a
 (define (memq item x)
   (cond ((null? x) false)
         ((eq? item (car x)) x)
-        (else (memq item (cdr x)))))
-</pre></div></div>
+        (else (memq item (cdr x)))))</pre></div></div>
         For example, the value of
         <div class='snippet' id='javascript_37_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(memq 'apple '(pear banana prune))
-</pre></div></div>
+(memq 'apple '(pear banana prune))</pre></div></div>
         is false, whereas the value of
         <div class='snippet' id='javascript_37_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(memq 'apple '(x (apple sauce) y apple pear))
-</pre></div></div>
+(memq 'apple '(x (apple sauce) y apple pear))</pre></div></div>
         is <kbd>(apple pear)</kbd>.
       </p></div>
 
@@ -1855,26 +1829,19 @@ a
         What would the interpreter print in response to evaluating each of the
         following expressions?
         <div class='snippet' id='javascript_37_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(list 'a 'b 'c)
-</pre></div></div>
+(list 'a 'b 'c)</pre></div></div>
         <div class='snippet' id='javascript_37_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(list (list 'george))
-</pre></div></div>
+(list (list 'george))</pre></div></div>
         <div class='snippet' id='javascript_37_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(cdr '((x1 x2) (y1 y2)))
-</pre></div></div>
+(cdr '((x1 x2) (y1 y2)))</pre></div></div>
         <div class='snippet' id='javascript_37_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(cadr '((x1 x2) (y1 y2)))
-</pre></div></div>
+(cadr '((x1 x2) (y1 y2)))</pre></div></div>
         <div class='snippet' id='javascript_37_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(pair? (car '(a short list)))
-</pre></div></div>
+(pair? (car '(a short list)))</pre></div></div>
         <div class='snippet' id='javascript_37_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(memq 'red '((red shoes) (blue socks)))
-</pre></div></div>
+(memq 'red '((red shoes) (blue socks)))</pre></div></div>
         <div class='snippet' id='javascript_37_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(memq 'red '(red shoes blue socks))
-</pre></div></div>
+(memq 'red '(red shoes blue socks))</pre></div></div>
       
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_37_1_div" data-toggle="collapse">Add solution</button></div>
@@ -1896,12 +1863,10 @@ a
         arranged in the same order.  For example,
         
         <div class='snippet' id='javascript_37_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(equal? '(this is a list) '(this is a list))
-</pre></div></div>
+(equal? '(this is a list) '(this is a list))</pre></div></div>
         is true, but
         <div class='snippet' id='javascript_37_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(equal? '(this is a list) '(this (is a) list))
-</pre></div></div>
+(equal? '(this is a list) '(this (is a) list))</pre></div></div>
         is false.  To be more precise, we can define
 	<kbd>equal?</kbd> recursively in terms of the basic
 	<kbd>eq?</kbd> equality of symbols by saying that
@@ -1931,8 +1896,7 @@ a
   
         Eva Lu Ator types to the interpreter the expression
         <div class='snippet' id='javascript_37_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(car ''abracadabra)
-</pre></div></div>
+(car ''abracadabra)</pre></div></div>
         To her surprise, the interpreter prints back
 	<kbd>quote</kbd>.  Explain.
         
@@ -1984,29 +1948,16 @@ list(list("Norah", 12), list("Molly", 9),
         Via quotation marks, we can distinguish between strings and names:
         <div class='snippet' id='javascript_37_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuBjAewDsBnAF1AENQBeUbAbkNMtACN7Umg')">const a = 1;
 const b = 2;
-
 </pre></div></div>
         <div class='snippet' id='javascript_37_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuBjAewDsBnAF1AENQBeUbAbkNMtACN7UXcAbAJaUAFNQA0nAJRMgA')">list(a, b);
-
 </pre><pre class='prettyprintoutput'>
-
-[1, [2, null]]
-          
-</pre></div></div>
+[1, [2, null]]</pre></div></div>
         <div class='snippet' id='javascript_37_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAbASwGcAXACgCIBDKgGlCoCMqBKAbiA')">list("a", "b");
-
 </pre><pre class='prettyprintoutput'>
-
-["a", ["b", null]]
-          
-</pre></div></div>
+["a", ["b", null]]</pre></div></div>
         <div class='snippet' id='javascript_37_25_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuBjAewDsBnAF1AENQBeUbAbkNMtACN7UXcAbAJaUAFACJqogDScAlEyA')">list("a", b);
-
 </pre><pre class='prettyprintoutput'>
-
-["a", [2, null]]
-          
-</pre></div></div>
+["a", [2, null]]</pre></div></div>
       </p></div>
       <div class='permalink'>
 <a name='p9' class='permalink'></a><p>
@@ -2031,16 +1982,13 @@ const b = 2;
           ? x
           : member(item, tail(x));
 }
-
 </pre></div></div>
         For example, the value of
         <div class='snippet' id='javascript_37_27_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGAjJgJwAoqKWAaUAA8AlKADeuUNNAcmFIh3pUAzgH0SRADZauoqTMMB+UJp0HD0gFyheLUAF4noABZMAhgBM9Ii5ekmQn7+NsxsnDx8DIIU7lS6oiIA3LgAvvhh7NwARO4ADnlaTNmCWqoUXNl5HhwloNms7iRN7nVVHKTFIslAA')">member("apple", list("pear", "banana", "prune"));
-
 </pre></div></div>
         is <kbd>null</kbd>, whereas the value of
         <div class='snippet' id='javascript_37_28_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGAjJgJwAoqKWAaUAA8AlKADeuUNNAcmFIh3pUAzgH0SRADZauoqTMMB+UJp0HD0gFyheLUAF4noABZMAhgBM9Ii5ekmQn7+NsxsnDx8DIIU7lS6oiIA3LgAvvhh7NwARO4ADnlaTNn8wdJaqhRc2UIloBUqVbkFRSXZKu5EZMUigtkAnnXNhcV9eR4c2SLJQA')">member("apple",
        list("x", list("apple","sauce"), "y", "apple", "pear"));
-
 </pre></div></div>
         is <kbd>["apple", ["pear", null]]</kbd>.
       </p></div>
@@ -2052,22 +2000,16 @@ const b = 2;
         What would the interpreter print in response to evaluating each of the
         following expressions?
         <div class='snippet' id='javascript_37_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAbASwGcAXACgCIBDKgGlCoCMGmBjKgSgG4g')">list("a", "b", "c");
-
 </pre></div></div>
         <div class='snippet' id='javascript_37_30_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAbASwGcAXACmPIoCIBzAUwHsAnJ2gSk4G4g')">list(list("george"));
-
 </pre></div></div>
         <div class='snippet' id='javascript_37_31_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAXAQwEsAbACjJIGcCrb6AiAD2yYBpRWUmBKLtToUmAT3ZcxvPjIDcQA')">tail(list(list("x1", "x2"), list("y1", "y2")));
-
 </pre></div></div>
         <div class='snippet' id='javascript_37_32_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAXAQwEsAbACgAsBTIgEwrJIGcCnX2AiAD2y4A0oXii4BKIczYUuAT35C5osSrEBuIA')">tail(head(list(list("x1", "x2"), list("y1", "y2"))));
-
 </pre></div></div>
         <div class='snippet' id='javascript_37_33_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGAjJgJwAoqKWAaUAA8AlKADeuUNNAcmFIh3pUAzgH0SRADZauoqTMMB+UJp0HD0gFyheLUAF4noABZMAhgBM9Ii5ekmQn7+NsxsnDx8DIIU7lS6oiIA3LgAvvhh7NwARHKe2YJaqhRcRSoluUz5gtkqLjRMKtkihcVc2axaREwFoLU0ZADWTSKjSUA')">member("red", list(list("red", "shoes"), list("blue", "socks")));
-
 </pre></div></div>
         <div class='snippet' id='javascript_37_34_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGAjJgJwAoqKWAaUAA8AlKADeuUNNAcmFIh3pUAzgH0SRADZauoqTMMB+UJp0HD0gFyheLUAF4noABZMAhgBM9Ii5ekmQn7+NsxsnDx8DIIU7lS6oiIA3LgAvvhh7NwARHKe2YJaqhRcuUz5gtkqLjRMKgWg2axaREwNVTRkANb1IslAA')">member("red", list("red", "shoes", "blue", "socks"));
-
 </pre></div></div>
 	
       
@@ -2076,22 +2018,16 @@ const b = 2;
       <div class="solution_content collapse" id="solution_37_4_div"><SOLUTION>
     
           <div class='snippet' id='javascript_37_35_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAbASwGcAXACgCIBDKgGlCoCMGmBjKgSgG5cRQAbVpthrRsM6MAdgFcCBALrKgA')">["a", ["b", ["c", null]]]
-
 </pre></div></div>
           <div class='snippet' id='javascript_37_36_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAbASwGcAXACmPIoCIBzAUwHsAnJ2gSk4G5cRQAbUEMW7RrQA0oAHYBXAgQC60+YqVA')">[["george", null], null]
-
 </pre></div></div>
           <div class='snippet' id='javascript_37_37_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAXAQwEsAbACjJIGcCrb6AiAD2yYBpRWUmBKLtToUmAT3ZcxvPjIDcuEKADaSsROVTOoAHYBXMmQC6hrnoOGgA')">[["y1", ["y2", null]], null]
-
 </pre></div></div>
           <div class='snippet' id='javascript_37_38_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAXAQwEsAbACgAsBTIgEwrJIGcCnX2AiAD2y4A0oXii4BKIczYUuAT35C5osSrEBuXCFABtEYNAA7AK5kyAXSA')">["x2", null]
-
 </pre></div></div>
           <div class='snippet' id='javascript_37_39_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGAjJgJwAoqKWAaUAA8AlKADeuUNNAcmFIh3pUAzgH0SRADZauoqTMMB+UJp0HD0gFyheLUAF4noABZMAhgBM9Ii5ekmQn7+NsxsnDx8DIIU7lS6oiIA3LgAvvhh7NwARHKe2YJaqhRcRSoluUz5gtkqLjRMKtkihcVc2axaREwFoLU0ZADWTSKjKSCm2lpAA')">null
-
 </pre></div></div>
           <div class='snippet' id='javascript_37_40_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AWwFMGAjJgJwAoqKWAaUAA8AlKADeuUNNAcmFIh3pUAzgH0SRADZauoqTMMB+UJp0HD0gFyheLUAF4noABZMAhgBM9Ii5ekmQn7+NsxsnDx8DIIU7lS6oiIA3LgAvvhh7NwARHKe2YJaqhRcuUz5gtkqLjRMKgWg2axaREwNVTRkANb1Ism4IKAA2mUVw1U1dQ0jza3THd31gmZaALrrq0A')">["red", ["shoes", ["blue", ["socks", null]]]]
-
 </pre></div></div>
 	</SOLUTION></div></div>
 </EXERCISE></div>
@@ -2111,12 +2047,10 @@ const b = 2;
 	
 	<div class='snippet' id='javascript_37_41_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuRQAzAVwDsBjAFwEsB7M0AUwEcSBDAG1CrtACMmoAO4AnGlSpNG-AJ6gAzlRIATaVXysOnABScaSnQCIqACwNGANKCMXrR9lZv6lRgJTXcobz5dVjZnY2QQ5ORn7ubgDcQA')">equal(list("this", "is", "a", "list"), 
       list("this", "is", "a", "list"));
-
 </pre></div></div>
 	is true, but
 	<div class='snippet' id='javascript_37_42_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuRQAzAVwDsBjAFwEsB7M0AUwEcSBDAG1CrtACMmoAO4AnGlSpNG-AJ6gAzlRIATaVXysOnABScaSnQCIqACwNGANKCMXrR9lZv6lRgJSXcobz5dVjZnagfsZBDu72fu5uANxAA')">equal(list("this", "is", "a", "list"),
       list("this", list("is", "a"), "list"));
-
 </pre></div></div>
 	is false.  To be more precise, we can define
 	<kbd>equal</kbd> recursively in terms of the
@@ -2145,7 +2079,6 @@ const b = 2;
           
           <tr>
             <td><div class='snippet' id='javascript_37_43_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_37_43_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuRQAzAVwDsBjAFwEsB7M0AUwEcSBDAG1CrtACMmoAO4AnGlSpNG-AJ6gAzlRIATaVXylKtBszZcAFOwA0AgJSgA3rlC3QopstGMDNBQH0ADuxqijFgDIA0DcvHz9+QICbO1jY1g5OAwALJnYVf1NU9INIqL1EgyofJPYzU2KaJLyzGLjYgB8G0Dr623ZQAF5ugQBuXABffATDTjcqAwAiKmS3SdNJuYX2edBJsaVJ8pb6jYnp2YVVxaPl472ts16gA')">function equal(a, b) {
     return (is_pair(a) && is_pair(b) &&
@@ -2153,7 +2086,6 @@ const b = 2;
            || 
            a === b;
 }
-
 </pre></div></div></td></tr></table></SOLUTION></div></div>
 </EXERCISE></div>
 
@@ -2180,7 +2112,6 @@ const b = 2;
 	quotation mark. Can you spot which is which and work out the value of
 	the following expression?
         <div class='snippet' id='javascript_37_44_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuByAIgNAF4LQiiBuIA')">'"' === ""
-
 </pre></div></div>
 
 	

@@ -1713,14 +1713,12 @@
 (define (expt b n)
   (if (= n 0)
       1
-      (* b (expt b (- n 1)))))
-</pre></div></div>    </td>
+      (* b (expt b (- n 1)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_17_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AUwA8AHCgCgCMAaEgSlABvXKFGgATgwpFx9egF5FoAAwix6sQH5UajeoBcoTqABUjVhx6h6AWlR8A3LgC++Zm3YBmbqGyOgA')">function expt(b,n) {
     return n === 0
            ? 1
            : b * expt(b, n - 1);
 }
-
 </pre></div></div></td></tr></table>
     
   </p></div>
@@ -1743,8 +1741,7 @@
       product
       (expt-iter b
                 (- counter 1)
-                (* b product))))
-</pre></div></div>    </td>
+                (* b product))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_17_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AUwA8AHCgCgCMAaEgSlABvXKFGgATgwpFx9ZmwD6VCg3Fde3FHwDcuAL6FSlWnNYUlKtTzI1Sl7i3E0AJkUoDhYiVJn0bd1VAAXhDQAAYRLyjQAH5QRxc3CkjosQAuRjMLVXUU1Pyo-xJLUABaVG5QPIKazlAAKninV3ddA1x5DgBmSuwdIA')">function expt(b,n) {
     return expt_iter(b,n,1);
 }
@@ -1755,7 +1752,6 @@ function expt_iter(b,counter,product) {
                        counter - 1, 
                        b * product);
 }
-
 </pre></div></div></td></tr></table>
     
 
@@ -1812,8 +1808,7 @@ function expt_iter(b,counter,product) {
         ((even? n) 
          (square (fast-expt b (/ n 2))))
         (else 
-         (* b (fast-expt b (- n 1))))))
-</pre></div></div>    </td>
+         (* b (fast-expt b (- n 1))))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_17_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9TgDdOJbiUEjxEzlJmh6AUlAZQAXk+gADKo2FSSlp6AlYGCiNeAAcKbgAjABpHK1FxSWl6ek93H1SbfIB+VDz88QAuPUMTMwt+EtLxIuY2Lm5Q8MiY+KT6MAx+OobSiriFUHaIzmjYxMdQAFpUfj9NMMnp7gBmJOxloA')">function fast_expt(b, n) {
     return n === 0
            ? 1
@@ -1821,7 +1816,6 @@ function expt_iter(b,counter,product) {
              ? square(fast_expt(b, n / 2))
              : b * fast_expt(b, n - 1);
 }
-
 </pre></div></div></td></tr></table>
 
     
@@ -1843,12 +1837,10 @@ function expt_iter(b,counter,product) {
           <tr>
             <td><div class='snippet' id='javascript_17_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (even? n)
-  (= (remainder n 2) 0))
-</pre></div></div>    </td>
+  (= (remainder n 2) 0))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_17_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0BYBQuAzAVwDsBjAFwEsB7E0KgZwH0BTAN1ZIAoSBKUAG9coUaABOrCkXH16AUlAZQAXjWgADAG5cAX3xM2nHgHY+WoA')">function is_even(n) {
     return n % 2 === 0;
 }
-
 </pre></div></div></td></tr></table>
 
     
@@ -1948,7 +1940,6 @@ function expt_iter(b,counter,product) {
 function fast_expt(b, n){
     return fast_expt_iter(1, b, n);
 }
-
 </pre></div></div>
     </SOLUTION></div></div>
 </EXERCISE></div>
@@ -1981,14 +1972,12 @@ function fast_expt(b, n){
 (define (* a b)
   (if (= b 0)
       0
-      (+ a (* a (- b 1)))))
-</pre></div></div>    </td>
+      (+ a (* a (- b 1)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_17_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0BYBQuAzAVwDsBjAFwEsB7E0agWwFMBnACgEMAaAIwEpQAb1ygxoAE7MKRCfV6gAvMtAAGUeM3iA-Go1bNALlCdQAagZUWHHqAUBaVPwDcuAL74mbdgGZuobBcgA')">function times(a,b) {
     return b === 0
            ? 0
            : a + times(a, b - 1);
 }
-
 </pre></div></div></td></tr></table>
 
       
@@ -2021,7 +2010,6 @@ function fast_expt(b, n){
           
           <tr>
             <td><div class='snippet' id='javascript_17_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_17_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0BYBQuAzAVwDsBjAFwEsB7E0KgZwH0BTAN1ZIAoSBKUAG9coUaABOrCkXH16AUlAZQAXjWgADAG5cAX3zFy1OqAAmNIgCMANq24APAcLESpM+vdABqUPZ37CUkpaegALAENrTgcnETFJaVlfUDAMfwMg43oCcMYKZmoAW1ZGbnCAGlBLJ1A40QT3KtV1FDqXFwB+UHC29tEALm7mlU1QAB8xprURjV6+0S7Z+b7BpjZOHmq55dAu8ytbbhy8gqpi0orQCKi7ar4+beXB8O9QY-yikrLKy1AAWlQfHShFyHzOXwAzJVsECgA')">function double(x) {
     return x + x;
@@ -2040,7 +2028,6 @@ function fast_times(a, b) {
                ? double(fast_times(a, halve(b)))
                : a + fast_times(a, b - 1);
 }
-
 </pre></div></div></td></tr></table>
       </SOLUTION></div></div>
 </EXERCISE></div>
@@ -2072,7 +2059,6 @@ function fast_times(a, b) {
           
           <tr>
             <td><div class='snippet' id='javascript_17_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_17_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0BYBQuAzAVwDsBjAFwEsB7E0KgZwH0BTAN1ZIAoSBKUAG9coUaABOrCkXH16AUlAZQAXjWgADAG5cAX3zFy1OqAAmNIgCMANq24APAcLESpM+vdABqUPZ37CUkpaegALAENrAgcnETFJaVlfUDAMfwMg43oCcMYKZmoAW1YWKgpWcW4KGgpIgBpQcIbLWJcE91BLVXUUOJd+gH5Qatrrb0a+-rEALkbulU1QAB8lzrUVDUmpsSHN7anZpjZOHhat-dEhnLyCqmLS8sqR+rMLGztwvgaIqO4WvnOF1m13yRRKzDKFSqNUi4yajWaoAAtKg+OlAkYQsM7iVuPCWkI4u0kiDbvcIY9uBoGvi0Xp8GDGNwAMwNbBooA')">function double(x) {
     return x + x;
@@ -2095,7 +2081,6 @@ function fast_times_iter(total, a, b) {
 function times(a, b) {
   return fast_times_iter(0, a, b);
 }
-
 </pre></div></div></td></tr></table>
       </SOLUTION></div></div>
 </EXERCISE></div>
@@ -2176,8 +2161,7 @@ function times(a, b) {
                          (+ (* b p) (* a q))
                          p
                          q
-                         (- count 1)))))
-</pre></div></div>    </td>
+                         (- count 1)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_17_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function fib(n) {
     return fib_iter(1, 0, 0, 1, n);
@@ -2196,8 +2180,7 @@ function fib_iter(a, b, p, q, count) {
                         p,
                         q,
                         count - 1);
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
       
       
     
@@ -2210,7 +2193,6 @@ function fib_iter(a, b, p, q, count) {
           
           <tr>
             <td><div class='snippet' id='javascript_17_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_17_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0BYBQuAzAVwDsBjAFwEsB7E0KgZwH0BTAN1ZIAoSBKUAG9coUaABOrCkXH16AUlAZQAXjWgADAG5cAX3zFy1OqAJUARrwHCxEqTPpnzzKhVbjuKADSafGn96g-Dr6hKSUtI4WLm4eAIY+5j4ADj4Ajj5kNKQU1iJiktKyoFk5quoa+bbVAPyg5lXVYgBcDCwcXNylJLmNTWJ1TjHu3AlVAJD9U-VeuJPTTcmgAFSgSwDUoGkrW7PzC7bKq0ur25vbp3sH1d0UoGAYfH1TrUOuI+Y7Z6BxX6Cbv2Os2u10+x3+Py+wJBC1Szxhtgy8IRoluoAAtKg+CEDBZuABWbFAA')">function fib(n) {
     return fib_iter(1, 0, 0, 1, n);
@@ -2231,7 +2213,6 @@ function fib_iter(a, b, p, q, count) {
                         q,
                         count - 1);
 }
-
 </pre></div></div></td></tr></table>
       </SOLUTION></div></div>
 </EXERCISE></div>

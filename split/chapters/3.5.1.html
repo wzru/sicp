@@ -1719,8 +1719,7 @@
     (cond ((> count b) accum)
           ((prime? count) (iter (+ count 1) (+ count accum)))
           (else (iter (+ count 1) accum))))
-  (iter a 0))
-</pre></div></div>    </td>
+  (iter a 0))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_69_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAAmflUNLUpael9-QLsHJxJwilMLa1THV1F3SWl6ZjYubiyzFOD2QQA+UBJC91bQAH4mlrbxAC5QXKpLU0rsmrTwl26e8U6qnKC06ZnQfqSAwbSw0Hnxx1AAalBsaPVCUnjdQeGGblZwgCMCos8S0AfQAFJQVlAAXgBoAADDFNBcdPR7OYAA7sKh6HguYTdYreegAv76IwmaqbEIuUHnbQJRhEPQwuEI273d7PcRxCGgKhZJxkGikCjhVhkMhkultVH0Nkc0CNB7LFadbm8vQSmb9KGw+E8YUkCj8OWSpks7iqiiHY7hPUG6V8zXy7WcVnstUG7Bcnl81TuDQvLyQnU0oGnDS4BhkinK24AdnC2AAHFFlEA')">function sum_primes(a, b) {
     function iter(count, accum) {
         return count > b
@@ -1731,7 +1730,6 @@
     }
     return iter(a, 0);
 }
-
 </pre></div></div></td></tr></table>
     
 
@@ -1751,15 +1749,13 @@
 (define (sum-primes a b)
   (accumulate +
               0
-              (filter prime? (enumerate-interval a b))))
-</pre></div></div>    </td>
+              (filter prime? (enumerate-interval a b))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_69_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAAmflUNLUpael9-QLsHJxJwilMLa1THV1F3SWl6ZjYubiyzFOD2QQA+UBJC91bQAH4mlrbxAC5QXKpLU0rsmrTwl26e8U6qnKC06ZnQfqSAwbSw0Hnxx1AAalBsaPVCUnjdQeGGblZwgCMCos8S0AfQAFJQVlAAXgBoAADDFNBcdPR7OYAA7sKh6HguYTdYreegAv76IwmaqbEIuUHnbQJUCcEhEBHsVhZcx+LLsGxGbiGGgAd3CAAsqABzDnPcSo+gs1mgRpc3nLVqdcnGSXufrQ1hUJzC0Jylak8mU6mcWkkemMwzMtmHY6cnl804aImXUoUmFwhG3e7vfliQU-MhkClEQw67h8cIAT0Ef0aciOQbVGpjwOjsZWvkM9O4UNh8M44XVCZ6ZIpnCpNLpBcNd0e-ArhIY9vTTu4AHZwtgABxRZRAA')">function sum_primes(a, b) {
     return accumulate((x, y) => x + y,
                       0,
                       filter(is_prime, 
                              enumerate_interval(a, b)));
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -1792,11 +1788,9 @@
           <tr>
             <td><div class='snippet' id='javascript_69_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (car (cdr (filter prime?
-                  (enumerate-interval 10000 1000000))))
-</pre></div></div>    </td>
+                  (enumerate-interval 10000 1000000))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_69_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAAmflUNLUpael9-QLsHJxJwilMLa1THV1F3SWl6ZjYubiyzFOD2QQA+UBJC91bQAH4mlrbxAC5QXKpLU0rsmrTwl26e8U6qnKC06ZnQfqSAwbSw0Hnxx1AAalBsaPVCUnjdQeGGblZwgCMCos8S0AfQAFJQVlAAXgBoAADDFNBcdPR7OYAA7sKh6HguYTdYreegAv76IwmaqbEIuUHnbQJUCcEhEBHsVhZcx+LLsGxGbiGGgAd3CAAsqABzDnPcSo+gs1mgRpc3nLVqdcnGSXufrQ1hUJzC0Jylak8mU6mcWkkemMwzMtmHY6cnl804aXAczisSyVJVG3yGencKGw+GcNUanpkimcKk0umBw3cbBAyNA8IRqOR-gJ6JAA')">head(tail(filter(is_prime,
                  enumerate_interval(10000, 1000000))));
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -1901,8 +1895,7 @@
   (if (stream-null? s)
       'done
       (begin (proc (stream-car s))
-             (stream-for-each proc (stream-cdr s)))))
-</pre></div></div>
+             (stream-for-each proc (stream-cdr s)))))</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1917,8 +1910,7 @@
 
 (define (display-line x)
   (newline)
-  (display x))
-</pre></div></div>
+  (display x))</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1973,12 +1965,10 @@
         <kbd>Cons-stream</kbd> is a special form defined so
 	that
         <div class='snippet' id='javascript_69_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(cons-stream ^a^ ^b^)
-</pre></div></div>
+(cons-stream ^a^ ^b^)</pre></div></div>
         is equivalent to
         <div class='snippet' id='javascript_69_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(cons ^a^ (delay ^b^))
-</pre></div></div>
+(cons ^a^ (delay ^b^))</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1994,8 +1984,7 @@
         <div class='snippet' id='javascript_69_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (stream-car stream) (car stream))
 
-(define (stream-cdr stream) (force (cdr stream)))
-</pre></div></div>
+(define (stream-cdr stream) (force (cdr stream)))</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -2025,8 +2014,7 @@
 (stream-car
  (stream-cdr
   (stream-filter prime?
-                 (stream-enumerate-interval 10000 1000000))))
-</pre></div></div>
+                 (stream-enumerate-interval 10000 1000000))))</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -2049,15 +2037,13 @@
       the-empty-stream
       (cons-stream
        low
-       (stream-enumerate-interval (+ low 1) high))))
-</pre></div></div>
+       (stream-enumerate-interval (+ low 1) high))))</pre></div></div>
         and thus the result returned by
 	<kbd>stream-enumerate-interval</kbd>, formed by the
 	<kbd>cons-stream</kbd>, is<a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:teal">[5]</a>
         <div class='snippet' id='javascript_69_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (cons 10000
-      (delay (stream-enumerate-interval 10001 1000000)))
-</pre></div></div>
+      (delay (stream-enumerate-interval 10001 1000000)))</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -2077,8 +2063,7 @@
          (cons-stream (stream-car stream)
                       (stream-filter pred
                                      (stream-cdr stream))))
-        (else (stream-filter pred (stream-cdr stream)))))
-</pre></div></div>
+        (else (stream-filter pred (stream-cdr stream)))))</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -2094,8 +2079,7 @@
 	<kbd>stream-enumerate-interval</kbd>, which now returns
         <div class='snippet' id='javascript_69_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (cons 10001
-      (delay (stream-enumerate-interval 10002 1000000)))
-</pre></div></div>
+      (delay (stream-enumerate-interval 10002 1000000)))</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -2109,8 +2093,7 @@
 	according to its definition, returns
         <div class='snippet' id='javascript_69_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (cons-stream (stream-car stream)
-             (stream-filter pred (stream-cdr stream)))
-</pre></div></div>
+             (stream-filter pred (stream-cdr stream)))</pre></div></div>
         which in this case is
         <div class='snippet' id='javascript_69_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (cons 10007
@@ -2120,8 +2103,7 @@
         (cons 10008
               (delay
                (stream-enumerate-interval 10009
-                                          1000000))))))
-</pre></div></div>
+                                          1000000))))))</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -2140,8 +2122,7 @@
         (cons 10010
               (delay
                (stream-enumerate-interval 10011
-                                          1000000))))))
-</pre></div></div>
+                                          1000000))))))</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -2185,12 +2166,10 @@
 	treating the expression as the body of a procedure.
 	<kbd>Delay</kbd> can be a special form such that
         <div class='snippet' id='javascript_69_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(delay ^exp^)
-</pre></div></div>
+(delay ^exp^)</pre></div></div>
         is syntactic sugar for
         <div class='snippet' id='javascript_69_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(lambda () ^exp^)
-</pre></div></div>
+(lambda () ^exp^)</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -2202,8 +2181,7 @@
             
         <div class='snippet' id='javascript_69_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (force delayed-object)
-  (delayed-object))
-</pre></div></div>
+  (delayed-object))</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -2235,8 +2213,7 @@
           (begin (set! result (proc))
             (set! already-run? true)
             result)
-          result))))
-</pre></div></div>
+          result))))</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -2244,8 +2221,7 @@
         <kbd>Delay</kbd> is then defined so that
 	<kbd>(delay ^exp^)</kbd> is equivalent to
         <div class='snippet' id='javascript_69_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(memo-proc (lambda () ^exp^))
-</pre></div></div>
+(memo-proc (lambda () ^exp^))</pre></div></div>
         and <kbd>force</kbd> is as defined
 	previously.<a class='superscript' id='footnote-link-6' href='#footnote-6'style="color:teal">[6]</a>
       </p></div>
@@ -2269,8 +2245,7 @@
       (^??^
        (apply proc (map ^??^ argstreams))
        (apply stream-map
-              (cons proc (map ^??^ argstreams))))))
-</pre></div></div>
+              (cons proc (map ^??^ argstreams))))))</pre></div></div>
       
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_69_1_div" data-toggle="collapse">Add solution</button></div>
@@ -2291,8 +2266,7 @@
 	<div class='snippet' id='javascript_69_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (show x)
   (display-line x)
-  x)
-</pre></div></div>
+  x)</pre></div></div>
 	What does the interpreter print in response to evaluating each
 	expression in the following sequence?<a class='superscript' id='footnote-link-7' href='#footnote-7'style="color:teal">[7]</a>
 	<div class='snippet' id='javascript_69_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
@@ -2300,8 +2274,7 @@
 
 (stream-ref x 5)
 
-(stream-ref x 7)
-</pre></div></div>
+(stream-ref x 7)</pre></div></div>
       
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_69_2_div" data-toggle="collapse">Add solution</button></div>
@@ -2331,8 +2304,7 @@
 
 (stream-ref y 7)
 
-(display-stream z)
-</pre></div></div>
+(display-stream z)</pre></div></div>
         What is the value of <kbd>sum</kbd> after each of the
 	above expressions is evaluated?  What is the printed response to
 	evaluating the <kbd>stream-ref</kbd> and
@@ -2383,7 +2355,6 @@
         <div class='snippet' id='javascript_69_26_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwoCcBTAQwFsB9C9qgDYAKJmy4BKUAG9coOaDYUizen0EiWHTuKHiA3LgC++UVt79hAB37MhAFgA0oXaAC8APlDWqtjE5ceoCREAgLi4XpAA')">function stream_tail(stream) {
     return tail(stream)();
 }
-
 </pre></div></div>
         
       </p></div>
@@ -2428,13 +2399,11 @@ function stream_for_each(fun, s) {
         return stream_for_each(fun, stream_tail(s));
     }
 }
-
 </pre></div></div>
         <div class='snippet' id='javascript_69_28_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwoCcBTAQwFsB9C9qgDYAKJmy4BKUAG9coOaDYUizen0EiWHTuKHiA3LgC++MnSahOAT26itoALygADv2ZCALABpQuhwD5nVyEMb197AJIiAQFxfVwAEyoGJwF2Sw0xHjYCISsbTS5vbFiDUxJzPNsubgAmB0YCnk52JyEAD39QDoBqUGxvSsa4qp4CGmZuDjIACyFE5NTLAesR2v0gA')">const my_stream = pair(4, () => pair(5, () => null));
 display(stream_ref(my_stream, 1));
 const my_stream_2 = stream_map(x => x + 1, my_stream);
 stream_for_each(display, my_stream_2);
-
 </pre></div></div>
       </p></div>
 
@@ -2446,7 +2415,6 @@ stream_for_each(display, my_stream_2);
         <div class='snippet' id='javascript_69_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwoCcBTAQwFsB9C9qgDYAKJmy4BKUAG9coOaDYUizen0EiWHTuKHiA3LgC++MnSahO7AB7cAJlQYAHAewCeoALygAnAeLlqOlB7JxdXblEtEUkZeVB-Slp6EOc3CM0ubioKVmYNABpQEhjZOPkqAlAhB24SIgFhJnESsvlDUFYBBlZQCqr6D0HQAAYW1rKUsKEAcmnCgCI0Jfn9Utb2zu7pNfG5SbchAAsOWw1mg124-fDIzOzcjTEeNUaKcUL6AFpQbFXd4ziAPk13STyyOTyDEKlhs11WxlwphI5k4NwynE8oEc-DyABZCrpPAA+LE4oQYAmSDwkuoNc64EG3ThCVGgrT6IA')">function display_stream(s) {
     return stream_for_each(display, s);
 }
-
 </pre></div></div>
         
       </p></div>
@@ -2488,7 +2456,6 @@ stream_for_each(display, my_stream_2);
                     is_prime,
                     stream_enumerate_interval(10000, 
                                               1000000))));
-
 </pre></div></div>
       </p></div>
 
@@ -2514,14 +2481,12 @@ stream_for_each(display, my_stream_2);
                   () => stream_enumerate_interval(low + 1, 
                                                   high)); 
 }
-
 </pre></div></div>
         and thus the result returned by
 	<kbd>stream_enumerate_interval</kbd>,
         formed by the <kbd>pair</kbd>,
 	is<a class='superscript' id='footnote-link-9' href='#footnote-9'style="color:blue">[9]</a>
         <div class='snippet' id='javascript_69_32_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAAmflUNLUpael9-QLsHJxJwilMLa1THV1F3SWl6ZjYubiyzFOD2QQA+UBJC91bQAH4mlrbxAC5QXKpLU0rsmrTwl26e8U6qnKC06ZnQfqSAwbSw0Hnxx1AAalBsaPVCUnjdQeGGblZwgCMCos8S0AfQAFJQVlAAXgBoAADDFNBcdPR7OYAA7sKh6HguYTdYreegAv76IwmaqbEIuUHnbQJRgULisPTmTgkIgI9isLLmPxZdg2IzcQw0ADu4QAFlQAOa857iVH0Tlc0CNflC5atTo04xy9z9aGsKhOCWhZUrUDcQR-RpmcmU6m0zj0xnMi1swwc7mHY7hHW611umYy4XRUBnXBqjXcbBA4NA8L6-5GsmcClUml0hmcJkkFm2wMh7DhIMh4P8aJAA')">pair(10000, () => stream_enumerate_interval(10001, 1000000));
-
 </pre></div></div>
       </p></div>
 
@@ -2547,7 +2512,6 @@ stream_for_each(display, my_stream_2);
              : stream_filter(pred,
                              stream_tail(s));
 }
-
 </pre></div></div>
         
       </p></div>
@@ -2562,7 +2526,6 @@ stream_for_each(display, my_stream_2);
 	delayed <kbd>stream_enumerate_interval</kbd>,
 	which now returns
         <div class='snippet' id='javascript_69_34_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAAmflUNLUpael9-QLsHJxJwilMLa1THV1F3SWl6ZjYubiyzFOD2QQA+UBJC91bQAH4mlrbxAC5QXKpLU0rsmrTwl26e8U6qnKC06ZnQfqSAwbSw0Hnxx1AAalBsaPVCUnjdQeGGblZwgCMCos8S0AfQAFJQVlAAXgBoAADDFNBcdPR7OYAA7sKh6HguYTdYreegAv76IwmaqbEIuUHnbQJRgULisPTmTgkIgI9isLLmPxZdg2IzcQw0ADu4QAFlQAOa857iVH0Tlc0CNflC5atTo04xy9z9aGsKhOCWhZUrUDcQR-RpmcmU6m0zj0xnMi1swwc7mHY7hHW611umYy4XRUBnXBqjXcbBA4PYcL6-5GsmcClUml0hmcJkkFm2wPBoERcJB9PB-jRIA')">pair(10001, () => stream_enumerate_interval(10002, 1000000));
-
 </pre></div></div>
       </p></div>
 
@@ -2578,8 +2541,7 @@ stream_for_each(display, my_stream_2);
         definition, returns
         <div class='snippet' id='javascript_69_35_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 pair(head(stream), 
-     stream_filter(pred, stream_tail(stream)));
-</pre></div></div>
+     stream_filter(pred, stream_tail(stream)));</pre></div></div>
         which in this case is
         <div class='snippet' id='javascript_69_36_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAAmflUNLUpael9-QLsHJxJwilMLa1THV1F3SWl6ZjYubiyzFOD2QQA+UBJC91bQAH4mlrbxAC5QXKpLU0rsmrTwl26e8U6qnKC06ZnQfqSAwbSw0Hnxx1AAalBsaPVCUnjdQeGGblZwgCMCos8S0AfQAFJQVlAAXgBoAADDFNBcdPR7OYAA7sKh6HguYTdYreegAv76IwmaqbEIuUHnbQJRgULisPTmTgkIgI9isLLmPxZdg2IzcQw0ADu4QAFlQAOa857iVH0Tlc0CNflC5atTo04xy9z9aGsKhOCWhZUrUDcQR-RpmcmU6m0zj0xnMi1swwc7mHY7hHW611umYy4XRUBnXBqjXcbBA4MAdm1rX1-yNZM4FPMvkMLO4UNh8M44fdoH9TiDwYAHBnM+5I4bSSaqTS6QzOEySCzbYHg0CAJzOovtjvuXNNoH8fi4ACQbX77miQA')">pair(10007,
      () => stream_filter(is_prime,
@@ -2588,7 +2550,6 @@ pair(head(stream),
                                                     1000000))
 	      )
     );
-
 </pre></div></div>
       </p></div>
 
@@ -2609,7 +2570,6 @@ pair(head(stream),
                                                     1000000))
               )
     );
-
 </pre></div></div>
       </p></div>
 
@@ -2683,7 +2643,6 @@ pair(head(stream),
                      }
 	         };
 }
-
 </pre></div></div>
         
       </p></div>
@@ -2698,7 +2657,6 @@ pair(head(stream),
            : pair(f(head(s)),
                   () => stream_map(f, stream_tail(s)));
 }
-
 </pre></div></div>
 	
 	we can define an optimized function
@@ -2711,7 +2669,6 @@ pair(head(stream),
                   memo( () => stream_map_optimized(
                                  f, stream_tail(s)) ));
 }
-
 </pre></div></div>
 	
       </p></div>
@@ -2728,8 +2685,7 @@ pair(head(stream),
 	<div class='snippet' id='javascript_69_41_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function stream_combine(f, s1, s2) {
     ...
-}
-</pre></div></div>
+}</pre></div></div>
 	
       
       <div class="Solution">
@@ -2754,7 +2710,6 @@ function stream_combine(f, s1, s2) {
 	<div class='snippet' id='javascript_69_42_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0EYBQuAzAVwDsBjAFwEsB7E0AZwoCcBTAQwFsB9Vkozq2bsKrblRKjmAN3YAbABRyaAdwA0oABZUA5poCUoAN65QZ0GwpFm9ZStAA+Lbs2nz78wH5Q-OXLce7gBcoAAO7FTMSqpqAYHxZgqGALxOTGxcvPyCwqLikkKyinagANSg2BpxCTW1dQnaevr6ANyguAC++HKsFKAAHqDJjCwcPJzsoQoAJlQMoXLsAJ4a6WNZAkIiYhJSRQoADBrYB80tuGuZbAQK-RoYrRejV6w3d6AA7K1AA')">let x = stream_map(display, stream_enumerate_interval(0, 10));
 stream_ref(x, 5);
 stream_ref(x, 7);
-
 </pre></div></div>
 	What does the evaluator print if 
 	<kbd>stream_map_optimized</kbd>
@@ -2764,7 +2719,6 @@ stream_ref(x, 7);
             stream_enumerate_interval(0, 10));
 stream_ref(x, 5);
 stream_ref(x, 7);
-
 </pre></div></div>
       
       <div class="Solution">
@@ -2798,7 +2752,6 @@ const z = stream_filter(x => x % 5 === 0, seq);
 stream_ref(y, 7);
 
 display_stream(z);
-
 </pre></div></div>
         What is the value of <kbd>sum</kbd> after each of the
 	above statements is evaluated?  What is the printed response to

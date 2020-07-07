@@ -1742,7 +1742,6 @@
                 list("miller", miller),
                 list("smith", smith));
 }
-
 </pre></div></div>
     
   </p></div>
@@ -1760,8 +1759,7 @@
  [["cooper", [2, null]],
   [["fletcher", [4, null]],
    [["miller", [5, null]],
-    [["smith", [1, null]], null]]]]]
-</pre></div></div>
+    [["smith", [1, null]], null]]]]]</pre></div></div>
   </p></div>
 
   <div class='permalink'>
@@ -2002,7 +2000,6 @@
 const verbs = list("verb", "studies", "lectures", "eats", "sleeps");
 
 const articles = list("article", "the", "a");
-
 </pre></div></div>
   </p></div>
 
@@ -2020,8 +2017,7 @@ list("sentence",
      list("noun-phrase", 
           list("article", "the"),
           list("noun", "cat"),
-     list("verb", "eats"))
-</pre></div></div>
+     list("verb", "eats"))</pre></div></div>
   </p></div>
 
   <div class='permalink'>
@@ -2041,7 +2037,6 @@ list("sentence",
                 parse_noun_phrase(),
                 parse_word(verbs));
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2054,7 +2049,6 @@ list("sentence",
                 parse_word(articles),
                 parse_word(nouns));
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2095,7 +2089,6 @@ list("sentence",
     unparsed = tail(unparsed);
     return list(head(word_list), found_word);
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2112,7 +2105,6 @@ list("sentence",
     the entire input, try to parse a sentence, and check that nothing is
     left over:
     <div class='snippet' id='javascript_89_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG4gA')">let unparsed = null;
-
 </pre></div></div>
     <div class='snippet' id='javascript_89_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG58AYwD2lRmUrCqjDqAIBLcQAoARJKoqANKBXjyLIpRJad1esIBmRRo2H0TKwbWPbHBWjZUBKAbhFiyADciegAjGU4FZRVgsIc9FnlrB2JBEnJ6ZNciZ0Z44iJqPJ8hUXFQBhJ5QWIIuUUSVUrq4gcSAAsiB1pvXwsqNPlRUDomIgB9AHc7FiVp+hZxqJIvUABvUE2t3C3QTIBHcnlMpQBCUEVx7l4lKlHmFi8S3YOjk4BbInfQkKVO2lmdwYDy82hItHkBDmMyWDSeoFO7E41wIzy2-nKFiklEW8zYnH+gJowNYaM2QLG+NA4Mht2JlLJe1IGUo9WUhOhC1h4lBoCxVFxMxKAF98P1KINhvcJupKONqO16B4iEpVmsdltMul6KzlqpZQBaBVK5haDW7C0W6VTGZKZo1ayg82Wl3WvFKWWMJ4CUW4cWS1nW5hGQyCFVqy3OrUstmNXSGEihrqaZ0uq0kq7Y+WK5WqlNptNu22xcLe3C+-1VKUZ+Q0ciNWvUetq50Uh6yRv1gS7DFkYNkThBhNJ1XdzVEQ7HFWXFF06WPRnRnWgfs+-DWzuNPUqDrJzaOZwmHQ5EjFHxAA')">function parse_input(input) {
     unparsed = input;
@@ -2120,7 +2112,6 @@ list("sentence",
     require(is_null(unparsed));
     return sent;
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2129,23 +2120,16 @@ list("sentence",
     We can now try the parser and verify that it works for our simple test
     sentence:
     <div class='snippet' id='javascript_89_10_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
-
-amb-evaluate input:      
-      
-</pre></div></div>
+amb-evaluate input:</pre></div></div>
     <div class='snippet' id='javascript_89_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG58AYwD2lRmUrCqjDqAIBLcQAoARJKoqANKBXjyLIpRJad1esIBmRRo2H0TKwbWPbHBWjZUBKAbhFiyADciegAjGU4FZRVgsIc9FnlrB2JBEnJ6ZNciZ0Z44iJqPJ8hUXFQBhJ5QWIIuUUSVUrq4gcSAAsiB1pvXwsqNPlRUDomIgB9AHc7FiVp+hZxqJIvUABvUE2t3C3QTIBHcnlMpQBCUEVx7l4lKlHmFi8S3YOjk4BbInfQkKVO2lmdwYDy82hItHkBDmMyWDSeoFO7E41wIzy2-nKFiklEW8zYnH+gJowNYaM2QLG+NA4Mht2JlLJe1IGUo9WUhOhC1h4lBoCxVFxMxKAF98P1KINhvcJupKONqO16B4iEpVmsdltMul6KzlqpZQBaBVK5haDW7C0W6VTGZKZo1ayg82Wl3WvFKWWMJ4CUW4cWS1nW5hGQyCFVqy3OrUstmNXSGEihrqaZ0uq0kq7Y+WK5WqlNptNu22xcLe3C+-1VKUZ+Q0ciNWvUetq50Uh6yRv1gS7DFkYNkThBhNJ1XdzVEQ7HFWXFF06WPRnRnWgfs+-DWzuNPUqDrJzaOZwmHQ5EjFHxAA')">parse_input(list("the",  "cat",  "eats"));
-
 </pre><pre class='prettyprintoutput'>
-
 Starting a new problem
 amb-evaluate value:
 list("sentence",
      list("noun-phrase", 
           list("article", "the"),
           list("noun", "cat")),
-     list("verb", "eats"))
-      
-</pre></div></div>
+     list("verb", "eats"))</pre></div></div>
   </p></div>
 
   <div class='permalink'>
@@ -2162,7 +2146,6 @@ list("sentence",
     Let's add to our grammar a list of prepositions:
       
     <div class='snippet' id='javascript_89_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuBjAewDsBnAF1AAcAnAU2qLIEsKXSzQBeUAGxaUAFACI6jEQBpQIgGZFaUmRSJKZLEkpEAjAJ5aA7mwAWIgJQBuIA')">const prepositions = list("prep", "for", "to",  "in", "by", "with");
-
 </pre></div></div>
     and define a prepositional phrase (e.g., <QUOTE>for the cat</QUOTE>) to be
     a preposition followed by a noun phrase:
@@ -2172,7 +2155,6 @@ list("sentence",
                 parse_word(prepositions),
                 parse_noun_phrase());
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2196,7 +2178,6 @@ function parse_verb_phrase() {
     }		   
     return maybe_extend(parse_word(verbs));
 }
-
 </pre></div></div>
     
   </p></div>
@@ -2223,7 +2204,6 @@ function parse_noun_phrase() {
     }
     return maybe_extend(parse_simple_noun_phrase());
 }
-
 </pre></div></div>
     
   </p></div>
@@ -2233,7 +2213,6 @@ function parse_noun_phrase() {
     Our new grammar lets us parse more complex sentences.  For example
     <div class='snippet' id='javascript_89_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG58AMyoBjEgEsA9pVB0mRAPoB3SfRYAKFWoUFxjEgEpQAb1Bnzuc6HpEAjuXE31AQlB6F3XuqpzmLAwYCVjb2jkTqALZEEQBGRPTqABZEtBo+DH4GADSgJLTiBJqqLDp6hkbO7JyeBIGW5iLS+qCCklQlWmycyaneNBmsdVbp8l25+YUjmUHmNiTk9DK6+kkpGp2l+tktbZQdxXUAvviNlM3UNtSSjOISTRygyyTqAEQXRNQvOS+t9F+gLxIkn+APElH+LxiAE8IUpbokXnVcMJKGIpDJfIp3lcbndKLQCApqIl6LRmOojKYrKB6mY5gslmVXtiALTE0nML606k8syY5TFdTY663dGMbLc3nU-mUXZEklk8IBATHXCnZqyqiMB5PV6a8HffTkFhESgkCEXSSCIiMRiqCEiWjm74iAhkxiIgRqppkABu8Ri2s4upe-voMQhRpY4htEOIYgWse+KRIHsNxA+HqR6rIDAkrptOqZLzz4gLEJIyQhtE9QlEeNkAwUNwi1GIHjl7MVFJMPO59MWj2LLbbRBZ+rZCs5WUlUvM-M66lLBfFM7nvIXgv14qOddRDZlnanSpM3JRaOkoAitChcQURAAHiRTRp9fKOURKbO6aQGaBaLE6hvl2zBruuUrXreiiPs+ezqCGE4gUQXLgahaFcEeH5gehOE8vywq4uiBLvt2ATKtyxzBL+g6QXeMEvkKTYju2wHHhSu7IvW6KNvIzamrBIgnsY-bUYyKwvMwZqmoJKE4YeVAkeSEq4fyYYxIpSoceeB5NmpGk9sJVjadxtHQU+DF6UhX5SgOMgATE6iWce2G4aZ97mXBIZqZOH6ybh-lmE5WHfgFqH4ZcIp4sRSHseRViHAAkAlFhUfMNE3nRHkaJuaiOQGO4qnuF4Yk2YLUOQzxlRV1nmFMrAPFVJAzGYOagJJZCcPy7XSUqzXWHYDhOO4NR9Ji-hDLMoltfxhW4PyjXwcWlbIYa8wmmasLwhWVYuk6fnoRJGbUGmoIGgCy0Om6tqIoEQA')">parse_input(list("the", "student", "with", "the", "cat",
                  "sleeps", "in", "the", "class"));
-
 </pre></div></div>
   produces
   <div class='snippet' id='javascript_89_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
@@ -2250,8 +2229,7 @@ list("sentence",
           list("prep-phrase", list("prep", "in"),
                list("simple-noun-phrase", 
                     list("article", "the"),
-                    list("noun", "class")))))
-</pre></div></div>
+                    list("noun", "class")))))</pre></div></div>
   </p></div>
 
   <div class='permalink'>
@@ -2262,7 +2240,6 @@ list("sentence",
     has the cat.  Our nondeterministic program finds both possibilities:
     <div class='snippet' id='javascript_89_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG58AMyoBjEgEsA9pVB0mRAPoB3SfRYAKFWoUFxjEgEpQAb1Bnzuc6HpEAjuXE31AQlB6F3XuqpzmLAwYCVjb2jkTqALZEEQBGRPTqABZEtBo+DH4GADSgJLTiBJqqLDp6hkbO7JyeBIGW5iLS+qCCklQlWmycyaneNBmsdVbp8l25+YUjmUHmNiTk9DK6+kkpGp2l+tktbZQdxXUAvviNlM3UNtSSjOISTRygyyTqAEQXRNQvOS+t9F+gLxIkn+APElH+LxiAE8IUpbokXnVcMJKGIpDJfIp3lcbndKLQCApqIl6LRmOojKYrKB6mY5gslmVXtiALTE0nML606k8syY5TFdTY663dGMbLc3nU-mUXZEklk8IBATHXCnZqyqiMB5PV6a8HffTkFhESgkCEXSSCIiMRiqCEiWjm74iAhkxiIgRqppkABu8Ri2s4upe-voMQhRpY4htEOIYgWse+KRIHsNxA+HqR6rIDAkrptOqZLzz4gLEJIyQhtE9QlEeNkAwUNwi1GIHjl7MVFJMPO59MWj2LLbbRBZ+rZCs5WUlUvM-M66lLBfFM7nvIXgv14qOddRDZlnanSpM3JRaOkoAitChcQURAAHiRTRp9fKOURKbO6aQGaBaLE6hvl2zBruuUrXreiiPs+ezqCGE4gUQXLgahaFcEeH5gehOE8vywq4uiBLvt2ATKtyxzBL+g6QXeMEvkKTYju2wHHhSu7IvW6KNvIzamrBIgnsY-bUYyKwvMwZqmoJKE4YeVAkeSEq4fyYYxIpSoceeB5NmpGk9sJVjadxtHQU+DF6UhX5SgOMgATE6iWce2G4aZ97mXBIZqZOH6ybh-lmE5WHfgFqH4ZcIp4sRSHseRViHAAkAlFhUfMNE3nRHkaJuaiOQGO4qnuF4Yk2YLUOQzxlRV1nmFMrAPFVJAzGYOagJJZCcPy7XSUqzXWHYDhOO4NR9Ji-hDLMoltfxhW4PyjXwcWlbId8lrWra9rfPGaVJiFc6AsC3zLZG8wmmasLwhWVYuk6iKBEAA')">parse_input(list("the", "professor", "lectures",
                  "to", "the", "student", "with", "the", "cat"));
-
 </pre></div></div>
     produces
     <div class='snippet' id='javascript_89_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
@@ -2279,8 +2256,7 @@ list("sentence",
           list("prep-phrase", list("prep", "with"),
                list("simple-noun-phrase",
                     list("article", "the"),
-                    list("noun", "cat")))))
-</pre></div></div>
+                    list("noun", "cat")))))</pre></div></div>
   </p></div>
 
   <div class='permalink'>
@@ -2300,8 +2276,7 @@ list("sentence",
                     list("prep-phrase", list("prep", "with"),
                          list("simple-noun-phrase",
                               list("article", "the"),
-                              list("noun", "cat")))))))
-</pre></div></div>
+                              list("noun", "cat")))))))</pre></div></div>
     
   </p></div>
 
@@ -2367,8 +2342,7 @@ function parse_verb_phrase() {
                list("verb-phrase",
                     parse_verb_phrase(),
                     parse_prepositional_phrase()));
-}
-</pre></div></div>
+}</pre></div></div>
     Does this work?  Does the program's behavior change if we interchange
     the order of expressions in the <kbd>amb</kbd>?
   
@@ -2438,7 +2412,6 @@ function parse_verb_phrase() {
     
     to determine if the elements of a list are distinct:
     <div class='snippet' id='javascript_89_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuATASwGcAXIgOwGMyAKAG1PoEYAaUbDlbtgVgCUAgNxA')">distinct(list(1, 2, 4, 4,5));
-
 </pre></div></div>
     
     <div class='snippet' id='javascript_89_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AEyoGdryKAKKigUwFtmASlABvAJC5QU0ACceFIjPosA+iSIAbDV14DBk6YYD8oCjKI8DhqQC5Qq9Vo4UAhlW3d+Q-desmzFla+oHYOmtp8-ABGPDIcABY8Lgw6XoIANKZuHrrePsHGjCxslM7ZqXr5BbagBC4azDwA3LgAvvhMrFTsHBrFHACMmdiZKKPpAKyCgk1AA')">function distinct(items) {	
@@ -2450,7 +2423,6 @@ function parse_verb_phrase() {
             ? distinct(tail(items))
             : false;
 }
-
 </pre></div></div>
     
     

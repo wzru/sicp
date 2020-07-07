@@ -1727,8 +1727,7 @@ function compile_linkage(linkage) {
         : linkage === "next"
         ? empty_instruction_sequence()
         : make_instruction_sequence(list(), list(), list(go_to(label(linkage))));
-}
-</pre></div></div>
+}</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1742,8 +1741,7 @@ function compile_linkage(linkage) {
   <div class='snippet' id='javascript_118_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function end_with_linkage(linkage, instruction_sequence) {
     return preserving(list("continue"), instruction_sequence, compile_linkage(linkage));
-}
-</pre></div></div>
+}</pre></div></div>
       </p></div>
 
       
@@ -1791,8 +1789,7 @@ function compile_self_evaluating(exp, target, linkage) {
                 list("env"),
                 list(target),
                 list(assign(target, op("lookup_variable_value"), constant(exp), reg("env")))));
-    }
-</pre></div></div>
+    }</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1859,8 +1856,7 @@ function compile_definition(exp, target, linkage) {
                         reg("val"),
                         reg("env")),
                     assign(target, constant(ok)))))); /// FIXME: ok??=
-}
-</pre></div></div>
+}</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1930,8 +1926,7 @@ function compile_if(exp, target, linkage) {
                               append_instruction_sequences(t_branch, c_code),
                               append_instruction_sequences(f_branch, a_code)),
                           after_if));
-}
-</pre></div></div>
+}</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1982,8 +1977,7 @@ function compile_sequence(seq, target, linkage) {
             list("env", "continue"),
             compile(first_exp("seq"), target, "next"),
             compile_sequence(rest_exps(seq), target, linkage));
-}
-</pre></div></div>
+}</pre></div></div>
       </p></div>
 
       
@@ -2057,8 +2051,7 @@ function compile_function_expression(exp, target, linkage) {
                     list(assign(target, op("make_compiled_procedure"), label(proc_entry), reg("env")))), 
             compile_function_expression_body(exp, proc_entry)),
             after_lambda));
-}
-</pre></div></div>
+}</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -2106,8 +2099,7 @@ function compile_lambda_body(exp, proc_entry) {
                  assign("env", op("compiled_procedure_env"), reg("proc")),
                  assign("env", op("extend_environment"), constant(formals), reg("argl"), reg("env")))),
         compiled_sequence(lambda_body(exp), "val", "return"));
-}
-</pre></div></div>
+}</pre></div></div>
       </p></div>
 
     <hr>
@@ -2158,8 +2150,7 @@ let label_counter = 0;
         
         function make_label(name) {
             return name + stringify(new_label_number());
-        }
-</pre></div></div>
+        }</pre></div></div>
   
     </FOOTNOTE></div>
 
@@ -2191,8 +2182,7 @@ function make_compiled_procedure(entry, env) {
         
         function compiled_procedure_env(c_proc) {
             return head(tail(tail(c_proc)));
-        }
-</pre></div></div>
+        }</pre></div></div>
     
     </FOOTNOTE></div>
 

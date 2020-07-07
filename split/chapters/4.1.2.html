@@ -1726,15 +1726,13 @@
   (cond ((number? exp) true)
         ((string? exp) true)
         ((null? exp) true)
-        (else false)))
-</pre></div></div>
+        (else false)))</pre></div></div>
           </LI>
 	  
           <LI>
 	    Variables are represented by symbols:
 	    <div class='snippet' id='javascript_77_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (variable? exp) (symbol? exp))
-</pre></div></div>
+(define (variable? exp) (symbol? exp))</pre></div></div>
           </LI>
 
           <LI>
@@ -1745,8 +1743,7 @@
 (define (quoted? exp)
   (tagged-list? exp \'quote))
 
-(define (text-of-quotation exp) (cadr exp))
-</pre></div></div>
+(define (text-of-quotation exp) (cadr exp))</pre></div></div>
 	    <kbd>Quoted?</kbd> is defined in terms of the
 	    procedure <kbd>tagged-list?</kbd>, which
 	    identifies lists beginning with a designated symbol:
@@ -1754,8 +1751,7 @@
 (define (tagged-list? exp tag)
   (if (pair? exp)
       (eq? (car exp) tag)
-      false))
-</pre></div></div>
+      false))</pre></div></div>
           </LI>
 
           <LI>
@@ -1768,20 +1764,17 @@
 
 (define (assignment-variable exp) (cadr exp))
 
-(define (assignment-value exp) (caddr exp))
-</pre></div></div>
+(define (assignment-value exp) (caddr exp))</pre></div></div>
           </LI>
 
           <LI>
 	    Definitions have the form
 	    <div class='snippet' id='javascript_77_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define ^var^ ^value^)
-</pre></div></div>
+(define ^var^ ^value^)</pre></div></div>
 	    or the form
 	    <div class='snippet' id='javascript_77_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (^var^ ^parameter$_{1}$^ ^$\ldots$^ ^parameter$_{n}$^)
-  ^body^)
-</pre></div></div>
+  ^body^)</pre></div></div>
 	    
 	    
 	    The latter form (standard
@@ -1789,8 +1782,7 @@
 	    <div class='snippet' id='javascript_77_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define ^var^
   (lambda (^parameter$_{1}$^ ^$\ldots$^ ^parameter$_{n}$^)
-    ^body^))
-</pre></div></div>
+    ^body^))</pre></div></div>
 	    The corresponding syntax
 	    procedures
 	    are the following:
@@ -1807,8 +1799,7 @@
   (if (symbol? (cadr exp))
       (caddr exp)
       (make-lambda (cdadr exp)
-                   (cddr exp))))
-</pre></div></div>
+                   (cddr exp))))</pre></div></div>
           </LI>
 
           <LI>
@@ -1821,16 +1812,14 @@
 (define (lambda-body exp) (cddr exp))
 
 (define (make-lambda parameters body)
-  (cons \'lambda (cons parameters body)))
-</pre></div></div>
+  (cons \'lambda (cons parameters body)))</pre></div></div>
 	    We also provide a constructor for
 	    <kbd>lambda</kbd> expressions, which is used by
 	    <kbd>definition-value</kbd>, above:
 		
 	    <div class='snippet' id='javascript_77_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (make-lambda parameters body)
-  (cons 'lambda (cons parameters body)))
-</pre></div></div>
+  (cons 'lambda (cons parameters body)))</pre></div></div>
 
           </LI>
 
@@ -1853,8 +1842,7 @@
       \'false))
 
 (define (make-if predicate consequent alternative)
-  (list \'if predicate consequent alternative))
-</pre></div></div>
+  (list \'if predicate consequent alternative))</pre></div></div>
 
 	  We also provide a constructor for <kbd>if</kbd> expressions,
 	  to be used by <kbd>cond->if</kbd> to transform <kbd>cond</kbd> expressions
@@ -1862,8 +1850,7 @@
 	      
 	  <div class='snippet' id='javascript_77_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (make-if predicate consequent alternative)
-  (list 'if predicate consequent alternative))
-</pre></div></div>
+  (list 'if predicate consequent alternative))</pre></div></div>
           </LI>
 
           <LI>
@@ -1880,8 +1867,7 @@
 
 (define (last-exp? seq) (null? (cdr seq)))
 (define (first-exp seq) (car seq))
-(define (rest-exps seq) (cdr seq))
-</pre></div></div>
+(define (rest-exps seq) (cdr seq))</pre></div></div>
 	    We also include a constructor 
 	    <kbd>sequence->exp</kbd> (for use by
 	    <kbd>cond->if</kbd>) 
@@ -1893,8 +1879,7 @@
         ((last-exp? seq) (first-exp seq))
         (else (make-begin seq))))
 
-(define (make-begin seq) (cons \'begin seq))
-</pre></div></div>
+(define (make-begin seq) (cons \'begin seq))</pre></div></div>
           </LI>
 
           <LI>
@@ -1909,8 +1894,7 @@
 
 (define (no-operands? ops) (null? ops))
 (define (first-operand ops) (car ops))
-(define (rest-operands ops) (cdr ops))
-</pre></div></div>
+(define (rest-operands ops) (cdr ops))</pre></div></div>
           </LI>
 	</UL>
       </p></div>
@@ -1931,7 +1915,6 @@
            is_boolean(stmt) ||
            is_null(stmt);
 }
-
 </pre></div></div>
 	    
           </LI>
@@ -1948,7 +1931,6 @@
 function symbol_of_name(stmt) {
     return head(tail(stmt));
 }
-
 </pre></div></div>
 	    
 	    The function <kbd>is_name</kbd> 
@@ -1959,7 +1941,6 @@ function symbol_of_name(stmt) {
 	    <div class='snippet' id='javascript_77_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvim7Fx8gsIiQuIiAEQkbBLcCbIJAB4JKhnJqTkBQA')">function is_tagged_list(stmt, the_tag) {
     return is_pair(stmt) && head(stmt) === the_tag;
 }
-
 </pre></div></div>
 	    
           </LI>
@@ -1978,7 +1959,6 @@ function assignment_symbol(stmt) {
 function assignment_value(stmt) {
    return head(tail(tail(stmt)));
 }
-
 </pre></div></div>
 	    
           </LI>
@@ -2018,7 +1998,6 @@ function variable_declaration_symbol(stmt) {
 function variable_declaration_value(stmt) {
    return head(tail(tail(stmt)));
 }
-
 </pre></div></div>
 	    
           </LI>
@@ -2040,7 +2019,6 @@ function lambda_parameters(stmt) {
 function lambda_body(stmt) {
    return make_block(head(tail(tail(stmt))));
 }
-
 </pre></div></div>
 	    
           </LI>
@@ -2055,7 +2033,6 @@ function lambda_body(stmt) {
 function return_expression(stmt) {
    return head(tail(stmt));
 }
-
 </pre></div></div>
 	    
           </LI>
@@ -2077,7 +2054,6 @@ function cond_expr_cons(stmt) {
 function cond_expr_alt(stmt) {
    return list_ref(stmt, 3);
 }
-
 </pre></div></div>
 	    
 	    
@@ -2111,7 +2087,6 @@ function is_empty_sequence(stmts) {
 function is_last_statement(stmts) {
    return is_null(tail(stmts));
 }
-
 </pre></div></div>
 	    
           </LI>
@@ -2127,7 +2102,6 @@ function make_block(stmt) {
 function block_body(stmt) {
     return head(tail(stmt));
 }
-
 </pre></div></div>
 	    
           </LI>
@@ -2157,7 +2131,6 @@ function first_arg(ops) {
 function rest_args(ops) {
    return tail(ops);
 }
-
 </pre></div></div>
 	    
 	  </LI>
@@ -2195,8 +2168,7 @@ function rest_args(ops) {
 	<div class='snippet' id='javascript_77_28_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (cond ((> x 0) x)
       ((= x 0) (display 'zero) 0)
-      (else (- x)))
-</pre></div></div>
+      (else (- x)))</pre></div></div>
 	to the problem of evaluating the following expression involving
 	<kbd>if</kbd> and <kbd>begin</kbd>
 	expressions:
@@ -2206,8 +2178,7 @@ function rest_args(ops) {
     (if (= x 0)
         (begin (display 'zero)
                0)
-        (- x)))
-</pre></div></div>
+        (- x)))</pre></div></div>
 	Implementing the evaluation of <kbd>cond</kbd> in this
 	way simplifies the evaluator because it reduces the number of special
 	forms for which the evaluation process must be explicitly specified.
@@ -2250,8 +2221,7 @@ function rest_args(ops) {
                        clauses))
             (make-if (cond-predicate first)
                      (sequence->exp (cond-actions first))
-                     (expand-clauses rest))))))
-</pre></div></div>
+                     (expand-clauses rest))))))</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -2339,12 +2309,10 @@ function rest_args(ops) {
       translates a given string in JavaScript syntax into the corresponding
       tagged list  notation. In such an environment, the program
       <div class='snippet' id='javascript_77_31_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-parse("const x = 1;");
-</pre></div></div>
+parse("const x = 1;");</pre></div></div>
       yields the same result as the program
       <div class='snippet' id='javascript_77_32_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-list("constant_declaration", list("name", "x"), 1);
-</pre></div></div>
+list("constant_declaration", list("name", "x"), 1);</pre></div></div>
       <UL>
 	<LI>
 	  Verify experimentally that the 
@@ -2581,8 +2549,7 @@ list("constant_declaration", list("name", "x"), 1);
 	example
 	<div class='snippet' id='javascript_77_33_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (cond ((assoc 'b '((a 1) (b 2))) => cadr)
-      (else false))
-</pre></div></div>
+      (else false))</pre></div></div>
 	returns 2. Modify the handling of <kbd>cond</kbd> 
 	so that it supports this extended syntax.
 	
@@ -2640,16 +2607,14 @@ list("constant_declaration", list("name", "x"), 1);
 	because
 	<div class='snippet' id='javascript_77_34_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (let ((^var$_{1}$^ ^exp$_{1}$^) ^$\ldots$^ (^var$_{n}$^ ^exp$_{n}$^))
-  ^body^)
-</pre></div></div>
+  ^body^)</pre></div></div>
 	is equivalent to
 	<div class='snippet' id='javascript_77_35_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ((lambda (^var$_{1}$^ ^$\ldots$^ ^var$_{n}$^)
    ^body^)
  ^exp$_{1}$^
  ^$\vdots$^
- ^exp$_{n}$^)
-</pre></div></div>
+ ^exp$_{n}$^)</pre></div></div>
 	Implement a syntactic transformation
 	<kbd>let->combination</kbd> that reduces evaluating
 	<kbd>let</kbd> expressions to evaluating combinations
@@ -2703,8 +2668,7 @@ list("constant_declaration", list("name", "x"), 1);
 (let* ((x 3)
        (y (+ x 2))
        (z (+ x y 5)))
-  (* x z))
-</pre></div></div>
+  (* x z))</pre></div></div>
 	returns 39.  Explain how a <kbd>let*</kbd> expression
 	can be rewritten as a set of nested <kbd>let</kbd>
 	expressions, and write a procedure
@@ -2716,8 +2680,7 @@ list("constant_declaration", list("name", "x"), 1);
 	<kbd>let*</kbd>, is it sufficient to add a clause to
 	<kbd>eval</kbd> whose action is
 	<div class='snippet' id='javascript_77_37_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(eval (let*->nested-lets exp) env)
-</pre></div></div>
+(eval (let*->nested-lets exp) env)</pre></div></div>
 	or must we
 	explicitly expand <kbd>let*</kbd> in terms of
 	non-derived expressions?
@@ -2739,8 +2702,7 @@ list("constant_declaration", list("name", "x"), 1);
 display(1);
 let* x = 2;
 let* y = x + 3;
-display(x + y);
-</pre></div></div>
+display(x + y);</pre></div></div>
 	could be seen as a shorthand for
 	<div class='snippet' id='javascript_77_39_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 display(1);
@@ -2750,8 +2712,7 @@ display(1);
     let y = x + 3;
     display(x + y);
   }
-}
-</pre></div></div>
+}</pre></div></div>
 	<UL>
 	  <LI>
 	    Write programs in such an extended JavaScript language
@@ -2812,8 +2773,7 @@ display(1);
 	<QUOTE>Named <kbd>let</kbd></QUOTE> is a variant of
 	<kbd>let</kbd> that has the form
 	<div class='snippet' id='javascript_77_40_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(let ^var^ ^bindings^ ^body^)
-</pre></div></div>
+(let ^var^ ^bindings^ ^body^)</pre></div></div>
 	The bindings and
 	body are just as in ordinary
 	<kbd>let</kbd>, except that
@@ -2832,8 +2792,7 @@ display(1);
                  (count n))
     (if (= count 0)
         b
-        (fib-iter (+ a b) a (- count 1)))))
-</pre></div></div>
+        (fib-iter (+ a b) a (- count 1)))))</pre></div></div>
 	Modify <kbd>let->combination</kbd> of
 	exercise <REF NAME="ex:implement-let"><a class="superscript" id="4.1.2-ex-link-4.9" href="./4.1.2.html#ex_4.9">4.9</a></REF> to also support named
 	<kbd>let</kbd>.
@@ -2865,7 +2824,6 @@ display(1);
     }
     return a;	
 }
-
 </pre></div></div>
 	<UL>
 	  <LI>
@@ -2886,7 +2844,6 @@ display(1);
               );
     return a;	
 }
-
 </pre></div></div>
 	  </LI>
 	  <LI>
@@ -2966,7 +2923,6 @@ display(1);
     }
     return result;
 }
-
 </pre></div></div>
 	<UL>
 	  <LI>
@@ -3045,7 +3001,6 @@ display(1);
     }
     return result;
 }
-
 </pre></div></div>
 	In most programming languages, the functions in the result list of
 	<kbd>reverse</kbd> are useless: They apply

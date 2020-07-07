@@ -1814,14 +1814,12 @@
 (define (element-of-set? x set)
   (cond ((null? set) false)
         ((equal? x (car set)) true)
-        (else (element-of-set? x (cdr set)))))
-</pre></div></div>    </td>
+        (else (element-of-set? x (cdr set)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_39_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQBDAEwCsqKiB9AZwFMyAKAB4AaUDzIBKUAG9soOaABOvAgtoVO7bgBtuAW25Ey7Kni69BIseNnzb8gPyjeNu7YBcoAA50KCi04kAbmwAX1xCUkoaUHVNHX1DY1MxfytpFyUyFVoAQhiNIgItLT40gDIy0BdXUD5QbgBHAjoS4VAAC25GUt5xSQAffqqau1jtPQMjEzN+NrIfEqtJcWCw7DH4yaSZvgBGAFYhasYWNh3dgAYRE9YOFIPr5ludlCvQQuK+vsCgA')">function is_element_of_set(x, set) {
    return ! is_null(set) && 
           ( equal(x, head(set)) || 
             is_element_of_set(x, tail(set)) );
 }
-
 </pre></div></div></td></tr></table>
     
   </p></div>
@@ -1848,14 +1846,12 @@
 (define (adjoin-set x set)
   (if (element-of-set? x set)
     set
-    (cons x set)))
-</pre></div></div>    </td>
+    (cons x set)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_39_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQKBnAfQFMAbZgW2aLMar0b1mZABQAPADSghZAJSgA3tlAqATsIKraAQjpMiBVqxEz5AMjOhlKm7ZGhmARwIBDY5NAALZi4AmJ4Vl5AB9gq1sImwYWdi4ePgEZcSkyFwpjU3lZAG5sAF9cQlJKGlA-ACsqCiJBYWTpQMVrNQ0tPRjObl5+WtEPU2bIlQB+BrJBoYAuUAAHNNV601yC7AqqmqSARgAGKTXq3pFNgFY930qDpJRd0AMjIJygA')">function adjoin_set(x, set) {
     return is_element_of_set(x, set)
            ? set
            : pair(x, set);
 }
-
 </pre></div></div></td></tr></table>
     
   </p></div>
@@ -1900,8 +1896,7 @@
         ((element-of-set? (car set1) set2)
           (cons (car set1)
             (intersection-set (cdr set1) set2)))
-        (else (intersection-set (cdr set1) set2))))
-</pre></div></div>    </td>
+        (else (intersection-set (cdr set1) set2))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_39_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQKBnAfQFMAbZgW2aLMar0b1mZABQAPADSghZAJSgA3tlAqATsIKraAQjpMiBVqxEz5AMjOhlKm7ZGhmARwIBDY5NAALZi4AmJ4Vl5AB9gq1sImwYWdi4ePgEZcSkyFwpjU3lZAG5sAF9cQlJKGlA-ACsqCiJBYWTpQMVrNQ0tPRjObl5+WtEPU2bIlQB+BrJBoYAuUAAHNNV601yC-GJyalpqsmZVIXWaXoCyAEYpGRR5JVt1Mk1N-UMM4WOQsOiDIyOLicjRj9YfhFptE2J14j0kt4-EcXmdhN8hr9ZvMRFD-DJYYDEREtjs9iUaklUukYbI4WQLrIsUC6Dw8cx9oS6sSnicyWMLstcLjdgyCYdmhUqkzRMcAAxSIXVQ4oCVlXyVaVJDBy-5BMmChXCw7iyVapV1Y4AVj1ipFIllUjV6uyQA')">function intersection_set(set1, set2) {
     return is_null(set1) || is_null(set2)
            ? null
@@ -1910,7 +1905,6 @@
                     intersection_set(tail(set1), set2))
              : intersection_set(tail(set1), set2);
 }
-
 </pre></div></div></td></tr></table>
     
   </p></div>
@@ -1987,7 +1981,6 @@
           
           <tr>
             <td><div class='snippet' id='javascript_39_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_39_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQKBnAfQFMAbZgW2aLMar0b1mZABQAPADSghZAJSgA3tlAqATsIKraAQjpMiBVqxEz5AMjOhlKm7ZGhmARwIBDY5NAALZi4AmJ4Vl5AB9gq1sImwYWdi4ePgEZcSkyFwpjU3lZAG5sAF9cQlJKGlA-ACsqCiJBYWTpQMVrNQ0tPRjObl5+WtEPU2bIlQB+BrJBoYAuUAAHNNV601yC-GJyalpiDd6AsgBGKRkUeSVbdTJNWmiDI1292QnI0aPHiOmKqpqk7z872SlXkMbFsaDtUuk-odhMccvlcCCvnVmh9qjs9gAGKQoxGiFCYsq+SqopIYfE3VhBf7IwmfNH47FogCsWJpxLqeKk5MpOSAA')">function union_set(set1, set2) {
     return is_null(set1)
@@ -1995,7 +1988,6 @@
            : adjoin_set(head(set1), 
                  union_set(tail(set1), set2));
 }
-
 </pre></div></div></td></tr></table>
       
     </SOLUTION></div></div>
@@ -2064,7 +2056,6 @@
 function union_set(set1, set2) {
   return append(set1, set2);
 }
-
 </pre></div></div>
       In the version with no duplicates, the required number of steps for
       <kbd>is_element_of_set</kbd> and 
@@ -2143,8 +2134,7 @@ function union_set(set1, set2) {
   (cond ((null? set) false)
         ((= x (car set)) true)
         ((< x (car set)) false)
-        (else (element-of-set? x (cdr set)))))
-</pre></div></div>    </td>
+        (else (element-of-set? x (cdr set)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_39_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQKBnAfQFMAbZgW2aLMar0b1mZABQAPADRCyASlABvbKGWgATsIKraAQjpMiBVqxHS5AMjOgxoALx3QAC2YBDACYnhMpSp8qA-KBkqgTM3r4+AFxWoAA8ji7upmHhPgF4zqxCySnKUQws7Fw8fALS4hKBzhTGpjIA3NgAvrj5bJzcvPyCwiIAjACsFawMor0ADBUDFShjMvVAA')">function is_element_of_set(x,set) {
     return ! is_null(set) && x === head(set)
            ? true
@@ -2152,7 +2142,6 @@ function union_set(set1, set2) {
              ? false
              : is_element_of_set(x, tail(set));
 }
-
 </pre></div></div></td></tr></table>
     
   </p></div>
@@ -2234,8 +2223,7 @@ function union_set(set1, set2) {
             ((< x1 x2)
               (intersection-set (cdr set1) set2))
             ((< x2 x1)
-              (intersection-set set1 (cdr set2)))))))
-</pre></div></div>    </td>
+              (intersection-set set1 (cdr set2)))))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_39_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQKiyBTAJwGdHzqiB9dsgCj4BGADSg+KAJSgA3tlAK6eUPwqtuRAgBstgxmSHSAPkbrrNOvWSnS5i+6Gb6CzWha0BueYoC+oRlrsst72JDSsZKAAHkKgALygABaMAIYAJlaGXg6gYUQR0SjxSakZEpLZDk5kLrQx8XEJUSghOfYA-KAADikUzPwxYvRMbByUNLz6-GS9usKSIq1tyyurCjMUc-o2kkvLAFzRsQA8haB7K53DLOycE3zTs5kL4tu7a-aH16N3PA-Ciw+QJWGy21kkFVaPmw0Ow31u4z+UxCWjUAiEAAYxCgsaAMBiFii0fxMWIhABWbEEipAA')">function intersection_set(set1, set2) {
     if (is_null(set1) || is_null(set2)) {
         return null;
@@ -2251,7 +2239,6 @@ function union_set(set1, set2) {
                                   tail(set2));
     }
 }
-
 </pre></div></div></td></tr></table>
     
   </p></div>
@@ -2303,7 +2290,6 @@ function union_set(set1, set2) {
           
           <tr>
             <td><div class='snippet' id='javascript_39_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_39_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQBDAEwCsqKiB9AZwFMyAKAB4AaUDzIBKUAG9soOaABOvAgtoVO7IgQA22vmPGz5x+QH5Q29fwGGTdgFygBoALxvQAC26N9vSUbsTczEAwPlHZwAeT28GXwlQsLNQAAc6CgVBEQNEpNBHNIy+Lx8DEVy8u0YWNi5eLNAydL0DcXEAbmwAX1xq1g4xPgBGAAYRPtrBoYBWceZ+uv4UMdAtXTaOoA')">function adjoin_set(x, set) {
     return is_null(set)
@@ -2315,7 +2301,6 @@ function union_set(set1, set2) {
                : pair(head(set), 
                       adjoin_set(x, tail(set)));
 }
-
 </pre></div></div></td></tr></table></SOLUTION></div></div>
 </EXERCISE></div>
 
@@ -2354,12 +2339,10 @@ function union_set(set1, set2) {
                : pair(x2, union_set(set1, tail(set2)));
     }
 }
-
 </pre></div></div>
       <div class='snippet' id='javascript_39_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQBDAEwCsqKiB9AZwFMyAKAB4AaUDzIBKUAG9soOaABOvAgtoVO7IgQA22vmPGz5x+QH5Q29fwGGTdgFygBoALxvQAC26N9vSUbsTczEAwPlHZwAeT28GXwlQsLNQAAc6CgVBEQNEpNBHNIy+Lx8DEVy8u0YWNi5eLNAydL0DcXEAbmwAX1xiag4xPgDq1gH6gEYABhER2sGUafpmUbr+DEWtXTbxIWHluYnF2bH+cYBWGf2TvgWRTe1tjqA')">union_set(
    adjoin_set(10, adjoin_set(20, adjoin_set(30, null))),
    adjoin_set(10, adjoin_set(15, adjoin_set(20, null))));
-
 </pre></div></div>
     </SOLUTION></div></div>
 </EXERCISE></div>
@@ -2445,8 +2428,7 @@ function union_set(set1, set2) {
 
           
 (define (make-tree entry left right)
-  (list entry left right))
-</pre></div></div>    </td>
+  (list entry left right))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_39_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQBTIsgJwE8AKZuugSlAG9soIUzpkCTWgAs6AQwAmHETwDc2AL75i5arQA2dPGQD6AIyYzSkxV14ChoEWImhp8jjIq7rPbqo2FSShoHCgBzSWMzCxIrTh5+QWFRcSlZBTIPLwzPb248v01AnVAAWxkAazojOLYGZhYAGn1DBqYwiNtEh2TnXQoAZzJaxlYmgzJW9rJfdVw61jZE5sjzS0X7EPCV6Ksu+zLK6qU2AEYABga9jev7IgJdXUub5-2KqpqMC6uXn42D9+OKAudweDRBum4T1+0I24Ly8OUQA')">function entry(tree) {
    return head(tree);
 }
@@ -2459,7 +2441,6 @@ function right_branch(tree) {
 function make_tree(entry,left,right) {
    return list(entry,left,right);
 }
-
 </pre></div></div></td></tr></table>
     
   </p></div>
@@ -2486,8 +2467,7 @@ function make_tree(entry,left,right) {
         ((< x (entry set))
           (element-of-set? x (left-branch set)))
         ((> x (entry set))
-          (element-of-set? x (right-branch set)))))
-</pre></div></div>    </td>
+          (element-of-set? x (right-branch set)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_39_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQBTIsgJwE8AKZuugSlAG9soIUzpkCTWgAs6AQwAmHETwDc2AL75i5arQA2dPGQD6AIyYzSkxV14ChoEWImhp8jjIq7rPbqo2FSShoHCgBzSWMzCxIrTh5+QWFRcSlZBTIPLwzPb248v01AnVAAWxkAazojOLYGZhYAGn1DBqYwiNtEh2TnXQoAZzJaxlYmgzJW9rJfdVwA7WCBozp9ErqjKjwjftE2AA8G0B3phPtup1oAQlAlogJdL2PeADJnrrOztlA90ABef-oI3YT1AAB9Qe8Pp9vqAADyA+psJ6QqFnAD8N36y1W602212B1AzUi5ksSNEeRRqKEAC5Mdi6GtGBstsd9oc2uESdErE9uFSofzqfYZhpsEsVozcazdigAAyHd5lSrVJRsACMCoFdweDQFyqqNQwWuF9gNqq4bHlhx1uht9103D1pqEtryviAA')">function is_element_of_set(x, set) {
     return ! is_null(set) &&
            ( x === entry(set) ||
@@ -2497,7 +2477,6 @@ function make_tree(entry,left,right) {
              )
            );
 }
-
 </pre></div></div></td></tr></table>
         
   </p></div>
@@ -2536,8 +2515,7 @@ function make_tree(entry,left,right) {
         ((> x (entry set))
           (make-tree (entry set)
                      (left-branch set)
-                     (adjoin-set x (right-branch set))))))
-</pre></div></div>    </td>
+                     (adjoin-set x (right-branch set))))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_39_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQBTIsgJwE8AKZuugSlAG9soIUzpkCTWgAs6AQwAmHETwDc2AL75i5arQA2dPGQD6AIyYzSkxV14ChoEWImhp8jjIq7rPbqo2FSShoHCgBzSWMzCxIrTh5+QWFRcSlZBTIPLwzPb248v01AnVAAWxkAazojOLYGZhYAGn1DBqYwiNtEh2TnXQoAZzJaxlYmgzJW9rJfdVwA7WD5ACsqCiIjftE2AA8GzemE+26nWgGjIgJdL33uLqOjgH5Siqqa3dALq4aPy91b+4BAC5QNtQABeCH0EbsG53AH2J77OHw0DA0EAHih9TYsJR8KeZUq1SUw2xNwayLxAOWq3W+x232akXMlhxojyFKpXLa4WZ0SsN3+XPswMJrxJdVYbOmnOFKKZphZMWl3FlcupchWaw2W3ePIiiv5Kvys2wNO19IAjAAGb7mulbS0AVjtmtpOqGKFtPyueV8QA')">function adjoin_set(x,set) {
     return is_null(set)
            ? make_tree(x, null, null)
@@ -2551,7 +2529,6 @@ function make_tree(entry,left,right) {
                      left_branch(set),
                      adjoin_set(x, right_branch(set)));
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
   <div class='permalink'>
@@ -2625,8 +2602,7 @@ function make_tree(entry,left,right) {
     '()
     (append (tree->list-1 (left-branch tree))
             (cons (entry tree)
-                  (tree->list-1 (right-branch tree))))))
-</pre></div></div>    </td>
+                  (tree->list-1 (right-branch tree))))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_39_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQBTIsgJwE8AKZuugSlAG9soIUzpkCTWgAs6AQwAmHETwDc2AL75i5arQA2dPGQD6AIyYzSkxV14ChoEWImhp8jjIq7rPbqo2FSShoHCgBzSWMzCxIrTh5+QWFRcSlZBTIPLwzPb248v01AnVAAWxkAazojOLYGZhYAGn1DBqYwiNtEh2TnXQoAZzJaxlYmgzJW9rJfdVwA7WC46qojPsGjAEZchPtup1oBoyICXSylbi7d3YB+UGPTy6uhAC5QGQAHd4Z0pWXVgeMW2akXMlly3Aajye0KE7w8TGG9VykJhqJhSzIKzWgLYbXCIOisXOeRmaiAA')">function tree_to_list_1(tree) {
     return is_null(tree)
            ? null
@@ -2634,7 +2610,6 @@ function make_tree(entry,left,right) {
                     pair(entry(tree),
                          tree_to_list_1(right_branch(tree))));
 }
-
 </pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
@@ -2649,8 +2624,7 @@ function make_tree(entry,left,right) {
                     (cons (entry tree)
                           (copy-to-list (right-branch tree)
                                         result-list)))))
-  (copy-to-list tree '()))
-</pre></div></div>    </td>
+  (copy-to-list tree '()))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_39_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQBTIsgJwE8AKZuugSlAG9soIUzpkCTWgAs6AQwAmHETwDc2AL75i5arQA2dPGQD6AIyYzSkxV14ChoEWImhp8jjIq7rPbqo2FSShoHCgBzSWMzCxIrTh5+QWFRcSlZBTIPLwzPb248v01AnVAAWxkAazojOLYGZhYAGn1DBqYwiNtEh2TnXQoAZzJaxlYmgzJW9rJfdVwA7WC46qojPsGjFFyE+1B5oNoSKgAHFmXVgaG4hu7+gl1jNentnftHFNABoyI7rKVuLpegNAAH4bncHhcAUCdgAuUCHE5nR5sZqRcyWXINKHQ6FHDxMYb1THYnGk+HHU5kFbItrhNHRWJ-LFkllAkS3e7nQZ5GY7DQ7N7OBGU6kXbzXb66XQzNRAA')">function tree_to_list_2(tree) {
     function copy_to_list(tree, result_list) {
         return is_null(tree)
@@ -2662,7 +2636,6 @@ function make_tree(entry,left,right) {
     }
     return copy_to_list(tree, null);
 }
-
 </pre></div></div></td></tr></table>
     <OL>
       <LI>
@@ -2802,8 +2775,7 @@ function make_tree(entry,left,right) {
             (let ((right-tree (car right-result))
                   (remaining-elts (cdr right-result)))
               (cons (make-tree this-entry left-tree right-tree)
-                    remaining-elts))))))))
-</pre></div></div>    </td>
+                    remaining-elts))))))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_39_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQBTIsgJwE8AKZuugSlAG9soIUzpkCTWgAs6AQwAmHETwDc2AL75i5arQA2dPGQD6AIyYzSkxV14ChoEWImhp8jjIq7rPbqo2FSShoHCgBzSWMzCxIrTh5+QWFRcSlZBTIPLwzPb248v01AnVAAWxkAazojOLYGZhYAGn1DBqYwiNtEh2TnXQoAZzJaxlYmgzJW9rJfdVwA7WC+weqqaqVa-RK6-s77RxSXNLYABxkmShldNa4Nui3GfrGiULIrOk3tvJn-LSDaU-OFEu1zoGzIj1ARF29goeFAbFoAF5kaAAAzQ+xJJz-DxMBEEXS6BrvcEzTFqei6fp0BKY+wkGiDUDNYz9CgALxpiNKMleRjwuioVDxCNAAFpQABGXhgFBkumgBlEJksowifoEsigbkAi5XGokiGqtmc+V0pUq8Yg7WHNyq9Was2Yi1aog0Iyqw027Jee10DW6aaqBWKxlatrhVkcrmQ8Xw43R0AAailTvpYdArwGRjqrBtrgUbqIHqthrTQhdIUjav9mptuqB+vWPoR7s9gZ2DS6IZ7vb7mIjESMJpU3fTyvDU2t3ILbEHxgdgfLoYn3TKFCIG9COY73syc6ni6DY6xB1OFDxZUqII4kmzucaoBP-ZfqriDSfL6-A6ncW4Xe-OkRHXTdnh3Ulg3sDQNGwJZjDIVYajgthJVRD8UDQ0AMHRXwgA')">function list_to_tree(elements) {
    return head(partial_tree(elements,length(elements)));
 }
@@ -2827,7 +2799,6 @@ function partial_tree(elts, n) {
                    remaining_elts);
     }
 }
-
 </pre></div></div></td></tr></table>
     
     <OL>
@@ -2932,7 +2903,6 @@ function partial_tree(elts, n) {
     const list2 = tree_to_list_2(set2);
     return list_to_tree(union_set(list1, list2));
 }
-
 </pre></div></div>
       
       <div class='snippet' id='javascript_39_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQKiyBTAJwGdHzqiB9dsgCj4BGADSg+KAJSgA3tlAK6eUPwqtuRAgBstgxmSHSAPkbrrNOvWSnS5i+6Gb6CzWha0BueYoC+oRlrsst72JDSsZKAAHkKgALygABaMAIYAJlaGXg6gYUQR0SjxSakZEpLZDk5kLrQx8XEJUSghOfYA-KAADikUzPwxYvRMbByUNLz6-GS9usKSIq1tyyurCjMUc-o2kkvLAFzRsQA8haB7K53DLOycE3zTs5kL4tu7a-aH16N3PA-Ciw+QJWGy21kkFVaPmw0PwxF+oC0ajI3DIVFRTkY-ACjAAtowGKxbCFqrUSul+D1mJQUloMYwsTj8YSRFoCQBzMiJbFs5lkIkQrzQwikca0Kk0ulkTE8-liIjE+wUZT8WiNBIABkVOVJrm6vX67hEAX5kPsfgCQTsOTyBTZeBRrAoAC9GMVcSkudw8FoqFR+qrQABaUCGUBgKSVBy2yL2lFOVjaSIJCUUWn0xlaOWIxgO3guxhmm3hWO5lHShnFZIUuPcBNJovRkugIgTWsm1jFUH8Wv1rON0LN5gUdmJR0F4q0EM9sv512gADUoYHihjoC5am4BOlAE8q6VVW3Zx2Vwo18PR-HGIms8VU+mK1ju62eO2s0TAcCv2sL2O54Wo0HfJIl-ctMX3ClQLra8G0A1chzxXoiHodkt3fLsnigvsyFPRxnD1Ho+n4D0AGtGAzaZEk3bdmB3MQLm-HJa0fejGI+KDHwWBif0Q+gULQ01AOhWERQRR9UXRJEIm4FBpkxbUFFEsVcioLodwk7gpIEFi8JvFEtIUqp8NoTd3Dkhl3mBTpsM05FuJyQ4wjUjStJnPMACNmBSUhuU4z82P1IiaJ3czC38gLB2ctFbIifgoM87ySF8+TwoinUYKzGKcMFKFWl1WgnPU6LXJ09xIRE+FlO+W4xUmFEUnUR9MjEcpgiAu1kSEOJxOK5EZOeQC1y0lBusxFy+tk8pAPyxE+uiprqrGLg6p7TqxGGnLYR6ySJv4OgGBuJb7n0bgGoo84Iq0jSmtc0RQAwMQAFYxAADghVKvyu+aZVclAxAe0AADZXohUBpAqIA')">function intersection_set_as_tree(set1, set2) {
@@ -2940,7 +2910,6 @@ function partial_tree(elts, n) {
     const list2=tree_to_list_2(set2);
     return list_to_tree(intersection_set(list1, list2));
 }
-
 </pre></div></div>
       
     </SOLUTION></div></div>
@@ -3025,8 +2994,7 @@ function partial_tree(elts, n) {
   (cond ((null? set-of-records) false)
         ((equal? given-key (key (car set-of-records)))
           (car set-of-records))
-        (else (lookup given-key (cdr set-of-records)))))
-</pre></div></div>    </td>
+        (else (lookup given-key (cdr set-of-records)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_39_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcWSqOATABSsAngBpQfBmQYBKUAG8AkKFDYVKrmQIdaABwYUOQlmIlTZAbmwBffMXLVaIgVx78589aq+bttABYsDIKuvHwyVraEpJQ0ZtIu3GEeauq+OqDSFAA2iW7hkbjRDnHZVFRMBLoCAOYUAG4sRGwi4gDOLGRsVHicSfxtKT6dfqAAhKAUbWxEBNm5HV09ffmDoABk66leOwKgLACOBAy5dY3NraDOgcECi929oQMyL9s7OwD8oDeC98tPfEGb3e6gAXKAyhUqrUGk0WiZxFkFp0HiswoMZMD3hEbLhIZVqhhxNkpmQBIxWGj+AIUOIAEQANSaBDadJk4ixIJUFPYAIEAFZ6QgqhQyCwOGzRJyuTyqYIACz0gCyDA4rPZ0pBsr5RNAdIAoqqyP5JZr3tr+oIAGz08BSPxsl4WIA')">function lookup(given_key, set_of_records) {
     return ! is_null(set_of_records) &&
            ( equal(given_key, key(head(set_of_records)))
@@ -3034,7 +3002,6 @@ function partial_tree(elts, n) {
              : lookup(given_key, tail(set_of_records))
            );
 }
-
 </pre></div></div></td></tr></table>
     
   </p></div>
@@ -3087,7 +3054,6 @@ function partial_tree(elts, n) {
                           right_branch(tree_of_records));
     }
 }
-
 </pre></div></div>
       
     </SOLUTION></div></div>

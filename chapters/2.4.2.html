@@ -1765,7 +1765,6 @@ function contents(datum) {
            ? tail(datum)
            : error(datum, "bad tagged datum in contents");
 }
-
 </pre></div></div>
     
   </p></div>
@@ -1793,8 +1792,7 @@ function is_rectangular(z) {
 }
 function is_polar(z) {
     return type_tag(z) === "polar";
-}
-</pre></div></div>
+}</pre></div></div>
   </p></div>
   <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
@@ -1840,7 +1838,6 @@ function make_from_mag_ang_rectangular(r, a) {
     return attach_tag("rectangular",
                       pair(r * math_cos(a), r * math_sin(a)));
 }
-
 </pre></div></div>
     
     and here is Alyssa's revised polar representation:
@@ -1865,7 +1862,6 @@ function make_from_mag_ang_polar(r, a) {
     return attach_tag("polar",
                       pair(r, a));
 }
-
 </pre></div></div>
     
     
@@ -1933,7 +1929,6 @@ function angle(z) {
              ? angle_polar(contents(z))
              : error(z, "Unknown type in angle");
 }
-
 </pre></div></div>
     
   </p></div>
@@ -1981,8 +1976,7 @@ function add_complex(z1, z2) {
    return make_from_real_imag(
               real_part(z1) + real_part(z2),
               imag_part(z1) + imag_part(z2));
-}
-</pre></div></div>
+}</pre></div></div>
     Finally, we must choose whether to construct complex numbers using
     Ben's representation or Alyssa's representation.  One
     reasonable choice is to construct rectangular numbers whenever we have
@@ -1994,7 +1988,6 @@ function add_complex(z1, z2) {
 function make_from_mag_ang(r, a) {
     return make_from_mag_ang_polar(r, a);
 }
-
 </pre></div></div>
     
   </p></div>

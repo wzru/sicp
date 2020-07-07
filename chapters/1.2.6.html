@@ -1722,7 +1722,6 @@ function find_divisor(n, test_divisor) {
 function divides(a, b) {
     return b % a === 0;
 }
-
 </pre></div></div>
 
     
@@ -1741,7 +1740,6 @@ function divides(a, b) {
     <div class='snippet' id='javascript_19_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAx+VQ0tSlp6X39AuwcnEnCKUwtrFMdXUXdJaXpmNi5uTLNk4PZBAD5QEgL3FtAAfkbm1vEALlAcqktTCqzq1PCXLu7xDsrsoNSp6dA+xICB1LDQObHHUABqVCj1QlI43QGhhm5WcIAjfMLPYtA70ABSUFZQAF4-0AADNFNGcdPR7OYAA7sKh6HguYRdIreeh-H76IwmKobEIuYG4CHQ2E8AAskWUQA')">function is_prime(n) {
     return n === smallest_divisor(n);
 }
-
 </pre></div></div>
 
     
@@ -1837,7 +1835,6 @@ function divides(a, b) {
              ? square(expmod(base, exp / 2, m)) % m
              : (base * expmod(base, exp - 1, m)) % m;
 }
-
 </pre></div></div>
 
     
@@ -1900,7 +1897,6 @@ function divides(a, b) {
     }
     return try_it(1 + random(n - 1));
 }
-
 </pre></div></div>
 
     
@@ -1922,7 +1918,6 @@ function divides(a, b) {
              ? fast_is_prime(n, times - 1)
              : false;
 }
-
 </pre></div></div>
 
     
@@ -2028,7 +2023,6 @@ function divides(a, b) {
       <div class='snippet' id='javascript_19_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAx+VQ0tSlp6X39AuwcnEnCKUwtrFMdXUXdJaXpmNi5uTLNk4PZBAD5QEgL3FtAAfkbm1vEALlAcqktTCqzq1PCXLu7xDsrsoNSp6dA+xICB1LDQObHHUABqVCj1QlI43QGhhm5WcIAjfMLPYtA70ABSUFZQAF4-0AADNF8AwDMZRhsQigAJzQ44gfRGExVSFOGGw+FgUFIiELKGwjHKIA')">smallest_divisor(199);
 // smallest_divisor(1999);
 // smallest_divisor(19999);
-
 </pre></div></div>
     </SOLUTION></div></div>
 </EXERCISE></div>
@@ -2077,7 +2071,6 @@ function report_prime(elapsed_time) {
     display(" *** ");
     display(elapsed_time);
 }
-
 </pre></div></div>
     
     Using this 
@@ -2131,7 +2124,6 @@ function report_prime(elapsed_time) {
                 ? search_for_primes(start + 2, times - 1)
                 : search_for_primes(start + 2, times);
 }
-
 </pre></div></div>
       
       The timing data quite clearly supports the $\sqrt{n}$ for prediction that is sufficiently big, such as 100,000 and 1,000,000.
@@ -2232,7 +2224,6 @@ function find_divisor(n, test_divisor) {
               ? test_divisor
               : find_divisor(n, next(test_divisor));
 }
-
 </pre></div></div>
       The ratio of the speeds of the two algorithms is not exactly 2, but this might be due to hardware / network issues.
       It is about 1.5 times faster compared to previous solution.
@@ -2288,7 +2279,6 @@ function report_prime(elapsed_time) {
     display(" *** ");
     display(elapsed_time);
 }
-
 </pre></div></div>
       
         The time to test primes near 1,000,000 using <kbd>fast_is_prime</kbd> 
@@ -2311,7 +2301,6 @@ function report_prime(elapsed_time) {
     <div class='snippet' id='javascript_19_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9TgDdOJbiUEjxEzlJmh6AUlAZQAXk+gADKo2FSSlp6AlYGCiNeAAcKbgAjABpHK1FxSWl6ek93H1SbfIB+VDz88QAuPUMTMwt+EtLxIuY2Lm5Q8MiY+KT6MAx+OobSiriFUHaIzmjYxMdQAFpUfj9NQJ16KaiAWxoAE3iwziTNpK2Um3SHTY8vb3rSopR7-Ir9I1NzTcGhmyaWDh4mx2+zih2O0VAfVOA1ALi2z2GoAODE4YyBe2RR1A10WKGhgjhKwC2mC2OiwMx4Ki0OEJUuITCk2mlLJUQJoC2RPR+wALEkAMxJACsyyAA')">function expmod(base, exp, m) {
     return fast_expt(base, exp) % m;
 }
-
 </pre></div></div>
     Is she correct?  
     Would this 
@@ -2388,7 +2377,6 @@ function report_prime(elapsed_time) {
                * expmod(base, exp - 1, m) 
                % m;
 }
-
 </pre></div></div>
     
 
@@ -2412,8 +2400,7 @@ function report_prime(elapsed_time) {
       <div class='snippet' id='javascript_19_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 expmod(base, exp / 2, m) 
 * expmod(base, exp / 2, m)
-% m
-</pre></div></div>
+% m</pre></div></div>
       the expression
       <kbd>expmod(base, exp / 2, m)</kbd>
       is evaluated twice at each step in the computation when the exponent is
@@ -2473,7 +2460,6 @@ expmod(base, exp / 2, m)
     }
     return iter(n, 2);
 }
-
 </pre></div></div>
     </SOLUTION></div></div>
 </EXERCISE></div>
@@ -2585,7 +2571,6 @@ function do_miller_rabin_test(n, times) {
              ? do_miller_rabin_test(n, times - 1)
              : false;
 }
-
 </pre></div></div>
     </SOLUTION></div></div>
 </EXERCISE></div>

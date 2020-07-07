@@ -1854,7 +1854,6 @@
 
 concurrent_execute(_ => { x = x * x; },
                    _ => { x = x + 1; } );
-
 </pre></div></div>
   </p></div>
 
@@ -1949,7 +1948,6 @@ const s = make_serializer();
 
 concurrent_execute( s(_ => { x = x * x; }),
                     s(_ => { x = x + 1; }) );
-
 </pre></div></div>
     can produce only two possible values for
     <kbd>x</kbd>, 101 or 121.
@@ -2001,7 +1999,6 @@ concurrent_execute( s(_ => { x = x * x; }),
     }
     return dispatch;
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2035,7 +2032,6 @@ const s = make_serializer();
 concurrent_execute(   _ => { x = s(_ => x * x)
                                   (undefined); }, 
                    s( _ => { x = x + 1;        } ) );
-
 </pre></div></div>
   
       <div class="Solution">
@@ -2056,7 +2052,6 @@ concurrent_execute(   _ => { x = s(_ => x * x)
 
 concurrent_execute(_ => { x = x * x; }, 
                    _ => { x = x * x * x; } );
-
 </pre></div></div>
     Which of these possibilities remain if we instead use serialized
     
@@ -2067,7 +2062,6 @@ const s = make_serializer();
 
 concurrent_execute( s(_ => { x = x * x;     }),
                     s(_ => { x = x * x * x; }) );
-
 </pre></div></div>
   
       <div class="Solution">
@@ -2112,7 +2106,6 @@ concurrent_execute( s(_ => { x = x * x;     }),
     }
     return dispatch;
 }
-
 </pre></div></div>
     because allowing unserialized access to the bank balance can
     result in anomalous behavior.  Do you agree?  Is there any
@@ -2190,7 +2183,6 @@ concurrent_execute( s(_ => { x = x * x;     }),
     }
     return dispatch;
 }
-
 </pre></div></div>
     Is this a safe change to make?  In particular, is there any difference
     in what concurrency is allowed by these two versions of
@@ -2242,7 +2234,6 @@ concurrent_execute( s(_ => { x = x * x;     }),
     account1("withdraw")(difference);
     account2("deposit")(difference);
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2329,7 +2320,6 @@ concurrent_execute( s(_ => { x = x * x;     }),
                 : error(m, 
                    "Unknown request in make_account:");
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2347,7 +2337,6 @@ concurrent_execute( s(_ => { x = x * x;     }),
     const d = account("deposit");
     s(d(amount));
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2368,7 +2357,6 @@ concurrent_execute( s(_ => { x = x * x;     }),
     const serializer2 = account2("serializer");
     serializer1(serializer2(exchange))(accounts);
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2434,7 +2422,6 @@ concurrent_execute( s(_ => { x = x * x;     }),
     from_account("withdraw")(amount);
     to_account("deposit")(amount);
 }
-
 </pre></div></div>
     Louis Reasoner claims that there is a problem here, and that we need
     to use a more sophisticated method, such as the one required for
@@ -2507,7 +2494,6 @@ concurrent_execute( s(_ => { x = x * x;     }),
                 : error(m, 
                    "Unknown request in make_account:");
 }
-
 </pre></div></div>
     Then deposits are handled as with the original
     
@@ -2517,7 +2503,6 @@ concurrent_execute( s(_ => { x = x * x;     }),
     <div class='snippet' id='javascript_67_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=concurrent&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0GiK2APABQBKUAG9coSaDJ0AzhWlsANktABeUEqryBBJktlshAbglTi5anVAUAFp269BDEeKnvQAJzYUin+gzqahoARExkAI5EVN4hZh4JkgD8oAI2bPIcTCQAJhyGFAJkykpC8YkVoCl2Djz8AmGR0bEiIF4+ngCe5ZUJAFw2nkRsoGW9HgOBwaHeSmxMhnHjCSlkc0yeRSVjy+4DbJ6eNJsMADQ9u5IhAKokLCQ0AO703lEZClQBdXwhJuUAvuVvL5-DZ7FxvqZARZKLR6Gt5ptiipXOUChx7EwclsVKdQHoDEYofgYVYAqxOIZPFR9FQAF4HYRicoyEjyRjfdSMCkQpzCUzuYF+egAB3UAD5QBdEhsAOYS5mXKSOeqNKIxNi-AVK6RyBQAN30XJFAjlfx1HL5IVm80W5p1QtBhqU2vG-2JhFIsOszHYWTIMlIFCyuXyBxpWgZmwARvpssVUe5SXDQI8qHYcp4mI9TQwaEHE4kqARUrGlPGRpKmHmC4rxmWK1yG+QRgBaUDV-MkCiujz-UDKQx13ohSBsogEAhUMhUNjd-GkHKyEK99yAtflZPWHJsEU0WTp3NdiiFhLN4pNuMt0AAag7Ne7q6kjvo57YvfXUlZ7LfYeptKjLlfUpcMAMZe1JBfRgFSmYJQBCNMMyzR4liVFJfypCN6UZRDbEzbMdkuSYglCHc9wPChUMudCr2KP8sKjAQyP3dNCN2Yjpngt8qN2GjyxbaVKg4uCQkwsDPB45Y+IrejxMEip9kOY4BDOKULSuW57ieF42DedlPm5P1wkDbs+i1XBAU9SwU2YijTQDY88U7Ws3CkYzjwaWz01+I8Cw9b8FAYTp-RMhQNGAkLjxDPIxMjRkUAABgSv4vMKILIqDPEAEYkpMABIXAcm0EVy06FTgvcoMGm4oQTCAA')">function deposit(account, amount) {
     account("deposit")(amount);
 }
-
 </pre></div></div>
     
     Explain what is wrong with Louis's reasoning.  In particular,
@@ -2587,7 +2572,6 @@ concurrent_execute( s(_ => { x = x * x;     }),
                  return val;
              };
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2636,7 +2620,6 @@ concurrent_execute( s(_ => { x = x * x;     }),
 function clear(cell) {
     set_head(cell, false);
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2668,7 +2651,6 @@ function clear(cell) {
         return false;
     }
 }
-
 </pre></div></div>
   </p></div>
 

@@ -1751,7 +1751,6 @@
     return make_interval(lower_bound(x) + lower_bound(y),
                          upper_bound(x) + upper_bound(y));
 }
-
 </pre></div></div>
   </p></div>
   <div class='permalink'>
@@ -1783,7 +1782,6 @@
     return make_interval(math_min(p1, p2, p3, p4),
                          math_max(p1, p2, p3, p4));
 }
-
 </pre></div></div>
   </p></div>
   <div class='permalink'>
@@ -1796,7 +1794,6 @@
     return mul_interval(x, make_interval(1 / upper_bound(y),
                                          1 / lower_bound(y)));
 }
-
 </pre></div></div>
   </p></div>
   
@@ -1811,8 +1808,7 @@
     <div class='snippet' id='javascript_30_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_interval(x, y) {
     return pair(x, y); 
-}
-</pre></div></div>
+}</pre></div></div>
     
     
     
@@ -1845,8 +1841,7 @@ function lower_bound(x) {
 }
 function upper_bound(x) { 
     return tail(x); 
-}
-</pre></div></div>
+}</pre></div></div>
     </SOLUTION></div></div>
 </EXERCISE></div>
 
@@ -1875,7 +1870,6 @@ function upper_bound(x) {
     return make_interval(lower_bound(x) - upper_bound(y),
                          upper_bound(x) - lower_bound(y));
 }
-
 </pre></div></div>
       
     </SOLUTION></div></div>
@@ -1956,7 +1950,6 @@ function upper_bound(x) {
         : mul_interval(x, make_interval(1 / upper_bound(y),
                                         1 / lower_bound(y)));
 }
-
 </pre></div></div>
     </SOLUTION></div></div>
 </EXERCISE></div>
@@ -2024,7 +2017,6 @@ function mul_interval(x, y) {
                            ? the_trouble_maker(xl, xu, yl, yu)
                            : error("lower larger than upper");
 }
-
 </pre></div></div>
     </SOLUTION></div></div>
 </EXERCISE></div>
@@ -2048,7 +2040,6 @@ function center(i) {
 function width(i) {
     return (upper_bound(i) - lower_bound(i)) / 2;
 }
-
 </pre></div></div>
     
     Unfortunately, most of Alyssa's users are engineers.  Real engineering
@@ -2088,7 +2079,6 @@ function width(i) {
 function percent(i) {
     return (width(i) / center(i)) * 100;
 }
-
 </pre></div></div>
       
     </SOLUTION></div></div>
@@ -2171,7 +2161,6 @@ function par2(r1, r2) {
                         add_interval(div_interval(one, r1),
                                      div_interval(one, r2)));
 }
-
 </pre></div></div>
     
     Lem complains that Alyssa's program gives different answers for

@@ -1716,10 +1716,8 @@
           
           <tr>
             <td><div class='snippet' id='javascript_88_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(list (amb 1 2 3) (amb 'a 'b))
-</pre></div></div>    </td>
+(list (amb 1 2 3) (amb 'a 'b))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_88_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAbASwGcAXACgEMBbAIwuwBpQAmFjAShdoYCIqfFnzp9OnANy4QoWACcApiRKg+AJQCuAOz6gAZgHs5oMgAsF+onPKgSBghrJEDWtKAAqATwAOC6WDI5T1AqAHMqIi1-UEiTc1A1AFFYABlQFziLOSJQ0zIWQ2MaIws7BycXEiA')">list(amb(1, 2, 3), amb("a", "b"));
-
 </pre></div></div></td></tr></table>
     can have six possible values:
     <table width="100%">
@@ -1727,11 +1725,9 @@
           
           <tr>
             <td><div class='snippet' id='javascript_88_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(1 a) (1 b) (2 a) (2 b) (3 a) (3 b)
-</pre></div></div>    </td>
+(1 a) (1 b) (2 a) (2 b) (3 a) (3 b)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_88_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-list(1, "a") list(1, "b") list(2, "a") list(2, "b") list(3, "a") list(3, "b")
-</pre></div></div></td></tr></table>
+list(1, "a") list(1, "b") list(2, "a") list(2, "b") list(3, "a") list(3, "b")</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -1782,12 +1778,10 @@ list(1, "a") list(1, "b") list(2, "a") list(2, "b") list(3, "a") list(3, "b")
           <tr>
             <td><div class='snippet' id='javascript_88_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (require p)
-  (if (not p) (amb)))
-</pre></div></div>    </td>
+  (if (not p) (amb)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_88_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AJwFMBHIq5gCgAcBKUAN65QIxkwpEG9AIShuoAPygAhgFsARp34AuUACJwy6gGcCVJgBMxbDkz0BuUaNwBffGTrGKoAB6gAvCoanNgANKAY4QCs4QDs4QCcvPa4zDZcfgB8gSjJuD4pIKCwzMbG+gBKpHqgBDQMoBQAFky1HF6gxjQANkTUdGigACoAntxMuEUUDCMqAObKVCSTYEuNLaAVAKKwADKgdOutDFRzTRThdQ2q9a1dvf0kxkA')">function require(p) {
     return ! p ? amb() : "Satisfied require";      
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -1811,13 +1805,11 @@ list(1, "a") list(1, "b") list(2, "a") list(2, "b") list(3, "a") list(3, "b")
             <td><div class='snippet' id='javascript_88_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (an-element-of items)
   (require (not (null? items)))
-  (amb (car items) (an-element-of (cdr items))))
-</pre></div></div>    </td>
+  (amb (car items) (an-element-of (cdr items))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_88_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AQxIH0BTAG1YFtWSLmaBABRUK3AM4BKUAG9coBaABOrAI5EqKoQEJQVccxJF27EWK5TJAbnmKVFIkvoMuAIyEALVgwAmZiZIANIwsHNy8-IJCFAxUpqIBkta4AL74ZHTiFKAAHuKgALyg7PoUQgBEDAAOVZzlweWuTM31oOVkSkyurEpKAJ7lyUxsnDx8AsJ51gCQuCCgsCri+eUASqTloAQ0SqAUXluaWaDiNOxE1HRooAAqfVWsc2AU-YwA5rEkT3r0+6ygqwAorAADKgOh7A5KKhvDwUYLbXZcHb-U7nS4kcRAA')">function an_element_of(items) {
     require(! is_null(items));
     return amb(head(items), an_element_of(tail(items)));
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -1851,12 +1843,10 @@ list(1, "a") list(1, "b") list(2, "a") list(2, "b") list(3, "a") list(3, "b")
           <tr>
             <td><div class='snippet' id='javascript_88_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (an-integer-starting-from n)
-  (amb n (an-integer-starting-from (+ n 1))))
-</pre></div></div>    </td>
+  (amb n (an-integer-starting-from (+ n 1))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_88_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AQxIH0qSKBTAcw4CdmAzhQa9qJLswK8aAWwAUJAJSgA3rlAbQvDhSK96DGQCMFAGkYs2nHvyEixEqbIWgA1KGyLFAblwBffDI6IVAAD1AAXgtWdm4+QWFRNkdpeU9fbQBHIiptOXCAPij0AFYfXFDfEFBYbQEBUAAiACVSRtACGl5QCgALDg7ckIEaABsiajo0UAAVAE8ABw5caopeOcYuBjYVsDYe-tBmgFFYABlQOgOB3iouXopzTu6ZLoGR8cmSASA')">function an_integer_starting_from(n) {
     return amb(n, an_integer_starting_from(n + 1));
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -1990,179 +1980,107 @@ list(1, "a") list(1, "b") list(2, "a") list(2, "b") list(3, "a") list(3, "b")
           
           <tr>
             <td><div class='snippet' id='javascript_88_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-
 </pre><pre class='prettyprintoutput'>
-
-;;; Amb-Eval input:
-      
-</pre></div></div>    </td>
+;;; Amb-Eval input:</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_88_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-
 </pre><pre class='prettyprintoutput'>
-
-// amb-evaluate input:
-      
-</pre></div></div></td></tr></table>
+// amb-evaluate input:</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_88_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(prime-sum-pair '(1 3 5 8) '(20 35 110))
-</pre><pre class='prettyprintoutput'>
-
+(prime-sum-pair '(1 3 5 8) '(20 35 110))</pre><pre class='prettyprintoutput'>
 ;;; Starting a new problem
 ;;; Amb-Eval value:
-(3 20)
-      
-</pre></div></div>    </td>
+(3 20)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_88_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQSPETOUmUtABSZ6AAvMGgAAyqGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CX25e4tLdyCgQB8egnJqemZ7Nm5+UUloADUoNj8za2t-BGa0TpxhtXsVIU8pcJzWjG6VIkN1Qxl8x5e9MxsXNwAFpysRtxn-ILdJHOX4gD8oAo7CInB+v1AAC49IYTOYGFZbI1QE8Xm9zrNwfMAQRWNYGKDMa0ocdUtwMlxWIUDJkqNY0R9VO4NO5Kt4SadNttzksyHQMqANltOAwggK6g0AExNQmXdpBbrk55Ugi0k7cMEyzH6AyC7aODWa37xRIpNIGDJZeIjArFDAfA2YxbLbSxAWczjmohU2r1bjWfQUbCOf0ZCWudxzXkkfmsUWsEgGTi2bYJAw0Ah+gMzRniKP8yxxhNJzgpihpjMhihhnNiLgseo8bW6nixqaWBlzVn0SvcViOdtLXDNz3e8WZjLcIOgDCOACsjgAHPxgwHuBLQo4MPPpthQh2QKBYFwGCKAEQAJVIp9ABBo7EBTxv9X5DBo1iIqzQoAAKk5qqCDyBJxQFYJI6m+A94gfThQHPABRWAABlQF0ChH02JIHgoRxb3vQo7xg1931WBggA')">prime_sum_pair(list(1, 3, 5, 8), list(20, 35, 110));
-
 </pre><pre class='prettyprintoutput'>
-
 // Starting a new problem
 // amb-evaluate value:
-[3, [20, null]]
-      
-</pre></div></div></td></tr></table>
+[3, [20, null]]</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_88_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-
 </pre><pre class='prettyprintoutput'>
-
-;;; Amb-Eval input:
-      
-</pre></div></div>    </td>
+;;; Amb-Eval input:</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_88_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-
 </pre><pre class='prettyprintoutput'>
-
-amb-evaluate input:
-      
-</pre></div></div></td></tr></table>
+amb-evaluate input:</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_88_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-try-again
-</pre><pre class='prettyprintoutput'>
-
+try-again</pre><pre class='prettyprintoutput'>
 ;;; Amb-Eval value:
-(3 110)
-      
-</pre></div></div>    </td>
+(3 110)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_88_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQSPETOUmUtABSZ6AAvMGgAAyqGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CX25e4tLdyCgQB8egnJqemZ7Nm5+UUloADUoNj8za2t-BGa0TpxhtXsVIU8pcJzWjG6VIkN1Qxl8x5e9MxsXNwAFpysRtxn-ILdJHOX4gD8oAo7CInB+v1AAC49IYTOYGFZbI1QE8Xm9zrNwfMAQRWNYGKDMa0ocdUtwMlxWIUDJkqNY0R9VO4NO5Kt4SadNttzksyHQMqANltOAwggK6g0AExNQmXdpBbrk55Ugi0k7cMEyzH6AyC7aODWa37xRIpNIGDJZeIjArFDAfA2YxbLbSxAWczjmohU2r1bjWfQUbCOf0ZCWudxzXkkfmsUWsEgGTi2bYJAw0Ah+gMzRniKP8yxxhNJzgpihpjMhihhnNiLgseo8bW6nixqaWBlzVn0SvcViOdtLXDNz3e8WZjLcIOgDCOACsjgAHPxgwHuBLQo4MPPpthQh2QKBYFwGCKAEQAJVIp9ABBo7EBTxv9X5DBo1iIqzQoAAKk5qqCDyBJxQFYJI6m+A94gfThQHPABRWAABlQF0ChH02JIHgoRxb3vQo7xg1931WBggA')">try again
-
 </pre><pre class='prettyprintoutput'>
-
 amb-evaluate value:
-[3, [110, null]]
-      
-</pre></div></div></td></tr></table>
+[3, [110, null]]</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_88_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-
 </pre><pre class='prettyprintoutput'>
-
-;;; Amb-Eval input:
-      
-</pre></div></div>    </td>
+;;; Amb-Eval input:</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_88_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-
 </pre><pre class='prettyprintoutput'>
-
-amb-evaluate input:
-      
-</pre></div></div></td></tr></table>
+amb-evaluate input:</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_88_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-try-again
-</pre><pre class='prettyprintoutput'>
-
+try-again</pre><pre class='prettyprintoutput'>
 ;;; Amb-Eval value:
-(8 35)
-      
-</pre></div></div>    </td>
+(8 35)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_88_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQSPETOUmUtABSZ6AAvMGgAAyqGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CX25e4tLdyCgQB8egnJqemZ7Nm5+UUloADUoNj8za2t-BGa0TpxhtXsVIU8pcJzWjG6VIkN1Qxl8x5e9MxsXNwAFpysRtxn-ILdJHOX4gD8oAo7CInB+v1AAC49IYTOYGFZbI1QE8Xm9zrNwfMAQRWNYGKDMa0ocdUtwMlxWIUDJkqNY0R9VO4NO5Kt4SadNttzksyHQMqANltOAwggK6g0AExNQmXdpBbrk55Ugi0k7cMEyzH6AyC7aODWa37xRIpNIGDJZeIjArFDAfA2YxbLbSxAWczjmohU2r1bjWfQUbCOf0ZCWudxzXkkfmsUWsEgGTi2bYJAw0Ah+gMzRniKP8yxxhNJzgpihpjMhihhnNiLgseo8bW6nixqaWBlzVn0SvcViOdtLXDNz3e8WZjLcIOgDCOACsjgAHPxgwHuBLQo4MPPpthQh2QKBYFwGCKAEQAJVIp9ABBo7EBTxv9X5DBo1iIqzQoAAKk5qqCDyBJxQFYJI6m+A94gfThQHPABRWAABlQF0ChH02JIHgoRxb3vQo7xg1931WBggA')">try again
-
 </pre><pre class='prettyprintoutput'>
-
 // amb-evaluate value:
-[8, [35, null]]
-      
-</pre></div></div></td></tr></table>
+[8, [35, null]]</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_88_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ;;; Amb-Eval input:
-try-again
-</pre><pre class='prettyprintoutput'>
-
+try-again</pre><pre class='prettyprintoutput'>
 ;;; There are no more values of
-(prime-sum-pair (quote (1 3 5 8)) (quote (20 35 110)))
-      
-</pre></div></div>    </td>
+(prime-sum-pair (quote (1 3 5 8)) (quote (20 35 110)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_88_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQSPETOUmUtABSZ6AAvMGgAAyqGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CX25e4tLdyCgQB8egnJqemZ7Nm5+UUloADUoNj8za2t-BGa0TpxhtXsVIU8pcJzWjG6VIkN1Qxl8x5e9MxsXNwAFpysRtxn-ILdJHOX4gD8oAo7CInB+v1AAC49IYTOYGFZbI1QE8Xm9zrNwfMAQRWNYGKDMa0ocdUtwMlxWIUDJkqNY0R9VO4NO5Kt4SadNttzksyHQMqANltOAwggK6g0AExNQmXdpBbrk55Ugi0k7cMEyzH6AyC7aODWa37xRIpNIGDJZeIjArFDAfA2YxbLbSxAWczjmohU2r1bjWfQUbCOf0ZCWudxzXkkfmsUWsEgGTi2bYJAw0Ah+gMzRniKP8yxxhNJzgpihpjMhihhnNiLgseo8bW6nixqaWBlzVn0SvcViOdtLXDNz3e8WZjLcIOgDCOACsjgAHPxgwHuBLQo4MPPpthQh2QKBYFwGCKAEQAJVIp9ABBo7EBTxv9X5DBo1iIqzQoAAKk5qqCDyBJxQFYJI6m+A94gfThQHPABRWAABlQF0ChH02JIHgoRxb3vQo7xg1931WBggA')">// amb-evaluate input:
 try again
-
 </pre><pre class='prettyprintoutput'>
-
 // There are no more values of
-prime_sum_pair([1, [3, [5, [8, null]]]], [20, [35, [110, null]]])
-      
-</pre></div></div></td></tr></table>
+prime_sum_pair([1, [3, [5, [8, null]]]], [20, [35, [110, null]]])</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_88_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-
 </pre><pre class='prettyprintoutput'>
-
-;;; Amb-Eval input:
-      
-</pre></div></div>    </td>
+;;; Amb-Eval input:</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_88_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-
 </pre><pre class='prettyprintoutput'>
-
-// amb-evaluate input:
-      
-</pre></div></div></td></tr></table>
+// amb-evaluate input:</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_88_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(prime-sum-pair '(19 27 30) '(11 36 58))
-</pre><pre class='prettyprintoutput'>
-
+(prime-sum-pair '(19 27 30) '(11 36 58))</pre><pre class='prettyprintoutput'>
 ;;; Starting a new problem
 ;;; Amb-Eval value:
-(30 11)
-      
-</pre></div></div>    </td>
+(30 11)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_88_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUFQYB9ACZUAbvqoAjADY9eAGlABPQSPETOUmUtABSZ6AAvMGgAAyqGoSklLT0VCQUnADmnOyGDBQc1CRJBgTsNAC23CSuouKS0vQADqxU7CX25e4tLdyCgQB8egnJqemZ7Nm5+UUloADUoNj8za2t-BGa0TpxhtXsVIU8pcJzWjG6VIkN1Qxl8x5e9MxsXNwAFpysRtxn-ILdJHOX4gD8oAo7CInB+v1AAC49IYTOYGFZbI1QE8Xm9zrNwfMAQRWNYGKDMa0ocdUtwMlxWIUDJkqNY0R9VO4NO5Kt4SadNttzksyHQMqANltOAwggK6g0AExNQmXdpBbrk55Ugi0k7cMEyzH6AyC7aODWa37xRIpNIGDJZeIjArFDAfA2YxbLbSxAWczjmohU2r1bjWfQUbCOf0ZCWudxzXkkfmsUWsEgGTi2bYJAw0Ah+gMzRniKP8yxxhNJzgpihpjMhihhnNiLgseo8bW6nixqaWBlzVn0SvcViOdtLXDNz3e8WZjLcbAATkcEoA7I4MKF+MGA5Og6AMAA2RwAVgAHB2QKBYFwGCKAEQAJVIF9ABBo7EBT3v9X5DBo1iIqzQoAAKk41SgseQJOKArBJHU3zHvEz6cKAV4AKKwAAMqAugUC+mxJA8FCOA+T6FI+8Efl+qwMEAA')">prime_sum_pair(list(19, 27, 30), list(11, 36, 58));
-
 </pre><pre class='prettyprintoutput'>
-
 // Starting a new problem
 // amb-evaluate value:
-[30, [11, null]]
-      
-</pre></div></div></td></tr></table>
+[30, [11, null]]</pre></div></div></td></tr></table>
   </p></div>
 
   
@@ -2203,8 +2121,7 @@ prime_sum_pair([1, [3, [5, [8, null]]]], [20, [35, [110, null]]])
     (let ((j (an-integer-between i high)))
       (let ((k (an-integer-between j high)))
         (require (= (+ (* i i) (* j j)) (* k k)))
-        (list i j k)))))
-</pre></div></div>    </td>
+        (list i j k)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_88_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AQwH0AHATwoAsaBzGgJwCmDEkwr8qLADaCmAI0EUA7oMEkAFFJpKANKE5UenAJSgA3qEtXcV0GToBnCqCqgAvI1FUSFQT0H88ooqapraegZGxgDcNlb2JE6gAFbunkzevv6BCsqqGlQRhiaxtglJANZpIhk+fgFBeaHJRVGlVkIAjkRUQuquAFQuoADUKaBDqW7ToFVDFTFxlkIURPz0UlRO-Xots4sAvvjM7Fy8AsKi4pIyjSEaAKx62A+LIKCwQg4OoABEAEqkX6gAgCUBcQQg3pJBw0KREah0NCgAAqbBYglw73EbEYPAY3ixYG84M4kP+AFFYAAZUB0UmQiRGCh6UH8UAAWwuoFh8MRiSAA')">function a_pythogorean_triple_between(low, high) {      
     const i = an_integer_between(low, high);
     const j = an_integer_between(i, high);
@@ -2212,7 +2129,6 @@ prime_sum_pair([1, [3, [5, [8, null]]]], [20, [35, [110, null]]])
     require(i * i + j * j === k * k);
     return list(i, j, k);
 }
-
 </pre></div></div></td></tr></table>
   
       <div class="Solution">
@@ -2311,8 +2227,7 @@ prime_sum_pair([1, [3, [5, [8, null]]]], [20, [35, [110, null]]])
         (require (>= hsq ksq))
         (let ((k (sqrt ksq)))
           (require (integer? k))
-          (list i j k))))))
-</pre></div></div>    </td>
+          (list i j k))))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_88_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0EYBQuAzAVwDsBjAFwEsB7E0AQwH0AHATwoAsGBzGgJwCmDEkwr8qLADaCmAI0EUA7oMEkAFFJpKANKE5UenAJSgA3rlBXQZOgGcKoKqAC8jUVRIVBPQf3mKKmqa2noGRsYA3JbWtiQO+nYAjq76hpygAFRpRtHWNvaOAFapIkye3r7+CsqqGlRh6VExVnEJANbJqc7ZzgDUoCXZRXnWQklEVELqnF0AfG6dSc35bY7tqQC2DFxMyfwU6ksrY4ITU4LqVHblXj5+R8YnVlLXhw2Deu3NAL74xORqHQnDcKvd+OoAB6mCz5IQUIj8eiQ1wuNzbXYELQCKG-XDMdhcXgCYSicSSGQBWrBACsemwNKiQA')">function a_pythagorean_triple_between(low, high) {
     const i = an_integer_between(low, high);
     const hsq = high * high;
@@ -2323,7 +2238,6 @@ prime_sum_pair([1, [3, [5, [8, null]]]], [20, [35, [110, null]]])
     require(is_integer(k));
     list(i, j, k);
 }
-
 </pre></div></div></td></tr></table>
   
       <div class="Solution">

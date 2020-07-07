@@ -1728,8 +1728,7 @@
 "print_result",
     perform(op("announce_output"), const(";;; EC_Eval value:")),
     perform(op("user_print"), reg("val")),
-    go_to(label("read_eval_print_loop")),
-</pre></div></div>
+    go_to(label("read_eval_print_loop")),</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1757,8 +1756,7 @@
 
 "signal_error",
     perform(list(op("user_print"), reg("val"))),
-    go_to(label("evaluator_done")),
-</pre></div></div>
+    go_to(label("evaluator_done")),</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1784,8 +1782,7 @@ function eceval() {
                         list(read_eval_print_loop,
                              ... /* entire machine controller as given above */ 
                              ));
-}
-</pre></div></div>
+}</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1803,8 +1800,7 @@ function eceval() {
 const eceval_operations = 
     list(list("is_self_evaluating", is_self_evaluating),
          ... /* complete list of operations for eceval machine */
-         );
-</pre></div></div>
+         );</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1813,8 +1809,7 @@ const eceval_operations =
   <div class='snippet' id='javascript_115_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 const the_global_environment = setup_environment();
 
-start(eceval);
-</pre></div></div>
+start(eceval);</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1855,7 +1850,6 @@ start(eceval);
     perform(op("print_stack_statistics")), // added instruction
     perform(op("announce_output"), constant("/// EC-Eval value:")),
     /* ... same as before ... */
-
 </pre></div></div>
       </p></div>
 
@@ -1876,8 +1870,7 @@ ok
 factorial(5);
 (total-pushes = 144 maximum-depth = 28)
 /// EC-Eval value:
-120
-</pre></div></div>
+120</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1913,8 +1906,7 @@ function factorial(n) {
     }
 
     return iter(1, 1, n);
-}
-</pre></div></div>
+}</pre></div></div>
 
   Run the
   function
@@ -1957,8 +1949,7 @@ function factorial(n) {
     return n === 1 
            ? 1
            : n * factorial(n - 1);
-}
-</pre></div></div>
+}</pre></div></div>
   By running this
   function
   with the monitored stack, determine, as a
@@ -2019,8 +2010,7 @@ function factorial(n) {
   <div class='snippet' id='javascript_115_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function fib(n) {
     return n < 2 ? n : fib(n - 1) + fib(n - 2);
-}
-</pre></div></div>
+}</pre></div></div>
   <OL>
     <LI>
       Give a formula in terms of $n$ for the maximum depth of the stack
@@ -2127,8 +2117,7 @@ const the_global_environment = setup_environment();
 
 function get_global_environment() {
     return the_global_environment;
-}
-</pre></div></div>
+}</pre></div></div>
     </p>
   
     </FOOTNOTE></div>

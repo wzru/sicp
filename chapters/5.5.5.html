@@ -1698,7 +1698,6 @@ function factorial(n) {        \
 }                              "),
        "val",
        "next");
-
 </pre></div></div>
       </p></div>
 
@@ -1795,7 +1794,6 @@ assign("val", constant(ok));</kbd>
   <div class='snippet' id='javascript_121_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHTpQKCwO1ALxGgCMoWoloA-KeVaAFyj4BUoAZgIYDGALgHsATgEsuAGwAU+ALSkAlEA')">n === 1 
     ? 1 
     : n * factorial(n - 1)
-
 </pre></div></div>
       </p></div>
 
@@ -1855,7 +1853,6 @@ go_to(reg("val")),
 "primitive_branch17",
 assign("val", list(op("apply_primitive_function"), reg("fun"), reg("argl"))),
 "after_call15",
-
 </pre></div></div>
       </p></div>
 
@@ -1866,7 +1863,6 @@ assign("val", list(op("apply_primitive_function"), reg("fun"), reg("argl"))),
 
   <div class='snippet' id='javascript_121_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHTpQKCwQwM74CWA5gHYAUARAG64A2VANKAMYD2Z+ALrmdxQCMASmFMsJdgH1u7CgCcApiWod+RMgFdFVUUyA')">assign("val", constant(1)),
 go_to(reg("continue")),
-
 </pre></div></div>
       </p></div>
 
@@ -1910,7 +1906,6 @@ go_to(reg("continue")),
         ? 1
         : factorial_alt(n - 1) * n;
 }
-
 </pre></div></div>
   Compile this
   function
@@ -1943,7 +1938,6 @@ go_to(reg("continue")),
 
     return iter(1, 1);
 }
-
 </pre></div></div>
   Annotate the resulting code, showing the essential difference between
   the code for iterative and recursive versions of <kbd>factorial</kbd> that
@@ -2035,7 +2029,6 @@ go_to(reg("continue")),
   might be compiled into something as simple as<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
   <div class='snippet' id='javascript_121_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHTpQKCwQwM74CWA5gHYAUARAG64A2VANKAPYAO19rrA1gK7sA+nQBORXACN6AUxEN+MqgEoWAY1Zl8AF1xlt1XCpaiZJajLI0VqvIVKVaDZm05UA1MdCnzTxqtANLV19CgBGZVUgA')">assign("val", op("lookup_variable_value"), constant("a"), reg("env")),
 assign("val", op("+"), reg("val"), constant(1)),
-
 </pre></div></div>
   In this exercise we will extend our compiler to support open coding of
   selected primitives.  Special-purpose code will be generated for calls to these primitive

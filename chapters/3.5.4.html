@@ -1710,8 +1710,7 @@ const integ = pair(initial_value,
                    () => add_streams(
                            scale_stream(integrand, dt),
                            integ)
-                  );
-</pre></div></div>
+                  );</pre></div></div>
   </p></div>
 
   
@@ -1774,8 +1773,7 @@ function solve(f, y0, dt) {
     const y = integral(dy, y0, dt);
     const dy = stream_map(f, y);
     return y;
-}
-</pre></div></div>
+}</pre></div></div>
     This
     
       
@@ -1845,7 +1843,6 @@ function solve(f, y0, dt) {
                });
     return integ;
 }
-
 </pre></div></div>
   </p></div>
 
@@ -1865,7 +1862,6 @@ function solve(f, y0, dt) {
     const dy = stream_map(f, y);
     return y;
 }
-
 </pre></div></div>
   </p></div>
   <div class='permalink'>
@@ -1889,12 +1885,8 @@ function solve(f, y0, dt) {
     $y(0)=1$:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
     
     <div class='snippet' id='javascript_72_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0BYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGZBQEhoKJlAKAAsNon6aGO2N5lYqAC8ZajpQGgAHagZzy9oSfkFCUkoX0EMapQZ1GQaAwAEauJgcAA0PwAjNDDAAmHi8epNPygKiGdQkWziNiGGE8ABkRIxWJx4jxiK4k2EAH4VrjaUIAFxk7G4-GE0AAHx57IpVKRzNADKY8nkNHkbEF0IARKQmAAPW5MSjuWTyADmRGYJGkrh+fxkAKBoPBLLlNIybNuMio0oIbB2Ki5XEhLuU+KR7pEgxO7ACuhCvySpuBYLcUKNYfUFHtVMJkJFU0Gof+cYT3q4Oa4iw+5Cu9BUynU6ZNhi58KRAyEaPo5fD5qjbCVcNASprwQ7MNAAGoOwj4e3qfnOF9roYyHImGXjQx8fPoQZKFLkajhujG+oGDJbq3gx3QAAqfQyVfyZOp8KNvO4JZgVbrTY7UB7DYHF-HFg0J5Fm73FQjwXEWbwiOO-6uOsWryHIbBOOIMiqO46hQUwMEyCQyjQlBVByOoABuchEEw0LKBQ65iECJC-Bi+roboIp2g6bC4fhRHiCRV4lAGbBBt2KLXtRtFoRhWG6KACFIShomwVhhQppk9ayMopaNpWU4znOYasfRYnYZJFHQop16ZKJd6pp0ObtKMPjoqJY6fP+hg0OIBEQgQ0KqAADGRFG1qAwnSKoEmyXBsSBCEaheb5hkWcIQWSSFejbru+6eaAqjxXWm70Ko+a4NuihOi5bkQslISqNC7beWg3neUmoAwvV3l5kAA')">stream_ref(solve(y => y, 1, 0.001), 1000);
-
 </pre><pre class='prettyprintoutput'>
-
-2.716923932235896
-      
-</pre></div></div>
+2.716923932235896</pre></div></div>
   </p></div>
 
   
@@ -1920,7 +1912,6 @@ function solve(f, y0, dt) {
                        dt * head(integrand) + initial_value,
                        dt));
 }
-
 </pre></div></div>
     When used in systems with loops, this
     

@@ -1719,8 +1719,7 @@ eval-dispatch
       (branch (label ev-begin))
       (test (op application?) (reg exp))
       (branch (label ev-application))
-      (goto (label unknown-expression-type))
-</pre></div></div>    </td>
+      (goto (label unknown-expression-type))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "eval_dispatch",
     test(op("is_self_evaluating"), reg("exp")), 
@@ -1745,8 +1744,7 @@ eval-dispatch
     branch(label("ev_block")),
     test(op("is_application"), reg("exp")),
     branch(label("ev_application")),
-    go_to(label("unknown_expression_type")),
-</pre></div></div></td></tr></table>
+    go_to(label("unknown_expression_type")),</pre></div></div></td></tr></table>
       </p></div>
 
       
@@ -1788,8 +1786,7 @@ ev-self-eval
         (assign exp (op lambda-body) (reg exp))
         (assign val (op make-procedure)
         (reg unev) (reg exp) (reg env))
-        (goto (reg continue))
-</pre></div></div>    </td>
+        (goto (reg continue))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_self_eval",
     assign("val", list(reg("exp"))),
@@ -1805,8 +1802,7 @@ ev-self-eval
     assign("val",
            list(op("make_compound_function"), 
                 reg("unev"), reg("exp"), reg("env"))),
-    go_to(reg("continue")),
-</pre></div></div></td></tr></table>
+    go_to(reg("continue")),</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -1882,8 +1878,7 @@ ev-application
       (save unev)
       (assign exp (op operator) (reg exp))
       (assign continue (label ev-appl-did-operator))
-      (goto (label eval-dispatch))
-</pre></div></div>    </td>
+      (goto (label eval-dispatch))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_application",
     save("continue"),
@@ -1892,8 +1887,7 @@ ev-application
     save("unev"),
     assign("exp", list(op("operator"), reg("exp"))),
     assign("continue", label("ev_appl_did_operator")),
-    go_to(label("eval_dispatch")),
-</pre></div></div></td></tr></table>
+    go_to(label("eval_dispatch")),</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -1921,8 +1915,7 @@ ev-appl-did-operator
       (assign proc (reg val))         ; the operator
       (test (op no-operands?) (reg unev))
       (branch (label apply-dispatch))
-      (save proc)
-</pre></div></div>    </td>
+      (save proc)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_appl_did_operator",
     restore("unev"), // the operands
@@ -1931,8 +1924,7 @@ ev-appl-did-operator
     assign("fun", list(reg("val"))), // the operator
     test(op("has_no_operands"), reg("unev")),
     branch(label("apply_dispatch")),
-    save("fun"),
-</pre></div></div></td></tr></table>
+    save("fun"),</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -1960,8 +1952,7 @@ ev-appl-operand-loop
       (save env)
       (save unev)
       (assign continue (label ev-appl-accumulate-arg))
-      (goto (label eval-dispatch))
-</pre></div></div>    </td>
+      (goto (label eval-dispatch))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_appl_operand_loop",
     save("argl"),
@@ -1971,8 +1962,7 @@ ev-appl-operand-loop
     save("env"),
     save("unev"),
     assign("continue", label("ev_appl_accumulate_arg")),
-    go_to(label("eval_dispatch")),
-</pre></div></div></td></tr></table>
+    go_to(label("eval_dispatch")),</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -1992,8 +1982,7 @@ ev-appl-accumulate-arg
       (restore argl)
       (assign argl (op adjoin-arg) (reg val) (reg argl))
       (assign unev (op rest-operands) (reg unev))
-      (goto (label ev-appl-operand-loop))
-</pre></div></div>    </td>
+      (goto (label ev-appl-operand-loop))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_appl_accumulate_arg",
     restore("unev"),
@@ -2001,8 +1990,7 @@ ev-appl-accumulate-arg
     restore("argl"),
     assign("argl", list(op("adjoin_arg"), reg("val"), reg("argl"))),
     assign("unev", list(op("rest_operands"), reg("unev"))),
-    go_to(label("ev_appl_operand_loop")),
-</pre></div></div></td></tr></table>
+    go_to(label("ev_appl_operand_loop")),</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -2029,8 +2017,7 @@ ev-appl-last-arg
       (restore argl)
       (assign argl (op adjoin-arg) (reg val) (reg argl))
       (restore proc)
-      (goto (label apply-dispatch))
-</pre></div></div>    </td>
+      (goto (label apply-dispatch))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_appl_last_arg",
     assign("continue", label("ev_appl_accum_last_arg")),
@@ -2040,8 +2027,7 @@ ev-appl-last-arg
     restore("argl"),
     assign("argl", list(op("adjoin_arg"), reg("val"), reg("argl"))),
     restore("fun"),
-    go_to(label("apply_dispatch")),
-</pre></div></div></td></tr></table>
+    go_to(label("apply_dispatch")),</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -2099,16 +2085,14 @@ apply-dispatch
       (branch (label primitive-apply))
       (test (op compound-procedure?) (reg proc))  
       (branch (label compound-apply))
-      (goto (label unknown-procedure-type))
-</pre></div></div>    </td>
+      (goto (label unknown-procedure-type))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "apply_dispatch",
     test(op("is_primitive_function"), reg("fun")),
     branch(label("primitive_apply")),
     test(op("is_compound_function"), reg("fun")),
     branch(label("compound_apply")),
-    go_to(label("unknown_procedure_type")),
-</pre></div></div></td></tr></table>
+    go_to(label("unknown_procedure_type")),</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -2156,8 +2140,7 @@ primitive-apply
             (reg proc)
             (reg argl))
       (restore continue)
-      (goto (reg continue))
-</pre></div></div>    </td>
+      (goto (reg continue))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "primitive_apply",
     assign(
@@ -2165,8 +2148,7 @@ primitive-apply
     list(op("apply_primitive_function"), reg("fun"), reg("argl"))
     ),
     restore("continue"),
-    go_to(reg("continue")),
-</pre></div></div></td></tr></table>
+    go_to(reg("continue")),</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -2195,8 +2177,7 @@ compound-apply
       (assign env (op extend-environment)
             (reg unev) (reg argl) (reg env))
       (assign unev (op procedure-body) (reg proc))
-      (goto (label ev-sequence))
-</pre></div></div>    </td>
+      (goto (label ev-sequence))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "compound_apply",
     assign("unev", list(op("function_parameters"), reg("fun"))), // params
@@ -2217,8 +2198,7 @@ compound-apply
     list(op("extend_environment"), reg("unev"), reg("temp"), reg("env"))
     ),
     assign("unev", list(op("function_body"), reg("fun"))),
-    go_to(label("ev_sequence")),
-</pre></div></div></td></tr></table>
+    go_to(label("ev_sequence")),</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -2286,16 +2266,14 @@ compound-apply
 
         
         (define (adjoin-arg arg arglist)
-        (append arglist (list arg)))
-</pre></div></div>    </td>
+        (append arglist (list arg)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 const empty_arglist = list();
 
  
 function adjoin_arg(arg, arglist) {
     return append(arglist, list(arg));
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
     We also use an additional syntax
     <span style="color:teal">procedure</span><span style="color:blue">function</span>
     to test for the
@@ -2306,13 +2284,11 @@ function adjoin_arg(arg, arglist) {
           <tr>
             <td><div class='snippet' id='javascript_112_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (last-operand? ops)
-        (null? (cdr ops)))
-</pre></div></div>    </td>
+        (null? (cdr ops)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function is_last_operand(ops) {
     return is_null(tail(ops));
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
   
     </FOOTNOTE></div>
     

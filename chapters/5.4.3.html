@@ -1704,8 +1704,7 @@
     save("continue"),
     assign("continue", label("ev_if_decide")),
     assign("exp", list(op("conditional_pred"), reg("exp"))),
-    go_to(label("eval_dispatch")),  // evaluate the predicate
-</pre></div></div>
+    go_to(label("eval_dispatch")),  // evaluate the predicate</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1731,8 +1730,7 @@
     
 "ev_if_consequent",
     assign("exp", list(op("conditional_cons"), reg("exp"))),
-    go_to(label("eval_dispatch")),
-</pre></div></div>
+    go_to(label("eval_dispatch")),</pre></div></div>
       </p></div>
 
       
@@ -1768,8 +1766,7 @@
     list(op("assign_name_value"), reg("unev"), reg("val"), reg("env"))
     ),
     assign("val", list(constant("ok"))),
-    go_to(reg("continue")),
-</pre></div></div>
+    go_to(reg("continue")),</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1792,8 +1789,7 @@
     restore("unev"),
     perform(list(op("declare_value"), reg("unev"), reg("val"), reg("env"))),
     assign("val", list(constant("ok"))),
-    go_to(reg("continue")),
-</pre></div></div>
+    go_to(reg("continue")),</pre></div></div>
       </p></div>
 
       

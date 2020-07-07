@@ -1932,8 +1932,7 @@
     The pattern matcher is all the mechanism that is needed to process simple
     queries that don't involve rules.  For instance, to process the query
     <div class='snippet' id='javascript_93_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-job(x, list("computer", "programmer"))
-</pre></div></div>
+job(x, list("computer", "programmer"))</pre></div></div>
     we scan through all assertions in the data base and select those that
     match the pattern with respect to an initially empty frame.  For each
     match we find, we use the frame returned by the match to instantiate
@@ -2029,14 +2028,12 @@ job(x, list("computer", "programmer"))
     <kbd>and</kbd> of two queries, such as
     <div class='snippet' id='javascript_93_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(can_do_job(x, list("computer", "programmer", "trainee")),
-    job(person, x))
-</pre></div></div>
+    job(person, x))</pre></div></div>
     (informally, <QUOTE>Find all people who can do the job of a computer
     programmer trainee</QUOTE>), we first find all entries that match the
     pattern
     <div class='snippet' id='javascript_93_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-can_do_job(x, list("computer", "programmer", "trainee"))
-</pre></div></div>
+can_do_job(x, list("computer", "programmer", "trainee"))</pre></div></div>
   </p></div>
 
   <div class='permalink'>
@@ -2049,8 +2046,7 @@ can_do_job(x, list("computer", "programmer", "trainee"))
     Then for each frame in the stream we find all entries that
     match
     <div class='snippet' id='javascript_93_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-job(person, x)
-</pre></div></div>
+job(person, x)</pre></div></div>
     in a way that is consistent with the given binding for
     
       
@@ -2150,8 +2146,7 @@ job(person, x)
     some query acts as a filter that removes all frames for which the query can
     be satisfied.  For instance, given the pattern
     <div class='snippet' id='javascript_93_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-not(job(x, list("computer", "programmer")))
-</pre></div></div>
+not(job(x, list("computer", "programmer")))</pre></div></div>
     we attempt, for each frame in the input stream, to produce extension
     frames that satisfy
     
@@ -2177,8 +2172,7 @@ not(job(x, list("computer", "programmer")))
     For example, in processing the query
     <div class='snippet' id='javascript_93_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(supervisor(x, y),
-    not(job(x, list("computer", "programmer"))))
-</pre></div></div>
+    not(job(x, list("computer", "programmer"))))</pre></div></div>
     the first clause will generate frames with bindings for
     
       
@@ -2563,8 +2557,7 @@ and(supervisor(x, y),
     inferences from rules. To see how this is accomplished, consider
     processing a query that involves applying a rule, such as
     <div class='snippet' id='javascript_93_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-lives_near(x, list("Hacker", "Alyssa", "P"))
-</pre></div></div>
+lives_near(x, list("Hacker", "Alyssa", "P"))</pre></div></div>
   </p></div>
 
   <div class='permalink'>
@@ -2583,8 +2576,7 @@ lives_near(x, list("Hacker", "Alyssa", "P"))
 rule(lives_near(person_1, person_2),
      and(address(person_1, pair(town, rest_1)),
          address(person_2, list(town, rest_2)),
-         not(same(person_1, person_2))))
-</pre></div></div>
+         not(same(person_1, person_2))))</pre></div></div>
     resulting in a frame specifying that
     
       
@@ -2883,8 +2875,7 @@ assert(job(list("Bitdiddle", "Ben"), list("computer", "wizard")))
 
 assert(rule(wheel(person),
             and(supervisor(middle_manager, person),
-                supervisor(x, middle_manager))))
-</pre></div></div>
+                supervisor(x, middle_manager))))</pre></div></div>
     
   </p></div>
 <hr>

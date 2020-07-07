@@ -1730,7 +1730,6 @@
     <div class='snippet' id='javascript_24_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0BYBQuAzAVwDsBjAFwEsB7E0AQwDcBTAJwYHMWAKADwA0ATwCUoAN65Q00GxYUibev1ABqUKNBgATAG5cAX3zFy1OqADOARyIM5-MZJmz5i+n1AAqUH31HCpJS09MzsXCwA+gAmDAC2AA48BI5SMnIKSj6gALwAfIysHNz8AqAEDiJ++KFFkTEJPNa2ciI8KAAMlUA')">function average_damp(f) {
     return x => average(x, f(x));
 }
-
 </pre></div></div>
   </p></div>
   <div class='permalink'>
@@ -1793,7 +1792,6 @@
     
     to 10 returns the average of 10 and 100, or 55:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
     <div class='snippet' id='javascript_24_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0BYBQuAzAVwDsBjAFwEsB7E0AQwDcBTAJwYHMWAKADwA0ATwCUoAN65Q00GxYUibev1ABqUKNBgATAG5cAX3zFy1Oo1YduAfQAmDALYAHHgTGSZs+Yvp9QAXgA+C3YuXkFQAn4REX0jQlJKWnoAZwBHIgY5aIkpGTkFJVA-ACpiuPxmUJt7Zx50zLkRHhQABligA')">average_damp(square)(10);
-
 </pre></div></div>
   </p></div>
 
@@ -1815,7 +1813,6 @@
     return fixed_point(average_damp(y => x / y),
                        1.0);
 }
-
 </pre></div></div>
     
 
@@ -1862,7 +1859,6 @@
     return fixed_point(average_damp(y => x / square(y)),
                        1.0);
 }
-
 </pre></div></div>
     
     
@@ -1937,7 +1933,6 @@
     <div class='snippet' id='javascript_24_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0BYBQuBjAewDsBnAF1ABMAPUAXlAAY1n3mUBufAMwFcSBCgEtSNAKYAnEQDcAFAHMAlKADeuUFtBSJFflJKh6DAHygl8+gGoatVQFpQiq8tVg6PAL59BwsUYE-ABGEq7qOnoGRvQAVMag8bRcoD641NJy8kGhyvIArMpcQA')">function deriv(g) {
     return x => (g(x + dx) - g(x)) / dx;
 }
-
 </pre></div></div>
     along with the
     
@@ -1945,7 +1940,6 @@
       declaration
     
     <div class='snippet' id='javascript_24_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0BYBQuBjAewDsBnAF1ABMAPUAXlAAY1n3mUBuIA')">const dx = 0.00001;
-
 </pre></div></div>
   </p></div>
   <div class='permalink'>
@@ -1977,7 +1971,6 @@
     <div class='snippet' id='javascript_24_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0BYBQuBjAewDsBnAF1ABMAPUAXlAAY1n3mUBufAMwFcSBCgEtSNAKYAnEQDcAFAHMAlKADeuUFtBSJFflJKh6DAHygl8+gGoatVQFpQiq8tVg6PAL59BwsUYE-ABGEq7qOnoGRvQAVMag8bRcoD641NJy8kGhyvIArMpcQA')">function cube(x) { return x * x * x; }
 
 deriv(cube)(5);
-
 </pre></div></div>
     
   </p></div>
@@ -1993,7 +1986,6 @@ deriv(cube)(5);
 function newtons_method(g, guess) {
    return fixed_point(newton_transform(g), guess);
 }
-
 </pre></div></div>
     
     
@@ -2037,7 +2029,6 @@ function newtons_method(g, guess) {
     return newtons_method(y => square(y) - x,
                           1.0);
 }
-
 </pre></div></div>
     
     
@@ -2074,7 +2065,6 @@ function newtons_method(g, guess) {
     <div class='snippet' id='javascript_24_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0BYBQuAzAVwDsBjAFwEsB7E0AQwCMBnACgA8BKUAb11CDQAJwCmFIsPodQAPgC8oAAygA-KBkAuUAFoOAblwBffGTosKoCjQA2o4Q3KjQipWiUelKQ8XLU6oARUHKIAJgD6AA40VCQUbAQANIFUwhbhAOZEoiwsPPxCgaSUtPRkNjQsouGiJDREGQAWnMkAnvkChUJiElKMrJy6oO2gADxWtvaOZKKGhSaFviUBFMKt4QDuVBTNWTl5fJ1doGYkFqAkohyWigRse7lcc8ci4pJlFVU1dQ272bnJS7XLhHF5ddRAiigsFCbSrdZbHZsSFPUELbpvPrwzbbZpBNIUTL-PKGEyEYr+egMABuUwyohaIwKGN69EGAGphjwwAAmUn4JaUxi0hz08KhBgAW0iCQ6hR67w0LlkwrpDI4yTu3FRZMFpVALAAjsJ4txDvLMfQgiEItFYoSaARwqtHCwCDRhJK2NCYcNlUqwK1Ej6YTS1eKpZFg76uuglDqBRT9dawlEYnFwo7nQ4zu7Pfdki7cx7JckHgdmYIFX0U7b0-Ei26S-cuGXiQncEaTWwAGxPIA')">function fixed_point_of_transform(g, transform, guess) {
     return fixed_point(transform(g), guess);
 }
-
 </pre></div></div>
     
   </p></div>
@@ -2114,7 +2104,6 @@ function newtons_method(g, guess) {
                average_damp,
                1.0);
 }
-
 </pre></div></div>
     
     
@@ -2133,7 +2122,6 @@ function newtons_method(g, guess) {
                newton_transform,
                1.0);
 }
-
 </pre></div></div>
     
   </p></div>
@@ -2246,8 +2234,7 @@ function newtons_method(g, guess) {
     in expressions of the form
     
     <div class='snippet' id='javascript_24_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-newtons_method(cubic(a, b, c), 1);
-</pre></div></div>
+newtons_method(cubic(a, b, c), 1);</pre></div></div>
     to approximate zeros of the cubic
     $x^3 +ax^2 +bx +c$.
     
@@ -2259,7 +2246,6 @@ newtons_method(cubic(a, b, c), 1);
       <div class='snippet' id='javascript_24_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0BYBQuAzAVwDsBjAFwEsB7E0AQwCMBnACgA8BKUAb11CDQAJwCmFIsPodQAPgC8oAAygA-KBkAuUAFoOAblwBffGTosKoCjQA2o4Q3KjQipWiUelKQ8XLU6oARUHKIAJgD6AA40VCQUbAQANIFUwhbhAOZEoiwsPPxCgaSUtPRkNjQsouGiJDREGQAWnMkAnvkChUJiElKMrJy6oO2gADxWtvaOZKKGhSaFviUBFMKt4QDuVBTNWTl5fJ1doGYkFqAkohyWigRse7lcc8ci4pJlFVU1dQ272bnJS7XLhHF5ddRAiigsFCbSrdZbHZsSFPUELbpvPrwzbbZpBNIUTL-PKGEy4U7nUIyVzuTzefBLfz0UL2KgAN3uHUKPXeGhcslA90GAGpQFSeDpQBlOFweGAqaSGcUmRdRBtrCRwqtHCwCDRhABbTmHDG9aT8vmS6XcUDy1kcjJcGWKxmlVXq8zhA3iRo0UL3ZIPA4FQQ8vpBEIRaKxeKXD2a7VnPWGzmB4mosmugJkIhMUQyk2m3kyABUfLLBmMSr8bpYAEciAwxAWQ6HMeaK4rcCATrmqGQJqA86ANsJthRakPWqALEQWXF9DPRM4AKIADRXACVoJBwCvUDglNXlmU+2Q2AxkkxkmQuUW+tSBTm8wXRQxQGX643mzbRUwP3yopkF2cYaiwXo+n6bDPv2bAoMkOjYMkShcMkKBPEAA')">function cubic(a, b, c) {
     return x => cube(x) + a * square(x) + b * x + c;
 }
-
 </pre></div></div>
       
     </SOLUTION></div></div>
@@ -2309,7 +2295,6 @@ newtons_method(cubic(a, b, c), 1);
     that adds 2.  What value is returned by
     
     <div class='snippet' id='javascript_24_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0BYBQuRQATAewFcAjAGwFNQAXE0CugdwCcBLe+mgO2YBPUAGd6ZIv3oBuUTToBRABoKAStEjgFqHCnwAzMnwDG9TiQGcTACj4BKUAG9coV6HY1x7AQIDUqaVwAX3xSSlprMOoaSPJouztrK2NEgFY7aSA')">double(double(double))(inc)(5);
-
 </pre></div></div>
     
   
@@ -2320,7 +2305,6 @@ newtons_method(cubic(a, b, c), 1);
       <div class='snippet' id='javascript_24_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0BYBQuAzAVwDsBjAFwEsB7E0K8gChIEpQBvXUH0AJwCmFIn3r0A1KgDcuAL75i5anVAATGkQBGAGwFMC7Lr35CR9AB6gAvAD5QBfU3OtWM+bnVbdTTzr2-dFyZGMlYmAFZXUBATYVEAZ1AAJhQgA')">function double(f) {
     return x => f(f(x));
 }
-
 </pre></div></div>
       
     </SOLUTION></div></div>
@@ -2351,12 +2335,8 @@ newtons_method(cubic(a, b, c), 1);
     that adds 1 to its argument,
     
     <div class='snippet' id='javascript_24_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0BYBQuRQBjAewFsAHEgZwFNQAXE0AI3oHcAnASwYdoB2rAJ6hqDAK4ATQQwDcY2vQCiADWUAlaJHDLUOAEz4AZhIFEG3EkOoBHCQENOtABQAPAJSgA3rlD-QZ0lOITdQACpQNzlcAF8TMwsrIW5zFwEvXwDA2mChIQBqVBj43FJKGlc7R2cAGlBUog8XADYPOSA')">compose(square, inc)(6);
-
 </pre><pre class='prettyprintoutput'>
-
-49
-      
-</pre></div></div>
+49</pre></div></div>
     returns 49.
     
   
@@ -2367,7 +2347,6 @@ newtons_method(cubic(a, b, c), 1);
       <div class='snippet' id='javascript_24_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0BYBQuAzAVwDsBjAFwEsB7E0K8gChIEpQBvXUH0AJwCmFIn3r0A1KgDcuAL75i5anVABnAI5EAhoKYAPdl178hI+ntAAqUHpnzCpSrXpkaAWwAONVQKYEANKAA5obcvILCojagALwAfKAETEH6rKx2+K6e3r4a2oKBjGSsTABs6aAgJpEkqqDYAJxAA')">function compose(f, g) {
     return x => f(g(x));
 }
-
 </pre></div></div>
       
     </SOLUTION></div></div>
@@ -2418,7 +2397,6 @@ newtons_method(cubic(a, b, c), 1);
     should be able to be used as follows:
     
     <div class='snippet' id='javascript_24_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0BYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvhATOAB06sKnACagKNUACNOoAO7sqFQ-QsBPRlKOcSFZY07WAUQANAIAlaEhwANQcDHwuPQNjbmY2LgAaUAAmfm4AVn5lIA')">repeated(square, 2)(5);
-
 </pre></div></div>
     Hint: You may find it convenient to use
     <kbd>compose</kbd> from
@@ -2435,7 +2413,6 @@ newtons_method(cubic(a, b, c), 1);
            ? x => x
            : compose(f, repeated(f, n - 1));
 }
-
 </pre></div></div>
       
     </SOLUTION></div></div>
@@ -2492,7 +2469,6 @@ function smooth(f) {
 function n_fold_smooth(f, n) {
     return repeated(smooth, n)(f);
 }
-
 </pre></div></div>
   </SOLUTION></div></div>
 </EXERCISE></div>
@@ -2556,7 +2532,6 @@ function n_fold_smooth(f, n) {
                        (y => x / fast_expt(y, n - 1)),
                        1.0);
 }
-
 </pre></div></div>
       
     </SOLUTION></div></div>
@@ -2639,7 +2614,6 @@ function n_fold_smooth(f, n) {
     }
     return iterate;
 }
-
 </pre></div></div>
       
     </SOLUTION></div></div>

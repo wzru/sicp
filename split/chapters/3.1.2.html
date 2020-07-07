@@ -1772,8 +1772,7 @@ $x_3$ = rand_update($x_2$);</kbd>
             (let ((x random-init))
             (lambda ()
             (set! x (rand-update x))
-            x)))
-</pre></div></div>    </td>
+            x)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_52_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEY0CYBQuRQBBUANwFMAnAT1AGcBLAWwAcAbc0SgQwDsATAPoBXFv24AXTgDNhvAMYSGAe16h5y1sKl1Q3UL2FMARlQJhplTaAAMoABQMFbYYwoBKUBOWhsNmwCsAGw2ACwAnDYYKBgO+mzclADmnCyUzOTu5qCW1vqk3C6cAB6gxrRMwmxK7NROSaAMEqAA7k0AFnrqqnQSfM3cADTZ3Pz89V0avL39ZYN6Al7t5Gp9ANYTEstc5EzcTvxmhMrSoOOkDOO8DU1ltFucCcmp6UzkaKAA6pyu5PyNzWWlE42WkykojTYLl6PCUqlAqjY1HmfH+-B8vGUzXkCWYC1o2RmSl6DHkhVAaWULCoSnIdDQuCmvVATFAAF5fP5gmFItEMABuUCMnoDdmgDAYGwoAIYALYUIBfnC6bNYxijDYFAKpW4WQKOFqHgCERiSTkezFTwAb1woDtOwkwkoans+gAVKBSgBqMqeACkLKVAF98Ezmkb0UxBE5bhyNVrggB2AAc4R1esUKjUezW5EEEfs1ttdo4zVKHIjmmjvCaSvtwMdzocnjZAD5QDb7V3y1xUSbxFILe46127Q2nWpiiPQEHg8rmRGxTm8wXh-hxnR2NxqPZV2uN1ud3ulQeEkfUYXh0A')">function make_rand() {
    let x = random_init;
    return () => {
@@ -1782,7 +1781,6 @@ $x_3$ = rand_update($x_2$);</kbd>
    };
 }
 const rand = make_rand();
-
 </pre></div></div></td></tr></table>
 
     
@@ -1888,8 +1886,7 @@ const rand = make_rand();
            (iter (- trials-remaining 1) (+ trials-passed 1)))
           (else
            (iter (- trials-remaining 1) trials-passed))))
-  (iter trials 0))
-</pre></div></div>    </td>
+  (iter trials 0))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_52_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEY0CYBQuRQBBUANwFMAnAT1AGcBLAWwAcAbc0SgQwDsATAPoBXFv24AXTgDNhvAMYSGAe16h5y1sKl1Q3UL2FMARlQJhplTaAAMoABQMFbYYwoBKUBOWhsNmwCsAGw2ACwAnDYYKBgO+mzclADmnCyUzOTu5qCW1vqk3C6cAB6gxrRMwmxK7NROSaAMEqAA7k0AFnrqqnQSfM3cADTZ3Pz89V0avL39ZYN6Al7t5Gp9ANYTEstc5EzcTvxmhMrSoOOkDOO8DU1ltFucCcmp6UzkaKAA6pyu5PyNzWWlE42WkykojTYLl6PCUqlAqjY1HmfH+-B8vGUzXkCWYC1o2RmSl6DHkhVAaWULCoSnIdDQuCmvVATFAAF5fP5gmFItEMABuUCMnoDdmgDAYGwoAIYALYUIBfnC6bNYxijDYFAKpW4WQKOFqHgCERiSTkezFTwAb1woDtOwkwkoans+gAVKBSgBqMqeACkLKVAF98Ezmkb0UxBE5bhyNVrggB2AAc4R1esUKjUezW5EEEfs1ttdo4zVKHIjmmjvCaSvtwMdzocnjZAD5QDb7V3y1xUSbxFILe46127Q2nWpiiPQEHg8rmRGxTm8wXh-gMwbQEl5PxXfNjEWu+Om2q2WfbKAAPxdABcW539mMKNAAYPc91ckz8LpSj2UkELAMPYEjpIUdCHvW5CNtmkjtIIdAAI6UBI9hBKAYBMKo-5kpQbDKMBoFsHQ8zyHSiTKIIOgSO4a4hh++pZuoZFWJRP6Fh2xZjlBE73ruq7zKuLbngKuB0RujGYbw2GJHhBEMGB8zkMU1KvCs1EcV24nwk0VByWB+a7PsNbXPMIHyURAHcHQdB-BBo6NKcekWcCewxtc7LnjYdn2ZB0FeIRdCWdZfzof55l0NOo5BqA5BEZwDCOUpKkZFJhbeT5Do8TplBOYFLlGRMAC04rDBlZU+WZ+ksFZNn-D6GBrhl0WxTZGnlZlTbZblBmucZDTFRg8yce15WVRZ1XBfwjU+SGXazb5WVSDlY3EbYtH4D+zBmgBQGSv4Xn8kAA')">function estimate_pi(trials) {
     return math_sqrt(6 / monte_carlo(trials, cesaro_test));
 }
@@ -1912,7 +1909,6 @@ function monte_carlo(trials, experiment) {
     }
     return iter(trials, 0);
 }
-
 </pre></div></div></td></tr></table>
     
   </p></div>
@@ -1949,8 +1945,7 @@ function monte_carlo(trials, experiment) {
                (iter (- trials-remaining 1)
                      trials-passed
                      x2))))))
-  (iter trials 0 initial-x))
-</pre></div></div>    </td>
+  (iter trials 0 initial-x))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_52_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEY0CYBQuRQBBUANwFMAnAT1AGcBLAWwAcAbc0SgQwDsATAPoBXFv24AXTgDNhvAMYSGAe16h5y1sKl1Q3UL2FMARlQJhplTaAAMoABQMFbYYwoBKUBOWhsNmwCsAGw2ACwAnDYYKBgO+mzclADmnCyUzOTu5qCW1vqk3C6cAB6gxrRMwmxK7NROSaAMEqAA7k0AFnrqqnQSfM3cADTZ3Pz89V0avL39ZYN6Al7t5Gp9ANYTEstc5EzcTvxmhMrSoOOkDOO8DU1ltFucCcmp6UzkaKAA6pyu5PyNzWWlE42WkykojTYLl6PCUqlAqjY1HmfH+-B8vGUzXkCWYC1o2RmSl6DHkhVAaWULCoSnIdDQuCmvVATFAAF5fP5gmFItEMABuUCMnoDdmgDAYGwoAIYALYUIBfnC6bNYxijDYFAKpW4WQKOFqHgCERiSTkezFTwAb1woDtOwkwkoans+gAVKBSgBqMqeACkLKVAF98Ezmkb0UxBE5bhyNVrggB2AAc4R1esUKjUezW5EEEfs1ttdo4zVKHIjmmjvCaSvtwMdzocnjZAD5QDb7V3y1xUSbxFILe46127Q2nWpiiPQEHg8rmRGxTm8wXh-gMwbQEl5PxXfNjEWu+Om2q2WfbKAAPxdABcW539mMKNAAYPc91ckz8LpSj2UkELAMPYEjpIUdCHvW5CNtmkjtIIdAAI6UBI9hBKAYCVlG25CDoKEgQwYHzJh1ZNO4a4hh++pZr2AhVthgi4cBoFsHQ8wxkohSCJaHbFnaG7UU0VBMQRLH5rs+w1tc8z4WBAHcHQdB-PM3GdqOdphp6sQVn2ogDualrTqOGnFNgYoRv2ZoWhga5qXaDCnMJsnAnsMbXOy542BBtmQdBXjMXQckKX86F+SJdCGV2QagOQLGcPZDjYVZynYC257WTx3lHlBE4AkJMmic5EkTAAtOK8y8ZllV2vlAUsPJin-D6GDJTZtlRTFikZVVx5qIJlCOQV4muQ0pXNUKVUTaFsl1UF-AtRF9ohpFFU9bl-U1fMNhsTWHFsFx5H4D+zBmgBQGSv4nn8kAA')">function estimate_pi(trials) {
     return math_sqrt(6 / random_gcd_test(trials, random_init));
 }
@@ -1971,7 +1966,6 @@ function random_gcd_test(trials, initial_x) {
     }
     return iter(trials, 0, initial_x);
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -2163,13 +2157,11 @@ function random_gcd_test(trials, initial_x) {
             <td><div class='snippet' id='javascript_52_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (random-in-range low high)
   (let ((range (- high low)))
-    (+ low (random range))))
-</pre></div></div>    </td>
+    (+ low (random range))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_52_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwEMSATGgWwAoSBKUAN65QIxgFMKRBvQ5MKACwD6BADY0aDLrIWLmbTl34AqUHwDcuAL75i5anUYt2HRVRK6WAczFc1AdwAaUHkqT3l+IVFQMjoAZwpHEm9QAF5g0PlQAFpQfwsohgkpen9QAGpE5y49b14La1w9Z1d3Gp8ADgAGbs6g9oweuqA')">function random_in_range(low, high) {
     const range = high - low;
     return low + random(range);
 }
-
 </pre></div></div></td></tr></table>
     
   
@@ -2245,7 +2237,6 @@ function rand(symbol) {
         return state;
     } 
 }
-
 </pre></div></div>
 
       

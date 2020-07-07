@@ -1698,14 +1698,12 @@
 (define (sum-integers a b)
   (if (> a b)
       0
-      (+ a (sum-integers (+ a 1) b))))
-</pre></div></div>    </td>
+      (+ a (sum-integers (+ a 1) b))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_21_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGgDOhAtgPqXHkCmA5pwE70AFAEMANKABGASlABvHKEWg+ncoT51hoAHySFSg0oD8oAAz7DBgFygtAagbM2HHvyH3U46QG4cAXzxGVnYuXgFBFHEUUylvIA')">function sum_integers(a, b) {
     return a > b
            ? 0
            : a + sum_integers(a + 1, b);
 }
-
 </pre></div></div></td></tr></table>
     
     
@@ -1718,14 +1716,12 @@
 (define (sum-cubes a b)
   (if (> a b)
       0
-      (+ (cube a) (sum-cubes (+ a 1) b))))
-</pre></div></div>    </td>
+      (+ (cube a) (sum-cubes (+ a 1) b))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_21_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGimEBGApgBQAeAlKAN46gDQAJ2blCQuu1AAqUFNnsA3DgC+eImSq1QAZ0IBbAPoMWO1gEMANKEbc+g4aPF1zoAHw3+D76AD8oAAYvH0EALnomNnNuAGpdA2NIs1c4lGtbZTUcPSMTZjMMawB2TkUgA')">function sum_cubes(a, b) {
     return a > b
            ? 0
            : cube(a) + sum_cubes(a + 1, b);
 }
-
 </pre></div></div></td></tr></table>
     
     
@@ -1745,15 +1741,13 @@
   (if (> a b)
       0
       (+ (/ 1.0 (* a (+ a 2))) 
-         (pi-sum (+ a 4) b))))
-</pre></div></div>    </td>
+         (pi-sum (+ a 4) b))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_21_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGgAOlA+gM6EC2AFAIYA0oAIwCUoAN45Qk0ACcApuULS63UAD5BEqVqkB+UAAZN2rQC5UafaDA9QAKlA2A1KABMQkc6PGtjVhyegACz8wgDcOAC+eAAcdgzMbFwo-Cj6aUKhQA')">function pi_sum(a, b) {
     return a > b
            ? 0
            : 1.0 / (a * (a + 2)) + 
              pi_sum(a + 4, b);
 }
-
 </pre></div></div></td></tr></table>
 
 
@@ -1843,15 +1837,13 @@
   (if (> a b)
       0
       (+ (term a)
-         (sum term (next a) next b))))
-</pre></div></div>    </td>
+         (sum term (next a) next b))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_21_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function sum(term, a, next, b) {
     return a > b
            ? 0
            : term(a) + sum(term, next(a), next, b);
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
     
   </p></div>
   <div class='permalink'>
@@ -1891,15 +1883,13 @@ function sum(term, a, next, b) {
 (define (inc n) (+ n 1))
 
 (define (sum-cubes a b)
-  (sum cube a inc b))
-</pre></div></div>    </td>
+  (sum cube a inc b))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_21_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGimEBGApgBQAeAlKAN46gDQAJ2blCQuu1AAqUFNnsA3DgC+eImSq1QAZ0IBbVuWZD9AGlABDC8WbtyFxtz6Dho8XUugAfKEb9XQNAAflAABgCgwQAuUGNTVktuAGpdAyMTc1Bbe0TOGzsHP05lNQISCho6SjJWYmdItzEJbNBUlFLyzSq0-QB9BhYdRMcG1xFmuj1DQeYLa1Aa0lHOnGmBpmZhlAsUMJKgA')">function inc(n) {
     return n + 1;
 }
 function sum_cubes(a, b) {
     return sum(cube, a, inc, b);
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -1911,19 +1901,11 @@ function sum_cubes(a, b) {
           
           <tr>
             <td><div class='snippet' id='javascript_21_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(sum-cubes 1 10)
-</pre><pre class='prettyprintoutput'>
-
-3025	    
-      
-</pre></div></div>    </td>
+(sum-cubes 1 10)</pre><pre class='prettyprintoutput'>
+3025</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_21_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGimEBGApgBQAeAlKAN46gDQAJ2blCQuu1AAqUFNnsA3DgC+eImSq1QAZ0IBbVuWZD9AGlABDC8WbtyFxtz6Dho8XUugAfKEb9XQNAAflAABgCgwQAuUGNTVktuAGpdAyMTc1Bbe0TOGzsHP05lNQISCho6SjJWYmdItzEJbNBUlFLyzSq0-QB9BhYdRMcG1xFmuj1DQeYLa1Aa0lHOnGmBpmZhlAsUMJKgA')">sum_cubes(1, 10);
-
 </pre><pre class='prettyprintoutput'>
-
-3025
-      
-</pre></div></div></td></tr></table>
+3025</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -1946,12 +1928,10 @@ function sum_cubes(a, b) {
           
           <tr>
             <td><div class='snippet' id='javascript_21_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (identity x) x)
-</pre></div></div>    </td>
+(define (identity x) x)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_21_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGiUAmApsVeQJ4AUAHgJSgBvHKBGgATk3KExdbgG4cAXzyMWbLgBYATLzlA')">function identity(x) {
     return x;
 }
-
 </pre></div></div></td></tr></table>
     
     <table width="100%">
@@ -1960,12 +1940,10 @@ function sum_cubes(a, b) {
           <tr>
             <td><div class='snippet' id='javascript_21_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (sum-integers a b)
-  (sum identity a inc b))
-</pre></div></div>    </td>
+  (sum identity a inc b))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_21_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGgDOhAtgBTkCmATkwDSgCGfYuwAe5PgCMAlKADeOUItCd25Qpzr9QAPlASFSw0oD8oAAwGjhgFygO3FvxkBqBszZdeoYWMdShouJ6UgDcOAC+eERkVLSglGQsxDLyhipqGt6grihhkQQkFDR0lAAm7MRU5ACeLCIplsqq6nQieVGFsXSMTAD6CRwA5lz0jpINac2ZPSxlFVXVfILxZOPtOD39lezDnKMofChmoUA')">function sum_integers(a, b) {
     return sum(identity, a, inc, b);
 }
-
 </pre></div></div></td></tr></table>
     Then we can add up the integers from 1 to 10:
     <table width="100%">
@@ -1973,19 +1951,11 @@ function sum_cubes(a, b) {
           
           <tr>
             <td><div class='snippet' id='javascript_21_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(sum-integers 1 10)
-</pre><pre class='prettyprintoutput'>
-
-55
-      
-</pre></div></div>    </td>
+(sum-integers 1 10)</pre><pre class='prettyprintoutput'>
+55</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_21_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGgDOhAtgBTkCmATkwDSgCGfYuwAe5PgCMAlKADeOUItCd25Qpzr9QAPlASFSw0oD8oAAwGjhgFygO3FvxkBqBszZdeoYWMdShouJ6UgDcOAC+eERkVLSglGQsxDLyhipqGt6grihhkQQkFDR0lAAm7MRU5ACeLCIplsqq6nQieVGFsXSMTAD6CRwA5lz0jpINac2ZPSxlFVXVfILxZOPtOD39lezDnKMofChmoUA')">sum_integers(1, 10);
-
 </pre><pre class='prettyprintoutput'>
-
-55
-      
-</pre></div></div></td></tr></table>
+55</pre></div></div></td></tr></table>
   </p></div>
   <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
@@ -2009,8 +1979,7 @@ function sum_cubes(a, b) {
     (/ 1.0 (* x (+ x 2))))
   (define (pi-next x)
     (+ x 4))
-  (sum pi-term a pi-next b))
-</pre></div></div>    </td>
+  (sum pi-term a pi-next b))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_21_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGgDOhAtgBTkCmATkwDSgCGfYuwAe5PgCMAlKADeOUItCd25Qpzr9QAPlASFSw0oD8oAAwGjhgFygO3FvxkBqBszZdeoYWMdShouJ6UgDcOAC+eERkVLSgAA6UAPqMrILBcpag0RQ0dIlJ9qwiMvJWiipqGqhoZqBgLCKgAFSgjaCuAExSoVmRhjmx+ck+5I2lWYaV6nRNrgAsYYb9StPVqSwFRXzpBaOSvZE4ABwtCckbKHwoZrehQA')">function pi_sum(a, b) {
     function pi_term(x) {
         return 1.0 / (x * (x + 2));
@@ -2020,7 +1989,6 @@ function sum_cubes(a, b) {
     }
     return sum(pi_term, a, pi_next, b);
 }
-
 </pre></div></div></td></tr></table>
 
   </p></div>
@@ -2039,19 +2007,11 @@ function sum_cubes(a, b) {
           
           <tr>
             <td><div class='snippet' id='javascript_21_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(* 8 (pi-sum 1 1000))
-</pre><pre class='prettyprintoutput'>
-
-3.139592655589783	    
-      
-</pre></div></div>    </td>
+(* 8 (pi-sum 1 1000))</pre><pre class='prettyprintoutput'>
+3.139592655589783</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_21_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGgDOhAtgBTkCmATkwDSgCGfYuwAe5PgCMAlKADeOUItCd25Qpzr9QAPlASFSw0oD8oAAwGjhgFygO3FvxkBqBszZdeoYWMdShouJ6UgDcOAC+eERkVLSgAA6UAPqMrILBcpag0RQ0dIlJ9qwiMvJWiipqGqhoZqBgLCKgAFSgjaCuAExSoVmRhjmx+ck+5I2lWYaV6nRNrgAsYYb9StPVqSwFRXzpBaOSvZE4ABwtCckbKHwoZrehQA')">8 * pi_sum(1, 1000);
-
 </pre><pre class='prettyprintoutput'>
-
-3.139592655589783	    
-      
-</pre></div></div></td></tr></table>
+3.139592655589783</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -2085,15 +2045,13 @@ function sum_cubes(a, b) {
 (define (integral f a b dx)
   (define (add-dx x) (+ x dx))
   (* (sum f (+ a (/ dx 2)) add-dx b)
-     dx))
-</pre></div></div>    </td>
+     dx))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_21_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGgDOhAtgBTkCmATkwDSgCGfYuwAe5PgCMAlKADeOUItCd25Qpzr9QAPlASFSw0oD8oAAwGjhgFygO3FvxkBqBszZdeoYWMdShouJ6UgDcOAC+eERkVLSgpIQS7CwiMvKGKmoaoCKgAFQ5+TlhkQQkFDR0lMQcAOac-AA2LPh8gnp8ACapcpag0RVx-J2dAPrdKWl9GarqdLmu3WGGkTNZdIysrQKgi7lgAExtI+MikjIFSxF41XUNzQlJfGZ8KM9oZiihQA')">function integral(f, a, b, dx) {
     function add_dx(x) {
         return x + dx;
     }
     return sum(f, a + dx / 2, add_dx, b) * dx;
 }
-
 </pre></div></div></td></tr></table>
 
     <table width="100%">
@@ -2101,34 +2059,21 @@ function sum_cubes(a, b) {
           
           <tr>
             <td><div class='snippet' id='javascript_21_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(integral cube 0 1 0.01)
-</pre><pre class='prettyprintoutput'>
-
-0.24998750000000042
-      
-</pre></div></div>    </td>
+(integral cube 0 1 0.01)</pre><pre class='prettyprintoutput'>
+0.24998750000000042</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_21_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGimEBGApgBQAeAlKAN46gDQAJ2blCQuu1AAqUFNnsA3DgC+eSsXLMA5kICGAG1YMWAGlAAGcynMW0FlJ0VA')">integral(cube, 0, 1, 0.01);
-
 </pre><pre class='prettyprintoutput'>
-
-0.24998750000000042
-      
-</pre></div></div></td></tr></table>
+0.24998750000000042</pre></div></div></td></tr></table>
 
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_21_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(integral cube 0 1 0.001)
-</pre></div></div>    </td>
+(integral cube 0 1 0.001)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_21_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGimEBGApgBQAeAlKAN46gDQAJ2blCQuu1AAqUFNnsA3DgC+eImSq1QAZ0IBbVuWZD9AGlABDC8WbtyFxtz6Dho8XUugAfKEb9XQNAAflAABgCgwQAuUGNTVktuAGpdAyMTc1Bbe0TOGzsHP05lNQISCho6SmJjAHMhSwAbVnwLaz8LABMuXkjQDUrtSy6ugH0ejmd+1xExCTlQVJ7lVzVZ9wW9QzarJdAe0DAAJnbRifZHblkV1Twa+saWhhYLMIsUN7QwsJQSoA')">integral(cube, 0, 1, 0.001);
-
 </pre><pre class='prettyprintoutput'>
-
-0.249999875000001	  
-      
-</pre></div></div></td></tr></table>
+0.249999875000001</pre></div></div></td></tr></table>
 
     (The exact value of the integral of <kbd>cube</kbd> between
     0 and 1 is 1/4.)
@@ -2187,7 +2132,6 @@ function sum_cubes(a, b) {
           
           <tr>
             <td><div class='snippet' id='javascript_21_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_21_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGimEBGApgBQAeAlKAN46gDQAJ2blCQuu1AAqUFNnsA3DgC+eImSq1QAZ0IBbVuWZD9AGlABDC8WbtyFxtz6Dho8XUugAfKEb9XQNAAflAABgCgwQAuUGNTVktuAGpdAyMTc1Bbe0TOGzsHP05lNQISCho6SjJWAGtnSLcxCVA60FSUUvLNKt1KfQAHHVodAH0hQgAbZjGa4wBzIUsp1nwLaz8bRtcNSu0AC2YpwZNWA52ova06AE9651AmqOaPUHxWeplQC46rEuegjUAEhrn14oYGrxAUERC06O0ALzI8KgAA+aLaoGRiOyMJerlC9wa+IJAli7QApKAAEzYlERMlM0J02TEzikpmgWIAFm+7OULzULzhbz0hghFjCFhqpG233OoDAGABrmFglFrSOJzOrEYoAAtP8ldkAWUdANhqMJtNZvNmEsVqwGCwpRYUO6wmESkA')">function inc(k) {
     return k + 1;
@@ -2208,7 +2152,6 @@ function simpsons_rule_integral(f, a, b, n) {
     }
     return helper((b - a) / n);
 }
-
 </pre></div></div></td></tr></table>
     </SOLUTION></div></div>
 </EXERCISE></div>
@@ -2246,8 +2189,7 @@ function simpsons_rule_integral(f, a, b, n) {
       (if ^??^
           ^??^
           (iter ^??^ ^??^)))
-   (iter ^??^ ^??^))
-</pre></div></div>    </td>
+   (iter ^??^ ^??^))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_21_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function sum(term, a, next, b) {
     function iter(a, result) {
@@ -2256,8 +2198,7 @@ function sum(term, a, next, b) {
                : iter(??, ??);
     }
     return iter(??, ??);
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
     
   
       <div class="Solution">
@@ -2272,7 +2213,6 @@ function sum(term, a, next, b) {
     }
     return iter(a, 0);
 }
-
 </pre></div></div>
 
       
@@ -2344,7 +2284,6 @@ function sum(term, a, next, b) {
           
           <tr>
             <td><div class='snippet' id='javascript_21_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_21_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGj4CGF1ATpQwDYAUxAlKAG8coEfRIUadcgFMWAWy6V+Q0atAtp5QizqUA3MNEBfQyKJkqtUMWkAPcouWm1GrTtCVQAalQHVJ1VdtOgAHFmoAE0IKAH0WLhl5ABpUFJt7NN4DExwQEM8wyOjyAnFLUMoeJ1VzCStKAGcYyIjHQWdAzWCPUABSUAAmUABeUd9nANFa8tBEhSV2tVEg90bmiNalDqXVAH5QRW9UfjBDnwHebZ2RAC4Dz3OT+6OULInnaclrOwcFlR2VroXn5jM5AaAACygABUB0KUVilTmKXQAAY0j9Mm8ciANKRtA1KAA3aSgQqkaQNBqlCxfeHFOIJWRyFIMDEZUAAI2qyy67gYoAAfFyrntUKLRHc5lwGPxYfTYvFkd97DLeOzyCludk8CBKIkGFQSWTwhSqTS6qFwgjyDEkczWRqtTyzGUvvrZDKUhoGoQOOQXS4+XQBcLORKlvsfX6StcdncPfF0g5ZSlpbKYepKTG3v4wcGPIkvccdQQmORWOxuABWN4gMmVFAAdiyQA')">//recursive process
 function product_r(term, a, next, b) {
@@ -2362,7 +2301,6 @@ function product_i(term, a, next, b) {
     }
     return iter(a, 1);
 }
-
 </pre></div></div></td></tr></table>
     </SOLUTION></div></div>
 </EXERCISE></div>
@@ -2388,11 +2326,9 @@ function product_i(term, a, next, b) {
           
           <tr>
             <td><div class='snippet' id='javascript_21_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(accumulate combiner null-value term a next b)
-</pre></div></div>    </td>
+(accumulate combiner null-value term a next b)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_21_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-accumulate(combiner, null_value, term, a, next, b);
-</pre></div></div></td></tr></table>
+accumulate(combiner, null_value, term, a, next, b);</pre></div></div></td></tr></table>
         
 	  <span style="color:teal"><kbd>Accumulate</kbd></span>
           <span style="color:blue">
@@ -2447,7 +2383,6 @@ accumulate(combiner, null_value, term, a, next, b);
           
           <tr>
             <td><div class='snippet' id='javascript_21_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_21_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGj4CGF1ATpQwDYAUxAlKAG8coEfRIUadcgFMWAWy6V+Q0atAtp5QizqUA3MNEBfQyKJkqtUMWkAPcouWm1GrTtCVQAalQHVJ1VdtOgAHFmoAE0IKAH0WLhl5ABpUFJt7NN4DExwQEM8wyOjyAnFLUMoeJ1VzCStKAGcYyIjHQWdAzWCPUABSUAAmUABeUd9nANFa8tBEhSV2tVEg90bmiNalDqXVAH5QRW9UfjBDnwHebZ2RAC4Dz3OT+6OULInnaclrOwcFlR2VroXn5jM5AaAACygABUB0KUVilTmKXQAAY0j9Mm8ciANKRtA1KAA3aSgQqkaQNBqlCxfJj4uSEDgMGRxLikahyABGlBsLDSTI4MSJnEI0hSyNADAxGVAXOqyy67gYoAAfHKrntrILhaLpJrRHcOdzebIErIFAxeCkDdc1PTCIzmaz4saeXybXavd61MQdSKOGLPT6Q3bJekHFaZeQUvLsTS6nQGo62ZLpd9ZfLFlMyl8QoGGlxbCkAJ4Kpbg2xHEsgkSTETgh1OlnSNn5wgNFLo2YWlLpiOx+OfKzw4qp3tS6OD7NmXNWKhySlF0vllxKuhV2E196dNx0JtMlupyiLzupHvJScZmNy+O5YCURIs4mk8mU6nD-ekBmH1mVN2mvy2ocEKAZBhech9lOt4zmItL1IkXDphoyYcOQq67t0KrqlytpqPsKFMiUoagHcj5mhGSHWqAAF8ua8hUSkhFobwbz+GC64eIh-b+nqQ5zkmKZIhO-aYjB-yzvBoQFsuoBlrBmHuFWPjbuxilfj+zqtpU7Znt2abQfK2QJjMo6IvRkFXgO4kfAJswnkuxZyRhip7qAm5ybWoD1uonEHlpMRIg5Z4oBKImGXejDMGwnBcAArFkQA')">//recursive process
 function accumulate_r(combiner, null_value, term, a, next, b) {
@@ -2492,7 +2427,6 @@ function product_i(term, a, next, b) {
     }
     return accumulate_i(times, 1, term, a, next, b);
 }
-
 </pre></div></div></td></tr></table>
       
     </SOLUTION></div></div>
@@ -2569,7 +2503,6 @@ function product_i(term, a, next, b) {
           
           <tr>
             <td><div class='snippet' id='javascript_21_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_21_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGgDOAtgIYA2rApveQPoAmlAG6V61AE4AKYgEpQAbxygloMR3KExdfJWJ9+QkeKkAaUACZpAbhwBfAiQo0tOvQOGjJxU+S683hsVkFZSVVdU0GAEdCZlUJH259d3FZAD5QYkUQ7KUAfgysnJCALlB-Pi543ySA0xlCopD8hL8DDwbGpVLtXRqPE1AWvvFQAGpUK1t7MipaMoMK+glmUwAjIIawjTpV0ABSUGZQAF5T0AAGaztpxzmRHgAHMUpGDikNkK2IulPjhhZ2NV-P0ZFc8EQZk4ojE4gAPD7KL50WGgABUoFhYJuszoOlI73kmzU2wyY1QWIhtzoAHNSHxlmsEaFiRFdr8LqB8kdSrT6atTEcDusKQ4caBtKwfKo9MxSKRCIxCKxmD4JKRqIxVjoOGI6krWDxBGxCBxjB1OhbslLGAK6hxYeQ1qYJVKmSoWXQjulVubsvliPrDcaOL6SuLKJKdctpKG-aB1ZrtZJrdHTLGLS6dRwZXKFUqVW8E1riDq9ewg6wTWnLTXa8prXaHamMvbHaB03XO-zw5HAjHa90I1LszxZfLFcrVUWk2WDUbK6b253lyEGy2m8xpI22x2V0Vu5nAiLIXMni8ODx6NFYlxLwqGaB1oSQpSxQ9K0tYaYAJ5uz4ejEyW-awQjsf9wmcXsRzHPNJzed9CHoUxzjNPdayvGFFxWUA8SdJc0Mte4z1eSY7FfKFVEnIQL2ImixGoPhCAoAk5BCBpyLmKhXk-H8-0RACUXRYCGjA5QONxCpiCochvwkeFnyKJEMRA5RRKUcTBl8CRKD45kINAXltLqWR2RQFSlDU919MPaDcwnAt4nPJDUFQgiLUoSTpO-UwUFMXCMlctzGhaUi8Foy9r1Ueg70YCQABYfPOKxQBAUAAHY4pwVLKJVajHmeV58oYpjyAkAAOZLUpQc4AFYgA')">function filtered_accumulate(combiner, null_value,
                              term, a, next, b, filter) {
@@ -2584,7 +2517,6 @@ function product_i(term, a, next, b) {
                                    term, next(a), next, 
                                    b, filter);
 }
-
 </pre></div></div></td></tr></table>
       
     </SOLUTION></div></div>

@@ -1703,7 +1703,6 @@ let y = 4;
     let z = c + d + x;
     return x * y * z;
 }
-
 </pre></div></div>
       </p></div>
 
@@ -1714,7 +1713,6 @@ let y = 4;
   <div class='snippet' id='javascript_122_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToGwChsAo8APAGlAE8BKUAXgD5tRHQCBDUgI1IGNSATUgKZU6DJmIJlSAL2G1QhUACpyS0DLwtV7VSVBdQAalC9D8iubwBmUgBYKQA')">((x, y) =>
     ((a, b, c, d, e) =>
         ((y, z) => x * y * z)(a * b * x, c + d + x)))(3, 4)
-
 </pre></div></div>
   Each time <kbd>lookup_variable_value</kbd> searches for <kbd>x</kbd>, it must
   determine that the symbol <kbd>x</kbd> is not <kbd>eq?</kbd> to <kbd>y</kbd> or <kbd>z</kbd> (in the first frame), nor to <kbd>a</kbd>, <kbd>b</kbd>, <kbd>c</kbd>, <kbd>d</kbd>, or
@@ -1862,17 +1860,14 @@ let y = 4;
 
   <div class='snippet' id='javascript_122_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToGwChsDMBLAOwBMB9ANwEMAnAqgIwBsBTACgCIBjDgGlCYEAzgBc2g0ZwCefUBwBeHAJT8JYjlVkcGWnvw4ktLZauHqAHlplKbAbmyhHTgNoBGfgCYAukA')">find_variable("c", list(list("y", "z"), list("a", "b", "c", "d", "e"), list("x", "y")));
       [1, 2]
-
 </pre></div></div>
 
   <div class='snippet' id='javascript_122_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToGwChsDMBLAOwBMB9ANwEMAnAqgIwBsBTACgCIAPDgGlCYEAzgBc2g0ZwCefUBwBeHAJT8JYjlVkcGWgMZaSWlstXD1PfhxlKbAbmyhHTgNoAmfgAYAukA')">find_variable("x", list(list("y", "z"), list("a", "b", "c", "d", "e"), list("x", "y")));
       [2, 0]
-
 </pre></div></div>
 
   <div class='snippet' id='javascript_122_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToGwChsDMBLAOwBMB9ANwEMAnAqgIwBsBTACgCIB3DgGlCYEAzgBc2g0ZwCefUBwBeHAJT8JYjlVkcGWgMZaSWlstXD1ADy0ylNgNzZQjp0QD2IgLR4XAV1JA')">find_variable("w", list(list("y", "z"), list("a", "b", "c", "d", "e"), list("x", "y")));
       not-found
-
 </pre></div></div>
       
       <div class="Solution">
@@ -1964,7 +1959,6 @@ let y = 4;
   function
 
   <div class='snippet' id='javascript_122_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToGwChsAoBqUAKlAENQAjUAD1AE8BKUAXgD5Q8LSbmi9qpJkA')">(+ * a b x y) => (a * x) + (b * y)
-
 </pre></div></div>
   which computes a linear combination of <kbd>x</kbd> and <kbd>y</kbd>.  We might
   call it with arguments <kbd>+matrix</kbd>, <kbd>*matrix</kbd>, and four

@@ -1742,8 +1742,7 @@
             (empty-instruction-sequence))
             (else
             (make-instruction-sequence '() '()
-            ` ((goto (label ,linkage)))))))
-</pre></div></div>    </td>
+            ` ((goto (label ,linkage)))))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_118_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_linkage(linkage) {
     return linkage === "return"
@@ -1751,8 +1750,7 @@ function compile_linkage(linkage) {
         : linkage === "next"
         ? empty_instruction_sequence()
         : make_instruction_sequence(list(), list(), list(go_to(label(linkage))));
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -1771,13 +1769,11 @@ function compile_linkage(linkage) {
 (define (end-with-linkage linkage instruction-sequence)
       (preserving '(continue)
       instruction-sequence
-      (compile-linkage linkage)))
-</pre></div></div>    </td>
+      (compile-linkage linkage)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_118_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function end_with_linkage(linkage, instruction_sequence) {
     return preserving(list("continue"), instruction_sequence, compile_linkage(linkage));
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
       </p></div>
 
       
@@ -1820,8 +1816,7 @@ function end_with_linkage(linkage, instruction_sequence) {
       `((assign ,target
             (op lookup-variable-value)
             (const ,exp)
-            (reg env))))))
-</pre></div></div>    </td>
+            (reg env))))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_118_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_self_evaluating(exp, target, linkage) {
         return end_with_linkage(
@@ -1850,8 +1845,7 @@ function compile_self_evaluating(exp, target, linkage) {
                 list("env"),
                 list(target),
                 list(assign(target, op("lookup_variable_value"), constant(exp), reg("env")))));
-    }
-</pre></div></div></td></tr></table>
+    }</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -1909,8 +1903,7 @@ function compile_self_evaluating(exp, target, linkage) {
             (const ,var)
             (reg val)
             (reg env))
-            (assign ,target (const ok))))))))
-</pre></div></div>    </td>
+            (assign ,target (const ok))))))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_118_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_assignment(exp, target, linkage) {
     const variable = assignment_variable(exp);
@@ -1952,8 +1945,7 @@ function compile_definition(exp, target, linkage) {
                         reg("val"),
                         reg("env")),
                     assign(target, constant(ok)))))); /// FIXME: ok??=
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -2027,8 +2019,7 @@ function compile_definition(exp, target, linkage) {
             (parallel-instruction-sequences
             (append-instruction-sequences t-branch c-code)
             (append-instruction-sequences f-branch a-code))
-            after-if))))))
-</pre></div></div>    </td>
+            after-if))))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_118_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_if(exp, target, linkage) {
     let t_branch = make_label("true_branch");
@@ -2051,8 +2042,7 @@ function compile_if(exp, target, linkage) {
                               append_instruction_sequences(t_branch, c_code),
                               append_instruction_sequences(f_branch, a_code)),
                           after_if));
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -2114,8 +2104,7 @@ function compile_if(exp, target, linkage) {
       (compile (first-exp seq) target linkage)
       (preserving '(env continue)
       (compile (first-exp seq) target 'next)
-      (compile-sequence (rest-exps seq) target linkage))))
-</pre></div></div>    </td>
+      (compile-sequence (rest-exps seq) target linkage))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_118_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_sequence(seq, target, linkage) {
     return is_last_exp(seq)
@@ -2124,8 +2113,7 @@ function compile_sequence(seq, target, linkage) {
             list("env", "continue"),
             compile(first_exp("seq"), target, "next"),
             compile_sequence(rest_exps(seq), target, linkage));
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
       </p></div>
 
       
@@ -2202,8 +2190,7 @@ $\langle \textit{compilation of procedure body} \rangle$
             (label ,proc-entry)
             (reg env)))))
             (compile-lambda-body exp proc-entry))
-      after-lambda))))
-</pre></div></div>    </td>
+      after-lambda))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_118_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_function_expression(exp, target, linkage) {
     let proc_entry = make_label("entry");
@@ -2220,8 +2207,7 @@ function compile_function_expression(exp, target, linkage) {
                     list(assign(target, op("make_compiled_procedure"), label(proc_entry), reg("env")))), 
             compile_function_expression_body(exp, proc_entry)),
             after_lambda));
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
       </p></div>
 
       <div class='permalink'>
@@ -2276,8 +2262,7 @@ function compile_function_expression(exp, target, linkage) {
                     (const ,formals)
                     (reg argl)
                     (reg env))))
-      (compile-sequence (lambda-body exp) 'val 'return))))
-</pre></div></div>    </td>
+      (compile-sequence (lambda-body exp) 'val 'return))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_118_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_lambda_body(exp, proc_entry) {
     let formals  = lambda_parameters(exp);
@@ -2289,8 +2274,7 @@ function compile_lambda_body(exp, proc_entry) {
                  assign("env", op("compiled_procedure_env"), reg("proc")),
                  assign("env", op("extend_environment"), constant(formals), reg("argl"), reg("env")))),
         compiled_sequence(lambda_body(exp), "val", "return"));
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
       </p></div>
 
     <hr>
@@ -2345,8 +2329,7 @@ function compile_lambda_body(exp, proc_entry) {
         (define (make-label name)
         (string->symbol
         (string-append (symbol->string name)
-              (number->string (new-label-number)))))
-</pre></div></div>    </td>
+              (number->string (new-label-number)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_118_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 let label_counter = 0;
 
@@ -2359,8 +2342,7 @@ let label_counter = 0;
         
         function make_label(name) {
             return name + stringify(new_label_number());
-        }
-</pre></div></div></td></tr></table>
+        }</pre></div></div></td></tr></table>
   
     </FOOTNOTE></div>
     
@@ -2390,8 +2372,7 @@ let label_counter = 0;
         (define (compiled-procedure-entry c-proc) (cadr c-proc))
 
         
-        (define (compiled-procedure-env c-proc) (caddr c-proc))
-</pre></div></div>    </td>
+        (define (compiled-procedure-env c-proc) (caddr c-proc))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_118_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_compiled_procedure(entry, env) {
             return list("compiled_procedure", entry, env);
@@ -2410,8 +2391,7 @@ function make_compiled_procedure(entry, env) {
         
         function compiled_procedure_env(c_proc) {
             return head(tail(tail(c_proc)));
-        }
-</pre></div></div></td></tr></table>
+        }</pre></div></div></td></tr></table>
     
     </FOOTNOTE></div>
     

@@ -1746,8 +1746,7 @@
           (list 'cooper cooper)
           (list 'fletcher fletcher)
           (list 'miller miller)
-          (list 'smith smith))))
-</pre></div></div>    </td>
+          (list 'smith smith))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AEyoGdryKAKKigUwFtmASlABvAJC5QU0ACceFIjPosA+iSIAbDV14DBk6YYD8oCjKI8DhqQC5Qq9Vo4UAhlW3d+Q-desmzFla+oHYOmtp8-ABGPDIcABY8Lgw6XoIANKZuHrrePsHGjCxslM7ZqXr5BbagBC4azDwA3LgAvvjE7LT0fJrUAA4aPCoMAO48WlQkAOYcwiJBZHSsoFEuANaxoAC8oC58URwAjJnYmRiZKJkArIIthkskK0s0-Vu7+4cnoGegF6g3O6LZYUWpDChkRIyHZ7A7HU7nS6A+7SR4rPjuIbQj5w76-f5XUC3FFSNGg5gYijxGGfeE-REAolAwxyACORCocg4TFYU1KGmKHDWmxkmReb1FYPkkNimQxWlloAp3HigjVJNkPHZnJ4HAAhKAhRt3ttdrdmdI2RyuQaOOKTbsjuqgladfrDQRwTLsaamRapK6bR6vVCdr6nf7NdqufKsaAAHyge0ySOB3W2vguKkqFxRZgcZVU0AAWilEKhwlNjudLK11vThsz2dz+c90tDpeTlfDNct8kU9AFrA4Q84ACJhbEx5lJyn0kFqtJRxwx8np0maK9YhkF4vQMux23y1PMkfvTu99YD7GT6Ab3Pd4uD4X4uuX872rhehoBkMRuNJhmOYmiAA')">function multiple_dwelling() {
     const baker = amb(1, 2, 3, 4, 5);
     const cooper = amb(1, 2, 3, 4, 5);
@@ -1768,7 +1767,6 @@
                 list("miller", miller),
                 list("smith", smith));
 }
-
 </pre></div></div></td></tr></table>
     
   </p></div>
@@ -1787,15 +1785,13 @@
           
           <tr>
             <td><div class='snippet' id='javascript_89_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-((baker 3) (cooper 2) (fletcher 4) (miller 5) (smith 1))
-</pre></div></div>    </td>
+((baker 3) (cooper 2) (fletcher 4) (miller 5) (smith 1))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 [["baker", [3, null]], 
  [["cooper", [2, null]],
   [["fletcher", [4, null]],
    [["miller", [5, null]],
-    [["smith", [1, null]], null]]]]]
-</pre></div></div></td></tr></table>
+    [["smith", [1, null]], null]]]]]</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -2043,14 +2039,12 @@
 
 (define verbs '(verb studies lectures eats sleeps))
 
-(define articles '(article the a))
-</pre></div></div>    </td>
+(define articles '(article the a))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuBjAewDsBnAF1BKIFdzQBeUAGwEtKAKAIhvu4A0obpVoATAKYkKg4QAcATkQBmEsmSILZ3AgEMZQnS13ruASgDc+YuSoA3CQoBGZJqw4UeD59tFi2atosEgQUtAqBhhL6ZL7BEnKxltaklKC6ChRsBMGuzOxc3BlZORLaFAAWZYa65hZAA')">const nouns = list("noun", "student", "professor", "cat", "class");
 
 const verbs = list("verb", "studies", "lectures", "eats", "sleeps");
 
 const articles = list("article", "the", "a");
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -2069,15 +2063,13 @@ const articles = list("article", "the", "a");
           <tr>
             <td><div class='snippet' id='javascript_89_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (sentence (noun-phrase (article the) (noun cat))
-          (verb eats))
-</pre></div></div>    </td>
+          (verb eats))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 list("sentence",
      list("noun-phrase", 
           list("article", "the"),
           list("noun", "cat"),
-     list("verb", "eats"))
-</pre></div></div></td></tr></table>
+     list("verb", "eats"))</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -2100,14 +2092,12 @@ list("sentence",
 (define (parse-sentence)
   (list 'sentence
         (parse-noun-phrase)
-        (parse-word verbs)))
-</pre></div></div>    </td>
+        (parse-word verbs)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuBjAewDsBnAF1BKIFdzQBeUAGwEtKAKAIhvu4A0obpVoATAKYkKg4QAcATkQBmEsmSILZ3AgEMZQnS13ruASgDc+YuSoA3CQoBGZJqw4UeD59tFi2atosEgQUtAqBhhL6ZL7BEnKxltaklKC6ChRsBMGuzOxc3BlZORLaFAAWZYa65la4wVT0chlkEmJuJLQsLPXK9KFspKAtCm0A+gDummKc0wpi4wUUZqAA3qCbW7hboBEAjrRsEZwAhKAc4109nM2t7WbJuwdHJwC2Em9OjpxVurN3MYPIQUXRsFhzGZLDyPUCnRjMa4sJ5bGxpZR0EiLeYdZh-AEkUZtMQozaA4luUHg26E+4kqzPCRhBQkdxcfGQhbQyhmIQY+jYmbJAC++H6JEGwyJEiumPGcgqChMEk4qzWOy2EWZrOWPD4JAAtAqlW1BBrdhaLdKpjNOMVsrleebLS7rTjOPqyI8rKLcOLJazrWxCbRPMG5KG1c7ye03OHQwzUakqG1pG5ramKFICCrSXsJIdjirLkiadKSXmteFWZmfWKBlkpfdxpns7n1pbnVWWWzPCIpFmJdVnS6rc39fLFcrVQIR6Otm7bd4XN7cL6gyHPLruJVqpsdPpZMJohQkpYgA')">function parse_sentence() {      
     return list("sentence",
                 parse_noun_phrase(),
                 parse_word(verbs));
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -2123,14 +2113,12 @@ list("sentence",
 (define (parse-noun-phrase)
   (list 'noun-phrase
         (parse-word articles)
-        (parse-word nouns)))
-</pre></div></div>    </td>
+        (parse-word nouns)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuBjAewDsBnAF1BKIFdzQBeUAGwEtKAKAIhvu4A0obpVoATAKYkKg4QAcATkQBmEsmSILZ3AgEMZQnS13ruASgDc+YuSoA3CQoBGZJqw4UeD59tFi2atosEgQUtAqBhhL6ZL7BEnKxltaklKC6ChRsBMGuzOxc3BlZORLaFAAWZYa65la4wVT0chlkEmJuJLQsLPXK9KFspKAtCm0A+gDummKc0wpi4wUUZqAA3qCbW7hboBEAjrRsEZwAhKAc4109nM2t7WbJuwdHJwC2Em9OjpxVurN3MYPIQUXRsFhzGZLDyPUCnRjMa4sJ5bGxpZR0EiLeYdZh-AEkUZtMQozaA4luUHg26E+4kqzPCRhBQkdxcfGQhbQyhmIQY+jYmbJAC++H6JEGwyJEnGbWkUgIEk4qw2u1AOy2EWZrOWPDlFAV1Q1apNW2lV0x4zkFQUJiVvONppN5pxnG8LkeVlFuHFktZ5rYhNonkDcmDKsd5PablDwYZqNSVH1bnN+sNyvjmxexyVlyRNOlJNJeyZ4VZ+q9YoGWSl9wt9CtNrtyvWjq1ZbZnl4mIAtNbbW1BI6nbsXTNOMVsrkHSPTWOFpw+ORPbhvQGg55ddxKtVNjp9LJhNEKElLEA')">function parse_noun_phrase() {
     return list("noun-phrase",
                 parse_word(articles),
                 parse_word(nouns));
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -2180,8 +2168,7 @@ list("sentence",
   (require (memq (car *unparsed*) (cdr word-list)))
   (let ((found-word (car *unparsed*)))
     (set! *unparsed* (cdr *unparsed*))
-    (list (car word-list) found-word)))
-</pre></div></div>    </td>
+    (list (car word-list) found-word)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG58AYwD2lRmUrCqjDqAIBLcQAoARJKoqANKBXjyLIpRJad1esIBmRRo2H0TKwbWPbHBWjZUBKAbhFiyADciegAjGU4FZRVgsIc9FnlrB2JBEnJ6ZNciZ0Z44iJqPJ8hUXFQBhJ5QWIIuUUSVUrq4gcSAAsiB1pvXwsqNPlRUDomIgB9dUpx6nb6DyIlL1AAb1xQDdBM9PpKeuipgFpZ+eYtdc3Lq83R5nGAdzsWJWaa6y9NC+vvkYY7x-ozymjC8JQAvvh+pRBsNbhNmEZDIJFssVtcvltSBk9lFGrpDCQkV1Pj8fnDJlJpicFksSaTruSAc9YuFQQIIbgoTC9uT5DRyI0+dQBaiMVQ4WxOEKBQJLv5ygiyJxyYqiUtZZtMgBHcjyTJKRSTHgEJTiv6sNkY7bY0CK9mQgZVWHmh5PJRM8a41Hoy7a3X6gCEoEN3F4ppo5pYlt9RB1esWAFsiAnQiElJ1aM8zWMo9oSLR5CaPV7lgH2JxQwQSnKymQLJSWK7AbIM1mIznq5ts8xJaB84XwxLOxtrbt9o1W+6np6Gh9QPWqI2meD8Lz+Y1caoOsSNo5nCYdDkSMUfEA')">function parse_word(word_list) {      
     require(! is_null(unparsed));
     require(member(head(unparsed), tail(word_list)) !== null);
@@ -2189,7 +2176,6 @@ list("sentence",
     unparsed = tail(unparsed);
     return list(head(word_list), found_word);
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -2212,10 +2198,8 @@ list("sentence",
           
           <tr>
             <td><div class='snippet' id='javascript_89_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define *unparsed* '())
-</pre></div></div>    </td>
+(define *unparsed* '())</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG4gA')">let unparsed = null;
-
 </pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
@@ -2226,15 +2210,13 @@ list("sentence",
   (set! *unparsed* input)
   (let ((sent (parse-sentence)))
     (require (null? *unparsed*))
-    sent))
-</pre></div></div>    </td>
+    sent))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG58AYwD2lRmUrCqjDqAIBLcQAoARJKoqANKBXjyLIpRJad1esIBmRRo2H0TKwbWPbHBWjZUBKAbhFiyADciegAjGU4FZRVgsIc9FnlrB2JBEnJ6ZNciZ0Z44iJqPJ8hUXFQBhJ5QWIIuUUSVUrq4gcSAAsiB1pvXwsqNPlRUDomIgB9AHc7FiVp+hZxqJIvUABvUE2t3C3QTIBHcnlMpQBCUEVx7l4lKlHmFi8S3YOjk4BbInfQkKVO2lmdwYDy82hItHkBDmMyWDSeoFO7E41wIzy2-nKFiklEW8zYnH+gJowNYaM2QLG+NA4Mht2JlLJe1IGUo9WUhOhC1h4lBoCxVFxMxKAF98P1KINhvcJupKONqO16B4iEpVmsdltMul6KzlqpZQBaBVK5haDW7C0W6VTGZKZo1ayg82Wl3WvFKWWMJ4CUW4cWS1nW5hGQyCFVqy3OrUstmNXSGEihrqaZ0uq0kq7Y+WK5WqlNptNu22xcLe3C+-1VKUZ+Q0ciNWvUetq50Uh6yRv1gS7DFkYNkThBhNJ1XdzVEQ7HFWXFF06WPRnRnWgfs+-DWzuNPUqDrJzaOZwmHQ5EjFHxAA')">function parse_input(input) {
     unparsed = input;
     const sent = parse_sentence();
     require(is_null(unparsed));
     return sent;
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -2247,41 +2229,27 @@ list("sentence",
           
           <tr>
             <td><div class='snippet' id='javascript_89_10_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
-
-;;; Amb-Eval input:
-      
-</pre></div></div>    </td>
+;;; Amb-Eval input:</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_10_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
-
-amb-evaluate input:      
-      
-</pre></div></div></td></tr></table>
+amb-evaluate input:</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_89_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(parse '(the cat eats))
-</pre><pre class='prettyprintoutput'>
-
+(parse '(the cat eats))</pre><pre class='prettyprintoutput'>
 ;;; Starting a new problem
 ;;; Amb-Eval value:
-(sentence (noun-phrase (article the) (noun cat)) (verb eats))
-      
-</pre></div></div>    </td>
+(sentence (noun-phrase (article the) (noun cat)) (verb eats))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG58AYwD2lRmUrCqjDqAIBLcQAoARJKoqANKBXjyLIpRJad1esIBmRRo2H0TKwbWPbHBWjZUBKAbhFiyADciegAjGU4FZRVgsIc9FnlrB2JBEnJ6ZNciZ0Z44iJqPJ8hUXFQBhJ5QWIIuUUSVUrq4gcSAAsiB1pvXwsqNPlRUDomIgB9AHc7FiVp+hZxqJIvUABvUE2t3C3QTIBHcnlMpQBCUEVx7l4lKlHmFi8S3YOjk4BbInfQkKVO2lmdwYDy82hItHkBDmMyWDSeoFO7E41wIzy2-nKFiklEW8zYnH+gJowNYaM2QLG+NA4Mht2JlLJe1IGUo9WUhOhC1h4lBoCxVFxMxKAF98P1KINhvcJupKONqO16B4iEpVmsdltMul6KzlqpZQBaBVK5haDW7C0W6VTGZKZo1ayg82Wl3WvFKWWMJ4CUW4cWS1nW5hGQyCFVqy3OrUstmNXSGEihrqaZ0uq0kq7Y+WK5WqlNptNu22xcLe3C+-1VKUZ+Q0ciNWvUetq50Uh6yRv1gS7DFkYNkThBhNJ1XdzVEQ7HFWXFF06WPRnRnWgfs+-DWzuNPUqDrJzaOZwmHQ5EjFHxAA')">parse_input(list("the",  "cat",  "eats"));
-
 </pre><pre class='prettyprintoutput'>
-
 Starting a new problem
 amb-evaluate value:
 list("sentence",
      list("noun-phrase", 
           list("article", "the"),
           list("noun", "cat")),
-     list("verb", "eats"))
-      
-</pre></div></div></td></tr></table>
+     list("verb", "eats"))</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -2302,10 +2270,8 @@ list("sentence",
           
           <tr>
             <td><div class='snippet' id='javascript_89_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define prepositions '(prep for to in by with))
-</pre></div></div>    </td>
+(define prepositions '(prep for to in by with))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuBjAewDsBnAF1AAcAnAU2qLIEsKXSzQBeUAGxaUAFACI6jEQBpQIgGZFaUmRSJKZLEkpEAjAJ5aA7mwAWIgJQBuIA')">const prepositions = list("prep", "for", "to",  "in", "by", "with");
-
 </pre></div></div></td></tr></table>
     and define a prepositional phrase (e.g., <QUOTE>for the cat</QUOTE>) to be
     a preposition followed by a noun phrase:
@@ -2318,14 +2284,12 @@ list("sentence",
 (define (parse-prepositional-phrase)
   (list 'prep-phrase
         (parse-word prepositions)
-        (parse-noun-phrase)))
-</pre></div></div>    </td>
+        (parse-noun-phrase)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG58AMyoBjEgEsA9pVB0mRAPoB3SfRYAKFWoUFxjEgEpQAb1Bnzuc6HpEAjuXE31AQlB6F3XuqpzmLAwYCVjb2jkTqALZEEQBGRPTqABZEtBo+DH4GADSgJLTiBJqqLDp6hkbO7JyeBIGW5iLS+qCCklQlWmycyaneNBmsdVbp8l25+YUjmUHmNiTk9DK6+kkpGp2l+tktbZQdxXUAvviNlM3UNtSSjOISTRygyyTqAEQXRNQvOS+t9F+gLxIkn+APElH+LxiAE8IUpbokXnVcKdmpRdowHk9XmiqBD9OQWERKCQIRdJIIiIxGKoISJaCTviICLQqYiBMimmQAG7xGIYzhYl48+gxPHzFjiSkQ4hiBZS74pEiMPHED7KpEosgMCRMymYsqvbXiXUQkjJCG0NlCUR3GS+RQ3CLUYgeXYKaiJegs8JGUxWUD1MxzBZLA0vR3OogAWhxlCjHq9zC+gf9qbM9uUxXURt1jGyKbT-oznXUsbzR2tlDEUjtA1dVHdnu96l9KeEVdtoAitChcQURAAHiQiRpY43E0RW4Xg4tQLRYqW3QnvVkC4XU93e4pB8O9upBbH402k6v12fz2mx8vmKeL3fzxn3lcbrbaARx82AgEZmZjsFSCGXY9n2O4juoGYRi6V7Hj6Fa4O21bSLIdbMMSRIiD6JgpjOoYrOGRK7hhyb3umdbQROLa3veGbCjEH7MC2cEIZ2NG8vRmHGG2No1kBW79kOYG0exU5pjhc4LkJ15EFRJG8SBAl7oKtFHhOxGyep5iSTBMkaSRj6XNctw1m+7GMd+KaHAAkJZFj-vMs6bvJu4aMWWa0eWAjHPB3FIRmYLUOQzz+YFIlmFMrAPMFJA-qAmqgKhZCcBBBHoT6MUhA4TjuDUfT2v4QyzABs4JZ5laIbW8jugZL7Ge+UktiYqbYUVuHPG8lwqd6anUXWJZPoZtp5jpD5kUuMGMaVuB+TQgX7mGZpEGKBIEbC8KmuajL0t197hqq1DKt8YLrYtjLMqy35AA')">function parse_prepositional_phrase() {      
     return list("prep-phrase",
                 parse_word(prepositions),
                 parse_noun_phrase());
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -2350,8 +2314,7 @@ list("sentence",
          (maybe-extend (list 'verb-phrase
                              verb-phrase
                              (parse-prepositional-phrase)))))
-  (maybe-extend (parse-word verbs)))
-</pre></div></div>    </td>
+  (maybe-extend (parse-word verbs)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG58AMyoBjEgEsA9pVB0mRAPoB3SfRYAKFWoUFxjEgEpQAb1Bnzuc6HpEAjuXE31AQlB6F3XuqpzmLAwYCVjb2jkTqALZEEQBGRPTqABZEtBo+DH4GADSgJLTiBJqqLDp6hkbO7JyeBIGW5iLS+qCCklQlWmycyaneNBmsdVbp8l25+YUjmUHmNiTk9DK6+kkpGp2l+tktbZQdxXUAvviNlM3UNtSSjOISTRygyyTqAEQXRNQvOS+t9F+gLxIkn+APElH+LxiAE8IUpbokXnVcMJKGIpDJfIp3lcbndKLQCApqIl6LRmOojKYrKB6mY5gslmVXtiALTE0nML606k8syY5TFdTY663dGMbLc3nU-mUXZEklk8IBATHXCnZqyqiMB5PV6a8HffTkFhESgkCEXSSCIiMRiqCEiWjm74iAhkxiIgRqppkABu8Ri2s4upe-voMQhRpY4htEOIYgWse+KRIHsNxA+HqR6rIDAkrptOqZLzz4gLEJIyQhtE9QlEeNkAwUNwi1GIHjl7MVFJMPO59MWj2LLbbRBZ+rZCs5WUlUvM-M66lLBfFM7nvIXgv14qOddRDZlnanSpM3JRaOkoAitChcQURAAHiRTRp9fKOURKbO6aQGaBaLE6hvl2zBruuUrXreiiPs+ezqCGE4gUQXLgahaFcEeH5gehOE8vywq4uiBLvt2ATKtyxzBL+g6QXeMEvkKTYju2wHHhSu7IvW6KNvIChgtQ5DPPxglfsM-SjA8wkkDMZg5qAzBmg8-IKbBIhKjJ1h2A4TjuDUfSYv4QyzNRMgqSqe4XhiTGmqpJ7GP2JlDisLwqaaakoThh5UCR5ISrh-JhjEPlKhx54Hk2gXBT29lWGF3G0dBT4MZFSGibyA4yABMTqClx7YbhCX3klcEhoFk4fh5uFVWYuVYd+1WofhlwinixFIex5FWIcACQ3UWFR8w0TedHFRom5qDlAY7uZuD8lJ8HFpWyGGvMJpmrC8IVlWLpOpV6EuRm1BpqCBoAktDpuraiKBEAA')">function parse_sentence() {
     return list("sentence",
                 parse_noun_phrase(),
@@ -2367,7 +2330,6 @@ function parse_verb_phrase() {
     }		   
     return maybe_extend(parse_word(verbs));
 }
-
 </pre></div></div></td></tr></table>
     
   </p></div>
@@ -2395,8 +2357,7 @@ function parse_verb_phrase() {
          (maybe-extend (list 'noun-phrase
                              noun-phrase
                              (parse-prepositional-phrase)))))
-  (maybe-extend (parse-simple-noun-phrase)))
-</pre></div></div>    </td>
+  (maybe-extend (parse-simple-noun-phrase)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG58AMyoBjEgEsA9pVB0mRAPoB3SfRYAKFWoUFxjEgEpQAb1Bnzuc6HpEAjuXE31AQlB6F3XuqpzmLAwYCVjb2jkTqALZEEQBGRPTqABZEtBo+DH4GADSgJLTiBJqqLDp6hkbO7JyeBIGW5iLS+qCCklQlWmycyaneNBmsdVbp8l25+YUjmUHmNiTk9DK6+kkpGp2l+tktbZQdxXUAvviNlM3UNtSSjOISTRygyyTqAEQXRNQvOS+t9F+gLxIkn+APElH+LxiAE8IUpbokXnVcMJKGIpDJfIp3lcbndKLQCApqIl6LRmOojKYrKB6mY5gslmVXtiALTE0nML606k8syY5TFdTY663dGMbLc3nU-mUXZEklk8IBATHXCnZqyqiMB5PV6a8HffTkFhESgkCEXSSCIiMRiqCEiWjm74iAhkxiIgRqppkABu8Ri2s4upe-voMQhRpY4htEOIYgWse+KRIHsNxA+HqR6rIDAkrptOqZLzz4gLEJIyQhtE9QlEeNkAwUzDNppESpM3Ppi0exZbJDbRC5UqlMrl7MVFKykpHfKbYZi8o5SqOddRDf5C6Xk8p3JRaOkoAitChcQURAAHgO9uotxPmLupd2ZLRYreA9vmNPZyPj6fFJe14aCGC5sgqnLfj+UHQXe4FEJB0GIaOTbCri6IEp+K7KtyhwAJC4RYwSkAyR4nmegGmho-KdO+4biquyL1uijbyAoYLUOQzzsZxj7mFMrAPNxJAzGYOagP2Dz8v2g4UiJ1h2A4TjuDUfSYv4QyzMRPb9iqa4HhiTY3BE1DEB445wRSJg8l2WmMisLxGSZRAsvqYHLsOSHUYKpYFuKCHQV5ajqPq9G6Yx67MWOVCYZZxh7kxh5-uRV6UcF5nLrxPLPqAr4xGl0X3vBM7QUlAEpTeIauYVHlIbVVj6ph-l1bV-KoaK0gYYVFIBBpZjHER8w9qV57lVRhniMZpkNV12GqvyQnqCGlZDoa8wmmasLwhWVYuk6NWIQ5GbUGmoIGgCy0Om6tqIoEQA')">function parse_simple_noun_phrase() {      
     return list("simple-noun-phrase",
                 parse_word(articles),
@@ -2412,7 +2373,6 @@ function parse_noun_phrase() {
     }
     return maybe_extend(parse_simple_noun_phrase());
 }
-
 </pre></div></div></td></tr></table>
     
   </p></div>
@@ -2425,11 +2385,9 @@ function parse_noun_phrase() {
           
           <tr>
             <td><div class='snippet' id='javascript_89_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(parse '(the student with the cat sleeps in the class))
-</pre></div></div>    </td>
+(parse '(the student with the cat sleeps in the class))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG58AMyoBjEgEsA9pVB0mRAPoB3SfRYAKFWoUFxjEgEpQAb1Bnzuc6HpEAjuXE31AQlB6F3XuqpzmLAwYCVjb2jkTqALZEEQBGRPTqABZEtBo+DH4GADSgJLTiBJqqLDp6hkbO7JyeBIGW5iLS+qCCklQlWmycyaneNBmsdVbp8l25+YUjmUHmNiTk9DK6+kkpGp2l+tktbZQdxXUAvviNlM3UNtSSjOISTRygyyTqAEQXRNQvOS+t9F+gLxIkn+APElH+LxiAE8IUpbokXnVcMJKGIpDJfIp3lcbndKLQCApqIl6LRmOojKYrKB6mY5gslmVXtiALTE0nML606k8syY5TFdTY663dGMbLc3nU-mUXZEklk8IBATHXCnZqyqiMB5PV6a8HffTkFhESgkCEXSSCIiMRiqCEiWjm74iAhkxiIgRqppkABu8Ri2s4upe-voMQhRpY4htEOIYgWse+KRIHsNxA+HqR6rIDAkrptOqZLzz4gLEJIyQhtE9QlEeNkAwUNwi1GIHjl7MVFJMPO59MWj2LLbbRBZ+rZCs5WUlUvM-M66lLBfFM7nvIXgv14qOddRDZlnanSpM3JRaOkoAitChcQURAAHiRTRp9fKOURKbO6aQGaBaLE6hvl2zBruuUrXreiiPs+ezqCGE4gUQXLgahaFcEeH5gehOE8vywq4uiBLvt2ATKtyxzBL+g6QXeMEvkKTYju2wHHhSu7IvW6KNvIzamrBIgnsY-bUYyKwvMwZqmoJKE4YeVAkeSEq4fyYYxIpSoceeB5NmpGk9sJVjadxtHQU+DF6UhX5SgOMgATE6iWce2G4aZ97mXBIZqZOH6ybh-lmE5WHfgFqH4ZcIp4sRSHseRViHAAkAlFhUfMNE3nRHkaJuaiOQGO4qnuF4Yk2YLUOQzxlRV1nmFMrAPFVJAzGYOagJJZCcPy7XSUqzXWHYDhOO4NR9Ji-hDLMoltfxhW4PyjXwcWlbIYa8wmmasLwhWVYuk6fnoRJGbUGmoIGgCy0Om6tqIoEQA')">parse_input(list("the", "student", "with", "the", "cat",
                  "sleeps", "in", "the", "class"));
-
 </pre></div></div></td></tr></table>
   produces
   <table width="100%">
@@ -2447,8 +2405,7 @@ function parse_noun_phrase() {
   (verb sleeps)
   (prep-phrase (prep in)
    (simple-noun-phrase
-    (article the) (noun class)))))
-</pre></div></div>    </td>
+    (article the) (noun class)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 list("sentence",
      list("noun-phrase",
@@ -2463,8 +2420,7 @@ list("sentence",
           list("prep-phrase", list("prep", "in"),
                list("simple-noun-phrase", 
                     list("article", "the"),
-                    list("noun", "class")))))
-</pre></div></div></td></tr></table>
+                    list("noun", "class")))))</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -2478,11 +2434,9 @@ list("sentence",
           
           <tr>
             <td><div class='snippet' id='javascript_89_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(parse '(the professor lectures to the student with the cat))
-</pre></div></div>    </td>
+(parse '(the professor lectures to the student with the cat))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&variant=non-det&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAbAUwBdQBXAOwAcBDAJwGciATUAXlEvIIIG58AMyoBjEgEsA9pVB0mRAPoB3SfRYAKFWoUFxjEgEpQAb1Bnzuc6HpEAjuXE31AQlB6F3XuqpzmLAwYCVjb2jkTqALZEEQBGRPTqABZEtBo+DH4GADSgJLTiBJqqLDp6hkbO7JyeBIGW5iLS+qCCklQlWmycyaneNBmsdVbp8l25+YUjmUHmNiTk9DK6+kkpGp2l+tktbZQdxXUAvviNlM3UNtSSjOISTRygyyTqAEQXRNQvOS+t9F+gLxIkn+APElH+LxiAE8IUpbokXnVcMJKGIpDJfIp3lcbndKLQCApqIl6LRmOojKYrKB6mY5gslmVXtiALTE0nML606k8syY5TFdTY663dGMbLc3nU-mUXZEklk8IBATHXCnZqyqiMB5PV6a8HffTkFhESgkCEXSSCIiMRiqCEiWjm74iAhkxiIgRqppkABu8Ri2s4upe-voMQhRpY4htEOIYgWse+KRIHsNxA+HqR6rIDAkrptOqZLzz4gLEJIyQhtE9QlEeNkAwUNwi1GIHjl7MVFJMPO59MWj2LLbbRBZ+rZCs5WUlUvM-M66lLBfFM7nvIXgv14qOddRDZlnanSpM3JRaOkoAitChcQURAAHiRTRp9fKOURKbO6aQGaBaLE6hvl2zBruuUrXreiiPs+ezqCGE4gUQXLgahaFcEeH5gehOE8vywq4uiBLvt2ATKtyxzBL+g6QXeMEvkKTYju2wHHhSu7IvW6KNvIzamrBIgnsY-bUYyKwvMwZqmoJKE4YeVAkeSEq4fyYYxIpSoceeB5NmpGk9sJVjadxtHQU+DF6UhX5SgOMgATE6iWce2G4aZ97mXBIZqZOH6ybh-lmE5WHfgFqH4ZcIp4sRSHseRViHAAkAlFhUfMNE3nRHkaJuaiOQGO4qnuF4Yk2YLUOQzxlRV1nmFMrAPFVJAzGYOagJJZCcPy7XSUqzXWHYDhOO4NR9Ji-hDLMoltfxhW4PyjXwcWlbId8lrWra9rfPGaVJiFc6AsC3zLZG8wmmasLwhWVYuk6iKBEAA')">parse_input(list("the", "professor", "lectures",
                  "to", "the", "student", "with", "the", "cat"));
-
 </pre></div></div></td></tr></table>
     produces
     <table width="100%">
@@ -2500,8 +2454,7 @@ list("sentence",
      (article the) (noun student))))
   (prep-phrase (prep with)
    (simple-noun-phrase
-    (article the) (noun cat)))))
-</pre></div></div>    </td>
+    (article the) (noun cat)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 list("sentence",
      list("simple-noun-phrase",
@@ -2516,8 +2469,7 @@ list("sentence",
           list("prep-phrase", list("prep", "with"),
                list("simple-noun-phrase",
                     list("article", "the"),
-                    list("noun", "cat")))))
-</pre></div></div></td></tr></table>
+                    list("noun", "cat")))))</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -2538,8 +2490,7 @@ list("sentence",
      (article the) (noun student))
     (prep-phrase (prep with)
      (simple-noun-phrase
-      (article the) (noun cat)))))))
-</pre></div></div>    </td>
+      (article the) (noun cat)))))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 list("sentence",
      list("simple-noun-phrase", list("article", "the"),
@@ -2554,8 +2505,7 @@ list("sentence",
                     list("prep-phrase", list("prep", "with"),
                          list("simple-noun-phrase",
                               list("article", "the"),
-                              list("noun", "cat")))))))
-</pre></div></div></td></tr></table>
+                              list("noun", "cat")))))))</pre></div></div></td></tr></table>
     
   </p></div>
 
@@ -2624,16 +2574,14 @@ list("sentence",
   (amb (parse-word verbs)
        (list 'verb-phrase
              (parse-verb-phrase)
-             (parse-prepositional-phrase))))
-</pre></div></div>    </td>
+             (parse-prepositional-phrase))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function parse_verb_phrase() {
     return amb(parse_word(verbs),      
                list("verb-phrase",
                     parse_verb_phrase(),
                     parse_prepositional_phrase()));
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
     Does this work?  Does the program's behavior change if we interchange
     the order of expressions in the <kbd>amb</kbd>?
   
@@ -2705,7 +2653,6 @@ function parse_verb_phrase() {
     
     to determine if the elements of a list are distinct:
     <div class='snippet' id='javascript_89_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuATASwGcAXIgOwGMyAKAG1PoEYAaUbDlbtgVgCUAgNxA')">distinct(list(1, 2, 4, 4,5));
-
 </pre></div></div>
     
     <table width="100%">
@@ -2717,8 +2664,7 @@ function parse_verb_phrase() {
   (cond ((null? items) true)
         ((null? (cdr items)) true)
         ((member (car items) (cdr items)) false)
-        (else (distinct? (cdr items)))))
-</pre></div></div>    </td>
+        (else (distinct? (cdr items)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_89_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AEyoGdryKAKKigUwFtmASlABvAJC5QU0ACceFIjPosA+iSIAbDV14DBk6YYD8oCjKI8DhqQC5Qq9Vo4UAhlW3d+Q-desmzFla+oHYOmtp8-ABGPDIcABY8Lgw6XoIANKZuHrrePsHGjCxslM7ZqXr5BbagBC4azDwA3LgAvvhMrFTsHBrFHACMmdiZKKPpAKyCgk1AA')">function distinct(items) {	
     return is_null(items)
         ? true
@@ -2728,7 +2674,6 @@ function parse_verb_phrase() {
             ? distinct(tail(items))
             : false;
 }
-
 </pre></div></div></td></tr></table>
     
     

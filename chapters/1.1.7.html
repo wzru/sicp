@@ -1731,8 +1731,7 @@
 function sqrt(x) {
     return the y with y >= 0 &&
                       square(y) === x;
-}
-</pre></div></div>
+}</pre></div></div>
     This only begs the question.
   </p></div>
   <div class='permalink'>
@@ -1806,7 +1805,6 @@ function sqrt(x) {
            ? guess
            : sqrt_iter(improve(guess, x), x);
 }
-
 </pre></div></div>
     
   </p></div>
@@ -1817,7 +1815,6 @@ function sqrt(x) {
     <div class='snippet' id='javascript_11_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDANwFMAnOgcyYAoAPAGgCeASlABvbKEmgWTMgRa1eoANShhoMACYA3NgC+uQqUo1QFALYAHFlWZd2BJgGcnfUDxHip02fNqNWDm4HZ1d3DVAQlyFdA2wLa1tuAGY3TQBWGKA')">function improve(guess, x) {
     return average(guess, x / guess);
 }
-
 </pre></div></div>
     
     where
@@ -1825,7 +1822,6 @@ function sqrt(x) {
     <div class='snippet' id='javascript_11_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDANwFMAnOgcyYAoAPAGgCeASlABvbKEmgWTMgRa1eoANShhoMACYA3NgC+uRqw7cAzH1AA2IdqA')">function average(x,y) {
     return (x + y) / 2;
 }
-
 </pre></div></div>
     
   </p></div>
@@ -1841,7 +1837,6 @@ function sqrt(x) {
     <div class='snippet' id='javascript_11_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaAHMqKgATAH1hIioCQIALFkCCYSYmABo1Bz4BETEJemYWKxs7JJSmLi1M0AAeRTQFBRRvXGCwyOjYhPQAFhQMgCYOXSA')">function good_enough(guess, x) {
     return abs(square(guess) - x) < 0.001;
 }
-
 </pre></div></div>
     
   </p></div>
@@ -1853,7 +1848,6 @@ function sqrt(x) {
     <div class='snippet' id='javascript_11_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaAHMqKgATAH1hIioCQIALFkCCYSYmABo1Bz4BETEJemYWKxs7JJSmLi1M0AAeRTQFBRRvYz8zWjoAN2FBOkDhdjSATyynXNdQdlAAalAR0DAAJhbfUwDQCgBbAAdBKm7E5NSMzh5s-nH8rp6+gbLjtQXQe4qVk39zK0EycIoyHsO5ROoxyLnywTCkWisQSL2B5ycTlULwRiP4mi+Pz+AK2u32dyO6UywLebXWmPsZzGYNomN+-0ELBQJMMuApAFYOLogA')">function sqrt(x) {
     return sqrt_iter(1, x);
 }
-
 </pre></div></div>
   </p></div>
   <div class='permalink'>
@@ -1875,35 +1869,19 @@ function sqrt(x) {
     
 
     <div class='snippet' id='javascript_11_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaAHMqKgATAH1hIioCQIALFkCCYSYmABo1Bz4BETEJemYWKxs7JJSmLi1M0AAeRTQFBRRvYz8zWjoAN2FBOkDhdjSATyynXNdQdlAAalAR0DAAJhbfUwDQCgBbAAdBKm7E5NSMzh5s-nH8rp6+gbLjtQXQe4qVk39zK0EycIoyHsO5ROoxyLnywTCkWisQSL2B5ycTlULwRiP4mi+Pz+AK2u32dyO6UywLebXWmPsZzGYNomN+-0ELBQJMMuApAE4OLogA')">sqrt(9);
-
 </pre><pre class='prettyprintoutput'>
-
-3.00009155413138
-      
-</pre></div></div>
+3.00009155413138</pre></div></div>
     
 
     <div class='snippet' id='javascript_11_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaAHMqKgATAH1hIioCQIALFkCCYSYmABo1Bz4BETEJemYWKxs7JJSmLi1M0AAeRTQFBRRvYz8zWjoAN2FBOkDhdjSATyynXNdQdlAAalAR0DAAJhbfUwDQCgBbAAdBKm7E5NSMzh5s-nH8rp6+gbLjtQXQe4qVk39zK0EycIoyHsO5ROoxyLnywTCkWisQSL2B5ycTlULwRiP4mi+Pz+AK2u32dyO6UywLebXWmPsZzGYNomN+-0ELBQJMMuApKEaM1AAGZMBxdEA')">sqrt(100 + 37);
-
 </pre><pre class='prettyprintoutput'>
-
-11.704699917758145
-      
-</pre></div></div>
+11.704699917758145</pre></div></div>
     <div class='snippet' id='javascript_11_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaAHMqKgATAH1hIioCQIALFkCCYSYmABo1Bz4BETEJemYWKxs7JJSmLi1M0AAeRTQFBRRvYz8zWjoAN2FBOkDhdjSATyynXNdQdlAAalAR0DAAJhbfUwDQCgBbAAdBKm7E5NSMzh5s-nH8rp6+gbLjtQXQe4qVk39zK0EycIoyHsO5ROoxyLnywTCkWisQSL2B5ycTlULwRiP4mi+Pz+AK2u32dyO6UywLebXWmPsZzGYNomN+-0ELBQJMMuApFMWXFmFIAzBwOLogA')">sqrt(sqrt(2) + sqrt(3));
-
 </pre><pre class='prettyprintoutput'>
-
-1.7739279023207892		
-      
-</pre></div></div>
+1.7739279023207892</pre></div></div>
     <div class='snippet' id='javascript_11_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaAHMqKgATAH1hIioCQIALFkCCYSYmABo1Bz4BETEJemYWKxs7JJSmLi1M0AAeRTQFBRRvYz8zWjoAN2FBOkDhdjSATyynXNdQdlAAalAR0DAAJhbfUwDQCgBbAAdBKm7E5NSMzh5s-nH8rp6+gbLjtQXQe4qVk39zK0EycIoyHsO5ROoxyLnywTCkWisQSL2B5ycTlULwRiP4mi+Pz+AK2u32dyO6UywLebXWmPsZzGYNomN+-0ELBQJMMuGKtgGFJQjQUHA4uiAA')">square(sqrt(1000));
-
 </pre><pre class='prettyprintoutput'>
-
-1000.000369924366
-      
-</pre></div></div>
+1000.000369924366</pre></div></div>
     
     
   </p></div>
@@ -1957,15 +1935,12 @@ function sqrt(x) {
         <div class='snippet' id='javascript_11_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQSaATCymgQwBsAKABwCcBTJiVZl+AGlBkAFvyIB9Eu1YEAzuND92ahUtX8AlKADeASBOgLobJdACyBXrT6CKw0aAD8kmfMXK1oABcGlr8Ov78ANzYAL5AA')">function conditional(predicate, then_clause, else_clause) {		    
     return predicate ? then_clause : else_clause;
 }
-
 </pre></div></div>
         Eva demonstrates the program for Alyssa:
         <div class='snippet' id='javascript_11_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQSaATCymgQwBsAKABwCcBTJiVZl+AGlBkAFvyIB9Eu1YEAzuND92ahUtX8AlKADeASBOgLobJdACyBXrT6CKw0aAD8kmfMXK1oABcGlr8Ov78ANzYAL649ERMLEQcnABMoAC82aAAzBIADBIArPqRQA')">conditional(2 === 3, 0, 5);
-
 </pre></div></div>
 	evaluates as expected to 5, and
         <div class='snippet' id='javascript_11_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQSaATCymgQwBsAKABwCcBTJiVZl+AGlBkAFvyIB9Eu1YEAzuND92ahUtX8AlKADeASBOgLobJdACyBXrT6CKw0aAD8kmfMXK1oABcGlr8Ov78ANzYAL649ERMLEQcnCigALxZqBIADBIArPqRQA')">conditional(1 === 1, 0, 5);
-
 </pre></div></div>
 	evaluates as expected to 0. Delighted, Alyssa uses
 	<kbd>conditional</kbd> to rewrite the square-root
@@ -1976,7 +1951,6 @@ function sqrt(x) {
                        sqrt_iter(improve(guess, x),
                                  x));
 }
-
 </pre></div></div>
         What happens when Alyssa attempts to use this to compute square roots?
         Explain.
@@ -2065,7 +2039,6 @@ function good_enough(guess, x) {
 function relative_error(estimate, reference) {
     return abs(estimate - reference) / reference;
 }
-
 </pre></div></div>
     </SOLUTION></div></div>
 </EXERCISE></div>
@@ -2125,7 +2098,6 @@ function cube_root(guess, x) {
                ? guess
                : cube_root(improve(guess, x), x);
 }
-
 </pre></div></div>
     </SOLUTION></div></div>
 </EXERCISE></div>

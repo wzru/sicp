@@ -1699,13 +1699,11 @@
     formulate a query in either of two logically equivalent forms:
     <div class='snippet' id='javascript_94_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(job(x, list("computer", "programmer")),
-    supervisor(x, y))
-</pre></div></div>
+    supervisor(x, y))</pre></div></div>
     or
     <div class='snippet' id='javascript_94_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(supervisor(x, y),
-    job(x, list("computer", "programmer")))
-</pre></div></div>
+    job(x, list("computer", "programmer")))</pre></div></div>
   </p></div>
 
   <div class='permalink'>
@@ -1772,27 +1770,23 @@ and(supervisor(x, y),
     marriages, including
     
     <div class='snippet' id='javascript_94_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assert(married("Minnie", "Mickey"))
-</pre></div></div>
+assert(married("Minnie", "Mickey"))</pre></div></div>
   </p></div>
 
   <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
     If we now ask
     <div class='snippet' id='javascript_94_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-married("Mickey", who)
-</pre></div></div>
+married("Mickey", who)</pre></div></div>
     we will get no response, because the system doesn't know that if
     $A$ is married to $B$,
     then $B$ is married to
     $A$.  So we assert the rule
     <div class='snippet' id='javascript_94_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assert(rule(married(x, y), married(y, x)))
-</pre></div></div>
+assert(rule(married(x, y), married(y, x)))</pre></div></div>
     and again query
     <div class='snippet' id='javascript_94_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-married("Mickey", who)
-</pre></div></div>
+married("Mickey", who)</pre></div></div>
   </p></div>
 
   <div class='permalink'>
@@ -1915,8 +1909,7 @@ and(supervisor(x, y),
     not(job(x, list("computer", "programmer"))))
 
 and(not(job(x, list("computer", "programmer"))),
-    supervisor(x, y))
-</pre></div></div>
+    supervisor(x, y))</pre></div></div>
   </p></div>
 
   <div class='permalink'>
@@ -2030,14 +2023,12 @@ and(not(job(x, list("computer", "programmer"))),
 rule(outranked_by(staff_person, boss),      
      or(supervisor(staff_person, boss),
         and(outranked_by(middle_manager, boss),
-            supervisor(staff_person, middle_manager))))
-</pre></div></div>
+            supervisor(staff_person, middle_manager))))</pre></div></div>
     Just after Louis types this information into the system, DeWitt
     Aull comes by to find out who outranks Ben Bitdiddle. He issues
     the query
     <div class='snippet' id='javascript_94_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-outanked_by(list("Bitdiddle", "Ben"), who)
-</pre></div></div>
+outanked_by(list("Bitdiddle", "Ben"), who)</pre></div></div>
 
     After answering, the system goes into an infinite loop.  Explain why.
     
@@ -2060,19 +2051,15 @@ outanked_by(list("Bitdiddle", "Ben"), who)
     <kbd>wheel</kbd> rule of
     section <REF NAME="sec:deductive-info-retrieval"><a class="superscript" id="4.4.3-sec-link-4.4.1" href="./4.4.1.html">4.4.1</a></REF>):
     <div class='snippet' id='javascript_94_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-wheel(who)
-</pre></div></div>
+wheel(who)</pre></div></div>
     To his surprise, the system responds
     <div class='snippet' id='javascript_94_11_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
-
 Query results:
 wheel(list("Warbucks", "Oliver"))
 wheel(list("Bitdiddle", "Ben"))
 wheel(list("Warbucks", "Oliver"))
 wheel(list("Warbucks", "Oliver"))
-wheel(list("Warbucks", "Oliver"))
-      
-</pre></div></div>
+wheel(list("Warbucks", "Oliver"))</pre></div></div>
     Why is Oliver Warbucks listed four times?
     
   
@@ -2095,8 +2082,7 @@ wheel(list("Warbucks", "Oliver"))
     <div class='snippet' id='javascript_94_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 sum(amount,      
     and(job(x, list("computer", "programmer")),
-        salary(x, amount)))
-</pre></div></div>
+        salary(x, amount)))</pre></div></div>
     In general, Ben's new system allows expressions of the form
     <kbd class='snippet'>accumulation_function($\textit{variable}$, 
                       $\textit{query-pattern}$)</kbd>

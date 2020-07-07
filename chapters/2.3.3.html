@@ -1808,7 +1808,6 @@
           ( equal(x, head(set)) || 
             is_element_of_set(x, tail(set)) );
 }
-
 </pre></div></div>
     
   </p></div>
@@ -1832,7 +1831,6 @@
            ? set
            : pair(x, set);
 }
-
 </pre></div></div>
     
   </p></div>
@@ -1874,7 +1872,6 @@
                     intersection_set(tail(set1), set2))
              : intersection_set(tail(set1), set2);
 }
-
 </pre></div></div>
     
   </p></div>
@@ -1952,7 +1949,6 @@
            : adjoin_set(head(set1), 
                  union_set(tail(set1), set2));
 }
-
 </pre></div></div>
       
     </SOLUTION></div></div>
@@ -2020,7 +2016,6 @@
 function union_set(set1, set2) {
   return append(set1, set2);
 }
-
 </pre></div></div>
       In the version with no duplicates, the required number of steps for
       <kbd>is_element_of_set</kbd> and 
@@ -2097,7 +2092,6 @@ function union_set(set1, set2) {
              ? false
              : is_element_of_set(x, tail(set));
 }
-
 </pre></div></div>
     
   </p></div>
@@ -2178,7 +2172,6 @@ function union_set(set1, set2) {
                                   tail(set2));
     }
 }
-
 </pre></div></div>
     
   </p></div>
@@ -2235,7 +2228,6 @@ function union_set(set1, set2) {
                : pair(head(set), 
                       adjoin_set(x, tail(set)));
 }
-
 </pre></div></div></SOLUTION></div></div>
 </EXERCISE></div>
 
@@ -2274,12 +2266,10 @@ function union_set(set1, set2) {
                : pair(x2, union_set(set1, tail(set2)));
     }
 }
-
 </pre></div></div>
       <div class='snippet' id='javascript_39_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQBDAEwCsqKiB9AZwFMyAKAB4AaUDzIBKUAG9soOaABOvAgtoVO7IgQA22vmPGz5x+QH5Q29fwGGTdgFygBoALxvQAC26N9vSUbsTczEAwPlHZwAeT28GXwlQsLNQAAc6CgVBEQNEpNBHNIy+Lx8DEVy8u0YWNi5eLNAydL0DcXEAbmwAX1xiag4xPgDq1gH6gEYABhER2sGUafpmUbr+DEWtXTbxIWHluYnF2bH+cYBWGf2TvgWRTe1tjqA')">union_set(
    adjoin_set(10, adjoin_set(20, adjoin_set(30, null))),
    adjoin_set(10, adjoin_set(15, adjoin_set(20, null))));
-
 </pre></div></div>
     </SOLUTION></div></div>
 </EXERCISE></div>
@@ -2362,7 +2352,6 @@ function right_branch(tree) {
 function make_tree(entry,left,right) {
    return list(entry,left,right);
 }
-
 </pre></div></div>
     
   </p></div>
@@ -2387,7 +2376,6 @@ function make_tree(entry,left,right) {
              )
            );
 }
-
 </pre></div></div>
         
   </p></div>
@@ -2424,7 +2412,6 @@ function make_tree(entry,left,right) {
                      left_branch(set),
                      adjoin_set(x, right_branch(set)));
 }
-
 </pre></div></div>
   </p></div>
   <div class='permalink'>
@@ -2495,7 +2482,6 @@ function make_tree(entry,left,right) {
                     pair(entry(tree),
                          tree_to_list_1(right_branch(tree))));
 }
-
 </pre></div></div>
     <div class='snippet' id='javascript_39_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQBTIsgJwE8AKZuugSlAG9soIUzpkCTWgAs6AQwAmHETwDc2AL75i5arQA2dPGQD6AIyYzSkxV14ChoEWImhp8jjIq7rPbqo2FSShoHCgBzSWMzCxIrTh5+QWFRcSlZBTIPLwzPb248v01AnVAAWxkAazojOLYGZhYAGn1DBqYwiNtEh2TnXQoAZzJaxlYmgzJW9rJfdVwA7WC46qojPsGjFFyE+1B5oNoSKgAHFmXVgaG4hu7+gl1jNentnftHFNABoyI7rKVuLpegNAAH4bncHhcAUCdgAuUCHE5nR5sZqRcyWXINKHQ6FHDxMYb1THYnGk+HHU5kFbItrhNHRWJ-LFkllAkS3e7nQZ5GY7DQ7N7OBGU6kXbzXb66XQzNRAA')">function tree_to_list_2(tree) {
     function copy_to_list(tree, result_list) {
@@ -2508,7 +2494,6 @@ function make_tree(entry,left,right) {
     }
     return copy_to_list(tree, null);
 }
-
 </pre></div></div>
     <OL>
       <LI>
@@ -2649,7 +2634,6 @@ function partial_tree(elts, n) {
                    remaining_elts);
     }
 }
-
 </pre></div></div>
     
     <OL>
@@ -2754,7 +2738,6 @@ function partial_tree(elts, n) {
     const list2 = tree_to_list_2(set2);
     return list_to_tree(union_set(list1, list2));
 }
-
 </pre></div></div>
       
       <div class='snippet' id='javascript_39_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQKiyBTAJwGdHzqiB9dsgCj4BGADSg+KAJSgA3tlAK6eUPwqtuRAgBstgxmSHSAPkbrrNOvWSnS5i+6Gb6CzWha0BueYoC+oRlrsst72JDSsZKAAHkKgALygABaMAIYAJlaGXg6gYUQR0SjxSakZEpLZDk5kLrQx8XEJUSghOfYA-KAADikUzPwxYvRMbByUNLz6-GS9usKSIq1tyyurCjMUc-o2kkvLAFzRsQA8haB7K53DLOycE3zTs5kL4tu7a-aH16N3PA-Ciw+QJWGy21kkFVaPmw0PwxF+oC0ajI3DIVFRTkY-ACjAAtowGKxbCFqrUSul+D1mJQUloMYwsTj8YSRFoCQBzMiJbFs5lkIkQrzQwikca0Kk0ulkTE8-liIjE+wUZT8WiNBIABkVOVJrm6vX67hEAX5kPsfgCQTsOTyBTZeBRrAoAC9GMVcSkudw8FoqFR+qrQABaUCGUBgKSVBy2yL2lFOVjaSIJCUUWn0xlaOWIxgO3guxhmm3hWO5lHShnFZIUuPcBNJovRkugIgTWsm1jFUH8Wv1rON0LN5gUdmJR0F4q0EM9sv512gADUoYHihjoC5am4BOlAE8q6VVW3Zx2Vwo18PR-HGIms8VU+mK1ju62eO2s0TAcCv2sL2O54Wo0HfJIl-ctMX3ClQLra8G0A1chzxXoiHodkt3fLsnigvsyFPRxnD1Ho+n4D0AGtGAzaZEk3bdmB3MQLm-HJa0fejGI+KDHwWBif0Q+gULQ01AOhWERQRR9UXRJEIm4FBpkxbUFFEsVcioLodwk7gpIEFi8JvFEtIUqp8NoTd3Dkhl3mBTpsM05FuJyQ4wjUjStJnPMACNmBSUhuU4z82P1IiaJ3czC38gLB2ctFbIifgoM87ySF8+TwoinUYKzGKcMFKFWl1WgnPU6LXJ09xIRE+FlO+W4xUmFEUnUR9MjEcpgiAu1kSEOJxOK5EZOeQC1y0lBusxFy+tk8pAPyxE+uiprqrGLg6p7TqxGGnLYR6ySJv4OgGBuJb7n0bgGoo84Iq0jSmtc0RQAwMQAFYxAADghVKvyu+aZVclAxAe0AADZXohUBpAqIA')">function intersection_set_as_tree(set1, set2) {
@@ -2762,7 +2745,6 @@ function partial_tree(elts, n) {
     const list2=tree_to_list_2(set2);
     return list_to_tree(intersection_set(list1, list2));
 }
-
 </pre></div></div>
       
     </SOLUTION></div></div>
@@ -2845,7 +2827,6 @@ function partial_tree(elts, n) {
              : lookup(given_key, tail(set_of_records))
            );
 }
-
 </pre></div></div>
     
   </p></div>
@@ -2898,7 +2879,6 @@ function partial_tree(elts, n) {
                           right_branch(tree_of_records));
     }
 }
-
 </pre></div></div>
       
     </SOLUTION></div></div>

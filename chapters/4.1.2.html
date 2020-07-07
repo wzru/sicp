@@ -1723,7 +1723,6 @@
            is_boolean(stmt) ||
            is_null(stmt);
 }
-
 </pre></div></div>
 	    
           </LI>
@@ -1740,7 +1739,6 @@
 function symbol_of_name(stmt) {
     return head(tail(stmt));
 }
-
 </pre></div></div>
 	    
 	    The function <kbd>is_name</kbd> 
@@ -1751,7 +1749,6 @@ function symbol_of_name(stmt) {
 	    <div class='snippet' id='javascript_77_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvim7Fx8gsIiQuIiAEQkbBLcCbIJAB4JKhnJqTkBQA')">function is_tagged_list(stmt, the_tag) {
     return is_pair(stmt) && head(stmt) === the_tag;
 }
-
 </pre></div></div>
 	    
           </LI>
@@ -1770,7 +1767,6 @@ function assignment_symbol(stmt) {
 function assignment_value(stmt) {
    return head(tail(tail(stmt)));
 }
-
 </pre></div></div>
 	    
           </LI>
@@ -1810,7 +1806,6 @@ function variable_declaration_symbol(stmt) {
 function variable_declaration_value(stmt) {
    return head(tail(tail(stmt)));
 }
-
 </pre></div></div>
 	    
           </LI>
@@ -1832,7 +1827,6 @@ function lambda_parameters(stmt) {
 function lambda_body(stmt) {
    return make_block(head(tail(tail(stmt))));
 }
-
 </pre></div></div>
 	    
           </LI>
@@ -1847,7 +1841,6 @@ function lambda_body(stmt) {
 function return_expression(stmt) {
    return head(tail(stmt));
 }
-
 </pre></div></div>
 	    
           </LI>
@@ -1869,7 +1862,6 @@ function cond_expr_cons(stmt) {
 function cond_expr_alt(stmt) {
    return list_ref(stmt, 3);
 }
-
 </pre></div></div>
 	    
 	    
@@ -1903,7 +1895,6 @@ function is_empty_sequence(stmts) {
 function is_last_statement(stmts) {
    return is_null(tail(stmts));
 }
-
 </pre></div></div>
 	    
           </LI>
@@ -1919,7 +1910,6 @@ function make_block(stmt) {
 function block_body(stmt) {
     return head(tail(stmt));
 }
-
 </pre></div></div>
 	    
           </LI>
@@ -1949,7 +1939,6 @@ function first_arg(ops) {
 function rest_args(ops) {
    return tail(ops);
 }
-
 </pre></div></div>
 	    
 	  </LI>
@@ -1980,12 +1969,10 @@ function rest_args(ops) {
       translates a given string in JavaScript syntax into the corresponding
       tagged list  notation. In such an environment, the program
       <div class='snippet' id='javascript_77_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-parse("const x = 1;");
-</pre></div></div>
+parse("const x = 1;");</pre></div></div>
       yields the same result as the program
       <div class='snippet' id='javascript_77_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-list("constant_declaration", list("name", "x"), 1);
-</pre></div></div>
+list("constant_declaration", list("name", "x"), 1);</pre></div></div>
       <UL>
 	<LI>
 	  Verify experimentally that the 
@@ -2223,8 +2210,7 @@ list("constant_declaration", list("name", "x"), 1);
 display(1);
 let* x = 2;
 let* y = x + 3;
-display(x + y);
-</pre></div></div>
+display(x + y);</pre></div></div>
 	could be seen as a shorthand for
 	<div class='snippet' id='javascript_77_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 display(1);
@@ -2234,8 +2220,7 @@ display(1);
     let y = x + 3;
     display(x + y);
   }
-}
-</pre></div></div>
+}</pre></div></div>
 	<UL>
 	  <LI>
 	    Write programs in such an extended JavaScript language
@@ -2311,7 +2296,6 @@ display(1);
     }
     return a;	
 }
-
 </pre></div></div>
 	<UL>
 	  <LI>
@@ -2332,7 +2316,6 @@ display(1);
               );
     return a;	
 }
-
 </pre></div></div>
 	  </LI>
 	  <LI>
@@ -2394,7 +2377,6 @@ display(1);
     }
     return result;
 }
-
 </pre></div></div>
 	<UL>
 	  <LI>
@@ -2453,7 +2435,6 @@ display(1);
     }
     return result;
 }
-
 </pre></div></div>
 	In most programming languages, the functions in the result list of
 	<kbd>reverse</kbd> are useless: They apply

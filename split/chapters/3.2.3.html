@@ -1708,8 +1708,7 @@
     (if (>= balance amount)
         (begin (set! balance (- balance amount))
                balance)
-        "Insufficient funds")))
-</pre></div></div>    </td>
+        "Insufficient funds")))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_57_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQCY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+gO6XkAWAJgCdGnABQAjRgBtGZVgEpQAbxyg1oQa3KFBdRvWolyoALwA+ZavXXK+UBOmzSrUGZOh9h4uUUrr-9UkZOVNQIKcXAFoPAyMAbisA601tXTDHOQSk0ABfUFYpAGcXP2z1FJ06ACJKYkLCfHxKUkpWb1AiYn5CqqyknMTchJygA')">function make_withdraw(balance) {
     return amount => {
         if (balance >= amount) {
@@ -1720,7 +1719,6 @@
         }
     };
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -1732,10 +1730,8 @@
           
           <tr>
             <td><div class='snippet' id='javascript_57_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define W1 (make-withdraw 100))
-</pre></div></div>    </td>
+(define W1 (make-withdraw 100))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_57_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQCY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+gO6XkAWAJgCdGnABQAjRgBtGZVgEpQAbxyg1oQa3KFBdRvWolyoALwA+ZavXXK+UBOmzSrUGZOh9h4uUUrr-9UkZOVNQIKcXAFoPAyMAbisA601tXTDHOQSk0ABfUFYpAGcXP2z1FJ06ACJKYkLCfHxKUkpWb1AiYn5CqqyknMTchIGcUlpC4wB1AEZQpjYuHgFhMWmABjX5OKA')">const W1 = make_withdraw(100);
-
 </pre></div></div></td></tr></table>
     followed by
     <table width="100%">
@@ -1743,19 +1739,11 @@
           
           <tr>
             <td><div class='snippet' id='javascript_57_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(W1 50)
-</pre><pre class='prettyprintoutput'>
-
-            50
-      
-</pre></div></div>    </td>
+(W1 50)</pre><pre class='prettyprintoutput'>
+            50</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_57_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQCY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+gO6XkAWAJgCdGnABQAjRgBtGZVgEpQAbxyg1oQa3KFBdRvWolyoALwA+ZavXXK+UBOmzSrUGZOh9h4uUUrr-9UkZOVNQIKcXAFoPAyMAbisA601tXTDHOQSk0ABfUFYpAGcXP2z1FJ06ACJKYkLCfHxKUkpWb1AiYn5CqqyknMTchIGcUlpC4wB1AEZQpjYuHgFhMWmABjX5BJwZ0QBWTbigA')">W1(50);
-
 </pre><pre class='prettyprintoutput'>
-
-50
-      
-</pre></div></div></td></tr></table>
+50</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -1857,11 +1845,9 @@
           
           <tr>
             <td><div class='snippet' id='javascript_57_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define W1 (make-withdraw 100))
-</pre></div></div>    </td>
+(define W1 (make-withdraw 100))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_57_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-const W1 = make_withdraw(100);
-</pre></div></div></td></tr></table> 
+const W1 = make_withdraw(100);</pre></div></div></td></tr></table> 
   </p></div>
 
   <div class='permalink'>
@@ -1980,19 +1966,11 @@ const W1 = make_withdraw(100);
           
           <tr>
             <td><div class='snippet' id='javascript_57_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(W1 50)
-</pre><pre class='prettyprintoutput'>
-
-            50
-      
-</pre></div></div>    </td>
+(W1 50)</pre><pre class='prettyprintoutput'>
+            50</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_57_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-W1(50);
-</pre><pre class='prettyprintoutput'>
-
-50
-      
-</pre></div></div></td></tr></table>
+W1(50);</pre><pre class='prettyprintoutput'>
+50</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -2025,16 +2003,14 @@ W1(50);
 (if (>= balance amount)
     (begin (set! balance (- balance amount))
            balance)
-    "Insufficient funds")
-</pre></div></div>    </td>
+    "Insufficient funds")</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_57_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 if (balance >= amount) {
     balance = balance - amount;
     return balance;
 } else {
     return "insufficient funds";
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -2184,10 +2160,8 @@ if (balance >= amount) {
           
           <tr>
             <td><div class='snippet' id='javascript_57_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define W2 (make-withdraw 100))
-</pre></div></div>    </td>
+(define W2 (make-withdraw 100))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_57_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQCY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+gO6XkAWAJgCdGnABQAjRgBtGZVgEpQAbxyg1oQa3KFBdRvWolyoALwA+ZavXXK+UBOmzSrUGZOh9h4uUUrr-9UkZOVNQIKcXAFoPAyMAbisA601tXTDHOQSk0ABfUFYpAGcXP2z1FJ06ACJKYkLCfHxKUkpWb1AiYn5CqqyknMTchIGcUlpC4wB1AEZQpjYuHgFhMWmABjX5BJnRAFZNhLG6qYw5lg5uPiERUXWDnEmMUQAOA6A')">
-
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -2306,8 +2280,7 @@ if (balance >= amount) {
     (if (>= balance amount)
         (begin (set! balance (- balance amount))
                balance)
-        "Insufficient funds"))))
-</pre></div></div>    </td>
+        "Insufficient funds"))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_57_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQCY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+gO6XkAWAJgCdGnABSViPSowA27RvWolyASlABvHKG2hBrcoUF1RAI1mMyrUAF4AfKC06nz7QqXFyN+5pe+XlfFBTc0tQW2tQN2U1Hz845zMZC1IrCMTkqwBaSMVlAG5HeKK9AyNQdMsCor8AX1BWGQBnK1jquJLDOgAiCUbCfHxKUkpWD1AiYn5Grqq25xrC+ZVxSSpZeVyPFQKFnFJaRs8AdQBGGwYWDm4+IRFRE4AGB+2cU9EADme8oA')">function make_withdraw(initial_amount) {
     return (balance => 
                amount => {
@@ -2319,7 +2292,6 @@ if (balance >= amount) {
                    }
         })(initial_amount);
 }
-
 </pre></div></div></td></tr></table>
     
     
@@ -2340,12 +2312,10 @@ if (balance >= amount) {
 	
         call:
         <div class='snippet' id='javascript_57_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(let ((^var^ ^exp^)) ^body^)
-</pre></div></div>
+(let ((^var^ ^exp^)) ^body^)</pre></div></div>
         is interpreted as an alternate syntax for
         <div class='snippet' id='javascript_57_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-((lambda (^var^) ^body^) ^exp^)
-</pre></div></div>
+((lambda (^var^) ^body^) ^exp^)</pre></div></div>
       </span>    </td>
           <td></td>
           <td><span style="color:blue">
@@ -2366,12 +2336,10 @@ if (balance >= amount) {
 
 (W1 50)
 
-(define W2 (make-withdraw 100))
-</pre></div></div>    </td>
+(define W2 (make-withdraw 100))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_57_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQCY0oFA4GYCuAdgMYAuAlgPbGgC2AhgNYCmA+gO6XkAWAJgCdGnABSViPSowA27RvWolyASlABvHKG2hBrcoUF1RAI1mMyrUAF4AfKC06nz7QqXFyN+5pe+XlfFBTc0tQW2tQN2U1Hz845zMZC1IrCMTkqwBaSMVlAG5HeKK9AyNQdMsCor8AX1BWGQBnK1jquJLDOgAiCUbCfHxKUkpWD1AiYn5Grqq25xrC+ZVxSSpZeVyPFQKFnFJaRs8AdQBGGwYWDm4+IRFRE4AGB+2cU9EAVmeC-eJD0COMOcmGwuDwBMIxI8vkA')">const W1 = make_withdraw(100);
 W1(50);
 const W2 = make_withdraw(100);
-
 </pre></div></div></td></tr></table>
     Show that the two versions of
     

@@ -1910,7 +1910,6 @@ function symbol_leaf(x) {
 function weight_leaf(x) {
    return head(tail(tail(x)));
 }
-
 </pre></div></div>
     
   </p></div>
@@ -1935,7 +1934,6 @@ function weight_leaf(x) {
                 append(symbols(left), symbols(right)),
                 weight(left) + weight(right));
 }
-
 </pre></div></div>
     
     If we make a tree in this way, we have the following selectors:
@@ -1955,7 +1953,6 @@ function weight(tree) {
            ? weight_leaf(tree)
            : head(tail(tail(tail(tree))));
 }
-
 </pre></div></div>
     
   </p></div>
@@ -2031,7 +2028,6 @@ function choose_branch(bit, branch) {
              ? right_branch(branch)
              : error(bit, "bad bit -- choose_branch");
 }
-
 </pre></div></div>
     
   </p></div>
@@ -2124,7 +2120,6 @@ function choose_branch(bit, branch) {
              ? pair(x, set)
              : pair(head(set), adjoin_set(x, tail(set)));
 }
-
 </pre></div></div>
     
   </p></div>
@@ -2141,8 +2136,7 @@ function choose_branch(bit, branch) {
       
       
 	<div class='snippet' id='javascript_40_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-list(list("A", 4), list("B", 2), list("C", 1), list("D", 1))
-</pre></div></div>
+list(list("A", 4), list("B", 2), list("C", 1), list("D", 1))</pre></div></div>
       
     
     and constructs an initial ordered set of leaves, ready to be merged
@@ -2159,7 +2153,6 @@ list(list("A", 4), list("B", 2), list("C", 1), list("D", 1))
                  make_leaf_set(tail(pairs)));
    }
 }
-
 </pre></div></div>
     
   </p></div>
@@ -2179,7 +2172,6 @@ list(list("A", 4), list("B", 2), list("C", 1), list("D", 1))
                 make_leaf("C",1))));
 const sample_message =						 
     list(0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 0);
-
 </pre></div></div>
     Use the <kbd>decode</kbd>
     
@@ -2196,7 +2188,6 @@ const sample_message =
     
       <div class='snippet' id='javascript_40_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0AbNpggCgDOATwYAjGlwA0oAO5sqAcwAWFAJSgA3rlC6ATmwpE99LlUEV+AIh58rMkeMkz5S1WoDcuAL6FSlWnpzbl4BGjEAKzZKDW1dUAMjE1BlXgATfnComNAAXnzQG1CrL19icmo6UEcJLhC+fgAPWJ0Ew2N6VKYMiiYqLia1Tx8-CsC5BRUKeoFmrVa2pM70-l7+1b6B5qHS-HKAqp4CabE9JnJlVYM2FvjFjpSVimvhsv9K+j03E7OLq7YbvM7okHl0ept-jdXqMDvQapJBJDbvEQclgrYBM8AWoFnc7gB+UBmCxCUS1GZInF46kALke3Q26zWAyxUOh+w+E2+SKBKPaaMEFNZVOpBK5UyFL1xorpYMZLIhzMpOxGMM5zHYHDINDSnFZ-COFCkXymyP0-NM5kshqk0tFwO+tvt9qYAAdXWwSBl4VxEYa1A4yQj+Cb3AG7c7xaoDWxjhoANRRyyh9TQtXjXXa3X8MRUCiCGTC3m6DkZ6I6zgARhzeYLoDIxgMJB+5zIyjNeKoBFA-GCJCIXAGufzQ2LztR9H7g689u8oDYvrYY-t2pIFlAJDYjRbFzy9eUNBogk4p1blzlw8E4cjN9v8QbeibO7bw1vE9A6NC-E3244p4uIp3mKrp9HopJOHUGLfluz7tk6QE3pmFYcNWSqXgGoDCoBCGgHSSG6ih8o1iOMg-rBr6ir4dxUXySygPhVbEXWwq7KWVRtoex5-r8bbETI-4vmO77DnkBQAAwRmKhrcWeOY8e2knxHSIn5LkoCVopYopjJfwCQpd50mwj40GBw4yFYYjdKAIkALQ2funEnvJVhpqu66CEwDCujwHCsnkuIapwWZ6tc-CSYFFJWAAgvY2DXqKEXBb5oWaboEVQVYABC9goPFkaJch+qpXi6VflYAAi9iVnld6lQ0VjQFVQwqm5FDVJ53mcAwbCCB5ihLrkACQw0jaAuLEpYYkyJW00yFNoDzTNC2zct6krUtYnDLgDFCB1Pndb1TD9Q4e0hdiXggNUB4Dmk1lsHSADa0X2KAT2VTIT0xR9WUvU92XfY131fRuA5cAAuhDkNg0AA')">decode(sample_message, sample_tree);
 // should be: ["A", ["D", ["A", ["B", ["B", ["C", ["A", null]]]]]]]
-
 </pre></div></div>
     </SOLUTION></div></div>
 </EXERCISE></div>
@@ -2220,7 +2211,6 @@ const sample_message =
            : append(encode_symbol(head(message), tree),
                     encode(tail(message), tree));
 }
-
 </pre></div></div>
     
     
@@ -2268,7 +2258,6 @@ const sample_message =
                    : error("symbol not found");
     }
 }
-
 </pre></div></div>
       
     </SOLUTION></div></div>
@@ -2290,7 +2279,6 @@ const sample_message =
     <div class='snippet' id='javascript_40_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0AbNpggCgDOATwYAjGlwA0oAO5sqAcwAWFAJSgA3rlC6ATmwpE99LlUEV+AIh58rMkeMkz5S1WoDcuAL6FSlWnpzbl4BGjEAKzZKDW1dUAMjE1BlXgATfnComNAAXnzQG1CrL19icmo6UEcJLhC+fgAPWJ0Ew2N6VKYMiiYqLia1Tx8-CsC5BRUKeoFmrVa2pM70-l7+1b6B5qHS-HKAqp4CabE9JnJlVYM2FvjFjpSVimvhsv9K+j03E7OLq7YbvM7okHl0ept-jdXqMDvQapJBJDbvEQclgrYBM8AWoFnc7gB+UBmCxCUS1GZInF46kALke3Q26zWAyxUOh+w+E2+SKBKPaaMEFNZVOpBK5UyFL1xorpYMZLIhzMpOxGMM53QiNCoJA4gkMTQchmR+n5QUFJCIXAGevU0uphOJlmadrxdNcU0GoAAPOLVPw5Tahi77aAAA59PQG6pG4OusMR-0rQMyDVanU2qNKwMq3xq8bMdgzXX68NUPSCY1UAigfjBC1W-il8tDXnA02getcLzxXzxNhcPWt+JkOgWUAEMsWDhNvL0jJNivdvGo+ip7XFyyx0WMVicDGJhkT8vTJtqGSikDVMlb7e3uVKo9T09DGSXggGACON+pBb3oQ38qNhGFYqj2qqXoIRBkGQbCCIIVAAG6cAwbB6IobDju84wUDQoBiBhshfBQFBsPQYjCNURhpKRFB7FhVToSQqFMCRHDKEQBAEMwOqskBk7Giu1RQTBcGIchqHofwv5FhmC45kAA')">function generate_huffman_tree(pairs) {
    return successive_merge(make_leaf_set(pairs));
 }
-
 </pre></div></div>
     
     
@@ -2334,7 +2322,6 @@ const sample_message =
                                     head(tail(leaves))),
                      tail(tail(leaves))));
 }
-
 </pre></div></div>
       
     </SOLUTION></div></div>
@@ -2400,7 +2387,6 @@ const lyrics = list(
  
 length(encode(lyrics, lyrics_tree));
 // 84
-
 </pre></div></div>
       We have an alphabet of $n = 8$ symbols, and a
       message of $m = 36$ symbols. Then the minimum

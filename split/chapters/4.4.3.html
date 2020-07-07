@@ -1703,12 +1703,10 @@
           <tr>
             <td><div class='snippet' id='javascript_94_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (and (job ?x (computer programmer))
-     (supervisor ?x ?y))
-</pre></div></div>    </td>
+     (supervisor ?x ?y))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(job(x, list("computer", "programmer")),
-    supervisor(x, y))
-</pre></div></div></td></tr></table>
+    supervisor(x, y))</pre></div></div></td></tr></table>
     or
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
@@ -1716,12 +1714,10 @@ and(job(x, list("computer", "programmer")),
           <tr>
             <td><div class='snippet' id='javascript_94_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (and (supervisor ?x ?y)
-     (job ?x (computer programmer)))
-</pre></div></div>    </td>
+     (job ?x (computer programmer)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(supervisor(x, y),
-    job(x, list("computer", "programmer")))
-</pre></div></div></td></tr></table>
+    job(x, list("computer", "programmer")))</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -1792,11 +1788,9 @@ and(supervisor(x, y),
           
           <tr>
             <td><div class='snippet' id='javascript_94_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(assert! (married Minnie Mickey))
-</pre></div></div>    </td>
+(assert! (married Minnie Mickey))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assert(married("Minnie", "Mickey"))
-</pre></div></div></td></tr></table>
+assert(married("Minnie", "Mickey"))</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -1807,11 +1801,9 @@ assert(married("Minnie", "Mickey"))
           
           <tr>
             <td><div class='snippet' id='javascript_94_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(married Mickey ?who)
-</pre></div></div>    </td>
+(married Mickey ?who)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-married("Mickey", who)
-</pre></div></div></td></tr></table>
+married("Mickey", who)</pre></div></div></td></tr></table>
     we will get no response, because the system doesn't know that if
     $A$ is married to $B$,
     then $B$ is married to
@@ -1822,22 +1814,18 @@ married("Mickey", who)
           <tr>
             <td><div class='snippet' id='javascript_94_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (assert! (rule (married ?x ?y)
-         (married ?y ?x)))
-</pre></div></div>    </td>
+         (married ?y ?x)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assert(rule(married(x, y), married(y, x)))
-</pre></div></div></td></tr></table>
+assert(rule(married(x, y), married(y, x)))</pre></div></div></td></tr></table>
     and again query
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_94_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(married Mickey ?who)
-</pre></div></div>    </td>
+(married Mickey ?who)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-married("Mickey", who)
-</pre></div></div></td></tr></table>
+married("Mickey", who)</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -1964,15 +1952,13 @@ married("Mickey", who)
      (not (job ?x (computer programmer))))
 
 (and (not (job ?x (computer programmer)))
-     (supervisor ?x ?y))
-</pre></div></div>    </td>
+     (supervisor ?x ?y))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(supervisor(x, y),
     not(job(x, list("computer", "programmer"))))
 
 and(not(job(x, list("computer", "programmer"))),
-    supervisor(x, y))
-</pre></div></div></td></tr></table>
+    supervisor(x, y))</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -2096,14 +2082,12 @@ and(not(job(x, list("computer", "programmer"))),
 (rule (outranked-by ?staff-person ?boss)
       (or (supervisor ?staff-person ?boss)
           (and (outranked-by ?middle-manager ?boss)
-               (supervisor ?staff-person ?middle-manager))))
-</pre></div></div>    </td>
+               (supervisor ?staff-person ?middle-manager))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 rule(outranked_by(staff_person, boss),      
      or(supervisor(staff_person, boss),
         and(outranked_by(middle_manager, boss),
-            supervisor(staff_person, middle_manager))))
-</pre></div></div></td></tr></table>
+            supervisor(staff_person, middle_manager))))</pre></div></div></td></tr></table>
     Just after Louis types this information into the system, DeWitt
     Aull comes by to find out who outranks Ben Bitdiddle. He issues
     the query
@@ -2112,11 +2096,9 @@ rule(outranked_by(staff_person, boss),
           
           <tr>
             <td><div class='snippet' id='javascript_94_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(outranked-by (Bitdiddle Ben) ?who)
-</pre></div></div>    </td>
+(outranked-by (Bitdiddle Ben) ?who)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-outanked_by(list("Bitdiddle", "Ben"), who)
-</pre></div></div></td></tr></table>
+outanked_by(list("Bitdiddle", "Ben"), who)</pre></div></div></td></tr></table>
 
     After answering, the system goes into an infinite loop.  Explain why.
     
@@ -2143,36 +2125,28 @@ outanked_by(list("Bitdiddle", "Ben"), who)
           
           <tr>
             <td><div class='snippet' id='javascript_94_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(wheel ?who)
-</pre></div></div>    </td>
+(wheel ?who)</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-wheel(who)
-</pre></div></div></td></tr></table>
+wheel(who)</pre></div></div></td></tr></table>
     To his surprise, the system responds
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_94_11_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
-
 ;;; Query results:
 (wheel (Warbucks Oliver))
 (wheel (Bitdiddle Ben))
 (wheel (Warbucks Oliver))
 (wheel (Warbucks Oliver))
-(wheel (Warbucks Oliver))
-      
-</pre></div></div>    </td>
+(wheel (Warbucks Oliver))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_11_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
-
 Query results:
 wheel(list("Warbucks", "Oliver"))
 wheel(list("Bitdiddle", "Ben"))
 wheel(list("Warbucks", "Oliver"))
 wheel(list("Warbucks", "Oliver"))
-wheel(list("Warbucks", "Oliver"))
-      
-</pre></div></div></td></tr></table>
+wheel(list("Warbucks", "Oliver"))</pre></div></div></td></tr></table>
     Why is Oliver Warbucks listed four times?
     
   
@@ -2199,13 +2173,11 @@ wheel(list("Warbucks", "Oliver"))
             <td><div class='snippet' id='javascript_94_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (sum ?amount
      (and (job ?x (computer programmer))
-          (salary ?x ?amount)))
-</pre></div></div>    </td>
+          (salary ?x ?amount)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_94_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 sum(amount,      
     and(job(x, list("computer", "programmer")),
-        salary(x, amount)))
-</pre></div></div></td></tr></table>
+        salary(x, amount)))</pre></div></div></td></tr></table>
     In general, Ben's new system allows expressions of the form
     <kbd class='snippet'>accumulation_function($\textit{variable}$, 
                       $\textit{query-pattern}$)</kbd>

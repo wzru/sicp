@@ -1719,8 +1719,7 @@
     branch(label("ev_block")),
     test(op("is_application"), reg("exp")),
     branch(label("ev_application")),
-    go_to(label("unknown_expression_type")),
-</pre></div></div>
+    go_to(label("unknown_expression_type")),</pre></div></div>
       </p></div>
 
       
@@ -1755,8 +1754,7 @@
     assign("val",
            list(op("make_compound_function"), 
                 reg("unev"), reg("exp"), reg("env"))),
-    go_to(reg("continue")),
-</pre></div></div>
+    go_to(reg("continue")),</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1828,8 +1826,7 @@
     save("unev"),
     assign("exp", list(op("operator"), reg("exp"))),
     assign("continue", label("ev_appl_did_operator")),
-    go_to(label("eval_dispatch")),
-</pre></div></div>
+    go_to(label("eval_dispatch")),</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1853,8 +1850,7 @@
     assign("fun", list(reg("val"))), // the operator
     test(op("has_no_operands"), reg("unev")),
     branch(label("apply_dispatch")),
-    save("fun"),
-</pre></div></div>
+    save("fun"),</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1878,8 +1874,7 @@
     save("env"),
     save("unev"),
     assign("continue", label("ev_appl_accumulate_arg")),
-    go_to(label("eval_dispatch")),
-</pre></div></div>
+    go_to(label("eval_dispatch")),</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1895,8 +1890,7 @@
     restore("argl"),
     assign("argl", list(op("adjoin_arg"), reg("val"), reg("argl"))),
     assign("unev", list(op("rest_operands"), reg("unev"))),
-    go_to(label("ev_appl_operand_loop")),
-</pre></div></div>
+    go_to(label("ev_appl_operand_loop")),</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1920,8 +1914,7 @@
     restore("argl"),
     assign("argl", list(op("adjoin_arg"), reg("val"), reg("argl"))),
     restore("fun"),
-    go_to(label("apply_dispatch")),
-</pre></div></div>
+    go_to(label("apply_dispatch")),</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1975,8 +1968,7 @@
     branch(label("primitive_apply")),
     test(op("is_compound_function"), reg("fun")),
     branch(label("compound_apply")),
-    go_to(label("unknown_procedure_type")),
-</pre></div></div>
+    go_to(label("unknown_procedure_type")),</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -2019,8 +2011,7 @@
     list(op("apply_primitive_function"), reg("fun"), reg("argl"))
     ),
     restore("continue"),
-    go_to(reg("continue")),
-</pre></div></div>
+    go_to(reg("continue")),</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -2058,8 +2049,7 @@
     list(op("extend_environment"), reg("unev"), reg("temp"), reg("env"))
     ),
     assign("unev", list(op("function_body"), reg("fun"))),
-    go_to(label("ev_sequence")),
-</pre></div></div>
+    go_to(label("ev_sequence")),</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -2124,8 +2114,7 @@ const empty_arglist = list();
  
 function adjoin_arg(arg, arglist) {
     return append(arglist, list(arg));
-}
-</pre></div></div>
+}</pre></div></div>
     We also use an additional syntax
     function
     to test for the
@@ -2133,8 +2122,7 @@ function adjoin_arg(arg, arglist) {
     <div class='snippet' id='javascript_112_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function is_last_operand(ops) {
     return is_null(tail(ops));
-}
-</pre></div></div>
+}</pre></div></div>
   
     </FOOTNOTE></div>
 

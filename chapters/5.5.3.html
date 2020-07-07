@@ -1737,8 +1737,7 @@ function compile_application(exp, target, linkage) {
                       preserving(list("proc", "continue"), 
                                  construct_arglist(operand_codes),
                                  compile_procedure_call(target, linkage)));
-}
-</pre></div></div>
+}</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1783,8 +1782,7 @@ assign("argl", list(op("pair"), reg("val"), reg("argl")));</kbd>
   emits the instruction
 
   <div class='snippet' id='javascript_119_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assign(argl, list(constant("null")));
-</pre></div></div>
+assign(argl, list(constant("null")));</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1836,8 +1834,7 @@ function code_to_get_rest_args(operand_codes) {
         : preserving(list("env"),
                      code_for_next_arg,
                      code_to_get_rest_args(tail(operand_codes)));
-}
-</pre></div></div>
+}</pre></div></div>
       </p></div>
 
       
@@ -1920,8 +1917,7 @@ function compile_procedure_call(target, linkage) {
                                               list(target),
                                               assign(target, list(op("apply_primitive_procedure"), reg("proc"), reg("argl"))))))),
         "after_call");
-}
-</pre></div></div>
+}</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -2033,8 +2029,7 @@ function compile_procedure_call(target, linkage) {
   have gone.)
   <div class='snippet' id='javascript_119_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assign("val", list(op("compiled_procedure_entry"), reg("proc"))),
-      go_to(reg("val")),
-</pre></div></div>
+      go_to(reg("val")),</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -2117,8 +2112,7 @@ function compile_proc_appl(target, linkage) {
     } else if (target !== "val" && linkage === "return") {
         error(target, "return linkage, target not val - - COMPILE");
     }
-}
-</pre></div></div>
+}</pre></div></div>
   
   
       </p></div>
@@ -2185,8 +2179,7 @@ function compile_proc_appl(target, linkage) {
     
     <kbd>all_regs</kbd> is bound to the list of names of all the registers:
     <div class='snippet' id='javascript_119_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-const all_regs = list("env", "proc", "val", "argl", "continue");
-</pre></div></div>
+const all_regs = list("env", "proc", "val", "argl", "continue");</pre></div></div>
   
     </FOOTNOTE></div>
 

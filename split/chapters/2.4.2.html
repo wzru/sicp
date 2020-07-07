@@ -1770,8 +1770,7 @@
 (define (contents datum)
   (if (pair? datum)
     (cdr datum)
-    (error "Bad tagged datum -- CONTENTS" datum)))
-</pre></div></div>    </td>
+    (error "Bad tagged datum -- CONTENTS" datum)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_43_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoJTeln4NTq7uZFS00rL2ioUpYWlaegZGfXEJtUXKiyVZbaYANnMh27va5ZXVmymNLV3tnd1FfXS2cgqKw85uOLaK5KB8OwAIygAC8oAOsXIPAaAEEGlIMCM-gDgvx2Pg9ABHQjyUgY0EQnaMZhsPywrHCXH4jFQ-6IwEgkY4HxWcQ8dGYnF4siEpxAA')">function attach_tag(type_tag, contents) {
     return pair(type_tag, contents);
 }
@@ -1785,7 +1784,6 @@ function contents(datum) {
            ? tail(datum)
            : error(datum, "bad tagged datum in contents");
 }
-
 </pre></div></div></td></tr></table>
     
   </p></div>
@@ -1818,16 +1816,14 @@ function contents(datum) {
 
           
 (define (polar? z)
-  (eq? (type-tag z) 'polar))
-</pre></div></div>    </td>
+  (eq? (type-tag z) 'polar))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_43_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function is_rectangular(z) {
     return type_tag(z) === "rectangular";
 }
 function is_polar(z) {
     return type_tag(z) === "polar";
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
   </p></div>
   <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
@@ -1877,8 +1873,7 @@ function is_polar(z) {
           
 (define (make-from-mag-ang-rectangular r a) 
   (attach-tag 'rectangular
-              (cons (* r (cos a)) (* r (sin a)))))
-</pre></div></div>    </td>
+              (cons (* r (cos a)) (* r (sin a)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_43_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoJTeln4NTq7uZFS00rL2ioUpYWlaegZGfXEJtUXKiyVZbaYANnMh27va5ZXVmymNLV3tnd1FfXS2cgqKw85uY56TigBHQj0PQ8AAeCwiy2ioDBoAAVLDvngiOMvJF6Ad4iDyOw9BR6MQuIQDiCeAAvSHaaGrXL5CkjNyov4xYLibE6XH45hEklkynqHY07yHBnI5kTOhsrjESgGfyibmE4mk8wC8LUqKrNnkDiAzk8QHA0F6TEcrnCAm81UM05nUAAah2JSNIOEPEo0vNeMtPJV-OUgfFHklDCJB0VvuVfLVVKWWqljA4jEJHq9Jk5Pqt-tjEmd9oxWIzFuzMdtwbRkzZAGtRPhqsEfWbPeyldayWCpPw45EVnRGMw2H4eA02zmGnmCwWNuCu0HRhL0TW6w32F7lVm-WWdFJ6D3hQwmCwONwR2OYxP81OIjOdAjQDqODJZnupHfEY-2Ip+jw9-OfrYijkKATTyHEMjsMQISgAAvA+9C1uw9bUI265Epu0Y2gAkFoV7XhEADMaAAAxSMRaAAOwjDgLZcN6542m8Mw8KBxDgdQkEnE4QA')">function real_part_rectangular(z) {
     return head(z);
 }
@@ -1902,7 +1897,6 @@ function make_from_mag_ang_rectangular(r, a) {
     return attach_tag("rectangular",
                       pair(r * math_cos(a), r * math_sin(a)));
 }
-
 </pre></div></div></td></tr></table>
     
     and here is Alyssa's revised polar representation:
@@ -1932,8 +1926,7 @@ function make_from_mag_ang_rectangular(r, a) {
 
           
 (define (make-from-mag-ang-polar r a)
-  (attach-tag 'polar (cons r a)))
-</pre></div></div>    </td>
+  (attach-tag 'polar (cons r a)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_43_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoJTeln4NTq7uZFS00rL2ioUpYWlaegZGfXEJtUXKiyVZbaYANnMh27va5ZXVmymNLV3tnd1FfXS2cgqKw85uY56TigBHQj0PQ8AAeCwiy2ioDBoAAVLDvngiOMvJF6Ad4iDyPFqAcQTwAF6Q7TQ1bBcTESgGfyiQT4wkkhGgSnkDgyWb0YhcA70xnmEkjNyov4xSlcbE6XEMgmC0lLKIUqk0wh0vFy4mqRFsjiKfo8bm8-maoXI0UTOgS6m0k1MhWRFZ0XL5LXmjyWhg8vka+3qHbk7yHN2jC3oykAa1E+GqwXYekx7EoEt95jBUn4DsDDCYLA43B4DVlIIaEh2Z12Gx4uvYgOlPEBwNBENAAGpQI2QcIeJnlGWKwP0jXGNye1IIcphb9PZHo7H2CmjameDopPQs0q6IxmGw-IXizpS+XB+kq6uGJPkThbIpyAwDvxFIp6HEZOxiCFQABeVn0KPsGNqDjRceWXY8T12ABmNAAAYpBgtAAHYRhwZNxClGUBR4N4ZkNB8nxfdg3w-UInCAA')">function real_part_polar(z) {
     return magnitude_polar(z) * math_cos(angle_polar(z));
 }
@@ -1955,7 +1948,6 @@ function make_from_mag_ang_polar(r, a) {
     return attach_tag("polar",
                       pair(r, a));
 }
-
 </pre></div></div></td></tr></table>
     
     
@@ -2029,8 +2021,7 @@ function make_from_mag_ang_polar(r, a) {
          (angle-rectangular (contents z)))
         ((polar? z)
          (angle-polar (contents z)))
-        (else (error "Unknown type -- ANGLE" z))))
-</pre></div></div>    </td>
+        (else (error "Unknown type -- ANGLE" z))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_43_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoJTeln4NTq7uZFS00rL2ioUpYWlaegZGfXEJtUXKiyVZbaYANnMh27va5ZXVmymNLV3tnd1FfXS2cgqKw85uY56Tsew9BR6MQuIQDvRzAAvBYRZbRNqDbg8GGgAC8GNADSBzFB4MhDW+vwmMXW1Ah0Nh2nhqx8VnEKNUGLRWME5IJROJXlAigAjoRIcIeAAPKlLKKrYWgABUoGFnKI425enoB3ikPIgOEwLxFMZ6h2NLouXyjKJir+MWC4nVOk1OJBYL1qPC1Il3kOZtGFpJoGtXGIlAM-lEDt1kP1rvFKzo1vIHD5dp4fIFeh4KrVJjtWp1TojMNOZ1AAGodiUU4KeJR-bb7drcXnKcoRm4fdzHQdQ-XHfjKQa4e6-YwOIwQVWa1m67ne4yJGWi5FVbWcw2ZwXzR5fdaANaifDVYJapfVm1hxsiqT8MWRGMMJgsDjI7Hd8M6BpzhcLjYX0BXltcyYdz3A92BrR0Vx7PUdCkehryNO9mDYPweGfacKXfedPwib8dBlId43YGRZlgqRcNlOME36HhYObBVN2VPJMw1eJ2T7KMbwRf1A2DUQ2WdVRyOHQjqGI0FOxY-j-zbf4J2Yvj8zgwcuKDQgQwkhS8Io9hFCojteNYxkpPowDxG41T9P4-s3VvE0ChhDclUmPT1LYw1B2YSgjns71jNjehd3YfdqEPDN2BPLgXJ-K8rOjBFGEQx8GQaeS3w-LCSm-LTE3IZN+UrUUSx5PK0z-NL0qLLTR2IHh+CkUVaJ8xy-ICoLDzA0FIughhFNveKH2Q5LWIw8qMtMcwupouimsXJikxdNzbwBM810LM5slCycINfHg3hmQzMIicoARSxkDvSdbGOXE7do+fasIuKoahRRoAFViG3YhqAAdwGEQXhm2svkay0+lkuaeoRJaX3PGEzq0bJwuXZa9RupQ7qLI6yX4uHtARsHNWu6ZboLHGtAeq5nqxN6Pu+37hH+xHJyB1tfKHAMVJDSMFshuJkYUnHsmUnitvPVHZhJhdMci2GsMF0yOYsiMxfRyWKke6FXvez6fsRP7+jZsyQ2ZgC6D0rmB0W3noZWgWGDErs0KVom0YljG1ml1ai2yZzCbsYnm1J0ByaeqFNZpnW6X+vTjZwWxFHIBgDn4RRFHoOIZHYYgQnRIcWpA9qIpOgBILRA-SgBmNAAAYpCrtAAHYRhwRmNWopOU7T4TM5ORwgA')">function real_part(z) {
     return is_rectangular(z)
            ? real_part_rectangular(contents(z))
@@ -2059,7 +2050,6 @@ function angle(z) {
              ? angle_polar(contents(z))
              : error(z, "Unknown type in angle");
 }
-
 </pre></div></div></td></tr></table>
     
   </p></div>
@@ -2109,15 +2099,13 @@ function angle(z) {
             <td><div class='snippet' id='javascript_43_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (add-complex z1 z2)
   (make-from-real-imag (+ (real-part z1) (real-part z2))
-                       (+ (imag-part z1) (imag-part z2))))
-</pre></div></div>    </td>
+                       (+ (imag-part z1) (imag-part z2))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_43_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function add_complex(z1, z2) {
    return make_from_real_imag(
               real_part(z1) + real_part(z2),
               imag_part(z1) + imag_part(z2));
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
     Finally, we must choose whether to construct complex numbers using
     Ben's representation or Alyssa's representation.  One
     reasonable choice is to construct rectangular numbers whenever we have
@@ -2133,15 +2121,13 @@ function add_complex(z1, z2) {
 
           
 (define (make-from-mag-ang r a)
-  (make-from-mag-ang-polar r a))
-</pre></div></div>    </td>
+  (make-from-mag-ang-polar r a))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_43_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoJTeln4NTq7uZFS00rL2ioUpYWlaegZGfXEJtUXKiyVZbaYANnMh27va5ZXVmymNLV3tnd1FfXS2cgqKw85uY56Tsew9BR6MQuIQDvRzAAvBYRZbRNqDbg8GGgAC8GNADSBzFB4MhDW+vwmMXW1Ah0Nh2nhqx8VnEKNUGLRWME5IJROJXlAigAjoRIcIeAAPKlLKKrYWgABUoGFnKI425enoB3ikPIgOEwLxFMZ6h2NLouXyjKJir+MWC4nVOk1OJBYL1qPC1Il3kOZtGFpJoGtXGIlAM-lEDt1kP1rvFKzo1vIHD5dp4fIFeh4KrVJjtWp1TojMNOZ1AAGodiUU4KeJR-bb7drcXnKcoRm4fdzHQdQ-XHfjKQa4e6-YwOIwQVWa1m67ne4yJGWi5FVbWcw2ZwXzR5fdaANaifDVYJapfVm1hxsiqT8MWRGMMJgsDjI7Hd8M6BpzhcLjYX0BXltcyYdz3A92BrR0Vx7PUdCkehryNO9mDYPweGfacKXfedPwib8dBlId43YGRZlgqRcNlOME36HhYObBVN2VPJMw1eJ2T7KMbwRf1A2DUQ2WdVRyOHQjqGI0FOxY-j-zbf4J2Yvj8zgwcuKDQgQwkhS8Io9hFCojteNYxkpPowDxG41T9P4-s3VvE0ChhDclUmPT1LYw1B2YSgjns71jNjehd3YfdqEPDN2BPLgXJ-K8rOjBFGEQx8GQaeS3w-LCSm-LTE3IZN+UrUUSx5PK0z-NL0qLLTR2IHh+CkUVaJ8xy-ICoLDzA0FIughhFNveKH2Q5LWIw8qMtMcwupouimsXJikxdNzbwBM810LM5slCycINfHg3hmQzMIicoARSxkDvSdbGOXE7do+fasIuKoahRRoAFViG3YhqAAdwGEQXhm2svkay0+lkuaeoRJaX3PGEzq0bJwuXZa9RupQ7qLI6yX4uHtARsHNWu6ZboLHGtAeq5nqxN6Pu+37hH+xHJyB1tfKHAMVJDSMFshuJkYUnHsmUnitvPVHZhJhdMci2GsMF0yOYsiMxfRyWKke6FXvez6fsRP7+jZsyQ2ZgC6D0rmB0W3noZWgWGDErs0KVom0YljG1ml1ai2yZzCbsYnm1J0ByaeqFNZpnW6X+vTjZNocWpA0LwqiiHViAwKE8uxG+fMYVLyM6a09a0CbUddMYJT5rgOC4uIvAk6Jv-HBbEUcgGAOfhFEUeg4hkdhiBCdE46rtqS9BHgAEgtED9KAGY0AABikee0AAdhGHBGY1aj2877vhL7k5HCAA')">function make_from_real_imag(x, y) {
     return make_from_real_imag_rectangular(x, y);
 }
 function make_from_mag_ang(r, a) {
     return make_from_mag_ang_polar(r, a);
 }
-
 </pre></div></div></td></tr></table>
     
   </p></div>

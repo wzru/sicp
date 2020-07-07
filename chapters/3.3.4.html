@@ -1812,7 +1812,6 @@ const c = make_wire();
 const d = make_wire();
 const e = make_wire();
 const s = make_wire();
-
 </pre></div></div>
   </p></div>
 
@@ -1832,33 +1831,17 @@ const s = make_wire();
     that we can construct and-gates, or-gates, and inverters, we can wire
     together the half-adder shown in figure <REF NAME="fig:half-adder"><a class="superscript" id="3.3.4-fig-link-3.25" href="./3.3.4.html#fig_3.25">3.25</a></REF>:
     <div class='snippet' id='javascript_63_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToCwChsDMBXAOwGMAXASwHsjQBzAUzIH0BnCuogQwBsAKAO4UATgwCUoAN7ZQs0KLIFhtIaL4AiRi3ade6sQG5sAX1yFSlGqFZM2Hbv1UMANKCIMBzAG68C4qTJyCkq0giIMGjba9npiYnzunj48foYmZsTk1LRcACa5zFxZNGGirkWWRMzmxUQS0nLyTCGgpRHqeQUV2frx3TTVmZVppvhD2aAAtlwA1gzMlJPzNnRLRGR8iy6gAI5+qQGNwcqgAA5cIpsUS657DKlGozWV1gyrDOsL1xGs9YGyx1oAAsGHk+L9HhkLBMVmsWHc-OC-kdmicyBd+BD0mNoVZpnNmAiIsigqjaOdLkQCDweK4qTSRlDaqA8MIaCxTmRhHwiSSAWTQCCwbzIc8JqIuMJmJzubzDqTFGiMTz9uJReMrFFqmzPjKVfdthQyAxJnzXiwhbl9X5XEaTYyxZrbBKpXqibbjab5bIteiKPx3aA7abITjmRRWMwTZyAJ6E1XW-wNBUtCPMen8Vns6VcxNxUOO2gUIg2YTwhOB4Nmkg0VhkNweaUXYSgAC8Z2bfGDdOpPDSjQoeFaaejZDjRLzZsaWqzutzgcSTZE-caci1LpzstVdMbFOEK9kxlADB4Nm9q99yo3btVYh3nj3B4vztBrvn24bD+bT9MKMVtCJAsNVofF5i4RgiFyLg+DNQFQB4CMNgABkZMMXhIJRRE+LY+HAj4oNggVLVwiCCKA3FaC1DDhCwlgcLwyCuFcLYzS1YiGKg5jvlQwtXnedZWBI-CuEI-9QD9fgOJE8jmS1WEPjIQSpNcFZfnPS9-SExiVLeLEnmAlkRDrNg3jhLSCPPODiPkgTzJEniDNEYybMUuzRJaCTwVMhSlNI+yZJeToFioQo-KuG5QH6Ihyj8s1eIAIxPGg6EjRK8CoNRVKnFMTjTDMvJSiQAB8iv+VdyvE75QAAHj4uEviWPhrN0-Myt-OReNA9NGy2Ez+I2LZylqbLZBrEt6x2NsplmeYJyfAcSwYMt4wNHkhuGIwKqaMSut6lzwu2HYfzK3igrIEKXMErLzwHIcCvqnDmsKiRW1eyqlhG1di1LctVpclbESe3470i4bNoqo8TzPZMttG2t6yc+t208rLwdhoM7sSnhktShh0rURG4hu9HzQWZVVOcMqSdXPc+C6xc9u89YDvW7I7yp6mtpRlrWupyHTwYYn0bOi6mdcwm0dh9ryul0BZbGus+NYKbLrcyXB1aLGceYNKMp+HmhdJ1XlI58rafpnrvj6szBtB4ZKc56cecl-nodNyL8mC62fIKrFGlMUYFfrMgQVC4Spq6qSYKMIOgyILwluNKVchPLgYymgAmGP4ciyDmDoLhjWYFOeDTqaUGz8bQAy-PC-mEuy-bABWIw0ImLg8CT4vU5jPgG5jVmaDNEWw8Yvue9AABqUBqNohqIhDsDYodx25Ci5jQ6khyKPgqg6AoEheGYDLwQARhUjP3JOVhT7bN6kNAAAyR-rAzu-2yQ925AAflAT+SYAFzWFvq9D+oASrAPfqAU+2AACQq5f6sDfqAv+4CiqvygTA1ev8YHwPKkApabJuRINcOoSA8deAUFyNYGIPAWQZV3vvQ+PBj7CH0F-RoBCaInxvqQ8hyQqE0N0HQ-GjCD5HwyvoAKEwa4F2NLhc+kUM6uCoAQMgpw1FxQMjXKKgwKIwUNrHRcyQ-BTWxkwiR3ItB2GEQo9mq8HHlWsToBwuFL7zTXp3Ja3dS691kXXHxadXAcPRgY1sAA+I2tC+CqPUWo+83hfDiGOo0IKUUFEqKlLowsT40m1DcZkwotQ9FgzKnBdQVAZjqGkVYZhLDQQkCBHwQsakYYY2HJGfKLSiZtL-C0dQuQaAMGqW1Y8AtDZNVBFabp8QPH8jEnUqMRQmmeRmS7bEnUZrMCcAYtpPAmBCIcIklIgsP6S32fWbJwFlbtgzJLXiWpJhxhcbwBIjYTFJndhrcEtDjmmIAIRvWMUkz605fkfKmsCk5kstpwUWQ0ppVyKJ+whmMt21NymDPcCMrastZanRICQBgnIimVBKZUZpxBPpItqDcjslxzCDyqN0mFHViDRzaidAyuQIznDII0umn04KTCgZoWwLyeDqBCY0RB4KknSrkEAkVKD1ByVoVKxxiDbBPJsQ4BVnCpiiryZUDVjjQC-yKESklNLKj6tXFwohdNSEAFUiAzCIFQAQtAqCnCWoXCYxZQBOCkZyvpJweWsD5Y00MscuARy2TstIsd4rxoJImyuisSCpvmOm7AsdqHti6rm2OpzpppvCBy2OdKi0VrSNgfx8imKgHiq4XIhggA')">or_gate(a, b, d);
-
 </pre><pre class='prettyprintoutput'>
-
-"ok"
-      
-</pre></div></div>
+"ok"</pre></div></div>
     <div class='snippet' id='javascript_63_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToCwChsDMBXAOwGMAXASwHsjQBzAUzIH0BnCuogQwBsAKAO4UATgwCUoAN7ZQs0KLIFhtIaL4AiRi3ade6sQG5sAX1yFSlGqFZM2Hbv1UMANKCIMBzAG68C4qTJyCkq0giIMGjba9npiYnzunj48foYmZsTk1LRcACa5zFxZNGGirkWWRMzmxUQS0nLyTCGgpRHqeQUV2frx3TTVmZVppvhD2aAAtlwA1gzMlJPzNnRLRGR8iy6gAI5+qQGNwcqgAA5cIpsUS657DKlGozWV1gyrDOsL1xGs9YGyx1oAAsGHk+L9HhkLBMVmsWHc-OC-kdmicyBd+BD0mNoVZpnNmAiIsigqjaOdLkQCDweK4qTSRlDaqA8MIaCxTmRhHwiSSAWTQCCwbzIc8JqIuMJmJzubzDqTFGiMTz9uJReMrFFqmzPjKVfdthQyAxJnzXiwhbl9X5XEaTYyxZrbBKpXqibbjab5bIteiKPx3aA7abITjmRRWMwTZyAJ6E1XW-wNBUtCPMen8Vns6VcxNxUOO2gUIg2YTwhOB4Nmkg0VhkNweaUXYSgAC8Z2bfGDdOpPDSjQoeFaaejZDjRLzZsaWqzutzgcSTZE-caci1LpzstVdMbFOEK9kxlADB4Nm9q99yo3btVYh3nj3B4vztBrvn24bD+bT9MKMVtCJAsNVofF5i4RgiFyLg+DNQFQB4CMNgABkZMMXhIJRRE+LY+HAj4oNggVLVwiCCKA3FaC1DDhCwlgcLwyCuFcLYzS1YiGKg5jvlQwtXnedZWBI-CuEI-9QD9fgOJE8jmS1WEPjIQSpNcFZfnPS9-SExiVLeLEnmAlkRDrNg3jhLSCPPODiPkgTzJEniDNEYybMUuzRJaCTwVMhSlNI+yZJeToFioQo-KuG5QH6Ihyj8s1eIAIxPGg6EjRK8CoNRVKnFMTjTDMvJSiQAB8iv+VdyvE75QAAHj4uEviWPhrN0-Myt-OReNA9NGy2Ez+I2LZylqbLZBrEt6x2NsplmeYJyfAcSwYMt4wNHkhuGIwKqaMSut6lzwu2HYfzK3igrIEKXMErLzwHIcCvqnDmsKiRW1eyqlhG1di1LctVpclbESe3470i4bNoqo8TzPZMttG2t6yc+t208rLwdhoM7sSnhktShh0rURG4hu9HzQWZVVOcMqSdXPc+C6xc9u89YDvW7I7yp6mtpRlrWupyHTwYYn0bOi6mdcwm0dh9ryul0BZbGus+NYKbLrcyXB1aLGceYNKMp+HmhdJ1XlI58rafpnrvj6szBtB4ZKc56cecl-nodNyL8mC62fIKrFGlMUYFfrMgQVC4Spq6qSYKMIOgyILwluNKVchPLgYymgAmGP4ciyDmDoLhjWYFOeDTqaUGz8bQAy-PC-mEuy-bABWIw0ImLg8CT4vU5jPgG5jVmaDNEWw8Yvue9AABqUBqNohqIhDsDYodx25Ci5jQ6khyKPgqg6AoEheEKSDwQARhUjP3JOVhT7bN7b4AMgf6wM7v9tT-duQAH5QA-kmAC5rC31eu2JCoASpALfr-T+jQf6sFfiA0AYCIHwKgX-R2P8kIwNXIApabJuTwNcOoSA8deAUFyNYGIPAWQZV3vvQ+PBj65H0Ng2QuCaIZTPkQkhyRyGUN0NQ-GdCD5Hy4JBfQAV255wLsaXC59IoZ1cFQAgZBTgqLigZMRXRaiDAojBQ2sdFzJD8FNbG9DREny0HYARcj2ar3sRVKxOgHC4UvvNNenclrd1Lr3LRtci791cKwra+jWwAD4jZUL4Mo1RKj7zeF8OIY6jQgpRTkeUPOUVdFgzKqk2oriMnaMqNkjaZU4LqCoDMdQkirAMMYaCEgQI+CFjUjDDGw5Iz5RaUTNpf4WjqFyDQBg1S2rHgFobJqoIrTdPiO4-kYk6lRiKE0zyMyXbYk6jNZgTh9FtJ4EwfhDgEkpEFqAyW+z6xZJaVNDMkteJakmHGZxvAEiNmMUmd2GtwRUOOSYgAhG9IxiTPrTh+e8m5bzEmSy2nBRZDSmlXOAn7CGYy3bU3KYM9wIytqy1lqdEgJAGCckKDowszTiCfURRRZW7ZabmEHlUbp0KOrEGjm1E6BlcgRnOGQRpdNPpwUmFAzQthnk8HUME2QcCwWJMlaAQBQrEHqDklQiVDi4G2EedYhwcq2FTGFXkyoaqHGgB-kUQlxKqW1F1XIdh+C6ZEIAKpEBmEQKgAhaBUFOEtQuExiygCcBI9lfSThctYDyxpoZY5cAjlsnZaRY7xVjQSeNldFYkGTfMVN2BY4UPbF1bNsdTnTRTeENlscaUlqzWWtI2A-EyIiExUA8VXAkEMEAA')">and_gate(a, b, c);
-
 </pre><pre class='prettyprintoutput'>
-
-"ok"	
-      
-</pre></div></div>
+"ok"</pre></div></div>
     <div class='snippet' id='javascript_63_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToCwChsDMBXAOwGMAXASwHsjQBzAUzIH0BnCuogQwBsAKAO4UATgwCUoAN7ZQs0KLIFhtIaL4AiRi3ade6sQG5sAX1yFSlGqFZM2Hbv1UMANKCIMBzAG68C4qTJyCkq0giIMGjba9npiYnzunj48foYmZsTk1LRcACa5zFxZNGGirkWWRMzmxUQS0nLyTCGgpRHqeQUV2frx3TTVmZVppvhD2aAAtlwA1gzMlJPzNnRLRGR8iy6gAI5+qQGNwcqgAA5cIpsUS657DKlGozWV1gyrDOsL1xGs9YGyx1oAAsGHk+L9HhkLBMVmsWHc-OC-kdmicyBd+BD0mNoVZpnNmAiIsigqjaOdLkQCDweK4qTSRlDaqA8MIaCxTmRhHwiSSAWTQCCwbzIc8JqIuMJmJzubzDqTFGiMTz9uJReMrFFqmzPjKVfdthQyAxJnzXiwhbl9X5XEaTYyxZrbBKpXqibbjab5bIteiKPx3aA7abITjmRRWMwTZyAJ6E1XW-wNBUtCPMen8Vns6VcxNxUOO2gUIg2YTwhOB4Nmkg0VhkNweaUXYSgAC8Z2bfGDdOpPDSjQoeFaaejZDjRLzZsaWqzutzgcSTZE-caci1LpzstVdMbFOEK9kxlADB4Nm9q99yo3btVYh3nj3B4vztBrvn24bD+bT9MKMVtCJAsNVofF5i4RgiFyLg+DNQFQB4CMNgABkZMMXhIJRRE+LY+HAj4oNggVLVwiCCKA3FaC1DDhCwlgcLwyCuFcLYzS1YiGKg5jvlQwtXnedZWBI-CuEI-9QD9fgOJE8jmS1WEPjIQSpNcFZfnPS9-SExiVLeLEnmAlkRDrNg3jhLSCPPODiPkgTzJEniDNEYybMUuzRJaCTwVMhSlNI+yZJeToFioQo-KuG5QH6Ihyj8s1eIAIxPGg6EjRK8CoNRVKnFMTjTDMvJSiQAB8iv+VdyvE75QAAHj4uEviWPhrN0-Myt-OReNA9NGy2Ez+I2LZylqbLZBrEt6x2NsplmeYJyfAcSwYMt4wNHkhuGIwKqaMSut6lzwu2HYfzK3igrIEKXMErLzwHIcCvqnDmsKiRW1eyqlhG1di1LctVpclbESe3470i4bNoqo8TzPZMttG2t6yc+t208rLwdhoM7sSnhktShh0rURG4hu9HzQWZVVOcMqSdXPc+C6xc9u89YDvW7I7yp6mtpRlrWupyHTwYYn0bOi6mdcwm0dh9ryul0BZbGus+NYKbLrcyXB1aLGceYNKMp+HmhdJ1XlI58rafpnrvj6szBtB4ZKc56cecl-nodNyL8mC62fIKrFGlMUYFfrMgQVC4Spq6qSYKMIOgyILwluNKVchPLgYymgAmGP4ciyDmDoLhjWYFOeDTqaUGz8bQAy-PC-mEuy-bABWIw0ImLg8CT4vU5jPgG5jVmaDNEWw8Yvue9AABqUBqNohqIhDsDYodx25Ci5jQ6khyKLjhOyyWrsiFOAgyFcKgT+Psg4oM4s95YYtL5gw3Y8XZI-Cm7G6AoEheHTKgNi0HYXQ-AH4n15hVDuXd+6HzvktbupcB6gHdtTJ+rYAB8RsYj8HPmQS+95vC+HEMdRoQUoqHzwbvROzBQFX0lnBdQVAZjqAChMT+39f5EH-kiSyAplavXbEhZBsgAD8oAACMQjQAAC5rBtjehIzmojBGcxkUtNk3JWCuHUJAeOvAKC5GsFglkGV4JUC-j-Hgf8yD6BYVYCxljQQkCBHwQsakYYY2HJGfKriibuL-C0dQuQaAMGYW1Y8AtDZNVBFaHx8R5o5VoPYqMRRnGeViS7bEnUZrMCcE-dxPAmCGOAQQlIgsBGSwKfWKKgwKJ8LcL2SWvEtSTDjDoBwCRGxvyTO7DW4IsElPfgAQjeq-Qhn1pz9K6VNUZpTJZbTgkkxxzjqk+LmXIV2gs-EVXoUE9woStqy1lqdEgJAGCckKLUGptQXHEE+is4CdTabmEHlUVZ7tzDRzaidAyuQIznDIE4umn04KTDke2TQtg2l6EkY0URULLFdJhXIGRoL+GgHUHJLB6gkWwtJi0oBDgcXIqmGC9FpDajYtXrioopzzn3IokSxoqiaIZTplogAqkQGYnCBC0CoKcJahcJjFlAE4GxXz-EnF+awf5TjQyxy4BHbJuS0ix3ikqgkKrK6KxIBq+YWrsCxwMe2LqBrY5lOmpq8InzY51NNdatI2Bb6JwPiQVwaogA')">inverter(c, e);
-
 </pre><pre class='prettyprintoutput'>
-
-"ok"	
-      
-</pre></div></div>
+"ok"</pre></div></div>
     <div class='snippet' id='javascript_63_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToCwChsDMBXAOwGMAXASwHsjQBzAUzIH0BnCuogQwBsAKAO4UATgwCUoAN7ZQs0KLIFhtIaL4AiRi3ade6sQG5sAX1yFSlGqFZM2Hbv1UMANKCIMBzAG68C4qTJyCkq0giIMGjba9npiYnzunj48foYmZsTk1LRcACa5zFxZNGGirkWWRMzmxUQS0nLyTCGgpRHqeQUV2frx3TTVmZVppvhD2aAAtlwA1gzMlJPzNnRLRGR8iy6gAI5+qQGNwcqgAA5cIpsUS657DKlGozWV1gyrDOsL1xGs9YGyx1oAAsGHk+L9HhkLBMVmsWHc-OC-kdmicyBd+BD0mNoVZpnNmAiIsigqjaOdLkQCDweK4qTSRlDaqA8MIaCxTmRhHwiSSAWTQCCwbzIc8JqIuMJmJzubzDqTFGiMTz9uJReMrFFqmzPjKVfdthQyAxJnzXiwhbl9X5XEaTYyxZrbBKpXqibbjab5bIteiKPx3aA7abITjmRRWMwTZyAJ6E1XW-wNBUtCPMen8Vns6VcxNxUOO2gUIg2YTwhOB4Nmkg0VhkNweaUXYSgAC8Z2bfGDdOpPDSjQoeFaaejZDjRLzZsaWqzutzgcSTZE-caci1LpzstVdMbFOEK9kxlADB4Nm9q99yo3btVYh3nj3B4vztBrvn24bD+bT9MKMVtCJAsNVofF5i4RgiFyLg+DNQFQB4CMNgABkZMMXhIJRRE+LY+HAj4oNggVLVwiCCKA3FaC1DDhCwlgcLwyCuFcLYzS1YiGKg5jvlQwtXnedZWBI-CuEI-9QD9fgOJE8jmS1WEPjIQSpNcFZfnPS9-SExiVLeLEnmAlkRDrNg3jhLSCPPODiPkgTzJEniDNEYybMUuzRJaCTwVMhSlNI+yZJeToFioQo-KuG5QH6Ihyj8s1eIAIxPGg6EjRK8CoNRVKnFMTjTDMvJSiQAB8iv+VdyvE75QAAHj4uEviWPhrN0-Myt-OReNA9NGy2Ez+I2LZylqbLZBrEt6x2NsplmeYJyfAcSwYMt4wNHkhuGIwKqaMSut6lzwu2HYfzK3igrIEKXMErLzwHIcCvqnDmsKiRW1eyqlhG1di1LctVpclbESe3470i4bNoqo8TzPZMttG2t6yc+t208rLwdhoM7sSnhktShh0rURG4hu9HzQWZVVOcMqSdXPc+C6xc9u89YDvW7I7yp6mtpRlrWupyHTwYYn0bOi6mdcwm0dh9ryul0BZbGus+NYKbLrcyXB1aLGceYNKMp+HmhdJ1XlI58rafpnrvj6szBtB4ZKc56cecl-nodNyL8mC62fIKrFGlMUYFfrMgQVC4Spq6qSYKMIOgyILwluNKVchPLgYymgAmGP4ciyDmDoLhjWYFOeDTqaUGz8bQAy-PC-mEuy-bABWIw0ImLg8CT4vU5jPgG5jVmaDNEWw8Yvue9AABqUBqNohqIhDsDYodx25Ci5jQ6khyKPgqg6AoEheEKSDwQARhUjP3JOVhT7bN7b4AMgf6wM7v9tT-duQAH5QA-kmAC5rC31eu2JCoASpALfr-T+jQf6sFfiA0AYCIHwKgX-R2P8kIwNXIApabJuTwNcOoSA8deAUFyNYGIPAWQZV3vvQ+PBj65H0Ng2QuCaIZTPkQkhyRyGUN0NQ-GdCD5Hy4JBfQAV255wLsaXC59IoZ1cFQAgZBTgqLigZMRXRaiDAojBQ2sdFzJD8FNbG9DREny0HYARcj2ar3sRVKxOgHC4UvvNNenclrd1Lr3LRtci791cKwra+jWwAD4jZUL4Mo1RKj7zeF8OIY6jQgpRTkeUPOUVdFgzKqk2oriMnaMqNkjaZU4LqCoDMdQkirAMMYaCEgQI+CFjUjDDGw5Iz5RaUTNpf4WjqFyDQBg1S2rHgFobJqoIrTdPiO4-kYk6lRiKE0zyMyXbYk6jNZgTh9FtJ4EwfhDgEkpEFqAyW+z6xZJaVNDMkteJakmHGZxvAEiNmMUmd2GtwRUOOSYgAhG9IxiTPrTh+e8m5bzEmSy2nBRZDSmlXOAn7CGYy3bU3KYM9wIytqy1lqdEgJAGCckKDowszTiCfURRRZW7ZabmEHlUbp0KOrEGjm1E6BlcgRnOGQRpdNPpwUmFAzQthnk8HUME2QcCwWJMlaAQBQrEHqDklQiVDi4G2EedYhwcq2FTGFXkyoaqHGgB-kUQlxKqW1F1XIdh+C6ZEIAKpEBmEQKgAhaBUFOEtQuExiygCcBI9lfSThctYDyxpoZY5cAjlsnZaRY7xVjQSeNldFYkGTfMVN2BY4UPbF1bNsdTnTRTeENlscaUlqzWWtI2A-EyIiLkVw2wIRAA')">and_gate(d, e, s);
-
 </pre><pre class='prettyprintoutput'>
-
-"ok"	
-      
-</pre></div></div>
+"ok"</pre></div></div>
   </p></div>
 
   <div class='permalink'>
@@ -1885,7 +1868,6 @@ const s = make_wire();
     and_gate(d, e, s);
     return "ok";
 }
-
 </pre></div></div>
   </p></div>
 
@@ -1912,7 +1894,6 @@ const s = make_wire();
     or_gate(c1, c2, c_out);
     return "ok";
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2104,7 +2085,6 @@ function logical_not(s) {
              ? 0
              : error(s, "Invalid signal for logical_not");
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2147,7 +2127,6 @@ function logical_not(s) {
     add_action(a2, and_action_function);
     return "ok";
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2358,7 +2337,6 @@ function logical_not(s) {
     }
     return dispatch;
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2403,7 +2381,6 @@ function logical_not(s) {
         return call_each(tail(functions));
     }
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2466,7 +2443,6 @@ function set_signal(wire, new_value) {
 function add_action(wire, action_function) {
     return (wire("add_action"))(action_function);
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2625,7 +2601,6 @@ function add_action(wire, action_function) {
     add_to_agenda(delay + current_time(the_agenda),
                   action, the_agenda);
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2660,7 +2635,6 @@ function add_action(wire, action_function) {
         return propagate();
     }
 }
-
 </pre></div></div>
     
   </p></div>
@@ -2694,7 +2668,6 @@ function add_action(wire, action_function) {
                              ", new value = " + 
                              stringify(get_signal(wire))));
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2706,7 +2679,6 @@ function add_action(wire, action_function) {
 const inverter_delay = 2;
 const and_gate_delay = 3;
 const or_gate_delay = 5;
-
 </pre></div></div>
   </p></div>
 
@@ -2719,19 +2691,11 @@ const sum = make_wire();
 const carry = make_wire();
 
 probe("sum", sum);
-
 </pre><pre class='prettyprintoutput'>
-
-"sum 0, new value = 0"
-      
-</pre></div></div>
+"sum 0, new value = 0"</pre></div></div>
     <div class='snippet' id='javascript_63_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToCwChsDMBXAOwGMAXASwHsjQSBDAG0YH0BTekgCwApDTKNAM4BKUAG9soaaAp5QPCkJZECzPsXLUiosZJkHQAJzZkCR2gCIAJjTaWA3FJkBfUG0ZC2E54YVcOaw0BbV0eESc-aRMzCzomVg5uHjJ6CkZgrWERCN9QF2wC-E1BWgBbegBrNhYAdwoTcJ8DRlNQIQoAcyImFgA3JgJvAF5QAAZImVayUE5Sln4snVBR1WZJ6UXS9tMWMoBPFg7uph4iNlr+wbY9PIM5BWOe1gHGIdAAQmHVi6u3m+aUQMT16r3eP0uYLYGyBxlM5loDGY7E4vDm2gWJVCuSBbg8XkBsLhsSstnOjjurjyBQMW20sxIJDYAAcyCx0TRMSEaMFbkCOUQuUshCtQMy0kZggAaBnzOnZGG04jhGE0mTy2jWJTisjJMp8qIxBGgMorb6gSydXYgxiWSmwgD87S6zz+Q3tQIAXCazaNLF42Ta7USok6A3tDjaPbDvabvn76NZrOylsGQ6GGUzWSm5ViaNGid62EYjFRJWUZZYAKpESpEKi1WhUZnF+jbCi0eomSw4qkGI1xLVCHXcJxFDUmqo1ehWojWehNfQyAe0RhKMg8Ma5cd5xHmExENmUMpsHgzthz+gG6LwuIBRNn2fz7e4Cfhkj7i9Hignx8X+cyseAJLtI4b3kE56XoBP43GOr67jsnQnoeQh-pe17EsaqTpGhz5wcU3K0OGXhIV+qGQQBiGiISOxHmkGQUfQMokaI+ETngDRCIGbCkYeuFXjRK6gOBPAkchZDkU+V4vgRSxwlxRw8eJkn-gJIGYXE2EZGJZH8Tk+EkMIMxkAE7JSaKFTVGZqkqtghk6DMHZ9MWZDFiw1gePQ+yigATE49lcbMc4sJ0bY1B5jBeaKKD+UZoBliFYXuZ53mjAArE4snbFagYuqcXbAXkQkFTwlrWnltoyW+5UnBkBUyuckLXBhQk8CV-o1c8PYiGcvxQlVCGJsmAptQ0bAygKQqlC1t60KNjSWENObaN1Z5LFN2gDYRYqlgARqePQnjKBUYUtI31aABaGE0wwAHygEOzKRfsZz0CeoAANQWt9H1XemfhcUYHadHIL0fiWX4sEBKSmYxOSfZd-1I9IlgNRcoBQqKlgI39yOgWQQNECDeAvTlRwVfNNw5DJAWOUQzIEGyACMFlTnUY22bTsj04zLA+azVklbkXNCAQcaToLHPC3FDAlqlEs1ELmXMntp7+mLqPtGLuTYCrVD7aVstGPsmtG-sERAA')">probe("carry", carry);
-
 </pre><pre class='prettyprintoutput'>
-
-"carry 0, new value = 0"
-      
-</pre></div></div>
+"carry 0, new value = 0"</pre></div></div>
   </p></div>
 
   <div class='permalink'>
@@ -2744,27 +2708,15 @@ probe("sum", sum);
     
     to 1, and run the simulation:
     <div class='snippet' id='javascript_63_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToCwChsDMBXAOwGMAXASwHsjQSBDAG0YH0BTekgCwApDTKNAM4BKUAG9soaaAp5QPCkJZECzPsXLUiosZJkHQAJzZkCR2gCIAJjTaWA3FJkBfUG0ZC2E54YVcOaw0BbV0eESc-aRMzCzomVg5uHjJ6CkZgrWERCN9QF2wC-E1BWgBbegBrNhYAdwoTcJ8DRlNQIQoAcyImFgA3JgJvAF5QAAZImVayUE5Sln4snVBR1WZJ6UXS9tMWMoBPFg7uph4iNlr+wbY9PIM5BWOe1gHGIdAAQmHVi6u3m+aUQMT16r3eP0uYLYGyBxlM5loDGY7E4vDm2gWJVCuSBbg8XkBsLhsSstnOjjurjyBQMW20sxIJDYAAcyCx0TRMSEaMFbkCOUQuUshCtQMy0kZggAaBnzOnZGG04jhGE0mTy2jWJTisjJMp8qIxBGgMorb6gSydXYgxiWSmwgD87S6zz+Q3tQIAXCazaNLF42Ta7USok6A3tDjaPbDvabvn76NZrOylsGQ6GGUzWSm5ViaNGid62EYjFRJWUZZYAKpESpEKi1WhUZnF+jbCi0eomSw4qkGI1xLVCHXcJxFDWgK2Bl2nLsA-QyAedhpsHiW60z225cd52jhm08Ocy86Q64G6LwuKHldr-ebnsiM6-KHb3ATxPJgXXkwygVC0rnsSxrfqulgfjm2gPjwf4aq+xTcuUVQ1JQZQ1F4nSoUQZApBQqEygAjkMQyAUuYoSjheGgIRbDEWOb67jsGFsFhLAoauoiEkBcQBImPCiHR8FLIxmFstRQx8SRl60Kk6QSQJE4VNULBiaukkkmRDRnGojDHtpcETngpYsaykoqWpxo8UEZl0ROJj0EYLAmTwZmcaRMkZNZhSCds4aGTQbJOSpMoUGQbD6px4aWc5RFsMFoX6jZDHhnZDmBTFcVhYB4budFNGxbI8X6QxSjsGUrKHCpuXEa5UmyMoawZH5xlkKZMU5PJxU6MWokxVV+UhZlnEkMIMwno5EqiuKmkDRWoANb20gPIoyhheVym9WZgHArsTUBS1fXHr8U1GAthjJRwqX7UFc1HRKp14p43gLn42VpBkKWOVdbWHZcx2ndtbIfWleU-eNDT3XkpEqR1CEmkh7JWkQ1j0E0z1cbQjBKNhYxFbDJDmCYLFsdBiPI+Z3GBCTzFkzDQnhvjJbMWyxP0KT9AymxWW7FFrPU+zoCc7TPlsExWFCFTSP0OT0lvRLNNed59L7iLIni7zksyuhHFo69snq8jmsi-xCsGQ0QiBirTNy1LNXqVF6Gq9b7UmwxJjm0clti07tvGjlDtM2rbPOzusPgWQVAI3zFH5QKv5B5xE4AEYeDQnTKMneBluxRtbYutUlQ1fE56AAA+JcFoYbGgAAPMJTOsbhq72znENKrDik1GNbEe6L2Fsb+Sy59Iw06DM+Gih3615SqHodl4Rg9dP+EDwBip5+pk-d-7WHRwRrfqgxYcR9vZDi1rQ+yPIRe9w3qE8M3ac5L6AuNxf9xdQvU-iSfX9N5T58iBXtof6rh3CPU4kCEe5s4TQNGH7HOa8-BLWTowVO6c2CZ0aG7MgT80bpl1hkLWUoK6wmOjwSeXdG49xErvWUwDiHpkYfAx+zt0wPQJHgkMR9qEBx4NgkBfg1SCOpHkKBMwtaihPoHPmp1kEpyIGnFgGcs7X10BAmQyte7SI1iQshFDfhb09n3RuQCaCAJIWdFuqowEcI9NwqRqiIZFDEQLAIkdJYT3hvrFGuQXEdj6N1YsLBrAeHoPsUUAAmJwLj6BIxYJ0NsNQQmMDCaKFA0SRqgDLPExJwTQnhNGAAVicIrGgsw8ChQcsksJPBqn7FMUQQC3DvG1PyaAAA1HQAm9diZkDcd48xjDDCx1cTUAZQt6SoM6BQJELAyx8QAIyawidLdoCzn5jFAAAMi2e0CJGyK5OjGBXb0Qh1nxnGKXEuazn4LOwAASEMGGfZFzNllz2bcix0gnR3MeX4IsJZ5lCAiZWSARBXgUGsM6E4jBQCYNAFMmZvQyw9gsQC0skozmgvBUwSF0LnhwrLAiqg0zZkotxkJbJCTQrQSWbMEFWSCBkGZEywCE5skwV3KjD0LixpQlFIislkopxHE3LSwZQzJVRBFQeegKyBHlMqXklJ+weBUtyXUmUXy-BNGGAAPh2NOGFaqmUsrIKDF8+9pDgS-PQOlHKlj-mATCG1SxoIModbmBCp1SKWCoJUCkIchKCt6LEoIWK9mrLObc7ZuzgWfJDD8k5NzXlXJTeaO5jDnkbLTfGi5mahlHO1eioFDLLBgohVCm0hKjDEtJaGpGqLGElsxXS8tOLMZVs3DWutSLWBhp7BMspYack0rtb+D1prWUJ0PnEzlCFuWQMyXy64AqSV9vZEjHgMqxV2olVKg9Mgd3GrlawqI9AKlBLqdBOJ1Kkn5K1Ye6QuqDV3mNVQKd5qbqnn+Ge6QQjZhJggjycdsw52Otgi6oDtqGUjvnYPGEvr-WBvorDfxgTJQdjNTKD9zLp1ownOhz+WGmWLqiLy58q7RghtYPWbCx7niKCIGav9wzL1VPyUxgJC8r0PtANqwwL7DWivfZ+i1Z4rWAc-G6kjX6iNslkz62qfqA1Doxuu2ZdGJI+ziCKV5hzQAFpjO0BN6Yi3NvcICzF2LK34qYD2mjKgqBkEHS7WGXAmB4HZEmYs0EZSJ01jKEggEXFQtGJPOcM8DAuJGHDJSkXTrqrHf5mU1hTojrvX50AAW6CyPBRhngJAZQ3BdbexJtTiuayU+pFTKHSm0GZKWZOZx6CUTnE06Dbqjz8clUJoczIVUtdQh0i0o32kCcYebIwHZpl4FVQzQmzNG4pH6UHMQnSJvpksD9UA-K-Qjc2yGKbM25CqoY7OFcORg64D8cxplLBzlxZqAljJo9ZB3bZC8p7dQby+MyUIAgcZvsvewC4hgJYCnA9+yUxrVBmv+kB9t9ogPcjYFh-D8HRh9hI8x-sVHHnGBeY-L52TD3gofZYAygHs1ccRCAA')">half_adder(input_1, input_2, sum, carry);
-
 </pre><pre class='prettyprintoutput'>
-
-"ok"
-      
-</pre></div></div>
+"ok"</pre></div></div>
     <div class='snippet' id='javascript_63_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToCwChsDMBXAOwGMAXASwHsjQSBDAG0YH0BTekgCwApDTKNAM4BKUAG9soaaAp5QPCkJZECzPsXLUiosZJkHQAJzZkCR2gCIAJjTaWA3FJkBfUG0ZC2E54YVcOaw0BbV0eESc-aRMzCzomVg5uHjJ6CkZgrWERCN9QF2wC-E1BWgBbegBrNhYAdwoTcJ8DRlNQIQoAcyImFgA3JgJvAF5QAAZImVayUE5Sln4snVBR1WZJ6UXS9tMWMoBPFg7uph4iNlr+wbY9PIM5BWOe1gHGIdAAQmHVi6u3m+aUQMT16r3eP0uYLYGyBxlM5loDGY7E4vDm2gWJVCuSBbg8XkBsLhsSstnOjjurjyBQMW20sxIJDYAAcyCx0TRMSEaMFbkCOUQuUshCtQMy0kZggAaBnzOnZGG04jhGE0mTy2jWJTisjJMp8qIxBGgMorb6gSydXYgxiWSmwgD87S6zz+Q3tQIAXCazaNLF42Ta7USok6A3tDjaPbDvabvn76NZrOylsGQ6GGUzWSm5ViaNGid62EYjFRJWUZZYAKpESpEKi1WhUZnF+jbCi0eomSw4qkGI1xLVCHXcJxFDWgK2Bl2nLsA-QyAedhpsHiW60z225cd52jhm08Ocy86Q64G6LwuKHldr-ebnsiM6-KHb3ATxPJgXXkwygVC0rnsSxrfqulgfjm2gPjwf4aq+xTcuUVQ1JQZQ1F4nSoUQZApBQqEygAjkMQyAUuYoSjheGgIRbDEWOb67jsGFsFhLAoauoiEkBcQBImPCiHR8FLIxmFstRQx8SRl60Kk6QSQJE4VNULBiaukkkmRDRnGojDHtpcETngpYsaykoqWpxo8UEZl0ROJj0EYLAmTwZmcaRMkZNZhSCds4aGTQbJOSpMoUGQbD6px4aWc5RFsMFoX6jZDHhnZDmBTFcVhYB4budFNGxbI8X6QxSjsGUrKHCpuXEa5UmyMoawZH5xlkKZMU5PJxU6MWokxVV+UhZlnEkMIMwno5EqiuKmkDRWoANb20gPIoyhheVym9WZgHArsTUBS1fXHr8U1GAthjJRwqX7UFc1HRKp14p43gLn42VpBkKWOVdbWHZcx2ndtbIfWleU-eNDT3XkpEqR1CEmkh7JWkQ1j0E0z1cbQjBKNhYxFbDJDmCYLFsdBiPI+Z3GBCTzFkzDQnhvjJbMWyxP0KT9AymxWW7FFrPU+zoCc7TPlsExWFCFTSP0OT0lvRLNNed59L7iLIni7zksyuhHFo69snq8jmsi-xCsGQ0QiBirTNy1LNXqVF6Gq9b7UmwxJjm0clti07tvGjlDtM2rbPOzusPgWQVAI3zFH5QKv5B5xE4AEYeDQnTKMneBluxRtbYutUlQ1fE56AAA+JcFoYbGgAAPMJTOsbhq72znENKrDik1GNbEe6L2Fsb+Sy59Iw06DM+Gih3615SqHodl4Rg9dP+EDwBip5+pk-d-7WHRwRrfqgxYcR9vZDi1rQ+yPIRe9w3qE8M3ac5L6AuNxf9xdQvU-iSfX9N5T58iBXtof6rh3CPU4kCEe5s4TQNGH7HOa8-BLWTowVO6c2CZ0aG7MgT80bpl1hkLWUoK6wmOjwSeXdG49xErvWUwDiHpkYfAx+zt0wPQJHgkMR9qEBx4NgkBfg1SCOpHkKBMwtaihPoHPmp1kEpyIGnFgGcs7X10BAmQyte7SI1iQshFDfhb09n3RuQCaCAJIWdFuqowEcI9NwqRqiIZFDEQLAIkdJYT3hvrFGuQXEdj6N1YsLBrAeHoPsUUAAmJwLj6BIxYJ0NsNQQmMDCaKFA0SRqgDLPExJwTQnhNGAAVicIrGgsw8ChQcsksJPBqn7FMUQQC3DvG1PyaAAA1HQAm9diZkDcd48xjDDCx1cTUAZQt6SoM6BQJELAyx8QAIyawidLdoCzn5jFAAAMi2e0CJGyK5OjGBXb0Qh1nxnGKXEuazn4LOwAASEMGGfZFzNllz2bcix0gnR3MeX4IsJZ5lCAiZWSARBXgUGsM6E4jBQCYNAFMmZvQyw9gsQC0skozmgvBUwSF0LnhwrLAiqg0zZkotxkJbJCTQrQSWbMEFWSCBkGZEywCE5skwV3KjD0LixpQlFIislkopxHE3LSwZQzJVRBFQeegKyBHlMqXklJ+weBUtyXUmUXy-BNGGAAPh2NOGFaqmUsrIKDF8+9pDgS-PQOlHKlj-mATCG1SxoIModbmBCp1SKWCoJUCkIchKCt6LEoIWK9mrLObc7ZuzgWfJDD8k5NzXlXJTeaO5jDnkbLTfGi5mahlHO1eioFDLLBgohVCm0hKjDEtJaGpGqLGElsxXS8tOLMZVs3DWutSLWBhp7BMspYack0rtb+D1prWUJ0PnEzlCFuWQMyXy64AqSV9vZEjHgMqxV2olVKg9Mgd3GrlawqI9AKlBLqdBOJ1Kkn5K1Ye6QuqDV3mNVQKd5qbqnn+Ge6QQjZhJggjycdsw52Otgi6oDtqGUjvnYPGEvr-WBvorDfxgTJQdjNTKD9zLp1ownOhz+WGmWLqiLy58q7RghtYPWbCx7niKCIGav9wzL1VPyUxgJC8r0PtANqwwL7DWivfZ+i1Z4rWAc-G6kjX6iNslkz62qfqA1Doxuu2ZdGJI+ziCKV5hzQAFpjO0BN6Yi3NvcICzF2LK34qYD2mjKgqBkEHS7WGXAmB4HZEmYs0EZSJ01jKEggEXFQtGJPOcM8DAuJGHDJSkXTrqrHf5mU1hTojrvX50AAW6CyPBRhngJAZQ3BdbexJtTiuayU+pFTKHSm0GZKWZOZx6CUTnE06Dbqjz8clUJoczIVUtdQh0i0o32kCcYebIwHZpl4FVQzQmzNG4pH6UHMQnSJvpksD9UA-K-Qjc2yGKbM25CqoY7OFcORg64D8cxplLBzlxZqAljJo9ZB3bZC8p7dQby+MyUIAgcZvsvewC4hgJYCnA9+yUxrVBmv+kB9t9ogPcjYFh-D8HRh9hI8x-sVHHnGBeY-L52TD3gofZYAygHs1ceo7fYx0ndKFkRCAA')">set_signal(input_1, 1);
-
 </pre><pre class='prettyprintoutput'>
-
-"done"	
-      
-</pre></div></div>
+"done"</pre></div></div>
     <div class='snippet' id='javascript_63_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToCwChsDMBXAOwGMAXASwHsjQSBDAG0YH0BTekgCwApDTKNAM4BKUAG9soaaAp5QPCkJZECzPsXLUiosZJkHQAJzZkCR2gCIAJjTaWA3FJkBfUG0ZC2E54YVcOaw0BbV0eESc-aRMzCzomVg5uHjJ6CkZgrWERCN9QF2wC-E1BWgBbegBrNhYAdwoTcJ8DRlNQIQoAcyImFgA3JgJvAF5QAAZImVayUE5Sln4snVBR1WZJ6UXS9tMWMoBPFg7uph4iNlr+wbY9PIM5BWOe1gHGIdAAQmHVi6u3m+aUQMT16r3eP0uYLYGyBxlM5loDGY7E4vDm2gWJVCuSBbg8XkBsLhsSstnOjjurjyBQMW20sxIJDYAAcyCx0TRMSEaMFbkCOUQuUshCtQMy0kZggAaBnzOnZGG04jhGE0mTy2jWJTisjJMp8qIxBGgMorb6gSydXYgxiWSmwgD87S6zz+Q3tQIAXCazaNLF42Ta7USok6A3tDjaPbDvabvn76NZrOylsGQ6GGUzWSm5ViaNGid62EYjFRJWUZZYAKpESpEKi1WhUZnF+jbCi0eomSw4qkGI1xLVCHXcJxFDWgK2Bl2nLsA-QyAedhpsHiW60z225cd52jhm08Ocy86Q64G6LwuKHldr-ebnsiM6-KHb3ATxPJgXXkwygVC0rnsSxrfqulgfjm2gPjwf4aq+xTcuUVQ1JQZQ1F4nSoUQZApBQqEygAjkMQyAUuYoSjheGgIRbDEWOb67jsGFsFhLAoauoiEkBcQBImPCiHR8FLIxmFstRQx8SRl60Kk6QSQJE4VNULBiaukkkmRDRnGojDHtpcETngpYsaykoqWpxo8UEZl0ROJj0EYLAmTwZmcaRMkZNZhSCds4aGTQbJOSpMoUGQbD6px4aWc5RFsMFoX6jZDHhnZDmBTFcVhYB4budFNGxbI8X6QxSjsGUrKHCpuXEa5UmyMoawZH5xlkKZMU5PJxU6MWokxVV+UhZlnEkMIMwno5EqiuKmkDRWoANb20gPIoyhheVym9WZgHArsTUBS1fXHr8U1GAthjJRwqX7UFc1HRKp14p43gLn42VpBkKWOVdbWHZcx2ndtbIfWleU-eNDT3XkpEqR1CEmkh7JWkQ1j0E0z1cbQjBKNhYxFbDJDmCYLFsdBiPI+Z3GBCTzFkzDQnhvjJbMWyxP0KT9AymxWW7FFrPU+zoCc7TPlsExWFCFTSP0OT0lvRLNNed59L7iLIni7zksyuhHFo69snq8jmsi-xCsGQ0QiBirTNy1LNXqVF6Gq9b7UmwxJjm0clti07tvGjlDtM2rbPOzusPgWQVAI3zFH5QKv5B5xE4AEYeDQnTKMneBluxRtbYutUlQ1fE56AAA+JcFoYbGgAAPMJTOsbhq72znENKrDik1GNbEe6L2Fsb+Sy59Iw06DM+Gih3615SqHodl4Rg9dP+EDwBip5+pk-d-7WHRwRrfqgxYcR9vZDi1rQ+yPIRe9w3qE8M3ac5L6AuNxf9xdQvU-iSfX9N5T58iBXtof6rh3CPU4kCEe5s4TQNGH7HOa8-BLWTowVO6c2CZ0aG7MgT80bpl1hkLWUoK6wmOjwSeXdG49xErvWUwDiHpkYfAx+zt0wPQJHgkMR9qEBx4NgkBfg1SCOpHkKBMwtaihPoHPmp1kEpyIGnFgGcs7X10BAmQyte7SI1iQshFDfhb09n3RuQCaCAJIWdFuqowEcI9NwqRqiIZFDEQLAIkdJYT3hvrFGuQXEdj6N1YsLBrAeHoPsUUAAmJwLj6BIxYJ0NsNQQmMDCaKFA0SRqgDLPExJwTQnhNGAAVicIrGgsw8ChQcsksJPBqn7FMUQQC3DvG1PyaAAA1HQAm9diZkDcd48xjDDCx1cTUAZQt6SoM6BQJELAyx8QAIyawidLdoCzn5jFAAAMi2e0CJGyK5OjGBXb0Qh1nxnGKXEuazn4LOwAASEMGGfZFzNllz2bcix0gnR3MeX4IsJZ5lCAiZWSARBXgUGsM6E4jBQCYNAFMmZvQyw9gsQC0skozmgvBUwSF0LnhwrLAiqg0zZkotxkJbJCTQrQSWbMEFWSCBkGZEywCE5skwV3KjD0LixpQlFIislkopxHE3LSwZQzJVRBFQeegKyBHlMqXklJ+weBUtyXUmUXy-BNGGAAPh2NOGFaqmUsrIKDF8+9pDgS-PQOlHKlj-mATCG1SxoIModbmBCp1SKWCoJUCkIchKCt6LEoIWK9mrLObc7ZuzgWfJDD8k5NzXlXJTeaO5jDnkbLTfGi5mahlHO1eioFDLLBgohVCm0hKjDEtJaGpGqLGElsxXS8tOLMZVs3DWutSLWBhp7BMspYack0rtb+D1prWUJ0PnEzlCFuWQMyXy64AqSV9vZEjHgMqxV2olVKg9Mgd3GrlawqI9AKlBLqdBOJ1Kkn5K1Ye6QuqDV3mNVQKd5qbqnn+Ge6QQjZhJggjycdsw52Otgi6oDtqGUjvnYPGEvr-WBvorDfxgTJQdjNTKD9zLp1ownOhz+WGmWLqiLy58q7RghtYPWbCx7niKCIGav9wzL1VPyUxgJC8r0PtANqwwL7DWivfZ+i1Z4rWAc-G6kjX6iNslkz62qfqA1Doxuu2ZdGJI+ziCKV5hzQAFpjO0BN6Yi3NvcICzF2LK34qYD2mjKgqBkEHS7WGXAmB4HZEmYs0EZSJ01jKEggEXFQtGJPOcM8DAuJGHDJSkXTrqrHf5mU1hTojrvX50AAW6CyPBRhngJAZQ3BdbexJtTiuayU+pFTKHSm0GZKWZOZx6CUTnE06Dbqjz8clUJoczIVUtdQh0i0o32kCcYebIwHZpl4FVQzQmzNG4pH6UHMQnSJvpksD9UA-K-Qjc2yGKbM25CqoY7OFcORg64D8cxplLBzlxZqAljJo9ZB3bZC8p7dQby+MyUIAgcZvsvewC4hgJYCnA9+yUxrVBmv+kB9t9ogPcjYFh-D8HRh9hI8x-sVHHnGBeY-L52TD3gofZYAygHs1ceo7fYx0ndKFmo4nMk0wNRKouTRktEqq0yAVQ2m1C+xYMUHQtGz0Kv94jMDYFC+ofSwPuDKvzqiMVPSuYMOwp6HpfJGT2q1EGAtZa7U+gb4irH+y1WhiIoN2wTBlCoAEhYZs2TeJYDNb2aMXHj1GD-SqeAXc8J3gM06EuOcbVkVfXnyuBdL1wTr60RjtEGxgRbLRTt7o2KegUW39Jo9rRaQMnTtAC7aWvo7EPam4V69-n1VZ+f+e17Mh6J0Iv5nXUsCblS0vWhy5ClwRXfPwkqXVyID03ooom+BubqvAejDuzdx7ov3Oo8rRj+45GGf1HSDb5KSwABBNmdUlflW9HPhfbN3fxQ16A-E2ul1vfP2n0UT+g-YXGQntkC2enLe8YbG+xMr+6EFu68xoXevUfuvUQBIsrGOeqGQksO4omWgEPOa+BebMK2Yya22+6M4udgFImuWeOBLir+M0L+gei+8UmBG+UsiCcKgeHuCq9ujuNQr+lBYU1BH+QIpEiBrM5WTiuAvByBDgQAA')">propagate();
-
 </pre><pre class='prettyprintoutput'>
-
 "sum 8, new value = 1"
-"done"	
-      
-</pre></div></div>
+"done"</pre></div></div>
     The <kbd>sum</kbd> signal changes to 1 at time 8.
     We are now eight time units from the beginning of the simulation.
     At this point, we can set the signal on
@@ -2774,21 +2726,13 @@ probe("sum", sum);
     
     to 1 and allow the values to propagate:
     <div class='snippet' id='javascript_63_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToCwChsDMBXAOwGMAXASwHsjQSBDAG0YH0BTekgCwApDTKNAM4BKUAG9soaaAp5QPCkJZECzPsXLUiosZJkHQAJzZkCR2gCIAJjTaWA3FJkBfUG0ZC2E54YVcOaw0BbV0eESc-aRMzCzomVg5uHjJ6CkZgrWERCN9QF2wC-E1BWgBbegBrNhYAdwoTcJ8DRlNQIQoAcyImFgA3JgJvAF5QAAZImVayUE5Sln4snVBR1WZJ6UXS9tMWMoBPFg7uph4iNlr+wbY9PIM5BWOe1gHGIdAAQmHVi6u3m+aUQMT16r3eP0uYLYGyBxlM5loDGY7E4vDm2gWJVCuSBbg8XkBsLhsSstnOjjurjyBQMW20sxIJDYAAcyCx0TRMSEaMFbkCOUQuUshCtQMy0kZggAaBnzOnZGG04jhGE0mTy2jWJTisjJMp8qIxBGgMorb6gSydXYgxiWSmwgD87S6zz+Q3tQIAXCazaNLF42Ta7USok6A3tDjaPbDvabvn76NZrOylsGQ6GGUzWSm5ViaNGid62EYjFRJWUZZYAKpESpEKi1WhUZnF+jbCi0eomSw4qkGI1xLVCHXcJxFDWgK2Bl2nLsA-QyAedhpsHiW60z225cd52jhm08Ocy86Q64G6LwuKHldr-ebnsiM6-KHb3ATxPJgXXkwygVC0rnsSxrfqulgfjm2gPjwf4aq+xTcuUVQ1JQZQ1F4nSoUQZApBQqEygAjkMQyAUuYoSjheGgIRbDEWOb67jsGFsFhLAoauoiEkBcQBImPCiHR8FLIxmFstRQx8SRl60Kk6QSQJE4VNULBiaukkkmRDRnGojDHtpcETngpYsaykoqWpxo8UEZl0ROJj0EYLAmTwZmcaRMkZNZhSCds4aGTQbJOSpMoUGQbD6px4aWc5RFsMFoX6jZDHhnZDmBTFcVhYB4budFNGxbI8X6QxSjsGUrKHCpuXEa5UmyMoawZH5xlkKZMU5PJxU6MWokxVV+UhZlnEkMIMwno5EqiuKmkDRWoANb20gPIoyhheVym9WZgHArsTUBS1fXHr8U1GAthjJRwqX7UFc1HRKp14p43gLn42VpBkKWOVdbWHZcx2ndtbIfWleU-eNDT3XkpEqR1CEmkh7JWkQ1j0E0z1cbQjBKNhYxFbDJDmCYLFsdBiPI+Z3GBCTzFkzDQnhvjJbMWyxP0KT9AymxWW7FFrPU+zoCc7TPlsExWFCFTSP0OT0lvRLNNed59L7iLIni7zksyuhHFo69snq8jmsi-xCsGQ0QiBirTNy1LNXqVF6Gq9b7UmwxJjm0clti07tvGjlDtM2rbPOzusPgWQVAI3zFH5QKv5B5xE4AEYeDQnTKMneBluxRtbYutUlQ1fE56AAA+JcFoYbGgAAPMJTOsbhq72znENKrDik1GNbEe6L2Fsb+Sy59Iw06DM+Gih3615SqHodl4Rg9dP+EDwBip5+pk-d-7WHRwRrfqgxYcR9vZDi1rQ+yPIRe9w3qE8M3ac5L6AuNxf9xdQvU-iSfX9N5T58iBXtof6rh3CPU4kCEe5s4TQNGH7HOa8-BLWTowVO6c2CZ0aG7MgT80bpl1hkLWUoK6wmOjwSeXdG49xErvWUwDiHpkYfAx+zt0wPQJHgkMR9qEBx4NgkBfg1SCOpHkKBMwtaihPoHPmp1kEpyIGnFgGcs7X10BAmQyte7SI1iQshFDfhb09n3RuQCaCAJIWdFuqowEcI9NwqRqiIZFDEQLAIkdJYT3hvrFGuQXEdj6N1YsLBrAeHoPsUUAAmJwLj6BIxYJ0NsNQQmMDCaKFA0SRqgDLPExJwTQnhNGAAVicIrGgsw8ChQcsksJPBqn7FMUQQC3DvG1PyaAAA1HQAm9diZkDcd48xjDDCx1cTUAZQt6SoM6BQJELAyx8QAIyawidLdoCzn5jFAAAMi2e0CJGyK5OjGBXb0Qh1nxnGKXEuazn4LOwAASEMGGfZFzNllz2bcix0gnR3MeX4IsJZ5lCAiZWSARBXgUGsM6E4jBQCYNAFMmZvQyw9gsQC0skozmgvBUwSF0LnhwrLAiqg0zZkotxkJbJCTQrQSWbMEFWSCBkGZEywCE5skwV3KjD0LixpQlFIislkopxHE3LSwZQzJVRBFQeegKyBHlMqXklJ+weBUtyXUmUXy-BNGGAAPh2NOGFaqmUsrIKDF8+9pDgS-PQOlHKlj-mATCG1SxoIModbmBCp1SKWCoJUCkIchKCt6LEoIWK9mrLObc7ZuzgWfJDD8k5NzXlXJTeaO5jDnkbLTfGi5mahlHO1eioFDLLBgohVCm0hKjDEtJaGpGqLGElsxXS8tOLMZVs3DWutSLWBhp7BMspYack0rtb+D1prWUJ0PnEzlCFuWQMyXy64AqSV9vZEjHgMqxV2olVKg9Mgd3GrlawqI9AKlBLqdBOJ1Kkn5K1Ye6QuqDV3mNVQKd5qbqnn+Ge6QQjZhJggjycdsw52Otgi6oDtqGUjvnYPGEvr-WBvorDfxgTJQdjNTKD9zLp1ownOhz+WGmWLqiLy58q7RghtYPWbCx7niKCIGav9wzL1VPyUxgJC8r0PtANqwwL7DWivfZ+i1Z4rWAc-G6kjX6iNslkz62qfqA1Doxuu2ZdGJI+ziCKV5hzQAFpjO0BN6Yi3NvcICzF2LK34qYD2mjKgqBkEHS7WGXAmB4HZEmYs0EZSJ01jKEggEXFQtGJPOcM8DAuJGHDJSkXTrqrHf5mU1hTojrvX50AAW6CyPBRhngJAZQ3BdbexJtTiuayU+pFTKHSm0GZKWZOZx6CUTnE06Dbqjz8clUJoczIVUtdQh0i0o32kCcYebIwHZpl4FVQzQmzNG4pH6UHMQnSJvpksD9UA-K-Qjc2yGKbM25CqoY7OFcORg64D8cxplLBzlxZqAljJo9ZB3bZC8p7dQby+MyUIAgcZvsvewC4hgJYCnA9+yUxrVBmv+kB9t9ogPcjYFh-D8HRh9hI8x-sVHHnGBeY-L52TD3gofZYAygHs1ceo7fYx0ndKFmo4nMk0wNRKouTRktEqq0yAVQ2m1C+xYMUHQtGz0Kv94jMDYFC+ofSwPuDKvzqiMVPSuYMOwp6HpfJGT2q1EGAtZa7U+gb4irH+y1WhiIoN2wTBlCoAEhYZs2TeJYDNb2aMXHj1GD-SqeAXc8J3gM06EuOcbVkVfXnyuBdL1wTr60RjtEGxgRbLRTt7o2KegUW39Jo9rRaQMnTtAC7aWvo7EPam4V69-n1VZ+f+e17Mh6J0Iv5nXUsCblS0vWhy5ClwRXfPwkqXVyID03ooom+BubqvAejDuzdx7ov3Oo8rRj+45GGf1HSDb5KSwABBNmdUlflW9HPhfbN3fxQ16A-E2ul1vfP2n0UT+g-YXGQntkC2enLe8YbG+xMr+6EFu68xoXevUfuvUQBIsrGOeqGQksO4omWgEPOa+BebMK2Yya22+6M4udgFImuWeOBLir+M0L+gei+8UmBG+UsiCcKgeHuCq9ujuNQr+lBYU1BH+QIpEiBrM5WTiuAvByBJS9OpwpODKzODgQAA')">set_signal(input_2, 1);
-
 </pre><pre class='prettyprintoutput'>
-
-"done"	
-      
-</pre></div></div>
+"done"</pre></div></div>
     <div class='snippet' id='javascript_63_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToCwChsDMBXAOwGMAXASwHsjQSBDAG0YH0BTekgCwApDTKNAM4BKUAG9soaaAp5QPCkJZECzPsXLUiosZJkHQAJzZkCR2gCIAJjTaWA3FJkBfUG0ZC2E54YVcOaw0BbV0eESc-aRMzCzomVg5uHjJ6CkZgrWERCN9QF2wC-E1BWgBbegBrNhYAdwoTcJ8DRlNQIQoAcyImFgA3JgJvAF5QAAZImVayUE5Sln4snVBR1WZJ6UXS9tMWMoBPFg7uph4iNlr+wbY9PIM5BWOe1gHGIdAAQmHVi6u3m+aUQMT16r3eP0uYLYGyBxlM5loDGY7E4vDm2gWJVCuSBbg8XkBsLhsSstnOjjurjyBQMW20sxIJDYAAcyCx0TRMSEaMFbkCOUQuUshCtQMy0kZggAaBnzOnZGG04jhGE0mTy2jWJTisjJMp8qIxBGgMorb6gSydXYgxiWSmwgD87S6zz+Q3tQIAXCazaNLF42Ta7USok6A3tDjaPbDvabvn76NZrOylsGQ6GGUzWSm5ViaNGid62EYjFRJWUZZYAKpESpEKi1WhUZnF+jbCi0eomSw4qkGI1xLVCHXcJxFDWgK2Bl2nLsA-QyAedhpsHiW60z225cd52jhm08Ocy86Q64G6LwuKHldr-ebnsiM6-KHb3ATxPJgXXkwygVC0rnsSxrfqulgfjm2gPjwf4aq+xTcuUVQ1JQZQ1F4nSoUQZApBQqEygAjkMQyAUuYoSjheGgIRbDEWOb67jsGFsFhLAoauoiEkBcQBImPCiHR8FLIxmFstRQx8SRl60Kk6QSQJE4VNULBiaukkkmRDRnGojDHtpcETngpYsaykoqWpxo8UEZl0ROJj0EYLAmTwZmcaRMkZNZhSCds4aGTQbJOSpMoUGQbD6px4aWc5RFsMFoX6jZDHhnZDmBTFcVhYB4budFNGxbI8X6QxSjsGUrKHCpuXEa5UmyMoawZH5xlkKZMU5PJxU6MWokxVV+UhZlnEkMIMwno5EqiuKmkDRWoANb20gPIoyhheVym9WZgHArsTUBS1fXHr8U1GAthjJRwqX7UFc1HRKp14p43gLn42VpBkKWOVdbWHZcx2ndtbIfWleU-eNDT3XkpEqR1CEmkh7JWkQ1j0E0z1cbQjBKNhYxFbDJDmCYLFsdBiPI+Z3GBCTzFkzDQnhvjJbMWyxP0KT9AymxWW7FFrPU+zoCc7TPlsExWFCFTSP0OT0lvRLNNed59L7iLIni7zksyuhHFo69snq8jmsi-xCsGQ0QiBirTNy1LNXqVF6Gq9b7UmwxJjm0clti07tvGjlDtM2rbPOzusPgWQVAI3zFH5QKv5B5xE4AEYeDQnTKMneBluxRtbYutUlQ1fE56AAA+JcFoYbGgAAPMJTOsbhq72znENKrDik1GNbEe6L2Fsb+Sy59Iw06DM+Gih3615SqHodl4Rg9dP+EDwBip5+pk-d-7WHRwRrfqgxYcR9vZDi1rQ+yPIRe9w3qE8M3ac5L6AuNxf9xdQvU-iSfX9N5T58iBXtof6rh3CPU4kCEe5s4TQNGH7HOa8-BLWTowVO6c2CZ0aG7MgT80bpl1hkLWUoK6wmOjwSeXdG49xErvWUwDiHpkYfAx+zt0wPQJHgkMR9qEBx4NgkBfg1SCOpHkKBMwtaihPoHPmp1kEpyIGnFgGcs7X10BAmQyte7SI1iQshFDfhb09n3RuQCaCAJIWdFuqowEcI9NwqRqiIZFDEQLAIkdJYT3hvrFGuQXEdj6N1YsLBrAeHoPsUUAAmJwLj6BIxYJ0NsNQQmMDCaKFA0SRqgDLPExJwTQnhNGAAVicIrGgsw8ChQcsksJPBqn7FMUQQC3DvG1PyaAAA1HQAm9diZkDcd48xjDDCx1cTUAZQt6SoM6BQJELAyx8QAIyawidLdoCzn5jFAAAMi2e0CJGyK5OjGBXb0Qh1nxnGKXEuazn4LOwAASEMGGfZFzNllz2bcix0gnR3MeX4IsJZ5lCAiZWSARBXgUGsM6E4jBQCYNAFMmZvQyw9gsQC0skozmgvBUwSF0LnhwrLAiqg0zZkotxkJbJCTQrQSWbMEFWSCBkGZEywCE5skwV3KjD0LixpQlFIislkopxHE3LSwZQzJVRBFQeegKyBHlMqXklJ+weBUtyXUmUXy-BNGGAAPh2NOGFaqmUsrIKDF8+9pDgS-PQOlHKlj-mATCG1SxoIModbmBCp1SKWCoJUCkIchKCt6LEoIWK9mrLObc7ZuzgWfJDD8k5NzXlXJTeaO5jDnkbLTfGi5mahlHO1eioFDLLBgohVCm0hKjDEtJaGpGqLGElsxXS8tOLMZVs3DWutSLWBhp7BMspYack0rtb+D1prWUJ0PnEzlCFuWQMyXy64AqSV9vZEjHgMqxV2olVKg9Mgd3GrlawqI9AKlBLqdBOJ1Kkn5K1Ye6QuqDV3mNVQKd5qbqnn+Ge6QQjZhJggjycdsw52Otgi6oDtqGUjvnYPGEvr-WBvorDfxgTJQdjNTKD9zLp1ownOhz+WGmWLqiLy58q7RghtYPWbCx7niKCIGav9wzL1VPyUxgJC8r0PtANqwwL7DWivfZ+i1Z4rWAc-G6kjX6iNslkz62qfqA1Doxuu2ZdGJI+ziCKV5hzQAFpjO0BN6Yi3NvcICzF2LK34qYD2mjKgqBkEHS7WGXAmB4HZEmYs0EZSJ01jKEggEXFQtGJPOcM8DAuJGHDJSkXTrqrHf5mU1hTojrvX50AAW6CyPBRhngJAZQ3BdbexJtTiuayU+pFTKHSm0GZKWZOZx6CUTnE06Dbqjz8clUJoczIVUtdQh0i0o32kCcYebIwHZpl4FVQzQmzNG4pH6UHMQnSJvpksD9UA-K-Qjc2yGKbM25CqoY7OFcORg64D8cxplLBzlxZqAljJo9ZB3bZC8p7dQby+MyUIAgcZvsvewC4hgJYCnA9+yUxrVBmv+kB9t9ogPcjYFh-D8HRh9hI8x-sVHHnGBeY-L52TD3gofZYAygHs1ceo7fYx0ndKFmo4nMk0wNRKouTRktEqq0yAVQ2m1C+xYMUHQtGz0Kv94jMDYFC+ofSwPuDKvzqiMVPSuYMOwp6HpfJGT2q1EGAtZa7U+gb4irH+y1WhiIoN2wTBlCoAEhYZs2TeJYDNb2aMXHj1GD-SqeAXc8J3gM06EuOcbVkVfXnyuBdL1wTr60RjtEGxgRbLRTt7o2KegUW39Jo9rRaQMnTtAC7aWvo7EPam4V69-n1VZ+f+e17Mh6J0Iv5nXUsCblS0vWhy5ClwRXfPwkqXVyID03ooom+BubqvAejDuzdx7ov3Oo8rRj+45GGf1HSDb5KSwABBNmdUlflW9HPhfbN3fxQ16A-E2ul1vfP2n0UT+g-YXGQntkC2enLe8YbG+xMr+6EFu68xoXevUfuvUQBIsrGOeqGQksO4omWgEPOa+BebMK2Yya22+6M4udgFImuWeOBLir+M0L+gei+8UmBG+UsiCcKgeHuCq9ujuNQr+lBYU1BH+QIpEiBrM5WTiuAvByBJS9OpwpODKzOMOpYSB-BDgQAA')">propagate();
-
 </pre><pre class='prettyprintoutput'>
-
 "carry 11, new value = 1"
 "sum 16, new value = 0"
-"done"
-      
-</pre></div></div>
+"done"</pre></div></div>
   </p></div>
 
   <div class='permalink'>
@@ -2844,8 +2788,7 @@ probe("sum", sum);
     <div class='snippet' id='javascript_63_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function accept_action_function(fun) {
     action_functions = pair(fun, action_functions);
-}
-</pre></div></div>
+}</pre></div></div>
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_63_4_div" data-toggle="collapse">Add solution</button></div>
@@ -2902,7 +2845,6 @@ function segment_time(s) {
 function segment_queue(s) {
     return tail(s);
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2957,7 +2899,6 @@ function first_segment(agenda) {
 function rest_segments(agenda) {
     return tail(segments(agenda));
 }
-
 </pre></div></div>
   </p></div>
 
@@ -2968,7 +2909,6 @@ function rest_segments(agenda) {
     <div class='snippet' id='javascript_63_27_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToCwChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQYHMWiATBgBQBKUAG9soSaABOLMgWm0ANhQDOZAQAYhAbmwBfXIVKUaoEgtlEybSnRYCuPfiPFSZchbQAWLBr0duPgZdAyNicmpaVTk2C2krGzsHJ2CAGlBk1wkpGJtff0DnBgysvUN8CNNolk57a1Ui4Oz3WXlFTIYKJSaXcvCTKNA8thi6njJG1P4MsdUW3NiyLp7pkuHa+f7KwbM8Cml1Udr6jTWFyTavUAKAsdOpoJdQiuNIs1kj+4nH4ouPdq0ZbdATfBq9EIvAbvWhqNgsOgABzIAE8OE9BOcxDlLp4OnCiAQlD0wZMIUIXkA')">function is_empty_agenda(agenda) {
     return is_null(segments(agenda));
 }
-
 </pre></div></div>
   </p></div>
 
@@ -3016,7 +2956,6 @@ function rest_segments(agenda) {
         add_to_segments(segs);
     }
 }
-
 </pre></div></div>
   </p></div>
 
@@ -3039,7 +2978,6 @@ function rest_segments(agenda) {
         set_segments(agenda, rest_segments(agenda));
     } else {}
 }
-
 </pre></div></div>
   </p></div>
 
@@ -3058,7 +2996,6 @@ function rest_segments(agenda) {
         return front_queue(segment_queue(first_seg));
     }
 }
-
 </pre></div></div>
   </p></div>
 

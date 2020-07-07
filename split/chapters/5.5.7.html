@@ -1714,18 +1714,14 @@
       '(define (factorial n)
       (if (= n 1)
             1
-            (* (factorial (- n 1)) n))))
-</pre><pre class='prettyprintoutput'>
-
+            (* (factorial (- n 1)) n))))</pre><pre class='prettyprintoutput'>
       ;;; EC-Eval value:
       ok
 
       ;;; EC-Eval input:
       (factorial 5)
       ;;; EC-Eval value:
-      120
-    
-</pre></div></div>    </td>
+      120</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_123_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsGMB7AWwAcBLAGwFMB9AQwDsATGgcwIAptQfQS6ATgGcqXXuNAAiAGYBXBngAuZAg1DS6SggLJ0KHBgEpQAb24SLoAVUWyBatQF5noAIyhzlrwH43nrxYAXKBqAFTqmorauvpqALRuhgDc-hIAvpKGybhJuaAAotBx+QBueqBlFLJUgdgEANY5eYXFlaBkDCSyirUcGlo65SiG2LlJBUWl5ZXVta4ATAAMQA')">compile_and_go(
     parse(
         "function factorial(n) {
@@ -1741,7 +1737,6 @@ ok
 (factorial 5)
 ;;; EC-Eval value:
 120
-
 </pre></div></div></td></tr></table>
       </p></div>
 
@@ -1776,8 +1771,7 @@ apply-dispatch
       compiled-apply
       (restore continue)
       (assign val (op compiled-procedure-entry) (reg proc))
-      (goto (reg val))
-</pre></div></div>    </td>
+      (goto (reg val))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_123_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsCIBDAByIBsBPAfQBMBLAZyIIBcBjACzwBptQ-RmAU3rMAFAHsiovEQBOtALa1mtAG6DKc8a0HUArrMF4AlF1CGA5tK2sTp3vwBGsggDsOo0gUeDS1+Uoq6pTEZOR2PPwCwmKS0qziCkTieq7UmrLaugZGpuaCVjKZtsb2Uc5uHl4+fngJSSlpISQUEQ58QiISUnWJRLSkuhlZ+oYmZpb+2m3lLu7snt6+8X0DQ6GtpZH8FuKUzOKLNdKpANau4gDursM6oxrM5ES59vj1-YPpG+HbfIYi4kMK1cKlcelyv1ABHo9FoFlc0lUBFI3FApAYsR67zW6Rs2UMlEEINk4TykyK01KZR2ewOonJSJRWyAA')">"apply_dispatch",
     test(op("primitive_procedure"), reg("proc")),
     branch(label("primitive_apply")),
@@ -1791,7 +1785,6 @@ apply-dispatch
     restore("continue"),
     assign("val", list(op("compiled_procedure_entry"), reg("proc"))),
     go_to(reg("val")),
-
 </pre></div></div></td></tr></table>
       </p></div>
 
@@ -1837,14 +1830,12 @@ external-entry
       (perform (op initialize-stack))
       (assign env (op get-global-environment))
       (assign continue (label print-result))
-      (goto (reg val))
-</pre></div></div>    </td>
+      (goto (reg val))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_123_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsCIBTADwBcCAnAOwEMAbAfQMpPIE88AabUH0ABwoAzAPbkAtgAphfCXgCWlOSTl05ALwL0AziWoBjANZ4AlMa69Q1LVrkBzSrKYA3TqGmzbBEvVu1hAIzpGSic5cmFKMSYSEzNuXisbe1k9COVKAFcCV1pqfwJaWT5yBW9yAi0M2hjTc15bYXoSYQly21knOliOIA')">"external_entry",
     perform(op("initialize_stack")),
     assign("env", op("get_global_environment")),
     assign("continue", label("print_result")),
     go_to(reg("val")),
-
 </pre></div></div></td></tr></table>
   
       </p></div>
@@ -1882,8 +1873,7 @@ external-entry
       (set! the-global-environment (setup-environment))
       (set-register-contents! eceval 'val instructions)
       (set-register-contents! eceval 'flag true)
-      (start eceval)))
-</pre></div></div>    </td>
+      (start eceval)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_123_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsDMBXAOwGMAXASwHsjQSqBbABwoBsBTAfQEMiATTgHMqACnYAPJgCd2AZ1nUiASlABvbKE10assqApFdUguUWzQAXlDd57BgCMOI3dzJ32RMrJH1mbdmKSMvKKADSgAEQAbtysEeERMmQEUkQRSkoJ7CTsMXFKANwaWmQAFlyCrFT2sZweURRSNAweelay7MlMdUQNTUQtniKFxZodZJwyghS67FKc9J6t3hHZubHxkXmbBkYmlDojWqDjk+zTs-OLbp4ra9sJeKzcgptkxuxHWkkptC5SZBEqxy2xGAF8gA')">function compile_and_go(expression) {
     const instructions = assemble(statements(compile(expression, "val", "return")), "eceval");
     the_global_environment = setup_environment();
@@ -1891,7 +1881,6 @@ external-entry
     set_register_contents("eceval", "flag", true);
     return start("eceval");
 }
-
 </pre></div></div></td></tr></table>
       </p></div>
 
@@ -1911,9 +1900,7 @@ external-entry
       '(define (factorial n)
       (if (= n 1)
             1
-            (* (factorial (- n 1)) n))))
-</pre><pre class='prettyprintoutput'>
-
+            (* (factorial (- n 1)) n))))</pre><pre class='prettyprintoutput'>
       (total-pushes = 0 maximum-depth = 0)
       ;;; EC-Eval value:
       ok
@@ -1922,9 +1909,7 @@ external-entry
       (factorial 5)
       (total-pushes = 31 maximum-depth = 14)
       ;;; EC-Eval value:
-      120
-    
-</pre></div></div>    </td>
+      120</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_123_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsGMB7AWwAcBLAGwFMB9AQwDsATGgcwIAptQfQS6ATgGcqXXuNAAiAGYBXBngAuZAg1DS6SggLJ0KHBgEpQAb24SLoAVUWyBatQF5noAIyhzlrwH43nrxYAXKBqAFTqmorauvpqALRuhgDc-hIAvpKGybgcUYp6cSSyQgAWVEKgjqAADKBEdAAeZESyRHFMVCSKJZU1hthJg6AAotBxwwBueqBTFLJUgdgEANa4g0kjY5PTZAxFioscGlo60yj9uQT5FIXFZRVVAMzu9U0tbR1dPVWuACz960241mMz080WrgATNUgA')">compile_and_go(
     parse(
         "function factorial(n) {
@@ -1942,7 +1927,6 @@ ok
 (total-pushes = 31 maximum-depth = 14)
 ;;; EC-Eval value:
 120
-
 </pre></div></div></td></tr></table>
       </p></div>
 
@@ -2099,14 +2083,12 @@ ok
 (define (fib n)
       (if (< n 2)
       n
-      (+ (fib (- n 1)) (fib (- n 2)))))
-</pre></div></div>    </td>
+      (+ (fib (- n 1)) (fib (- n 2)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_123_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsDMBXAOwGMAXASwHsjQ8KAjACiIEpQBvbUH0AJwCmZAn1q0APKABMobr3kB+UETnyeALjqMWoALSgAjOwDUW5rX1TWAbmwBfIA')">function fib(n) {
     return n < 2 
         ? n
         : fib(n - 1) + fib(n - 2);
 }
-
 </pre></div></div></td></tr></table>
 
   compared to the effectiveness of using the special-purpose Fibonacci machine of
@@ -2189,7 +2171,6 @@ $\ldots$</kbd>
           
           <tr>
             <td><div class='snippet' id='javascript_123_7_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
-
       ;;; EC-Eval input:
       (compile-and-run
       '(define (factorial n)
@@ -2202,9 +2183,7 @@ $\ldots$</kbd>
       ;;; EC-Eval input:
       (factorial 5)
       ;;; EC-Eval value:
-      120
-    
-</pre></div></div>    </td>
+      120</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_123_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsGMB7AWwAcBLAGwFMB9AQwDsATGgJwFcGAKbUP0EnVYBnKj34TQAIgBmnPABcyBBqBl1FBVmToUuDAJSgA3r0nnQrKgvatVqgLxPQARlBmLngPyuPn8wBcoKoAVGoaClo6eqoAtK4GANx+kgC+UgZJuIk5oACi0LF5AG66oKUU7FQB2AQA1tm5BUUVoGQMJOwKNVzqmtplKAbYOYn5hSVlFVU1LgBMAAxAA')">compile_and_run(
     parse(
         "function factorial(n) {
@@ -2220,7 +2199,6 @@ ok
 (factorial 5)
 ;;; EC-Eval value:
 120
-
 </pre></div></div></td></tr></table>
       
       <div class="Solution">
@@ -2354,14 +2332,12 @@ ok
 (define (start-eceval)
         (set! the-global-environment (setup-environment))
         (set-register-contents! eceval 'flag false)
-        (start eceval))
-</pre></div></div>    </td>
+        (start eceval))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_123_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsDMBXAOwGMAXASwHsjQBnMgQwCcyB9AUxI4DdGAbABQBKUAG9soKaDIALDmwDm-KgCMBnIjwrMaAWw5EyoALz0OZAgAdN23UQNGRAbknS6Ftsw6KKDDsxsJDRkhmR0gly8AgA0oABEePyMivFxeAIewq7SoN6WzLQMLGSR3Hz82dgAvkA')">function start_eceval() {
     the_global_environment = setup_environment();
     set_register_contents(eceval, "flag", false);
     return start(eceval);
 }
-
 </pre></div></div></td></tr></table>
     </FOOTNOTE></div>
     
@@ -2390,8 +2366,7 @@ ok
               '<procedure-env>)))
               ((compiled-procedure? object)
               (display '<compiled-procedure>))
-              (else (display object))))
-</pre></div></div>    </td>
+              (else (display object))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_123_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsDMBXAOwGMAXASwHsjQCBnAUwCcB9AB2YqLIAoqARgCtG5AJSgA3tlCzQFPKF4kqAW3ZViAEw7MqJRloLNG-YaLJiJ0ubdBaK9dgBsAhgE9ezx3xl3-AEQq6ppEOpz6hsaMAQA0fv62EQZGJhyuzK6qjGQs9GYi4vGJdslRaQJUWp6ChZbFJXIBADzB7BTOLAC0jEQAbgB8AVYA3AmgAL6gjM5M8orKau2d4Xop0QUWVlLjtg5Obp4tbR3dZamMQ2JjtlMzczaJ+y4em+I3chPYE0A')">function user_print(object) {
     if (compound_procedure(object)) {
         display(list(
@@ -2405,7 +2380,6 @@ ok
         display(object);
     }
 }
-
 </pre></div></div></td></tr></table>
   
     </FOOTNOTE></div>

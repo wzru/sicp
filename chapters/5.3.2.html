@@ -1692,8 +1692,7 @@
     results are accessed, the pairs are no longer needed—they are <EM>
     garbage</EM>.  For instance, the computation
     <div class='snippet' id='javascript_110_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))
-</pre></div></div>
+accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))</pre></div></div>
     constructs two lists: the enumeration and the result of filtering
     the enumeration.  When the accumulation is complete, these lists are
     no longer needed, and the allocated memory can be reclaimed.  If we
@@ -1984,7 +1983,6 @@ accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))
 "reassign_root",
   assign("root", reg("new")),
   go_to(label("gc_loop")),
-
 </pre></div></div>
   </p></div>
 
@@ -2029,7 +2027,6 @@ accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))
   assign("old", list(op("vector_ref"), reg("new_heads"), reg("scan"))),
   assign("relocate_continue", label("update_head")),
   go_to(label("relocate_old_result_in_new")),
-
 </pre></div></div>
   </p></div>
   
@@ -2075,7 +2072,6 @@ accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))
                reg("new_tails"), reg("scan"), reg("new"))),
   assign("scan", list(op("+"), reg("scan"), constant(1))),
   go_to(label("gc_loop")),
-
 </pre></div></div>
   </p></div>
 
@@ -2187,7 +2183,6 @@ accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))
   assign("new", list(op("vector_ref"), 
                      reg("the_tails"), reg("old"))),
   go_to(reg("relocate_continue")),
-
 </pre></div></div>
   </p></div>
 
@@ -2223,7 +2218,6 @@ accumulate((x, y) => x + y, 0, filter(is_odd, enumerate_interval(0, n)))
     assign("temp", reg("the_heads")),
     assign("the_heads", reg("new_heads")),
     assign("new_heads", reg("temp"))
-
 </pre></div></div>
     
     

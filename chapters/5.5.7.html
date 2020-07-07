@@ -1720,7 +1720,6 @@ ok
 (factorial 5)
 ;;; EC-Eval value:
 120
-
 </pre></div></div>
       </p></div>
 
@@ -1750,7 +1749,6 @@ ok
     restore("continue"),
     assign("val", list(op("compiled_procedure_entry"), reg("proc"))),
     go_to(reg("val")),
-
 </pre></div></div>
       </p></div>
 
@@ -1792,7 +1790,6 @@ $\langle\ldots\rangle$</kbd>
     assign("env", op("get_global_environment")),
     assign("continue", label("print_result")),
     go_to(reg("val")),
-
 </pre></div></div>
   
       </p></div>
@@ -1824,7 +1821,6 @@ $\langle\ldots\rangle$</kbd>
     set_register_contents("eceval", "flag", true);
     return start("eceval");
 }
-
 </pre></div></div>
       </p></div>
 
@@ -1852,7 +1848,6 @@ ok
 (total-pushes = 31 maximum-depth = 14)
 ;;; EC-Eval value:
 120
-
 </pre></div></div>
       </p></div>
 
@@ -2006,7 +2001,6 @@ ok
         ? n
         : fib(n - 1) + fib(n - 2);
 }
-
 </pre></div></div>
 
   compared to the effectiveness of using the special-purpose Fibonacci machine of
@@ -2099,7 +2093,6 @@ ok
 (factorial 5)
 ;;; EC-Eval value:
 120
-
 </pre></div></div>
       
       <div class="Solution">
@@ -2230,7 +2223,6 @@ ok
     set_register_contents(eceval, "flag", false);
     return start(eceval);
 }
-
 </pre></div></div>
     </FOOTNOTE></div>
 
@@ -2259,7 +2251,6 @@ ok
         display(object);
     }
 }
-
 </pre></div></div>
   
     </FOOTNOTE></div>

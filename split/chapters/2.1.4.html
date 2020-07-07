@@ -1754,13 +1754,11 @@
             <td><div class='snippet' id='javascript_30_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (add-interval x y)
   (make-interval (+ (lower-bound x) (lower-bound y))
-                 (+ (upper-bound x) (upper-bound y))))
-</pre></div></div>    </td>
+                 (+ (upper-bound x) (upper-bound y))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_30_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0qSK2AnAG5MANgAoAHgBpQATwCUoAN6hcoNaD5sKRPvQAOTKnwnT5AbhUBfQqUq16wmgHd+HAEY1SAE1FUFy1XVNbV1QAAs2Jh8-M1xrYnJqOlAiPT1XD29ffxV1DS0degpDMRi4-AS7ZL0+bgouHn4hUv9AtWDC0AAiAG1utQBqUABnClqSAHMqAhlRRxc+d08SaLkFIba8vK7QaR2h0fGpmdFU9MXMlez1-oBdLtjrG0T7UCivBt5BERNZVryOqFmOxPk0fvMMssfOIbhCLlDRPJJJstqi0eozpCsjDQENMfCsvI5I98DU6qDvmJ3hTmqJgZw6mCxBhpCg5NIUeiuaj6TSfgBmaQAVjWxKAA')">function add_interval(x, y) {
     return make_interval(lower_bound(x) + lower_bound(y),
                          upper_bound(x) + upper_bound(y));
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
   <div class='permalink'>
@@ -1795,8 +1793,7 @@
         (p3 (* (upper-bound x) (lower-bound y)))
         (p4 (* (upper-bound x) (upper-bound y))))
     (make-interval (min p1 p2 p3 p4)
-                   (max p1 p2 p3 p4))))
-</pre></div></div>    </td>
+                   (max p1 p2 p3 p4))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_30_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0qSK2AnAG5MANgAoAHgBpQATwCUoAN6hcoNaD5sKRPvQAOTKnwnT5AbhUBfQqUq16wmgHd+HAEY1SAE1FUFy1XVNbV1QAAs2Jh8-M1xrYnJqOlAiPT1XD29ffxV1DS0degpDMRi4-AS7ZL0+bgouHn4hUv9AtWDC0AAiAG1utQBqUABnClqSAHMqAhlRRxc+d08SaLkFIba8vK7QaR2h0fGpmdFU9MXMlez1-oBdLtjrG0T7RiJhBt5BERNZVryyHRRqA9BhQABeUDzDLLHziBQAKihzhhWXMm0BJGBehQEORCyWWXhoCRZ1RV3RAKBFBBAGY8WSLrCJIj8eSfJT1JjsdgGWl2SySSl+Uy0XJYnkOqFmOxPk0fswKGEOAxuKJQdIcZraZrsHJJJstkbjepFcrmOJ1RhNShtbq1o98DU6nLvmIGO9Xc1RDLOHV5WJrah9bkTWHw76vT8daAAKxrcVAA')">function mul_interval(x, y) {
     const p1 = lower_bound(x) * lower_bound(y);
     const p2 = lower_bound(x) * upper_bound(y);
@@ -1805,7 +1802,6 @@
     return make_interval(math_min(p1, p2, p3, p4),
                          math_max(p1, p2, p3, p4));
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
   <div class='permalink'>
@@ -1822,13 +1818,11 @@
 (define (div-interval x y)
   (mul-interval x 
                 (make-interval (/ 1.0 (upper-bound y))
-                               (/ 1.0 (lower-bound y)))))
-</pre></div></div>    </td>
+                               (/ 1.0 (lower-bound y)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_30_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0qSK2AnAG5MANgAoAHgBpQATwCUoAN6hcoNaD5sKRPvQAOTKnwnT5AbhUBfQqUq16wmgHd+HAEY1SAE1FUFy1XVNbV1QAAs2Jh8-M1xrYnJqOlAiPT1XD29ffxV1DS0degpDMRi4-AS7ZL0+bgouHn4hUv9AtWDC0AAiAG1utQBqUABnClqSAHMqAhlRRxc+d08SaLkFIba8vK7QaR2h0fGpmdFU9MXMlez1-oBdLtjrG0T7RiJhBt5BERNZVryyHRRqA9BhQABeUDzDLLHziBQAKihzhhWXMm0BJGBehQEORCyWWXhoCRZ1RV3RAKBFBBAGY8WSLrCJIj8eSfJT1JjsdgGWl2SySSl+Uy0XJYnkOqFmOxPk0fswKGEOAxuKJQdIcZraZrsHJJJstkbjepFcrmOJ1RhNShtbq1o8KrYkvQvFQBHLvmIpPIlJspfQGO9Pc1fjLOHV5WIwWBGYSKfrDSbkynkzG2aKEw7yrganUQz83R7I17ROGC9HpCh9blU3W8uWS6GdaAAKxrcVAA')">function div_interval(x,y) {
     return mul_interval(x, make_interval(1 / upper_bound(y),
                                          1 / lower_bound(y)));
 }
-
 </pre></div></div></td></tr></table>
   </p></div>
   
@@ -1845,13 +1839,11 @@
           
           <tr>
             <td><div class='snippet' id='javascript_30_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (make-interval a b) (cons a b))
-</pre></div></div>    </td>
+(define (make-interval a b) (cons a b))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_30_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_interval(x, y) {
     return pair(x, y); 
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
     
     
     
@@ -1880,7 +1872,6 @@ function make_interval(x, y) {
           
           <tr>
             <td><div class='snippet' id='javascript_30_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_30_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function make_interval(x, y) {
@@ -1891,8 +1882,7 @@ function lower_bound(x) {
 }
 function upper_bound(x) { 
     return tail(x); 
-}
-</pre></div></div></td></tr></table>
+}</pre></div></div></td></tr></table>
     </SOLUTION></div></div>
 </EXERCISE></div>
 
@@ -1921,7 +1911,6 @@ function upper_bound(x) {
     return make_interval(lower_bound(x) - upper_bound(y),
                          upper_bound(x) - lower_bound(y));
 }
-
 </pre></div></div>
       
     </SOLUTION></div></div>
@@ -2001,7 +1990,6 @@ function upper_bound(x) {
           
           <tr>
             <td><div class='snippet' id='javascript_30_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-
 </pre></div></div>    </td>
             <td><div class='snippet' id='javascript_30_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0qSK2AnAG5MANgAoAHgBpQATwCUoAN65Qq0HzYUifegAcmVPhOnyA3LgC+hUpVr1hNAO78OAIxqkAJhIWLQKtQ0tHVAACzYmb3E5U38rYnJqOlAiXV0Xdy8fJX81dU1tegoDMWjYy3wE22SGImEuHn4hUpNfANUyOgBnClBdDFAAXlAHZz43DxIohQAqEacMye8zdtBOkh6+lCH5sYms6NA51PTxzKnRFbz1zd0AZh2TxYPZ3eeLq7Ub3t1sR7T3tMjikAWclpcYqsgoVGKxONxeIIRKJmBRQhwGNxRP1pLoULi7rjsHJJKs8uSKRTUejmOJsRhcfi+oS+sTIVZrIk7H0+AiGojmqIqG08tCQgAiADaoHFqgA1KAerySABzKgEGSiUaAoVyBQKskU2XSWUKpXcNUa0RPMFZYX6mWgAC64vMHKqSXonioAn5TWRUlkIsCBRC2ttHwUAB5hgAGUAAMgTINO+0joAAfHHDaoAPygfh8GhGcUAER9VC63MLxdAQsaSOEiv0G1Asbk4rkOdAAC5GHU-Y3jLD2IPBQMwDa08sSd3KfOF-OJ28IzO9W78LplRQx8jvb6Ef6xMxR4ehwzUCTcoub1S4buxCyAKx6mJAA')">function div_interval(x, y) {
     return lower_bound(y) <= 0 && upper_bound(y) >= 0
@@ -2009,7 +1997,6 @@ function upper_bound(x) {
         : mul_interval(x, make_interval(1 / upper_bound(y),
                                         1 / lower_bound(y)));
 }
-
 </pre></div></div></td></tr></table>
     </SOLUTION></div></div>
 </EXERCISE></div>
@@ -2077,7 +2064,6 @@ function mul_interval(x, y) {
                            ? the_trouble_maker(xl, xu, yl, yu)
                            : error("lower larger than upper");
 }
-
 </pre></div></div>
     </SOLUTION></div></div>
 </EXERCISE></div>
@@ -2104,8 +2090,7 @@ function mul_interval(x, y) {
   (/ (+ (lower-bound i) (upper-bound i)) 2))
 
 (define (width i)
-  (/ (- (upper-bound i) (lower-bound i)) 2))
-</pre></div></div>    </td>
+  (/ (- (upper-bound i) (lower-bound i)) 2))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_30_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0qSK2AnAG5MANgAoAHgBpQATwCUoAN6hcoNaD5sKRPvQAOTKnwnT5AbhUBfQqUq16wmgHd+HAEY1SAE1FUFy1XVNbV1QAAs2Jh8-M1xrYnJqOlAiPT1XD29ffxV1DS0degpDMRi4-AS7ZOZ2DjI2HlcnKi8KMNEyaSd-QLVgwsZWTm5eQREO0ABaUCdpMlAAahm5WPjbJPp6xuM-JV78kPpRRxc+d08SaIUl1PSzzMvshTAUVZtE+xmWtuy9vP7QqJbhkLlcpqATiCsn5nqg3rgyHQAM4URgyLjbITCUAAXkGtS2ow4zVa7Qw0gADGgAKwrXAkn4MdEjfhYlZAA')">function make_center_width(c, w) {
     return make_interval(c - w, c + w);
 }
@@ -2115,7 +2100,6 @@ function center(i) {
 function width(i) {
     return (upper_bound(i) - lower_bound(i)) / 2;
 }
-
 </pre></div></div></td></tr></table>
     
     Unfortunately, most of Alyssa's users are engineers.  Real engineering
@@ -2155,7 +2139,6 @@ function width(i) {
 function percent(i) {
     return (width(i) / center(i)) * 100;
 }
-
 </pre></div></div>
       
     </SOLUTION></div></div>
@@ -2241,8 +2224,7 @@ function percent(i) {
   (let ((one (make-interval 1 1))) 
     (div-interval one
                   (add-interval (div-interval one r1)
-                                (div-interval one r2)))))
-</pre></div></div>    </td>
+                                (div-interval one r2)))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_30_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0qSK2AnAG5MANgAoAHgBpQATwCUoAN6hcoNaD5sKRPvQAOTKnwnT5AbhUBfQqUq16wmgHd+HAEY1SAE1FUFy1XVNbV1QAAs2Jh8-M1xrYnJqOlAiPT1XD29ffxV1DS0degpDMRi4-AS7ZL0+bgouHn4hUv9AtWDC0AAiAG1utQBqUABnClqSAHMqAhlRRxc+d08SaLkFIba8vK7QaR2h0fGpmdFU9MXMlez1-oBdLtjrG0T7UCivBt5BERNZVryOqFmOxPk0fvMMssfOIbhCLlDRPJJJstqi0eozpCsjDQENMfCsvI5I8KrYkvQGERhKDvmIpH8lJsyHRRqA9BhQABeUBwpbYhQAKh5zixV3MTJZFDZKC5woWfKuOKF+IVPnFeWZJFZegAzLKVZdoYK5aK1cSJVqpXpsPq0qaJMaDQj1UECkDWJw6mCxMwKGEOAxuKJ2dI9ChQzrQ9g5Mj0XH0b7-cxxMGMKHw2zI2zo+anpVyaAvFQBDTmiZ5IyAW6KVTSz96cDPY1aaIOWAnYSYyj4z3e+o2yaCWK1rnSS9qkw+BhRFPpHwUP9XSF6EWS16W5Tqeuy7ONAvY334+862Jd-O1iT868DPOZ2m94u1JrWXQ2LLGyfW9IMOaq8vC8Wn6vgeh7ose24-KuQEkGwc4-iBoGIeoUEQWIwEPhe5S4EWwx6MITCzDUdSfje04GEYojYJIABsMZsoYxgAOySAAHCO5rYVQuH4YR4z1KhwaTiggkUVRtGhgxojMWxI5mEAA')">function par1(r1, r2) {
     return div_interval(mul_interval(r1, r2),
                         add_interval(r1, r2));
@@ -2253,7 +2235,6 @@ function par2(r1, r2) {
                         add_interval(div_interval(one, r1),
                                      div_interval(one, r2)));
 }
-
 </pre></div></div></td></tr></table>
     
     Lem complains that Alyssa's program gives different answers for

@@ -1717,8 +1717,7 @@
       (if (= n 0)
           false
           (even? (- n 1))))
-   ^rest of body of^ f)
-</pre></div></div>
+   ^rest of body of^ f)</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -1856,8 +1855,7 @@ function f(x) {
                : is_even(n - 1);
     }
     // rest of body of f
-}
-</pre></div></div>
+}</pre></div></div>
       </p></div>
 
       <div class='permalink'>
@@ -2051,7 +2049,6 @@ function f(x) {
     const dy = stream_map(f, y);
     return y;
 }
-
 </pre></div></div>
 	Will this function
 	work if internal definitions are scanned out as shown in this exercise?
@@ -2103,8 +2100,7 @@ function f(x) {
 (define (solve f y0 dt)
 (define y (integral (delay dy) y0 dt))
 (define dy (stream-map f y))
-      y)
-</pre></div></div>
+      y)</pre></div></div>
 	Will this procedure work if internal definitions are scanned out as
 	shown in this exercise? What if they are scanned out as shown in the
 	text?  Explain.
@@ -2194,8 +2190,7 @@ function f(x) {
       (define b (+ a x))
       (define a 5)
       (+ a b))
-   (f 10))
-</pre></div></div>
+   (f 10))</pre></div></div>
 	Ben asserts that the result should be obtained using the sequential rule
 	for <kbd>define</kbd>: <kbd>b</kbd>
 	is defined to be 11, then <kbd>a</kbd> is defined to
@@ -2280,13 +2275,11 @@ function f(x) {
                   (if (= n 0)
                       false
                       (even? (- n 1))))))
-      ^rest of body of^ f))
-</pre></div></div>
+      ^rest of body of^ f))</pre></div></div>
 	<kbd>Letrec</kbd> expressions, which have the form
 	<div class='snippet' id='javascript_81_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (letrec ((^var$_{1}$^ ^exp$_{1}$^) ^$\ldots$^ (^var$_{n}$^ ^exp$_{n}$^))
-    ^body^)
-</pre></div></div>
+    ^body^)</pre></div></div>
 	are a variation on <kbd>let</kbd> in which the
 	expressions exp$_{k}$ that provide the
 	initial values for the variables var$_{k}$
@@ -2303,8 +2296,7 @@ function f(x) {
                (if (= n 1)
                    1
                    (* n (fact (- n 1)))))))
-        (fact 10))
-</pre></div></div>
+        (fact 10))</pre></div></div>
 	<OL>
 	  <LI>
 	    Implement <kbd>letrec</kbd> as a derived
@@ -2357,7 +2349,6 @@ function f(x) {
     return a + b;
 }
 f(10);
-
 </pre></div></div>
 	Ben asserts that the result should be obtained using the sequential
 	implementation for <kbd>let</kbd> as given
@@ -2423,8 +2414,7 @@ f(10);
         (if (= k 1)
             1
             (* k (ft ft (- k 1)))))))
- 10)
-</pre></div></div>
+ 10)</pre></div></div>
 	<OL>
 	  <LI>
 	    Check (by evaluating the expression) that this really does compute
@@ -2444,8 +2434,7 @@ f(10);
       (if (= n 0)
           false
           (even? (- n 1))))
-   (even? x))
-</pre></div></div>
+   (even? x))</pre></div></div>
 	    Fill in the missing expressions to complete an alternative definition
 	    of <kbd>f</kbd>, which uses neither internal
 	    definitions nor <kbd>letrec</kbd>:
@@ -2456,8 +2445,7 @@ f(10);
     (lambda (ev? od? n)
   (if (= n 0) true (od? ^??^ ^??^ ^??^)))
     (lambda (ev? od? n)
-  (if (= n 0) false (ev? ^??^ ^??^ ^??^)))))
-</pre></div></div>
+  (if (= n 0) false (ev? ^??^ ^??^ ^??^)))))</pre></div></div>
 	  </LI>
 	</OL>
 
@@ -2484,7 +2472,6 @@ f(10);
       )
 )
 (10);
-
 </pre></div></div>
 	<OL>
 	  <LI>
@@ -2509,7 +2496,6 @@ f(10);
     }
     return is_even(x);
 }
-
 </pre></div></div>
 	    Fill in the missing expressions to complete an alternative
 	    declaration of <kbd>f</kbd>, which uses
@@ -2527,8 +2513,7 @@ function f(x) {
         (ev, od, n) =>
            n === 0 ? false : ev(??, ??, ??) 
       );
-}
-</pre></div></div>
+}</pre></div></div>
 	  </LI>
 	</OL>
       </span></td></tr></table>
