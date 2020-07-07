@@ -1806,37 +1806,38 @@
     <span style="color:blue">functions.</span>
   </p></div>
 
-  <SUBSUBSUBSECTION>
-Primitive expressions
-
-    <UL>
-      <LI>
-	
-	
-	For self-evaluating expressions, such as numbers,
-	
-	  <span style="color:teal"><kbd>eval</kbd></span>
-	  <span style="color:blue"><kbd>evaluate</kbd></span>
-	
-	returns the expression itself.
-      </LI>
-      <LI>
-	
-	  <span style="color:teal"><kbd>Eval</kbd></span>
-	  <span style="color:blue">The function
-	  <kbd>evaluate</kbd></span>
-	
-	must look up
-	
-	  <span style="color:teal">variables</span>
-	  <span style="color:blue">names</span>
-	
-	in the environment to find their values.
-      </LI>
-    </UL>
   
-</SUBSUBSUBSECTION>
-
+      <div class='permalink'>
+        <a name='h2' class='permalink'></a><h3>
+    
+    Primitive expressions
+  </h3></div>
+  
+  <UL>
+    <LI>
+      
+      
+      For self-evaluating expressions, such as numbers,
+      
+	<span style="color:teal"><kbd>eval</kbd></span>
+	<span style="color:blue"><kbd>evaluate</kbd></span>
+      
+      returns the expression itself.
+    </LI>
+    <LI>
+      
+	<span style="color:teal"><kbd>Eval</kbd></span>
+	<span style="color:blue">The function
+	<kbd>evaluate</kbd></span>
+      
+      must look up
+      
+	<span style="color:teal">variables</span>
+	<span style="color:blue">names</span>
+      
+      in the environment to find their values.
+    </LI>
+  </UL>
 
   <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
@@ -1847,103 +1848,111 @@ Primitive expressions
         </tr>
         <tr><td><span style="color:teal">
       
-      <SUBSUBSUBSECTION>
-Special forms
-	
-	<div class='permalink'>
-<a name='p4' class='permalink'></a><p>
-          <UL>
-	    <LI>
-	      For quoted expressions, 
-	      <kbd>eval</kbd>
-	      returns the expression that was
-	      quoted.
-	    </LI>
-	    <LI>
-	      An assignment to (or a definition of) a variable
-	      must recursively call      
-	      <kbd>eval</kbd>
-	      to compute the new value to be associated with the variable.
-	      The environment must be modified to change (or create) the
-	      binding of the variable.
-	    </LI>
-	    <LI>
-	      An if expression requires special processing of its parts, so as to
-	      evaluate the consequent if the predicate is true, and otherwise to
-	      evaluate the alternative.
-	    </LI>
-	    <LI>
-	      A <kbd>lambda</kbd> expression
-	      must be transformed into an applicable
-	      procedure by packaging together the parameters and body
-	      specified by the
-	      <kbd>lambda</kbd>
-	      expression with the environment of the evaluation.
-	    </LI>
-	    <LI>
-	      A <kbd>begin</kbd> expression
-	      requires evaluating its sequence of
-	      expressions in the order in which they appear.
-	    </LI>
-	    <LI>
-	      A case analysis (<kbd>cond</kbd>) is transformed
-	      into a nest of <kbd>if</kbd>
-	      expressions and then evaluated.
-	    </LI>
-          </UL>
-	</p></div>
       
-</SUBSUBSUBSECTION>
-
+      <div class='permalink'>
+        <a name='h3' class='permalink'></a><h3>
+    
+	Special forms
+      </h3></div>
+      
+      <div class='permalink'>
+<a name='p4' class='permalink'></a><p>
+        <UL>
+	  <LI>
+	    For quoted expressions, 
+	    <kbd>eval</kbd>
+	    returns the expression that was
+	    quoted.
+	  </LI>
+	  <LI>
+	    An assignment to (or a definition of) a variable
+	    must recursively call      
+	    <kbd>eval</kbd>
+	    to compute the new value to be associated with the variable.
+	    The environment must be modified to change (or create) the
+	    binding of the variable.
+	  </LI>
+	  <LI>
+	    An if expression requires special processing of its parts, so as to
+	    evaluate the consequent if the predicate is true, and otherwise to
+	    evaluate the alternative.
+	  </LI>
+	  <LI>
+	    A <kbd>lambda</kbd> expression
+	    must be transformed into an applicable
+	    procedure by packaging together the parameters and body
+	    specified by the
+	    <kbd>lambda</kbd>
+	    expression with the environment of the evaluation.
+	  </LI>
+	  <LI>
+	    A <kbd>begin</kbd> expression
+	    requires evaluating its sequence of
+	    expressions in the order in which they appear.
+	  </LI>
+	  <LI>
+	    A case analysis (<kbd>cond</kbd>) is transformed
+	    into a nest of <kbd>if</kbd>
+	    expressions and then evaluated.
+	  </LI>
+        </UL>
+      </p></div>
     </span>    </td>
           <td></td>
           <td><span style="color:blue">
-      <SUBSUBSUBSECTION>
-Language constructs
-	<div class='permalink'>
-<a name='p5' class='permalink'></a><p>
-          <UL>
-	    <LI>
-	      An assignment to (or a declaration of) a name must recursively call
-	      <kbd>evaluate</kbd> to compute the new
-	      value to be associated with the name.  The environment must be
-	      modified to change the binding of the name.
-	    </LI>
-	    <LI>
-	      A conditional expression requires special processing of its parts,
-	      so as to evaluate the consequent if the predicate is true, and
-	      otherwise to evaluate the alternative.
-	    </LI>
-	    <LI>
-	      A lambda expression must be transformed into an applicable
-	      function by packaging together the parameters and body specified
-	      by the lambda expression with the environment of the evaluation.
-	    </LI>
-	    <LI>
-	      A sequence of statements requires evaluating its component
-	      statements in the order in which they appear.
-	    </LI>
-	    <LI>
-	      A block requires evaluating its body, while ensuring that
-	      declarations within the block remain local to the block.
-	    </LI>
-	    <LI>
-	      When <kbd>evaluate</kbd> encounters a
-	      <kbd>return</kbd> statement, the
-	      <kbd>return</kbd> expression is
-	      evaluated and marked as a return value. 
-	    </LI>
-          </UL>
-	</p></div>
       
-</SUBSUBSUBSECTION>
-
+      
+      <div class='permalink'>
+        <a name='h4' class='permalink'></a><h3>
+    	
+	Language constructs
+      </h3></div>
+      
+      <div class='permalink'>
+<a name='p5' class='permalink'></a><p>
+        <UL>
+	  <LI>
+	    An assignment to (or a declaration of) a name must recursively call
+	    <kbd>evaluate</kbd> to compute the new
+	    value to be associated with the name.  The environment must be
+	    modified to change the binding of the name.
+	  </LI>
+	  <LI>
+	    A conditional expression requires special processing of its parts,
+	    so as to evaluate the consequent if the predicate is true, and
+	    otherwise to evaluate the alternative.
+	  </LI>
+	  <LI>
+	    A lambda expression must be transformed into an applicable
+	    function by packaging together the parameters and body specified
+	    by the lambda expression with the environment of the evaluation.
+	  </LI>
+	  <LI>
+	    A sequence of statements requires evaluating its component
+	    statements in the order in which they appear.
+	  </LI>
+	  <LI>
+	    A block requires evaluating its body, while ensuring that
+	    declarations within the block remain local to the block.
+	  </LI>
+	  <LI>
+	    When <kbd>evaluate</kbd> encounters a
+	    <kbd>return</kbd> statement, the
+	    <kbd>return</kbd> expression is
+	    evaluated and marked as a return value. 
+	  </LI>
+        </UL>
+      </p></div>
     </span></td></tr></table>
 
-  <SUBSUBSUBSECTION>
-Combinations
-
-    <table width="100%">
+  
+      <div class='permalink'>
+        <a name='h5' class='permalink'></a><h3>
+    
+    Combinations
+  </h3></div>
+  
+  <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
           <td class="meta" style = "color:grey; text-align: center">Original</td>
@@ -1951,45 +1960,42 @@ Combinations
           <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
         </tr>
         <tr><td><span style="color:teal">
-	<div class='permalink'>
+      <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
-          <UL>
-	    <LI>
-	      For a procedure application, <kbd>eval</kbd>
-	      must recursively evaluate the operator part and the operands of
-	      the combination.  The resulting procedure
-	      and arguments are passed to <kbd>apply</kbd>,
-	      which handles the actual procedure application.
-	    </LI>
-          </UL>
-	</p></div>
-      </span>    </td>
+        <UL>
+	  <LI>
+	    For a procedure application, <kbd>eval</kbd>
+	    must recursively evaluate the operator part and the operands of
+	    the combination.  The resulting procedure
+	    and arguments are passed to <kbd>apply</kbd>,
+	    which handles the actual procedure application.
+	  </LI>
+        </UL>
+      </p></div>
+    </span>    </td>
           <td></td>
           <td><span style="color:blue">
-	<div class='permalink'>
+      <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
-          <UL>
-	    <LI>
-	      An operator combination is treated as a function application.
-	      The operator symbol is the name of the function being applied, and
-	      the operands are the arguments. Thus 
-	      <kbd>evaluate</kbd> does not need any
-	      rules for operators combinations.
-	    </LI>
-	    <LI>
-	      For a function application,
-	      <kbd>evaluate</kbd> must recursively
-	      evaluate the function expression and the arguments of the
-	      application.  The resulting function and arguments are passed to
-	      <kbd>apply</kbd>, which handles the actual
-	      function application.
-	    </LI>
-          </UL>
-	</p></div>
-      </span></td></tr></table>
-  
-</SUBSUBSUBSECTION>
-
+        <UL>
+	  <LI>
+	    An operator combination is treated as a function application.
+	    The operator symbol is the name of the function being applied, and
+	    the operands are the arguments. Thus 
+	    <kbd>evaluate</kbd> does not need any
+	    rules for operators combinations.
+	  </LI>
+	  <LI>
+	    For a function application,
+	    <kbd>evaluate</kbd> must recursively
+	    evaluate the function expression and the arguments of the
+	    application.  The resulting function and arguments are passed to
+	    <kbd>apply</kbd>, which handles the actual
+	    function application.
+	  </LI>
+        </UL>
+      </p></div>
+    </span></td></tr></table>
   
   <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
@@ -2111,7 +2117,7 @@ Combinations
 
   
       <div class='permalink'>
-        <a name='h2' class='permalink'></a><h2>
+        <a name='h6' class='permalink'></a><h2>
     
     Apply
   </h2></div>
@@ -2251,7 +2257,7 @@ Combinations
 
   
       <div class='permalink'>
-        <a name='h3' class='permalink'></a><h2>
+        <a name='h7' class='permalink'></a><h2>
     
     
     

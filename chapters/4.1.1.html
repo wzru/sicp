@@ -1780,115 +1780,120 @@
     functions.
   </p></div>
 
-  <SUBSUBSUBSECTION>
-Primitive expressions
-
-    <UL>
-      <LI>
-	
-	
-	For self-evaluating expressions, such as numbers,
-	
-	  
-	  <kbd>evaluate</kbd>
-	
-	returns the expression itself.
-      </LI>
-      <LI>
-	
-	  
-	  The function
-	  <kbd>evaluate</kbd>
-	
-	must look up
-	
-	  
-	  names
-	
-	in the environment to find their values.
-      </LI>
-    </UL>
   
-</SUBSUBSUBSECTION>
-
+      <div class='permalink'>
+        <a name='h2' class='permalink'></a><h3>
+    
+    Primitive expressions
+  </h3></div>
+  
+  <UL>
+    <LI>
+      
+      
+      For self-evaluating expressions, such as numbers,
+      
+	
+	<kbd>evaluate</kbd>
+      
+      returns the expression itself.
+    </LI>
+    <LI>
+      
+	
+	The function
+	<kbd>evaluate</kbd>
+      
+      must look up
+      
+	
+	names
+      
+      in the environment to find their values.
+    </LI>
+  </UL>
 
   
     
     
-      <SUBSUBSUBSECTION>
-Language constructs
-	<div class='permalink'>
+      
+      
+      <div class='permalink'>
+        <a name='h3' class='permalink'></a><h3>
+    	
+	Language constructs
+      </h3></div>
+      
+      <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
-          <UL>
-	    <LI>
-	      An assignment to (or a declaration of) a name must recursively call
-	      <kbd>evaluate</kbd> to compute the new
-	      value to be associated with the name.  The environment must be
-	      modified to change the binding of the name.
-	    </LI>
-	    <LI>
-	      A conditional expression requires special processing of its parts,
-	      so as to evaluate the consequent if the predicate is true, and
-	      otherwise to evaluate the alternative.
-	    </LI>
-	    <LI>
-	      A lambda expression must be transformed into an applicable
-	      function by packaging together the parameters and body specified
-	      by the lambda expression with the environment of the evaluation.
-	    </LI>
-	    <LI>
-	      A sequence of statements requires evaluating its component
-	      statements in the order in which they appear.
-	    </LI>
-	    <LI>
-	      A block requires evaluating its body, while ensuring that
-	      declarations within the block remain local to the block.
-	    </LI>
-	    <LI>
-	      When <kbd>evaluate</kbd> encounters a
-	      <kbd>return</kbd> statement, the
-	      <kbd>return</kbd> expression is
-	      evaluated and marked as a return value. 
-	    </LI>
-          </UL>
-	</p></div>
-      
-</SUBSUBSUBSECTION>
-
+        <UL>
+	  <LI>
+	    An assignment to (or a declaration of) a name must recursively call
+	    <kbd>evaluate</kbd> to compute the new
+	    value to be associated with the name.  The environment must be
+	    modified to change the binding of the name.
+	  </LI>
+	  <LI>
+	    A conditional expression requires special processing of its parts,
+	    so as to evaluate the consequent if the predicate is true, and
+	    otherwise to evaluate the alternative.
+	  </LI>
+	  <LI>
+	    A lambda expression must be transformed into an applicable
+	    function by packaging together the parameters and body specified
+	    by the lambda expression with the environment of the evaluation.
+	  </LI>
+	  <LI>
+	    A sequence of statements requires evaluating its component
+	    statements in the order in which they appear.
+	  </LI>
+	  <LI>
+	    A block requires evaluating its body, while ensuring that
+	    declarations within the block remain local to the block.
+	  </LI>
+	  <LI>
+	    When <kbd>evaluate</kbd> encounters a
+	    <kbd>return</kbd> statement, the
+	    <kbd>return</kbd> expression is
+	    evaluated and marked as a return value. 
+	  </LI>
+        </UL>
+      </p></div>
     
   
 
-  <SUBSUBSUBSECTION>
-Combinations
-
+  
+      <div class='permalink'>
+        <a name='h4' class='permalink'></a><h3>
     
-      
-      
-	<div class='permalink'>
+    Combinations
+  </h3></div>
+  
+  
+    
+    
+      <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-          <UL>
-	    <LI>
-	      An operator combination is treated as a function application.
-	      The operator symbol is the name of the function being applied, and
-	      the operands are the arguments. Thus 
-	      <kbd>evaluate</kbd> does not need any
-	      rules for operators combinations.
-	    </LI>
-	    <LI>
-	      For a function application,
-	      <kbd>evaluate</kbd> must recursively
-	      evaluate the function expression and the arguments of the
-	      application.  The resulting function and arguments are passed to
-	      <kbd>apply</kbd>, which handles the actual
-	      function application.
-	    </LI>
-          </UL>
-	</p></div>
-      
+        <UL>
+	  <LI>
+	    An operator combination is treated as a function application.
+	    The operator symbol is the name of the function being applied, and
+	    the operands are the arguments. Thus 
+	    <kbd>evaluate</kbd> does not need any
+	    rules for operators combinations.
+	  </LI>
+	  <LI>
+	    For a function application,
+	    <kbd>evaluate</kbd> must recursively
+	    evaluate the function expression and the arguments of the
+	    application.  The resulting function and arguments are passed to
+	    <kbd>apply</kbd>, which handles the actual
+	    function application.
+	  </LI>
+        </UL>
+      </p></div>
     
   
-</SUBSUBSUBSECTION>
-
   
   <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
@@ -1985,7 +1990,7 @@ Combinations
 
   
       <div class='permalink'>
-        <a name='h2' class='permalink'></a><h2>
+        <a name='h5' class='permalink'></a><h2>
     
     Apply
   </h2></div>
@@ -2093,7 +2098,7 @@ Combinations
 
   
       <div class='permalink'>
-        <a name='h3' class='permalink'></a><h2>
+        <a name='h6' class='permalink'></a><h2>
     
     
     
