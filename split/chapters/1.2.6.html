@@ -1910,7 +1910,7 @@ function divides(a, b) {
     <kbd>random</kbd>, which we assume 
     
       <span style="color:teal">is included as a primitive in Scheme.</span>
-      <span style="color:blue">our JavaScript environment defines as a primitive function.
+      <span style="color:blue">is included as a primitive in JavaScript.
       </span>
     
     
@@ -2113,11 +2113,10 @@ function divides(a, b) {
 	procedure,
       </span>
       <span style="color:blue">
-        Assume that our JavaScript environment declares a
-	primitive function called 
-        <kbd>runtime</kbd>
-        that returns an integer that specifies the amount of time the system
-        has been running (measured in microseconds).  The following 
+        Assume a nullary primitive function
+	<kbd>get_time</kbd> that whenever it is called
+	returns the number of milliseconds that passed since 00:00:00 UTC
+	Thursday, 1 January 1970. The following 
         <kbd>timed_prime_test</kbd>
 	function,
       </span>

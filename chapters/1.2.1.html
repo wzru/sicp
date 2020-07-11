@@ -1976,10 +1976,12 @@ function fact_iter(product, counter, max_count) {
     by resorting to special-purpose 
     
     <QUOTE>looping constructs</QUOTE> such as
-    <kbd>do</kbd>, <kbd>repeat</kbd>,
+    <kbd>do</kbd>,
+    <kbd>repeat</kbd>,
     <kbd>until</kbd>,
     <kbd>for</kbd>, and
-    <kbd>while</kbd>.  The implementation of
+    <kbd>while</kbd>.
+    The implementation of
     
       
       JavaScript
@@ -1991,18 +1993,20 @@ function fact_iter(product, counter, max_count) {
       
       function.
     
-    An implementation with this property is called 
-    
-    <EM>tail-recursive</EM>.  With a tail-recursive implementation, 
-    
-    iteration can be expressed using the ordinary
     
       
-      function
+      
+	An implementation with this property is called 
+	
+	<EM>tail-recursive</EM>.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+	With a tail-recursive implementation, 
+	
+	iteration can be expressed using the ordinary function
+	call mechanism, so that special iteration constructs are useful only as 
+	
+	syntactic sugar.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
+      
     
-    call mechanism, so that special iteration constructs are useful only as 
-    
-    syntactic sugar.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a><a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
     
     
   </p></div>
@@ -2242,25 +2246,23 @@ function k(n) {
       <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
     <FOOTNOTE>
     Tail recursion has long been
-    
-    
-    known as a compiler optimization trick.  A coherent semantic basis for
-    tail recursion was provided by Carl Hewitt (1977), who explained it in
-    
-    terms of the <QUOTE>message-passing</QUOTE> model of computation that we
-    shall discuss in chapter 3. Inspired by this, Gerald Jay Sussman and
-    Guy Lewis Steele Jr. (see <CITATION>Steele 1975</CITATION>) 
-    constructed a tail-recursive interpreter for Scheme.  Steele later showed
-    how tail recursion is a consequence of the natural way to compile 
-    
-    function 
-    calls (<CITATION>Steele 1977</CITATION>).
-    The IEEE standard for Scheme requires that Scheme implementations
-    
-    be tail-recursive. The ECMA standard for JavaScript eventually followed
-    suit with ECMAScript 2015 (<CITATION>ECMA 2015</CITATION>). Note however,
-    that as of this writing (2020), most implementations of JavaScript do
-    not comply with this standard.
+	
+	
+	known as a compiler optimization trick.  A coherent semantic basis for
+	tail recursion was provided by Carl Hewitt (1977), who explained it in
+	
+	terms of the <QUOTE>message-passing</QUOTE> model of computation that we
+	shall discuss in chapter 3. Inspired by this, Gerald Jay Sussman
+	and Guy Lewis Steele Jr. (see <CITATION>Steele 1975</CITATION>) 
+	constructed a tail-recursive interpreter for Scheme.  Steele later showed
+	how tail recursion is a consequence of the natural way to compile 
+	function calls (<CITATION>Steele 1977</CITATION>).
+	The IEEE standard for Scheme requires that Scheme implementations
+	
+	be tail-recursive. The ECMA standard for JavaScript eventually followed
+	suit with ECMAScript 2015 (<CITATION>ECMA 2015</CITATION>). Note however,
+	that as of this writing (2020), most implementations of JavaScript do
+	not comply with this standard.
     </FOOTNOTE></div>
 
     
@@ -2279,16 +2281,13 @@ function k(n) {
         Special syntactic forms that are simply convenient
         alternative surface structures for things that can be written in more
         uniform ways are sometimes called <EM>syntactic sugar</EM>, to use a
-        phrase coined by Peter Landin.  In comparison with users of other
-        languages, Lisp programmers, as a rule, are less concerned with
-        matters of syntax.  (By contrast, examine any Pascal manual and notice
-        how much of it is devoted to descriptions of syntax.)  This disdain
-        for syntax is due partly to the flexibility of Lisp, which makes it
-        easy to change surface syntax, and partly to the observation that many
-        <QUOTE>convenient</QUOTE> syntactic constructs, which make the language
-	less uniform, end up causing more trouble than they are worth when
-	programs become large and complex.  In the words of Alan Perlis,
-	<QUOTE>Syntactic sugar causes cancer of the semicolon.</QUOTE>
+        phrase coined by Peter Landin.
+	Excercises <REF NAME="ex:while_loop"><a class="superscript" id="1.2.1-ex-link-4.8" href="./4.1.2.html#ex_4.8">4.8</a></REF>,
+	<REF NAME="ex:for_loops"><a class="superscript" id="1.2.1-ex-link-4.9" href="./4.1.2.html#ex_4.9">4.9</a></REF> and <REF NAME="ex:for_loops_2"><a class="superscript" id="1.2.1-ex-link-4.10" href="./4.1.2.html#ex_4.10">4.10</a></REF>
+	explore JavaScript's <kbd>while</kbd> and
+	<kbd>for</kbd> loops as syntactic
+	sugar for functions that give rise to iterative processes.
+      
     </FOOTNOTE></div>
 
     

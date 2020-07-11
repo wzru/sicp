@@ -2659,8 +2659,13 @@ function add_action(wire, action_function) {
     which places a <QUOTE>probe</QUOTE> on a wire, shows the simulator in
     action.  The probe tells the wire that, whenever its signal changes value,
     it should print the new signal value, together with the current time and
-    a name that identifies the wire:
-                
+    a name that identifies the wire:We use
+    the primitive function <kbd>stringify</kbd>
+    to turn a number into a string. Note that the
+    <kbd>+</kbd> operator is applied to
+    two strings here, which results in the concatenation of the operand
+    strings.
+    
     <div class='snippet' id='javascript_63_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToCwChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQYHMWiATBgBQBKUAG9soSaABOLMgWm0ANhQDOZAQAYhAbmwBfXIVKUaoEgtlEybSnRYCuPfiPFSZchbQAWLBr0duPgZdAyNicmpaVTk2C2krGzsHJ2CAGlBk1wkpGJtff0DnBgysvUN8CNNolk57a1Ui4Oz3WXlFTIYKJSaXcvCTKNA8thi6njJG1P4MsdUW3NiyLp7pkuHa+f7KwbM8Cml1Udr6jTWFyTavUAKAsdOpoJdQiuNIs1kj+4nH4ouPdq0ZbdATfBq9EIvXAkGjqTK+DhPBigAC89GY7DWwj0MKIcIoRAAbixpGQSWxeCwlAwAJ6o0AAJhxsLIoAYfDYnAYZIpVNp9JQzLxrKo0k53PYlOpdLRAFY9Dt3rRuDZVBROEQGD0AO4HFj-K4dXWyAQAIhVo3VmqUpqhiuqG1VVq1AmNLAyRBY2rYhK1BH1Yhyl08HVderNIzVGq1tqEAk93t9Sn9dreDv8vA4SrDsgyDCVbDTUQNIdoOYcpozWeqsccBaLNFTVSGAAdpFQAEYOTX2DJu-5V-PVcsZIPucdSYSogB8oF4ahb0vjDHsoAA1KBTZv12OJ3v9+51NICZwKHgaQJ4olbBR7AIyAjziIN7uD2-x6aPV7QEn-fSty+75AROR4nmeF4WlG1rlkIsEvEAA')">function probe(name, wire) {
     add_action(wire, 
                () => display(name + " " +
