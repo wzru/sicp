@@ -2024,11 +2024,10 @@ function square(    x   ) { return x    *     x; }</pre></div></div>
 	  the evaluation rules for function application here. This prepares
 	  the ground for the substitution model in the next sub-section.
 	</span>
-	Function application expressions are—after operator
-	combinations—the second kind of combinations of
+	Function applications are—after operator
+	combinations—the second kind of combination of
 	expressions into larger expressions that we encounter.
-	The general form of a function application expression
-	is
+	The general form of a function application is
         <kbd class='snippet'>$function$-$expression$( $argument$-$expressions$ )</kbd>
 	where the $\textit{function-expression}$
 	of the application specifies
@@ -2041,8 +2040,10 @@ function square(    x   ) { return x    *     x; }</pre></div></div>
 	<UL>
 	  <LI>To evaluate a function application, do the following:
 	  <OL>
-	    <LI>Evaluate the function expression of the application.</LI>
-            <LI>Evaluate the argument expressions of the application.</LI>
+            <LI>
+	      Evaluate the subexpressions of the application, namely
+	      the function expression and the argument expressions.
+	    </LI>
             <LI>
 	      Apply the function that is the value of the function expression
               to the values of the argument expressions.
@@ -2131,7 +2132,7 @@ square(x) + square(y);</pre></div></div></td></tr></table>
       </span>
       <span style="color:blue">
 	function
-	<kbd>sum_of_squares</kbd>
+	<kbd>sum_of_squares</kbd><a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:blue">[5]</a>
       </span>
     
     that, given any two numbers as arguments, produces the
@@ -2226,12 +2227,13 @@ square(x) + square(y);</pre></div></div></td></tr></table>
 	  so we chose <kbd>math_log</kbd> as an
 	  example for a primitive function. 
 	</span>
-	In addition to compound functions, JavaScript provides a number of
+	In addition to compound functions, our JavaScript environment
+	provides a number of
 	<EM>primitive functions</EM> that are built into the interpreter. An
 	example is the function <kbd>math_log</kbd>
-	that computes the natural logarithm of its argument.<a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:blue">[5]</a>
+	that computes the natural logarithm of its argument.<a class='superscript' id='footnote-link-6' href='#footnote-6'style="color:blue">[6]</a>
 	Primitive functions are used in exactly the same way as	compound
-	functions; evaluating the application expression 
+	functions; evaluating the application
 	<kbd>math_log(1)</kbd> results in the	number 0.
 	Indeed, one could not tell by looking at the definition of
 	<kbd>sum_of_squares</kbd> given above whether
@@ -2329,10 +2331,25 @@ square(x) + square(y);</pre></div></div></td></tr></table>
     <div class='footnote'><span style="color:blue">
       <a class='footnote-number' id='footnote-5' href='#footnote-link-5' style="color:blue">[5] </a>
     <FOOTNOTE>
-    This book
-	assumes that all functions and constants of JavaScript's
+    For
+	longer names, the JavaScript adaptation stays close to the
+	original book, using underscores instead of hyphens to separate
+	words. This practice differs from the common JavaScript convention
+	of using <QUOTE>camel-case</QUOTE>, which would stipulate the name
+	to be <kbd>sumOfSquares</kbd>.
+    </FOOTNOTE></span></div>
+    
+    
+    <div class='footnote'><span style="color:blue">
+      <a class='footnote-number' id='footnote-6' href='#footnote-link-6' style="color:blue">[6] </a>
+    <FOOTNOTE>
+    Our
+	JavaScript environment includes all functions and constants of
+	ECMAScript's 
 	<a address='https://www.ecma-international.org/ecma-262/9.0/index.html#sec-math-object' href='https://www.ecma-international.org/ecma-262/9.0/index.html#sec-math-object'>Math library</a>
-	are available as <kbd>math_*</kbd>.
+	with the names <kbd>math_</kbd>$\ldots$.
+	For example, ECMAScript's <kbd>Math.log</kbd>
+        is available as <kbd>math_log</kbd>.
     </FOOTNOTE></span></div>
     
     

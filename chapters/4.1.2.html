@@ -2161,37 +2161,13 @@ list("constant_declaration", list("name", "x"), 1);</pre></div></div>
 </EXERCISE></div>
 
 
-  
+    
+      
+    
+
+    
     <div class="permalink">
     <a name="ex_4.6" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.6">Exercise 4.6 </a></b> 
-  
-    
-      
-      
-	Prior to ECMAScript 2015, the only way to declare a variable in
-	JavaScript was using the keyword <kbd>var</kbd>
-	instead of the keyword <kbd>let</kbd>.
-	The scope of variables declared with
-	<kbd>var</kbd> is the entire body of the
-	immediately surrounding function declaration or lambda expression, rather
-	than just the immediately enclosing block. Write programs in JavaScript
-	that behave differently when some occurrences of the 
-	<kbd>let</kbd> keyword are replaced with
-	<kbd>var</kbd>.
-      
-    
-  
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_5_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_77_5_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
-    
-</EXERCISE></div>
-
-
-  
-    <div class="permalink">
-    <a name="ex_4.7" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.7">Exercise 4.7 </a></b> 
   
     
       
@@ -2257,8 +2233,8 @@ display(1);
     
   
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_6_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_77_6_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_5_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_77_5_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
@@ -2266,7 +2242,7 @@ display(1);
 
   
     <div class="permalink">
-    <a name="ex_4.8" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.8">Exercise 4.8 </a></b> 
+    <a name="ex_4.7" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.7">Exercise 4.7 </a></b> 
   
     
     
@@ -2299,9 +2275,10 @@ display(1);
 </pre></div></div>
 	<UL>
 	  <LI>
-	    Declare a function <kbd>while_loop</kbd> that
-	    takes a predicate and a body—both represented by nullary
-	    functions—as arguments, and simulates the behavior of the
+	    Declare a function <kbd>while_loop</kbd>
+	    that takes as arguments a predicate and a
+	    body—both represented by 
+	    functions of no arguments—and simulates the behavior of the
 	    <kbd>while</kbd> loop. The
 	    <kbd>gcd</kbd> function would then
 	    look as follows:
@@ -2351,8 +2328,8 @@ display(1);
     
   
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_7_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_77_7_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_6_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_77_6_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
@@ -2360,7 +2337,7 @@ display(1);
   
   
     <div class="permalink">
-    <a name="ex_4.9" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.9">Exercise 4.9 </a></b> 
+    <a name="ex_4.8" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.8">Exercise 4.8 </a></b> 
   
     
       
@@ -2390,12 +2367,13 @@ display(1);
 	  </LI>
 	  <LI>
 	    Following the approach for <kbd>while</kbd>
-	    loops in exercise <REF NAME="ex:while_loop"><a class="superscript" id="4.1.2-ex-link-4.8" href="./4.1.2.html#ex_4.8">4.8</a></REF>, first implement
+	    loops in exercise <REF NAME="ex:while_loop"><a class="superscript" id="4.1.2-ex-link-4.7" href="./4.1.2.html#ex_4.7">4.7</a></REF>, first implement
 	    a function <kbd>for_loop</kbd> that takes
-	    four nullary functions as arguments, and simulates the behaviour of
-	    the <kbd>for</kbd> loop. Then install
-	    <kbd>for</kbd> loops for the evaluator by
-	    defining appropriate syntax functions and a transformation function
+	    as arguments four functions of no arguments, and simulates the
+	    behaviour of the <kbd>for</kbd> loop. Then
+	    install <kbd>for</kbd> loops for the
+	    evaluator by defining appropriate syntax functions and a
+	    transformation function
 	    <kbd>for_to_function_call</kbd> 
 	    that makes use of your function
 	    <kbd>for_loop</kbd>. Finally,
@@ -2405,7 +2383,7 @@ display(1);
 	  </LI>
 	  <LI>
 	    Assume the you have solved the last part of
-	    exercise <REF NAME="ex:while_loop"><a class="superscript" id="4.1.2-ex-link-4.8" href="./4.1.2.html#ex_4.8">4.8</a></REF>. Would this allow
+	    exercise <REF NAME="ex:while_loop"><a class="superscript" id="4.1.2-ex-link-4.7" href="./4.1.2.html#ex_4.7">4.7</a></REF>. Would this allow
 	    for a particularly elegant way to install
 	    <kbd>for</kbd> loops for the evaluator?
 	  </LI>
@@ -2414,8 +2392,8 @@ display(1);
     
   
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_8_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_77_8_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_7_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_77_7_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
@@ -2423,7 +2401,7 @@ display(1);
 
   
     <div class="permalink">
-    <a name="ex_4.10" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.10">Exercise 4.10 </a></b> 
+    <a name="ex_4.9" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.9">Exercise 4.9 </a></b> 
   
     
     
@@ -2453,7 +2431,7 @@ display(1);
 	their respective list element.
 	<UL>
 	  <LI>
-	    Modify your solutions to exercise <REF NAME="ex:for_loops"><a class="superscript" id="4.1.2-ex-link-4.9" href="./4.1.2.html#ex_4.9">4.9</a></REF>
+	    Modify your solutions to exercise <REF NAME="ex:for_loops"><a class="superscript" id="4.1.2-ex-link-4.8" href="./4.1.2.html#ex_4.8">4.8</a></REF>
 	    such that each iteration of the loop has its own
 	    <QUOTE>instance</QUOTE> of the <EM>loop control variable</EM>
 	    declared in the initialization statement.
@@ -2466,14 +2444,14 @@ display(1);
     
   
       <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_9_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_77_9_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_8_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_77_8_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
       </div>
     
 </EXERCISE></div>
 
 
-    
+  
 <hr>
 
     <div class='footnote'>

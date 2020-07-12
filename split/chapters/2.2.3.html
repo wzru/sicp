@@ -3312,7 +3312,7 @@ function matrix_times_matrix(n, m) {
     the permutations of $S$: For each item
     $x$ in $S$,
     recursively generate the sequence of permutations of
-    $S-x$, <a class='superscript' id='footnote-link-7' href='#footnote-7'>[7]</a> and adjoin
+    $S-x$,<a class='superscript' id='footnote-link-7' href='#footnote-7'>[7]</a> and adjoin
     $x$ to the front of each one.  This yields, for
     each $x$ in $S$, the
     sequence of permutations of $S$ that begin
@@ -3331,9 +3331,9 @@ function matrix_times_matrix(n, m) {
                (map (lambda (p) (cons x p))
                     (permutations (remove x s))))
              s)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_55_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8AbAQzIFtGAHACjwBpQBnAKYBHAJSgA3tlAzQAJ0FkCc2oxIkCLAkzKDOHdoKIATPkW30+bLrwEjRogNzYAvrkKlKNUIblayzNRE-Jz84lKy8orKtBT8APrm9PSh4pGgIKCCLOxkAJ52ZAD80unpRaD0cWScSfRpMplCwgRGJIKgJDQBFES9AOZZOfmFpWWyAFx0OtacAB6gALwAfKCz7Eur7IwUcvN87KI8Y+OnZ7K+-oE0IQosVABuenN8YQ7H559hzm7YlwQBLzBThVfg1ACMfBQfEwDkcQA')">function permutations(s) {
-    return is_null(s)      // empty set?
-           ? list(null)    // sequence containing empty set
+            <td><div class='snippet' id='javascript_34_55_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8AbAQzIFtGAHACjwBpQBnAKYBHAJSgA3tlAzQAJ0FkCc2oxIkCLAkzKDOHdoKIATPkW30+bLrwEjRogNzYAvrkKlKNUIblayzNRE-Jz84lKy8orKtBT8APrm9PSh4pHpsiCggizsZACedmQA-NIZkcWg9HFknEn0aeUyWULCBEYkgqAkNAEURP0A5tm5BUVlTaAAXHQ61pwAHqAAvAB8oPPsK+vsjBRyi3zsojwTk+dNvv6BNCEKLFQAbnoLfGEOpxfnYc5u2FcEAJeYKcar8WoARj4KD4mAcjiAA')">function permutations(s) {
+    return is_null(s)             // empty set?
+           ? list(null)           // sequence containing empty set
            : flatmap(x => map(p => pair(x, p),
                               permutations(remove(x, s))),
                      s);

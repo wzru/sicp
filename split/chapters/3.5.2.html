@@ -2028,7 +2028,7 @@ const primes = sieve(integers_starting_from(2));
             <td><div class='snippet' id='javascript_70_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (add-streams s1 s2)
   (stream-map + s1 s2))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGcJSSlp6QxqlBnUyGgYAI1cmDgAaUEMARjPDbB5eeqa-UCpDdRJbcTZLngAyH+fXu9xJ8blxJsIAPygIHicFCABcALeHy+Fx4AB90UiYV9bnDQFCmPJ5DR5GwYWcAESkJgADwADkxKO5ZPIAOZEZgkaSuc6bGTbXYHI7wylgjKI+kyKhkghsAAW5VRXBOipUuK4KpEg2YrDYAV0IQ2SUFe0OblOfJN6go0pBaJO+KmzuNWxtdo1mq4i3wnFWdFkymU6ldAsMqOutwGQke635puFFrYtKuoFpUeCaYuoAA1GnsNdU6CfbhdiQNqA6GNdKApTK2KmDZmq4ZvaW6BWKAB3GiGGt1skF2KBELd3ttsud+WKat6FTB0MMcMts5j1tmJgANzkIfjbAo06YYzOGAADN6gA')">function add_streams(s1, s2) {
+            <td><div class='snippet' id='javascript_70_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGcJSSlp6QxqlBnUyGgYAI1cmDgAaUEMARjPDbB5eeqa-UCpDdRJbcTZLngAyH+fXu9xJ8blxJsIAPygIHicFCABcALeHy+Fx4AB90UiYV9bnDQFCmPJ5DR5GwYWcAESkJgADwADkxKO5ZPIAOZEZgkaQAWh5502Mm2uwOR0pYIyiPpMioZIIbAAFuVUVwTkqVLiuKqRINmKw2AFdCENklhXtDm5TgLTeoKDKQWiTvipi6TVtbfbNVquIt8JxVnRZMplOo3ULDKjrrcBkJHutBWbRZa2LSrqBadHgumLqAANTp7DXNOg324XYkDagOhjXSgaWythpw1Z6uGH1luiVigAdxohlr9bJhdigRCPb77fLXYVihrehUIbDDAjrbO47bZiYADc5KGE2wKDOmGMzhgAAw+oA')">function add_streams(s1, s2) {
     return stream_combine((x1, x2) => x1 + x2, s1, s2);
 }
 </pre></div></div></td></tr></table>
@@ -2045,7 +2045,7 @@ const primes = sieve(integers_starting_from(2));
           <tr>
             <td><div class='snippet' id='javascript_70_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define integers (cons-stream 1 (add-streams ones integers)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGcJSSlp6QxqlBnUyGgYAI1cmDgAaUEMARjPDbB5eeqa-UCpDdRJbcTZLngAyH+fXu9xJ8blxJsIAPygIHicFCABcALeHy+Fx4AB90UiYV9bnDQFCmPJ5DR5GwYWcAESkJgADwADkxKO5ZPIAOZEZgkaSuc6bGTbXYHI7wylgjKI+kyKhkghsAAW5VRXBOipUuK4KpEg2YrDYAV0IQ2SUFe0OblOfJN6go0pBaJO+KmzuNWxtdo1mq4i3wnFWdFkymU6ldAsMqOutwGQke635puFFrYtKuoFpUeCaYuoAA1GnsNdU6CfbhdiQNqA6GNdKApTK2KmDZmq4ZvfgyxXXBQmGyiYYa3WyY3AiEVMHQwxwy2zl2e33NWZcEwAG5yEPxtiz3vyQxnDAABm9QA')">const integers = pair(1, () => add_streams(ones, integers));
+            <td><div class='snippet' id='javascript_70_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGcJSSlp6QxqlBnUyGgYAI1cmDgAaUEMARjPDbB5eeqa-UCpDdRJbcTZLngAyH+fXu9xJ8blxJsIAPygIHicFCABcALeHy+Fx4AB90UiYV9bnDQFCmPJ5DR5GwYWcAESkJgADwADkxKO5ZPIAOZEZgkaQAWh5502Mm2uwOR0pYIyiPpMioZIIbAAFuVUVwTkqVLiuKqRINmKw2AFdCENklhXtDm5TgLTeoKDKQWiTvipi6TVtbfbNVquIt8JxVnRZMplOo3ULDKjrrcBkJHutBWbRZa2LSrqBadHgumLqAANTp7DXNOg324XYkDagOhjXSgaWythpw1Z6uGH34cuV1wUJhsomGWv1slNwIhFQhsMMCOts7d3v9rVmXBMABuclDCbYc778kMZwwAAYfUA')">const integers = pair(1, () => add_streams(ones, integers));
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -2078,7 +2078,7 @@ const primes = sieve(integers_starting_from(2));
                (cons-stream 1
                             (add-streams (stream-cdr fibs)
                                          fibs))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGcJSSlp6QxqlBnUyGgYAI1cmDgAaUEMARjPDbB5eeqa-UCpDdRJbcTZLngAyH+fXu9xJ8blxJsIAPygIHicFCABcALeHy+Fx4AB90UiYV9bnDQFCmPJ5DR5GwYWcAESkJgADwADkxKO5ZPIAOZEZgkaSuc6bGTbXYHI7wylgjKI+kyKhkghsAAW5VRXBOipUuK4KpEg2YrDYAV0IQ2SUFe0OblOfJN6go0pBaJO+KmzuNWxtdo1mq4i3wnFWdFkymU6ldAsMqOutwGQke635puFFrYtKuoFpUeCaYuoAA1GnsNdU6CfbhdiQNvoqPtDLpQFKZWwAAyO52xQIhetkq5O1tCA2ZlTB0MMcM93sZYfuqifFzVlVj8cRWeGTUL8Le-BMABuchD8Y4VcMZ2wje9QA')">const fibs = pair(0,
+            <td><div class='snippet' id='javascript_70_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGcJSSlp6QxqlBnUyGgYAI1cmDgAaUEMARjPDbB5eeqa-UCpDdRJbcTZLngAyH+fXu9xJ8blxJsIAPygIHicFCABcALeHy+Fx4AB90UiYV9bnDQFCmPJ5DR5GwYWcAESkJgADwADkxKO5ZPIAOZEZgkaQAWh5502Mm2uwOR0pYIyiPpMioZIIbAAFuVUVwTkqVLiuKqRINmKw2AFdCENklhXtDm5TgLTeoKDKQWiTvipi6TVtbfbNVquIt8JxVnRZMplOo3ULDKjrrcBkJHutBWbRZa2LSrqBadHgumLqAANTp7DXNOg324XYkDb6Kj7Qy6UDS2VsAAMTpdsUCIQbZKuzrbQkNWZUIbDDAjvb7GRHHqonxcNdV44nETnhi1i-CPvwTAAbnJQwmONXDGdsE2fUA')">const fibs = pair(0,
                   () => pair(1,
                              () => add_streams(
                                      stream_tail(fibs),
@@ -2106,9 +2106,15 @@ const primes = sieve(integers_starting_from(2));
       </span>    </td>
           <td></td>
           <td><span style="color:blue">
-        
-        <img class="scale_factor_" src="../img_tex/ch3_5_2-1.png">
-      
+	
+\[
+\begin{array}{ccccccccccccl}
+  &   & 1 & 1 & 2 & 3 & 5 &  8 & 13 & 21 & \ldots & = & \texttt{stream}\hbox{\verb#_#}\texttt{tail(fibs)} \\
+  &   & 0 & 1 & 1 & 2 & 3 &  5 &  8 & 13 & \ldots & = & \texttt{fibs} \\ \hline
+0 & 1 & 1 & 2 & 3 & 5 & 8 & 13 & 21 & 34 & \ldots & = & \texttt{fibs}
+\end{array}
+\]
+	
       </span></td></tr></table>
   </p></div>
 
@@ -2255,7 +2261,7 @@ const primes = sieve(integers_starting_from(2));
           <tr>
             <td><div class='snippet' id='javascript_70_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define s (cons-stream 1 (add-streams s s)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGcJSSlp6QxqlBnUyGgYAI1cmDgAaUEMARjPDbB5eeqa-UCpDdRJbcTZLngAyH+fXu9xJ8blxJsIAPygIHicFCABcALeHy+Fx4AB90UiYV9bnDQFCmPJ5DR5GwYWcAESkJgADwADkxKO5ZPIAOZEZgkaSuc6bGTbXYHI7wylgjKI+kyKhkghsAAW5VRXBOipUuK4KpEg2YrDYAV0IQ2SUFe0OblOfJN6go0pBaJO+KmzuNWxtdo1mq4i3wnFWdFkymU6ldAsMqOutwGQke635puFFrYtKuoFpUeCaYuoAA1GnsNdU6CfbhdiQNuddKApTK2KmDZmVMHQwxw4ZrpqzLgmAA3OQh+NfM4YAAM3qAA')">const s = pair(1, () => add_streams(s, s));
+            <td><div class='snippet' id='javascript_70_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0AWwFMGaAKYkgSlAG8BIUENC5hoADZMKoAIbiATkxkATAJ4B9eaVABeUATkBnJgG5RwydMWGi46XtLKmBKiSbKzYxRSLz6bHh0APj5zMXCIsSoCUDYAQjlFFQ0tblDIjMzQa1t7fVIAzyzi4USlNU1tPQotUzCSrO9fehy7IoaIgF9QJnFjdI7GqWbsphs2+sGhTtxBDM6zGcJSSlp6QxqlBnUyGgYAI1cmDgAaUEMARjPDbB5eeqa-UCpDdRJbcTZLngAyH+fXu9xJ8blxJsIAPygIHicFCABcALeHy+Fx4AB90UiYV9bnDQFCmPJ5DR5GwYWcAESkJgADwADkxKO5ZPIAOZEZgkaQAWh5502Mm2uwOR0pYIyiPpMioZIIbAAFuVUVwTkqVLiuKqRINmKw2AFdCENklhXtDm5TgLTeoKDKQWiTvipi6TVtbfbNVquIt8JxVnRZMplOo3ULDKjrrcBkJHutBWbRZa2LSrqBadHgumLqAANTp7DXNOg324XYkDbnXSgaWythpw1ZlQhsMMCOGa5asy4JgANzkoYTXzOGAADD6gA')">const s = pair(1, () => add_streams(s, s));
 </pre></div></div></td></tr></table>
   
       <div class="Solution">

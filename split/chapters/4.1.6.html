@@ -1761,7 +1761,7 @@
 	the defined variables. (For an example of a procedure that doesn't
 	obey these restrictions, so that sequential definition isn't
 	equivalent to simultaneous definition, see
-	exercise <REF NAME="ex:simultaneous-def_scheme"><a class="superscript" id="4.1.6-ex-link-4.23" href="./4.1.6.html#ex_4.23">4.23</a></REF>.)<a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:teal">[1]</a>
+	exercise <REF NAME="ex:simultaneous-def_scheme"><a class="superscript" id="4.1.6-ex-link-4.24" href="./4.1.6.html#ex_4.24">4.24</a></REF>.)<a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:teal">[1]</a>
       </p></div>
 
       <div class='permalink'>
@@ -1806,7 +1806,7 @@
       <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
 	An alternative strategy for scanning out internal definitions is shown
-	in exercise <REF NAME="ex:alternative-scanout"><a class="superscript" id="4.1.6-ex-link-4.20" href="./4.1.6.html#ex_4.20">4.20</a></REF>. Unlike the
+	in exercise <REF NAME="ex:alternative-scanout"><a class="superscript" id="4.1.6-ex-link-4.21" href="./4.1.6.html#ex_4.21">4.21</a></REF>. Unlike the
 	transformation shown above, this enforces the restriction that the
 	defined variables' values can be evaluated without using any of the
 	variables' values.<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:teal">[2]</a>
@@ -1842,8 +1842,7 @@
       <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
 	Consider a function with internal declarations, such as
-	<div class='snippet' id='javascript_81_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function f(x) {
+	<kbd class='snippet'>function f(x) {
     function is_even(n) {
         return n === 0
                ? true
@@ -1854,8 +1853,8 @@ function f(x) {
                ? false
                : is_even(n - 1);
     }
-    // rest of body of f
-}</pre></div></div>
+    $\langle rest$ $of$ $body$ $of$ f$\rangle$
+}</kbd>
       </p></div>
 
       <div class='permalink'>
@@ -1897,14 +1896,14 @@ function f(x) {
 	<kbd class='snippet'>($\textit{vars}$) => {
     let u = $e_1$;
     let v = $e_2$;
-    $\textit{statements}$
+    $statements$
 }</kbd>
 	would be transformed into
 	<kbd class='snippet'>( $\textit{vars}$ ) => {
     return ( (u, v) => {
                u = $e_1$;
                v = $e_2$;
-               $\textit{statements}$
+               $statements$
            })(unassigned, unassigned);
 }</kbd>
 	where <kbd>unassigned</kbd>
@@ -1915,7 +1914,7 @@ function f(x) {
 <a name='p11' class='permalink'></a><p>
 	An alternative strategy for scanning out internal
 	declarations is shown in
-	exercise <REF NAME="ex:alternative-scanout"><a class="superscript" id="4.1.6-ex-link-4.20" href="./4.1.6.html#ex_4.20">4.20</a></REF>. Unlike the
+	exercise <REF NAME="ex:alternative-scanout"><a class="superscript" id="4.1.6-ex-link-4.21" href="./4.1.6.html#ex_4.21">4.21</a></REF>. Unlike the
 	transformation shown above, this enforces the restriction that the
 	declared names' values can be evaluated without using any of the
 	names' values.
@@ -1925,7 +1924,7 @@ function f(x) {
 
   
     <div class="permalink">
-    <a name="ex_4.19" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.19">Exercise 4.19 </a></b> 
+    <a name="ex_4.20" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.20">Exercise 4.20 </a></b> 
   
 	
     <table width="100%">
@@ -2006,7 +2005,7 @@ function f(x) {
 
   
     <div class="permalink">
-    <a name="ex_4.20" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.20">Exercise 4.20 </a></b> 
+    <a name="ex_4.21" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.21">Exercise 4.21 </a></b> 
   
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
@@ -2035,7 +2034,7 @@ function f(x) {
                return ( (a, b) => {
                           u = a;
                           v = b;
-                          $\textit{statements}$
+                          $statements$
 		      })($e_1$, $e_2$);
            })(unassigned, unassigned);
 }</kbd>
@@ -2044,7 +2043,7 @@ function f(x) {
 	not appear in the user's program. Consider the
 	<kbd>solve</kbd> function
 	from section <REF NAME="sec:streams-and-delayed-evaluation"><a class="superscript" id="4.1.6-sec-link-3.5.4" href="./3.5.4.html">3.5.4</a></REF>:
-	<div class='snippet' id='javascript_81_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzAVwDsBjAFwEsB7E0AZxoBsA3AUwAoCAaUATwAMfACYUAlKADeuUHNBk6DCgNABeUFRIV2AcwBOAQ2adQnSWoB8oEfz5DREgNyz5ikspv91jCvvaGALYA+oGGAA7c9uIu8qD+FET69PwuAL5AA')">function solve(f, y0, dt) {
+	<div class='snippet' id='javascript_81_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzAVwDsBjAFwEsB7E0AZxoBsA3AUwAoCAaUATwAMfACYUAlKADeuUHNBk6DCgNABeUFRIV2AcwBOAQ2adQnSWoB8oEfz5DREgNyz5ikspv91jCvvaGALYA+oGGAA7c9uIu8qD+FET69PwuAL5AA')">function solve(f, y0, dt) {
     const y = integral( () => dy, y0, dt);
     const dy = stream_map(f, y);
     return y;
@@ -2074,7 +2073,7 @@ function f(x) {
         <tr><td><span style="color:teal">
       
     <div class="permalink">
-    <a name="ex_4.21" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.21">Exercise 4.21 </a></b> 
+    <a name="ex_4.22" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.22">Exercise 4.22 </a></b> 
   
 	
 	Consider an alternative strategy for scanning out definitions that
@@ -2096,7 +2095,7 @@ function f(x) {
 	that do	not appear in the user's program. Consider the
 	<kbd>solve</kbd> procedure from
 	section <REF NAME="sec:streams-and-delayed-evaluation"><a class="superscript" id="4.1.6-sec-link-3.5.4" href="./3.5.4.html">3.5.4</a></REF>:
-	<div class='snippet' id='javascript_81_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_81_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (solve f y0 dt)
 (define y (integral (delay dy) y0 dt))
 (define dy (stream-map f y))
@@ -2117,7 +2116,7 @@ function f(x) {
           <td><span style="color:blue">
       
     <div class="permalink">
-    <a name="ex_4.22" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.22">Exercise 4.22 </a></b> 
+    <a name="ex_4.23" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.23">Exercise 4.23 </a></b> 
   
 		
 	Our implementation of blocks in
@@ -2139,10 +2138,10 @@ function f(x) {
 	  </LI>
 	  <LI>
 	    Declare a function
-	    <kbd class='snippet'>add_binding_to_frame($\textit{name}$, $\textit{value}$, $\textit{frame}$)</kbd>
+	    <kbd class='snippet'>add_binding_to_frame($name$, $value$, $frame$)</kbd>
 	    that permanently changes the given
 	    $\textit{frame}$ such that after calling
-	    the function, the given $\textit{frame}$
+	    the function, the given $\textit{name}$
 	    refers to the given $\textit{value}$.
 	  </LI>
 	  <LI>
@@ -2172,7 +2171,7 @@ function f(x) {
 
   
     <div class="permalink">
-    <a name="ex_4.23" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.23">Exercise 4.23 </a></b> 
+    <a name="ex_4.24" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.24">Exercise 4.24 </a></b> 
   
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
@@ -2184,7 +2183,7 @@ function f(x) {
         <tr><td><span style="color:teal">
 	Ben Bitdiddle, Alyssa P. Hacker, and Eva Lu Ator are arguing about
 	the desired result of evaluating the expression
-	<div class='snippet' id='javascript_81_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_81_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (let ((a 1))
    (define (f x)
       (define b (+ a x))
@@ -2198,7 +2197,7 @@ function f(x) {
 	the simultaneous scope rule for internal procedure definitions,	and that
 	it is unreasonable to treat procedure names differently from other names.
 	Thus, she argues for the mechanism implemented in
-	exercise <REF NAME="ex:internal-defs"><a class="superscript" id="4.1.6-ex-link-4.19" href="./4.1.6.html#ex_4.19">4.19</a></REF>. This would lead to
+	exercise <REF NAME="ex:internal-defs"><a class="superscript" id="4.1.6-ex-link-4.20" href="./4.1.6.html#ex_4.20">4.20</a></REF>. This would lead to
 	<kbd>a</kbd> being unassigned at the time that the
 	value for <kbd>b</kbd> is to be computed.  Hence, in
 	Alyssa's view the procedure should produce an error.  Eva has a
@@ -2220,7 +2219,7 @@ function f(x) {
 	$\textit{statements}$ in the
 	function in the text, comparing how this will be structured when
 	declarations are interpreted sequentially as described in
-	exercise <REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.22" href="./4.1.6.html#ex_4.22">4.22</a></REF>
+	exercise <REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.23" href="./4.1.6.html#ex_4.23">4.23</a></REF>
 	with how it is structured if declarations are scanned out as described
 	in section  <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
 	Why is there an extra frame in the latter case?
@@ -2250,7 +2249,7 @@ function f(x) {
         <tr><td><span style="color:teal">
       
     <div class="permalink">
-    <a name="ex_4.24" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.24">Exercise 4.24 </a></b> 
+    <a name="ex_4.25" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.25">Exercise 4.25 </a></b> 
   
 	  
 	
@@ -2263,7 +2262,7 @@ function f(x) {
 	each other.  The sample	procedure <kbd>f</kbd> above
 	can be written without internal definitions, but with exactly the same
 	meaning, as
-	<div class='snippet' id='javascript_81_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_81_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (f x)
    (letrec ((even?
                (lambda (n)
@@ -2277,7 +2276,7 @@ function f(x) {
                       (even? (- n 1))))))
       ^rest of body of^ f))</pre></div></div>
 	<kbd>Letrec</kbd> expressions, which have the form
-	<div class='snippet' id='javascript_81_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_81_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (letrec ((^var$_{1}$^ ^exp$_{1}$^) ^$\ldots$^ (^var$_{n}$^ ^exp$_{n}$^))
     ^body^)</pre></div></div>
 	are a variation on <kbd>let</kbd> in which the
@@ -2290,7 +2289,7 @@ function f(x) {
 	in the example above, or
 	
 	the evaluation of 10 factorial with
-	<div class='snippet' id='javascript_81_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_81_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (letrec ((fact
             (lambda (n)
                (if (= n 1)
@@ -2303,7 +2302,7 @@ function f(x) {
 	    expression, by transforming a <kbd>letrec</kbd>
 	    expression into a <kbd>let</kbd> expression as
 	    shown in  the text above or in
-	    exercise <REF NAME="ex:alternative-scanout_scheme"><a class="superscript" id="4.1.6-ex-link-4.21" href="./4.1.6.html#ex_4.21">4.21</a></REF>. That is,
+	    exercise <REF NAME="ex:alternative-scanout_scheme"><a class="superscript" id="4.1.6-ex-link-4.22" href="./4.1.6.html#ex_4.22">4.22</a></REF>. That is,
 	    the <kbd>letrec</kbd> variables should be created
 	    with a <kbd>let</kbd> and then be assigned their
 	    values with <kbd>set!</kbd>.
@@ -2337,12 +2336,12 @@ function f(x) {
           <td><span style="color:blue">
       
     <div class="permalink">
-    <a name="ex_4.25" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.25">Exercise 4.25 </a></b> 
+    <a name="ex_4.26" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.26">Exercise 4.26 </a></b> 
   
 	 
 	Ben Bitdiddle, Alyssa P. Hacker, and Eva Lu Ator are arguing about
 	the desired result of evaluating the expression
-	<div class='snippet' id='javascript_81_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAbAUwBdQBDUAXlAwG5cAzAVwDsBjEgSwHtXRGACgAeASlABvUNJm4ZoYmQBG1CqADUoYQ3mK1NAKw6ZAJ1LMT-SpqUMAvk0EYADKLpA')">let a = 1;
+	<div class='snippet' id='javascript_81_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAbAUwBdQBDUAXlAwG5cAzAVwDsBjEgSwHtXRGACgAeASlABvUNJm4ZoYmQBG1CqADUoYQ3mK1NAKw6ZAJ1LMT-SpqUMAvk0EYADKLpA')">let a = 1;
 function f(x) {      
     let b = a + x;
     let a = 5;
@@ -2352,7 +2351,7 @@ f(10);
 </pre></div></div>
 	Ben asserts that the result should be obtained using the sequential
 	implementation for <kbd>let</kbd> as given
-	in exercise <REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.22" href="./4.1.6.html#ex_4.22">4.22</a></REF>:
+	in exercise <REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.23" href="./4.1.6.html#ex_4.23">4.23</a></REF>:
 	<kbd>b</kbd> is declared to be 11, then
 	<kbd>a</kbd> is declared to be 5, so the result is 16.
 	Alyssa objects that mutual recursion requires the simultaneous scope
@@ -2385,7 +2384,7 @@ f(10);
 
   
     <div class="permalink">
-    <a name="ex_4.26" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.26">Exercise 4.26 </a></b> 
+    <a name="ex_4.27" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.27">Exercise 4.27 </a></b> 
   
     
     <table width="100%">
@@ -2398,7 +2397,7 @@ f(10);
         <tr><td><span style="color:teal">
 	
 	Amazingly, Louis's intuition in
-	exercise <REF NAME="ex:letrec"><a class="superscript" id="4.1.6-ex-link-4.24" href="./4.1.6.html#ex_4.24">4.24</a></REF> is correct. It is indeed
+	exercise <REF NAME="ex:letrec"><a class="superscript" id="4.1.6-ex-link-4.25" href="./4.1.6.html#ex_4.25">4.25</a></REF> is correct. It is indeed
 	possible to specify recursive procedures without using
 	<kbd>letrec</kbd> (or even
 	<kbd>define</kbd>), although the method for
@@ -2406,7 +2405,7 @@ f(10);
 	The following expression computes 10 factorial by applying a recursive
 	
 	factorial procedure:<a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:teal">[5]</a>
-	<div class='snippet' id='javascript_81_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_81_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ((lambda (n)
     ((lambda (fact)
         (fact fact n))
@@ -2424,7 +2423,7 @@ f(10);
 	  <LI>
 	    Consider the following procedure, which includes mutually recursive
 	    internal definitions:
-	    <div class='snippet' id='javascript_81_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	    <div class='snippet' id='javascript_81_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (f x)
    (define (even? n)
       (if (= n 0)
@@ -2438,7 +2437,7 @@ f(10);
 	    Fill in the missing expressions to complete an alternative definition
 	    of <kbd>f</kbd>, which uses neither internal
 	    definitions nor <kbd>letrec</kbd>:
-	    <div class='snippet' id='javascript_81_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	    <div class='snippet' id='javascript_81_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (f x)
    ((lambda (even? odd?)
   (even? even? odd? x))
@@ -2465,7 +2464,7 @@ f(10);
 	10 factorial by applying a recursive
 	
 	factorial function:<a class='superscript' id='footnote-link-6' href='#footnote-6'style="color:blue">[6]</a>
-	<div class='snippet' id='javascript_81_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAKAO1AF4A+UAgMwEMBjAFzMrqZocYBpQiBKPrlDCRBKtW6gA1nxbSypUqAxCRa9RoD8y1Rr1qAXPIBUoCTUlTQAWmWzdIwYIIYADHwDcQA')">(n => (fact => fact(fact, n))
+	<div class='snippet' id='javascript_81_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAKAO1AF4A+UAgMwEMBjAFzMrqZocYBpQiBKPrlDCRBKtW6gA1nxbSypUqAxCRa9RoD8y1Rr1qAXPIBUoCTUlTQAWmWzdIwYIIYADHwDcQA')">(n => (fact => fact(fact, n))
       ( (ft, k) => k === 1
                    ? 1
                    : k * ft(ft, k - 1) 
@@ -2483,7 +2482,7 @@ f(10);
 	    Consider the following function, which includes mutually recursive
 	    internal definitions:
 	    
-	    <div class='snippet' id='javascript_81_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzAVwDsBjAFwEsB7E0AgCgA8BKUAb11B4dMtr0qAZwD6AUwBu4koxLsuvJaABO4ikRX16AXj2gADN2UneAflAUVRccdMmAXKBGiaAEzdzQAWlAZWANx2oAC+wcTk1HTOYu6e8pzBSmoaWqC6+kb2phYEAIYANsK22Y4xEtKy9L7+QUphyeqaQmJSMiyBuGGEjACcvYFAA')">function f(x) {
+	    <div class='snippet' id='javascript_81_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzAVwDsBjAFwEsB7E0AgCgA8BKUAb11B4dMtr0qAZwD6AUwBu4koxLsuvJaABO4ikRX16AXj2gADN2UneAflAUVRccdMmAXKBGiaAEzdzQAWlAZWANx2oAC+wcTk1HTOYu6e8pzBSmoaWqC6+kb2phYEAIYANsK22Y4xEtKy9L7+QUphyeqaQmJSMiyBuGGEjACcvYFAA')">function f(x) {
     function is_even(n) {
         return n === 0
                ? true
@@ -2502,7 +2501,7 @@ f(10);
 	    neither <kbd>const</kbd> nor
 	    <kbd>let</kbd> nor internal function
 	    declarations:
-	    <div class='snippet' id='javascript_81_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	    <div class='snippet' id='javascript_81_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function f(x) {
     return (
         (is_even, is_odd) => 

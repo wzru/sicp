@@ -2060,7 +2060,7 @@ balance = balance - amount;</pre></div></div></td></tr></table>
         (begin (set! balance (- balance amount))
                balance)
         "Insufficient funds"))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_51_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQiBTAdwH1GKyALAEwCcBDRgAoAlKADe2UFNAAbemVAAjPjL6l6oALygMABl0BuSdJ7yCPWnwC2VYgs0A+ccenSKeUIOWr1oB9utbIjJRCVdw6W81Eg1tKN8AWlBAuyMIiNMyc1p4mLT0gF9QehkAZw0w9NdM7NAAIkgiUoI8PAoSCnpg0EIiLlK6-IiCl1ACoxHsEhpShSsAT1Z2bn5GLTomJc5eAREjBa2V3YA2XWF9xbZt1cFT86A')">function new_withdraw() {
+            <td><div class='snippet' id='javascript_51_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQHcKyALAEwBODDmwwAGMQAoAlKADe2UEtAAbFmVAAjBioakWoALyhxYgNyLlA9QQG0GdKsQ2GAfPMvLlFPKEnbdfVBXYwcnIjJZBS8Y5QC9EgNjeKCAWlAw5wtY2OsyW1oUxOycgF9QFhUAZwNonK88gtAAIkgiKoI8PAoSChYI0EIiPirmktjSz1BSi0mSGiqNIhYRLl5BYSN6ZnY1-iERUxkLbHn2jToAT05ufc3jZdXbjY5j7Cub9YPJADYxaQsHz2L1+-zMQA')">function make_withdraw_100() {
     let balance = 100;
     return amount => {
         if (balance >= amount) {
@@ -2071,6 +2071,7 @@ balance = balance - amount;</pre></div></div></td></tr></table>
         }
     };
 }
+const new_withdraw = make_withdraw_100();
 </pre></div></div></td></tr></table>
   </p></div>
 
@@ -2110,7 +2111,7 @@ balance = balance - amount;</pre></div></div></td></tr></table>
 	as an argument and behaves like our previous
 	<kbd>withdraw</kbd> function.  This
 	function—returned as the result of evaluating the body of the
-	<kbd>new_withdraw</kbd>
+	<kbd>make_withdraw_100</kbd>
 	function—behaves in precisely the same way as
 	<kbd>withdraw</kbd> but whose variable
 	<kbd>balance</kbd> is not accessible by any
@@ -2155,7 +2156,11 @@ balance = balance - amount;</pre></div></div></td></tr></table>
       <span style="color:teal">procedure</span>
       <span style="color:blue">function</span>
     
-    with the formal parameters replaced by their values.  The trouble is that,
+    with the
+    
+      <span style="color:teal">formal</span>
+    
+    parameters replaced by their values.  The trouble is that,
     as soon as we introduce assignment into our language, substitution is no
     longer an adequate model of
     
@@ -2167,7 +2172,9 @@ balance = balance - amount;</pre></div></div></td></tr></table>
     technically have at this point no way to understand why the
     
       <span style="color:teal"><kbd>new-withdraw</kbd></span>
-      <span style="color:blue"><kbd>new_withdraw</kbd></span>
+      <span style="color:blue">
+	<kbd>make_withdraw_100</kbd>
+      </span>
     
     
       <span style="color:teal">procedure</span>
@@ -2180,8 +2187,10 @@ balance = balance - amount;</pre></div></div></td></tr></table>
     
     such as
     
-      <span style="color:teal"><kbd>new-withdraw</kbd></span>,
-      <span style="color:blue"><kbd>new_withdraw</kbd>,</span>
+      <span style="color:teal"><kbd>new-withdraw</kbd>,</span>
+      <span style="color:blue">
+	<kbd>make_withdraw_100</kbd>,
+      </span>
     
     we will need to develop a new model of
     
@@ -2197,13 +2206,20 @@ balance = balance - amount;</pre></div></div></td></tr></table>
     First, however, we examine some variations on the theme established by
     
       <span style="color:teal"><kbd>new-withdraw</kbd>.</span>
-      <span style="color:blue"><kbd>new_withdraw</kbd>.
+      <span style="color:blue"><kbd>make_withdraw_100</kbd>.
       </span>
     
   </p></div>
 
   <div class='permalink'>
 <a name='p11' class='permalink'></a><p>
+    
+      <span style="color:blue">
+	As variables we shall consider not only names declared with
+	<kbd>let</kbd>, but also parameters
+	of functions.
+      </span>
+    
     The following
     
       <span style="color:teal">
@@ -2213,15 +2229,7 @@ balance = balance - amount;</pre></div></div></td></tr></table>
 	function, <kbd>make_withdraw</kbd>,
       </span>
     
-    creates
-    
-      <span style="color:teal">
-	<QUOTE>withdrawal processors.</QUOTE>
-      </span>
-      <span style="color:blue">
-	<QUOTE>withdrawal functions.</QUOTE>
-      </span>
-    
+    creates <QUOTE>withdrawal processors.</QUOTE>
     The <span style="color:teal">formal</span> parameter
     <kbd>balance</kbd> in
     
@@ -2229,7 +2237,8 @@ balance = balance - amount;</pre></div></div></td></tr></table>
       <span style="color:blue"><kbd>make_withdraw</kbd>
       </span>
     
-    specifies the initial amount of money in the account.<a class='superscript' id='footnote-link-8' href='#footnote-8'>[8]</a>
+    specifies the initial amount of money in the
+    account.<span style="color:teal"><a class='superscript' id='footnote-link-8' href='#footnote-8'style="color:teal">[8]</a></span>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2355,7 +2364,7 @@ const W2 = make_withdraw(100);
             (else (error "Unknown request - - MAKE-ACCOUNT"
                    m))))
    dispatch)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_51_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFstEYrA4XF8dQkR1GKTSp1AOnuj2eWkSw2w3Ca3M4JC2fPYat8fAwAAY9SLcMYuHwAdDgWphRI+ABWQ3xIA')">function make_account(balance) {
+            <td><div class='snippet' id='javascript_51_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFAURijFYHC4vjqEiOoxSaVOoB090ezy0iWG2G4TW5nBIW357HVvj4GAADPrRbhjFw+ADocC1CKJHwAKxG+JAA')">function make_account(balance) {
     function withdraw(amount) {
         if (balance >= amount) {
             balance = balance - amount;
@@ -2373,7 +2382,7 @@ const W2 = make_withdraw(100);
             ? withdraw
             : m === "deposit"
               ? deposit
-              : error(m, "Unknown request in make_account");
+              : error(m, "Unknown request -- make_account");
     }
     return dispatch;
 }
@@ -2434,7 +2443,7 @@ const W2 = make_withdraw(100);
           <tr>
             <td><div class='snippet' id='javascript_51_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define acc (make-account 100))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_51_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFstEYrA4XF8dQkR1GKTSp1AOnuj2eWkSw2w3Ca3M4JC2fPYat8fAwAAY9SKgA')">const acc = make_account(100);
+            <td><div class='snippet' id='javascript_51_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFAURijFYHC4vjqEiOoxSaVOoB090ezy0iWG2G4TW5nBIW357HVvj4GAADPrRUA')">const acc = make_account(100);
 </pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
@@ -2443,7 +2452,7 @@ const W2 = make_withdraw(100);
             <td><div class='snippet' id='javascript_51_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ((acc 'withdraw) 50)</pre><pre class='prettyprintoutput'>
 50</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_51_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFstEYrA4XF8dQkR1GKTSp1AOnuj2eWkSw2w3Ca3M4JC2fPYat8fAwAAY9SLcMYuHwAdDgWphRI+ABWQ3xIA')">(acc("withdraw"))(50);
+            <td><div class='snippet' id='javascript_51_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFAURijFYHC4vjqEiOoxSaVOoB090ezy0iWG2G4TW5nBIW357HVvj4GAADPrRbhjFw+ADocC1CKJHwAKxG+JAA')">(acc("withdraw"))(50);
 </pre><pre class='prettyprintoutput'>
 50</pre></div></div></td></tr></table>
     <table width="100%">
@@ -2453,7 +2462,7 @@ const W2 = make_withdraw(100);
             <td><div class='snippet' id='javascript_51_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ((acc 'withdraw) 60)</pre><pre class='prettyprintoutput'>
 "Insufficient funds"</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_51_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFstEYrA4XF8dQkR1GKTSp1AOnuj2eWkSw2w3Ca3M4JC2fPYat8fAwAAY9SLcMYuHwAdDgWphRI+ABWQ2JbAmkhmwEwkESG0ANgdQA')">(acc("withdraw"))(60);
+            <td><div class='snippet' id='javascript_51_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFAURijFYHC4vjqEiOoxSaVOoB090ezy0iWG2G4TW5nBIW357HVvj4GAADPrRbhjFw+ADocC1CKJHwAKxGxLYU0kc2AmEgiS2gBsjqAA')">(acc("withdraw"))(60);
 </pre><pre class='prettyprintoutput'>
 "Insufficient funds"</pre></div></div></td></tr></table>
     <table width="100%">
@@ -2463,7 +2472,7 @@ const W2 = make_withdraw(100);
             <td><div class='snippet' id='javascript_51_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ((acc 'deposit) 40)</pre><pre class='prettyprintoutput'>
 90</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_51_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFstEYrA4XF8dQkR1GKTSp1AOnuj2eWkSw2w3Ca3M4JC2fPYat8fAwAAY9SLcMYuHwAdDgWphRI+ABWQ2JbAmkhmwEwkESG0ANgdxrVZrxGOtfAALA6gA')">(acc("deposit"))(40);
+            <td><div class='snippet' id='javascript_51_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFAURijFYHC4vjqEiOoxSaVOoB090ezy0iWG2G4TW5nBIW357HVvj4GAADPrRbhjFw+ADocC1CKJHwAKxGxLYU0kc2AmEgiS2gBsjpN6vNeIxNr4ABZHUA')">(acc("deposit"))(40);
 </pre><pre class='prettyprintoutput'>
 90</pre></div></div></td></tr></table>
     <table width="100%">
@@ -2473,7 +2482,7 @@ const W2 = make_withdraw(100);
             <td><div class='snippet' id='javascript_51_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ((acc 'withdraw) 60)</pre><pre class='prettyprintoutput'>
 30</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_51_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFstEYrA4XF8dQkR1GKTSp1AOnuj2eWkSw2w3Ca3M4JC2fPYat8fAwAAY9SLcMYuHwAdDgWphRI+ABWQ2JbAmkhmwEwkESG0ANgdxrVZrxGOtfAALL6nf7zUDYcGfSKgA')">(acc("withdraw"))(60);
+            <td><div class='snippet' id='javascript_51_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFAURijFYHC4vjqEiOoxSaVOoB090ezy0iWG2G4TW5nBIW357HVvj4GAADPrRbhjFw+ADocC1CKJHwAKxGxLYU0kc2AmEgiS2gBsjpN6vNeIxNr4ABY-c6AxagbCQ77RUA')">(acc("withdraw"))(60);
 </pre><pre class='prettyprintoutput'>
 30</pre></div></div></td></tr></table>
   </p></div>
@@ -2504,7 +2513,7 @@ const W2 = make_withdraw(100);
           <tr>
             <td><div class='snippet' id='javascript_51_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define acc2 (make-account 100))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_51_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFstEYrA4XF8dQkR1GKTSp1AOnuj2eWkSw2w3Ca3M4JAATFs+ew1b4+BgAAwGkVAA')">const acc2 = make_account(100);
+            <td><div class='snippet' id='javascript_51_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQZJKuLIAoARgwA2DUiwCUoAN7ZQ80IVKUaoAO4UyACwAmAJwZq+DOjyJkpshddAU8oQSLEkWoAHwBeUCbMWZcm0ChUXFQL2DnVwBab1NeAG4AwOs9FjICPVoI8UTk0ABfUBZhAGdXKzyFVPTM0AAiSCISgjw8ChIKFnNFYh0Sutzk-KSCkaVyalodFgAHKhLNYzjzSxHrbJcw0A3XAGpY30HA6oyspxyR4etxlSmKEpmGMhItPjpVvJPaujCPLzqNNp9IY6mtkgB+dSaXQGNRgwIALnov3+0zmCzIoMqNkhaPmmnhySRLD0eioejeABp6gBVIhMIhUNS0VIARwILBKZFAURijFYHC4vjqEiOoxSaVOoB090ezy0iWG2G4TW5nBIACYtvz2OrfHwMAAGQ2ioA')">const acc2 = make_account(100);
 </pre></div></div></td></tr></table>
     will produce a completely separate account object, which maintains its
     own local <kbd>balance</kbd>.
@@ -2637,7 +2646,7 @@ const W2 = make_withdraw(100);
     
       <span style="color:teal">special symbol <kbd>how-many-calls</kbd>,
       </span>
-      <span style="color:blue">string <kbd>"how many calls?"</kbd>,
+      <span style="color:blue">string <kbd>"how_many_calls"</kbd>,
       </span>
     
     then <kbd>mf</kbd> returns the value of the counter.  If
@@ -2681,7 +2690,7 @@ const W2 = make_withdraw(100);
             <td><div class='snippet' id='javascript_51_29_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (s 'how-many-calls?)</pre><pre class='prettyprintoutput'>
 1</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_51_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChslALYCGA1gKYD6BA9gHYCWALtQE5kAmoAZgK60DGjenVDNQAIzKgA7iyaMytCQE9QAZ0Y92ixmuz86G9aAC8hUpRoNmbdgApijABYU1ARxaMAlAG5cauwwABiDffzsAIidqaXNaVX4iABsktQB+CN8gA')">s("how many calls?");
+            <td><div class='snippet' id='javascript_51_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChslALYCGA1gKYD6BA9gHYCWALtQE5kAmoAZgK60DGjenVDNQAIzKgA7iyaMytCQE9QAZ0Y92ixmuz86G9aAC8hUpRoNmbdgApijABYU1ARxaMAlAG5cauwwABiDffzsAIidqaSoiWmUKfiIAGxS1CN8gA')">s("how_many_calls");
 </pre><pre class='prettyprintoutput'>
 1</pre></div></div></td></tr></table>
     
@@ -2690,16 +2699,16 @@ const W2 = make_withdraw(100);
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_51_2_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_51_2_div"><SOLUTION>
     
-      <div class='snippet' id='javascript_51_30_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsGMB7AOwGcAXUE0AXlAFsBDAawFMB9O4gSzIICcWAEwAUjMgAs2JAI58yASgDc2EsIwAGdUuyCuJAA4AbBgE9hqgETiCAd3oMiJ0HgaHDJAPwX521QFZtXQNjM0trO0ZHZ1d3Lx9FIA')">const s = make_monitored(math_sqrt);
+      <div class='snippet' id='javascript_51_30_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsGMB7AOwGcAXUE0AXlAFsBDAawFMB9O4gSzIICcWAEwAUjMgAs2JAI58yASgDc2EsIwAGdUuyCuJAA4AbBgE9hqgETiCAdw4MiJtngaHDJC-O2qArNt0GxmaW1naMjs6u7p5KQA')">const s = make_monitored(math_sqrt);
 s(100);
-display(s("how many calls?"));
+display(s("how_many_calls"));
 s(5);
-display(s("how many calls?"));
+display(s("how_many_calls"));
 </pre></div></div>
-      <div class='snippet' id='javascript_51_31_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfTporKoCcWAJgAo8ASlABvbKBmgANizKgSVYmRa9QAXlAAGANygQFItwoM5FAF6DQPPdNmFSlGvTxCSdAeKmz-oBR4oJ7e2lo6AEQAFlQA7vQMRACeyhZyAM4A-JG+jgEB-GQEvLQqahr6+QEAvqAsmSyBwaEC4VH8GYrKqkRkuZLVBTLlfRraelXDhYolZb3qvFPDdQ1dg9P+o4sT2+MA1KAYy5ugRXOgHl4+J7XVNdXnpe5VD9gqRBlKGROMrBxcHj8YSMMjRNgZACOvDIoiqGSEGF0ujh2AEFAyAAc5AxkkIETF4okUmk5JkcqJUQiAKyo9FYnF4gmxBKMEkkdLZXJwoA')">function make_monitored(f) {
+      <div class='snippet' id='javascript_51_31_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfTporKoCcWAJgAo8ASlABvbKBmgANizKgSVYmRa9QAXlAAGANygQFItwoM5FAF6DQPPdNmFSlGvTxCSdAeKmz-oBR4oJ7e2lo6AEQAFlQA7hwMRACebCQWcgDOkb6OAQH8ZAS8tCpqGvp5AQC+oCxZLIHBoQLhUfyZisqqRGQ5klX5MmW9Gtp6lUMFisWlPeq8k0O19Z0DU-4jC+NbYwDUoBhLG6CFs6AeXj7HNVXVVWcl7pX32CpEmUqZ44ysHFw8fjCRhkaJsTIAR14ZFElUyQgwul0sOwAgomQADnIGMkhPCYvFEik0hlsqIUfCAKwotGY7G4-GxBKMYnpORZHKwoA')">function make_monitored(f) {
     let counter = 0; //initialized to 0
     function mf(cmd) {
-        if (cmd === "how many calls?") {
+        if (cmd === "how_many_calls") {
             return counter;
         } else if (cmd === "reset count") {
             counter = 0;
@@ -3032,7 +3041,7 @@ function make_account(balance, p) {
         
         
         <EM>encapsulated</EM> within the
-	<kbd>new_withdraw</kbd> function.
+	<kbd>make_withdraw_100</kbd> function.
 	Encapsulation reflects the general system-design principle known as the 
         
         
@@ -3044,37 +3053,19 @@ function make_account(balance, p) {
     </FOOTNOTE></span></div>
     
     
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-8' href='#footnote-link-8' >[8] </a>
+    <div class='footnote'><span style="color:teal">
+      <a class='footnote-number' id='footnote-8' href='#footnote-link-8' style="color:teal">[8] </a>
     <FOOTNOTE>
     
     
     In contrast with
-    
-      <span style="color:teal"><kbd>new-withdraw</kbd></span>
-      <span style="color:blue">
-	<kbd>new_withdraw</kbd>
-      </span>
-    
+    <kbd>new-withdraw</kbd>
     above, we do not have to use
-    
-      <span style="color:teal"><kbd>let</kbd></span>
-      <span style="color:blue"><kbd>let</kbd></span>
-    
+    <kbd>let</kbd>
     to make <kbd>balance</kbd> a local variable, since
-    <span style="color:teal">formal</span> parameters are already
+    formal parameters are already
     local.
-    
-      <span style="color:blue">
-	We shall permit assignment to be applied to parameters, in addition
-	to variables declared with <kbd>let</kbd>;
-	parameters are now considered <EM>variables</EM>.
-      </span>
-    
-    This will be clearer after the discussion of the environment model
-    of evaluation in section <REF NAME="sec:environment-model"><a class="superscript" id="3.1.1-sec-link-3.2" href="./3.2.html">3.2</a></REF>.
-    (See also exercise <REF NAME="ex:local-state-variable"><a class="superscript" id="3.1.1-ex-link-3.10" href="./3.2.3.html#ex_3.10">3.10</a></REF>.)
-    </FOOTNOTE></div>
+    </FOOTNOTE></span></div>
     
     
 </SUBSECTION></div></div>

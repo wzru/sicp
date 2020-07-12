@@ -1841,7 +1841,8 @@
   <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
     Finally, we need a way to get started.  For instance, we can always guess
-    that the square root of any number is 1:<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+    that the square root of any number
+    is 1:
     
     <div class='snippet' id='javascript_11_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToOwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yFSlGqCYBHAnRHsuvAUNHjJoAFRr9R-MXLVaAHMqKgATAH1hIioCQIALFkCCYSYmABo1Bz4BETEJemYWKxs7JJSmLi1M0AAeRTQFBRRvYz8zWjoAN2FBOkDhdjSATyynXNdQdlAAalAR0DAAJhbfUwDQCgBbAAdBKm7E5NSMzh5s-nH8rp6+gbLjtQXQe4qVk39zK0EycIoyHsO5ROoxyLnywTCkWisQSL2B5ycTlULwRiP4mi+Pz+AK2u32dyO6UywLebXWmPsZzGYNomN+-0ELBQJMMuApAFYOLogA')">function sqrt(x) {
     return sqrt_iter(1, x);
@@ -1908,7 +1909,7 @@
     
     on the other hand, demonstrates how iteration can be accomplished using no
     special construct other than the ordinary ability to call a
-    function.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
+    function.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
     
   </p></div>
 
@@ -2151,36 +2152,6 @@ function cube_root(guess, x) {
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
-    <FOOTNOTE>
-    Observe that we express
-    our initial guess as 1.0 rather than 1.  This would not make any difference
-    in many Lisp implementations.
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    MIT Scheme, however, distinguishes between exact integers and decimal values,
-    and dividing two integers produces a rational number rather than a decimal.
-    For example, dividing 10 by 6 yields 5/3, while dividing 10.0 by 6.0 yields
-    1.6666666666666667.  (We will learn how to implement arithmetic on rational
-    numbers in section <REF NAME="sec:rationals"><a class="superscript" id="1.1.7-sec-link-2.1.1" href="./2.1.1.html">2.1.1</a></REF>.)  If we start with an
-    initial guess of 1 in our square-root program, and
-    $x$ is an exact integer, all subsequent values
-    produced in the square-root computation will be rational numbers rather than
-    decimals.  Mixed operations on rational numbers and decimals always yield
-    decimals, so starting with an initial guess of 1.0 forces all subsequent
-    values to be decimals.
-    </FOOTNOTE></div>
-
-    
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-4' href='#footnote-link-4'>[4] </a>
     <FOOTNOTE>
     Readers who are worried about the efficiency issues involved in using
     

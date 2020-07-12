@@ -1711,17 +1711,7 @@ list(list("Norah", 12), list("Molly", 9),
 	<kbd>z</kbd>, whereas the JavaScript
 	expression <kbd>"z"</kbd> denotes a string
 	that consists of one single character, namely the last letter in the
-	English alphabet in lower case. JavaScript follows the common practice
-	in natural languages, where quotation marks indicate that a word or a
-	sentence is to be treated literally as a string of characters.  For
-	instance, the first letter of <QUOTE>John</QUOTE> is clearly
-	<QUOTE>J.</QUOTE>  If we tell somebody
-	<QUOTE>say your name aloud,</QUOTE> we expect to hear that
-	person's name.  However, if we tell somebody
-	<QUOTE>say <QUOTE>your name</QUOTE> aloud,</QUOTE> we expect to hear
-	the words <QUOTE>your name.</QUOTE>  Note that we are forced to nest
-	quotation marks to describe what somebody else might
-	say.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+	English alphabet in lower case. 
       </p></div>
       <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
@@ -1746,7 +1736,7 @@ const b = 2;
 	predicate <kbd>===</kbd> to numbers. From now
 	on, we shall allow <kbd>===</kbd> to take
 	strings as operands, in which case it returns <EM>true</EM> if and only
-	if the two strings are the same.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+	if the two strings are the same.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
 	Using <kbd>===</kbd>, we can implement
 	a useful function called <kbd>member</kbd>.
 	This takes two arguments, a string and a list.  If the string is not
@@ -1779,7 +1769,7 @@ const b = 2;
     <a name="ex_2.53" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_2.53">Exercise 2.53 </a></b> 
   
         What would the interpreter print in response to evaluating each of the
-        following expressions?
+        following statements?
         <div class='snippet' id='javascript_37_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAbASwGcAXACgCIBDKgGlCoCMGmBjKgSgG4g')">list("a", "b", "c");
 </pre></div></div>
         <div class='snippet' id='javascript_37_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuAbASwGcAXACmPIoCIBzAUwHsAnJ2gSk4G4g')">list(list("george"));
@@ -1819,12 +1809,12 @@ const b = 2;
     <a name="ex_2.54" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_2.54">Exercise 2.54 </a></b> 
   
 	
-	We would like to define a function
+	Two lists are said to be
 	
 	
 	
-	<kbd>equal</kbd> that checks whether two
-	lists contain equal elements arranged in the same order.  For example,
+	<kbd>equal</kbd>
+	if they contain equal elements arranged in the same order.  For example,
 	
 	<div class='snippet' id='javascript_37_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0EYBQuRQAzAVwDsBjAFwEsB7M0AUwEcSBDAG1CrtACMmoAO4AnGlSpNG-AJ6gAzlRIATaVXysOnABScaSnQCIqACwNGANKCMXrR9lZv6lRgJTXcobz5dVjZnY2QQ5ORn7ubgDcQA')">equal(list("this", "is", "a", "list"), 
       list("this", "is", "a", "list"));
@@ -1848,7 +1838,7 @@ const b = 2;
 	<kbd>equal</kbd> to
 	<kbd>tail(b)</kbd>.  Using this idea,
 	implement <kbd>equal</kbd> as a
-	function.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+	function.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
 	
       
       <div class="Solution">
@@ -1915,30 +1905,6 @@ const b = 2;
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
     <FOOTNOTE>
-    Allowing quotation in a language wreaks havoc with the
-	ability to reason about the language in simple terms, because it
-	destroys the notion that equals can be substituted for equals.  For
-        example, three is one plus two, but the word <QUOTE>three</QUOTE> is
-	not the phrase <QUOTE>one plus two.</QUOTE>  Quotation is powerful
-	because it gives us a way to build expressions that manipulate other
-	expressions (as we will see when we write an interpreter in
-	chapter 4). But allowing statements in a language that talk
-	about other statements in that language makes it very difficult to
-	maintain any coherent principle of what <QUOTE>equals can be
-	substituted for equals</QUOTE> should mean.  For example, if we know
-	that
-        
-        the evening star is the morning star, then from the statement
-	<QUOTE>the evening star is Venus</QUOTE> we can deduce <QUOTE>the
-	morning star is Venus.</QUOTE> However, given that <QUOTE>John knows
-	that the evening star is Venus</QUOTE> we cannot infer that
-	<QUOTE>John knows that the morning star is Venus.</QUOTE>
-    </FOOTNOTE></div>
-
-    
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
-    <FOOTNOTE>
     
         We can consider two strings to be <QUOTE>the same</QUOTE> if they
 	consist of the same characters in the same order. Such a definition
@@ -1950,19 +1916,21 @@ const b = 2;
 
     
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
     <FOOTNOTE>
     In practice, programmers use
 	<kbd>equal</kbd> to compare lists that
 	contain numbers as well as strings.  Numbers are not considered to be
 	strings.  A better definition of
-	<kbd>equal</kbd> would also stipulate that
+	<kbd>equal</kbd>
+	(such as the one we assume given in our JavaScript environment)
+	would also stipulate that
 	if <kbd>a</kbd> and
 	<kbd>b</kbd> are both numbers, then
 	<kbd>a</kbd> and
 	<kbd>b</kbd> are equal with respect to
-	<kbd>equal</kbd> if they are equal with
-	respect to <kbd>===</kbd>.
+	<kbd>equal</kbd> if they are numerically
+	equal.
     </FOOTNOTE></div>
 
     

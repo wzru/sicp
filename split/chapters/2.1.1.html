@@ -1706,33 +1706,33 @@
       <LI>
 	
 	  <span style="color:teal"><kbd>(make-rat n d)</kbd></span>
-	  <span style="color:blue"><kbd>make_rat(n, d)</kbd>
+	  <span style="color:blue"><kbd>make_rat(</kbd>$n$<kbd>, </kbd>$d$<kbd>)</kbd>
 	  </span>
 	
 	returns the
 	rational number whose  numerator is the integer
-	<kbd>n</kbd> and whose denominator is the integer
-	<kbd>d</kbd>. 
+	$n$ and whose denominator is the integer
+	$d$. 
 
       
       </LI>
       <LI>
 	
 	  <span style="color:teal"><kbd>(numer x)</kbd></span>
-	  <span style="color:blue"><kbd>numer(x)</kbd></span>
+	  <span style="color:blue"><kbd>numer(</kbd>$x$<kbd>)</kbd></span>
 	 
 	returns the numerator of the rational number
-	<kbd>x</kbd>.
+	$x$.
 
       
       </LI>
       <LI>
 	
 	  <span style="color:teal"><kbd>(denom x)</kbd></span>
-	  <span style="color:blue"><kbd>denom(x)</kbd></span>
+	  <span style="color:blue"><kbd>denom(</kbd>$x$<kbd>)</kbd></span>
 	
 	returns the denominator of the rational number
-	<kbd>x</kbd>.
+	$x$.
       </LI>
     </UL>
   </p></div>
@@ -1878,7 +1878,15 @@ function equal_rat(x, y) {
   <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
     To enable us to implement the concrete level of our data abstraction, our
-    language provides a compound structure called a 
+    
+      <span style="color:teal">
+	language
+      </span>
+      <span style="color:blue">
+	JavaScript environment
+      </span>
+    
+    provides a compound structure called a 
     
     <EM>
       pair</EM>, which can be constructed with the 
@@ -1909,11 +1917,7 @@ function equal_rat(x, y) {
 	<span style="color:blue"><kbd>head</kbd></span>
        
       and
-      <span style="color:teal"><kbd>cdr</kbd></span><span style="color:blue"><kbd>tail</kbd></span>.<span style="color:teal"><a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:teal">[1]</a>
-    </span>
-    <span style="color:blue">
-      These functions are not <QUOTE>primitive</QUOTE> functions in JavaScript,
-      but the programs in this book treat them as if they were.<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:blue">[2]</a></span>
+      <span style="color:teal"><kbd>cdr</kbd></span><span style="color:blue"><kbd>tail</kbd></span>.<span style="color:teal"><a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:teal">[1]</a></span>
       Thus, we can use
       
 	<span style="color:teal"><kbd>cons</kbd>,</span>
@@ -2051,7 +2055,7 @@ const z = pair(x, y);
       <span style="color:blue"><kbd>make_rat</kbd>,</span>
       
       <kbd>numer</kbd>, and <kbd>denom</kbd>
-      are readily implemented as follows:<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+      are readily implemented as follows:<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
 
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
@@ -2088,11 +2092,11 @@ function denom(x) {
           <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
         </tr>
         <tr><td><span style="color:teal">
-	denominator:<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:teal">[4]</a>
+	denominator:<a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:teal">[3]</a>
       </span>    </td>
           <td></td>
           <td><span style="color:blue">
-	denominator:<a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:blue">[5]</a>
+	denominator:<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:blue">[4]</a>
       </span></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
@@ -2133,7 +2137,7 @@ function denom(x) {
 
 print_rat(one_half);
 </pre><pre class='prettyprintoutput'>
-"1/2"</pre></div></div></td></tr></table>
+1 / 2</pre></div></div></td></tr></table>
     
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
@@ -2153,7 +2157,7 @@ const one_third = make_rat(1, 3);</pre></div></div></td></tr></table>
 5/6</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_27_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3tlDTQHFmQIdaABwYUOfQaIDc2AL75i5arSIE6LDQA8xkmbPmLaACxYMhPG7oOFSlGsIsRFR0nrZSMnIKSqBkagA2Yd64vsYB7kKc3J6CAJ7h9lFO9MzsXLxmFtZiAFSBwaH5oADUoJWWPE11QkEhYfwR9kPDMj0NYaDdvY0iIsmp-rQAzgQARlm8VnkFkY4xjKwbfOYdNpP1fU0AtG0nGl0XoTYDI69DY31nU+P5c-qGfhM9AI8SOW1ATTsu2itAOZWy7Wq50RnRELzeGI+T1qj1Rfx8RkWwgoADcwdsJIMHDCSodyscqhNvpc0VSMcMsUzbozfvNCUCWABHAgMUH08GQqlFGIor64poAXiV3I6D05Xn+2BINCWZFANHYzlFeFACtp8N4GEEKD+Wp1eoNbDIznUQlN5qOVtAAGZbSBQMoOBQiJQiABzWKuWTcEyi0DB-VEFigeLB5NyYXqFhLUBLELJ3VB8PYf2MIgUZQgmM0ABcubIRbDFDwuViThzDG5q0s8ZDVFAncLwYjJbADCIbudyaoyks3CoHBaoBI49A3YHymUqZYk-7Q-DObwC9H9cby5oK7IQWrRABaRURbIYJ20iEFCWW4YuR4+6bLYZpyzEuABEwDAUuv7Nt+6qzPiuCBsGT70hkRyOka8R4IIjrOq6szaEAA')">print_rat(add_rat(one_half, one_third));
 </pre><pre class='prettyprintoutput'>
-"5/6"</pre></div></div></td></tr></table>
+5 / 6</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2163,7 +2167,7 @@ const one_third = make_rat(1, 3);</pre></div></div></td></tr></table>
 1/6</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_27_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3tlDTQHFmQIdaABwYUOfQaIDc2AL75i5arSIE6LDQA8xkmbPmLaACxYMhPG7oOFSlGsIsRFR0nrZSMnIKSqBkagA2Yd64vsYB7kKc3J6CAJ7h9lFO9MzsXLxmFtZiAFSBwaH5oADUoJWWPE11QkEhYfwR9kPDMj0NYaDdvY0iIsmp-rQAzgQARlm8VnkFkY4xjKwbfOYdNpP1fU0AtG0nGl0XoTYDI69DY31nU+P5c-qGfhM9AI8SOW1ATTsu2itAOZWy7Wq50RnRELzeGI+T1qj1Rfx8RkWwgoADcwdsJIMHDCSodyscqhNvpc0VSMcMsUzbozfvNCUCWABHAgMUH08GQqlFGIor64poAXiV3I6D05Xn+2BINCWZFANHYzlFeFACtp8N4GEEKD+Wp1eoNbDIznUQlN5qOVtAAGZbSBQMoOBQiJQiABzWKuWTcEyi0DB-VEFigeLB5NyYXqFhLUBLELJ3VB8PYf2MIgUZQgmM0ABcubIRbDFDwuViThzDG5q0s8ZDVFAncLwYjJbADCIbudyaoyks3CoHBaoBI49A3YHymUqZYk-7Q-DObwC9H9cby5oK7IQWrRABaRURbIYJ20iEFCWW4YuR4+6bLYZpyzEuABEwDAUuv7Nt+6qzPiuCBsGT70nQIJHI6RrxHggiOs6rqzNoQA')">print_rat(mul_rat(one_half, one_third));
 </pre><pre class='prettyprintoutput'>
-"1/6"</pre></div></div></td></tr></table>
+1 / 6</pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2173,7 +2177,7 @@ const one_third = make_rat(1, 3);</pre></div></div></td></tr></table>
 6/9</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_27_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQCcGyAKIgGlAATAJSgA3tlDTQHFmQIdaABwYUOfQaIDc2AL75i5arSIE6LDQA8xkmbPmLaACxYMhPG7oOFSlGsIsRFR0nrZSMnIKSqBkagA2Yd64vsYB7kKc3J6CAJ7h9lFO9MzsXLxmFtZiAFSBwaH5oADUoJWWPE11QkEhYfwR9kPDMj0NYaDdvY0iIsmp-rQAzgQARlm8VnkFkY4xjKwbfOYdNpP1fU0AtG0nGl0XoTYDI69DY31nU+P5c-qGfhM9AI8SOW1ATTsu2itAOZWy7Wq50RnRELzeGI+T1qj1Rfx8RkWwgoADcwdsJIMHDCSodyscqhNvpc0VSMcMsUzbozfvNCUCWABHAgMUH08GQqlFGIor64poAXiV3I6D05Xn+2BINCWZFANHYZGc6iEoAVtPhvAwggAzH9sCBQMoOBQiJQiABzWKuWTcEyi0Cu-VEFigeKu0NyYXqFhLUBLEKh3Uuz0OsCMIgUZQgv00ABc8bIKY9FDwuViTjjDG5q0sgbdVFA1eTrq9aabRFNRtDVGUlm4VA4LVAJAYtFrTeUynDLC7jZbnrjeEH7YXXu1pG4QVzRABaRUKbIYJ20iEFCW04YuR4a9L19ls2HACJgE-h7eyzx1bN8bhna6j3pDIjgNNgjRNQRQPAjhRDmIA')">print_rat(add_rat(one_third, one_third));
 </pre><pre class='prettyprintoutput'>
-"6/9"</pre></div></div></td></tr></table>
+6 / 9</pre></div></div></td></tr></table>
   </p></div>
   <div class='permalink'>
 <a name='p12' class='permalink'></a><p>
@@ -2225,7 +2229,7 @@ const one_third = make_rat(1, 3);</pre></div></div></td></tr></table>
 2/3</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_27_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQEZMChsDMBXAOwGMAXASwHsjQiCBbAUwCcAKADwEpQBvbUINAsmZAi1oALJgEMAJpy4BubAF98xctVpymRKg0V8BQkWImgyMigBtFK9RtKUaoAOYkFMgDSgARjz8QsKi4rR+oAC80aAADKAA-KAyoABc7p5sfr4pAKT+ymq4hM7aoAwyANZMAPosMmRsRL5ygSaCJDQAzmTuURkKzaCtKsFmYaAADtbstGBuLaDzhY4lWq7ycnUNnL4Anm1joRYV1duN9Mzs3KAAVMN6BmwHoADUdIyszzz3uvqG3G87WCINBgj+Txuv0ehgOKyc61oXQIfnOu1ALyCpmOtFOtXqF0+1x+D3+31AAFoPldydCyYDgWCmaTISSIbCuPC1i5cQQbGiOPtDtjzLiqvidpcvlDqV8DkDmYqWQC2TDvlzNDzhhQAG4CoXGI6i8ritFS4l3ZXfBVKpnsoz3c3qhwIrVMACOBBk-IJ6MxwPGFidMvtL2ikVl7BedNZLuwnSIPVANFqZEkFBYcn6eLRGF8AGZCq6yjnfUNWoaRRNphmmi0NaVXMHhYJA1JZApuC7uWV7Tcsa2cZZrHYu0VsCApiwKERKEQ3JZpMIGtpvaAZ8miExQDYZ9uRJ6M0wuqAugZtz1p-OJ2AKkQKJM+SuaOlLzO3BQ8HtLGETylLn4rDrrOVDJKeZBXguN7JEQWZptuVCTKwDRUCwbygCQMjhNuMiTJMu5MHBoFvvOJ54Kh0EkQuCaYWQejPkQxauJMV5kAKLbal0+EyHsbBUZ+vHNjw7wAETACJ6H8V+bB9py8LYCxM5sb6mxoimNRphmci+OpmmZpyShAA')">print_rat(add_rat(one_third, one_third));
 </pre><pre class='prettyprintoutput'>
-"2/3"</pre></div></div></td></tr></table>
+2 / 3</pre></div></div></td></tr></table>
     
     as desired.  This modification was accomplished by changing the constructor
     
@@ -2325,19 +2329,8 @@ function make_rat(n, d) {
     </FOOTNOTE></span></div>
     
     
-    <div class='footnote'><span style="color:blue">
-      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' style="color:blue">[2] </a>
-    <FOOTNOTE>
-    In
-      practice, we provide these functions in a <EM>library</EM> and make sure
-      that the library is loaded whenever we need them. One way of defining
-      these functions is to use <EM>arrays</EM>, one of JavaScript's
-      primitive data structures.
-    </FOOTNOTE></span></div>
-    
-    
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' >[3] </a>
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' >[2] </a>
     <FOOTNOTE>
     
       Another way to define the selectors and constructor is
@@ -2442,7 +2435,7 @@ const denom = tail;</pre></div></div></td></tr></table>
     
     
     <div class='footnote'><span style="color:teal">
-      <a class='footnote-number' id='footnote-4' href='#footnote-link-4' style="color:teal">[4] </a>
+      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' style="color:teal">[3] </a>
     <FOOTNOTE>
     
 	
@@ -2462,17 +2455,15 @@ const denom = tail;</pre></div></div></td></tr></table>
     
     
     <div class='footnote'><span style="color:blue">
-      <a class='footnote-number' id='footnote-5' href='#footnote-link-5' style="color:blue">[5] </a>
+      <a class='footnote-number' id='footnote-4' href='#footnote-link-4' style="color:blue">[4] </a>
     <FOOTNOTE>
     
 	The primitive function <kbd>display</kbd> 
-	is our facility for printing data.
-	<div class='webonly'>
-	  In our implementation of
-	  <kbd>print_rat</kbd>, we display a rational
-	  number by printing its denominator in one line, a dash in the nexty
-	  line and its numerator in the last line.
-	</div>
+	introduced in exercise <REF NAME="ex:search-for-primes"><a class="superscript" id="2.1.1-ex-link-1.22" href="./1.2.6.html#ex_1.22">1.22</a></REF>
+	returns its argument, but in the uses of
+	<kbd>print_rat</kbd> below, we show only
+	what the interpreter prints as the value returned by
+	<kbd>print_rat</kbd>.
       
     </FOOTNOTE></span></div>
     

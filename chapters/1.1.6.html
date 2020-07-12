@@ -1708,6 +1708,7 @@
           \right.
           \]
         
+	
         This construct is a <EM>case analysis</EM> and can be expressed
 	in JavaScript using a <EM>conditional expression</EM> as follows:
         <div class='snippet' id='javascript_10_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsDMBXAOwGMAXASwHsjQBDAIwGcAKADwEpQBvbUf0ACcApmQKDabUAD4AvKAAMoAPygpALlABaNgG5sAX1yNWWgKwddQA')">function abs(x) {
@@ -1719,13 +1720,13 @@
         <kbd class='snippet'>$predicate$ ? $consequent$-$expression$ : $alternative$-$expression$</kbd>
         Conditional expressions begin with a
         $\textit{predicate}$—that is, 
-        an expression whose value is interpreted as either
+        an expression whose value is either
 	<EM>true</EM> or <EM>false</EM>, two distinguished
 	<EM>boolean</EM> values in JavaScript.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
 	Note that the primitive boolean expressions
 	<kbd>true</kbd> and
 	<kbd>false</kbd> trivially evaluate
-	to the boolean values <EM>true</EM> and <EM>false</EM>, respectively.
+	to the boolean values true and false, respectively.
 	The $\textit{predicate}$ 
         is followed by a question mark, the 
         $\textit{consequent-expression}$, 
@@ -1745,10 +1746,10 @@
         $\textit{predicate}$ 
         of the expression. If the
 	$\textit{predicate}$ 
-        evaluates to <EM>true</EM>, the interpreter evaluates the
+        evaluates to true, the interpreter evaluates the
         
         $\textit{consequent-expression}$.
-        Otherwise it evaluates the
+        If the predicate evaluates to false, it evaluates the
         
         $\textit{alternative-expression}$.
       </p></div>
@@ -1761,8 +1762,8 @@
 <a name='p3' class='permalink'></a><p>
         
         The word <EM>predicate</EM> is used for operators and functions that
-	return <EM>true</EM> or <EM>false</EM>, as well as for expressions that
-	evaluate to <EM>true</EM> or <EM>false</EM>. The absolute-value function
+	return true or false, as well as for expressions that
+	evaluate to true or false. The absolute-value function
 	<kbd>abs</kbd> makes use of the 
         
         
@@ -1771,7 +1772,7 @@
         primitive predicate <kbd>>=</kbd>,
 	an operator that takes two numbers as operands and tests whether the
 	first number is greater than or equal to the second number, returning
-	<EM>true</EM> or <EM>false</EM> accordingly.
+	true or false accordingly.
       </p></div>
     
   
@@ -1791,9 +1792,9 @@
       <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
         In addition to primitive predicates such as
-        <kbd>>=</kbd>,
+        <kbd>>=</kbd>, 
         <kbd>></kbd>, 
-        <kbd><</kbd>,
+        <kbd><</kbd>, 
         <kbd><=</kbd>, 
         <kbd>===</kbd>, and
         <kbd>!==</kbd> that are applied to
@@ -1805,17 +1806,19 @@
           
           <LI>
 	    $ \textit{expression}_1$ <kbd>&&</kbd>
-	  $\textit{expression}_2$<br>
-	  This operation expresses <EM>logical
-	  conjunction</EM>.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
-          The interpreter evaluates
-	  $\textit{expression}_1$.
-          If it evaluates to <EM>false</EM>, the value of the whole expression is
-	  <EM>false</EM>, and $\textit{expression}_2$
-          is not evaluated. If $\textit{expression}_1$
-	  evaluates to <EM>true</EM>, the value of the whole expressionis the
-	  value of $\textit{expression}_2$.
-          
+	    $\textit{expression}_2$<br>
+	    This operation expresses <EM>logical
+	    conjunction</EM>.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+            The interpreter evaluates
+	    $\textit{expression}_1$.
+            If it evaluates to false, the value of the whole expression
+	    is false, and
+	    $\textit{expression}_2$
+            is not evaluated. If
+	    $\textit{expression}_1$
+	    evaluates to true, the value of the whole expressionis the
+	    value of $\textit{expression}_2$.
+            
           </LI>
           <LI>
             
@@ -1826,10 +1829,10 @@
 	    disjunction</EM>.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
             The interpreter evaluates 
             $\textit{expression}_1$. If it evaluates
-	    to <EM>true</EM>, the value of the whole expression is <EM>true</EM>,
+	    to true, the value of the whole expression is true,
 	    and $\textit{expression}_2$ is not
 	    evaluated. If $\textit{expression}_1$
-	    evaluates to <EM>false</EM>, the value of the whole expression is the
+	    evaluates to false, the value of the whole expression is the
 	    value of $\textit{expression}_2$.
           </LI>
           
@@ -1837,16 +1840,15 @@
             <kbd>!</kbd>
 	    $\textit{expression}$<br>
 	    This operation expresses <EM>logical negation</EM>.<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
-            The value of the expression is <EM>true</EM> when
+            The value of the expression is true when
 	    $\textit{expression}$
-	    evaluates to <EM>false</EM>, and <EM>false</EM> otherwise.
+	    evaluates to false, and false otherwise.
           </LI>
         </UL>
         
         Notice that <kbd>&&</kbd> and 
-        <kbd>||</kbd> are not evaluated like
-	arithmetic operators such as 
-        <kbd>+</kbd>, because their right-hand
+        <kbd>||</kbd> are syntactic forms,
+	not operators, because their right-hand
         expression is not always evaluated. The operator
         <kbd>!</kbd>, on the other hand, 
         follows the evaluation rule of section
@@ -1879,7 +1881,11 @@ x > 5 && x < 10</pre></div></div>
 	<kbd>&&</kbd>
         has lower precedence than the comparison operators
         <kbd>></kbd> and
-        <kbd><</kbd>.
+        <kbd><</kbd>, and that
+	the conditional expression operator
+	$\cdots$<kbd>?</kbd>$\cdots$<kbd>:</kbd>$\cdots$
+	has lower precedence than any other operator, a property we used in
+	the <kbd>abs</kbd> function above.
       </p></div>
     
   
@@ -1903,7 +1909,9 @@ x > 5 && x < 10</pre></div></div>
       
         The function <kbd>greater_or_equal</kbd>
 	when applied to two numbers, behaves the same as the operator
-	<kbd>>=</kbd>.
+	<kbd>>=</kbd>. Unary operators
+	have higher precedence than binary operators, which makes the
+	parentheses in this example necessary.
       
     
   </p></div>
@@ -2057,7 +2065,7 @@ x > 5 && x < 10</pre></div></div>
 	
 	
 	
-	Observe that our model of evaluation allows for application combinations
+	Observe that our model of evaluation allows for applications
 	whose function expressions are compound expressions. Use this observation
 	to describe the behavior of the following function:
 	<div class='snippet' id='javascript_10_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsDMBXAOwGMAXASwHsjQAHAGwIGcAKAQwBpQAjASlABvUACcApmQIja7UAGpeAblABffMXLVaAWwpEWHbvyGiJUmaAC0S1etKUaodgH1GLZ+x7NnPQ7wGC2KDBppLSoKw8oAB8ALygAAygAPz0TMygAFyguvrMfH78ithq2C5u3p7evgCs3JYALHyKQA')">function plus(a, b) { return a + b; }
@@ -2077,28 +2085,29 @@ function a_plus_abs_b(a, b) {
       <div class="solution_content collapse" id="solution_10_4_div"><SOLUTION>
     
 	  According to section <REF NAME="sec:substitution-model"><a class="superscript" id="1.1.6-sec-link-1.1.5" href="./1.1.5.html">1.1.5</a></REF>, evaluation
-	  of a application expression proceeds as follows:
+	  of an application proceeds as follows:
 	  <OL>
-	    <LI>Evaluate the function expression of the application
-	    combination, resulting in the function to be applied.</LI>
-            <LI>Evaluate the argument expressions of the combination.</LI>
-            <LI>Evaluate the return expression of the function with each
-	    parameter replaced by the corresponding argument.
+	    <LI>Evaluate the subexpressions of the application.
+	    </LI>
+            <LI>Evaluate the return expression of the result of
+	    the function expression with each
+	    parameter replaced by the corresponding result of the respective
+	    argument expression.
             </LI>
 	  </OL>
-	  Thus the evaluation of the application expression 
+	  Thus the evaluation of the application 
 	  <kbd>a_plus_abs_b(5, -4)</kbd>
 	  (1) evaluates <kbd>a_plus_abs_b</kbd>,
-	  resulting in the function given above, and (2) the arguments are
-	  already values. So we need to evaluate (3) the return expression
+	  resulting in the function given above, and the arguments are
+	  already values. So we need to evaluate (2) the return expression
 	  of the function, with the parameters replaced by the arguments, thus:
 	  <kbd>(-4 >= 0 ? plus : minus)(5, -4)</kbd>.
 	  With the same rules, we need to (1) evaluate the function expression,
 	  which in this case is the conditional expression
 	  <kbd>-4 >= 0 ? plus : minus</kbd>. Since
-	  the predicate evaluates to <EM>false</EM>, the function expression
+	  the predicate evaluates to false, the function expression
 	  evaluates to <kbd>minus</kbd>. The arguments,
-	  again (2) are already values. Thus we end up evaluating (3) the body of
+	  again (1) are already values. Thus we end up evaluating (2) the body of
 	  <kbd>minus</kbd> with the parameters
 	  <kbd>a</kbd> and
 	  <kbd>b</kbd> replaced by 5 and -4,
@@ -2189,7 +2198,7 @@ function test(x, y) {
 	    <kbd>0 === 0 ? 0 : p()</kbd>.
 	    The evaluation of the predicate
 	    <kbd>0 === 0</kbd>
-	    results in <EM>true</EM> and thus the conditional
+	    results in true and thus the conditional
 	    expression evaluates to 0, without any need to
 	    evaluate <kbd>p()</kbd>.
 	  
@@ -2207,8 +2216,8 @@ function test(x, y) {
         
         
         In JavaScript, other values are automatically converted into
-	<EM>true</EM> and
-	<EM>false</EM>
+	true and
+	false
         according to <EM>conversion rules</EM>, but we choose not to make
 	use of these conversion rules in this book.
     </FOOTNOTE></div>
@@ -2229,7 +2238,7 @@ function test(x, y) {
       <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
     <FOOTNOTE>
     meaning roughly 
-	  the same as the English word <QUOTE>and</QUOTE>
+	    the same as the English word <QUOTE>and</QUOTE>
     </FOOTNOTE></div>
 
     

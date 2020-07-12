@@ -1752,18 +1752,18 @@
     
     that takes a tag and contents and produces a tagged data object.  A
     straightforward way to implement this is to use ordinary list structure:
-    <div class='snippet' id='javascript_43_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoJTeln4NTq7uZFS00rL2ioUpYWlaegZGfXEJtUXKiyVZbaYANnMh27va5ZXVmymNLV3tnd1FfXS2cgqKw85uOLaK5KB8OwAIygAC8oAOsXIPAaAEEGlIMCM-gDgvx2Pg9ABHQjyUgY0EQnaMZhsPywrHCXH4jFQ-6IwEgkY4HxWcQ8dGYnF4siEpxAA')">function attach_tag(type_tag, contents) {
+    <div class='snippet' id='javascript_43_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoAC0fW2Wfg1Oru5kVLTSsvaKhSlhaVp6BkagsfGmtUXKyyVZbaYANgshewfa5ZXVOymNLV3tnd1F-YO2cgqKo85uOLZFORQPh2ABGUAAXlAx1i5B4DQAgg0pBgxoDgcF+Ox8HoAI6EeSkbEQ6H7RjMNh+BG44QEonY2FAlEg8FjHA+KziHhYnH4wlkElOIA')">function attach_tag(type_tag, contents) {
     return pair(type_tag, contents);
 }
 function type_tag(datum) {
     return is_pair(datum)
            ? head(datum)
-           : error(datum, "bad tagged datum in type_tag");
+           : error(datum, "bad tagged datum -- type_tag");
 }
 function contents(datum) {
     return is_pair(datum)
            ? tail(datum)
-           : error(datum, "bad tagged datum in contents");
+           : error(datum, "bad tagged datum -- contents");
 }
 </pre></div></div>
     
@@ -1815,7 +1815,7 @@ function is_polar(z) {
     and for Alyssa to append <kbd>polar</kbd> to the names of
     hers. Here is Ben's revised rectangular representation from
     section <REF NAME="sec:representations-complex-numbers"><a class="superscript" id="2.4.2-sec-link-2.4.1" href="./2.4.1.html">2.4.1</a></REF>:
-    <div class='snippet' id='javascript_43_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoJTeln4NTq7uZFS00rL2ioUpYWlaegZGfXEJtUXKiyVZbaYANnMh27va5ZXVmymNLV3tnd1FfXS2cgqKw85uY56TigBHQj0PQ8AAeCwiy2ioDBoAAVLDvngiOMvJF6Ad4iDyOw9BR6MQuIQDiCeAAvSHaaGrXL5CkjNyov4xYLibE6XH45hEklkynqHY07yHBnI5kTOhsrjESgGfyibmE4mk8wC8LUqKrNnkDiAzk8QHA0F6TEcrnCAm81UM05nUAAah2JSNIOEPEo0vNeMtPJV-OUgfFHklDCJB0VvuVfLVVKWWqljA4jEJHq9Jk5Pqt-tjEmd9oxWIzFuzMdtwbRkzZAGtRPhqsEfWbPeyldayWCpPw45EVnRGMw2H4eA02zmGnmCwWNuCu0HRhL0TW6w32F7lVm-WWdFJ6D3hQwmCwONwR2OYxP81OIjOdAjQDqODJZnupHfEY-2Ip+jw9-OfrYijkKATTyHEMjsMQISgAAvA+9C1uw9bUI265Epu0Y2gAkFoV7XhEADMaAAAxSMRaAAOwjDgLZcN6542m8Mw8KBxDgdQkEnE4QA')">function real_part_rectangular(z) {
+    <div class='snippet' id='javascript_43_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoAC0fW2Wfg1Oru5kVLTSsvaKhSlhaVp6BkagsfGmtUXKyyVZbaYANgshewfa5ZXVOymNLV3tnd1F-YO2cgqKo85uE55pooAI6Eeh6HgADyWEVW0VAkNAACoEX88ERJl5IvRjlsdOR2HoKPRiFxCMdwTwAF4w7Rw9a5fLUsZuDGAmLBcR4glE5ik8mUmnqfb07wnZlotlTOicrjESgGfyiXkkskU8xC8J0qLrTnkDgg-E8EFgiF6HHcwnCYn89XMi6XUAAan2JRN4OEPEosstKttguUgclHmlDFJx2V1r5aoDwthOpljA4jBJXp9JnxVptMY1ygkrsd2NxGZ5UdVAtzLIBoc5AGtRPhqsErRbvVy-TmoVJ+LSVgmGEwWBxuDwGh2Kw184XCwlzJDu0HxlKsXWG032D7VVnoxWeDopPRe5E1nRGMw2H5R+P1ZOC9OIrO98jQHqODJ5oepDpn6-2IpKMQPCHou-y2Io5CgE08hxDI7DECEoAALwvvQ9bsI21DNpupLbuWdoAJBaHe94RAAzGgAAMUgUWgADsYw4G2XC+mW-rmJ8cw8FBxAwdQcHnE4QA')">function real_part_rectangular(z) {
     return head(z);
 }
 function imag_part_rectangular(z) {
@@ -1841,7 +1841,7 @@ function make_from_mag_ang_rectangular(r, a) {
 </pre></div></div>
     
     and here is Alyssa's revised polar representation:
-    <div class='snippet' id='javascript_43_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoJTeln4NTq7uZFS00rL2ioUpYWlaegZGfXEJtUXKiyVZbaYANnMh27va5ZXVmymNLV3tnd1FfXS2cgqKw85uY56TigBHQj0PQ8AAeCwiy2ioDBoAAVLDvngiOMvJF6Ad4iDyPFqAcQTwAF6Q7TQ1bBcTESgGfyiQT4wkkhGgSnkDgyWb0YhcA70xnmEkjNyov4xSlcbE6XEMgmC0lLKIUqk0wh0vFy4mqRFsjiKfo8bm8-maoXI0UTOgS6m0k1MhWRFZ0XL5LXmjyWhg8vka+3qHbk7yHN2jC3oykAa1E+GqwXYekx7EoEt95jBUn4DsDDCYLA43B4DVlIIaEh2Z12Gx4uvYgOlPEBwNBENAAGpQI2QcIeJnlGWKwP0jXGNye1IIcphb9PZHo7H2CmjameDopPQs0q6IxmGw-IXizpS+XB+kq6uGJPkThbIpyAwDvxFIp6HEZOxiCFQABeVn0KPsGNqDjRceWXY8T12ABmNAAAYpBgtAAHYRhwZNxClGUBR4N4ZkNB8nxfdg3w-UInCAA')">function real_part_polar(z) {
+    <div class='snippet' id='javascript_43_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoAC0fW2Wfg1Oru5kVLTSsvaKhSlhaVp6BkagsfGmtUXKyyVZbaYANgshewfa5ZXVOymNLV3tnd1F-YO2cgqKo85uE55pooAI6Eeh6HgADyWEVW0VAkNAACoEX88ERJl5IvRjlsdOR4tRjuCeAAvGHaOHrYLiYiUAz+USCIkk8nI0A08gcGTzejELjHJks8zksZuDGAmI0rh4gnM4kiikrKLU2n0wiMwkKsmqFGcjiKSjEHh8gVC7WitESqZ0aV0hnm1lKyJrOi5fI6q0eG0MfmCrVO9T7KneE6e8bWrE0gDWonw1WC7D0OPYlGlAfMkKk-GdIYYTBYHG4PAa8vBDQk+0uBwS5n17BB+J4ILBEOhoAA1KAW+DhDwc8pK9Xh+l64w+f2pNDlGKAT6Y3GE+x06aMzwdFJ6LmVXRGMw2H4S2WdBWqyP0rX15uZ2icLZFOQGMd+IpFPQ4jJ2MQQqAALwc+hY3YeNqETFd+TXM9zwOABmNAAAYpHgtAAHYxhwNNxFlNdPjmE1n1fd92E-b9QicIA')">function real_part_polar(z) {
     return magnitude_polar(z) * math_cos(angle_polar(z));
 }
 function imag_part_polar(z) {
@@ -1901,33 +1901,33 @@ function make_from_mag_ang_polar(r, a) {
       function
     
     as required:
-    <div class='snippet' id='javascript_43_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoJTeln4NTq7uZFS00rL2ioUpYWlaegZGfXEJtUXKiyVZbaYANnMh27va5ZXVmymNLV3tnd1FfXS2cgqKw85uY56Tsew9BR6MQuIQDvRzAAvBYRZbRNqDbg8GGgAC8GNADSBzFB4MhDW+vwmMXW1Ah0Nh2nhqx8VnEKNUGLRWME5IJROJXlAigAjoRIcIeAAPKlLKKrYWgABUoGFnKI425enoB3ikPIgOEwLxFMZ6h2NLouXyjKJir+MWC4nVOk1OJBYL1qPC1Il3kOZtGFpJoGtXGIlAM-lEDt1kP1rvFKzo1vIHD5dp4fIFeh4KrVJjtWp1TojMNOZ1AAGodiUU4KeJR-bb7drcXnKcoRm4fdzHQdQ-XHfjKQa4e6-YwOIwQVWa1m67ne4yJGWi5FVbWcw2ZwXzR5fdaANaifDVYJapfVm1hxsiqT8MWRGMMJgsDjI7Hd8M6BpzhcLjYX0BXltcyYdz3A92BrR0Vx7PUdCkehryNO9mDYPweGfacKXfedPwib8dBlId43YGRZlgqRcNlOME36HhYObBVN2VPJMw1eJ2T7KMbwRf1A2DUQ2WdVRyOHQjqGI0FOxY-j-zbf4J2Yvj8zgwcuKDQgQwkhS8Io9hFCojteNYxkpPowDxG41T9P4-s3VvE0ChhDclUmPT1LYw1B2YSgjns71jNjehd3YfdqEPDN2BPLgXJ-K8rOjBFGEQx8GQaeS3w-LCSm-LTE3IZN+UrUUSx5PK0z-NL0qLLTR2IHh+CkUVaJ8xy-ICoLDzA0FIughhFNveKH2Q5LWIw8qMtMcwupouimsXJikxdNzbwBM810LM5slCycINfHg3hmQzMIicoARSxkDvSdbGOXE7do+fasIuKoahRRoAFViG3YhqAAdwGEQXhm2svkay0+lkuaeoRJaX3PGEzq0bJwuXZa9RupQ7qLI6yX4uHtARsHNWu6ZboLHGtAeq5nqxN6Pu+37hH+xHJyB1tfKHAMVJDSMFshuJkYUnHsmUnitvPVHZhJhdMci2GsMF0yOYsiMxfRyWKke6FXvez6fsRP7+jZsyQ2ZgC6D0rmB0W3noZWgWGDErs0KVom0YljG1ml1ai2yZzCbsYnm1J0ByaeqFNZpnW6X+vTjZwWxFHIBgDn4RRFHoOIZHYYgQnRIcWpA9qIpOgBILRA-SgBmNAAAYpCrtAAHYRhwRmNWopOU7T4TM5ORwgA')">function real_part(z) {
+    <div class='snippet' id='javascript_43_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoAC0fW2Wfg1Oru5kVLTSsvaKhSlhaVp6BkagsfGmtUXKyyVZbaYANgshewfa5ZXVOymNLV3tnd1F-YO2cgqKo85uE55pps9BR6MQuIRjvRzAAvJYRVbRIa+bg8OGgAC8WNADRBzHBkOhDT+AKmMTigmoUNh8O0iPWPis4jRqixGJxlOpxPGpK8oEUAEdCNDhDwAB60lZRdZi0AAKlAYpJvOmenoxy2OnI7DxYIh1JZ6n29LouXyLJJREmfMowXEmu1uoJBvR4Tp0u8Jwt4ytgLodq4xEoBn8oid+uhhrdUrW-sYHEFWp4guFeh4ao1Ji1OuEoOdkbhF0uoAA1PsSimRTxbfas47c-iIzTlGM3L6yQxwccww29YSaUaER7QHbyBxGGDqwGHTm802WRJy8XIuqZ+H+yzWyq4wBrUT4arBHOrmtcWeNjdiqT8SWRWMMJgsDio3G9-M6BqL5fLhLmK+gG8t3bPk7T3dgD2oI9pz1c8+wNHQpHoW8TQfZg2D8HhXznftPyXb8Il-dN5RHeN2BkeYkKkHRiNHBNKGIHgkJbZVgNVPJM2hbVOQLZDhwDIMQ1EbiBwVWiyOoCiuyEqkeKAjwO1PGdhKjY0+PEATCFDeIZJEkix3YRR6MYqTtJdZifXkkD1ODTTpLMwd3XvM0CjhS1LOmPVu1MniHJjJFmEoU5XIs61plA-dD2PDVFOU-8b18u8kUYNDn2ZBphNw-CDkIsTE3IZMhSrCVS35Qq00Ar8suXMSJwY-gpAlcy23c3cIsg9hoPBbzzAQhhePvZKnww9KdMyqqMkI3qmJYlqVw4pNXVU+9gTfec4TwiJsgzNdVo3T45k3Darg2CkdJZI7NrmpSzv275Dvw64qhqNFGgAVWIHdiGoAB3bxLHeK661+EK-Q2ac6xUodlridczIuw4Ys42D3x4W6lHu4tyk2ZT1vw7JEezZS0fmQt4a0R7bhenF3s+n6-pEAGCfIYHmtCuNAxs0NIccpEVuwuHl2yfjOZ7fnI2JjHLix06Be-IXrME7rUdmO7SYeionthN6Pq+37kWEAHhcElnt07Lhu25vz1j5i9ZcubJPNF23xZV9G1cxk6ldxuWza8onXZJlsydACnnphbXab1xkAcdk2cFsRRyAYY5+EURR6DiGR2GIEJMRIsCIKg+0YOUgBILRg6ygBmNAAAYpFrtAAHYxhwJnGJTtOM-E7PzkcIA')">function real_part(z) {
     return is_rectangular(z)
            ? real_part_rectangular(contents(z))
            : is_polar(z)
              ? real_part_polar(contents(z))
-             : error(z, "Unknown type in real_part");
+             : error(z, "Unknown type -- real_part");
 }
 function imag_part(z) {
     return is_rectangular(z)
            ? imag_part_rectangular(contents(z))
            : is_polar(z)
              ? imag_part_polar(contents(z))
-             : error(z, "Unknown type in imag_part");
+             : error(z, "Unknown type -- imag_part");
 }
 function magnitude(z) {
     return is_rectangular(z)
            ? magnitude_rectangular(contents(z))
            : is_polar(z)
              ? magnitude_polar(contents(z))
-             : error(z, "Unknown type in magnitude");
+             : error(z, "Unknown type -- magnitude");
 }
 function angle(z) {
     return is_rectangular(z)
            ? angle_rectangular(contents(z))
            : is_polar(z)
              ? angle_polar(contents(z))
-             : error(z, "Unknown type in angle");
+             : error(z, "Unknown type -- angle");
 }
 </pre></div></div>
     
@@ -1982,7 +1982,7 @@ function add_complex(z1, z2) {
     reasonable choice is to construct rectangular numbers whenever we have
     real and imaginary parts and to construct polar numbers whenever we have
     magnitudes and angles:
-    <div class='snippet' id='javascript_43_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoJTeln4NTq7uZFS00rL2ioUpYWlaegZGfXEJtUXKiyVZbaYANnMh27va5ZXVmymNLV3tnd1FfXS2cgqKw85uY56Tsew9BR6MQuIQDvRzAAvBYRZbRNqDbg8GGgAC8GNADSBzFB4MhDW+vwmMXW1Ah0Nh2nhqx8VnEKNUGLRWME5IJROJXlAigAjoRIcIeAAPKlLKKrYWgABUoGFnKI425enoB3ikPIgOEwLxFMZ6h2NLouXyjKJir+MWC4nVOk1OJBYL1qPC1Il3kOZtGFpJoGtXGIlAM-lEDt1kP1rvFKzo1vIHD5dp4fIFeh4KrVJjtWp1TojMNOZ1AAGodiUU4KeJR-bb7drcXnKcoRm4fdzHQdQ-XHfjKQa4e6-YwOIwQVWa1m67ne4yJGWi5FVbWcw2ZwXzR5fdaANaifDVYJapfVm1hxsiqT8MWRGMMJgsDjI7Hd8M6BpzhcLjYX0BXltcyYdz3A92BrR0Vx7PUdCkehryNO9mDYPweGfacKXfedPwib8dBlId43YGRZlgqRcNlOME36HhYObBVN2VPJMw1eJ2T7KMbwRf1A2DUQ2WdVRyOHQjqGI0FOxY-j-zbf4J2Yvj8zgwcuKDQgQwkhS8Io9hFCojteNYxkpPowDxG41T9P4-s3VvE0ChhDclUmPT1LYw1B2YSgjns71jNjehd3YfdqEPDN2BPLgXJ-K8rOjBFGEQx8GQaeS3w-LCSm-LTE3IZN+UrUUSx5PK0z-NL0qLLTR2IHh+CkUVaJ8xy-ICoLDzA0FIughhFNveKH2Q5LWIw8qMtMcwupouimsXJikxdNzbwBM810LM5slCycINfHg3hmQzMIicoARSxkDvSdbGOXE7do+fasIuKoahRRoAFViG3YhqAAdwGEQXhm2svkay0+lkuaeoRJaX3PGEzq0bJwuXZa9RupQ7qLI6yX4uHtARsHNWu6ZboLHGtAeq5nqxN6Pu+37hH+xHJyB1tfKHAMVJDSMFshuJkYUnHsmUnitvPVHZhJhdMci2GsMF0yOYsiMxfRyWKke6FXvez6fsRP7+jZsyQ2ZgC6D0rmB0W3noZWgWGDErs0KVom0YljG1ml1ai2yZzCbsYnm1J0ByaeqFNZpnW6X+vTjZNocWpA0LwqiiHViAwKE8uxG+fMYVLyM6a09a0CbUddMYJT5rgOC4uIvAk6Jv-HBbEUcgGAOfhFEUeg4hkdhiBCdE46rtqS9BHgAEgtED9KAGY0AABikee0AAdhGHBGY1aj2877vhL7k5HCAA')">function make_from_real_imag(x, y) {
+    <div class='snippet' id='javascript_43_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoAC0fW2Wfg1Oru5kVLTSsvaKhSlhaVp6BkagsfGmtUXKyyVZbaYANgshewfa5ZXVOymNLV3tnd1F-YO2cgqKo85uE55pps9BR6MQuIRjvRzAAvJYRVbRIa+bg8OGgAC8WNADRBzHBkOhDT+AKmMTigmoUNh8O0iPWPis4jRqixGJxlOpxPGpK8oEUAEdCNDhDwAB60lZRdZi0AAKlAYpJvOmenoxy2OnI7DxYIh1JZ6n29LouXyLJJREmfMowXEmu1uoJBvR4Tp0u8Jwt4ytgLodq4xEoBn8oid+uhhrdUrW-sYHEFWp4guFeh4ao1Ji1OuEoOdkbhF0uoAA1PsSimRTxbfas47c-iIzTlGM3L6yQxwccww29YSaUaER7QHbyBxGGDqwGHTm802WRJy8XIuqZ+H+yzWyq4wBrUT4arBHOrmtcWeNjdiqT8SWRWMMJgsDio3G9-M6BqL5fLhLmK+gG8t3bPk7T3dgD2oI9pz1c8+wNHQpHoW8TQfZg2D8HhXznftPyXb8Il-dN5RHeN2BkeYkKkHRiNHBNKGIHgkJbZVgNVPJM2hbVOQLZDhwDIMQ1EbiBwVWiyOoCiuyEqkeKAjwO1PGdhKjY0+PEATCFDeIZJEkix3YRR6MYqTtJdZifXkkD1ODTTpLMwd3XvM0CjhS1LOmPVu1MniHJjJFmEoU5XIs61plA-dD2PDVFOU-8b18u8kUYNDn2ZBphNw-CDkIsTE3IZMhSrCVS35Qq00Ar8suXMSJwY-gpAlcy23c3cIsg9hoPBbzzAQhhePvZKnww9KdMyqqMkI3qmJYlqVw4pNXVU+9gTfec4TwiJsgzNdVo3T45k3Darg2CkdJZI7NrmpSzv275Dvw64qhqNFGgAVWIHdiGoAB3bxLHeK661+EK-Q2ac6xUodlridczIuw4Ys42D3x4W6lHu4tyk2ZT1vw7JEezZS0fmQt4a0R7bhenF3s+n6-pEAGCfIYHmtCuNAxs0NIccpEVuwuHl2yfjOZ7fnI2JjHLix06Be-IXrME7rUdmO7SYeionthN6Pq+37kWEAHhcElnt07Lhu25vz1j5i9ZcubJPNF23xZV9G1cxk6ldxuWza8onXZJlsydACnnphbXab1xkAcdk3TfC8DIu209xWvfqkQTiCj2T6dYcjOK5LZkiwKzjr7T1dNEPT9ZM8izqz2UqatxwWxFHIBhjn4RRFHoOIZHYYgQkxYu2qg8vwR4ABILRg6ygBmNAAAYpEXtAAHYxhwJnGM77ve-EgfzkcIA')">function make_from_real_imag(x, y) {
     return make_from_real_imag_rectangular(x, y);
 }
 function make_from_mag_ang(r, a) {

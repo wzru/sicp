@@ -1718,7 +1718,7 @@
 	
 	<EM>pointer</EM> to a box.  The box for a pair
 	has two parts, the left part containing the head of the pair and the
-	right part containing the tail.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+	right part containing the tail.
       
     
   </p></div>
@@ -1770,7 +1770,7 @@
     
     In general, an operation for combining data objects satisfies the closure
     property if the results of combining things with that operation can
-    themselves be combined using the same  operation.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+    themselves be combined using the same  operation.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
     Closure is the key to power in any means of combination because it permits
     us to create 
     
@@ -1791,7 +1791,7 @@
     we take up the consequences of closure for compound data.  We describe some
     conventional techniques for using pairs to represent sequences and trees,
     and we exhibit a graphics language that illustrates closure in a vivid 
-    way.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+    way.
   </p></div>
 
     <hr>
@@ -1799,28 +1799,19 @@
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
     <FOOTNOTE>
-    In this JavaScript adaptation,
-	we choose to draw primitive objects directly inside of the boxes of the
-	pairs that contain them, in an attempt to be consistent with a similar
-	practice introduced in
-	section <REF NAME="sec:environment-model"><a class="superscript" id="2.2-sec-link-3.2" href="./3.2.html">3.2</a></REF>. The box-and-pointer
-	diagrams in the original version of the book include separate boxes
-	for primitive objects, such as 1 and 2, each containing a
-	representation of the object.
-    </FOOTNOTE></div>
-
-    
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
-    <FOOTNOTE>
     The use of the
     word 
     
     <QUOTE>closure</QUOTE> here comes from abstract algebra, where a set of
     elements is said to be closed under an operation if applying the operation
     to elements in the set produces an element that is again an element of the
-    set.  The Lisp community also (unfortunately) uses the word
-    <QUOTE>closure</QUOTE> to describe a totally unrelated concept: A closure
+    set.  The
+    
+      
+      programming languages
+    
+    community also (unfortunately) uses the word <QUOTE>closure</QUOTE> to
+    describe a totally unrelated concept: A closure
     is an implementation technique for representing
     
       
@@ -1829,38 +1820,6 @@
     
     We do not use the word <QUOTE>closure</QUOTE> in this second sense in this
     book.
-    </FOOTNOTE></div>
-
-    
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
-    <FOOTNOTE>
-    The notion that a means of
-    
-    combination should satisfy closure is a straightforward idea. Unfortunately,
-    the data combiners provided in many popular programming languages do not
-    satisfy closure, or make closure cumbersome to exploit.  In 
-    
-    Fortran or 
-    
-    Basic, one typically combines data elements by assembling them into
-    arrays—but one cannot form arrays whose elements are themselves
-    arrays.  
-    
-    Pascal and 
-    
-    C admit structures whose elements are structures.  However, this requires
-    that the programmer manipulate pointers explicitly, and adhere to the
-    restriction that each field of a structure can contain only elements of a
-    prespecified form. Unlike Lisp with its pairs, these languages have no
-    built-in general-purpose glue that makes it easy to manipulate compound
-    data in a uniform way. This limitation lies behind Alan 
-    
-    Perlis's comment in his foreword to this book: <QUOTE>In Pascal the
-    plethora of declarable data structures induces a specialization within
-    functions that inhibits and penalizes casual cooperation.  It is better to
-    have 100 functions operate on one data structure than to have 10 functions
-    operate on 10 data structures.</QUOTE>
     </FOOTNOTE></div>
 
     
