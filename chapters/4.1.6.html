@@ -1699,13 +1699,12 @@
 	blocks by extending an environment with bindings for the
 	local names that occur in the body of the block. Initially,
 	the names refer to the special value
-	$\textit{unassigned}$, but evaluation of the
-	declaration statements assign them to their proper values. Correct
+	<kbd>"*unassigned*"</kbd>, but evaluation of
+	their declaration statement assigns them to their proper values. Correct
 	JavaScript programs never attempt to access the value of names before
-	their declaration has been evaluated and thus would never actually get
-	a hold of the $\textit{unassigned}$ value.
-	In this section, we explore alternative solutions to problem of local
-	declarations in programming languages.
+	their declaration has been evaluated. In this section, we explore
+	alternative solutions to problem of local declarations in programming
+	languages.
       </p></div>
 
       <div class='permalink'>
@@ -1756,27 +1755,26 @@
 	finds all locally declared names of a block using
 	<kbd>scan_out_declarations</kbd>,
 	and binds them to the value
-	<kbd>unassigned</kbd>, whenever the block is
+	<kbd>"*unassigned*"</kbd>,
+	whenever the block is
 	evaluated. For lambda expressions with local declarations, we can achieve
 	the same effect by transforming their bodies into
 	immediately invoked lambda expressions
 	(see section <REF NAME="sec:env-local-state"><a class="superscript" id="4.1.6-sec-link-3.2.3" href="./3.2.3.html">3.2.3</a></REF>). For example,
 	the lambda expression
-	<kbd class='snippet'>($\textit{vars}$) => {
+	<kbd class='snippet'>( $vars$ ) => {
     let u = $e_1$;
     let v = $e_2$;
     $statements$
 }</kbd>
 	would be transformed into
-	<kbd class='snippet'>( $\textit{vars}$ ) => {
+	<kbd class='snippet'>( $vars$ ) => {
     return ( (u, v) => {
                u = $e_1$;
                v = $e_2$;
                $statements$
-           })(unassigned, unassigned);
+           })("*unassigned*", "*unassigned*");
 }</kbd>
-	where <kbd>unassigned</kbd>
-	is as defined in section <REF NAME="sec:eval-data-structures"><a class="superscript" id="4.1.6-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF>.
       </p></div>
 
       <div class='permalink'>
@@ -1796,7 +1794,7 @@
     <div class="permalink">
     <a name="ex_4.16" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.16">Exercise 4.16 </a></b> 
   
-	
+    
     
       
       
@@ -1805,17 +1803,6 @@
 	as syntactic sugar for immediately invoked
 	functions that carry out assignments.
 	<OL>
-	  
-	  <LI>
-	    JavaScript's semantics requires that any attempt to access the
-	    name <kbd>unassigned</kbd> leads to
-	    a runtime error. Change
-	    <kbd>lookup_name_value</kbd>
-	    (section <REF NAME="sec:operations-on-environments"><a class="superscript" id="4.1.6-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF>) to
-	    signal an error if the value it finds is 
-	    <kbd>unassigned</kbd> as
-	    given in section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
-	  </LI>
 	  <LI>
 	    
 	    Write a function
@@ -1827,6 +1814,28 @@
 	    in the interpreter by modifying the function 
 	    <kbd>evaluate</kbd>
 	    in an appropriate way.
+	  </LI>
+	  
+	  <LI>
+	    JavaScript's semantics requires that any attempt to access the
+	    value <kbd>"*unassigned*"</kbd> leads to
+	    a runtime error. Change
+	    <kbd>lookup_symbol_value</kbd>
+	    (section <REF NAME="sec:operations-on-environments"><a class="superscript" id="4.1.6-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF>) to
+	    signal an error if the value it finds is 
+	    <kbd>"*unassigned*"</kbd>.
+	  </LI>
+	  <LI>
+	    Even with this protection in place, there is a loophole: A program
+	    could declare a variable in a block and assign a value to the
+	    variable before its <kbd>let</kbd>
+	    declaration is evaluated. Change the evaluator of
+	    section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> such that
+	    assignments to variables declared with
+	    <kbd>let</kbd> leads to an error if
+	    its
+	    <kbd>let</kbd> declaration has not been
+	    evaluated yet.
 	  </LI>
 	</OL>
       
@@ -1849,14 +1858,14 @@
       
 	Consider an alternative strategy for scanning out declarations
 	that translates the example in the text to
-	<kbd class='snippet'>( $\textit{vars}$ ) => {
+	<kbd class='snippet'>( $vars$ ) => {
     return ( (u, v) => {
                return ( (a, b) => {
                           u = a;
                           v = b;
                           $statements$
 		      })($e_1$, $e_2$);
-           })(unassigned, unassigned);
+           })("*unassigned*", "*unassigned*");
 }</kbd>
 	Here <kbd>a</kbd> and <kbd>b</kbd> are
 	meant to represent new variable names, created by the interpreter, that do
@@ -2039,7 +2048,7 @@ f(10);
 	Recursive functions are obtained in a roundabout way in our
 	interpreter: First declare the name that will refer to the recursive
 	function and assign it to the special value
-	<kbd>unassigned</kbd>. Then define the
+	<kbd>"*unassigned*"</kbd>. Then define the
 	recursive function in the scope of that name, and finally assign the
 	name to the defined function. By the time the recursive function gets
 	applied, any occurrences of the name in the body properly refer to
