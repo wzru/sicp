@@ -1840,7 +1840,13 @@
       JavaScript
     
     evaluator register machine includes a stack and seven
-    registers: <kbd>exp</kbd>,
+    registers:
+    
+      
+      
+	<kbd>stmt</kbd>,
+      
+    
     <kbd>env</kbd>,
     <kbd>val</kbd>, <kbd>continue</kbd>,
     
@@ -1850,17 +1856,22 @@
       
     
     <kbd>argl</kbd>, and <kbd>unev</kbd>.
-    <kbd>Exp</kbd> is used to hold the expression
+    <kbd>Exp</kbd>
+    is used to hold the
+    
+      
+      
+	statement
+      
+    
     to be evaluated, and <kbd>env</kbd> contains the
-    environment
-    in which the evaluation is to be performed.  At the end of an evaluation,
-    <kbd>val</kbd>
-    contains the value obtained by evaluating the expression in the
-    designated environment.  The <kbd>continue</kbd> register
-    is used to implement recursion, as explained in
-    section&nbsp;<REF NAME="sec:stack-recursion"><a class="superscript" id="5.4-sec-link-5.1.4" href="./5.1.4.html">5.1.4</a></REF>.  (The evaluator needs to
-    call itself recursively, since evaluating an expression requires evaluating
-    its subexpressions.)  The registers
+    environment in which the evaluation is to be performed.  At the end of an
+    evaluation, <kbd>val</kbd> contains the value obtained by
+    evaluating the expression in the designated environment.  The
+    <kbd>continue</kbd> register is used to implement
+    recursion, as explained in section&nbsp;<REF NAME="sec:stack-recursion"><a class="superscript" id="5.4-sec-link-5.1.4" href="./5.1.4.html">5.1.4</a></REF>.
+    (The evaluator needs to call itself recursively, since evaluating an
+    expression requires evaluating its subexpressions.)  The registers
     
       
       

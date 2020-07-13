@@ -2005,14 +2005,16 @@ function variable_declaration_value(stmt) {
           <LI>
 	    Lambda expressions are lists that begin with the 
 	    string <kbd>"lambda_expression"</kbd>:
-	    <div class='snippet' id='javascript_77_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCwCbBIARrxs7nYaWtr6hsbR-jz8QuIpsgBEsQlJzNwAHmb6jIy0JMUqQaHhlI2gZYls5my6cQbcuowpapo6mUb0EmxmYgCeCTQCzDQEzCSDsi5u7FQCYyotIYSkHVHdFfE0vAtjaZMG087criL7h59HJ6G4ZHRxKAJAtBHEeqBPKALCNuCJilVIQA+UBVALNIK8JhmWL3UxXZIgsHlNjHTHY3EiAl9AYSIYjEREglk3BYxg4tj3ak3O6M0HMlpAA')">function is_lambda(stmt) {
-   return is_tagged_list(stmt, "lambda_expression");
+	    
+	    
+	    <div class='snippet' id='javascript_77_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCwCbBIARrxszNwAHmb6jIy0JO52Glra+obG0f48-ELiebIAROGUOcy83ARUJFSRJLUqQaENXaCxCUnmbLpxBty6jHlqmjrFRvQSbGZiAJ4JNALMNATMJJOyLm7sVAJzKr0hhKSNUcOJyfE0vBtzBYsGy6CrANZKeICGhkf4iU4ic6XaFXa59fBkOjiP4bQRxZ6gTygCwzbgiWqpLEAPlAqQCPSCvCYZliH1MT1GaQy3CyOREEjRjLY8Nw1MYtLYH25YwmEimMw5XIxSV5-MFwplLzeH056JGPN6QA')">function is_lambda_expression(stmt) {
+   return is_tagged_list(stmt, "function_definition");
 }
 function lambda_parameters(stmt) {
    return map(symbol_of_name, head(tail(stmt)));
 }
 function lambda_body(stmt) {
-   return head(tail(tail(stmt)));
+   return make_block(head(tail(tail(stmt))));
 }
 </pre></div></div>
 	    

@@ -1735,7 +1735,7 @@ ev-begin
             <td><div class='snippet' id='javascript_113_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_seq",
     save("continue"),
-    assign("unev", list(op("sequence_statements"), reg("exp"))),
+    assign("unev", list(op("sequence_statements"), reg("stmt"))),
     go_to(label("ev_sequence")),</pre></div></div></td></tr></table>
   </p></div>
 
@@ -1876,7 +1876,7 @@ ev-sequence-last-exp
 (goto (label eval-dispatch))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_113_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_sequence",
-    assign("exp", list(op("first_statement"), reg("unev"))),
+    assign("stmt", list(op("first_statement"), reg("unev"))),
     test(op("is_last_statement"), reg("unev")),
     branch(label("ev_sequence_last_exp")),
     save("unev"),

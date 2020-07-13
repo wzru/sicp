@@ -1707,8 +1707,16 @@
       <span style="color:blue"><kbd>eval_dispatch</kbd>,
       </span>
     
-    it evaluates the expression specified by <kbd>exp</kbd> in
-    the environment specified by <kbd>env</kbd>.  When
+    it evaluates the expression specified by
+    
+      <span style="color:green">
+	<kbd>exp</kbd>
+      </span>
+      <span style="color:blue">
+	<kbd>stmt</kbd>
+      </span>
+    
+    in the environment specified by <kbd>env</kbd>.  When
     evaluation is complete, the controller will go to the entry point stored in
     <kbd>continue</kbd>, and the
     <kbd>val</kbd> register will hold the value of the
@@ -1756,27 +1764,27 @@ eval-dispatch
 (goto (label unknown-expression-type))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "eval_dispatch",
-    test(op("is_self_evaluating"), reg("exp")), 
+    test(op("is_self_evaluating"), reg("stmt")), 
     branch(label("ev_self_eval")),
-    test(op("is_name"), reg("exp")),
+    test(op("is_name"), reg("stmt")),
     branch(label("ev_name")),
     
-    test(op("is_variable_declaration"), reg("exp")),
+    test(op("is_variable_declaration"), reg("stmt")),
     branch(label("ev_variable_declaration")),
-    test(op("is_constant_declaration"), reg("exp")),
+    test(op("is_constant_declaration"), reg("stmt")),
     branch(label("ev_constant_declaration")),
-    test(op("is_assignment"), reg("exp")),
+    test(op("is_assignment"), reg("stmt")),
     branch(label("ev_assignment")),
     
-    test(op("is_conditional_expression"), reg("exp")),
+    test(op("is_conditional_expression"), reg("stmt")),
     branch(label("ev_if")),
-    test(op("is_function_definition"), reg("exp")),
+    test(op("is_lambda_expression"), reg("stmt")),
     branch(label("ev_lambda")),
-    test(op("is_sequence"), reg("exp")),
+    test(op("is_sequence"), reg("stmt")),
     branch(label("ev_seq")),
-    test(op("is_block"), reg("exp")),
+    test(op("is_block"), reg("stmt")),
     branch(label("ev_block")),
-    test(op("is_application"), reg("exp")),
+    test(op("is_application"), reg("stmt")),
     branch(label("ev_application")),
     go_to(label("unknown_expression_type")),</pre></div></div></td></tr></table>
   </p></div>
@@ -1829,19 +1837,19 @@ ev-lambda
 (goto (reg continue))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_self_eval",
-    assign("val", list(reg("exp"))),
+    assign("val", list(reg("stmt"))),
     go_to(reg("continue")),
     
 "ev_name",
-    assign("val", list(op("lookup_name_value"), reg("exp"), reg("env"))),
+    assign("val", list(op("lookup_name_value"), reg("stmt"), reg("env"))),
     go_to(reg("continue")),
     
 "ev_lambda",
-    assign("unev", list(op("function_definition_parameters"), reg("exp"))),
-    assign("exp", list(op("function_definition_body"), reg("exp"))),
+    assign("unev", list(op("function_definition_parameters"), reg("stmt"))),
+    assign("stmt", list(op("function_definition_body"), reg("stmt"))),
     assign("val",
            list(op("make_compound_function"), 
-                reg("unev"), reg("exp"), reg("env"))),
+                reg("unev"), reg("stmt"), reg("env"))),
     go_to(reg("continue")),</pre></div></div></td></tr></table>
   </p></div>
 
@@ -2050,9 +2058,9 @@ ev-application
 "ev_application",
     save("continue"),
     save("env"),
-    assign("unev", list(op("operands"), reg("exp"))),
+    assign("unev", list(op("operands"), reg("stmt"))),
     save("unev"),
-    assign("exp", list(op("operator"), reg("exp"))),
+    assign("stmt", list(op("operator"), reg("stmt"))),
     assign("continue", label("ev_appl_did_operator")),
     go_to(label("eval_dispatch")),</pre></div></div></td></tr></table>
   </p></div>
@@ -2216,7 +2224,7 @@ ev-appl-operand-loop
             <td><div class='snippet' id='javascript_112_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_appl_argument_loop",
     save("argl"),
-    assign("exp", list(op("first_operand"), reg("unev"))),
+    assign("stmt", list(op("first_operand"), reg("unev"))),
     test(op("is_last_operand"), reg("unev")),
     branch(label("ev_appl_last_arg")),
     save("env"),
