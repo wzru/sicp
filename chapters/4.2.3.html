@@ -1906,10 +1906,16 @@ lazy-evaluate value:
     Ben Bitdiddle tests the lazy list implementation given above by
     evaluating the expression
     <div class='snippet' id='javascript_86_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-head(list(a, b, c));</pre></div></div>
+head(list("a", "b", "c"));</pre></div></div>
     To his surprise, this produces an error.  After some thought, he realizes
-    that the <QUOTE>lists</QUOTE> obtained by reading in quoted expressions are
-    different from the lists manipulated by the new definitions of
+    that the <QUOTE>lists</QUOTE> obtained
+    
+      
+      
+	from the primitive <kbd>list</kbd> function
+      
+    
+    are different from the lists manipulated by the new definitions of
     
       
       <kbd>pair</kbd>,
@@ -1923,12 +1929,13 @@ head(list(a, b, c));</pre></div></div>
       
       <kbd>tail</kbd>.
     
-    Modify the evaluator's treatment of
+    Modify 
     
       
       
-	applications of the primitive function
+	the evaluator such that applications of the primitive
 	<kbd>list</kbd>
+	function
       
     
     typed at the driver loop will produce true lazy lists.

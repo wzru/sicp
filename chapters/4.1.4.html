@@ -1836,7 +1836,7 @@ function primitive_implementation(fun) {
        list("pair",    pair             ),
        list("is_null", is_null          ),
        list("+",       (x, y) => x + y  ),
-//     more primitives
+       // more primitive functions
        );
 const primitive_function_symbols =
         map(head, primitive_functions);
@@ -1857,7 +1857,7 @@ const primitive_function_objects =
 	<kbd>setup_environment</kbd>.
 	<div class='snippet' id='javascript_79_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0oFA4MYD2AdgM4AuoADgE4CWAtneXQG4CmA+kWeQIbFypUAF5QAGzoUAFJJkAiAK7EAJuwBmdYuxXyANKGVrN2lQEo9OUNZu279h3bnlp8yMRPMAnvuvvP5F4WVo6hYU5SLvIMfOQAFpywkL7WMfGJkMHh2WHOrmkJAKIpqbFFWTmVEQoAcnw1JbZ1NWYhVVVmANwEJBTU9EwsHNy9-IKcpF4MAEaE4sIibXYxVNLqogB8oHHsfCprFv2MzGxcPBQCQl09vEeDpyO8l5ysfOKK7AtLtitrm9u7fb8OjiA6HWjHIZnUaXUjXHAQ+7Dc5jISdIA')">const primitive_constants = list(list("undefined", undefined),
                                  list("math_PI",   math_PI)
-//                               more primitive constants
+                                 // more primitive constants
                                 );
 const primitive_constant_symbols =
         map(f => head(f), primitive_constants);
@@ -1919,7 +1919,7 @@ const primitive_constant_values =
 	section <REF NAME="sec:representing-expressions"><a class="superscript" id="4.1.4-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>—a
 	process called parsing and accomplished by the primitive function
 	<kbd>parse</kbd>
-	(see exercise).
+	(see exercise <REF NAME="ex:parse"><a class="superscript" id="4.1.4-ex-link-4.2" href="./4.1.2.html#ex_4.2">4.2</a></REF>).
 	We precede each printed result by
 	an <EM>output prompt</EM> so as to distinguish the value of the
 	program from other output that may be printed. The driver loop gets

@@ -1702,30 +1702,71 @@
 <a name='p1' class='permalink'></a><p>
     We began this book by studying processes and by describing processes
     in terms of
+    
     functions
-    written in JavaScript.  To explain the meanings of
-    these
-    functions, we used a succession of models of evaluation: the
-    substitution model of chapter 1, the environment model of chapter 3,
-    and the metacircular evaluator of chapter 4.  Our examination of the
-    metacircular evaluator, in particular, dispelled much of the mystery
-    of how JavaScript-like languages are interpreted.
+    
+    written in
+    
+      
+    JavaScript.
+    To explain the meanings of these
+    
+      
+      functions,
+    
+    we used a succession of models of evaluation: the
+    substitution model of chapter 1, the environment model of
+    chapter 3, and the metacircular evaluator of chapter 4.  Our
+    examination of the metacircular evaluator, in particular, dispelled much of
+    the mystery of how
+    
+      
+      JavaScript-like languages are interpreted.
+    
     But even the metacircular evaluator leaves important questions
-    unanswered, because it fails to elucidate the mechanisms of control in
-    a JavaScript system.  For instance, the evaluator does not explain how the
+    unanswered, because it fails to elucidate the mechanisms of control in a
+    
+      
+      JavaScript
+    
+    system.  For instance, the evaluator does not explain how the
     evaluation of a subexpression manages to return a value to the
     expression that uses this value, nor does the evaluator explain how
     some recursive
-    functions
+    
+      
+      functions
+    
     generate iterative processes (that is, are evaluated
     using constant space) whereas other recursive
-    functions
+    
+      
+      functions
+    
     generate recursive
     processes.  These questions remain unanswered because the metacircular
-    evaluator is itself a JavaScript program and hence inherits the control
-    structure of the underlying JavaScript system.  In order to provide a more
-    complete description of the control structure of the JavaScript evaluator,
-    we must work at a more primitive level than JavaScript itself.
+    evaluator is itself a
+    
+      
+      JavaScript
+    
+    program and hence inherits the control structure of the underlying
+    
+      
+      JavaScript
+    
+    system.  In order to provide a more
+    complete description of the control structure of the
+    
+      
+      JavaScript
+    
+    evaluator, we must work at a more primitive level than
+    
+      
+      JavaScript
+    
+    itself.
   </p></div>
 
   <div class='permalink'>
@@ -1745,19 +1786,34 @@
     register machines will look very much like <QUOTE>machine-language</QUOTE>
     programs for traditional computers.  However, instead of focusing on
     the machine language of any particular computer, we will examine
-    several JavaScript
-    functions
+    several
+    
+      
+      JavaScript
+    
+    
+      
+      functions
+    
     and design a specific register machine to
     execute each
-    function.  Thus, we will approach our task from the
+    
+      
+      function.
+    
+    Thus, we will approach our task from the
     perspective of a hardware architect rather than that of a
     machine-language computer programmer.  In designing register machines,
     we will develop mechanisms for implementing important programming
     constructs such as recursion.  We will also present a language for
     describing designs for register machines.  In
     section <REF NAME="sec:simulator"><a class="superscript" id="5-sec-link-5.2" href="./5.2.html">5.2</a></REF> we will
-    implement a JavaScript program that
-    uses these descriptions to simulate the machines we design.
+    implement a
+    
+      
+      JavaScript
+    
+    program that uses these descriptions to simulate the machines we design.
   </p></div>
 
   <div class='permalink'>
@@ -1767,27 +1823,51 @@
     two registers, producing a result to be stored into a third register.
     Such an operation can be performed by easily described hardware.  In
     order to deal with list structure, however, we will also use the
-    memory operations <kbd>head</kbd>, <kbd>tail</kbd>, and <kbd>pair</kbd>, which require
-    an elaborate storage-allocation mechanism.  In
-    section <REF NAME="sec:storage-allocation"><a class="superscript" id="5-sec-link-5.3" href="./5.3.html">5.3</a></REF> we study their implementation in
-    terms of more elementary operations.
+    memory operations
+    
+      
+      <kbd>head</kbd>,
+    
+    
+      
+      <kbd>tail</kbd>,
+    
+    and
+    
+      
+      <kbd>pair</kbd>,
+    
+    which require an elaborate storage-allocation mechanism.  In
+    section <REF NAME="sec:storage-allocation"><a class="superscript" id="5-sec-link-5.3" href="./5.3.html">5.3</a></REF> we study their
+    implementation in terms of more elementary operations.
   </p></div>
 
   <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
-    In section <REF NAME="sec:eceval"><a class="superscript" id="5-sec-link-5.4" href="./5.4.html">5.4</a></REF>, after we have accumulated experience
-    formulating simple
-    functions
+    In section <REF NAME="sec:eceval"><a class="superscript" id="5-sec-link-5.4" href="./5.4.html">5.4</a></REF>, after we have accumulated
+    experience formulating simple
+    
+      
+      functions
+    
     as register machines, we will design a
     machine that carries out the algorithm described by the metacircular
-    evaluator of section <REF NAME="sec:mc-eval"><a class="superscript" id="5-sec-link-4.1" href="./4.1.html">4.1</a></REF>.  This will fill in the gap in
-    our understanding of how JavaScript programs are interpreted, by
-    providing an explicit model for the mechanisms of control in the
-    evaluator.
-    In section <REF NAME="sec:compilation"><a class="superscript" id="5-sec-link-5.5" href="./5.5.html">5.5</a></REF> we will study a simple compiler that
-    translates JavaScript programs into sequences of instructions that can be
-    executed directly with the registers and operations of the evaluator
-    register machine.
+    evaluator of section <REF NAME="sec:mc-eval"><a class="superscript" id="5-sec-link-4.1" href="./4.1.html">4.1</a></REF>.  This will fill in
+    the gap in our understanding of how
+    
+      
+      JavaScript programs
+    
+    are interpreted, by providing an explicit model for the mechanisms of
+    control in the evaluator.
+    In section <REF NAME="sec:compilation"><a class="superscript" id="5-sec-link-5.5" href="./5.5.html">5.5</a></REF> we will study a simple
+    compiler that translates
+    
+      
+      JavaScript
+    
+    programs into sequences of instructions that can be executed directly with
+    the registers and operations of the evaluator register machine.
   </p></div>
 
   

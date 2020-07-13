@@ -2193,13 +2193,12 @@ sum(amount,
     <a name="ex_4.69" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.69">Exercise 4.69 </a></b> 
   
 	
-	Modify the data base and the rules you formulated in
-	exercise <REF NAME="ex:genesis"><a class="superscript" id="4.4.3-ex-link-4.63" href="./4.4.1.html#ex_4.63">4.63</a></REF>, to add 
+	Let us modify the data base and the rules of
+	exercise <REF NAME="ex:genesis"><a class="superscript" id="4.4.3-ex-link-4.63" href="./4.4.1.html#ex_4.63">4.63</a></REF> to add 
 	<QUOTE>great</QUOTE> to a grandson relationship. This should enable the
-	system to deduce that Irad is the great-grandson of Adam, or that Jabal and
-	Jubal are the great-great-great-great-great-grandsons of Adam.
-	Hints:
-	<UL>
+	system to deduce that Irad is the great-grandson of Adam, or that Jabal
+	and Jubal are the great-great-great-great-great-grandsons of Adam.
+	<OL>
 	  <LI>
 	    Change the assertions in the database such that there is only one
 	    kind of information, namely
@@ -2225,11 +2224,13 @@ list(pair("great", rel), x, y)</pre></div></div>
 	    where <kbd>rel</kbd> is a list ending in
 	    <kbd>"grandson"</kbd>.
 	  </LI>
-	</UL>
-	Check your rules on queries such as
-	<kbd>related(list("great", "grandson"), g, ggs)</kbd>
-	and
-	<kbd>related(relationship, "Adam", "Irad")</kbd>.
+	  <LI>
+	    Check your rules on queries such as
+	    <kbd>related(list("great", "grandson"), g, ggs)</kbd>
+	    and
+	    <kbd>related(relationship, "Adam", "Irad")</kbd>.
+	  </LI>
+	</OL>
 	
       
       <div class="Solution">

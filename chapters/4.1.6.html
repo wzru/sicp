@@ -1830,12 +1830,10 @@
 	    could declare a variable in a block and assign a value to the
 	    variable before its <kbd>let</kbd>
 	    declaration is evaluated. Change the evaluator of
-	    section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> such that
-	    assignments to variables declared with
+	    section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> such that any
+	    assignment to a variable declared with
 	    <kbd>let</kbd> leads to an error if
-	    its
-	    <kbd>let</kbd> declaration has not been
-	    evaluated yet.
+	    the declaration has not been evaluated yet.
 	  </LI>
 	</OL>
       
@@ -1911,7 +1909,7 @@
 	frame of the given environment a binding of the declared name to
 	the result of evaluating the expression on the right hand side of the
 	declaration.
-	<UL>
+	<OL>
 	  <LI>
 	    Simplify the declaration of 
 	    <kbd>eval_block</kbd> in
@@ -1940,7 +1938,7 @@
 	    of local declarations, compared to the implementation
 	    in section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>?
 	  </LI>
-	</UL>
+	</OL>
       
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_3_div" data-toggle="collapse">Add solution</button></div>
