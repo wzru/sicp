@@ -1995,16 +1995,8 @@ function set_instruction_execution_proc(inst, proc) {
   go_to(label(there)),
 "there",</pre></div></div>
     With the simulator as written, what will the contents of register
-    
-      
-      <kbd>"a"</kbd>
-    
-    be when control reaches
-    
-      
-      <kbd>"there"</kbd>?
-    
-    Modify the
+    <kbd>a</kbd> be when control reaches
+    <kbd>there</kbd>?  Modify the
     
       
       
@@ -2071,7 +2063,7 @@ function extract_labels(text, receive) {
     which would be called by <kbd>assemble</kbd> as follows:
     
     <div class='snippet' id='javascript_105_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function assemble_alternative(controller_text, machine) {
+function assemble(controller_text, machine) {
     const result = extract_labels(controller_text);
     const insts = head(result);
     const labels = tail(result);

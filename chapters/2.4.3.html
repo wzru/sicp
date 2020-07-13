@@ -2220,52 +2220,7 @@ function operands(exp) {
    return tail(exp);
 }</pre></div></div>
     
-    <OL>
-      <LI>
-	Explain what was done above. Why can't we assimilate the
-	predicates
-	
-	  
-	  <kbd>is_number</kbd>
-	
-	and
-	
-	  
-	  <kbd>is_variable</kbd>
-	  
-	
-	into the data-directed dispatch?
-      </LI>
-      <LI>
-	Write the
-	
-	  
-	  functions
-	
-	for derivatives of sums and products, and the auxiliary code required
-	to install them in the table used by the program above.
-      </LI>
-      <LI>
-	Choose any additional differentiation rule that you like, such as the
-	one for exponents
-	(exercise <REF NAME="ex:deriv-exponentiation"><a class="superscript" id="2.4.3-ex-link-2.56" href="./2.3.2.html#ex_2.56">2.56</a></REF>), and install it
-	in this data-directed system.
-      </LI>
-      <LI>
-	In this simple algebraic manipulator the type of an expression is the
-	algebraic operator that binds it together.  Suppose, however, we
-	indexed the
-	
-	  
-	  functions
-	
-	in the opposite way, so that the dispatch line
-	in <kbd>deriv</kbd> looked like
-	<div class='snippet' id='javascript_44_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-get(operator(exp), "deriv")(operands(exp), variable);</pre></div></div>
-	What corresponding changes to the derivative system are required?
-      </LI>
-    </OL>
+    
     
     
   
@@ -2273,109 +2228,7 @@ get(operator(exp), "deriv")(operands(exp), variable);</pre></div></div>
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_44_1_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_44_1_div"><SOLUTION>
     
-      <OL>
-        <LI>
-          <EM>Explain what was done above.
-          Why can't we assimilate the predicates
-	  
-	    
-	    <kbd>is_number</kbd>
-	    
-	  
-	  and
-	  
-	    
-	    <kbd>is_same_variable</kbd>
-	    
-	   into the data-directed dispatch?</EM>
-	  <p></p>
-	  The operator symbols come very handy as <QUOTE>type</QUOTE> keys in
-	  the operator table. For numbers and variables, there aren't such
-	  obvious keys, although we could introduce names for those types of
-	  expressions, as well, if we change the way expressions are
-	  represented as lists.
-        </LI>
-	<LI>
-          <EM>Write the
-          
-	    
-	    functions
-	  
-          for derivatives of sums and products, and the auxiliary code required
-	  to install them in the table used by the program above.</EM>
-	  <p></p>
-	  <div class='snippet' id='javascript_44_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0GYBQuAzAVwDsBjAFwEsB7E0KgZwH0A3AQwCcr2AjAGwCmACgAeASlABvXKDmhOgikU70mzRhW4kA5mPEBuXAF98xctToMWjdgFtBbLjwEjWARgA0oVikkz5BSUVNRYObj4hYQ9JADJY2UCk6ycI12i-UHifd1AAXgKfFCNTQlJKWnoAE0FuVmFBUQAHb3CXIX9EuUVlVRSSIjteWobm8S7kuQB+UAAGCcmALhS2yJFGpvHJ5JnhdVsHVPb15tbnNckZ3OXZre3A5Z0lYQAiGrqX7wX7pJom2vYFBonFGm3Ewj+AJIVUYoPEZzSHRKZQslVAkM4gOBcOkXR6IVAAAtBOwqnDkeYKlYMexobCNp15Pi+hR2FR+OSTGZypZ6HZ2ABrRyMQbCdheUDsTIBJnBPr8JgUV4Aak+kolUsMXJ+chRVL5gscTU4NCqREowjsErs0omzPoCs0rwAVGqrd4bVrTDrQHreZKqjVoRD-pi6YzZb16MTSSGoTCvd9kn60ewiE9gzTw7jAvaiSSyaz2XGwwnEz6U1Y7ER+NQmgqRlmEznIwSY2Sm4xyzrK3ya3WFWRaR3Q8Ouy3unLowXhEWOZ3xIncCB0aPecxWa5vE0iBRJdDQE8KMuwAQTXZQGRCewmhRaqBsKBhIxBPqHzgcONe5LGIwaGRhCFABPbxFDIYFmxlSco36GsOTAiCuyTQIZlIGoCCoEhBCqZD5GWQQAEciHYDlgO8dthAohDODLO4dRmKjX0QuifmWdhf3-QDBBA0A52Eaiy2Rb9+SFDc1mECM5HAkhNFAfh-xIsTXHyOTFRdTchFdLVAkpf15JoAUiCaLigOYCVgOYW1tmk2SRV4DTBBU9i-wAiyJT4+Sh34JSOm0yYqAIJ87Ic-JCjQwQMKwqpJPuPNwsi7CjG2YxQEEfgXwne4bL3ASnI41zuMs7w+OCi4-J+AKn1ygo8lAeLMOwmKfTi6EIoaqokp1FK0oyqCfSCGC+IE8r7m9SYxrkCbQF0tFMJfTglTc7wLJQM5+CIQQmvkbLQFK5Tauczilt4tkOU8xSHMXTrkkq58iHstZQtq+qoq25IXwoMTi3O7yHM8XCfSaNkQUdRbColIGqBBFa1o2xd-v6-qPIU36ypGwJuvSxy+usuhZOqn8XJMoqTuLPbfOu+5buqsLWoS6LMrkABIbYPq+jlycEf6WcR7ZIZBfnidWnwSLhhHecRkr7suq7cB5ybUqxxmdTZoamJo2HNsp5LkKmqaZqsKomCBigr0tN6BoJC8atAF59MMpoXgBpIZntoznYeUBrcKF45tqCgnYl0AZj9haPaSfDOBNEE7G8F4AFUSAFEgaAAd3oGl-QAWizk7XBeEaprzI3GBNq8hJ2zPKh8xzapExwHIkowdqPFSq7oGvXjdx2tR2nc91q9uSE732ZP9gujG-d4qFYDRRU7BFjn8JmmbtKcvcNOe7GEaf6lJIMR3jLtF4ucWg9AXexXTQRM1HcMT9cWXTAN6pahn5hjVNc0lQXkXEU2zKeZ65b0tJvT+ZoLTVlrFQesVBGx3wTGfc+8hL5QIHFQIct8j7wnDkHVYj8cHII3qJcB38d5v3qGgmBDYQS4KITqBcSD6GI3wR0JhyCqGwMwYfUsXYn7fjmqyfg3lL4xX7q8XeaoXiqm8LvLeI1xFvAoVI10siKEfxNBAigI08xvDoIIF4yJBEkRERQpu+BL6gxdGqKxLxVG21EFIoCBdvC2JkQ4tU2B4YeK1CuAA2rbGRJ55B+L8XYtUoTwneDCY46JLxnHeAGMIgAuqkr4K4fiRPcX4iUfjZiJLgqk5JBSUlpOCSEsJqjymBCyZ8apSRIn2JiRE-JoAkn8CKeksA2xGkRNyfEtU7TOltMKWUjJkxalxNiaAPx2ASkdLSSMlJoBkkrP+uMuQ7SVmpKAA')">function deriv_sum(operands, variable) {		
-    return make_sum(deriv(addend(operands), variable),
-                    deriv(augend(operands), variable));
-}
-function deriv_product(operands, variable) {
-    return make_sum(make_product(multiplier(operands),
-                        deriv(multiplicand(operands),
-                              variable)),
-                    make_product(deriv(multiplier(
-                                             operands),
-                                       variable),
-                        multiplicand(operands)));
-}
-function install_deriv() {
-    put("deriv", "+", deriv_sum);
-    put("deriv", "*", deriv_product);
-    return "done";
-}
-install_deriv();
-</pre></div></div>
-	  
-	  
-	</LI>
-        <LI>
-	  <EM>
-            Choose any additional differentiation rule that you like, such as
-            the one for exponents
-	    (exercise <REF NAME="ex:deriv-exponentiation"><a class="superscript" id="2.4.3-ex-link-2.56" href="./2.3.2.html#ex_2.56">2.56</a></REF>), and
-	    install it in this data-directed system.
-	  </EM>
-	  <p></p>
-	  
-	  
-	  <div class='snippet' id='javascript_44_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0GYBQuAzAVwDsBjAFwEsB7E0KgZwH0A3AQwCcr2AjAGwCmACgAeASlABvXKDmhOgikU70mzRhW4kA5mPEBuXAF98xctToMWjdgFtBbLjwEjWARgA0oVikkz5BSUVNRYObj4hYQ9JADJY2UCk6ycI12i-UHifd1AAXgKfFCNTQlJKWnoAE0FuVmFBUQAHb3CXIX9EuUVlVRSSIjteWobm8S7kuQB+UAAGCcmALhS2yJFGpvHJ5JnhdVsHVPb15tbnNckZ3OXZre3A5Z0lYQAiGrqX7wX7pJom2vYFBonFGm3Ewj+AJIVUYoPEZzSHRKZQslVAkM4gOBcOkXR6IVAAAtBOwqnDkeYKlYMexobCNp15Pi+hR2FR+OSTGZypZ6HZ2ABrRyMQbCdheUDsTIBJnBPr8JgUV4Aak+kolUsMXJ+chRVL5gscTU4NCqREowjsErs0omzPoCs0rwAVGqrd4bVrTDrQHreZKqjVoRD-pi6YzZb16MTSSGoTCvd9kn60ewiE9gzTw7jAvaiSSyaz2XGwwnEz6U1Y7ER+NQmgqRlmEznIwSY2Sm4xyzrK3ya3WFWRaR3Q8Ouy3unLowXhEWOZ3xIne6B+ULmBs6IISNRAZVhLx2IxBN4GROglHQI6lS9na7vAejyexhSeWiHyIF2e8+2S2PE5T-Q3EgtyVT8ZUnC8fznX9wyXEB0VHXlmFZVxvCaIgKElaFQCeChcHgggTTsUAyEJdgmgoWpQGwUBhCPfVqJwHBxmXQ9GBoMhhCFABPbxFDIYFm3A88CXUAZ+A5fjBK7JNAhmUgagIKhgKqWT5GWQQAEciHYDkeO8H8fykzgyzuHUZiMwQBJMmSfVAZY2I4rjBF40BoOMstkWXVdHBQqIIzkASSE0S8ON05C1nyS9FRdPzBFdLVAgAtF+BoGgBSIJpnO45gJR45hbW2IKQpFXg4qixzOPyiVoNSod+Ai1xFyMbYqAIWjSvKgo8lABTBCUlSAvuPM+oGwQqhayZjFAQR+CPM8iroEKPIqxh2KqlyCu8aDOouRKdTa2iVu63roX65TxqGn0RrOsaJrU+Rptm+bhOuqc3LZSSrME-afm9KaJn+uRkqsZSj04JVqu8fKUDOfgiEEK75GKzDdtcVb1uy3Lts+4Q6vCuLmtkw66KIMrIpO0aLqqJHkiPCgIuLfGGrizwHp1Jo2RBK8sYlTmqBBGG4YRxc2bsuzarClm9t+pInrmwQFsmFGgmsqoMacoWPuLNGOll1r2uEY7CipwalYASG2enGY5XXj1wS3xe2fmQRdrHYZ8XSRbFp3xZ2snCaJx25Hll72aSa33O+kzhcRya-tkoHQCTkHqiYTmKFIy1aZEvpiJOl5UvSzKXnD+QZiLjKmjLuRlnzwoXjB2oKFL33QBmJuIZr9SZs4E0QTsbwXgAVRIAUSBoAB3egaX9ABaOePtcF5ZaTvMqnTwFSK8lXZ8qRqhCinyD5ELUVdwqK97oE-Xkrkuz6WzD0Mwnqr5IG-G+C5uV6MZd3ioVg65mibm3DwXkMEYQImOP4c25sJgqwfFFd8ECuzxxIo-GazQopARAig2WeZj7GlNOaJUGwfZ2UISaM0Fpj44NAbuOg+5DwekNBoUUZDQBz3cKLB2bd5D-3qA+KBMsXyolBsFVkEkgFNBATuJCjRKLBT3ENZ+rwBFqhvHeUAAjpGyLAZUfB703ibheMiMGkiGp0LkfvBRW5GDKN-gIvGMVNEaNEGqDA8JQAvHcYYIAA')">function deriv_exponentiation(operands, variable) {		
-    const bas = base(operands);
-    const exp = exponent(operands);
-    return make_product(exp,
-               make_product(make_exponentiation(bas, make_sum(exp, -1)),
-	                    deriv(bas, variable)));
-}
-function install_exponentiation_extension() {
-    put("deriv", "**", deriv_exponentiation);
-    return "done";
-}
-install_exponentiation_extension();
-</pre></div></div>
-
-        </LI>
-        <LI>
-	  <EM>
-            In this simple algebraic manipulator the type of an expression is
-            the algebraic operator that binds it together.  Suppose, however,
-	    we indexed the
-            
-	      
-	      functions
-	    
-            in the opposite way, so that the dispatch line in
-	    <kbd>deriv</kbd> looked like
-            <div class='snippet' id='javascript_44_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-get(operator(exp), "deriv")(operands(exp), variable);</pre></div></div>
-            What corresponding changes to the derivative system are required?
-	  </EM>
-	  <p></p>
-	  We would need to change the order of arguments in the installation
-	  procedure for the differentiation library:
-	  <div class='snippet' id='javascript_44_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-put("+", "deriv", deriv_sum);
-put("*", "deriv", deriv_product);
-put("**", "deriv", deriv_exponentiation);</pre></div></div>
-        </LI>
-      </OL>
+      
     </SOLUTION></div></div>
 </EXERCISE></div>
 
@@ -2414,230 +2267,14 @@ put("**", "deriv", deriv_exponentiation);</pre></div></div>
     information keyed under identifiers such as
     <kbd>address</kbd> and
     <kbd>salary</kbd>.  In particular:
-    <OL>
-      <LI>
-        Implement for headquarters a
-	
-	  
-	  <kbd>get_record</kbd>
-	
-        
-	  
-	  function
-	
-        that retrieves a specified employee's record from a specified
-	personnel file.  The
-        
-	  
-	  function
-	
-        should be applicable to any division's file. Explain how the
-	individual divisions' files should be structured.  In particular,
-	what type information must be supplied?
-      </LI>
-      <LI>
-        Implement for headquarters a
-	
-	  
-	  <kbd>get_salary</kbd>
-	
-        
-	  
-	  function
-	
-        that returns the salary information from a given employee's
-	record from any division's personnel file.  How should the record
-	be structured in order to make this operation work?
-      </LI>
-      <LI>
-        Implement for headquarters a
-	
-	  
-	  <kbd>find_employee_record</kbd>
-	  
-	
-        
-	  
-	  function.
-	
-        This should search all the divisions' files for the record of a
-	given employee and return the record.  Assume that this
-        
-	  
-	  function
-	
-        takes as arguments an employee's name and a list of all the
-	divisions' files.
-      </LI>
-      <LI>
-        When Insatiable takes over a new company, what changes must be made in
-	order to incorporate the new personnel information into the central
-	system?
-      </LI>
-    </OL>
+    
     
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_44_2_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_44_2_div"><SOLUTION>
     
-      <OL>
-        <LI>
-          <EM>Implement for headquarters a
-	  
-	    
-	    <kbd>get_record</kbd>
-	    
-	  
-          
-	    
-	    function
-	  
-          that retrieves a specified employee's record from a specified
-	  personnel file.  The
-          
-	    
-	    function
-	  
-          should be applicable to any division's file. Explain how the
-	  individual divisions' files should be structured.  In
-          particular, what type information must be supplied?</EM>
-	  <p></p>
-	  We are tagging each division's file with a unique identifier for the
-	  division, using the tagging functions in
-	  section <REF NAME="sec:manifest-types"><a class="superscript" id="2.4.3-sec-link-2.4.2" href="./2.4.2.html">2.4.2</a></REF>. We assume that each
-	  division provides an implementation of the
-	  <kbd>get_record</kbd> function and installs
-	  it in the company-wide operations table.
-	  <div class='snippet' id='javascript_44_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function make_insatiable_file(division, file) {
-    return pair(division, file);
-}
-function insatiable_file_division(insatiable_file) {
-    return head(insatiable_file);
-}
-function insatiable_file_content(insatiable_file) {
-    return tail(insatiable_file);
-}
-function get_record(employee_name, insatiable_file) {
-    const the_division 
-        = insatiable_file_division(insatiable_file);
-    const division_record = get("get_record", the_division)
-                            (employee_name, 
-                             insatiable_file_content(
-                                 insatiable_file);
-    return record !== undefined      
-           ? attach_tag(the_division, division_record)
-           : undefined;
-}</pre></div></div>
-        </LI>
-        <LI>
-          <EM>Implement for headquarters a
-	  
-	    
-	    <kbd>get_salary</kbd>
-	    
-	  
-          
-	    
-	    function
-	  
-          that returns the salary information from a given employee's
-	  record from any division's personnel file.  How should the
-	  record be structured in order to make this operation work?</EM>
-	  <p></p>
-	  Every division needs to implement functions such as
-	  <kbd>get_salary</kbd> and install them
-	  in Insatiable's operations table. Then, Insatiable's function
-	  <kbd>get_salary</kbd> can look like this:
-	  <div class='snippet' id='javascript_44_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function make_insatiable_record(division, record) {
-    return pair(division, record);
-}
-function insatiable_record_division(insatiable_record) {
-    return head(insatiable_record);
-}
-function insatiable_record_content(insatiable_record) {
-    return tail(insatiable_record);
-}
-function get_salary(insatiable_record) {
-    const the_division = 
-        insatiable_record_division(insatiable_record);
-    return get("get_salary", the_division)
-           (insatiable_record_content);
-}</pre></div></div>
-	  Note that we rely on the fact that any employee record that gets
-	  returned by <kbd>get_record</kbd> is tagged
-	  with its division, which is used in the generic function
-	  <kbd>get_salary</kbd> to retrieve the
-	  correct implementation from the operation table.
-        </LI>
-        <LI>
-          <EM>
-	    Implement for headquarters a
-	    
-	      <kbd>find_employee_record</kbd>
-            
-	      
-	      function.
-	    
-            This should search all the divisions' files for the record of
-	    a given employee and return the record.  Assume that this
-            
-	    function
-	    
-            takes as arguments an employee's name and a list of all the
-	    divisions' files.
-	  </EM>
-	  <div class='snippet' id='javascript_44_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function find_employee_record(employee_name, 
-                              personnel_files) {
-    if (is_null(personell_files)) {
-        return undefined;
-    } else {
-        const insatiable_record 
-            = get_record(employee_name,
-                         head(personell_files));
-        return insatiable_record !== undefined
-               ? insatiable_record
-               : find_employee_record(employee_name, 
-                              tail(personell_files));
-    }
-}</pre></div></div>
-        </LI>
-        <LI>
-          <EM>
-	    When Insatiable takes over a new company, what changes must be made
-	    in order to incorporate the new personnel information into the
-            central
-	    system?
-	  </EM>
-	  <p></p>
-	  We would need to do the following, for each newly acquired company:
-	  <UL>
-	    <LI>
-	      Decide a name to be used as tag for any data item related
-	      to the new division.
-	    </LI>
-	    <LI>
-	      Write all division-specific functions such as
-	      <kbd>get_salary</kbd>
-	      and install them in the company-wide operations table using the
-	      division tag.
-	    </LI>
-	    <LI>
-	      Add the employee files to the list of
-	      <kbd>personell_files</kbd>.
-	      Note that this is a <QUOTE>destructive</QUOTE>
-	      operation—similar to the extension of operations
-	      tables—in that the data structure is permanently  and
-	      irrevocably modified;
-	      section <REF NAME="sec:mutable-data"><a class="superscript" id="2.4.3-sec-link-3.3" href="./3.3.html">3.3</a></REF> explains this
-	      concept in detail.
-	    </LI>
-	  </UL>
-        </LI>
-      </OL>
+      
     </SOLUTION></div></div>
 </EXERCISE></div>
 
@@ -2695,7 +2332,7 @@ function find_employee_record(employee_name,
       
     
     could be written as
-    <div class='snippet' id='javascript_44_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0GYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUAFtWAa04B9Auxp6TXVgBsTVAwHM+AGlABPQSPGgtlWnoAEyoGAAdWCjIAC24aMO9RX3FJaXp40ABebNAAIht7CPYKXKTk5IB+JTLy8QAuUAzszLzHVicTIpKa2vEqjx7e0AamnNznEiopIM5Sodqqgwpok2Zi7mY2Lj5BAGpGFg4eL35B+ZGwrLHWEidbWbP50EXIlcib7g93AUfz0E52BZ2HEwq5fk9yrkAKokQwkGgAd3SlwAtCj9EZTOZLNZOHYHM5cvxVL4NL5UjJQCFwpEYqoyeJCKQAroDMYzBYrM4TDcXOx3KxEr5-DpgqEIlFYvEhbUKciri18njChxuhCquwFBjliYyDQGNxBeCxBcFa1uV05hDnhItUsVgwqCRDadrcNGpdmnkJlMiDMrW6NcbkqavblefcA26baxg+UGgCgSCwdGntDYfCkR7QGiMezsVYCgT2kSSeIGWI5VTxbTovSakztIFQKwwmFbB4TE5OCQAVQyMmW+wnDLK5wpJTonigobh-wQcT1I2WfQi11uAAvUdV1vtzvd3vsfvcJX4y3uWyhCib-iLjQi5ttDrrrfCMo7tsdrs9vsD3JPzpVVyC8rxvO9l1FDEnEmaYeFfHwxwnehdy-A9fxPH1YOA0BLwYa8t3Ah9dAjODt3HNIW0-fcfyPP8SOw3D8NvesiOQoIgl1Sx204XhNwARncDcUFHCRyMpNksU5XF8Sfbg4zHM9VX4vZRMU9YhP4FM3QAl8+JUnSlI0wjmUghgiAAI04vRuN4jcBNADS33JMT6AkjkcSLWT5NUlV1L0nMfMA9ThK060DL8wR0XC-DhOMptWSIew9Ws+5bPsxyEMQii3ILExuV5OTo0wv04P8xRipmTcQu8kjlNAfZaqMliTObEIADcrJs-jBOEpyUhcvNJJxfLbkKt0KtKwQwAmqrNJq257jq9FGti+sQA9AFIkCEwKFYcz7ncMIiAoFsSCCUBuwoXB1oLUAYlbCgAVAbBQA2TgV2enAcFOViWwYBgaAHYwvlEvV2CCBgRKrUITBIRLbG4LgwYh115iqUgZgIJ1OCCY0E0OBHgfcKdWBnEmZyRmhwch284yqcnEfeqmUbjBpWH+wHuCJ0BdqoBHKep5il1+tzdv2ngRL1Eg8JwwH8TF+4shw0DcnkBXOHkUsal+2waBoQwiDCLnOE7ezgZMXrMuSKWZbM8z1aV9mAaBk2THs3mEd1sh5b2+4hd6KgCFeu2Ha9DHOCx3sghE3oq3DyOcbLco1H+WwGE4Pr5htk6BfOlonc582UHcD2Ngs9X-aeQPXtzs14+x6PM+tOOzojhuk6GFPODTjOrYhKtS9zxcIQrZJR9H36nXT9ZzbN13i9ANq7CITgY-EbPGHL32M-zjmXdNkvWD57gvZ98XK-Kauy-t7e69bhPG772p04oHaj89uX7HV0LUzECIqGBIxY2B9QD-2BEXdwS9bAr1vD-X+yRS6ny-tvW8w9ahdx7k3XoG9a672dsAi2h9j4hxQWg+YV9cE5HrlHNeABIXoL837EK3uLME9D4G+DAdwLhEDF7L1XnAjh5RS4kPPkLdhYgMHpywU8Rhg8mbg0gfwshndHjj21i1XQ1IJQxG4HoNeWVxJmlyLrfWhsoxPCqKYg2YRvIND0MYqeAI1SpiqE44o3kTR5GoTjDa7Atq6FzOrXIHdR5Vm0bWesG94ibVFG-cWStRbb24IuDel0lYxP8XE9WJ5rHmNSXQGWR0TotEyQEkg8TFr-mls4rWv1Ii7RiG-FwFAPBhFMLtJw7gpaPRIBQSGTcqxcNae05p3S6C9P6XFD6IyOntG4EESIRB9GDIGjDLhiypD6ONPTacCylnbKeAmQEVN9lbPcLkcypMebtG7OdTZyyczolmc0rW95NH0B6T2fpZzllQzWQwQCADfmHLRjc4+DzQVDGOUmSFFyrnnU6XcqkBynl3Qmd8hgbyIKPmlrtWw9gka7VuIlDggEyCGHaBLJuv01yGW8KJJCoAGZbmUKACeHzQDRRvMIRlFFS6svZRo+KrlMTuULMqYsLheDuC8LyoZR9gQys8MSIVwpOUzXgo8Ks9pVhMHWJsI4jM1JMT2J48QhrtjcoIiojlIrTp3FIjIwxoqdTvGdNazSgUXwXzVeIEWYrcojT5AKAxfLKRcM1OVV4nEDSCncFG7UDonQultTUdaTpHrsAIKwMgGcKA0B5lOUSMsaBB2WBnBgHg8KcD0MKmZ8yBDOvDchCgjSVidJPES3kpL2DYQEKEmoxSu2SvPMrPCI7KA9tsBwIkCbR2qhUcO-8FogIgQnUqKdJKZ19q9dFJdx0MLtBgiVBiKtu3btnV6iaB7rzhgWrMddd6L1OF7XOh1fsO7LpylJTyhILkvrfYIsQbgVVZAAHw3JcD+jykrZLKpOLeo9+YpLBuwpu4lr6d3AUeIjUNEGoN6MDah9oPJRr8hbKgjuVZchBDoLMesuAp74sJe9TDvbyWUu7Ck1Qk88V2EKDQHdnGqUpKbhmvpAISB2D8B8hg9bIKaoZVWFlqq7UfUaspgaAq1MKebDBrkpGCoUcFPKgakbQ1svU5BOl6kDE6uPb6Sqr5o06j1HGh9YFB3qvtZ651DnoJOada55NzpNNpp8x9Az0l7DwdlfZ8ziqiM6jWNeS1PAm37HS58WB5qxC6vdZ8b4vqNDprAJmgEOa8080LRWktJ0y1FsrdWx6dbIuQU7U2oQLaWxttzR2+ZuQwhCdncVqzQ7D2nl8iUJ9J5hvYa9bZigSGV2kbHUAobI3d3uH3V+ybE0z0bvm1e9wN69t3vorNzbC2BQPpW9Fv9JYLnHb7e4XDCHBCZEg52h7cHnCgcQ+d5DQ1DMdF5Ohl7OHeh4cowRn7xHhpGfI6G31NG6O9hCUuJj-GCWdC2yJ7ji5cAbz0J2ZKNlYbLPMk9FoNRfsyX+3xNAAAGdwWAACsROcGcDMrYEpoAaikw4uT1KeiydcVSpTvQ1P+SeNJ51SXcNpcAiJ9yrgvPlvKCAA')">function make_from_real_imag(x, y) {
+    <div class='snippet' id='javascript_44_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0GYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUAFtWAa04B9Auxp6TXVgBsTVAwHM+AGlABPQSPGgtlWnoAEyoGAAdWCjIAC24aMO9RX3FJaXp40ABebNAAIht7CPYKXKTk5IB+JTLy8QAuUAzszLzHVicTIpKa2vEqjx7e0AamnNznEiopIM5Sodqqgwpok2Zi7mY2Lj5BAGpGFg4eL35B+ZGwrLHWEidbWbP50EXIlcib7g93AUfz0E52BZ2HEwq5fk9yrkAKokQwkGgAd3SlwAtCj9EZTOZLNZOHYHM5cvxVL4NL5UjJQCFwpEYqoyeJCKQAroDMYzBYrM4TDcXOx3KxEr5-DpgqEIlFYvEhbUKciri18njChxuhCquwFBjliYyDQGNxBeCxBcFa1uV05hDnhItUsVgwqCRDadrcNGpdmnkJlMiDMrW6NcbkqavblefcA26baxg+UGgCgSCwdGntDYfCkR7QGiMezsVYCgT2kSSeIGWI5VTxbTovSakztIFQKwwmFbB4TE5OCQAVQyMmW+wnDLK5wpJTonigobh-wQcT1I2WfQi11uAAvUdV1vtzvd3vsfvcJX4y3uWyhCib-iLjQi5ttDrrrfCMo7tsdrs9vsD3JPzpVVyC8rxvO9l1FDEnEmaYeFfHwxwnehdy-A9fxPH1YOA0BLwYa8t3Ah9dAjODt3HNIW0-fcfyPP8SOw3D8NvesiOQoIgl1Sx204XhNwARncDcUFHCRyMpNksU5XF8Sfbg4zHM9VX4vZRMU9YhP4FM3QAl8+JUnSlI0wjmUghgiAAI04vRuN4jcBNADS33JMT6AkjkcSLWT5NUlV1L0nMfMA9ThK060DL8wR0XC-DhOMptWSIew9Ws+5bPsxyEMQii3ILExuV5OTo0wv04P8xRipmTcQu8kjlNAfZaqMliTObEIADcrJs-jBOEpyUhcvNJJxfLbkKt0KtKwQwAmqrNJq257jq9FGti+sQA9AFIkCEwKFYcz7ncMIiAoFsSCCUBuwoXB1oLUAYlbCgAVAbBQA2TgV2enAcFOViWwYBgaAHYwvlEvV2CCBgRKrUITBIRLbG4LgwYh115iqUgZgIJ1OCCY0E0OBHgfcKdWBnEmZyRmhwch284yqcnEfeqmUbjBpWH+wHuCJ0BdqoBHKep5il1+tzdv2ngRL1Eg8JwwH8TF+4shw0DcnkBXOHkUsal+2waBoQwiDCLnOE7ezgZMXrMuSKWZbM8z1aV9mAaBk2THs3mEd1sh5b2+4hd6KgCFeu2Ha9DHOCx3sghE3oq3DyOcbLco1H+WwGE4Pr5htk6BfOlonc582UHcD2Ngs9X-aeQPXtzs14+x6PM+tOOzojhuk6GFPODTjOrYhKtS9zxcIQrZJR9H36nXT9ZzbN13i9ANq7CITgY-EbPGHL32M-zjmXdNkvWD57gvZ98XK-Kauy-t7e69bhPG772p04oHaj89uX7HV0LUzECIqGBIxY2B9QD-2BEXdwS9bAr1vD-X+yRS6ny-tvW8w9ahdx7k3XoG9a672dsAi2h9j4hxQWg+YV9cE5HrlHNeABIXoL837EK3uLME9D4G+DAdwLhEDF7L1XnAjh5RS4kPPkLdhYgMHpywU8Rhg8mbg0gfwshndHjj21i1XQ1IJQxG4HoNeWVxJmlyLrfWhsoxPCqKYg2YRvIND0MYqeAI1SpiqE44o3kTR5GoTjDa7Atq6FzOrXIHdR5Vm0bWesG94ibVFG-cWStRbb24IuDel0lYxP8XE9WJ5rHmNSXQGWR0TotEyQEkg8TFr-mls4rWv1Ii7RiG-FwFAPBhFMLtJw7gpaPRIBQSGTcqxcNae05p3S6C9P6XFD6IyOntG4EESIRB9GDIGjDLhiypD6ONPTacCylnbKeAmQEVN9lbPcLkcypMebtG7OdTZyyczolmc0rW95NH0B6T2fpZzllQzWQwQCADfmHLRjc4+DzQVDGOUmSFFyrnnU6XcqkBynl3Qmd8hgbyIKPmlrtWw9gka7VuIlDggEyCGHaBLJuv01yGW8KJJCoAGZbmUKACeHzQDRRvMIRlFFS6svZRo+KrlMTuULMqYsLheDuC8LyoZR9gQys8MSIVwpOUzXgo8Ks9pVhMHWJsI4jM1JMT2J48QhrtjcoIiojlIrTp3FIjIwxoqdTvGdNazSgUXwXzVeIEWYrcojT5AKAxfLKRcM1OVV4nEDSCncFG7UDonQultTUdaTpHrsAIKwMgGcKA0B5lOUSMsaBB2WBnBgHg8KcD0MKmZ8yBDOvDchCgjSVidJPES3kpL2DYQEKEmoxSu2SvPMrPCI7KA9tsBwIkCbR2qhUcO-8FogIgQnUqKdJKZ19q9dFJdx0MLtBgiVBiKtu3btnV6iaB7rzhgWrMddd6L1OF7XOh1fsO7LpylJTyhILkvrfYIsQbgVVZAAHw3JcD+jykrZLKpOLeo9+YpLBuwpu4lr6d3AUeIjUNEGoN6MDah9oPJRr8hbKgjuVZchBDoLMesuAp74sJe9TDvbyWUu7Ck1Qk88V2EKDQHdnGqUpKbhmvpAISB2D8B8hg9bIKaoZVWFlqq7UfUaspgaAq1MKebDBrkpGCoUcFPKgakbQ1svU5BOl6kDE6uPb6Sqr5o06j1HGh9YFB3qvtZ651DnoJOada55NzpNNpp8x9Az0l7DwdlfZ8ziqiM6jWNeS1PAm37HS58WB5qxC6vdZ8b4vqNDprAJmgEOa8080LRWktJ0y1FsrdWx6dbIuQU7U2oQLaWxttzR2+ZuQwhCdncVqzQ7D2nl8iUJ9J5hvYa9bZigSGV2kbHUAobI3d3uH3V+ybE0z0bvm1e9wN69t3vorNzbC2BQPpW9Fv9JYLnHb7e4XDCHBCZEg52h7cHnCgcQ+d5DQ1DMdF5Ohl7OHeh4cowRn7xHhpGfI6G31NG6O9hCUuJj-GCWdC2yJ7ji5cAbz0J2ZKNlYbLPMk9FoNRfsyX+3xNAAAGdwWAACsROcGcDMrYEpoAaikw4uT1KeiydcVSpTvQ1P+SeNJ51SXcNpcAiJ9yrgvPlvKCAA')">function make_from_real_imag(x, y) {
     function dispatch(op) {
         return op === "real_part"
             ? x
@@ -2724,7 +2361,7 @@ function find_employee_record(employee_name,
     which applies a generic operation to an argument, now simply feeds the
     operation's name to the data object and lets the object do the
     work:<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
-    <div class='snippet' id='javascript_44_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0GYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUAFtWAa04B9Auxp6TXVgBsTVAwHM+AGlABPQSPGgtlWnoAEyoGAAdWCjIAC24aMO9RX3FJaXp40ABebNAAIht7CPYKXKTk5IB+JTLy8QAuUAzszLzHVicTIpKa2vEqjx7e0AamnNznEiopIM5Sodqqgwpok2Zi7mY2Lj5BAGpGFg4eL35B+ZGwrLHWEidbWbP50EXIlcib7g93AUfz0E52BZ2HEwq5fk9yrkAKokQwkGgAd3SlwAtCj9EZTOZLNZOHYHM5cvxVL4NL5UjJQCFwpEYqoyeJCKQAroDMYzBYrM4TDcXOx3KxEr5-DpgqEIlFYvEhbUKciri18njChxuhCquwFBjliYyDQGNxBeCxBcFa1uV05hDnhItUsVgwqCRDadrcNGpdmnkJlMiDMrW6NcbkqavblefcA26baxg+UGgCgSCwdGntDYfCkR7QGiMezsVYCgT2kSSeIGWI5VTxbTovSakztIFQKwwmFbB4TE5OCQAVQyMmW+wnDLK5wpJTonigobh-wQcT1I2WfQi11uAAvUdV1vtzvd3vsfvcJX4y3uWyhCib-iLjQi5ttDrrrfCMo7tsdrs9vsD3JPzpVVyC8rxvO9l1FDEnEmaYeFfHwxwnehdy-A9fxPH1YOA0BLwYa8t3Ah9dAjODt3HNIW0-fcfyPP8SOw3D8NvesiOQoIgl1Sx204XhNwARncDcUFHCRyMpNksU5XF8Sfbg4zHM9VX4vZRMU9YhP4FM3QAl8+JUnSlI0wjmUghgiAAI04vRuN4jcBNADS33JMT6AkjkcSLWT5NUlV1L0nMfMA9ThK060DL8wR0XC-DhOMptWSIew9Ws+5bPsxyEMQii3ILExuV5OTo0wv04P8xRipmTcQu8kjlNAfZaqMliTObEIADcrJs-jBOEpyUhcvNJJxfLbkKt0KtKwQwAmqrNJq257jq9FGti+sQA9AFIkCEwKFYcz7ncMIiAoFsSCCUBuwoXB1oLUAYlbCgAVAbBQA2TgV2enAcFOViWwYBgaAHYwvlEvV2CCBgRKrUITBIRLbG4LgwYh115iqUgZgIJ1OCCY0E0OBHgfcKdWBnEmZyRmhwch284yqcnEfeqmUbjBpWH+wHuCJ0BdqoBHKep5il1+tzdv2ngRL1Eg8JwwH8TF+4shw0DcnkBXOHkUsal+2waBoQwiDCLnOE7ezgZMXrMuSKWZbM8z1aV9mAaBk2THs3mEd1sh5b2+4hd6KgCFeu2Ha9DHOCx3sghE3oq3DyOcbLco1H+WwGE4Pr5htk6BfOlonc582UHcD2Ngs9X-aeQPXtzs14+x6PM+tOOzojhuk6GFPODTjOrYhKtS9zxcIQrZJR9H36nXT9ZzbN13i9ANq7CITgY-EbPGHL32M-zjmXdNkvWD57gvZ98XK-Kauy-t7e69bhPG772p04oHaj89uX7HV0LUzECIqGBIxY2B9QD-2BEXdwS9bAr1vD-X+yRS6ny-tvW8w9ahdx7k3XoG9a672dsAi2h9j4hxQWg+YV9cE5HrlHNeABIXoL837EK3uLME9D4G+DAdwLhEDF7L1XnAjh5RS4kPPkLdhYgMHpywU8Rhg8mbg0gfwshndHjj21i1XQ1IJQxG4HoNeWVxJmlyLrfWhsoxPCqKYg2YRvIND0MYqeAI1SpiqE44o3kTR5GoTjDa7Atq6FzOrXIHdR5Vm0bWesG94ibVFG-cWStRbb24IuDel0lYxP8XE9WJ5rHmNSXQGWR0TotEyQEkg8TFr-mls4rWv1Ii7RiG-FwFAPBhFMLtJw7gpaPRIBQSGTcqxcNae05p3S6C9P6XFD6IyOntG4EESIRB9GDIGjDLhiypD6ONPTacCylnbKeAmQEVN9lbPcLkcypMebtG7OdTZyyczolmc0rW95NH0B6T2fpZzllQzWQwQCADfmHLRjc4+DzQVDGOUmSFFyrnnU6XcqkBynl3Qmd8hgbyIKPmlrtWw9gka7VuIlDggEyCGHaBLJuv01yGW8KJJCoAGZbmUKACeHzQDRRvMIRlFFS6svZRo+KrlMTuULMqYsLheDuC8LyoZR9gQys8MSIVwpOUzXgo8Ks9pVhMHWJsI4jM1JMT2J48QhrtjcoIiojlIrTp3FIjIwxoqdTvGdNazSgUXwXzVeIEWYrcojT5AKAxfLKRcM1OVV4nEDSCncFG7UDonQultTUdaTpHrsAIKwMgGcKA0B5lOUSMsaBB2WBnBgHg8KcD0MKmZ8yBDOvDchCgjSVidJPES3kpL2DYQEKEmoxSu2SvPMrPCI7KA9tsBwIkCbR2qhUcO-8FogIgQnUqKdJKZ19q9dFJdx0MLtBgiVBiKtu3btnV6iaB7rzhgWrMddd6L1OF7XOh1fsO7LpylJTyhILkvrfYIsQbgVVZAAHw3JcD+jykrZLKpOLeo9+YpLBuwpu4lr6d3AUeIjUNEGoN6MDah9oPJRr8hbKgjuVZchBDoLMesuAp74sJe9TDvbyWUu7Ck1Qk88V2EKDQHdnGqUpKbhmvpAISB2D8B8hg9bIKaoZVWFlqq7UfUaspgaAq1MKebDBrkpGCoUcFPKgakbQ1svU5BOl6kDE6uPb6Sqr5o06j1HGh9YFB3qvtZ651DnoJOada55NzpNNpp8x9Az0l7DwdlfZ8ziqiM6jWNeS1PAm37HS58WB5qxC6vdZ8b4vqNDprAJmgEOa8080LRWktJ0y1FsrdWx6dbIuQU7U2oQLaWxttzR2+ZuQwhCdncVqzQ7D2nl8iUJ9J5hvYa9bZigSGV2kbHUAobI3d3uH3V+ybE0z0bvm1e9wN69t3vorNzbC2BQPpW9Fv9JYLnHb7e4XDCHBCZEg52h7cHnCgcQ+d5DQ1DMdF5Ohl7OHeh4cowRn7xHhpGfI6G31NG6O9hCUuJj-GCWdC2yJ7ji58C4A3noTsyUbKw2WeZJ6LQai-Zkv9viaAAAM7gsAAFYic4M4GZWwJTQA1FJhxCnqU9Hk64qlKnegaf8k8WTzqUu4Yy4BET7lXA+fLeUEAA')">function apply_generic(op, arg) {
+    <div class='snippet' id='javascript_44_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0GYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUAFtWAa04B9Auxp6TXVgBsTVAwHM+AGlABPQSPGgtlWnoAEyoGAAdWCjIAC24aMO9RX3FJaXp40ABebNAAIht7CPYKXKTk5IB+JTLy8QAuUAzszLzHVicTIpKa2vEqjx7e0AamnNznEiopIM5Sodqqgwpok2Zi7mY2Lj5BAGpGFg4eL35B+ZGwrLHWEidbWbP50EXIlcib7g93AUfz0E52BZ2HEwq5fk9yrkAKokQwkGgAd3SlwAtCj9EZTOZLNZOHYHM5cvxVL4NL5UjJQCFwpEYqoyeJCKQAroDMYzBYrM4TDcXOx3KxEr5-DpgqEIlFYvEhbUKciri18njChxuhCquwFBjliYyDQGNxBeCxBcFa1uV05hDnhItUsVgwqCRDadrcNGpdmnkJlMiDMrW6NcbkqavblefcA26baxg+UGgCgSCwdGntDYfCkR7QGiMezsVYCgT2kSSeIGWI5VTxbTovSakztIFQKwwmFbB4TE5OCQAVQyMmW+wnDLK5wpJTonigobh-wQcT1I2WfQi11uAAvUdV1vtzvd3vsfvcJX4y3uWyhCib-iLjQi5ttDrrrfCMo7tsdrs9vsD3JPzpVVyC8rxvO9l1FDEnEmaYeFfHwxwnehdy-A9fxPH1YOA0BLwYa8t3Ah9dAjODt3HNIW0-fcfyPP8SOw3D8NvesiOQoIgl1Sx204XhNwARncDcUFHCRyMpNksU5XF8Sfbg4zHM9VX4vZRMU9YhP4FM3QAl8+JUnSlI0wjmUghgiAAI04vRuN4jcBNADS33JMT6AkjkcSLWT5NUlV1L0nMfMA9ThK060DL8wR0XC-DhOMptWSIew9Ws+5bPsxyEMQii3ILExuV5OTo0wv04P8xRipmTcQu8kjlNAfZaqMliTObEIADcrJs-jBOEpyUhcvNJJxfLbkKt0KtKwQwAmqrNJq257jq9FGti+sQA9AFIkCEwKFYcz7ncMIiAoFsSCCUBuwoXB1oLUAYlbCgAVAbBQA2TgV2enAcFOViWwYBgaAHYwvlEvV2CCBgRKrUITBIRLbG4LgwYh115iqUgZgIJ1OCCY0E0OBHgfcKdWBnEmZyRmhwch284yqcnEfeqmUbjBpWH+wHuCJ0BdqoBHKep5il1+tzdv2ngRL1Eg8JwwH8TF+4shw0DcnkBXOHkUsal+2waBoQwiDCLnOE7ezgZMXrMuSKWZbM8z1aV9mAaBk2THs3mEd1sh5b2+4hd6KgCFeu2Ha9DHOCx3sghE3oq3DyOcbLco1H+WwGE4Pr5htk6BfOlonc582UHcD2Ngs9X-aeQPXtzs14+x6PM+tOOzojhuk6GFPODTjOrYhKtS9zxcIQrZJR9H36nXT9ZzbN13i9ANq7CITgY-EbPGHL32M-zjmXdNkvWD57gvZ98XK-Kauy-t7e69bhPG772p04oHaj89uX7HV0LUzECIqGBIxY2B9QD-2BEXdwS9bAr1vD-X+yRS6ny-tvW8w9ahdx7k3XoG9a672dsAi2h9j4hxQWg+YV9cE5HrlHNeABIXoL837EK3uLME9D4G+DAdwLhEDF7L1XnAjh5RS4kPPkLdhYgMHpywU8Rhg8mbg0gfwshndHjj21i1XQ1IJQxG4HoNeWVxJmlyLrfWhsoxPCqKYg2YRvIND0MYqeAI1SpiqE44o3kTR5GoTjDa7Atq6FzOrXIHdR5Vm0bWesG94ibVFG-cWStRbb24IuDel0lYxP8XE9WJ5rHmNSXQGWR0TotEyQEkg8TFr-mls4rWv1Ii7RiG-FwFAPBhFMLtJw7gpaPRIBQSGTcqxcNae05p3S6C9P6XFD6IyOntG4EESIRB9GDIGjDLhiypD6ONPTacCylnbKeAmQEVN9lbPcLkcypMebtG7OdTZyyczolmc0rW95NH0B6T2fpZzllQzWQwQCADfmHLRjc4+DzQVDGOUmSFFyrnnU6XcqkBynl3Qmd8hgbyIKPmlrtWw9gka7VuIlDggEyCGHaBLJuv01yGW8KJJCoAGZbmUKACeHzQDRRvMIRlFFS6svZRo+KrlMTuULMqYsLheDuC8LyoZR9gQys8MSIVwpOUzXgo8Ks9pVhMHWJsI4jM1JMT2J48QhrtjcoIiojlIrTp3FIjIwxoqdTvGdNazSgUXwXzVeIEWYrcojT5AKAxfLKRcM1OVV4nEDSCncFG7UDonQultTUdaTpHrsAIKwMgGcKA0B5lOUSMsaBB2WBnBgHg8KcD0MKmZ8yBDOvDchCgjSVidJPES3kpL2DYQEKEmoxSu2SvPMrPCI7KA9tsBwIkCbR2qhUcO-8FogIgQnUqKdJKZ19q9dFJdx0MLtBgiVBiKtu3btnV6iaB7rzhgWrMddd6L1OF7XOh1fsO7LpylJTyhILkvrfYIsQbgVVZAAHw3JcD+jykrZLKpOLeo9+YpLBuwpu4lr6d3AUeIjUNEGoN6MDah9oPJRr8hbKgjuVZchBDoLMesuAp74sJe9TDvbyWUu7Ck1Qk88V2EKDQHdnGqUpKbhmvpAISB2D8B8hg9bIKaoZVWFlqq7UfUaspgaAq1MKebDBrkpGCoUcFPKgakbQ1svU5BOl6kDE6uPb6Sqr5o06j1HGh9YFB3qvtZ651DnoJOada55NzpNNpp8x9Az0l7DwdlfZ8ziqiM6jWNeS1PAm37HS58WB5qxC6vdZ8b4vqNDprAJmgEOa8080LRWktJ0y1FsrdWx6dbIuQU7U2oQLaWxttzR2+ZuQwhCdncVqzQ7D2nl8iUJ9J5hvYa9bZigSGV2kbHUAobI3d3uH3V+ybE0z0bvm1e9wN69t3vorNzbC2BQPpW9Fv9JYLnHb7e4XDCHBCZEg52h7cHnCgcQ+d5DQ1DMdF5Ohl7OHeh4cowRn7xHhpGfI6G31NG6O9hCUuJj-GCWdC2yJ7ji58C4A3noTsyUbKw2WeZJ6LQai-Zkv9viaAAAM7gsAAFYic4M4GZWwJTQA1FJhxCnqU9Hk64qlKnegaf8k8WTzqUu4Yy4BET7lXA+fLeUEAA')">function apply_generic(op, arg) {
     return head(arg)(op);
 }
 </pre></div></div>
@@ -2825,7 +2462,7 @@ function find_employee_record(employee_name,
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_44_3_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_44_3_div"><SOLUTION>
     
-      <div class='snippet' id='javascript_44_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0GYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUAFtWAa04B9Auxp6TXVgBsTVAwHM+AGlABPQSPGgtlWnoAEyoGAAdWCjIAC24aMO9RX3FJaXp40ABebNAAIht7CPYKXKTk5IB+JTLy8QAuUAzszLzHVicTIpKa2vEqjx7e0AamnNznEiopIM5Sodqqgwpok2Zi7mY2Lj5BAGpGFg4eL35B+ZGwrLHWEidbWbP50EXIlcib7g93AUfz0E52BZ2HEwq5fk9yrkAKokQwkGgAd3SlwAtCj9EZTOZLNZOHYHM5cvxVL4NL5UjJQCFwpEYqoyeJCKQAroDMYzBYrM4TDcXOx3KxEr5-DpgqEIlFYvEhbUKciri18njChxuhCquwFBjliYyDQGNxBeCxBcFa1uV05hDnhItUsVgwqCRDadrcNGpdmnkJlMiDMrW6NcbkqavblefcA26baxg+UGgCgSCwdGntDYfCkR7QGiMezsVYCgT2kSSeIGWI5VTxbTovSakztIFQKwwmFbB4TE5OCQAVQyMmW+wnDLK5wpJTonigobh-wQcT1I2WfQi11uAAvUdV1vtzvd3vsfvcJX4y3uWyhCib-iLjQi5ttDrrrfCMo7tsdrs9vsD3JPzpVVyC8rxvO9l1FDEnEmaYeFfHwxwnehdy-A9fxPH1YOA0BLwYa8t3Ah9dAjODt3HNIW0-fcfyPP8SOw3D8NvesiOQoIgl1Sx204XhNwARncDcUFHCRyMpNksU5XF8Sfbg4zHM9VX4vZRMU9YhP4FM3QAl8+JUnSlI0wjmUghgiAAI04vRuN4jcBNADS33JMT6AkjkcSLWT5NUlV1L0nMfMA9ThK060DL8wR0XC-DhOMptWSIew9Ws+5bPsxyEMQii3ILExuV5OTo0wv04P8xRipmTcQu8kjlNAfZaqMliTObEIADcrJs-jBOEpyUhcvNJJxfLbkKt0KtKwQwAmqrNJq257jq9FGti+sQA9AFIkCEwKFYcz7ncMIiAoFsSCCUBuwoXB1oLUAYlbCgAVAbBQA2TgV2enAcFOViWwYBgaAHYwvlEvV2CCBgRKrUITBIRLbG4LgwYh115iqUgZgIJ1OCCY0E0OBHgfcKdWBnEmZyRmhwch284yqcnEfeqmUbjBpWH+wHuCJ0BdqoBHKep5il1+tzdv2ngRL1Eg8JwwH8TF+4shw0DcnkBXOHkUsal+2waBoQwiDCLnOE7ezgZMXrMuSKWZbM8z1aV9mAaBk2THs3mEd1sh5b2+4hd6KgCFeu2Ha9DHOCx3sghE3oq3DyOcbLco1H+WwGE4Pr5htk6BfOlonc582UHcD2Ngs9X-aeQPXtzs14+x6PM+tOOzojhuk6GFPODTjOrYhKtS9zxcIQrZJR9H36nXT9ZzbN13i9ANq7CITgY-EbPGHL32M-zjmXdNkvWD57gvZ98XK-Kauy-t7e69bhPG772p04oHaj89uX7HV0LUzECIqGBIxY2B9QD-2BEXdwS9bAr1vD-X+yRS6ny-tvW8w9ahdx7k3XoG9a672dsAi2h9j4hxQWg+YV9cE5HrlHNeABIXoL837EK3uLME9D4G+DAdwLhEDF7L1XnAjh5RS4kPPkLdhYgMHpywU8Rhg8mbg0gfwshndHjj21i1XQ1IJQxG4HoNeWVxJmlyLrfWhsoxPCqKYg2YRvIND0MYqeAI1SpiqE44o3kTR5GoTjDa7Atq6FzOrXIHdR5Vm0bWesG94ibVFG-cWStRbb24IuDel0lYxP8XE9WJ5rHmNSXQGWR0TotEyQEkg8TFr-mls4rWv1Ii7RiG-FwFAPBhFMLtJw7gpaPRIBQSGTcqxcNae05p3S6C9P6XFD6IyOntG4EESIRB9GDIGjDLhiypD6ONPTacCylnbKeAmQEVN9lbPcLkcypMebtG7OdTZyyczolmc0rW95NH0B6T2fpZzllQzWQwQCADfmHLRjc4+DzQVDGOUmSFFyrnnU6XcqkBynl3Qmd8hgbyIKPmlrtWw9gka7VuIlDggEyCGHaBLJuv01yGW8KJJCoAGZbmUKACeHzQDRRvMIRlFFS6svZRo+KrlMTuULMqYsLheDuC8LyoZR9gQys8MSIVwpOUzXgo8Ks9pVhMHWJsI4jM1JMT2J48QhrtjcoIiojlIrTp3FIjIwxoqdTvGdNazSgUXwXzVeIEWYrcojT5AKAxfLKRcM1OVV4nEDSCncFG7UDonQultTUdaTpHrsAIKwMgGcKA0B5lOUSMsaBB2WBnBgHg8KcD0MKmZ8yBDOvDchCgjSVidJPES3kpL2DYQEKEmoxSu2SvPMrPCI7KA9tsBwIkCbR2qhUcO-8FogIgQnUqKdJKZ19q9dFJdx0MLtBgiVBiKtu3btnV6iaB7rzhgWrMddd6L1OF7XOh1fsO7LpylJTyhILkvrfYIsQbgVVZAAHw3JcD+jykrZLKpOLeo9+YpLBuwpu4lr6d3AUeIjUNEGoN6MDah9oPJRr8hbKgjuVZchBDoLMesuAp74sJe9TDvbyWUu7Ck1Qk88V2EKDQHdnGqUpKbhmvpAISB2D8B8hg9bIKaoZVWFlqq7UfUaspgaAq1MKebDBrkpGCoUcFPKgakbQ1svU5BOl6kDE6uPb6Sqr5o06j1HGh9YFB3qvtZ651DnoJOada55NzpNNpp8x9Az0l7DwdlfZ8ziqiM6jWNeS1PAm37HS58WB5qxC6vdZ8b4vqNDprAJmgEOa8080LRWktJ0y1FsrdWx6dbIuQU7U2oQLaWxttzR2+ZuQwhCdncVqzQ7D2nl8iUJ9J5hvYa9bZigSGV2kbHUAobI3d3uH3V+ybE0z0bvm1e9wN69t3vorNzbC2BQPpW9Fv9JYLnHb7e4XDCHBCZEg52h7cHnCgcQ+d5DQ1DMdF5Ohl7OHeh4cowRn7xHhpGfI6G31NG6O9hCUuJj-GCWdC2yJ7ji58C4A3noTsyUbKw2WeZJ6LQajReDdwbAaAAAM7gWdoAAOxE5wZwMytgSmgBqKTDiFPUp6PJ1xVKVO9A0-5J4snnVpdw1lwCInS3Gb8+W8oIAA')">function make_from_mag_ang(r, a) {
+      <div class='snippet' id='javascript_44_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0GYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUAFtWAa04B9Auxp6TXVgBsTVAwHM+AGlABPQSPGgtlWnoAEyoGAAdWCjIAC24aMO9RX3FJaXp40ABebNAAIht7CPYKXKTk5IB+JTLy8QAuUAzszLzHVicTIpKa2vEqjx7e0AamnNznEiopIM5Sodqqgwpok2Zi7mY2Lj5BAGpGFg4eL35B+ZGwrLHWEidbWbP50EXIlcib7g93AUfz0E52BZ2HEwq5fk9yrkAKokQwkGgAd3SlwAtCj9EZTOZLNZOHYHM5cvxVL4NL5UjJQCFwpEYqoyeJCKQAroDMYzBYrM4TDcXOx3KxEr5-DpgqEIlFYvEhbUKciri18njChxuhCquwFBjliYyDQGNxBeCxBcFa1uV05hDnhItUsVgwqCRDadrcNGpdmnkJlMiDMrW6NcbkqavblefcA26baxg+UGgCgSCwdGntDYfCkR7QGiMezsVYCgT2kSSeIGWI5VTxbTovSakztIFQKwwmFbB4TE5OCQAVQyMmW+wnDLK5wpJTonigobh-wQcT1I2WfQi11uAAvUdV1vtzvd3vsfvcJX4y3uWyhCib-iLjQi5ttDrrrfCMo7tsdrs9vsD3JPzpVVyC8rxvO9l1FDEnEmaYeFfHwxwnehdy-A9fxPH1YOA0BLwYa8t3Ah9dAjODt3HNIW0-fcfyPP8SOw3D8NvesiOQoIgl1Sx204XhNwARncDcUFHCRyMpNksU5XF8Sfbg4zHM9VX4vZRMU9YhP4FM3QAl8+JUnSlI0wjmUghgiAAI04vRuN4jcBNADS33JMT6AkjkcSLWT5NUlV1L0nMfMA9ThK060DL8wR0XC-DhOMptWSIew9Ws+5bPsxyEMQii3ILExuV5OTo0wv04P8xRipmTcQu8kjlNAfZaqMliTObEIADcrJs-jBOEpyUhcvNJJxfLbkKt0KtKwQwAmqrNJq257jq9FGti+sQA9AFIkCEwKFYcz7ncMIiAoFsSCCUBuwoXB1oLUAYlbCgAVAbBQA2TgV2enAcFOViWwYBgaAHYwvlEvV2CCBgRKrUITBIRLbG4LgwYh115iqUgZgIJ1OCCY0E0OBHgfcKdWBnEmZyRmhwch284yqcnEfeqmUbjBpWH+wHuCJ0BdqoBHKep5il1+tzdv2ngRL1Eg8JwwH8TF+4shw0DcnkBXOHkUsal+2waBoQwiDCLnOE7ezgZMXrMuSKWZbM8z1aV9mAaBk2THs3mEd1sh5b2+4hd6KgCFeu2Ha9DHOCx3sghE3oq3DyOcbLco1H+WwGE4Pr5htk6BfOlonc582UHcD2Ngs9X-aeQPXtzs14+x6PM+tOOzojhuk6GFPODTjOrYhKtS9zxcIQrZJR9H36nXT9ZzbN13i9ANq7CITgY-EbPGHL32M-zjmXdNkvWD57gvZ98XK-Kauy-t7e69bhPG772p04oHaj89uX7HV0LUzECIqGBIxY2B9QD-2BEXdwS9bAr1vD-X+yRS6ny-tvW8w9ahdx7k3XoG9a672dsAi2h9j4hxQWg+YV9cE5HrlHNeABIXoL837EK3uLME9D4G+DAdwLhEDF7L1XnAjh5RS4kPPkLdhYgMHpywU8Rhg8mbg0gfwshndHjj21i1XQ1IJQxG4HoNeWVxJmlyLrfWhsoxPCqKYg2YRvIND0MYqeAI1SpiqE44o3kTR5GoTjDa7Atq6FzOrXIHdR5Vm0bWesG94ibVFG-cWStRbb24IuDel0lYxP8XE9WJ5rHmNSXQGWR0TotEyQEkg8TFr-mls4rWv1Ii7RiG-FwFAPBhFMLtJw7gpaPRIBQSGTcqxcNae05p3S6C9P6XFD6IyOntG4EESIRB9GDIGjDLhiypD6ONPTacCylnbKeAmQEVN9lbPcLkcypMebtG7OdTZyyczolmc0rW95NH0B6T2fpZzllQzWQwQCADfmHLRjc4+DzQVDGOUmSFFyrnnU6XcqkBynl3Qmd8hgbyIKPmlrtWw9gka7VuIlDggEyCGHaBLJuv01yGW8KJJCoAGZbmUKACeHzQDRRvMIRlFFS6svZRo+KrlMTuULMqYsLheDuC8LyoZR9gQys8MSIVwpOUzXgo8Ks9pVhMHWJsI4jM1JMT2J48QhrtjcoIiojlIrTp3FIjIwxoqdTvGdNazSgUXwXzVeIEWYrcojT5AKAxfLKRcM1OVV4nEDSCncFG7UDonQultTUdaTpHrsAIKwMgGcKA0B5lOUSMsaBB2WBnBgHg8KcD0MKmZ8yBDOvDchCgjSVidJPES3kpL2DYQEKEmoxSu2SvPMrPCI7KA9tsBwIkCbR2qhUcO-8FogIgQnUqKdJKZ19q9dFJdx0MLtBgiVBiKtu3btnV6iaB7rzhgWrMddd6L1OF7XOh1fsO7LpylJTyhILkvrfYIsQbgVVZAAHw3JcD+jykrZLKpOLeo9+YpLBuwpu4lr6d3AUeIjUNEGoN6MDah9oPJRr8hbKgjuVZchBDoLMesuAp74sJe9TDvbyWUu7Ck1Qk88V2EKDQHdnGqUpKbhmvpAISB2D8B8hg9bIKaoZVWFlqq7UfUaspgaAq1MKebDBrkpGCoUcFPKgakbQ1svU5BOl6kDE6uPb6Sqr5o06j1HGh9YFB3qvtZ651DnoJOada55NzpNNpp8x9Az0l7DwdlfZ8ziqiM6jWNeS1PAm37HS58WB5qxC6vdZ8b4vqNDprAJmgEOa8080LRWktJ0y1FsrdWx6dbIuQU7U2oQLaWxttzR2+ZuQwhCdncVqzQ7D2nl8iUJ9J5hvYa9bZigSGV2kbHUAobI3d3uH3V+ybE0z0bvm1e9wN69t3vorNzbC2BQPpW9Fv9JYLnHb7e4XDCHBCZEg52h7cHnCgcQ+d5DQ1DMdF5Ohl7OHeh4cowRn7xHhpGfI6G31NG6O9hCUuJj-GCWdC2yJ7ji58C4A3noTsyUbKw2WeZJ6LQajReDdwbAaAAAM7gWdoAAOxE5wZwMytgSmgBqKTDiFPUp6PJ1xVKVO9A0-5J4snnVpdw1lwCInS3Gb8+W8oIAA')">function make_from_mag_ang(r, a) {
     function dispatch(op) {
         return op === "real_part"
             ? r * math_cos(a)
@@ -2983,7 +2620,7 @@ function find_employee_record(employee_name,
       function,
     
     using the elements in the list as arguments. For example,
-    <div class='snippet' id='javascript_44_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_44_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 apply(sum_of_squares, list(1, 3))</pre></div></div>
     returns 10.
     </FOOTNOTE></div>

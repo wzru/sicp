@@ -2495,66 +2495,14 @@ function make_tree(entry,left,right) {
     return copy_to_list(tree, null);
 }
 </pre></div></div>
-    <OL>
-      <LI>
-        Do the two
-        
-	  
-	  functions
-	
-        produce the same result for every tree? If not, how do the results
-	differ?  What lists do the two
-	
-	  
-	  functions
-	
-        produce for the trees in figure <REF NAME="fig:binary-tree"><a class="superscript" id="2.3.3-fig-link-2.16" href="./2.3.3.html#fig_2.16">2.16</a></REF>?
-        
-      </LI>
-      <LI>
-        Do the two
-        
-	  
-	  functions
-	
-        have the same order of growth in the number of steps required to
-	convert a balanced tree with $n$ elements
-	to a list? If not, which one grows more slowly?
-      </LI>
-    </OL>
+    
     
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_39_5_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_39_5_div"><SOLUTION>
     
-      <OL>
-	<LI>
-	  The two procedures produce the same results. For the trees in
-	  figure <REF NAME="fig:binary-tree"><a class="superscript" id="2.3.3-fig-link-2.16" href="./2.3.3.html#fig_2.16">2.16</a></REF>, the result will always
-	  be <kbd>list(1, 3, 5, 7, 9, 11)</kbd>.
-	</LI>
-	<LI>
-	  A balanced tree with $n$ elements has a
-	  height of $O(\log{n})$ and
-	  $O(n)$ nodes. To convert the tree into a
-	  list using function
-	  <kbd>tree_to_list_1</kbd>, we call 
-	  <kbd>tree_to_list_1</kbd>
-	  $O(n)$ times. We call
-	  <kbd>append</kbd> at each node of the tree,  but at
-	  each level, we apply <kbd>append</kbd>
-	  with a combined $O(n)$ elements in the
-	  first arguments. Thus, the runtime of
-	  <kbd>tree_to_list_1</kbd> has an order of
-	  growth of $O(n\log{n})$. Instead of
-	  <kbd>append</kbd>, the function
-	  <kbd>tree_to_list_2</kbd> gets away with
-	  calling <kbd>pair</kbd> at each node, and
-	  thus <kbd>tree_to_list_2</kbd> has an order
-	  of growth of $O(n)$.
-	</LI>
-      </OL>
+      
     </SOLUTION></div></div>
 </EXERCISE></div>
 
@@ -2636,72 +2584,14 @@ function partial_tree(elts, n) {
 }
 </pre></div></div>
     
-    <OL>
-      <LI>
-        Write a short paragraph explaining as clearly as you can how
-	
-	  
-	  <kbd>partial_tree</kbd>
-	  
-	
-	works.  Draw the tree produced by
-	
-	  
-	  <kbd>list_to_tree</kbd>
-	  
-	
-	for the list
-	
-	  
-	  
-	    <kbd>list(1, 3, 5, 7, 9, 11)</kbd>.
-	  
-	
-        
-      </LI>
-      <LI>
-        What is the order of growth in the number of steps required by
-	
-	  
-	  <kbd>list_to_tree</kbd>
-	  
-	
-	to convert a list of $n$ elements?
-      </LI>
-    </OL>
+    
     
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_39_6_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_39_6_div"><SOLUTION>
     
-      <OL>
-	<LI>
-	  The function
-	  <kbd>partial_tree(elts, n)</kbd>
-	  returns a pair whose head is a balanced tree for the first
-	  $\lfloor (n - 1) / 2 \rfloor$
-	  elements of <kbd>elts</kbd>, and whose
-	  tail is the list containing the remaining elements of
-	  <kbd>elts</kbd>. It works by calling itself
-	  recursively, to construct the left subtree and right subtree, and
-	  then makes the tree, and the required return pair. Thus, the overall
-	  function <kbd>list_to_tree</kbd> just needs
-	  to call <kbd>partial_tree</kbd> with the
-	  given list and its length, and return the head of the result.
-	  <p></p>
-	  The tree for
-	  <kbd>list(1, 3, 5, 7, 9, 11)</kbd>
-	  is the tree on the right in
-	  figure <REF NAME="fig:binary-tree"><a class="superscript" id="2.3.3-fig-link-2.16" href="./2.3.3.html#fig_2.16">2.16</a></REF>.
-	</LI>
-	<LI>
-	  The order of growth for the runtime of function
-	  <kbd>list_to_tree</kbd> is
-	  $O(n)$ because for every node of
-	  the result tree, only a constant amount of work is needed.
-	</LI>
-      </OL>
+      
     </SOLUTION></div></div>
 </EXERCISE></div>
 

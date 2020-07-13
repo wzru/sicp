@@ -2427,58 +2427,7 @@ function expand(num, den, radix) {
   $a_0, a_1, a_2, a_3,$ ….
   
   
-  <OL>
-    <LI>
-      The integral of the series
-      $a_0 + a_1 x + a_2 x^2 + a_3 x^3 + \cdots$
-      is the series
-      
-        \[ c + a_0 x + \frac{1}{2}a_1 x^2 + \frac{1}{3}a_2 x^3 + \frac{1}{4}a_3
-        x^4 + \cdots \]
-      
-      where $c$ is any constant.
-      Define a
-      
-      function
-      
-      
-      
-	
-	<kbd>integrate_series</kbd>
-	
-      
-      that takes as input a stream
-      $a_0, a_1, a_2,\ldots$ representing
-      a power series and returns the stream
-      $a_0, \frac{1}{2}a_1, \frac{1}{3}a_2,\ldots$
-      of coefficients of the non-constant terms of the integral of the series.
-      (Since the result has no constant term, it doesn't represent a power
-      series; when we use <kbd>integrate-series</kbd>,
-      we will
-      
-	
-	<kbd>pair</kbd> with
-      
-      the appropriate constant.)
-    </LI>
-    <LI>
-      The function $x\mapsto e^x$ is its own
-      derivative.  This implies that $e^x$ and the
-      integral of $e^x$ are the
-      same series, except for the constant term, which is
-      $e^0 = 1$. Accordingly, we can generate the
-      series for $e^x$ as
-      <div class='snippet' id='javascript_70_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-const exp_series = 
-    pair(1, () => integrate_series(exp_series));</pre></div></div>
-      Show how to generate the series for sine and cosine, starting from the
-      facts that the derivative of sine is cosine and the derivative of cosine
-      is the negative of sine:
-      <div class='snippet' id='javascript_70_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-const cosine_series = pair(1, ??);
-const sine_series = pair(0, ??);</pre></div></div>
-    </LI>
-  </OL>
+  
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_70_7_div" data-toggle="collapse">Add solution</button></div>
@@ -2506,7 +2455,7 @@ const sine_series = pair(0, ??);</pre></div></div>
       function
     
     for multiplying series:
-    <div class='snippet' id='javascript_70_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    <div class='snippet' id='javascript_70_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function mul_series(s1, s2) {
     pair(??, add_streams(??, ??));
 }</pre></div></div>

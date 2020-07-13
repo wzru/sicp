@@ -2089,16 +2089,8 @@ there</pre></div></div>    </td>
   go_to(label(there)),
 "there",</pre></div></div></td></tr></table>
     With the simulator as written, what will the contents of register
-    
-      <span style="color:green"><kbd>a</kbd></span>
-      <span style="color:blue"><kbd>"a"</kbd></span>
-    
-    be when control reaches
-    
-      <span style="color:green"><kbd>there</kbd>?</span>
-      <span style="color:blue"><kbd>"there"</kbd>?</span>
-    
-    Modify the
+    <kbd>a</kbd> be when control reaches
+    <kbd>there</kbd>?  Modify the
     
       <span style="color:green"><kbd>extract-labels</kbd></span>
       <span style="color:blue">
@@ -2191,7 +2183,7 @@ function extract_labels(text, receive) {
       (update-insts! insts labels machine)
       insts)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_105_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function assemble_alternative(controller_text, machine) {
+function assemble(controller_text, machine) {
     const result = extract_labels(controller_text);
     const insts = head(result);
     const labels = tail(result);

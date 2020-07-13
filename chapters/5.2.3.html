@@ -2197,7 +2197,7 @@ function perform_action(inst) {
     <kbd>label</kbd>, or
     
       
-      constant
+      <kbd>constant</kbd>
     
     expression may be needed for assignment to a register
     
@@ -2461,53 +2461,7 @@ save(x);
 restore(y);</pre></div></div>
     There are several reasonable possibilities for the meaning of
     <kbd>restore</kbd>:
-    <OL>
-      <LI>
-	
-	  
-	  <kbd>restore(y)</kbd>
-	  
-	
-	puts into <kbd>>y</kbd> the last value saved on the
-	stack, regardless of what register that value came from.  This is the
-	way our simulator behaves.  Show how to take advantage of this
-	behavior to eliminate one instruction from the Fibonacci machine of
-	section <REF NAME="sec:stack-recursion"><a class="superscript" id="5.2.3-sec-link-5.1.4" href="./5.1.4.html">5.1.4</a></REF>
-	(figure <REF NAME="fig:fib-machine"><a class="superscript" id="5.2.3-fig-link-5.12" href="./5.1.4.html#fig_5.12">5.12</a></REF>).
-      </LI>
-      <LI>
-	
-	  
-	  <kbd>restore(y)</kbd>
-	  
-	
-	puts into <kbd>y</kbd> the last value saved on the
-	stack, but only if that value was saved from
-	<kbd>y</kbd>; otherwise, it signals an error.  Modify
-	the simulator to behave this way.  You will have to change
-	<kbd>save</kbd> to put the register name on the stack
-	along with the value.
-      </LI>
-      <LI>
-	
-	  
-	  <kbd>restore(y)</kbd>
-	  
-	
-	puts into <kbd>y</kbd> the last value saved from
-	<kbd>y</kbd> regardless of what other registers were
-	saved after <kbd>y</kbd> and not restored.  Modify the
-	simulator to behave this way.  You will have to associate a separate
-	stack with each register.  You should make the
-	
-	  
-	  
-	    <kbd>initialize_stack</kbd>
-	  
-	
-	operation initialize all the register stacks.
-      </LI>
-    </OL>
+    
     
   
       <div class="Solution">

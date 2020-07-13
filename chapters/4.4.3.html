@@ -2198,39 +2198,7 @@ sum(amount,
 	<QUOTE>great</QUOTE> to a grandson relationship. This should enable the
 	system to deduce that Irad is the great-grandson of Adam, or that Jabal
 	and Jubal are the great-great-great-great-great-grandsons of Adam.
-	<OL>
-	  <LI>
-	    Change the assertions in the database such that there is only one
-	    kind of information, namely
-	    <kbd>related</kbd>. The first argument
-	    then describes the relationship. Thus instead of
-	    <kbd>son("Adam", "Cain")</kbd>, you would
-	    write
-	    <kbd>related("son", "Adam", "Cain")</kbd>.
-	  </LI>
-	  <LI>
-	    Represent the fact about Irad, for example, as
-	    <div class='snippet' id='javascript_94_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-related(list("great", "grandson"), "Adam", "Irad")</pre></div></div>
-	  </LI>
-	  <LI>
-	    Write rules that determine if a list ends in the word
-	    <kbd>"grandson"</kbd>.
-	  </LI>
-	  <LI>
-	    Use this to express a rule that allows one to derive the relationship
-	    <div class='snippet' id='javascript_94_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-list(pair("great", rel), x, y)</pre></div></div>
-	    where <kbd>rel</kbd> is a list ending in
-	    <kbd>"grandson"</kbd>.
-	  </LI>
-	  <LI>
-	    Check your rules on queries such as
-	    <kbd>related(list("great", "grandson"), g, ggs)</kbd>
-	    and
-	    <kbd>related(relationship, "Adam", "Irad")</kbd>.
-	  </LI>
-	</OL>
+	
 	
       
       <div class="Solution">

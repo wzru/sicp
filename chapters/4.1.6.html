@@ -1802,40 +1802,7 @@
 	internal declarations of lambda expressions
 	as syntactic sugar for immediately invoked
 	functions that carry out assignments.
-	<OL>
-	  <LI>
-	    
-	    Write a function
-	    <kbd>transform_lambda</kbd>
-	    that transforms any lambda expression as shown above.
-	  </LI>
-	  <LI>
-	    Install <kbd>transform_lambda</kbd>
-	    in the interpreter by modifying the function 
-	    <kbd>evaluate</kbd>
-	    in an appropriate way.
-	  </LI>
-	  
-	  <LI>
-	    JavaScript's semantics requires that any attempt to access the
-	    value <kbd>"*unassigned*"</kbd> leads to
-	    a runtime error. Change
-	    <kbd>lookup_symbol_value</kbd>
-	    (section <REF NAME="sec:operations-on-environments"><a class="superscript" id="4.1.6-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF>) to
-	    signal an error if the value it finds is 
-	    <kbd>"*unassigned*"</kbd>.
-	  </LI>
-	  <LI>
-	    Even with this protection in place, there is a loophole: A program
-	    could declare a variable in a block and assign a value to the
-	    variable before its <kbd>let</kbd>
-	    declaration is evaluated. Change the evaluator of
-	    section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> such that any
-	    assignment to a variable declared with
-	    <kbd>let</kbd> leads to an error if
-	    the declaration has not been evaluated yet.
-	  </LI>
-	</OL>
+	
       
     
   
@@ -1909,36 +1876,7 @@
 	frame of the given environment a binding of the declared name to
 	the result of evaluating the expression on the right hand side of the
 	declaration.
-	<OL>
-	  <LI>
-	    Simplify the declaration of 
-	    <kbd>eval_block</kbd> in
-	    section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> to 
-	    ignore local declarations.
-	  </LI>
-	  <LI>
-	    Declare a function
-	    <kbd class='snippet'>add_binding_to_frame($name$, $value$, $frame$)</kbd>
-	    that permanently changes the given
-	    $\textit{frame}$ such that after calling
-	    the function, the given $\textit{name}$
-	    refers to the given $\textit{value}$.
-	  </LI>
-	  <LI>
-	    Change the functions
-	    <kbd>eval_constant_declaration</kbd>
-	    and 
-	    <kbd>eval_variable_declaration</kbd>
-	    such that they make use of
-	    <kbd>add_binding_to_frame</kbd> instead of
-	    <kbd>set_name_value</kbd>.
-	  </LI>
-	  <LI>
-	    Can you find programs that behave differently with this treatment
-	    of local declarations, compared to the implementation
-	    in section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>?
-	  </LI>
-	</OL>
+	
       
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_81_3_div" data-toggle="collapse">Add solution</button></div>
@@ -2063,49 +2001,7 @@ f(10);
 )
 (10);
 </pre></div></div>
-	<OL>
-	  <LI>
-	    Check (by evaluating the expression) that this really does compute
-	    factorials.  Devise an analogous expression for computing Fibonacci
-	    numbers.
-	  </LI>
-	  <LI>
-	    Consider the following function, which includes mutually recursive
-	    internal definitions:
-	    
-	    <div class='snippet' id='javascript_81_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzAVwDsBjAFwEsB7E0AgCgA8BKUAb11B4dMtr0qAZwD6AUwBu4koxLsuvJaABO4ikRX16AXj2gADN2UneAflAUVRccdMmAXKBGiaAEzdzQAWlAZWANx2oAC+wcTk1HTOYu6e8pzBSmoaWqC6+kb2phYEAIYANsK22Y4xEtKy9L7+QUphyeqaQmJSMiyBuGGEjACcvYFAA')">function f(x) {
-    function is_even(n) {
-        return n === 0
-               ? true
-               : is_odd(n - 1);
-    }
-    function is_odd(n) {
-        return n === 0
-               ? false
-               : is_even(n - 1);
-    }
-    return is_even(x);
-}
-</pre></div></div>
-	    Fill in the missing expressions to complete an alternative
-	    declaration of <kbd>f</kbd>, which uses
-	    neither <kbd>const</kbd> nor
-	    <kbd>let</kbd> nor internal function
-	    declarations:
-	    <div class='snippet' id='javascript_81_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function f(x) {
-    return (
-        (is_even, is_odd) => 
-           is_even(is_even, is_odd, x)
-      )
-      ( (ev, od, n) =>
-           n === 0 ? true : od(??, ??, ??),
-        (ev, od, n) =>
-           n === 0 ? false : ev(??, ??, ??) 
-      );
-}</pre></div></div>
-	  </LI>
-	</OL>
+	
       
     
   

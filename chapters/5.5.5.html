@@ -2051,39 +2051,7 @@ assign("val", op("+"), reg("val"), constant(1)),
   it currently recognizes.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a> For each special form our compiler has a code generator.  In
   this exercise we will construct a family of code generators for the
   open-coded primitives.
-  <OL>
-    <LI>
-      The open-coded primitives, unlike the special forms, all need their
-      operands evaluated.  Write a code generator <kbd>spread_arguments</kbd> for use by
-      all the open-coding code generators.  <kbd>Spread_arguments</kbd> should take an
-      operand list and compile the given operands targeted to successive argument
-      registers.  Note that an operand may contain a call to an open-coded
-      primitive, so argument registers will have to be preserved during operand
-      evaluation.
-    </LI>
-    <LI>
-      For each of the primitive
-      functions
-      <kbd>=</kbd>, <kbd>*</kbd>, <kbd>-</kbd>, and
-      <kbd>+</kbd>, write a code generator that takes a combination with that
-      operator, together with a target and a linkage descriptor, and
-      produces code to spread the arguments into the registers and then
-      perform the operation targeted to the given target with the given
-      linkage.  You need only handle expressions with two operands.  Make
-      <kbd>compile</kbd> dispatch to these code generators.
-    </LI>
-    <LI>
-      Try your new compiler on the <kbd>factorial</kbd> example.  Compare the
-      resulting code with the result produced without open coding.
-    </LI>
-    <LI>
-      Extend your code generators for <kbd>+</kbd> and <kbd>*</kbd> so that they
-      can handle expressions with arbitrary numbers of operands.  An
-      expression with more than two operands will have to be compiled into a
-      sequence of operations, each with only two inputs.
-      
-    </LI>
-  </OL>
+  
       
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_121_5_div" data-toggle="collapse">Add solution</button></div>

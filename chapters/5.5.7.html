@@ -1943,38 +1943,7 @@ ok
   stack use to the performance of a special-purpose machine for the same
   computation gives some indication of the quality of the compiler.
 
-  <OL>
-    <LI>
-      Exercise <REF NAME="ex:rec-fact"><a class="superscript" id="5.5.7-ex-link-5.27" href="./5.4.4.html#ex_5.27">5.27</a></REF> asked you to determine, as a function of
-      $n$, the number of pushes and the maximum stack depth needed by the
-      evaluator to compute $n!$ using the recursive factorial
-      function
-      given above.  Exercise <REF NAME="ex:measure-fact"><a class="superscript" id="5.5.7-ex-link-5.14" href="./5.2.4.html#ex_5.14">5.14</a></REF> asked you to do the same
-      measurements for the special-purpose factorial machine shown in
-      Figure <REF NAME="fig:fact-machine"><a class="superscript" id="5.5.7-fig-link-5.11" href="./5.1.4.html#fig_5.11">5.11</a></REF>. Now perform the same analysis using the
-      compiled <kbd>factorial</kbd>
-      function.
-
-      Take the ratio of the number of pushes in the compiled version to the
-      number of pushes in the interpreted version, and do the same for the
-      maximum stack depth.  Since the number of operations and the stack
-      depth used to compute $n!$ are linear in $n$, these ratios should
-      approach constants as $n$ becomes large.  What are these constants?
-      Similarly, find the ratios of the stack usage in the special-purpose
-      machine to the usage in the interpreted version.
-
-      Compare the ratios for special-purpose versus interpreted code to the ratios
-      for compiled versus interpreted code.  You should find that the
-      special-purpose machine does much better than the compiled code, since
-      the hand-tailored controller code should be much better than what is
-      produced by our rudimentary general-purpose compiler.
-    </LI>
-    <LI>
-      Can you suggest improvements to the compiler that would help it
-      generate code that would come closer in performance to the
-      hand-tailored version?
-    </LI>
-  </OL>
+  
       
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_123_1_div" data-toggle="collapse">Add solution</button></div>

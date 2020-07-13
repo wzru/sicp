@@ -2180,78 +2180,7 @@ put_coercion("javascript_number", "javascript_number",
 put_coercion("complex", "complex",
              complex_to_complex);</pre></div></div>
 
-    <OL>
-      <LI>
-        With Louis's coercion
-        
-	  
-	  functions
-	
-        installed, what happens if
-	
-	  
-	  <kbd>apply_generic</kbd>
-	  
-	
-        is called with two arguments of type
-	
-	  
-	  <kbd>"javascript_number"</kbd>
-	  
-	
-	or two arguments of
-        type
-	
-	  
-	  <kbd>"complex"</kbd>
-	  
-	
-	for an operation that is not found in the table for those types?
-	For example, assume that we've defined a generic exponentiation
-        operation:
-        <div class='snippet' id='javascript_47_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function exp(x, y) { 
-    return apply_generic("exp", list(x, y)); 
-}</pre></div></div>
-        and have put a
-        
-	  
-	  function
-	
-        for exponentiation in the 
-	
-	  
-	  JavaScript-number
-	
-        package but not in any other package:
-        <div class='snippet' id='javascript_47_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-// following added to JavaScript-number package
-put("exp", list("javascript_number", "javascript_number"),
-    (x, y) => tag(math_exp(x, y))); // using primitive math_exp</pre></div></div>
-        What happens if we call <kbd>exp</kbd> with two
-	complex numbers as arguments?
-      </LI>
-      <LI>
-        Is Louis correct that something had to be done about coercion with
-	arguments of the same type, or does
-	
-	  
-	  <kbd>apply_generic</kbd>
-	  
-	
-        work correctly as is?
-      </LI>
-      <LI>
-        Modify
-	
-	  
-	  <kbd>apply_generic</kbd>
-	  
-	
-	so that it doesn't try coercion if the two arguments have the
-	same type.
-      </LI>
-    </OL>
+    
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_47_1_div" data-toggle="collapse">Add solution</button></div>
