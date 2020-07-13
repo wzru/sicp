@@ -1678,26 +1678,45 @@
         <div class='SECTION'><SECTION>
     
 
-      
-      <div class='permalink'>
-<a name='p1' class='permalink'></a><p>
   
-  As with the metacircular evaluator, special forms are handled by
-  selectively evaluating fragments of the expression.  For an <kbd>if</kbd>
-  expression, we must evaluate the predicate and decide, based on the
-  value of predicate, whether to evaluate the consequent or the
-  alternative.
-      </p></div>
+  <div class='permalink'>
+<a name='p1' class='permalink'></a><p>
+    
+    As with the metacircular evaluator, special forms are handled by
+    selectively evaluating fragments of the expression.  For
+    
+      
+      
+	conditional
+      
+    
+    expression, we must evaluate the predicate and decide, based on the
+    value of predicate, whether to evaluate the consequent or the
+    alternative.
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-  Before evaluating the predicate, we save the <kbd>if</kbd> expression
-  itself so that we can later extract the consequent or alternative.  We
-  also save the environment, which we will need later in order to
-  evaluate the consequent or the alternative, and we save <kbd>continue</kbd>, which we will need later in order to return to the
-  evaluation of the expression that is waiting for the value of the <kbd>if</kbd>.
-
-  <div class='snippet' id='javascript_114_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    Before evaluating the predicate, we save the
+    
+      
+      
+	conditional
+      
+    
+    expression itself so that we can later extract the consequent or
+    alternative.  We also save the environment, which we will need later in
+    order to evaluate the consequent or the alternative, and we save
+    <kbd>continue</kbd>, which we will need later in order to
+    return to the evaluation of the expression that is waiting for the value of
+    the
+    
+      
+      
+	conditional.
+      
+    
+    <div class='snippet' id='javascript_114_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_if",
     save("exp"),                    // save expression for later
     save("env"),
@@ -1705,18 +1724,36 @@
     assign("continue", label("ev_if_decide")),
     assign("exp", list(op("conditional_pred"), reg("exp"))),
     go_to(label("eval_dispatch")),  // evaluate the predicate</pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-  When we return from evaluating the predicate, we test whether it was
-  true or false and, depending on the result, place either the
-  consequent or the alternative in <kbd>exp</kbd> before going to <kbd>eval_dispatch</kbd>.  Notice that restoring <kbd>env</kbd> and <kbd>continue</kbd>
-  here sets up <kbd>eval_dispatch</kbd> to have the correct environment and
-  to continue at the right place to receive the value of the <kbd>if</kbd>
-  expression. 
-
-  <div class='snippet' id='javascript_114_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    When we return from evaluating the predicate, we test whether it was
+    true or false and, depending on the result, place either the
+    consequent or the alternative in <kbd>exp</kbd> before
+    going to
+    
+      
+      <kbd>eval_dispatch</kbd>.
+      
+    
+    Notice that restoring <kbd>env</kbd> and
+    <kbd>continue</kbd> here sets up
+    
+      
+      <kbd>eval_dispatch</kbd>
+      
+    
+    to have the correct environment and
+    to continue at the right place to receive the value of the
+    
+      
+      
+	conditional
+      
+    
+    expression. 
+    <div class='snippet' id='javascript_114_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_if_decide",
     restore("continue"),
     restore("env"),
@@ -1731,24 +1768,48 @@
 "ev_if_consequent",
     assign("exp", list(op("conditional_cons"), reg("exp"))),
     go_to(label("eval_dispatch")),</pre></div></div>
-      </p></div>
+  </p></div>
 
-      
+  
       <div class='permalink'>
         <a name='h1' class='permalink'></a><h2>
      
-  Assignments and definitions
-      </h2></div>
+    Assignments and definitions
+  </h2></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
-  
-  Assignments are handled by <kbd>ev_assignment</kbd>, which is reached from
-  <kbd>eval_dispatch</kbd> with the assignment expression in <kbd>exp</kbd>.  The code at <kbd>ev_assignment</kbd> first evaluates the value part of the expression and
-  then installs the new value in the environment.  <kbd>Set_variable_value</kbd> is assumed to be available as a machine
-  operation.
-
-  <div class='snippet' id='javascript_114_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    
+    Assignments are handled by
+    
+      
+      <kbd>ev_assignment</kbd>,
+      
+    
+    which is reached from
+    
+      
+      <kbd>eval_dispatch</kbd>
+      
+    
+    with the assignment expression in <kbd>exp</kbd>.  The
+    code at
+    
+      
+      <kbd>ev_assignment</kbd>
+      
+    
+    first evaluates the value part of the expression and then installs the new
+    value in the environment.
+    
+      
+      
+	The function
+	<kbd>assign_symbol_value</kbd>
+      
+    
+    is assumed to be available as a machine operation.
+    <div class='snippet' id='javascript_114_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_assignment",
     assign("unev", list(op("assignment_name"), reg("exp"))),
     save("unev"), // save variable for later
@@ -1763,17 +1824,17 @@
     restore("env"),
     restore("unev"),
     perform(
-    list(op("assign_name_value"), reg("unev"), reg("val"), reg("env"))
+    list(op("assign_symbol_value"), reg("unev"), reg("val"), reg("env"))
     ),
     assign("val", list(constant("ok"))),
     go_to(reg("continue")),</pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-  
-  Definitions are handled in a similar way:
-  <div class='snippet' id='javascript_114_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+    
+    Definitions are handled in a similar way:
+    <div class='snippet' id='javascript_114_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_variable_declaration",
     assign("unev", list(op("variable_declaration_name"), reg("exp"))),
     save("unev"), // save variable for later
@@ -1790,22 +1851,24 @@
     perform(list(op("declare_value"), reg("unev"), reg("val"), reg("env"))),
     assign("val", list(constant("ok"))),
     go_to(reg("continue")),</pre></div></div>
-      </p></div>
+  </p></div>
 
-      
+  
     <div class="permalink">
     <a name="ex_5.23" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.23">Exercise 5.23 </a></b> 
   
+    
+    
+    
+    Extend the evaluator to handle derived expressions such as
+    <kbd>cond</kbd>,
+    <kbd>let</kbd>, and so on
+    (section&nbsp;<REF NAME="sec:representing-expressions"><a class="superscript" id="5.4.3-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>).
+    You may <QUOTE>cheat</QUOTE> and assume that the syntax
+    transformers such as <kbd>cond->if</kbd> are available
+    as machine operations.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+    
   
-  
-  
-  Extend the evaluator to handle derived expressions such as <kbd>cond</kbd>,
-  <kbd>let</kbd>, and so on (section <REF NAME="sec:representing-expressions"><a class="superscript" id="5.4.3-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>).
-  You may <QUOTE>cheat</QUOTE> and assume that the syntax
-  transformers such as <kbd>cond->if</kbd> are available as machine
-  operations.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-  
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_114_1_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_114_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1814,18 +1877,23 @@
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.24" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.24">Exercise 5.24 </a></b> 
   
-  
-  Implement <kbd>cond</kbd> as a new basic special form without
-  reducing it to <kbd>if</kbd>.  You will have to construct a loop that tests
-  the predicates of successive <kbd>cond</kbd> clauses until you find one
-  that is true, and then use <kbd>ev_sequence</kbd> to evaluate the actions
-  of the clause.
-  
+    
+    Implement <kbd>cond</kbd> as a new basic special form
+    without reducing it to <kbd>if</kbd>.  You will have to
+    construct a loop that tests the predicates of successive
+    <kbd>cond</kbd> clauses until you find one that is true,
+    and then use
+    
       
+      <kbd>ev_sequence</kbd>
+    
+    to evaluate the actions of the clause.
+    
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_114_2_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_114_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1834,15 +1902,16 @@
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.25" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.25">Exercise 5.25 </a></b> 
   
+    
+    
+    Modify the evaluator so that it uses normal-order evaluation,
+    based on the lazy evaluator of
+    section&nbsp;<REF NAME="sec:lazy-evaluation"><a class="superscript" id="5.4.3-sec-link-4.2" href="./4.2.html">4.2</a></REF>.
   
-  
-  Modify the evaluator so that it uses normal-order evaluation,
-  based on the lazy evaluator of section <REF NAME="sec:lazy-evaluation"><a class="superscript" id="5.4.3-sec-link-4.2" href="./4.2.html">4.2</a></REF>.
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_114_3_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_114_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1850,17 +1919,19 @@
     
 </EXERCISE></div>
 
-
-    <hr>
+<hr>
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
     <FOOTNOTE>
-    This isn't really cheating.  In an actual
-    implementation built from scratch, we would use our explicit-control
+    This isn't really cheating.  In an
+    actual implementation built from scratch, we would use our explicit-control
     evaluator to interpret a JavaScript program that performs source-level
-    transformations <kbd></kbd> in a syntax phase that runs before
-    execution.
+    transformations
+    
+      
+      <kbd></kbd>
+       in a syntax phase that runs before execution.
     </FOOTNOTE></div>
 
     

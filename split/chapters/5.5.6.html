@@ -1812,11 +1812,11 @@ let y = 4;
 
       <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
-  Exercises <REF NAME="ex:lexical-address-start"><a class="superscript" id="5.5.6-ex-link-5.38" href="./5.5.6.html#ex_5.38">5.38</a></REF>
-  through <REF NAME="ex:lexical-address-end"><a class="superscript" id="5.5.6-ex-link-5.42" href="./5.5.6.html#ex_5.42">5.42</a></REF> describe how to complete this sketch of
+  Exercises&nbsp;<REF NAME="ex:lexical-address-start"><a class="superscript" id="5.5.6-ex-link-5.38" href="./5.5.6.html#ex_5.38">5.38</a></REF>
+  through&nbsp;<REF NAME="ex:lexical-address-end"><a class="superscript" id="5.5.6-ex-link-5.42" href="./5.5.6.html#ex_5.42">5.42</a></REF> describe how to complete this sketch of
   the lexical-addressing strategy in order to incorporate lexical lookup
   into the compiler.
-  Exercise <REF NAME="ex:cte-open-code"><a class="superscript" id="5.5.6-ex-link-5.43" href="./5.5.6.html#ex_5.43">5.43</a></REF> describes another use for the
+  Exercise&nbsp;<REF NAME="ex:cte-open-code"><a class="superscript" id="5.5.6-ex-link-5.43" href="./5.5.6.html#ex_5.43">5.43</a></REF> describes another use for the
   compile-time environment.
   
   
@@ -1925,7 +1925,7 @@ let y = 4;
     <div class="permalink">
     <a name="ex_5.41" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.41">Exercise 5.41 </a></b> 
   
-  Using <span style="color:green"><kbd>find-variable</kbd></span><span style="color:blue"><kbd>find_variable</kbd></span> from exercise <REF NAME="ex:find-variable"><a class="superscript" id="5.5.6-ex-link-5.40" href="./5.5.6.html#ex_5.40">5.40</a></REF>,
+  Using <span style="color:green"><kbd>find-variable</kbd></span><span style="color:blue"><kbd>find_variable</kbd></span> from exercise&nbsp;<REF NAME="ex:find-variable"><a class="superscript" id="5.5.6-ex-link-5.40" href="./5.5.6.html#ex_5.40">5.40</a></REF>,
   rewrite <span style="color:green"><kbd>compile-variable</kbd></span><span style="color:blue"><kbd>compile_variable</kbd></span> and <span style="color:green"><kbd>compile-assignment</kbd></span><span style="color:blue"><kbd>compile_assignment</kbd></span> to output
   lexical-address instructions.  In cases where <span style="color:green"><kbd>find-variable</kbd></span><span style="color:blue"><kbd>find_variable</kbd></span>
   returns <span style="color:green"><kbd>not-found</kbd></span><span style="color:blue"><kbd>not_found</kbd></span> (that is, where the variable is not in the
@@ -1956,14 +1956,14 @@ let y = 4;
   
   
   
-  We argued in section <REF NAME="sec:internal-definitions"><a class="superscript" id="5.5.6-sec-link-4.1.6" href="./4.1.6.html">4.1.6</a></REF> that internal definitions
+  We argued in section&nbsp;<REF NAME="sec:internal-definitions"><a class="superscript" id="5.5.6-sec-link-4.1.6" href="./4.1.6.html">4.1.6</a></REF> that internal definitions
   for block structure should not be considered <QUOTE>real</QUOTE> <kbd>define</kbd>s.  Rather,
   a
   <span style="color:green">procedure</span><span style="color:blue">function</span>
   body should be interpreted as if the internal variables being
   defined were installed as ordinary <kbd>lambda</kbd> variables initialized to their
-  correct values using <span style="color:green"><kbd>set!</kbd></span><span style="color:blue">assignment</span>.  Section <REF NAME="sec:internal-definitions"><a class="superscript" id="5.5.6-sec-link-4.1.6" href="./4.1.6.html">4.1.6</a></REF> and
-  exercise <REF NAME="ex:internal-defs"><a class="superscript" id="5.5.6-ex-link-4.20" href="./4.1.6.html#ex_4.20">4.20</a></REF> showed how to modify the metacircular
+  correct values using <span style="color:green"><kbd>set!</kbd></span><span style="color:blue">assignment</span>.  Section&nbsp;<REF NAME="sec:internal-definitions"><a class="superscript" id="5.5.6-sec-link-4.1.6" href="./4.1.6.html">4.1.6</a></REF> and
+  exercise&nbsp;<REF NAME="ex:internal-defs"><a class="superscript" id="5.5.6-ex-link-4.20" href="./4.1.6.html#ex_4.20">4.20</a></REF> showed how to modify the metacircular
   interpreter to accomplish this by scanning out internal definitions.  Modify
   the compiler to perform the same transformation before it compiles a
   <span style="color:green">procedure</span><span style="color:blue">function</span>
@@ -1990,14 +1990,14 @@ let y = 4;
   In this section we have focused on the use of the compile-time
   environment to produce lexical addresses.  But there are other uses
   for compile-time environments.  For instance, in
-  exercise <REF NAME="ex:open-code"><a class="superscript" id="5.5.6-ex-link-5.37" href="./5.5.5.html#ex_5.37">5.37</a></REF> we increased the efficiency of compiled
+  exercise&nbsp;<REF NAME="ex:open-code"><a class="superscript" id="5.5.6-ex-link-5.37" href="./5.5.5.html#ex_5.37">5.37</a></REF> we increased the efficiency of compiled
   code by open-coding primitive
   <span style="color:green">procedures</span><span style="color:blue">functions</span>.  Our implementation treated
   the names of open-coded
   <span style="color:green">procedures</span><span style="color:blue">functions</span>
   as reserved words.  If a program
   were to rebind such a name, the mechanism described in
-  exercise <REF NAME="ex:open-code"><a class="superscript" id="5.5.6-ex-link-5.37" href="./5.5.5.html#ex_5.37">5.37</a></REF> would still open-code it as a primitive,
+  exercise&nbsp;<REF NAME="ex:open-code"><a class="superscript" id="5.5.6-ex-link-5.37" href="./5.5.5.html#ex_5.37">5.37</a></REF> would still open-code it as a primitive,
   ignoring the new binding.  For example, consider the
   <span style="color:green">procedure</span><span style="color:blue">function</span>
 
@@ -2035,7 +2035,7 @@ let y = 4;
     <FOOTNOTE>
     This is not true if we allow
     internal definitions, unless we scan them out.
-    See exercise <REF NAME="ex:lexical-address-end"><a class="superscript" id="5.5.6-ex-link-5.42" href="./5.5.6.html#ex_5.42">5.42</a></REF>. 
+    See exercise&nbsp;<REF NAME="ex:lexical-address-end"><a class="superscript" id="5.5.6-ex-link-5.42" href="./5.5.6.html#ex_5.42">5.42</a></REF>. 
   
     </FOOTNOTE></div>
     
@@ -2047,7 +2047,7 @@ let y = 4;
     
     
     required if we implement the scanning method to eliminate internal
-    definitions (exercise <REF NAME="ex:lexical-address-end"><a class="superscript" id="5.5.6-ex-link-5.42" href="./5.5.6.html#ex_5.42">5.42</a></REF>). 
+    definitions (exercise&nbsp;<REF NAME="ex:lexical-address-end"><a class="superscript" id="5.5.6-ex-link-5.42" href="./5.5.6.html#ex_5.42">5.42</a></REF>). 
     We will need
     to eliminate these definitions in order for lexical addressing to
     work.
@@ -2060,7 +2060,7 @@ let y = 4;
     Lexical addresses cannot be used to access variables in the global
     environment, because these names can be defined and redefined
     interactively at any time.  With internal definitions scanned out, as
-    in exercise <REF NAME="ex:lexical-address-end"><a class="superscript" id="5.5.6-ex-link-5.42" href="./5.5.6.html#ex_5.42">5.42</a></REF>, 
+    in exercise&nbsp;<REF NAME="ex:lexical-address-end"><a class="superscript" id="5.5.6-ex-link-5.42" href="./5.5.6.html#ex_5.42">5.42</a></REF>, 
     the only definitions the
     compiler sees are those at top level, which act on the global
     environment.  Compilation of a definition does not cause the defined

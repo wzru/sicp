@@ -1684,7 +1684,7 @@
 
   <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
-    As we saw in section <REF NAME="sec:benefits-of-assignment"><a class="superscript" id="3.5.5-sec-link-3.1.2" href="./3.1.2.html">3.1.2</a></REF>, one of
+    As we saw in section&nbsp;<REF NAME="sec:benefits-of-assignment"><a class="superscript" id="3.5.5-sec-link-3.1.2" href="./3.1.2.html">3.1.2</a></REF>, one of
     the major benefits of introducing assignment is that we can increase the
     modularity of our systems by encapsulating, or <QUOTE>hiding,</QUOTE> parts
     of the state of a large system within local variables.  Stream models can
@@ -1693,7 +1693,7 @@
     
     illustration, we can reimplement the Monte Carlo estimation of
     $\pi$, which we examined in
-    section <REF NAME="sec:benefits-of-assignment"><a class="superscript" id="3.5.5-sec-link-3.1.2" href="./3.1.2.html">3.1.2</a></REF>, from a
+    section&nbsp;<REF NAME="sec:benefits-of-assignment"><a class="superscript" id="3.5.5-sec-link-3.1.2" href="./3.1.2.html">3.1.2</a></REF>, from a
     stream-processing point of view.
   </p></div>
 
@@ -1823,7 +1823,7 @@ const pi = stream_map(p => math_sqrt(6 / p),
     <a name="ex_3.81" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_3.81">Exercise 3.81 </a></b> 
   
     
-    Exercise <REF NAME="ex:random-with-reset"><a class="superscript" id="3.5.5-ex-link-3.6" href="./3.1.2.html#ex_3.6">3.6</a></REF> discussed generalizing
+    Exercise&nbsp;<REF NAME="ex:random-with-reset"><a class="superscript" id="3.5.5-ex-link-3.6" href="./3.1.2.html#ex_3.6">3.6</a></REF> discussed generalizing
     the random-number generator to allow one to reset the random-number sequence
     so as to produce repeatable sequences of <QUOTE>random</QUOTE> numbers.
     Produce a stream formulation of this same generator that operates on an
@@ -1847,7 +1847,7 @@ const pi = stream_map(p => math_sqrt(6 / p),
     
     
     
-    Redo exercise <REF NAME="ex:monte-carlo-integration"><a class="superscript" id="3.5.5-ex-link-3.5" href="./3.1.2.html#ex_3.5">3.5</a></REF> on Monte Carlo
+    Redo exercise&nbsp;<REF NAME="ex:monte-carlo-integration"><a class="superscript" id="3.5.5-ex-link-3.5" href="./3.1.2.html#ex_3.5">3.5</a></REF> on Monte Carlo
     integration in terms of streams.  The stream version of
     
       
@@ -1913,7 +1913,7 @@ const pi = stream_map(p => math_sqrt(6 / p),
     reconsider the implementation of a <QUOTE>withdrawal processor</QUOTE> that
     
     monitors the balance in a bank account.  In
-    section <REF NAME="sec:costs-of-assignment"><a class="superscript" id="3.5.5-sec-link-3.1.3" href="./3.1.3.html">3.1.3</a></REF> we implemented a
+    section&nbsp;<REF NAME="sec:costs-of-assignment"><a class="superscript" id="3.5.5-sec-link-3.1.3" href="./3.1.3.html">3.1.3</a></REF> we implemented a
     simplified version of such a processor:
 	
     <div class='snippet' id='javascript_73_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
@@ -1991,7 +1991,7 @@ function make_simplified_withdraw(balance) {
     variable, and consequently none of the theoretical difficulties that we
     encountered
     
-    in section <REF NAME="sec:costs-of-assignment"><a class="superscript" id="3.5.5-sec-link-3.1.3" href="./3.1.3.html">3.1.3</a></REF>.  Yet the system
+    in section&nbsp;<REF NAME="sec:costs-of-assignment"><a class="superscript" id="3.5.5-sec-link-3.1.3" href="./3.1.3.html">3.1.3</a></REF>.  Yet the system
     has state!
   </p></div>
 
@@ -2061,7 +2061,7 @@ function make_simplified_withdraw(balance) {
     In a conventional system using assignment and objects, we would model the
     fact that Peter and Paul share an account by having both Peter and Paul send
     their transaction requests to the same bank-account object, as we saw in
-    section <REF NAME="sec:costs-of-assignment"><a class="superscript" id="3.5.5-sec-link-3.1.3" href="./3.1.3.html">3.1.3</a></REF>. From the stream point
+    section&nbsp;<REF NAME="sec:costs-of-assignment"><a class="superscript" id="3.5.5-sec-link-3.1.3" href="./3.1.3.html">3.1.3</a></REF>. From the stream point
     of view, where there are no <QUOTE>objects</QUOTE> <EM>per se</EM>, we have
     already indicated that a bank account can be modeled as a process that
     operates on a stream of transaction requests to produce a stream of
@@ -2069,7 +2069,7 @@ function make_simplified_withdraw(balance) {
     joint bank account by merging Peter's stream of transaction requests
     with Paul's stream of requests and feeding the result to the
     bank-account stream process, as shown in
-    figure <REF NAME="fig:joint-account-stream"><a class="superscript" id="3.5.5-fig-link-3.38" href="./3.5.5.html#fig_3.38">3.38</a></REF>.
+    figure&nbsp;<REF NAME="fig:joint-account-stream"><a class="superscript" id="3.5.5-fig-link-3.38" href="./3.5.5.html#fig_3.38">3.38</a></REF>.
     
     <FIGURE>
       <img class="scale_factor_" id="fig_3.38" src="../img_original/ch3-Z-G-60.svg">
@@ -2101,7 +2101,7 @@ function make_simplified_withdraw(balance) {
   <div class='permalink'>
 <a name='p18' class='permalink'></a><p>
     This is precisely the same constraint that we had to deal with in
-    section <REF NAME="sec:nature-of-time"><a class="superscript" id="3.5.5-sec-link-3.4.1" href="./3.4.1.html">3.4.1</a></REF>, where we found the need to
+    section&nbsp;<REF NAME="sec:nature-of-time"><a class="superscript" id="3.5.5-sec-link-3.4.1" href="./3.4.1.html">3.4.1</a></REF>, where we found the need to
     introduce explicit synchronization to ensure a <QUOTE>correct</QUOTE> order
     of events in concurrent processing of objects with state.  Thus, in an
     attempt to support the functional style, the need to merge inputs from
@@ -2166,10 +2166,10 @@ function make_simplified_withdraw(balance) {
     acceptable order of interleaving.  Thus, technically, <QUOTE>merge</QUOTE>
     is a relation rather than a function—the answer is not a
     deterministic function of the inputs.  We already mentioned
-    (footnote <REF NAME="foot:nondeterministic"><a class="superscript" id="3.5.5-foot-link-1" href="./3.4.1.html#footnote-1">1</a></REF>) that nondeterminism
+    (footnote&nbsp;<REF NAME="foot:nondeterministic"><a class="superscript" id="3.5.5-foot-link-1" href="./3.4.1.html#footnote-1">1</a></REF>) that nondeterminism
     is essential when dealing with concurrency.  The merge relation illustrates
     the same essential nondeterminism, from the functional perspective.
-    In section <REF NAME="sec:nondeterministic-evaluation"><a class="superscript" id="3.5.5-sec-link-4.3" href="./4.3.html">4.3</a></REF>, we
+    In section&nbsp;<REF NAME="sec:nondeterministic-evaluation"><a class="superscript" id="3.5.5-sec-link-4.3" href="./4.3.html">4.3</a></REF>, we
     will look at nondeterminism from yet another point of view.
     </FOOTNOTE></div>
 

@@ -1721,7 +1721,7 @@
     
     With the definition of the function
     <kbd>eval_conditional_expression</kbd> of
-    section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.3-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>, this means that our
+    section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.3-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>, this means that our
     evaluator evaluates the alternative statement for any predicate value other
     than <kbd>true</kbd>.
   </p></div>
@@ -1792,7 +1792,7 @@
     </UL>
 
     These mechanisms for handling primitives are further described in
-    section <REF NAME="sec:running-eval"><a class="superscript" id="4.1.3-sec-link-4.1.4" href="./4.1.4.html">4.1.4</a></REF>.
+    section&nbsp;<REF NAME="sec:running-eval"><a class="superscript" id="4.1.3-sec-link-4.1.4" href="./4.1.4.html">4.1.4</a></REF>.
   </p></div>
 
   <div class='permalink'>
@@ -1847,7 +1847,7 @@ function function_environment(f) {
 
       <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-	We saw in section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.3-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> that the
+	We saw in section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.3-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> that the
 	evaluation of sequences terminates when the first return statement
 	encountered, and that the evaluation of function applications needs to
 	return the value <kbd>undefined</kbd> if the
@@ -1883,7 +1883,7 @@ function return_value_content(value) {
   <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
     The evaluator needs operations for manipulating environments.  As explained
-    in section <REF NAME="sec:environment-model"><a class="superscript" id="4.1.3-sec-link-3.2" href="./3.2.html">3.2</a></REF>, an environment is a
+    in section&nbsp;<REF NAME="sec:environment-model"><a class="superscript" id="4.1.3-sec-link-3.2" href="./3.2.html">3.2</a></REF>, an environment is a
     sequence of frames, where each frame is a table of bindings that associate
     
       
@@ -2015,7 +2015,7 @@ function frame_values(frame) {
       
 	The function <kbd>extend_environment</kbd>
 	is used by <kbd>apply</kbd> in
-	section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.3-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> to bind the
+	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.3-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> to bind the
 	parameters of a function to its arguments. 
       
     
@@ -2126,7 +2126,7 @@ function frame_values(frame) {
     environments.  Since we used data abstraction to isolate the rest of the
     evaluator from the detailed choice of representation, we could change the
     environment representation if we wanted to.  (See
-    exercise <REF NAME="ex:alternate-frame-representation"><a class="superscript" id="4.1.3-ex-link-4.10" href="./4.1.3.html#ex_4.10">4.10</a></REF>.)  In a
+    exercise&nbsp;<REF NAME="ex:alternate-frame-representation"><a class="superscript" id="4.1.3-ex-link-4.10" href="./4.1.3.html#ex_4.10">4.10</a></REF>.)  In a
     production-quality
     
       
@@ -2253,7 +2253,36 @@ function frame_values(frame) {
 	  Prior to ECMAScript 2015's strict mode that we are using in this book,
 	variables worked quite differently from Scheme, which would have made
 	this adaptation considerably less compelling.
-	
+	<OL type="a">
+	  <LI>
+	    Before ECMAScript 2015, the only way to declare a variable in
+	    JavaScript was using the keyword
+	    <kbd>var</kbd>
+	    instead of the keyword <kbd>let</kbd>.
+	    The scope of variables declared with
+	    <kbd>var</kbd> is the entire body of the
+	    immediately surrounding function declaration or lambda expression,
+	    rather than just the immediately enclosing block. Modify
+	    <kbd>scan_out_names</kbd> and 
+	    <kbd>eval_block</kbd> such
+	    names declared with <kbd>const</kbd> and
+	    <kbd>let</kbd> follow the scoping rules
+	    of <kbd>var</kbd>.
+	  </LI>
+	  <LI>
+	    When not using the strict mode, JavaScript permits undeclared
+	    names to appear on the left of the
+	    <kbd>=</kbd> sign in assignments. The
+	    meaning of such
+	    an assignment is that the new binding is added to the global
+	    environment. Modify the function 
+	    <kbd>assign_symbol_value</kbd>
+	    to make assignment behave this way. The strict mode was introduced
+	    in JavaScript in order to make programs more secure. What
+	    security issue is addressed by removing the ability of assignment
+	    to add bindings to the global environment?
+	  </LI>
+	</OL>
 	
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_78_4_div" data-toggle="collapse">Add solution</button></div>
@@ -2303,14 +2332,14 @@ function frame_values(frame) {
     <FOOTNOTE>
     The drawback of this representation (as
     well as the variant in
-    exercise <REF NAME="ex:alternate-frame-representation"><a class="superscript" id="4.1.3-ex-link-4.10" href="./4.1.3.html#ex_4.10">4.10</a></REF>) is that the
+    exercise&nbsp;<REF NAME="ex:alternate-frame-representation"><a class="superscript" id="4.1.3-ex-link-4.10" href="./4.1.3.html#ex_4.10">4.10</a></REF>) is that the
     evaluator may have to search through many frames in order to find the binding
     for a given variable.
     
     (Such an approach is referred to as <EM>deep binding</EM>.) One way to avoid
     this inefficiency is to make use of a strategy called
 	<EM>lexical addressing</EM>, which will be discussed in
-	section <REF NAME="sec:lexical-addressing"><a class="superscript" id="4.1.3-sec-link-5.5.6" href="./5.5.6.html">5.5.6</a></REF>.
+	section&nbsp;<REF NAME="sec:lexical-addressing"><a class="superscript" id="4.1.3-sec-link-5.5.6" href="./5.5.6.html">5.5.6</a></REF>.
   
     </FOOTNOTE></div>
 

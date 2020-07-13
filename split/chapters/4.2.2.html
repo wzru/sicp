@@ -1701,7 +1701,7 @@
       <span style="color:blue">functions</span>
     
     will still be strict. It is not difficult to modify the evaluator of
-    section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> so that the language it
+    section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> so that the language it
     interprets behaves this way.  Almost all the required changes center around
     
       <span style="color:green">procedure</span>
@@ -1765,7 +1765,7 @@
     One design choice we have available is whether or not to 
     
     <EM>memoize</EM> thunks, similar to the optimization for streams in
-    section <REF NAME="sec:delayed-lists"><a class="superscript" id="4.2.2-sec-link-3.5.1" href="./3.5.1.html">3.5.1</a></REF>.  With memoization, the first
+    section&nbsp;<REF NAME="sec:delayed-lists"><a class="superscript" id="4.2.2-sec-link-3.5.1" href="./3.5.1.html">3.5.1</a></REF>.  With memoization, the first
     time a thunk is forced, it stores the value that is computed.  Subsequent
     forcings simply return the stored value without repeating the computation.
     We'll make our interpreter memoize, because this is more efficient for
@@ -1784,7 +1784,7 @@
   <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
     The main difference between the lazy evaluator and the one in
-    section <REF NAME="sec:mc-eval"><a class="superscript" id="4.2.2-sec-link-4.1" href="./4.1.html">4.1</a></REF> is in the handling of
+    section&nbsp;<REF NAME="sec:mc-eval"><a class="superscript" id="4.2.2-sec-link-4.1" href="./4.1.html">4.1</a></REF> is in the handling of
     <span style="color:green">procedure</span>
     <span style="color:blue">function</span>
     applications in
@@ -1843,7 +1843,7 @@
 	<kbd>evaluate</kbd>
       </span>
     
-    in section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.  For lazy evaluation,
+    in section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.  For lazy evaluation,
     however, we call <kbd>apply</kbd> with the operand
     expressions, rather than the arguments produced by evaluating them. Since
     we will need the environment to construct thunks if the arguments are to be
@@ -1888,7 +1888,7 @@
   <div class='permalink'>
 <a name='p10' class='permalink'></a><p>
     Our new version of <kbd>apply</kbd> is also almost the
-    same as the version in section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
+    same as the version in section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
     The difference is that
     
       <span style="color:green">
@@ -1972,7 +1972,7 @@
 	<kbd>list_of_values</kbd>
       </span>
     
-    from section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>,
+    from section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>,
     except that
     
       <span style="color:green">
@@ -2112,7 +2112,7 @@ function list_of_delayed_args(exps, env) {
     <span style="color:green">procedure</span>
     <span style="color:blue">function</span>
     
-    (section <REF NAME="sec:running-eval"><a class="superscript" id="4.2.2-sec-link-4.1.4" href="./4.1.4.html">4.1.4</a></REF>) to use
+    (section&nbsp;<REF NAME="sec:running-eval"><a class="superscript" id="4.2.2-sec-link-4.1.4" href="./4.1.4.html">4.1.4</a></REF>) to use
     
       <span style="color:green">
 	<kbd>actual-value</kbd>
@@ -2193,7 +2193,7 @@ function driver_loop(env) {
       </span>
     
     expression
-    discussed in section <REF NAME="sec:evaluation-order"><a class="superscript" id="4.2.2-sec-link-4.2.1" href="./4.2.1.html">4.2.1</a></REF> indicates
+    discussed in section&nbsp;<REF NAME="sec:evaluation-order"><a class="superscript" id="4.2.2-sec-link-4.2.1" href="./4.2.1.html">4.2.1</a></REF> indicates
     that the interpreter is performing lazy evaluation:
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
@@ -2524,7 +2524,7 @@ L-evaluate value:</pre></div></div>
       <span style="color:green">procedure</span>
       <span style="color:blue">function</span>
     
-    is defined as in exercise <REF NAME="ex:delay-side-effects"><a class="superscript" id="4.2.2-ex-link-4.33" href="./4.2.2.html#ex_4.33">4.33</a></REF> and
+    is defined as in exercise&nbsp;<REF NAME="ex:delay-side-effects"><a class="superscript" id="4.2.2-ex-link-4.33" href="./4.2.2.html#ex_4.33">4.33</a></REF> and
     <kbd>count</kbd> starts at 0:
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
@@ -2591,7 +2591,7 @@ L-evaluate value:</pre></div></div>
       <span style="color:blue"><kbd>evaluate_sequence</kbd>
       </span>
     
-    from section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> to use
+    from section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> to use
     
       <span style="color:green">
 	<kbd>actual-value</kbd>
@@ -2650,7 +2650,7 @@ function eval_sequence(stmts, env) {
 	  <span style="color:green">procedure</span>
 	  <span style="color:blue">function</span>
 	
-	described in exercise <REF NAME="ex:for-each"><a class="superscript" id="4.2.2-ex-link-2.24" href="./2.2.1.html#ex_2.24">2.24</a></REF>,	which gives an
+	described in exercise&nbsp;<REF NAME="ex:for-each"><a class="superscript" id="4.2.2-ex-link-2.24" href="./2.2.1.html#ex_2.24">2.24</a></REF>,	which gives an
 	important example of a sequence with side effects:
 	
 	<table width="100%">
@@ -2974,7 +2974,7 @@ function f2(x) {
       in Algol 60.  They observed that most of the analysis of (<QUOTE>thinking
       about</QUOTE>) the expression could be done at compile time; thus, at run
       time, the expression would already have been <QUOTE>thunk</QUOTE> about 
-      (<CITATION>Ingerman et al. 1960</CITATION>).
+      (<CITATION>Ingerman et al.&nbsp;1960</CITATION>).
     </FOOTNOTE></div>
     
     
@@ -2984,9 +2984,9 @@ function f2(x) {
     This is analogous to the use of
     <kbd>force</kbd>
     
-    on the delayed objects that were introduced in chapter 3 to
+    on the delayed objects that were introduced in chapter&nbsp;3 to
     represent streams.  The critical difference between what we are
-    doing here and what we did in chapter 3 is that we are building
+    doing here and what we did in chapter&nbsp;3 is that we are building
     delaying and forcing into the evaluator, and thus making this uniform
     and automatic throughout the language.
     </FOOTNOTE></div>
@@ -3004,11 +3004,11 @@ function f2(x) {
     (Call-by-name, introduced in Algol 60, is similar to non-memoized lazy
     evaluation.) As language designers, we can build our evaluator to memoize,
     not to memoize, or leave this an option for programmers
-    (exercise <REF NAME="ex:user-controlled-strictness"><a class="superscript" id="4.2.2-ex-link-4.37" href="./4.2.2.html#ex_4.37">4.37</a></REF>).  As you might
-    expect from chapter 3, these choices raise issues that become both
+    (exercise&nbsp;<REF NAME="ex:user-controlled-strictness"><a class="superscript" id="4.2.2-ex-link-4.37" href="./4.2.2.html#ex_4.37">4.37</a></REF>).  As you might
+    expect from chapter&nbsp;3, these choices raise issues that become both
     subtle and confusing in the presence of assignments.  (See
-    exercises <REF NAME="ex:delay-side-effects"><a class="superscript" id="4.2.2-ex-link-4.33" href="./4.2.2.html#ex_4.33">4.33</a></REF>
-    and <REF NAME="ex:memoize-or-not"><a class="superscript" id="4.2.2-ex-link-4.35" href="./4.2.2.html#ex_4.35">4.35</a></REF>.)
+    exercises&nbsp;<REF NAME="ex:delay-side-effects"><a class="superscript" id="4.2.2-ex-link-4.33" href="./4.2.2.html#ex_4.33">4.33</a></REF>
+    and&nbsp;<REF NAME="ex:memoize-or-not"><a class="superscript" id="4.2.2-ex-link-4.35" href="./4.2.2.html#ex_4.35">4.35</a></REF>.)
     
     An excellent article by Clinger (1982) attempts to clarify the
     multiple dimensions of confusion that arise here.
@@ -3028,9 +3028,9 @@ function f2(x) {
     
     <EM>garbage-collected</EM> and its space 
         recycled, as we will discuss in
-	      section <REF NAME="sec:storage-allocation"><a class="superscript" id="4.2.2-sec-link-5.3" href="./5.3.html">5.3</a></REF>.
+	      section&nbsp;<REF NAME="sec:storage-allocation"><a class="superscript" id="4.2.2-sec-link-5.3" href="./5.3.html">5.3</a></REF>.
     Similarly, we could have allowed unneeded environments in the memoized
-    delayed objects of section <REF NAME="sec:delayed-lists"><a class="superscript" id="4.2.2-sec-link-3.5.1" href="./3.5.1.html">3.5.1</a></REF>
+    delayed objects of section&nbsp;<REF NAME="sec:delayed-lists"><a class="superscript" id="4.2.2-sec-link-3.5.1" href="./3.5.1.html">3.5.1</a></REF>
     to be garbage-collected, by having
     
       <span style="color:green">
@@ -3074,7 +3074,7 @@ function f2(x) {
     <FOOTNOTE>
     This exercise demonstrates that the interaction between
   lazy evaluation and side effects can be very confusing.  This is just what you
-  might expect from the discussion in chapter 3.
+  might expect from the discussion in chapter&nbsp;3.
     </FOOTNOTE></div>
     
     

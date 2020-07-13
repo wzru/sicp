@@ -1689,7 +1689,7 @@
     $B$,
     either $A$ occurs before
     $B$,
-    $A$ and
+    $A$&nbsp;and
     $B$ are simultaneous, or
     $A$ occurs after
     $B$.  For instance,
@@ -1730,7 +1730,7 @@
     specified by the
     
     function
-    given in section <REF NAME="sec:local-state-variables"><a class="superscript" id="3.4.1-sec-link-3.1.1" href="./3.1.1.html">3.1.1</a></REF>:
+    given in section&nbsp;<REF NAME="sec:local-state-variables"><a class="superscript" id="3.4.1-sec-link-3.1.1" href="./3.1.1.html">3.1.1</a></REF>:
             
             
     <div class='snippet' id='javascript_66_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQBY0EYBQuAbAUwBdQAjAQwMoDsBjI0AXlGwAZ2BufAMwFcGJAJYB7WqADuwkgAsAJgCdKkgBSUAtqMEkAlKADeuUCdDDeoVVRoMmAPlabttPYeOmP1uoxYVq3pgBaUCcdHg8PRVJ+RQkvW3DTAF9QIgIAZyYjCNMokhiJACJIWnT+Xl5hemEiF1ABWnl0wsSTJNx23Gk5JRVVACYAVl0uUBBQbRIAB34SAC5QAHZBoA')">function withdraw(amount) {
@@ -1777,7 +1777,7 @@ balance = balance - amount;</pre></div></div>
 
   <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
-    The timing diagram in figure <REF NAME="fig:bank-access"><a class="superscript" id="3.4.1-fig-link-3.29" href="./3.4.1.html#fig_3.29">3.29</a></REF> depicts
+    The timing diagram in figure&nbsp;<REF NAME="fig:bank-access"><a class="superscript" id="3.4.1-fig-link-3.29" href="./3.4.1.html#fig_3.29">3.29</a></REF> depicts
     an order of events where <kbd>balance</kbd> starts at 100,
     Peter withdraws 10, Paul withdraws 25, and yet the final value of
     <kbd>balance</kbd> is 75.  As shown in the diagram,
@@ -1878,7 +1878,7 @@ balance = balance - amount;</pre></div></div>
     time.  This is an extremely stringent requirement.  For distributed banking,
     it would require the system designer to ensure that only one transaction
     could proceed at a time. This would be both inefficient and overly
-    conservative.  Figure <REF NAME="fig:two-shared-accounts"><a class="superscript" id="3.4.1-fig-link-3.30" href="./3.4.1.html#fig_3.30">3.30</a></REF> shows
+    conservative.  Figure&nbsp;<REF NAME="fig:two-shared-accounts"><a class="superscript" id="3.4.1-fig-link-3.30" href="./3.4.1.html#fig_3.30">3.30</a></REF> shows
     Peter and Paul sharing a bank account, where Paul has a private account
     as well. The diagram illustrates two withdrawals from the shared account
     (one by Peter and one by Paul) and a deposit to Paul's private
@@ -1918,7 +1918,7 @@ balance = balance - amount;</pre></div></div>
      
     to actually run sequentially, but only to produce results that are the same
     <EM>as if</EM> they had run sequentially.  For the example in
-    figure <REF NAME="fig:two-shared-accounts"><a class="superscript" id="3.4.1-fig-link-3.30" href="./3.4.1.html#fig_3.30">3.30</a></REF>, the designer of the
+    figure&nbsp;<REF NAME="fig:two-shared-accounts"><a class="superscript" id="3.4.1-fig-link-3.30" href="./3.4.1.html#fig_3.30">3.30</a></REF>, the designer of the
     bank account system can safely allow Paul's deposit and Peter's
     withdrawal to happen concurrently, because the net result will be the same as
     if the two operations had happened sequentially.  Second, there may be more
@@ -1929,7 +1929,7 @@ balance = balance - amount;</pre></div></div>
     \$40 while Paul concurrently withdraws half the money in the account.
     Then sequential execution could result in the account balance being either
     \$70 or \$90 (see
-    exercise <REF NAME="ex:joint-account"><a class="superscript" id="3.4.1-ex-link-3.38" href="./3.4.1.html#ex_3.38">3.38</a></REF>).<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
+    exercise&nbsp;<REF NAME="ex:joint-account"><a class="superscript" id="3.4.1-ex-link-3.38" href="./3.4.1.html#ex_3.38">3.38</a></REF>).<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
   </p></div>
 
   <div class='permalink'>
@@ -1983,7 +1983,30 @@ balance = balance - amount;</pre></div></div>
         
       
     
-    
+    <OL type="a">
+      <LI>
+        List all the different possible values for
+        
+	<kbd>balance</kbd>
+	
+	after these three transactions have been completed,
+	assuming that the banking system forces the three 
+  
+  threads 
+  to run sequentially in some order.
+      </LI>
+      <LI>
+        What are some other values
+        that could be produced if the system allows the 
+        
+	  
+          threads
+	 
+	to be interleaved? Draw timing diagrams like the one in
+	figure&nbsp;<REF NAME="fig:bank-access"><a class="superscript" id="3.4.1-fig-link-3.29" href="./3.4.1.html#fig_3.29">3.29</a></REF> to explain
+	how these values can occur.
+      </LI>
+    </OL>
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_66_1_div" data-toggle="collapse">Add solution</button></div>
@@ -2040,7 +2063,7 @@ balance = balance - amount;</pre></div></div>
       <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
     <FOOTNOTE>
     The factorial program in
-    section <REF NAME="sec:costs-of-assignment"><a class="superscript" id="3.4.1-sec-link-3.1.3" href="./3.1.3.html">3.1.3</a></REF> illustrates this for
+    section&nbsp;<REF NAME="sec:costs-of-assignment"><a class="superscript" id="3.4.1-sec-link-3.1.3" href="./3.1.3.html">3.1.3</a></REF> illustrates this for
     a single sequential 
     
     thread.
@@ -2066,7 +2089,7 @@ balance = balance - amount;</pre></div></div>
     
     <EM>nondeterministic</EM>. That is, they are described not by single-valued
     functions, but by functions whose results are sets of possible values.
-    In section <REF NAME="sec:nondeterministic-evaluation"><a class="superscript" id="3.4.1-sec-link-4.3" href="./4.3.html">4.3</a></REF> we will
+    In section&nbsp;<REF NAME="sec:nondeterministic-evaluation"><a class="superscript" id="3.4.1-sec-link-4.3" href="./4.3.html">4.3</a></REF> we will
     study a language for expressing nondeterministic computations.
     
     </FOOTNOTE></div>

@@ -1687,7 +1687,7 @@
     $a$ and $b$ is defined
     to be the largest integer that divides both $a$
     and $b$ with no remainder. For example, the GCD
-    of 16 and 28 is 4.  In chapter 2, when we investigate how to
+    of 16 and 28 is 4.  In chapter&nbsp;2, when we investigate how to
     implement rational-number arithmetic, we will need to be able to compute
     GCDs in order to reduce rational numbers to lowest terms.  (To reduce a
     rational number to lowest terms, we must divide both the numerator and the
@@ -1811,14 +1811,14 @@
       function
     
     using normal-order evaluation, as discussed in
-    section <REF NAME="sec:substitution-model"><a class="superscript" id="1.2.5-sec-link-1.1.5" href="./1.1.5.html">1.1.5</a></REF>. (The
+    section&nbsp;<REF NAME="sec:substitution-model"><a class="superscript" id="1.2.5-sec-link-1.1.5" href="./1.1.5.html">1.1.5</a></REF>. (The
     normal-order-evaluation rule for
     
       
       conditional expressions
     
     is described
-    in exercise <REF NAME="ex:normal-order-vs-appl-order-test"><a class="superscript" id="1.2.5-ex-link-1.5" href="./1.1.6.html#ex_1.5">1.5</a></REF>.)  
+    in exercise&nbsp;<REF NAME="ex:normal-order-vs-appl-order-test"><a class="superscript" id="1.2.5-ex-link-1.5" href="./1.1.6.html#ex_1.5">1.5</a></REF>.)  
     Using the substitution method (for normal order), illustrate the process
     generated in evaluating 
     
@@ -1841,7 +1841,89 @@
     
       
 	
-	  
+	  <OL type="a">
+	    <LI>
+	      Using normal-order evaluation, the process undergoes 18 remainder
+	      operations. 14 while evaluating the condition, rest during final
+	      reduction phase.
+              <div class='snippet' id='javascript_18_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+gcd(206, 40)
+40 === 0 ? 206 : gcd(40, 206 % 40)
+gcd(40, 206 % 40)
+206 % 40 === 0 ? 40 : gcd(206 % 40,
+                          40 % (206 % 40))
+// remainder operation (1)
+6 === 0 ? 40 : gcd(206 % 40,
+                   40 % (206 % 40))
+gcd(206 % 40, 40 % (206 % 40))
+40 % (206 % 40) === 0 
+    ? 206 % 40 
+    : gcd(40 % (206 % 40),
+          (206 % 40) % (40 % (206 % 40)))
+// remainder operations (2) and (3)
+4 === 0 
+    ? 206 % 40 
+    : gcd(40 % (206 % 40),
+          (206 % 40) % (40 % (206 % 40)))
+gcd(40 % (206 % 40), (206 % 40) % (40 % (206 % 40)))
+(206 % 40) % (40 % (206 % 40)) === 0 
+    ? 40 % (206 % 40)
+    : gcd((206 % 40) % (40 % (206 % 40)), 
+          (40 % (206 % 40)) % ((206 % 40) % (40 % 
+                                             (206 % 40)))
+// remainder operations (4), (5), (6), (7)
+2 === 0
+    ? 40 % (206 % 40)
+    : gcd((206 % 40) % (40 % (206 % 40)), 
+          (40 % (206 % 40)) % ((206 % 40) % (40 % 
+                                             (206 % 40))))
+gcd((206 % 40) % (40 % (206 % 40)), 
+    (40 % (206 % 40)) % ((206 % 40) % (40 % (206 % 40)))
+(40 % (206 % 40)) % ((206 % 40) % (40 % (206 % 40))) === 0
+    ? (206 % 40) % (40 % (206 % 40)) 
+    : gcd((40 % (206 % 40)) % ((206 % 40) % (40 % 
+                                             (206 % 40)),
+          ((206 % 40) % (40 % (206 % 40))) %
+          ((40 % (206 % 40)) % ((206 % 40) % (40 % 
+                                             (206 % 40))))
+// remainder operations 
+                    (8), (9), (10), (11), (12), (13), (14)
+0 === 0
+    ? (206 % 40) % (40 % (206 % 40)) 
+    : gcd((40 % (206 % 40)) % ((206 % 40) % (40 % 
+                                             (206 % 40)),
+          ((206 % 40) % (40 % (206 % 40))) %
+          ((40 % (206 % 40)) % ((206 % 40) % (40 % 
+                                             (206 % 40))))
+(206 % 40) % (40 % (206 % 40))    
+// remainder operations (15), (16), (17), (18)
+2</pre></div></div>
+	    </LI>
+	    <LI>
+	      Using application order evaluation, the process performs 4
+	      remainder operations.
+              <div class='snippet' id='javascript_18_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+gcd(206, 40)
+40 === 0 ? 206 : gcd(40, 206 % 40)
+gcd(40, 206 % 40)
+// remainder operation (1)
+gcd(40, 6)
+6 === 0 ? 40 : gcd(6, 40 % 6)
+gcd(6, 40 % 6)
+// remainder operation (2)
+gcd(6, 4)
+4 === 0 ? 6 : gcd(4, 6 % 4)
+gcd(4, 6 % 4)
+// remainder operation (3)
+gcd(4, 2)
+2 === 0 ? 4 : gcd(2, 4 % 2)
+gcd(2, 4 % 2)
+// remainder operation (4)
+gcd(2, 0)
+0 === 0 ? 2 : gcd(0, 2 % 0)
+2</pre></div></div>
+	    </LI>
+	  </OL>
 	
       
     </SOLUTION></div></div>
@@ -1859,7 +1941,7 @@
     ca. 300 <SC>b.c</SC>.  According to Knuth (1973), it can be considered the
     
     oldest known nontrivial algorithm.  The ancient Egyptian method of
-    multiplication (exercise <REF NAME="ex:it-pro-mult-int"><a class="superscript" id="1.2.5-ex-link-1.18" href="./1.2.4.html#ex_1.18">1.18</a></REF>) is surely
+    multiplication (exercise&nbsp;<REF NAME="ex:it-pro-mult-int"><a class="superscript" id="1.2.5-ex-link-1.18" href="./1.2.4.html#ex_1.18">1.18</a></REF>) is surely
     older, but, as Knuth explains, Euclid's algorithm is the oldest known
     to have been presented as a general algorithm, rather than as a set of
     illustrative examples.

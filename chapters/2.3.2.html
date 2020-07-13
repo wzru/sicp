@@ -1722,7 +1722,7 @@
 <a name='p2' class='permalink'></a><p>
     In developing the symbolic-differentiation program, we will follow the same
     strategy of data abstraction that we followed in developing the
-    rational-number system of section <REF NAME="sec:rationals"><a class="superscript" id="2.3.2-sec-link-2.1.1" href="./2.1.1.html">2.1.1</a></REF>.  That
+    rational-number system of section&nbsp;<REF NAME="sec:rationals"><a class="superscript" id="2.3.2-sec-link-2.1.1" href="./2.1.1.html">2.1.1</a></REF>.  That
     is, we will first define a differentiation algorithm that operates on
     abstract objects such as <QUOTE>sums,</QUOTE> <QUOTE>products,</QUOTE> and
     <QUOTE>variables</QUOTE> without worrying about how these are to be
@@ -2132,7 +2132,7 @@ list("+", list("*", list("*", "x", "y"),
     $x\cdot 0 = 0$,
     $1\cdot y = y$, and
     $0+y = y$.  The answer for the second example
-    should have been simply <kbd>y</kbd>.  As the
+    should have been simply&nbsp;<kbd>y</kbd>.  As the
     third example shows, this becomes a serious issue when the expressions are
     complex.
   </p></div>
@@ -2377,14 +2377,194 @@ function multiplicand(s) {
     different representations of expressions solely by changing the predicates,
     selectors, and constructors that define the representation of the algebraic
     expressions on which the differentiator is to operate.
-    
+    <OL type="a">
+      <LI>
+        Show how to do this in order to differentiate algebraic expressions
+	presented in infix form,
+	
+	  
+	  as in this example:
+	  <div class='snippet' id='javascript_38_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+list("x", "+",
+     list(3, "*",
+          list("x", "+",
+               list("y", "+", 2))))</pre></div></div>
+	  
+	
+        To simplify the task, assume that
+	
+	  
+	  <kbd>"+"</kbd>
+	
+	and
+	
+	  
+	  <kbd>"*"</kbd>
+	
+	always take two arguments and that expressions are fully parenthesized.
+      </LI>
+      <LI>
+        The problem becomes substantially harder if we allow
+        
+          
+          
+	    a notation closer to infix notation, assuming that
+	    multiplication has higher precedence than addition, as in this
+	    example:
+	    <div class='snippet' id='javascript_38_25_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+list("x", "+", "3", "*", list("x", "+", "y", "+", 2))</pre></div></div>
+	  
+	
+        Can you design appropriate predicates, selectors, and constructors for
+	this notation such that our derivative program still works?
+      </LI>
+    </OL>
     
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_38_3_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_38_3_div"><SOLUTION>
     
-      
+      <OL type="a">
+	<LI>
+	  <div class='snippet' id='javascript_38_26_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISCho6YkJbHgEOJgEAR0I2PiEBEQAHLyrbPwTZBSUVZN7ajnau2JjQDs68gt7i0zKLOls2AGsHBmqhNk9QNgz-OSHg0DG6hubW-cOABjEBpNkAfiPcV4CALkvq8Y3FptY5eJ4vb6gD5HNwQ75-NRXCYHaajAF1fa+OGQj4HUAAak+2PhoD4jHI9y8ACJ8VSvMcDMZSuYKsldrY9FIXucRmpOmxKBNxJkZgALARsAAmQnIAra4gk+VyoBpVOWZnKlilkoExGlDH6AR5dHFUqEBvVq1ZbEI2l1+sNZyCI1N0tllDa7raBrEjJMGrWoA22yYnQ41ElhAoQlsh1sJ25zsq6PqTWBMceEgAPln-jVrmm7vGwc9Ie9ZA9iXI-kigUXDm5S2Xy-Gq7884DC21i6BG23EtDY-324iUxnUaP8xN403mwEPrHQAAqINfOftskaDPUpd01d+5makKh8OR6PC06DJPJfmCzlZV0yuV6RUFKm7y0syy2Qh8KidMkMQNLkjWvR8LSZANWR-P9KAAyhSDYPVzUdK9hhNCU3WfL0UN9T8j1AHUuBYSZum8JwIgEVDAnQtEp1I2cB1ASsSTUMJnEiOZGKSD4hDUGx7BSDjhDmLx2MoiQPhyP5wTLBFrD2LjhwXLYdj2IjKBI7V7QYsSKJcMQPGHZsNK020dK4vTUkEX1h3kk8IyjCklPXKEg1U9Q9mDBww0c6MYP-QCJks4zXNkUyY1-QKEKQ6UQrChKAnEgzDNC5tvIcs8KQigK4KCoQ0sSorZHi4qyqS-SbKM8rEty+DEOQrjbNcv46nDYKumq8qqRITZiGoAB3Og5gUBgGFZcgAE9OgEeg6FMqkDxwCLNwpKkRD3d89wAFkMlUNoMIA')">function make_sum(a1, a2) {
+    return number_equal(a1, 0)
+           ? a2
+           : number_equal(a2, 0)
+             ?  a1
+             : is_number(a1) && is_number(a2)
+               ? a1 + a2
+               : list(a1, "+", a2);
+}
+function is_sum(x) {
+    return is_pair(x) && head(tail(x)) === "+";
+}
+function addend(s) {
+    return head(s);
+}
+function augend(s) {
+    return head(tail(tail(s)));
+}
+function make_product(m1, m2) {
+    return number_equal(m1, 0) || number_equal(m2, 0)
+           ?  0
+           : number_equal(m1, 1)
+             ? m2
+             : number_equal(m2, 1)
+               ?  m1
+               : is_number(m1) && is_number(m2)
+                 ? m1 * m2
+                 : list(m1, "*", m2);
+}
+function is_product(x) {
+    return is_pair(x) && head(tail(x)) === "*";
+}
+function multiplier(s) {
+    return head(s);
+}
+function multiplicand(s) {
+    return head(tail(tail(s)));
+}
+function deriv(exp, variable) {
+    return is_number(exp)
+        ? 0
+        : is_variable(exp)
+          ? (is_same_variable(exp, variable) ? 1 : 0)
+          : is_sum(exp)
+            ? make_sum(deriv(addend(exp), variable),
+                       deriv(augend(exp), variable))
+            : is_product(exp)
+              ? make_sum(make_product(multiplier(exp),
+                             deriv(multiplicand(exp),
+                                   variable)),
+                         make_product(deriv(multiplier(
+                                                    exp),
+                                            variable),
+                                      multiplicand(exp)))
+              : error(exp,
+                      "unknown expression type in deriv");
+}
+</pre></div></div>
+	  
+	</LI>
+	<LI>
+	  <div class='snippet' id='javascript_38_27_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISCho6YkJbHgEOJgEAR0I2PiEBEQAHLyrbPwTZBSUVZN7ajnau2JjQDs68gt7i0zKLVXIBW2Za-GoFJnxKDg0ham7QBn6AoeDQAAsBNgATIUuF3NAzgaTZAH5QKp8PjfH4ALlAnTYRyED2erzEHhBPySlA2WyYOz2DkOx3Ip3O5ChbUuYgMxlK5gq9DRzDY+A29RxJzOXje-jkNxGsJeb3yHy+yLk-0JlGJYiRiXBqM2tPpdQOR2ZBKJ8OWZnKllsbAA1g4GNUhGxPKA2Bl2YMgiMxvKmi02kavAAGcWCv4m3Cu0Dg631W2tQ0oJ0uz2gf4mtwSpJS5g+w1uaajarjAPBkOh8OgADU7sjYNAfEYeIdoAARJmS15TWSTCATRdbQIyAJPvhQAytibiE9Pp06mxyHsGFY6-rbDha5RW2wu59iHwAJ70KfkfOPDSz5vZs59gccT6kUjKBgUjUhdQG8RSb6cs+Q6GXuK52QAQlAQjUgLa9hqdSEZYroDiNWJ5rCaTxPI2PJXBylrrDKGICLs+xMni-6ssB6qgWwhDaJB8JXtcsHUvBdIMgquJ-uW6FqqsVJarqTCdBw1BPIQFBCLYxq2Ga15ET6DTNP6nFBqAAA+okAkmNqCV+gagM6T7pvJinelJvoyRxxrxopbrcTpXqST+6l2hxcnaWmbqgJx+myNGTCxpxCYfmppmphZ-ycaAABUVkehZtn5oWmleCWXkAdxwG1mw9bNI2pDNtQrbtkO07dtuHD9oOw7RUxLFseQ45gJOnZpXOi7FcQ1BZj2O57Puh7HCBVJqLlrHsZe5qBMMt5QhMD4zM5QIcZsyZoYBGG0ZqhB8FQnQFr+bK8d1xHopiyGKqhYXUeSmF0dNs0FqQqX4Z1N4rbKZEoX+W0XBNlKWBBXAsJM5xhM4gjQRay3OUZL1uQE-yOpGdlvREwhzP9iT-O+1h2A4oNpHMXgIx96Y5OCCmunZo5-TpHk6nqBqPZQz3PBBXZ-cjThgwiNmCsTpM4XhENU6kH2Q1GyStfluPuVZBPnrYHEC9z7G2PtlBzZQv4s3TFkMxxEtS0dFOy-56sBCjAikoiGvIvRDii3iCvizNkvzRMat69bSRa7TNuCqbB2UCrLwQ6SNngnUzGW10usOyWJDapVADudBzAoDAMFS5Dzr29B0AzJbATgCsFicJYiABoUAQALAipZZwYQA')">function items_before_first(op, s) {
+    return head(s) === op
+           ? null
+           : pair(head(s),
+                  items_before_first(op, tail(s)));
+}
+function items_after_first(op, s) {
+    return head(s) === op
+           ? tail(s)
+           : items_after_first(op, tail(s);
+}
+function make_sum(a1, a2) {
+    return number_equal(a1, 0)
+           ? a2
+           : number_equal(a2, 0)
+             ?  a1
+             : is_number(a1) && is_number(a2)
+               ? a1 + a2
+               : list(a1, "+", a2);
+}
+// a sequence of terms and operators is a sum
+// if and only if at least one + operator occurs
+function is_sum(x) {
+    return is_pair(x) &&
+           ! (is_null(member("+", x));
+}
+function addend(s) {
+    return items_before_first("+", s);
+}
+function augend(s) {
+    return items_after_first("+", s);
+}
+function make_product(m1, m2) {
+    return number_equal(m1, 0) || number_equal(m2, 0)
+           ?  0
+           : number_equal(m1, 1)
+             ? m2
+             : number_equal(m2, 1)
+               ?  m1
+               : is_number(m1) && is_number(m2)
+                 ? m1 * m2
+                 : list(m1, "*", m2);
+}
+// a sequence of terms and operators is a product
+// if and only if no + operator occurs
+function is_product(x) {
+    return is_pair(x) && is_null(member("+", x);
+}
+function multiplier(s) {
+    return items_before_first("*", s);
+}
+function multiplicand(s) {
+    return items_after_first("*", s);
+}
+function deriv(exp, variable) {
+    return is_number(exp)
+        ? 0
+        : is_variable(exp)
+          ? (is_same_variable(exp, variable) ? 1 : 0)
+          : is_sum(exp)
+            ? make_sum(deriv(addend(exp), variable),
+                       deriv(augend(exp), variable))
+            : is_product(exp)
+              ? make_sum(make_product(multiplier(exp),
+                             deriv(multiplicand(exp),
+                                   variable)),
+                         make_product(deriv(multiplier(exp),
+                                            variable),
+                             multiplicand(exp)))
+              : error(exp,
+                      "unknown expression type in deriv");
+}
+</pre></div></div>
+
+	  
+	</LI>
+      </OL>
     </SOLUTION></div></div>
 </EXERCISE></div>
 
@@ -2398,7 +2578,7 @@ function multiplicand(s) {
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
     <FOOTNOTE>
     The box notation introduced in
-    section <REF NAME="sec:sequences"><a class="superscript" id="2.3.2-sec-link-2.2.1" href="./2.2.1.html">2.2.1</a></REF> becomes hard to read
+    section&nbsp;<REF NAME="sec:sequences"><a class="superscript" id="2.3.2-sec-link-2.2.1" href="./2.2.1.html">2.2.1</a></REF> becomes hard to read
     when nested lists are involved. Thus we shall take the liberty
     to indicate the list structure by abusing the name
     <kbd>list</kbd> where convenient.

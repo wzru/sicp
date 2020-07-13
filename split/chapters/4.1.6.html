@@ -1699,7 +1699,7 @@
 	program development, in which the programmer needs to freely mix the
 	application of procedures definition procedures. However, if we think
 	carefully about the internal definitions used to implement block
-	structure (introduced in section <REF NAME="sec:black-box"><a class="superscript" id="4.1.6-sec-link-1.1.8" href="./1.1.8.html">1.1.8</a></REF>),
+	structure (introduced in section&nbsp;<REF NAME="sec:black-box"><a class="superscript" id="4.1.6-sec-link-1.1.8" href="./1.1.8.html">1.1.8</a></REF>),
 	we will find that name-by-name extension of the environment may not be
 	the best way to define local variables.
       </p></div>
@@ -1761,7 +1761,7 @@
 	the defined variables. (For an example of a procedure that doesn't
 	obey these restrictions, so that sequential definition isn't
 	equivalent to simultaneous definition, see
-	exercise <REF NAME="ex:simultaneous-def_scheme"><a class="superscript" id="4.1.6-ex-link-4.24" href="./4.1.6.html#ex_4.24">4.24</a></REF>.)<a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:green">[1]</a>
+	exercise&nbsp;<REF NAME="ex:simultaneous-def_scheme"><a class="superscript" id="4.1.6-ex-link-4.24" href="./4.1.6.html#ex_4.24">4.24</a></REF>.)<a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:green">[1]</a>
       </p></div>
 
       <div class='permalink'>
@@ -1806,7 +1806,7 @@
       <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
 	An alternative strategy for scanning out internal definitions is shown
-	in exercise <REF NAME="ex:alternative-scanout"><a class="superscript" id="4.1.6-ex-link-4.21" href="./4.1.6.html#ex_4.21">4.21</a></REF>. Unlike the
+	in exercise&nbsp;<REF NAME="ex:alternative-scanout"><a class="superscript" id="4.1.6-ex-link-4.21" href="./4.1.6.html#ex_4.21">4.21</a></REF>. Unlike the
 	transformation shown above, this enforces the restriction that the
 	defined variables' values can be evaluated without using any of the
 	variables' values.<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:green">[2]</a>
@@ -1824,9 +1824,9 @@
       <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
 	Our environment model of evaluation
-	(section <REF NAME="sec:env-internal-def"><a class="superscript" id="4.1.6-sec-link-3.2.4" href="./3.2.4.html">3.2.4</a></REF>)
+	(section&nbsp;<REF NAME="sec:env-internal-def"><a class="superscript" id="4.1.6-sec-link-3.2.4" href="./3.2.4.html">3.2.4</a></REF>)
 	and our metacircular evaluator
-	(section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>) evaluate 
+	(section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>) evaluate 
 	blocks by extending an environment with bindings for the
 	local names that occur in the body of the block. Initially,
 	the names refer to the special value
@@ -1882,7 +1882,7 @@
       </p></div>
       <div class='permalink'>
 <a name='p10' class='permalink'></a><p>
-	The evaluator in section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>
+	The evaluator in section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>
 	finds all locally declared names of a block using
 	<kbd>scan_out_declarations</kbd>,
 	and binds them to the value
@@ -1891,7 +1891,7 @@
 	evaluated. For lambda expressions with local declarations, we can achieve
 	the same effect by transforming their bodies into
 	immediately invoked lambda expressions
-	(see section <REF NAME="sec:env-local-state"><a class="superscript" id="4.1.6-sec-link-3.2.3" href="./3.2.3.html">3.2.3</a></REF>). For example,
+	(see section&nbsp;<REF NAME="sec:env-local-state"><a class="superscript" id="4.1.6-sec-link-3.2.3" href="./3.2.3.html">3.2.3</a></REF>). For example,
 	the lambda expression
 	<kbd class='snippet'>( $vars$ ) => {
     let u = $e_1$;
@@ -1912,7 +1912,7 @@
 <a name='p11' class='permalink'></a><p>
 	An alternative strategy for scanning out internal
 	declarations is shown in
-	exercise <REF NAME="ex:alternative-scanout"><a class="superscript" id="4.1.6-ex-link-4.21" href="./4.1.6.html#ex_4.21">4.21</a></REF>. Unlike the
+	exercise&nbsp;<REF NAME="ex:alternative-scanout"><a class="superscript" id="4.1.6-ex-link-4.21" href="./4.1.6.html#ex_4.21">4.21</a></REF>. Unlike the
 	transformation shown above, this enforces the restriction that the
 	declared names' values can be evaluated without using any of the
 	names' values.
@@ -1936,12 +1936,12 @@
 	In this exercise we implement the method just described for interpreting
 	internal definitions.
 	We assume that the evaluator supports <kbd>let</kbd>
-	(see exercise <REF NAME="ex:implement-let"><a class="superscript" id="4.1.6-ex-link-4.9" href="./4.1.2.html#ex_4.9">4.9</a></REF>).
+	(see exercise&nbsp;<REF NAME="ex:implement-let"><a class="superscript" id="4.1.6-ex-link-4.9" href="./4.1.2.html#ex_4.9">4.9</a></REF>).
 	<OL type="a">
 	  
 	  <LI>
 	    Change <kbd>lookup-variable-value</kbd>
-	    (section <REF NAME="sec:operations-on-environments"><a class="superscript" id="4.1.6-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF>)
+	    (section&nbsp;<REF NAME="sec:operations-on-environments"><a class="superscript" id="4.1.6-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF>)
 	    to signal an error if the value it finds is the symbol
 	    <kbd>*unassigned*</kbd>.
 	  </LI>
@@ -1955,7 +1955,7 @@
 	    Install <kbd>scan-out-defines</kbd> in the
 	    interpreter, either in  <kbd>make-procedure</kbd>
 	    or in <kbd>procedure-body</kbd> (see
-	    section <REF NAME="sec:eval-data-structures"><a class="superscript" id="4.1.6-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF>).
+	    section&nbsp;<REF NAME="sec:eval-data-structures"><a class="superscript" id="4.1.6-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF>).
 	    Which place is better? Why?
 	  </LI>
 	</OL>
@@ -1985,7 +1985,7 @@
 	    value <kbd>"*unassigned*"</kbd> leads to
 	    a runtime error. Change
 	    <kbd>lookup_symbol_value</kbd>
-	    (section <REF NAME="sec:operations-on-environments"><a class="superscript" id="4.1.6-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF>) to
+	    (section&nbsp;<REF NAME="sec:operations-on-environments"><a class="superscript" id="4.1.6-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF>) to
 	    signal an error if the value it finds is 
 	    <kbd>"*unassigned*"</kbd>.
 	  </LI>
@@ -1994,7 +1994,7 @@
 	    could declare a variable in a block and assign a value to the
 	    variable before its <kbd>let</kbd>
 	    declaration is evaluated. Change the evaluator of
-	    section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> such that any
+	    section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> such that any
 	    assignment to a variable declared with
 	    <kbd>let</kbd> leads to an error if
 	    the declaration has not been evaluated yet.
@@ -2049,7 +2049,7 @@
 	meant to represent new variable names, created by the interpreter, that do
 	not appear in the user's program. Consider the
 	<kbd>solve</kbd> function
-	from section <REF NAME="sec:streams-and-delayed-evaluation"><a class="superscript" id="4.1.6-sec-link-3.5.4" href="./3.5.4.html">3.5.4</a></REF>:
+	from section&nbsp;<REF NAME="sec:streams-and-delayed-evaluation"><a class="superscript" id="4.1.6-sec-link-3.5.4" href="./3.5.4.html">3.5.4</a></REF>:
 	<div class='snippet' id='javascript_81_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzAVwDsBjAFwEsB7E0AZxoBsA3AUwAoCAaUATwAMfACYUAlKADeuUHNBk6DCgNABeUFRIV2AcwBOAQ2adQnSWoB8oEfz5DREgNyz5ikspv91jCvvaGALYA+oGGAA7c9uIu8qD+FET69PwuAL5AA')">function solve(f, y0, dt) {
     const y = integral( () => dy, y0, dt);
     const dy = stream_map(f, y);
@@ -2101,7 +2101,7 @@
 	are meant to represent new variable names, created by the interpreter,
 	that do	not appear in the user's program. Consider the
 	<kbd>solve</kbd> procedure from
-	section <REF NAME="sec:streams-and-delayed-evaluation"><a class="superscript" id="4.1.6-sec-link-3.5.4" href="./3.5.4.html">3.5.4</a></REF>:
+	section&nbsp;<REF NAME="sec:streams-and-delayed-evaluation"><a class="superscript" id="4.1.6-sec-link-3.5.4" href="./3.5.4.html">3.5.4</a></REF>:
 	<div class='snippet' id='javascript_81_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (solve f y0 dt)
 (define y (integral (delay dy) y0 dt))
@@ -2127,7 +2127,7 @@
   
 		
 	Our implementation of blocks in
-	section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> imposes a
+	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> imposes a
 	runtime burden: It needs to scan
 	the body of the block for locally declared names. We shall devise
 	a simpler mechanism in this exercise. We can achieve the desired result
@@ -2140,7 +2140,7 @@
 	  <LI>
 	    Simplify the declaration of 
 	    <kbd>eval_block</kbd> in
-	    section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> to 
+	    section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> to 
 	    ignore local declarations.
 	  </LI>
 	  <LI>
@@ -2163,7 +2163,7 @@
 	  <LI>
 	    Can you find programs that behave differently with this treatment
 	    of local declarations, compared to the implementation
-	    in section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>?
+	    in section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>?
 	  </LI>
 	</OL>
       
@@ -2204,7 +2204,7 @@
 	the simultaneous scope rule for internal procedure definitions,	and that
 	it is unreasonable to treat procedure names differently from other names.
 	Thus, she argues for the mechanism implemented in
-	exercise <REF NAME="ex:internal-defs"><a class="superscript" id="4.1.6-ex-link-4.20" href="./4.1.6.html#ex_4.20">4.20</a></REF>. This would lead to
+	exercise&nbsp;<REF NAME="ex:internal-defs"><a class="superscript" id="4.1.6-ex-link-4.20" href="./4.1.6.html#ex_4.20">4.20</a></REF>. This would lead to
 	<kbd>a</kbd> being unassigned at the time that the
 	value for <kbd>b</kbd> is to be computed.  Hence, in
 	Alyssa's view the procedure should produce an error.  Eva has a
@@ -2226,15 +2226,15 @@
 	$\textit{statements}$ in the
 	function in the text, comparing how this will be structured when
 	declarations are interpreted sequentially as described in
-	exercise <REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.23" href="./4.1.6.html#ex_4.23">4.23</a></REF>
+	exercise&nbsp;<REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.23" href="./4.1.6.html#ex_4.23">4.23</a></REF>
 	with how it is structured if declarations are scanned out as described
-	in section  <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
+	in section&nbsp;&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
 	Why is there an extra frame in the latter case?
 	JavaScript forbids the re-declaration of parameters
 	as local names in the body block of any function. With this restriction,
 	can you achieve the scoping for local names
 	in lambda expressions of 
-	section  <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>,
+	section&nbsp;&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>,
 	without constructing the extra frame?
       </span></td></tr></table>
   
@@ -2309,7 +2309,7 @@
 	    expression, by transforming a <kbd>letrec</kbd>
 	    expression into a <kbd>let</kbd> expression as
 	    shown in  the text above or in
-	    exercise <REF NAME="ex:alternative-scanout_scheme"><a class="superscript" id="4.1.6-ex-link-4.22" href="./4.1.6.html#ex_4.22">4.22</a></REF>. That is,
+	    exercise&nbsp;<REF NAME="ex:alternative-scanout_scheme"><a class="superscript" id="4.1.6-ex-link-4.22" href="./4.1.6.html#ex_4.22">4.22</a></REF>. That is,
 	    the <kbd>letrec</kbd> variables should be created
 	    with a <kbd>let</kbd> and then be assigned their
 	    values with <kbd>set!</kbd>.
@@ -2358,14 +2358,14 @@ f(10);
 </pre></div></div>
 	Ben asserts that the result should be obtained using the sequential
 	implementation for <kbd>let</kbd> as given
-	in exercise <REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.23" href="./4.1.6.html#ex_4.23">4.23</a></REF>:
+	in exercise&nbsp;<REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.23" href="./4.1.6.html#ex_4.23">4.23</a></REF>:
 	<kbd>b</kbd> is declared to be 11, then
 	<kbd>a</kbd> is declared to be 5, so the result is 16.
 	Alyssa objects that mutual recursion requires the simultaneous scope
 	rule for internal function declarations, and that it is unreasonable to
 	treat function names differently from other names.  Thus, she argues for
 	the mechanism implemented in
-	section  <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>. This would
+	section&nbsp;&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>. This would
 	lead to <kbd>a</kbd> being unassigned at the time that
 	the value for <kbd>b</kbd> is to be computed.  Hence,
 	in Alyssa's view the function should produce an error.  Eva has a
@@ -2404,7 +2404,7 @@ f(10);
         <tr><td><span style="color:green">
 	
 	Amazingly, Louis's intuition in
-	exercise <REF NAME="ex:letrec"><a class="superscript" id="4.1.6-ex-link-4.25" href="./4.1.6.html#ex_4.25">4.25</a></REF> is correct. It is indeed
+	exercise&nbsp;<REF NAME="ex:letrec"><a class="superscript" id="4.1.6-ex-link-4.25" href="./4.1.6.html#ex_4.25">4.25</a></REF> is correct. It is indeed
 	possible to specify recursive procedures without using
 	<kbd>letrec</kbd> (or even
 	<kbd>define</kbd>), although the method for
@@ -2540,14 +2540,14 @@ function f(x) {
     Wanting
 	programs to not depend on this evaluation mechanism is the reason for the
 	<QUOTE>management is not responsible</QUOTE> remark in
-	footnote <REF NAME="foot:management"><a class="superscript" id="4.1.6-foot-link-1" href="./1.1.8.html#footnote-1">1</a></REF> of chapter 1.
+	footnote&nbsp;<REF NAME="foot:management"><a class="superscript" id="4.1.6-foot-link-1" href="./1.1.8.html#footnote-1">1</a></REF> of chapter&nbsp;1.
 	By insisting that internal definitions come first and do not use each
 	other while the definitions are being evaluated, the IEEE standard
 	for Scheme leaves implementors some choice in the mechanism used to
 	evaluate these definitions.  The choice of one evaluation rule rather
 	than another here may seem like a small issue, affecting only the
 	interpretation of <QUOTE>badly formed</QUOTE> programs. However, we will
-	see in section <REF NAME="sec:lexical-addressing"><a class="superscript" id="4.1.6-sec-link-5.5.6" href="./5.5.6.html">5.5.6</a></REF> that moving
+	see in section&nbsp;<REF NAME="sec:lexical-addressing"><a class="superscript" id="4.1.6-sec-link-5.5.6" href="./5.5.6.html">5.5.6</a></REF> that moving
 	to a model of simultaneous scoping for internal definitions avoids some
 	nasty difficulties that would otherwise arise in implementing a compiler.
 	

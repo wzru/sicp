@@ -1701,7 +1701,7 @@
       functions
     
     will still be strict. It is not difficult to modify the evaluator of
-    section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> so that the language it
+    section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> so that the language it
     interprets behaves this way.  Almost all the required changes center around
     
       
@@ -1765,7 +1765,7 @@
     One design choice we have available is whether or not to 
     
     <EM>memoize</EM> thunks, similar to the optimization for streams in
-    section <REF NAME="sec:delayed-lists"><a class="superscript" id="4.2.2-sec-link-3.5.1" href="./3.5.1.html">3.5.1</a></REF>.  With memoization, the first
+    section&nbsp;<REF NAME="sec:delayed-lists"><a class="superscript" id="4.2.2-sec-link-3.5.1" href="./3.5.1.html">3.5.1</a></REF>.  With memoization, the first
     time a thunk is forced, it stores the value that is computed.  Subsequent
     forcings simply return the stored value without repeating the computation.
     We'll make our interpreter memoize, because this is more efficient for
@@ -1784,7 +1784,7 @@
   <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
     The main difference between the lazy evaluator and the one in
-    section <REF NAME="sec:mc-eval"><a class="superscript" id="4.2.2-sec-link-4.1" href="./4.1.html">4.1</a></REF> is in the handling of
+    section&nbsp;<REF NAME="sec:mc-eval"><a class="superscript" id="4.2.2-sec-link-4.1" href="./4.1.html">4.1</a></REF> is in the handling of
     
     function
     applications in
@@ -1829,7 +1829,7 @@
 	<kbd>evaluate</kbd>
       
     
-    in section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.  For lazy evaluation,
+    in section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.  For lazy evaluation,
     however, we call <kbd>apply</kbd> with the operand
     expressions, rather than the arguments produced by evaluating them. Since
     we will need the environment to construct thunks if the arguments are to be
@@ -1865,7 +1865,7 @@
   <div class='permalink'>
 <a name='p10' class='permalink'></a><p>
     Our new version of <kbd>apply</kbd> is also almost the
-    same as the version in section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
+    same as the version in section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
     The difference is that
     
       
@@ -1925,7 +1925,7 @@
 	<kbd>list_of_values</kbd>
       
     
-    from section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>,
+    from section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>,
     except that
     
       
@@ -2022,7 +2022,7 @@ function list_of_delayed_args(exps, env) {
     
     function
     
-    (section <REF NAME="sec:running-eval"><a class="superscript" id="4.2.2-sec-link-4.1.4" href="./4.1.4.html">4.1.4</a></REF>) to use
+    (section&nbsp;<REF NAME="sec:running-eval"><a class="superscript" id="4.2.2-sec-link-4.1.4" href="./4.1.4.html">4.1.4</a></REF>) to use
     
       
       
@@ -2079,7 +2079,7 @@ function driver_loop(env) {
       
     
     expression
-    discussed in section <REF NAME="sec:evaluation-order"><a class="superscript" id="4.2.2-sec-link-4.2.1" href="./4.2.1.html">4.2.1</a></REF> indicates
+    discussed in section&nbsp;<REF NAME="sec:evaluation-order"><a class="superscript" id="4.2.2-sec-link-4.2.1" href="./4.2.1.html">4.2.1</a></REF> indicates
     that the interpreter is performing lazy evaluation:
     <div class='snippet' id='javascript_85_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQCZMChslAGYCuAdgMYAuAlgPYkDOhATjQLYQzxKpoCMfeMAHcqFABahWNACZUCVMgENqdRgRpNQAG0UAvAJ6gApgDdFWostolBoRWTIbZJAOagKNDnETJ0WDLjE5CokxmYWykYAFPQUrBQANMYkJgCUoADe2KA5TEYUREyhVPQA+vRGWgSlpuaW1K4xcRSp2TntHQD8ObHxbR0dAFygJaUkiqzRvS39AzndWjQ0ANZEAA7l+qwARjRapeFEU1u7+zTV45NN8alJRimtc0MjZY4MFIokFKXSRmQ6TCsdGuMye7W6tX2b1in2+v3+ikBIRBdweszmw1GZiYVEU2y0Rh+fwBQJIIMeYNAEPCB0RuPxhPhJOR01RaXRA0xZUU9HoVBcJEmX3JHK6YXMpR5fIFQooKOS7MpoC5pTeshCEqMAA81nledYRUrqRK1aJrJqdXq+cDWQqKWCVaaNfsYRQjLLDZTjVC6OrzS6Pm6Pbb7orKSqdDtpIpPWDuqxFMtCUFKAbI9to6U1oiJvkjEx6OSEqKlZT05ndtJ9EWS6WnqH7U8VRUAI5HchTZqNube8pGNv3MhTfvtoflQPu+4UQvTW522vKl6lfE0MjLWNPXsrtfyhsLlV5ApFDc98X7Q+FMkhtFKlWKNZrLQKUnkuYL7r3x-V+wFCWHaIpiENSWkY+o2l2bK3AuYKIi4M4QfOt7GEwLBMPKABEACqJDLCQNBCKE9D6F8ihaqAAC05FnvURjoakADc2AAL6BKQqZ0HYlCWPs-5RNqayQZkswXkUhAaGOoh8YckR8TqkEMcxrHBNYdgPlo1ZBEksH0IJWTtHIoBRKMupUKwZomMmbHIkEqTpHpcwiaEn7qVmOJmdQFmlIBBrQU8mnaCU3znJKTAuLSFigVE2nyfROT4GQYifC4RjSP0THGFoFQjAQhmjI4rBrDQpDSF5VkGjZdkctCFCgJWhgALyEGVdDLjIGmkApczVaARE7HsjCNd5LXZoCkxugWUQ2YxXWqDVepEFoNWNZCNFRL5da1W1xYbXW2puiQJWhlQLCClOMQnP1STrTtcVgOoWiLCIrgBSQRigAlSUpddN1PrEpTBb8Oj6ClIVwVFoU6Xa203RtQ0kDUKTHXQHoVZ1AyOUujnhUcUTzYt3ZxqAWP-qqdD7XKeOgnWwzFUY8ivdI005OllRZfZHT5qhk2kEkWE4XhBFNcpHEUPoaxvZRqlfnRTOgCxLHYHDZ6kwdZp0BauqgdaZL8UwukAJDCfkl5LhQTA4z+3HY9EarAbqrkpbJupQTDMMNgTAzeqttu6yrha63Oe6lsMK0yT7lqSotTtMIHDyMQrSujB8LjJSVv1yra4iEsnlUdBjxmKMdr4AGTF6AYhGIo0ivvVtfuBXpTJ-HSnscUry+mr4wBpEwZdkJ7T52Uyep6U6fyt9oDoU6-rjj3U4y4pSu29MDvV7O-e5Mbonp6UeQEPKvAKSxS++uO8R+6+7MYzve-yhgR+K81oTL80kcZ33V9b6EN90-KADMD9H7C1CJCFWfp1bdyDGda8aRMiGzzl-U25toiWz-HUG2p8V6azXhBCebsHgezFKHN0UQX7n2hEWRCSFiEYIOmfb45h343Egs3IBrdlatlHJ2eIkMGwbxyAZIyZR3RrFFn2AcHYQT0Fsvw9GiDab0xSrLOWGUsqCNGDoP6rpJzCmmNI3OpYMY0MmsdLRE5e48NuA2ZRLNMpvXZgMbq8gCzfBXv+UAjVfLGOcWYueujmjSISNYks6iyjE3QSYlx9DrYyIcWCDGPjXGv3-Mojoti2a+SMTSThg5ogTz1Ekvx04pFWLjiWFiaTFJsJCAFP6wVSBSn5AzKIlxQIGM3keNuYwFpaBabmaRJZugkB6SWYY2Yi7oQAFQNP1AKFKkz0JJB3vU8YszmkfCoL01p+iGL6w6FUpW9AlDwyKnCYkOYQjwRuLI0J4iuHknaY42aPUAkeJ6iOXJs8oFfCuS0VJA9EGjBEWInJki9GELFMMh6vlhifnuGvY5-0iBnIREiawhZElfJ0Uw6ctloaux6Ii05RJUWkkLAmJMdzclrQJa7ApWLZS-J2WjZmqj7ElkHn7D4XwSXMgNLOXyCxAqkNmrCXlFzrCbD6r02cEL2gqmxPSAk4q0XgRuNdIVsQoiKrxMqpkEqWq9VOA866wwoVaBsQcp+yttzrhgY87qdU3m2talWckyjuqLCUJlN5RzPhIpRXy1QUQ6osves8mZ0oGYDVqUFaokammOy9eYaRyisl1BknVfFG09rwoRiYJGp1hTJsykkBNczpC8IIawpWoDHK7geLIjGFLCThIijSnaxisa6y1vy3BtKBjuxrda0BjSZTQOaLpWY3V3HLWkiQsdRbvi8VnCw2Yi6pWnGtlFNZspN17Eof+NdCDOmgBSVa4BysdUMhVS+e1siN1Gr2Nu69erzmqvhk+mV-b6zzuiK+xk77STbtXVDEswT0o5GqSpUB1UxX6o-Q22BDjH0XR4hEuDPKEPAa-TWMExjMOBoNfDFdCEGzZo5mUhO1qgV-pKuIUg64aDbAAFaPM5cPEGY9mMsd5jQ+jYhGML2PtahjOFt38cboJnC7HEEVyrlEDZvTJNieWLZZuSt1BMAknKHjjzbmqaiHpx5HRuqUzeag9D7a8FKlU3bIzrGXYDrmHZ0MDm2Nho6BUb48nq48b43RqTQnPPtG86UXzinC69L00kSmDFbpEyMI+ewb1+KgBEOIEY04z3oJLGFpTkXNnubnOa+L7R8BaeSjVUgr0UopQVByxBlN6LwPaOkt6cghE1EC4Z4zsiT0mzs7xPTNi2X9YBaenjlrqOXsBoofQpRJL8QNkbU9Y90KqcWcYOSdoNM0aHtJpjjnMj7IG6JJOigU5ceFf5yem2H5K1czqRTh3ZOnoiwV1T6nF6icO-ml7jG3smw+1FwrvSvvfYVhVp+agWDsCgN4bg6B+ABGgxxUYFQqjdYzQ0Fwl9Vsm1GMMnY+ZXygAAD7k+ghjs2VBGjrwp1T0soxdh7ErlePulPqdlHNe6i97Cie5nx2drpnG07CttOhVpwm0eETQ-9C4Qv14OIxiDorsrh2XtGIuixLR+EccuyPMekudfzwe9a03PLcPK-6Kryu1cCtq+-TcWy5vL2W+XREm3E3gf27B-72VgDE7t3ePBoDLIP628BUPQ312tWS8I7ekIMuT6h6w+HyV1vI8+9Ek7qIefA9u-YYn7DQFSPXM-u9v3n3QeB721rsoAGk99or1H09F2rvi-j5OyeTfS-WBT9avvGfDVoeFx033CnHfV9r12V39f2HD9JWXr32eJ+55n0Vgrdf+c1I0RMDMMZvfr9F7HrvOLeblkUHbK0A+i81Kv1mHMY18y-Pac2+851pUK7GLmJIBe5978VJH86px9Esq8p9Qdt9ADNcBcwkv4wCDdO9R4Jce90IsZtFZRB9L1u0QIwIOdW8c9QgACXdYC98Q9wEu4b9e01U9dK9CcY9kDjce8J4p4O5nRqD8DsDi9T5fZsFEDEEf595bRD4F8alw57YKFj9wCTYhC74gCOIJCmA34BC1tApd5f5bQAEyCVIMcPkwU18ZDztGCjdUD4heZQUhxuCakW0qUDDLF9dBDhV0JLDaIkhwUxCVJXCGUpw38TsoMiDy5N9ncWgFDQhMVMCJ0HD6CN8FMPCfscDQJClvlilwVHDT1oDLFPD0dhECoQV9ChwSl0iGDukHoSlsiulNFkjsUiiYiuledMjcUg99tlwvU7VDCjDT8mCzDEhJ5bVrCVJbDbVVDZDnD+j3CuwKjao2jXVqxpDOigjID1c58dCcjJQ1JnwI9CCT9TYz8UDu9zDJ5nJNi78pi4ZODtYRjYiHdZ9SCEj2FtIrjiDgiA8YD7iak8JQZCwaA1hpFijjDSjotfiwjCBTEGFQojNgT-jniFMfjU13iVJ6VHi4T39EECsUTWFodgFYc2AvAuBfA+A0A-4W5yDG5kEogtQgdRIyJa5GozYjhVjQhbC4YogRpcxxpIYs07Qm0nCtU2CCoio6E4ZFkJ42SX8CwkguSINZclx8pCpipSpgFJoqSujTCtUCBeY5TBSSphSQTzixS8wJoCAVTY0ND94NTQBRCESOJzjQDjSeS1C-pb4LT74zin581C0UYTS5CLTtDd9BjExW0v5t03hyZvTnC20jgttQypwQTRhIz-10ETSO81S5Qj1J4EyBiOIEyVZyZtUkyHTJ8biit-xIcSSYNyBFg+RXAPSToPQ+EVc0TQdpTNMwSvJRpogGyCdri+IqMZTBwqzCRtgNIOzdJTtAjxk0ICBRzdtFJuos4ag8iFsjo6ypw3lzVGIZTmSOyv9ThIZ-w-jGzT1JzdzLocsIp4SRNL1pzcx91MpJoOy7JxydiIsbzJg9SOzrYMVHz-CAjAiCs3yjBmjL1c06EVzkZoE0N9yU1JSeRCQuyRdtB7gXBxBTzMp0haSkLXBULwgBlSxugTztylcoKkhcK5xtg4L805VFwCRsKxA0K-iAAeLClC+isi9aCEFCDQKIdCAAFSWEkE+EMFgiIEZR6nWEfCoBSmGHQlAAAGpQAbNQtadXA5A5ioL0gFKttZKFKlKegVKXA1L8z0LqKcgQ4uK0I+KBKCAjAhA7BQpRLfDxKNjpLJ55LFLnNYgcRVKCB1LpU-itLeZ3K9KXlvLDLfLjL9FGTtAlhVgNgv0QM0Mp0Oha0UhR4lg1hezkMSxDljkGLSKU0TMnhOVecv08KCUIQ0rFgfiO1nMByaBqywpwKl0srbIlLhgv0PE64IsyrTKvRFjq52LnMOq8rt8NKkgCsyKQtmYQkcosquq6SG5gVlzEZVyvgiq5hOZuKv1eZsJdhipQBpdpqVFWZ2U6wnEOy3lMVALWr-kHJEE-UyRAK7zvzcwnNnNmBbyDyHy3rjqKk2tuyQEqqMrbr-SOJUNv8V0krzzkr2hUqTB0qaqEK-JrVHr8rzzDzMlo9ASGK+rwQFREbMq9L6rGrayILhR3YJ4Oq0MFqBrcabNugwsItcKCqtA8bng0axr-K5xJrCq-qPKnhBFQxaaFzlqyal0NrB0LK0LdqSB9qDpDrcwKIqIPcF4wR2txsZp3hPrJgrq2ybrgk6wMY0bnqyqfr3yKNaVnrvrALvt1bZh-qdjQxCbQaoc7oYdmBcSEd8SeB+AUByy1iTJ3IqBPIWSbJoTdjuj1SeZJ4g7zJaIQS46PJCRTJHxsUXxw66i6aAKOpAFuok6Q7LJsS3kx5RR1tfMtt2hfMNp3qOh1slNK6cglMa7LbY0eLJzG7QBJyW6y7nD05O704e6nh1sicekttR6HolRa72h1tZB6Bkt9Ats56F6p7W71stqmBG6N66xp6ch1sExxBJRth6BFkD6xAj7GAwRd6270I5LO72gKSkh9AMKAA+UAMiBSwwUAa+9bcie+nIR+0AZ+jxN+siKiL+n+5whZJIOYQB4B+qUB0ASZIBnISBvk4Af+wyLUJ+1+9+0AMACBte5wgAUkwbgdwbImIZQe-qIb5NpPvvIZAbwcwuftoblHQgAEJa4GHsGgGKHQAuHGpWHe6+TGKyHeH4HEHmKchhHh7nDGL6p-7GGEG8GFGZG0H2GX7xGcGmGyI371G2GeKX7FGYGOhlHEHjGDGRH2GOHMG8GOgVGcgOH2hKTRQFJ863J47FTW4XqPESwExMrfMkgC7Q6Yd3HnkQmi6fGeM-hst6p-HP8ggmH1tImts89UZW6BhInvHLkFJsAPHTIvHCMY0x51sFE6cUottymGZr6Pq67nDIASB6ZRBF6YHGnmnRZam6m97nCz7ShYBIBG6+mBmunun97lBz6ABRTuvpyZ0Zup9bAAOUUEWcweWcWfZtdnCe1uycTzKr8bBACcmiYdfLnF2dFR+W2diC7s8eTq5TFQPIOaeCOZyhUfSbxRucKbueKbyaVmcgW2ybDpjtgn2LoMBqlhcjp1KFpiYHUjpzChY0UDMCORxFEVqo2mydToJFlAzo6kyZglClBbK3aDBsImNg2Gao9BNNAsOlWvJrlG+jhQOlZNucLpyczxIoFoHXObT1cXGsZYfHhRZa+bZfOJicoEhhCs+eDs8kTwPPmY6FFqXPFtlDzueQXJcEWAov2EpbXMam83WBVbOl+etSIAqGUJMmFF1DYFEXHDCqSHFbBbhtExoDtfhfc1ibslazkXb3bgFIVJZMdbxu6HQkYq1OKnIjhi0dNSXEBafg9coFaD2U9knkYsicjafmjeTeeALiLiDewGzfxvQgAG0dL3BXWvL3WIsg3NLJ5eYC26wFKPA3XGh0TWNPXa30IABddCBtzkUK+FoyoNy1DoZeoGHiyiSdqd6dmd2dv+-F9oa1vIlttwLSgAHRIDLebcrcaCDfcvQg3ZlxlLNfzA0IUyXdtZ3ZcBNIvblFvZXbVe1rpzWGRVchtaWkngABlyIaERgSAX2KAZLGJupTkAO328i3l0Jv3f3-wgOA7QhpAcQLJlDqrMrkachupn3kU3kT3lC8gFMsPvhb2w11F-3sPMLStNbQAx35sJ3JZiENB3B8wzJxg3RpBlb53J41a2sxs4l2gaPqx0I53hORP52J5CPwPRF93D33LCPpPN3jqPGaAXBRo3kRoKgjIyO-kSxPVVwU1fUiVX3+9g1rWVOJhFOI1Vko0UoSn1CVlF0k09P0K7rw0dmWAzPWB803kaWjXi0nPIZy1o1j0ngQPkUAOLMuI0F21TPRpgn3PRoqKXPcPXI6ddMwvX3b2HX0vtOwREPC6UOQaYuJhEuHaqk8vkOXaNWtXNQ6WJbNz8BoO-0-2APBhbBHsmAFsrhFBJSnyMZFBaaAAGKkS0xcbYWKFiBrn9pr2D2wapr6WwRrnHDrLT1r-AM2Tr6IAb--P3UrBSSbmD9BVbsAXgIAA')">const the_global_environment = setup_environment();
 driver_loop(the_global_environment);
@@ -2307,7 +2307,7 @@ L-evaluate value:</pre></div></div>
       
       function
     
-    is defined as in exercise <REF NAME="ex:delay-side-effects"><a class="superscript" id="4.2.2-ex-link-4.27" href="./4.2.2.html#ex_4.27">4.27</a></REF> and
+    is defined as in exercise&nbsp;<REF NAME="ex:delay-side-effects"><a class="superscript" id="4.2.2-ex-link-4.27" href="./4.2.2.html#ex_4.27">4.27</a></REF> and
     <kbd>count</kbd> starts at 0:
     <div class='snippet' id='javascript_85_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQCZMChslAGYCuAdgMYAuAlgPYkDOhATjQLYQzxKpoCMfeMAHcqFABahWNACZUCVMgENqdRgRpNQAG0UAvAJ6gApgDdFWostolBoRWTIbZJAOagKNDnETJ0WDLjE5CokxmYWykYAFPQUrBQANMYkJgCUoADe2KA5TEYUREyhVPQA+vRGWgSlpuaW1K4xcRSp2TntHQD8ObHxbR0dAFygJaUkiqzRvS39AzndWjQ0ANZEAA7l+qwARjRapeFEU1u7+zTV45NN8alJRimtc0MjZY4MFIokFKXSRmQ6TCsdGuMye7W6tX2b1in2+v3+ikBIRBdweszmw1GZiYVEU2y0Rh+fwBQJIIMeYNAEPCB0RuPxhPhJOR01RaXRA0xZUU9HoVBcJEmX3JHK6YXMpR5fIFQooKOS7MpoC5pTeshCEqMAA81nledYRUrqRK1aJrJqdXq+cDWQqKWCVaaNfsYRQjLLDZTjVC6OrzS6Pm6Pbb7orKSqdDtpIpPWDuqxFMtCUFKAbI9to6U1oiJvkjEx6OSEqKlZT05ndtJ9EWS6WnqH7U8VRUAI5HchTZqNube8pGNv3MhTfvtoflQPu+4UQvTW522vKl6lfE0MjLWNPXsrtfyhsLlV5ApFDc98X7Q+FMkhtFKlWKNZrLQKUnkuYL7r3x-V+wFCWHaIpiENSWkY+o2l2bK3AuYKIi4M4QfOt7GEwLBMPKABEACqJDLCQNBCKE9D6F8ihaqAAC05FnvURjoakADc2AAL6BKQqZ0HYlCWPs-5RNqayQZkswXkUhAaGOoh8YckR8TqkEMcxrHBNYdgPlo1ZBEksH0IJWTtHIoBRKMupUKwZomMmbHIkEqTpHpcwiaEn7qVmOJmdQFmlIBBrQU8mnaCU3znJKTAuLSFigVE2nyfROT4GQYifC4RjSP0THGFoFQjAQhmjI4rBrDQpDSF5VkGjZdkctCFCgJWhgALyEGVdDLjIGmkApczVaARE7HsjCNd5LXZoCkxugWUQ2YxXWqDVepEFoNWNZCNFRL5da1W1xYbXW2puiQJWhlQLCClOMQnP1STrTtcVgOoWiLCIrgBSQRigAlSUpddN1PrEpTBb8Oj6ClIVwVFoU6Xa203RtQ0kDUKTHXQHoVZ1AyOUujnhUcUTzYt3ZxqAWP-qqdD7XKeOgnWwzFUY8ivdI005OllRZfZHT5qhk2kEkWE4XhBFNcpHEUPoaxvZRqlfnRTOgCxLHYHDZ6kwdZp0BauqgdaZL8UwukAJDCfkl5LhQTA4z+3HY9EarAbqrkpbJupQTDMMNgTAzeqttu6yrha63Oe6lsMK0yT7lqSotTtMIHDyMQrSujB8LjJSVv1yra4iEsnlUdBjxmKMdr4AGTF6AYhGIo0ivvVtfuBXpTJ-HSnscUry+mr4wBpEwZdkJ7T52Uyep6U6fyt9oDoU6-rjj3U4y4pSu29MDvV7O-e5Mbonp6UeQEPKvAKSxS++uO8R+6+7MYzve-yhgR+K81oTL80kcZ33V9b6EN90-KADMD9H7C1CJCFWfp1bdyDGda8aRMiGzzl-U25toiWz-HUG2p8V6azXhBCebsHgezFKHN0UQX7n2hEWRCSFiEYIOmfb45h343Egs3IBrdlatlHJ2eIkMGwbxyAZIyZR3RrFFn2AcHYQT0Fsvw9GiDab0xSrLOWGUsqCNGDoP6rpJzCmmNI3OpYMY0MmsdLRE5e48NuA2ZRLNMpvXZgMbq8gCzfBXv+UAjVfLGOcWYueujmjSISNYks6iyjE3QSYlx9DrYyIcWCDGPjXGv3-Mojoti2a+SMTSThg5ogTz1Ekvx04pFWLjiWFiaTFJsJCAFP6wVSBSn5AzKIlxQIGM3keNuYwFpaBabmaRJZugkB6SWYY2Yi7oQAFQNP1AKFKkz0JJB3vU8YszmkfCoL01p+iGL6w6FUpW9AlDwyKnCYkOYQjwRuLI0J4iuHknaY42aPUAkeJ6iOXJs8oFfCuS0VJA9EGjBEWInJki9GELFMMh6vlhifnuGvY5-0iBnIREiawhZElfJ0Uw6ctloaux6Ii05RJUWkkLAmJMdzclrQJa7ApWLZS-J2WjZmqj7ElkHn7D4XwSXMgNLOXyCxAqkNmrCXlFzrCbD6r02cEL2gqmxPSAk4q0XgRuNdIVsQoiKrxMqpkEqWq9VOA866wwoVaBsQcp+yttzrhgY87qdU3m2talWckyjuqLCUJlN5RzPhIpRXy1QUQ6osves8mZ0oGYDVqUFaokammOy9eYaRyisl1BknVfFG09rwoRiYJGp1hTJsykkBNczpC8IIawpWoDHK7geLIjGFLCThIijSnaxisa6y1vy3BtKBjuxrda0BjSZTQOaLpWY3V3HLWkiQsdRbvi8VnCw2Yi6pWnGtlFNZspN17Eof+NdCDOmgBSVa4BysdUMhVS+e1siN1Gr2Nu69erzmqvhk+mV-b6zzuiK+xk77STbtXVDEswT0o5GqSpUB1UxX6o-Q22BDjH0XR4hEuDPKEPAa-TWMExjMOBoNfDFdCEGzZo5mUhO1qgV-pKuIUg64aDbAAFaPM5cPEGY9mMsd5jQ+jYhGML2PtahjOFt38cboJnC7HEEVyrlEDZvTJNieWLZZuSt1BMAknKHjjzbmqaiHpx5HRuqUzeag9D7a8FKlU3bIzrGXYDrmHZ0MDm2Nho6BUb48nq48b43RqTQnPPtG86UXzinC69L00kSmDFbpEyMI+ewb1+KgBEOIEY04z3oJLGFpTkXNnubnOa+L7R8BaeSjVUgr0UopQVByxBlN6LwPaOkt6cghE1EC4Z4zsiT0mzs7xPTNi2X9YBaenjlrqOXsBoofQpRJL8QNkbU9Y90KqcWcYOSdoNM0aHtJpjjnMj7IG6JJOigU5ceFf5yem2H5K1czqRTh3ZOnoiwV1T6nF6icO-ml7jG3smw+1FwrvSvvfYVhVp+agWDsCgN4bg6B+ABGgxxUYFQqjdYzQ0Fwl9Vsm1GMMnY+ZXygAAD7k+ghjs2VBGjrwp1T0soxdh7ErlePulPqdlHNe6i97Cie5nx2drpnG07CttOhVpwm0eETQ-9C4Qv14OIxiDorsrh2XtGIuixLR+EccuyPMekudfzwe9a03PLcPK-6Kryu1cCtq+-TcWy5vL2W+XREm3E3gf27B-72VgDE7t3ePBoDLIP628BUPQ312tWS8I7ekIMuT6h6w+HyV1vI8+9Ek7qIefA9u-YYn7DQFSPXM-u9v3n3QeB721rsoAGk99or1H09F2rvi-j5OyeTfS-WBT9avvGfDVoeFx033CnHfV9r12V39f2HD9JWXr32eJ+55n0Vgrdf+c1I0RMDMMZvfr9F7HrvOLeblkUHbK0A+i81Kv1mHMY18y-Pac2+851pUK7GLmJIBe5978VJH86px9Esq8p9Qdt9ADNcBcwkv4wCDdO9R4Jce90IsZtFZRB9L1u0QIwIOdW8c9QgACXdYC98Q9wEu4b9e01U9dK9CcY9kDjce8J4p4O5nRqD8DsDi9T5fZsFEDEEf595bRD4F8alw57YKFj9wCTYhC74gCOIJCmA34BC1tApd5f5bQAEyCVIMcPkwU18ZDztGCjdUD4heZQUhxuCakW0qUDDLF9dBDhV0JLDaIkhwUxCVJXCGUpw38TsoMiDy5N9ncWgFDQhMVMCJ0HD6CN8FMPCfscDQJClvlilwVHDT1oDLFPD0dhECoQV9ChwSl0iGDukHoSlsiulNFkjsUiiYiuledMjcUg99tlwvU7VDCjDT8mCzDEhJ5bVrCVJbDbVVDZDnD+j3CuwKjao2jXVqxpDOigjID1c58dCcjJQ1JnwI9CCT9TYz8UDu9zDJ5nJNi78pi4ZODtYRjYiHdZ9SCEj2FtIrjiDgiA8YD7iak8JQZCwaA1hpFijjDSjotfiwjCBTEGFQojNgT-jniFMfjU13iVJ6VHi4T39EECsUTWFodgFYc2AvAuBfA+A0A-4W5yDG5kEogtQgdRIyJa5GozYjhVjQhbC4YogRpcxxpIYs07Qm0nCtU2CCoio6E4ZFkJ42SX8CwkguSINZclx8pCpipSpgFJoqSujTCtUCBeY5TBSSphSQTzixS8wJoCAVTY0ND94NTQBRCESOJzjQDjSeS1C-pb4LT74zin581C0UYTS5CLTtDd9BjExW0v5t03hyZvTnC20jgttQypwQTRhIz-10ETSO81S5Qj1J4EyBiOIEyVZyZtUkyHTJ8biit-xIcSSYNyBFg+RXAPSToPQ+EVc0TQdpTNMwSvJRpogGyCdri+IqMZTBwqzCRtgNIOzdJTtAjxk0ICBRzdtFJuos4ag8iFsjo6ypw3lzVGIZTmSOyv9ThIZ-w-jGzT1JzdzLocsIp4SRNL1pzcx91MpJoOy7JxydiIsbzJg9SOzrYMVHz-CAjAiCs3yjBmjL1c06EVzkZoE0N9yU1JSeRCQuyRdtB7gXBxBTzMp0haSkLXBULwgBlSxugTztylcoKkhcK5xtg4L805VFwCRsKxA0K-iAAeLClC+isi9aCEFCDQKIdCAAFSWEkE+EMFgiIEZR6nWEfCoBSmGHQlAAAGpQAbNQtadXA5A5ioL0gFKttZKFKlKegVKXA1L8z0LqKcgQ4uK0I+KBKCAjAhA7BQpRLfDxKNjpLJ55LFLnNYgcRVKCB1LpU-itLeZ3K9KXlvLDLfLjL9FGTtAlhVgNgv0QM0Mp0Oha0UhR4lg1hezkMSxDljkGLSKU0TMnhOVecv08KCUIQ0rFgfiO1nMByaBqywpwKl0srbIlLhgv0PE64IsyrTKvRFjq52LnMOq8rt8NKkgCsyKQtmYQkcosquq6SG5gVlzEZVyvgiq5hOZuKv1eZsJdhipQBpdpqVFWZ2U6wnEOy3lMVALWr-kHJEE-UyRAK7zvzcwnNnNmBbyDyHy3rjqKk2tuyQEqqMrbr-SOJUNv8V0krzzkr2hUqTB0qaqEK-JrVHr8rzzDzMlo9ASGK+rwQFREbMq9L6rGrayILhR3YJ4Oq0MFqBrcabNugwsItcKCqtA8bng0axr-K5xJrCq-qPKnhBFQxaaFzlqyal0NrB0LK0LdqSB9qDpDrcwKIqIPcF4wR2txsZp3hPrJgrq2ybrgk6wMY0bnqyqfr3yKNaVnrvrALvt1bZh-qdjQxCbQaoc7oYdmBcSEd8SeB+AUByy1iTJ3IqBPIWSbJoTdjuj1SeZJ4g7zJaIQS46PJCRTJHxsUXxw66i6aAKOpAFuok6Q7LJsS3kx5RR1tfMtt2hfMNp3qOh1slNK6cglMa7LbY0eLJzG7QBJyW6y7nD05O704e6nh1sicekttR6HolRa72h1tZB6Bkt9Ats56F6p7W71stqmBG6N66xp6ch1sExxBJRth6BFkD6xAj7GAwRd6270I5LO72gKSkh9AMKAA+UAMiBSwwUAa+9bcie+nIR+0AZ+jxN+siKiL+n+5whZJIOYQB4B+qUB0ASZIBnISBvk4Af+wyLUJ+1+9+0AMACBte5wgAUkwbgdwbImIZQe-qIb5NpPvvIZAbwcwuftoblHQgAEJa4GHsGgGKHQAuHGpWHe6+TGKyHeH4HEHmKchhHh7nDGL6p-7GGEG8GFGZG0H2GX7xGcGmGyI371G2GeKX7FGYGOhlHEHjGDGRH2GOHMG8GOgVGcgOH2hKTRQFJ863J47FTW4XqPESwExMrfMkgC7Q6Yd3HnkQmi6fGeM-hst6p-HP8ggmH1tImts89UZW6BhInvHLkFJsAPHTIvHCMY0x51sFE6cUottymGZr6Pq67nDIASB6ZRBF6YHGnmnRZam6m97nCz7ShYBIBG6+mBmunun97lBz6ABRTuvpyZ0Zup9bAAOUUEWcweWcWfZtdnCe1uycTzKr8bBACcmiYdfLnF2dFR+W2diC7s8eTq5TFQPIOaeCOZyhUfSbxRucKbueKbyaVmcgW2ybDpjtgn2LoMBqlhcjp1KFpiYHUjpzChY0UDMCORxFEVqo2mydToJFlAzo6kyZglClBbK3aDBsImNg2Gao9BNNAsOlWvJrlG+jhQOlZNucLpyczxIoFoHXObT1cXGsZYfHhRZa+bZfOJicoEhhCs+eDs8kTwPPmY6FFqXPFtlDzueQXJcEWAov2EpbXMam83WBVbOl+etSIAqGUJMmFF1DYFEXHDCqSHFbBbhtExoDtfhfc1ibslazkXb3bgFIVJZMdbxu6HQkYq1OKnIjhi0dNSXEBafg9coFaD2U9knkYsicjafmjeTeeALiLiDewGzfxvQgAG0dL3BXWvL3WIsg3NLJ5eYC26wFKPA3XGh0TWNPXa30IABddCBtzkUK+FoyoNy1DoZeoGHiyiSdqd6dmd2dv+-F9oa1vIlttwLSgAHRIDLebcrcaCDfcvQg3ZlxlLNfzA0IUyXdtZ3ZcBNIvblFvZXbVe1rpzWGRVchtaWkngABlyIaERgSAX2KAZLGJupTkAO328i3l0Jv3f3-wgOA7QhpAcQLJlDqrMrkachupn3kU3kT3lC8gFMsPvhb2w11F-3sPMLStNbQAx35sJ3JZiENB3B8wzJxg3RpBlb53J41a2sxs4l2gaPqx0I53hORP52J5CPwPRF93D33LCPpPN3jqPGaAXBRo3kRoKgjIyO-kSxPVVwU1fUiVX3+9g1rWVOJhFOI1Vko0UoSn1CVlF0k09P0K7rw0dmWAzPWB803kaWjXi0nPIZy1o1j0ngQPkUAOLMuI0F21TPRpgn3PRoqKXPcPXI6ddMwvX3b2HX0vtOwREPC6UOQaYuJhEuHaqk8vkOXaNWtXNQ6WJbNz8BoO-0-2APBhbACQapHBSAP2AAGWKROauSkk7Trr4N5YbmqBS3gWKDGLUWKFiBrn9pr2DxS-Aapr6WwRrnHDrLT1rrE9hegNsREaIQbjIBYsiZBmbuWdbhbzb88o4YYWwVb1KK739wjnbsAfbywPIIyauXgbr77ebmD9BN70ARivUQqBgIwF+3AAHpr172wMbxiGHm72D2wUH0CcHioF+oAA')">function square(x) {
     return x * x;
@@ -2359,7 +2359,7 @@ L-evaluate value:</pre></div></div>
       <kbd>evaluate_sequence</kbd>
       
     
-    from section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> to use
+    from section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.2.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> to use
     
       
       
@@ -2390,7 +2390,136 @@ function eval_sequence(stmts, env) {
         }
     }
 }</pre></div></div>
-    
+    <OL type="a">
+      <LI>
+	Ben Bitdiddle thinks Cy is wrong. He shows Cy the
+	
+	  
+	  
+	    <kbd>for_each</kbd>
+	  
+	
+	
+	  
+	  function
+	
+	described in exercise&nbsp;<REF NAME="ex:for-each"><a class="superscript" id="4.2.2-ex-link-2.23" href="./2.2.1.html#ex_2.23">2.23</a></REF>,	which gives an
+	important example of a sequence with side effects:
+	
+	<div class='snippet' id='javascript_85_25_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQCZMChslAGYCuAdgMYAuAlgPYkDOhATjQLYQzxKpoCMfeMAHcqFABahWNACZUCVMgENqdRgRpNQAG0UAvAJ6gApgDdFWostolBoRWTIbZJAOagKNDnETJ0WDLjE5CokxmYWykYAFPQUrBQANMYkJgCUoADe2KA5TEYUREyhVPQA+vRGWgSlpuaW1K4xcRSp2TntHQD8ObHxbR0dAFygJaUkiqzRvS39AzndWjQ0ANZEAA7l+qwARjRapeFEU1u7+zTV45NN8alJRimtc0MjZY4MFIokFKXSRmQ6TCsdGuMye7W6tX2b1in2+v3+ikBIRBdweszmw1GZiYVEU2y0Rh+fwBQJIIMeYNAEPCB0RuPxhPhJOR01RaXRA0xZUU9HoVBcJEmX3JHK6YXMpR5fIFQooKOS7MpoC5pTeshCEqMAA81nledYRUrqRK1aJrJqdXq+cDWQqKWCVaaNfsYRQjLLDZTjVC6OrzS6Pm6Pbb7orKSqdDtpIpPWDuqxFMtCUFKAbI9to6U1oiJvkjEx6OSEqKlZT05ndtJ9EWS6WnqH7U8VRUAI5HchTZqNube8pGNv3MhTfvtoflQPu+4UQvTW522vKl6lfE0MjLWNPXsrtfyhsLlV5ApFDc98X7Q+FMkhtFKlWKNZrLQKUnkuYL7r3x-V+wFCWHaIpiENSWkY+o2l2bK3AuYKIi4M4QfOt7GEwLBMPKABEACqJDLCQNBCKE9D6F8ihaqAAC05FnvURjoakADc2AAL6BKQqZ0HYlCWPs-5RNqayQZkswXkUhAaGOoh8YckR8TqkEMcxrHBNYdgPlo1ZBEksH0IJWTtHIoBRKMupUKwZomMmbHIkEqTpHpcwiaEn7qVmOJmdQFmlIBBrQU8mnaCU3znJKTAuLSFigVE2nyfROT4GQYifC4RjSP0THGFoFQjAQhmjI4rBrDQpDSF5VkGjZdkctCFCgJWhgALyEGVdDLjIGmkApczVaARE7HsjCNd5LXZoCkxugWUQ2YxXWqDVepEFoNWNZCNFRL5da1W1xYbXW2puiQJWhlQLCClOMQnP1STrTtcVgOoWiLCIrgBSQRigAlSUpddN1PrEpTBb8Oj6ClIVwVFoU6Xa203RtQ0kDUKTHXQHoVZ1AyOUujnhUcUTzYt3ZxqAWP-qqdD7XKeOgnWwzFUY8ivdI005OllRZfZHT5qhk2kEkWE4XhBFNcpHEUPoaxvZRqlfnRTOgCxLHYHDZ6kwdZp0BauqgdaZL8UwukAJDCfkl5LhQTA4z+3HY9EarAbqrkpbJupQTDMMNgTAzeqttu6yrha63Oe6lsMK0yT7lqSotTtMIHDyMQrSujB8LjJSVv1yra4iEsnlUdBjxmKMdr4AGTF6AYhGIo0ivvVtfuBXpTJ-HSnscUry+mr4wBpEwZdkJ7T52Uyep6U6fyt9oDoU6-rjj3U4y4pSu29MDvV7O-e5Mbonp6UeQEPKvAKSxS++uO8R+6+7MYzve-yhgR+K81oTL80kcZ33V9b6EN90-KADMD9H7C1CJCFWfp1bdyDGda8aRMiGzzl-U25toiWz-HUG2p8V6azXhBCebsHgezFKHN0UQX7n2hEWRCSFiEYIOmfb45h343Egs3IBrdlatlHJ2eIkMGwbxyAZIyZR3RrFFn2AcHYQT0Fsvw9GiDab0xSrLOWGUsqCNGDoP6rpJzCmmNI3OpYMY0MmsdLRE5e48NuA2ZRLNMpvXZgMbq8gCzfBXv+UAjVfLGOcWYueujmjSISNYks6iyjE3QSYlx9DrYyIcWCDGPjXGv3-Mojoti2a+SMTSThg5ogTz1Ekvx04pFWLjiWFiaTFJsJCAFP6wVSBSn5AzKIlxQIGM3keNuYwFpaBabmaRJZugkB6SWYY2Yi7oQAFQNP1AKFKkz0JJB3vU8YszmkfCoL01p+iGL6w6FUpW9AlDwyKnCYkOYQjwRuLI0J4iuHknaY42aPUAkeJ6iOXJs8oFfCuS0VJA9EGjBEWInJki9GELFMMh6vlhifnuGvY5-0iBnIREiawhZElfJ0Uw6ctloaux6Ii05RJUWkkLAmJMdzclrQJa7ApWLZS-J2WjZmqj7ElkHn7D4XwSXMgNLOXyCxAqkNmrCXlFzrCbD6r02cEL2gqmxPSAk4q0XgRuNdIVsQoiKrxMqpkEqWq9VOA866wwoVaBsQcp+yttzrhgY87qdU3m2talWckyjuqLCUJlN5RzPhIpRXy1QUQ6osves8mZ0oGYDVqUFaokammOy9eYaRyisl1BknVfFG09rwoRiYJGp1hTJsykkBNczpC8IIawpWoDHK7geLIjGFLCThIijSnaxisa6y1vy3BtKBjuxrda0BjSZTQOaLpWY3V3HLWkiQsdRbvi8VnCw2Yi6pWnGtlFNZspN17Eof+NdCDOmgBSVa4BysdUMhVS+e1siN1Gr2Nu69erzmqvhk+mV-b6zzuiK+xk77STbtXVDEswT0o5GqSpUB1UxX6o-Q22BDjH0XR4hEuDPKEPAa-TWMExjMOBoNfDFdCEGzZo5mUhO1qgV-pKuIUg64aDbAAFaPM5cPEGY9mMsd5jQ+jYhGML2PtahjOFt38cboJnC7HEEVyrlEDZvTJNieWLZZuSt1BMAknKHjjzbmqaiHpx5HRuqUzeag9D7a8FKlU3bIzrGXYDrmHZ0MDm2Nho6BUb48nq48b43RqTQnPPtG86UXzinC69L00kSmDFbpEyMI+ewb1+KgBEOIEY04z3oJLGFpTkXNnubnOa+L7R8BaeSjVUgr0UopQVByxBlN6LwPaOkt6cghE1EC4Z4zsiT0mzs7xPTNi2X9YBaenjlrqOXsBoofQpRJL8QNkbU9Y90KqcWcYOSdoNM0aHtJpjjnMj7IG6JJOigU5ceFf5yem2H5K1czqRTh3ZOnoiwV1T6nF6icO-ml7jG3smw+1FwrvSvvfYVhVp+agWDsCgN4bg6B+ABGgxxUYFQqjdYzQ0Fwl9Vsm1GMMnY+ZXygAAD7k+ghjs2VBGjrwp1T0soxdh7ErlePulPqdlHNe6i97Cie5nx2drpnG07CttOhVpwm0eETQ-9C4Qv14OIxiDorsrh2XtGIuixLR+EccuyPMekudfzwe9a03PLcPK-6Kryu1cCtq+-TcWy5vL2W+XREm3E3gf27B-72VgDE7t3ePBoDLIP628BUPQ312tWS8I7ekIMuT6h6w+HyV1vI8+9Ek7qIefA9u-YYn7DQFSPXM-u9v3n3QeB721rsoAGk99or1H09F2rvi-j5OyeTfS-WBT9avvGfDVoeFx033CnHfV9r12V39f2HD9JWXr32eJ+55n0Vgrdf+c1I0RMDMMZvfr9F7HrvOLeblkUHbK0A+i81Kv1mHMY18y-Pac2+851pUK7GLmJIBe5978VJH86px9Esq8p9Qdt9ADNcBcwkv4wCDdO9R4Jce90IsZtFZRB9L1u0QIwIOdW8c9QgACXdYC98Q9wEu4b9e01U9dK9CcY9kDjce8J4p4O5nRqD8DsDi9T5fZsFEDEEf595bRD4F8alw57YKFj9wCTYhC74gCOIJCmA34BC1tApd5f5bQAEyCVIMcPkwU18ZDztGCjdUD4heZQUhxuCakW0qUDDLF9dBDhV0JLDaIkhwUxCVJXCGUpw38TsoMiDy5N9ncWgFDQhMVMCJ0HD6CN8FMPCfscDQJClvlilwVHDT1oDLFPD0dhECoQV9ChwSl0iGDukHoSlsiulNFkjsUiiYiuledMjcUg99tlwvU7VDCjDT8mCzDEhJ5bVrCVJbDbVVDZDnD+j3CuwKjao2jXVqxpDOigjID1c58dCcjJQ1JnwI9CCT9TYz8UDu9zDJ5nJNi78pi4ZODtYRjYiHdZ9SCEj2FtIrjiDgiA8YD7iak8JQZCwaA1hpFijjDSjotfiwjCBTEGFQojNgT-jniFMfjU13iVJ6VHi4T39EECsUTWFodgFYc2AvAuBfA+A0A-4W5yDG5kEogtQgdRIyJa5GozYjhVjQhbC4YogRpcxxpIYs07Qm0nCtU2CCoio6E4ZFkJ42SX8CwkguSINZclx8pCpipSpgFJoqSujTCtUCBeY5TBSSphSQTzixS8wJoCAVTY0ND94NTQBRCESOJzjQDjSeS1C-pb4LT74zin581C0UYTS5CLTtDd9BjExW0v5t03hyZvTnC20jgttQypwQTRhIz-10ETSO81S5Qj1J4EyBiOIEyVZyZtUkyHTJ8biit-xIcSSYNyBFg+RXAPSToPQ+EVc0TQdpTNMwSvJRpogGyCdri+IqMZTBwqzCRtgNIOzdJTtAjxk0ICBRzdtFJuos4ag8iFsjo6ypw3lzVGIZTmSOyv9ThIZ-w-jGzT1JzdzLocsIp4SRNL1pzcx91MpJoOy7JxydiIsbzJg9SOzrYMVHz-CAjAiCs3yjBmjL1c06EVzkZoE0N9yU1JSeRCQuyRdtB7gXBxBTzMp0haSkLXBULwgBlSxugTztylcoKkhcK5xtg4L805VFwCRsKxA0K-iAAeLClC+isi9aCEFCDQKIdCAAFSWEkE+EMFgiIEZR6nWEfCoBSmGHQlAAAGpQAbNQtadXA5A5ioL0gFKttZKFKlKegVKXA1L8z0LqKcgQ4uK0I+KBKCAjAhA7BQpRLfDxKNjpLJ55LFLnNYgcRVKCB1LpU-itLeZ3K9KXlvLDLfLjL9FGTtAlhVgNgv0QM0Mp0Oha0UhR4lg1hezkMSxDljkGLSKU0TMnhOVecv08KCUIQ0rFgfiO1nMByaBqywpwKl0srbIlLhgv0PE64IsyrTKvRFjq52LnMOq8rt8NKkgCsyKQtmYQkcosquq6SG5gVlzEZVyvgiq5hOZuKv1eZsJdhipQBpdpqVFWZ2U6wnEOy3lMVALWr-kHJEE-UyRAK7zvzcwnNnNmBbyDyHy3rjqKk2tuyQEqqMrbr-SOJUNv8V0krzzkr2hUqTB0qaqEK-JrVHr8rzzDzMlo9ASGK+rwQFREbMq9L6rGrayILhR3YJ4Oq0MFqBrcabNugwsItcKCqtA8bng0axr-K5xJrCq-qPKnhBFQxaaFzlqyal0NrB0LK0LdqSB9qDpDrcwKIqIPcF4wR2txsZp3hPrJgrq2ybrgk6wMY0bnqyqfr3yKNaVnrvrALvt1bZh-qdjQxCbQaoc7oYdmBcSEd8SeB+AUByy1iTJ3IqBPIWSbJoTdjuj1SeZJ4g7zJaIQS46PJCRTJHxsUXxw66i6aAKOpAFuok6Q7LJsS3kx5RR1tfMtt2hfMNp3qOh1slNK6cglMa7LbY0eLJzG7QBJyW6y7nD05O704e6nh1sicekttR6HolRa72h1tZB6Bkt9Ats56F6p7W71stqmBG6N66xp6ch1sExxBJRth6BFkD6xAj7GAwRd6270I5LO72gKSkh9AMKAA+UAMiBSwwUAa+9bcie+nIR+0AZ+jxN+siKiL+n+5whZJIOYQB4B+qUB0ASZIBnISBvk4Af+wyLUJ+1+9+0AMACBte5wgAUkwbgdwbImIZQe-qIb5NpPvvIZAbwcwuftoblHQgAEJa4GHsGgGKHQAuHGpWHe6+TGKyHeH4HEHmKchhHh7nDGL6p-7GGEG8GFGZG0H2GX7xGcGmGyI371G2GeKX7FGYGOhlHEHjGDGRH2GOHMG8GOgVGcgOH2hKTRQFJ863J47FTW4XqPESwExMrfMkgC7Q6Yd3HnkQmi6fGeM-hst6p-HP8ggmH1tImts89UZW6BhInvHLkFJsAPHTIvHCMY0x51sFE6cUottymGZr6Pq67nDIASB6ZRBF6YHGnmnRZam6m97nCz7ShYBIBG6+mBmunun97lBz6ABRTuvpyZ0Zup9bAAOUUEWcweWcWfZtdnCe1uycTzKr8bBACcmiYdfLnF2dFR+W2diC7s8eTq5TFQPIOaeCOZyhUfSbxRucKbueKbyaVmcgW2ybDpjtgn2LoMBqlhcjp1KFpiYHUjpzChY0UDMCORxFEVqo2mydToJFlAzo6kyZglClBbK3aDBsImNg2Gao9BNNAsOlWvJrlG+jhQOlZNucLpyczxIoFoHXObT1cXGsZYfHhRZa+bZfOJicoEhhCs+eDs8kTwPPmY6FFqXPFtlDzueQXJcEWAov2EpbXMam83WBVbOl+etSIAqGUJMmFF1DYFEXHDCqSHFbBbhtExoDtfhfc1ibslazkXb3bgFIVJZMdbxu6HQkYq1OKnIjhi0dNSXEBafg9coFaD2U9knkYsicjafmjeTeeALiLiDewGzfxvQgAG0dL3BXWvL3WIsg3NLJ5eYC26wFKPA3XGh0TWNPXa30IABddCBtzkUK+FoyoNy1DoZeoGHiyiSdqd6dmd2dv+-F9oa1vIlttwLSgAHRIDLebcrcaCDfcvQg3ZlxlLNfzA0IUyXdtZ3ZcBNIvblFvZXbVe1rpzWGRVchtaWkngABlyIaERgSAX2KAZLGJupTkAO328i3l0Jv3f3-wgOA7QhpAcQLJlDqrMrkachupn3kU3kT3lC8gFMsPvhb2w11F-3sPMLStNbQAx35sJ3JZiENB3B8wzJxg3RpBlb53J41a2sxs4l2gaPqx0I53hORP52J5CPwPRF93D33LCPpPN3jqPGaAXBRo3kRoKgjIyO-kSxPVVwU1fUiVX3+9g1rWVOJhFOI1Vko0UoSn1CVlF0k09P0K7rw0dmWAzPWB803kaWjXi0nPIZy1o1j0ngQPkUAOLMuI0F21TPRpgn3PRoqKXPcPXI6ddMwvX3b2HX0vtOwREPC6UOQaYuJhEuHaqk8vkOXaNWtXNQ6WJbNz8BoO-0-2APBhbBNMNAah7B6L-JRB3RDzspcoecekjIgx9EMgFjqmlETq7ETsgh88-devWAoqxJlDK4EpuYSAJrQdFvlv0pIMSWGuf2mvYPbBJvUpC3bBGuccOstPWuKsOu1v6KaS36BOKS5wx4ABWAAdiSD-gwF4CSAAA5Afvt8BvvbA-veBbBgfLujvrvzyjg7uwAzugA')">function for_each(fun, items) {
+    if (is_null(items)){
+        return undefined;
+    } else {
+        fun(head(items));
+        for_each(fun, tail(items));
+    }
+}
+</pre></div></div>
+	He claims that the evaluator in the text (with the original
+	
+	  
+	  
+	    <kbd>eval_sequence</kbd>)
+	  
+	
+	handles this correctly:
+	<div class='snippet' id='javascript_85_26_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+</pre><pre class='prettyprintoutput'>
+L-evaluate input:</pre></div></div>
+	<div class='snippet' id='javascript_85_27_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+for_each(x => display( x),
+         list(57, 321, 88));</pre><pre class='prettyprintoutput'>
+57
+321
+88
+L-evaluate value:
+undefined</pre></div></div>
+	Explain why Ben is right about the behavior of
+	
+	  
+	  
+	    <kbd>for_each</kbd>.
+	  
+	
+      </LI>
+      <LI>
+	Cy agrees that Ben is right about the
+	
+	  
+	  
+	    <kbd>for_each</kbd>
+	  
+	
+	example, but says that that's not the kind of program he
+	was thinking about when he proposed his change to
+	
+	  
+	  
+	    <kbd>eval_sequence</kbd>.
+	  
+	
+	He defines the following two
+	
+	functions
+	in the lazy evaluator:
+	<div class='snippet' id='javascript_85_28_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQCZMChslAGYCuAdgMYAuAlgPYkDOhATjQLYQzxKpoCMfeMAHcqFABahWNACZUCVMgENqdRgRpNQAG0UAvAJ6gApgDdFWostolBoRWTIbZJAOagKNDnETJ0WDLjE5CokxmYWykYAFPQUrBQANMYkJgCUoADe2KA5TEYUREyhVPQA+vRGWgSlpuaW1K4xcRSp2TntHQD8ObHxbR0dAFygJaUkiqzRvS39AzndWjQ0ANZEAA7l+qwARjRapeFEU1u7+zTV45NN8alJRimtc0MjZY4MFIokFKXSRmQ6TCsdGuMye7W6tX2b1in2+v3+ikBIRBdweszmw1GZiYVEU2y0Rh+fwBQJIIMeYNAEPCB0RuPxhPhJOR01RaXRA0xZUU9HoVBcJEmX3JHK6YXMpR5fIFQooKOS7MpoC5pTeshCEqMAA81nledYRUrqRK1aJrJqdXq+cDWQqKWCVaaNfsYRQjLLDZTjVC6OrzS6Pm6Pbb7orKSqdDtpIpPWDuqxFMtCUFKAbI9to6U1oiJvkjEx6OSEqKlZT05ndtJ9EWS6WnqH7U8VRUAI5HchTZqNube8pGNv3MhTfvtoflQPu+4UQvTW522vKl6lfE0MjLWNPXsrtfyhsLlV5ApFDc98X7Q+FMkhtFKlWKNZrLQKUnkuYL7r3x-V+wFCWHaIpiENSWkY+o2l2bK3AuYKIi4M4QfOt7GEwLBMPKABEACqJDLCQNBCKE9D6F8ihaqAAC05FnvURjoakADc2AAL6BKQqZ0HYlCWPs-5RNqayQZkswXkUhAaGOoh8YckR8TqkEMcxrHBNYdgPlo1ZBEksH0IJWTtHIoBRKMupUKwZomMmbHIkEqTpHpcwiaEn7qVmOJmdQFmlIBBrQU8mnaCU3znJKTAuLSFigVE2nyfROT4GQYifC4RjSP0THGFoFQjAQhmjI4rBrDQpDSF5VkGjZdkctCFCgJWhgALyEGVdDLjIGmkApczVaARE7HsjCNd5LXZoCkxugWUQ2YxXWqDVepEFoNWNZCNFRL5da1W1xYbXW2puiQJWhlQLCClOMQnP1STrTtcVgOoWiLCIrgBSQRigAlSUpddN1PrEpTBb8Oj6ClIVwVFoU6Xa203RtQ0kDUKTHXQHoVZ1AyOUujnhUcUTzYt3ZxqAWP-qqdD7XKeOgnWwzFUY8ivdI005OllRZfZHT5qhk2kEkWE4XhBFNcpHEUPoaxvZRqlfnRTOgCxLHYHDZ6kwdZp0BauqgdaZL8UwukAJDCfkl5LhQTA4z+3HY9EarAbqrkpbJupQTDMMNgTAzeqttu6yrha63Oe6lsMK0yT7lqSotTtMIHDyMQrSujB8LjJSVv1yra4iEsnlUdBjxmKMdr4AGTF6AYhGIo0ivvVtfuBXpTJ-HSnscUry+mr4wBpEwZdkJ7T52Uyep6U6fyt9oDoU6-rjj3U4y4pSu29MDvV7O-e5Mbonp6UeQEPKvAKSxS++uO8R+6+7MYzve-yhgR+K81oTL80kcZ33V9b6EN90-KADMD9H7C1CJCFWfp1bdyDGda8aRMiGzzl-U25toiWz-HUG2p8V6azXhBCebsHgezFKHN0UQX7n2hEWRCSFiEYIOmfb45h343Egs3IBrdlatlHJ2eIkMGwbxyAZIyZR3RrFFn2AcHYQT0Fsvw9GiDab0xSrLOWGUsqCNGDoP6rpJzCmmNI3OpYMY0MmsdLRE5e48NuA2ZRLNMpvXZgMbq8gCzfBXv+UAjVfLGOcWYueujmjSISNYks6iyjE3QSYlx9DrYyIcWCDGPjXGv3-Mojoti2a+SMTSThg5ogTz1Ekvx04pFWLjiWFiaTFJsJCAFP6wVSBSn5AzKIlxQIGM3keNuYwFpaBabmaRJZugkB6SWYY2Yi7oQAFQNP1AKFKkz0JJB3vU8YszmkfCoL01p+iGL6w6FUpW9AlDwyKnCYkOYQjwRuLI0J4iuHknaY42aPUAkeJ6iOXJs8oFfCuS0VJA9EGjBEWInJki9GELFMMh6vlhifnuGvY5-0iBnIREiawhZElfJ0Uw6ctloaux6Ii05RJUWkkLAmJMdzclrQJa7ApWLZS-J2WjZmqj7ElkHn7D4XwSXMgNLOXyCxAqkNmrCXlFzrCbD6r02cEL2gqmxPSAk4q0XgRuNdIVsQoiKrxMqpkEqWq9VOA866wwoVaBsQcp+yttzrhgY87qdU3m2talWckyjuqLCUJlN5RzPhIpRXy1QUQ6osves8mZ0oGYDVqUFaokammOy9eYaRyisl1BknVfFG09rwoRiYJGp1hTJsykkBNczpC8IIawpWoDHK7geLIjGFLCThIijSnaxisa6y1vy3BtKBjuxrda0BjSZTQOaLpWY3V3HLWkiQsdRbvi8VnCw2Yi6pWnGtlFNZspN17Eof+NdCDOmgBSVa4BysdUMhVS+e1siN1Gr2Nu69erzmqvhk+mV-b6zzuiK+xk77STbtXVDEswT0o5GqSpUB1UxX6o-Q22BDjH0XR4hEuDPKEPAa-TWMExjMOBoNfDFdCEGzZo5mUhO1qgV-pKuIUg64aDbAAFaPM5cPEGY9mMsd5jQ+jYhGML2PtahjOFt38cboJnC7HEEVyrlEDZvTJNieWLZZuSt1BMAknKHjjzbmqaiHpx5HRuqUzeag9D7a8FKlU3bIzrGXYDrmHZ0MDm2Nho6BUb48nq48b43RqTQnPPtG86UXzinC69L00kSmDFbpEyMI+ewb1+KgBEOIEY04z3oJLGFpTkXNnubnOa+L7R8BaeSjVUgr0UopQVByxBlN6LwPaOkt6cghE1EC4Z4zsiT0mzs7xPTNi2X9YBaenjlrqOXsBoofQpRJL8QNkbU9Y90KqcWcYOSdoNM0aHtJpjjnMj7IG6JJOigU5ceFf5yem2H5K1czqRTh3ZOnoiwV1T6nF6icO-ml7jG3smw+1FwrvSvvfYVhVp+agWDsCgN4bg6B+ABGgxxUYFQqjdYzQ0Fwl9Vsm1GMMnY+ZXygAAD7k+ghjs2VBGjrwp1T0soxdh7ErlePulPqdlHNe6i97Cie5nx2drpnG07CttOhVpwm0eETQ-9C4Qv14OIxiDorsrh2XtGIuixLR+EccuyPMekudfzwe9a03PLcPK-6Kryu1cCtq+-TcWy5vL2W+XREm3E3gf27B-72VgDE7t3ePBoDLIP628BUPQ312tWS8I7ekIMuT6h6w+HyV1vI8+9Ek7qIefA9u-YYn7DQFSPXM-u9v3n3QeB721rsoAGk99or1H09F2rvi-j5OyeTfS-WBT9avvGfDVoeFx033CnHfV9r12V39f2HD9JWXr32eJ+55n0Vgrdf+c1I0RMDMMZvfr9F7HrvOLeblkUHbK0A+i81Kv1mHMY18y-Pac2+851pUK7GLmJIBe5978VJH86px9Esq8p9Qdt9ADNcBcwkv4wCDdO9R4Jce90IsZtFZRB9L1u0QIwIOdW8c9QgACXdYC98Q9wEu4b9e01U9dK9CcY9kDjce8J4p4O5nRqD8DsDi9T5fZsFEDEEf595bRD4F8alw57YKFj9wCTYhC74gCOIJCmA34BC1tApd5f5bQAEyCVIMcPkwU18ZDztGCjdUD4heZQUhxuCakW0qUDDLF9dBDhV0JLDaIkhwUxCVJXCGUpw38TsoMiDy5N9ncWgFDQhMVMCJ0HD6CN8FMPCfscDQJClvlilwVHDT1oDLFPD0dhECoQV9ChwSl0iGDukHoSlsiulNFkjsUiiYiuledMjcUg99tlwvU7VDCjDT8mCzDEhJ5bVrCVJbDbVVDZDnD+j3CuwKjao2jXVqxpDOigjID1c58dCcjJQ1JnwI9CCT9TYz8UDu9zDJ5nJNi78pi4ZODtYRjYiHdZ9SCEj2FtIrjiDgiA8YD7iak8JQZCwaA1hpFijjDSjotfiwjCBTEGFQojNgT-jniFMfjU13iVJ6VHi4T39EECsUTWFodgFYc2AvAuBfA+A0A-4W5yDG5kEogtQgdRIyJa5GozYjhVjQhbC4YogRpcxxpIYs07Qm0nCtU2CCoio6E4ZFkJ42SX8CwkguSINZclx8pCpipSpgFJoqSujTCtUCBeY5TBSSphSQTzixS8wJoCAVTY0ND94NTQBRCESOJzjQDjSeS1C-pb4LT74zin581C0UYTS5CLTtDd9BjExW0v5t03hyZvTnC20jgttQypwQTRhIz-10ETSO81S5Qj1J4EyBiOIEyVZyZtUkyHTJ8biit-xIcSSYNyBFg+RXAPSToPQ+EVc0TQdpTNMwSvJRpogGyCdri+IqMZTBwqzCRtgNIOzdJTtAjxk0ICBRzdtFJuos4ag8iFsjo6ypw3lzVGIZTmSOyv9ThIZ-w-jGzT1JzdzLocsIp4SRNL1pzcx91MpJoOy7JxydiIsbzJg9SOzrYMVHz-CAjAiCs3yjBmjL1c06EVzkZoE0N9yU1JSeRCQuyRdtB7gXBxBTzMp0haSkLXBULwgBlSxugTztylcoKkhcK5xtg4L805VFwCRsKxA0K-iAAeLClC+isi9aCEFCDQKIdCAAFSWEkE+EMFgiIEZR6nWEfCoBSmGHQlAAAGpQAbNQtadXA5A5ioL0gFKttZKFKlKegVKXA1L8z0LqKcgQ4uK0I+KBKCAjAhA7BQpRLfDxKNjpLJ55LFLnNYgcRVKCB1LpU-itLeZ3K9KXlvLDLfLjL9FGTtAlhVgNgv0QM0Mp0Oha0UhR4lg1hezkMSxDljkGLSKU0TMnhOVecv08KCUIQ0rFgfiO1nMByaBqywpwKl0srbIlLhgv0PE64IsyrTKvRFjq52LnMOq8rt8NKkgCsyKQtmYQkcosquq6SG5gVlzEZVyvgiq5hOZuKv1eZsJdhipQBpdpqVFWZ2U6wnEOy3lMVALWr-kHJEE-UyRAK7zvzcwnNnNmBbyDyHy3rjqKk2tuyQEqqMrbr-SOJUNv8V0krzzkr2hUqTB0qaqEK-JrVHr8rzzDzMlo9ASGK+rwQFREbMq9L6rGrayILhR3YJ4Oq0MFqBrcabNugwsItcKCqtA8bng0axr-K5xJrCq-qPKnhBFQxaaFzlqyal0NrB0LK0LdqSB9qDpDrcwKIqIPcF4wR2txsZp3hPrJgrq2ybrgk6wMY0bnqyqfr3yKNaVnrvrALvt1bZh-qdjQxCbQaoc7oYdmBcSEd8SeB+AUByy1iTJ3IqBPIWSbJoTdjuj1SeZJ4g7zJaIQS46PJCRTJHxsUXxw66i6aAKOpAFuok6Q7LJsS3kx5RR1tfMtt2hfMNp3qOh1slNK6cglMa7LbY0eLJzG7QBJyW6y7nD05O704e6nh1sicekttR6HolRa72h1tZB6Bkt9Ats56F6p7W71stqmBG6N66xp6ch1sExxBJRth6BFkD6xAj7GAwRd6270I5LO72gKSkh9AMKAA+UAMiBSwwUAa+9bcie+nIR+0AZ+jxN+siKiL+n+5whZJIOYQB4B+qUB0ASZIBnISBvk4Af+wyLUJ+1+9+0AMACBte5wgAUkwbgdwbImIZQe-qIb5NpPvvIZAbwcwuftoblHQgAEJa4GHsGgGKHQAuHGpWHe6+TGKyHeH4HEHmKchhHh7nDGL6p-7GGEG8GFGZG0H2GX7xGcGmGyI371G2GeKX7FGYGOhlHEHjGDGRH2GOHMG8GOgVGcgOH2hKTRQFJ863J47FTW4XqPESwExMrfMkgC7Q6Yd3HnkQmi6fGeM-hst6p-HP8ggmH1tImts89UZW6BhInvHLkFJsAPHTIvHCMY0x51sFE6cUottymGZr6Pq67nDIASB6ZRBF6YHGnmnRZam6m97nCz7ShYBIBG6+mBmunun97lBz6ABRTuvpyZ0Zup9bAAOUUEWcweWcWfZtdnCe1uycTzKr8bBACcmiYdfLnF2dFR+W2diC7s8eTq5TFQPIOaeCOZyhUfSbxRucKbueKbyaVmcgW2ybDpjtgn2LoMBqlhcjp1KFpiYHUjpzChY0UDMCORxFEVqo2mydToJFlAzo6kyZglClBbK3aDBsImNg2Gao9BNNAsOlWvJrlG+jhQOlZNucLpyczxIoFoHXObT1cXGsZYfHhRZa+bZfOJicoEhhCs+eDs8kTwPPmY6FFqXPFtlDzueQXJcEWAov2EpbXMam83WBVbOl+etSIAqGUJMmFF1DYFEXHDCqSHFbBbhtExoDtfhfc1ibslazkXb3bgFIVJZMdbxu6HQkYq1OKnIjhi0dNSXEBafg9coFaD2U9knkYsicjafmjeTeeALiLiDewGzfxvQgAG0dL3BXWvL3WIsg3NLJ5eYC26wFKPA3XGh0TWNPXa30IABddCBtzkUK+FoyoNy1DoZeoGHiyiSdqd6dmd2dv+-F9oa1vIlttwLSgAHRIDLebcrcaCDfcvQg3ZlxlLNfzA0IUyXdtZ3ZcBNIvblFvZXbVe1rpzWGRVchtaWkngABlyIaERgSAX2KAZLGJupTkAO328i3l0Jv3f3-wgOA7QhpAcQLJlDqrMrkachupn3kU3kT3lC8gFMsPvhb2w11F-3sPMLStNbQAx35sJ3JZiENB3B8wzJxg3RpBlb53J41a2sxs4l2gaPqx0I53hORP52J5CPwPRF93D33LCPpPN3jqPGaAXBRo3kRoKgjIyO-kSxPVVwU1fUiVX3+9g1rWVOJhFOI1Vko0UoSn1CVlF0k09P0K7rw0dmWAzPWB803kaWjXi0nPIZy1o1j0ngQPkUAOLMuI0F21TPRpgn3PRoqKXPcPXI6ddMwvX3b2HX0vtOwREPC6UOQaYuJhEuHbSXCBeAKTHkaSu7C40JeGx574w0MYtRoqCAMBKvZFNM+JJajAXPmuR3nXL0wstQohgG+Ochqv9ABudjhD8hSgRuTz6vhVGvIcgA')">function f1(x) {
+    x = pair(x, list(2));
+    return x;
+}
+
+function f2(x) {
+    function f(e) {
+        e;
+        return x;
+    }
+    function set_x(y) {
+        x = y;
+    }
+    return f(set_x(pair(x, list(2))));
+}
+</pre></div></div>
+	What are the values of
+	
+	  
+	  <kbd>f1(1)</kbd>
+	
+	and
+	
+	  
+	  <kbd>f2(1)</kbd>
+	
+	with the original
+	
+	  
+	  
+	    <kbd>eval_sequence</kbd>?
+	  
+	
+	What would the values be with Cy's proposed change to
+	
+	  
+	  
+	    <kbd>eval_sequence</kbd>?
+	  
+	
+      </LI>
+      <LI>
+	Cy also points out that changing
+	
+	  
+	  
+	    <kbd>eval_sequence</kbd>
+	  
+	
+	as he proposes does not affect the behavior of the example in part a.
+	Explain why this is true.
+      </LI>
+      <LI>
+	How do you think sequences ought to be treated in the lazy evaluator?
+	Do you like Cy's approach, the approach in the text, or some other
+	approach?
+      </LI>
+    </OL>
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_85_4_div" data-toggle="collapse">Add solution</button></div>
@@ -2519,7 +2648,7 @@ function eval_sequence(stmts, env) {
       in Algol 60.  They observed that most of the analysis of (<QUOTE>thinking
       about</QUOTE>) the expression could be done at compile time; thus, at run
       time, the expression would already have been <QUOTE>thunk</QUOTE> about 
-      (<CITATION>Ingerman et al. 1960</CITATION>).
+      (<CITATION>Ingerman et al.&nbsp;1960</CITATION>).
     </FOOTNOTE></div>
 
     
@@ -2529,9 +2658,9 @@ function eval_sequence(stmts, env) {
     This is analogous to the use of
     <kbd>force</kbd>
     
-    on the delayed objects that were introduced in chapter 3 to
+    on the delayed objects that were introduced in chapter&nbsp;3 to
     represent streams.  The critical difference between what we are
-    doing here and what we did in chapter 3 is that we are building
+    doing here and what we did in chapter&nbsp;3 is that we are building
     delaying and forcing into the evaluator, and thus making this uniform
     and automatic throughout the language.
     </FOOTNOTE></div>
@@ -2549,11 +2678,11 @@ function eval_sequence(stmts, env) {
     (Call-by-name, introduced in Algol 60, is similar to non-memoized lazy
     evaluation.) As language designers, we can build our evaluator to memoize,
     not to memoize, or leave this an option for programmers
-    (exercise <REF NAME="ex:user-controlled-strictness"><a class="superscript" id="4.2.2-ex-link-4.31" href="./4.2.2.html#ex_4.31">4.31</a></REF>).  As you might
-    expect from chapter 3, these choices raise issues that become both
+    (exercise&nbsp;<REF NAME="ex:user-controlled-strictness"><a class="superscript" id="4.2.2-ex-link-4.31" href="./4.2.2.html#ex_4.31">4.31</a></REF>).  As you might
+    expect from chapter&nbsp;3, these choices raise issues that become both
     subtle and confusing in the presence of assignments.  (See
-    exercises <REF NAME="ex:delay-side-effects"><a class="superscript" id="4.2.2-ex-link-4.27" href="./4.2.2.html#ex_4.27">4.27</a></REF>
-    and <REF NAME="ex:memoize-or-not"><a class="superscript" id="4.2.2-ex-link-4.29" href="./4.2.2.html#ex_4.29">4.29</a></REF>.)
+    exercises&nbsp;<REF NAME="ex:delay-side-effects"><a class="superscript" id="4.2.2-ex-link-4.27" href="./4.2.2.html#ex_4.27">4.27</a></REF>
+    and&nbsp;<REF NAME="ex:memoize-or-not"><a class="superscript" id="4.2.2-ex-link-4.29" href="./4.2.2.html#ex_4.29">4.29</a></REF>.)
     
     An excellent article by Clinger (1982) attempts to clarify the
     multiple dimensions of confusion that arise here.
@@ -2573,9 +2702,9 @@ function eval_sequence(stmts, env) {
     
     <EM>garbage-collected</EM> and its space 
         recycled, as we will discuss in
-	      section <REF NAME="sec:storage-allocation"><a class="superscript" id="4.2.2-sec-link-5.3" href="./5.3.html">5.3</a></REF>.
+	      section&nbsp;<REF NAME="sec:storage-allocation"><a class="superscript" id="4.2.2-sec-link-5.3" href="./5.3.html">5.3</a></REF>.
     Similarly, we could have allowed unneeded environments in the memoized
-    delayed objects of section <REF NAME="sec:delayed-lists"><a class="superscript" id="4.2.2-sec-link-3.5.1" href="./3.5.1.html">3.5.1</a></REF>
+    delayed objects of section&nbsp;<REF NAME="sec:delayed-lists"><a class="superscript" id="4.2.2-sec-link-3.5.1" href="./3.5.1.html">3.5.1</a></REF>
     to be garbage-collected, by having
     
       
@@ -2613,7 +2742,7 @@ function eval_sequence(stmts, env) {
     <FOOTNOTE>
     This exercise demonstrates that the interaction between
   lazy evaluation and side effects can be very confusing.  This is just what you
-  might expect from the discussion in chapter 3.
+  might expect from the discussion in chapter&nbsp;3.
     </FOOTNOTE></div>
 
     

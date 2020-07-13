@@ -1686,7 +1686,7 @@
 <a name='p1' class='permalink'></a><p>
     
     The evaluator is reminiscent of the symbolic differentiation program
-    discussed in section <REF NAME="sec:symbolic-differentiation"><a class="superscript" id="4.1.2-sec-link-2.3.2" href="./2.3.2.html">2.3.2</a></REF>.
+    discussed in section&nbsp;<REF NAME="sec:symbolic-differentiation"><a class="superscript" id="4.1.2-sec-link-2.3.2" href="./2.3.2.html">2.3.2</a></REF>.
     Both programs operate on symbolic expressions.  In both programs, the
     result of operating on a compound expression is determined by
     operating recursively on the pieces of the expression and combining
@@ -1966,7 +1966,43 @@ function rest_args(ops) {
       <div class='snippet' id='javascript_77_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiAYwHsA7MgF1AA9QBeUDAbhoBKfkA')">parse("const x = 1;");
 </pre><pre class='prettyprintoutput'>
 list("constant_declaration", list("name", "x"), 1)</pre></div></div>
-      
+      <OL type="a">
+	<LI>
+	  Verify experimentally that the 
+	  <kbd>parse</kbd> function in your
+	  JavaScript environment treats function declarations
+	  as constant declarations, ignoring the subtle difference
+	  between the two mentioned in
+	  footnote&nbsp;<REF NAME="foot:function-decl-vs-lambda"><a class="superscript" id="4.1.2-foot-link-1" href="./1.3.2.html#footnote-1">1</a></REF>
+	  of chapter 1.
+	</LI>
+	<LI>
+	  Explore how <kbd>parse</kbd> treats the
+	  variant of lambda expressions introduced in
+	  footnote&nbsp;<REF NAME="foot:lambda_with_block"><a class="superscript" id="4.1.2-foot-link-1" href="./2.2.4.html#footnote-1">1</a></REF> of chapter 2
+	  by comparing the results of
+	  <div class='snippet' id='javascript_77_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiAD1AF4A+UDAbhoEp2g')">parse("x => 1;");
+</pre></div></div>
+	  and
+	  <div class='snippet' id='javascript_77_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiAD1AF4A+UAb1BIoBcBXEgHagMAblABfETQCUIoA')">parse("x => { return 1; };");
+</pre></div></div>
+	</LI>
+	<LI>
+	  Verify experimentally that 
+	  <kbd>parse</kbd> treats operator combinations
+	  as applications of primitive functions. Why does this not lead to
+	  any confusion in the interpreter?
+	</LI>
+	<LI>
+	  Explore how <kbd>parse</kbd> treats
+	  conditional statements
+	  <kbd>if (...) {...} else {...}</kbd>
+	  introduced in section&nbsp;<REF NAME="sec:lambda"><a class="superscript" id="4.1.2-sec-link-1.3.2" href="./1.3.2.html">1.3.2</a></REF>.
+	  Install conditional statements for the evaluator by defining 
+	  appropriate syntax functions and the evaluation function
+	  <kbd>eval_conditional_statement</kbd>.
+	</LI>
+       </OL>
       
       
       <div class="Solution">
@@ -1992,7 +2028,7 @@ list("constant_declaration", list("name", "x"), 1)</pre></div></div>
 	Rewrite <kbd>evaluate</kbd> so that the
 	dispatch is done in data-directed style.  Compare this with the
 	data-directed differentiation function of
-	exercise <REF NAME="ex:data-directed-differentiation"><a class="superscript" id="4.1.2-ex-link-2.73" href="./2.4.3.html#ex_2.73">2.73</a></REF>. (You may
+	exercise&nbsp;<REF NAME="ex:data-directed-differentiation"><a class="superscript" id="4.1.2-ex-link-2.73" href="./2.4.3.html#ex_2.73">2.73</a></REF>. (You may
 	use the <kbd>head</kbd> of a compound
 	expression as the type of the expression, as is appropriate for the
 	syntax implemented in this section.)
@@ -2025,7 +2061,7 @@ list("constant_declaration", list("name", "x"), 1)</pre></div></div>
       
       <kbd>||</kbd>
     
-    from chapter 1:
+    from chapter&nbsp;1:
     
       
       
@@ -2085,7 +2121,7 @@ list("constant_declaration", list("name", "x"), 1)</pre></div></div>
       
 	In JavaScript, lambda expressions must not have duplicate parameters. The
 	<kbd>evaluate</kbd> function in
-	section <REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> does not check for this.
+	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> does not check for this.
 	<UL>
 	  <LI>
 	    Modify the <kbd>evaluate</kbd> function such
@@ -2139,13 +2175,13 @@ list("constant_declaration", list("name", "x"), 1)</pre></div></div>
 	introduces a new block whose body includes the declaration and all
 	subsequent statements of the statement sequence in which the
 	declaration occurs. For example, the program
-	<div class='snippet' id='javascript_77_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_77_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 display(1);
 let* x = 2;
 let* y = x + 3;
 display(x + y);</pre></div></div>
 	could be seen as a shorthand for
-	<div class='snippet' id='javascript_77_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_77_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 display(1);
 {
   let x = 2;
@@ -2154,7 +2190,37 @@ display(1);
     display(x + y);
   }
 }</pre></div></div>
-	
+	<OL type="a">
+	  <LI>
+	    Write programs in such an extended JavaScript language
+	    that behave differently when some occurrences of the keyword
+	    <kbd>let</kbd> are replaced
+	    with <kbd>let*</kbd>.
+	  </LI>
+	  <LI>
+	    Define appropriate syntax functions for this 
+	    <kbd>let*</kbd> variant.
+	  </LI>
+	  <LI>
+	    Write a function
+	    <kbd>let_star_to_nested_let</kbd> that
+	    that transforms any occurrence of 
+	    <kbd>let*</kbd> in a given program as
+	    described above. We can
+	    then evaluate programs <kbd>p</kbd> in the
+	    extended language by running
+	    <kbd>evaluate(let_star_to_nested_let(p));</kbd>.
+	  </LI>
+	  <LI>
+	    Consider the alternative of implementing
+	    <kbd>let*</kbd> as we implemented
+	    <kbd>let</kbd> and 
+	    <kbd>const</kbd>, namely by
+	    introducing an evaluation function
+	    <kbd>eval_let_star_declaration</kbd>.
+	    Why does this approach not work?
+	  </LI>
+	</OL>
       
     
   
@@ -2188,7 +2254,7 @@ display(1);
 	this syntax, we can for example compute the greatest common divisor
 	of two numbers using the following function:
 	
-	<div class='snippet' id='javascript_77_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AczIBMAKAQwBpQAjASlABvXKFGgA7gAsqAGwCmoDqACEAXlW8BwsTtBUCSgHyahI3efagNlgLS8A3GfMBfUHJkBnBdvO6eV3lA7dkdfUGcASFEncJiAJzkKIjj6EIjcZ3wmNhRsbgxsPnsgA')">function gcd(a, b) {
+	<div class='snippet' id='javascript_77_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AczIBMAKAQwBpQAjASlABvXKFGgA7gAsqAGwCmoDqACEAXlW8BwsTtBUCSgHyahI3efagNlgLS8A3GfMBfUHJkBnBdvO6eV3lA7dkdfUGcASFEncJiAJzkKIjj6EIjcZ3wmNhRsbgxsPnsgA')">function gcd(a, b) {
     while (a !== b) {
         if(a > b) {
             a = a - b;
@@ -2199,7 +2265,57 @@ display(1);
     return a;	
 }
 </pre></div></div>
-	
+	<OL type="a">
+	  <LI>
+	    Declare a function <kbd>while_loop</kbd>
+	    that takes as arguments a predicate and a
+	    body—both represented by 
+	    functions of no arguments—and simulates the behavior of the
+	    <kbd>while</kbd> loop. The
+	    <kbd>gcd</kbd> function would then
+	    look as follows:
+	    <div class='snippet' id='javascript_77_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AczIBMAKAQwBpQAjASlABvXKFGgA7gAsqAGwCmAfRk0aAB1ahWAgLwA+UO1ABCbdt6cRYq9bFbQeoaKoFNh-fyGWb3nzcNnDAFpeAG4vXwixAF9QORkAZzlPSJSbHnteUGD2MNSUqIBIUXC8qyiS3z5csQAnOQoiGvocgtwooA')">function gcd(a, b) {
+    while_loop( () => a !== b,
+                () => {  if (a > b) {
+                             a = a - b;
+                         } else {
+                             b = b - a;
+                         }	  
+                      }
+              );
+    return a;	
+}
+</pre></div></div>
+	    Make sure that your function
+	    <kbd>while_loop</kbd> generates an
+	    iterative process, see
+	    section&nbsp;<REF NAME="sec:recursion-and-iteration"><a class="superscript" id="4.1.2-sec-link-1.2.1" href="./1.2.1.html">1.2.1</a></REF>.
+	  </LI>
+	  <LI>
+	    Explore how <kbd>parse</kbd> represents
+	    <kbd>while</kbd> loops.
+	  </LI>
+	  <LI>
+	    Install <kbd>while</kbd> loops for the
+	    evaluator by defining appropriate syntax functions and a
+	    transformation function
+	    <kbd>while_to_function_call</kbd> 
+	    that makes use of your function
+	    <kbd>while_loop</kbd>.
+	  </LI>
+	  <LI>
+	    What problem arises with this approach for implementing
+	    <kbd>while</kbd> loops, when
+	    the programmer decides within the body of the loop to
+	    return from the function that contains the loop?
+	  </LI>
+	  <LI>
+	    Change your approach to address the problem. How about directly
+	    installing <kbd>while</kbd> loops for the
+	    evaluator, using a function
+	    <kbd>eval_while</kbd>?
+	  </LI>
+	</OL>
       
     
   
@@ -2228,7 +2344,7 @@ display(1);
 	that reverses a list, using a <kbd>for</kbd>
 	loop. 
 	
-	<div class='snippet' id='javascript_77_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDjQAGyYVGTDkUmyAvKBKLJAbjESCNBqG7TZZIg2YkVofptABCUFQ4B9dZMndT5ppYG2vFlYUAIZUHgE+FAJCohJxcgpKoKoADqEM3AAWTMEAJp5mgQIANAmKUdpxAL464swUZvTMiRTaNbjMbJw8kk4U3Bil2KUAzNGaQA')">function reverse(xs) {
+	<div class='snippet' id='javascript_77_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDjQAGyYVGTDkUmyAvKBKLJAbjESCNBqG7TZZIg2YkVofptABCUFQ4B9dZMndT5ppYG2vFlYUAIZUHgE+FAJCohJxcgpKoKoADqEM3AAWTMEAJp5mgQIANAmKUdpxAL464swUZvTMiRTaNbjMbJw8kk4U3Bil2KUAzNGaQA')">function reverse(xs) {
     let result = null;
     for (let current = xs; ! is_null(current); current = tail(current)) {
         result = pair(head(current), result);
@@ -2236,7 +2352,34 @@ display(1);
     return result;
 }
 </pre></div></div>
-	
+	<OL type="a">
+	  <LI>
+	    Explore how <kbd>parse</kbd> represents
+	    <kbd>for</kbd> loops.
+	  </LI>
+	  <LI>
+	    Following the approach for <kbd>while</kbd>
+	    loops in exercise&nbsp;<REF NAME="ex:while_loop"><a class="superscript" id="4.1.2-ex-link-4.7" href="./4.1.2.html#ex_4.7">4.7</a></REF>, first implement
+	    a function <kbd>for_loop</kbd> that takes
+	    as arguments four functions of no arguments, and simulates the
+	    behaviour of the <kbd>for</kbd> loop. Then
+	    install <kbd>for</kbd> loops for the
+	    evaluator by defining appropriate syntax functions and a
+	    transformation function
+	    <kbd>for_to_function_call</kbd> 
+	    that makes use of your function
+	    <kbd>for_loop</kbd>. Finally,
+	    install <kbd>for</kbd> loops directly
+	    in the interpreter, using a function
+	    <kbd>eval_for</kbd>.
+	  </LI>
+	  <LI>
+	    Assume the you have solved the last part of
+	    exercise&nbsp;<REF NAME="ex:while_loop"><a class="superscript" id="4.1.2-ex-link-4.7" href="./4.1.2.html#ex_4.7">4.7</a></REF>. Would this allow
+	    for a particularly elegant way to install
+	    <kbd>for</kbd> loops for the evaluator?
+	  </LI>
+	</OL>
       
     
   
@@ -2260,7 +2403,7 @@ display(1);
 	the variable declared in the initialization part of
 	<kbd>for</kbd> loops. Consider the following
 	example.
-	<div class='snippet' id='javascript_77_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDiANkwqMmHIhJkBeUCQUSA3GPEEaDUNykyyRBsxLLQ-DaACEoKhwD6aiRO4mzTCwJufzlhQAhlTu-t4UAkKi4rGy8oqgKgAOIQzc3EJKAHygABZMQQAmHqYBAgA08QqRWrEAvtqyFKb0zAkUWvVAA')">function reverse(xs) {
+	<div class='snippet' id='javascript_77_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDiANkwqMmHIhJkBeUCQUSA3GPEEaDUNykyyRBsxLLQ-DaACEoKhwD6aiRO4mzTCwJufzlhQAhlTu-t4UAkKi4rGy8oqgKgAOIQzc3EJKAHygABZMQQAmHqYBAgA08QqRWrEAvtqyFKb0zAkUWvVAA')">function reverse(xs) {
    let result = null;
    for (let current = xs; ! is_null(current); current = tail(current)) {
       result = pair(() => head(current), result);
@@ -2278,7 +2421,17 @@ display(1);
 	<kbd>null</kbd>. The designers of JavaScript
 	decided to support programmers who expect the functions to return
 	their respective list element.
-	
+	<OL type="a">
+	  <LI>
+	    Modify your solutions to exercise&nbsp;<REF NAME="ex:for_loops"><a class="superscript" id="4.1.2-ex-link-4.8" href="./4.1.2.html#ex_4.8">4.8</a></REF>
+	    such that each iteration of the loop has its own
+	    <QUOTE>instance</QUOTE> of the <EM>loop control variable</EM>
+	    declared in the initialization statement.
+	  </LI>
+	  <LI>
+	    Discuss whether this decision was a good one.
+	  </LI>
+	</OL>
       
     
   
@@ -2298,7 +2451,7 @@ display(1);
     <FOOTNOTE>
     In 
 	    JavaScript, there is a subtle difference between the two
-	    forms, see footnote <REF NAME="foot:function-decl-vs-lambda"><a class="superscript" id="4.1.2-foot-link-1" href="./1.3.2.html#footnote-1">1</a></REF>
+	    forms, see footnote&nbsp;<REF NAME="foot:function-decl-vs-lambda"><a class="superscript" id="4.1.2-foot-link-1" href="./1.3.2.html#footnote-1">1</a></REF>
 	    in chapter 1.
             
     </FOOTNOTE></div>
@@ -2314,7 +2467,7 @@ display(1);
 	    They are introduced as mnemonic names for the
 	    basic list operations in order to make it easier to understand the
 	    explicit-control evaluator in
-	    section <REF NAME="sec:eceval"><a class="superscript" id="4.1.2-sec-link-5.4" href="./5.4.html">5.4</a></REF>.
+	    section&nbsp;<REF NAME="sec:eceval"><a class="superscript" id="4.1.2-sec-link-5.4" href="./5.4.html">5.4</a></REF>.
 	    
             
     </FOOTNOTE></div>

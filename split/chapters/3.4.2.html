@@ -1917,7 +1917,7 @@ concurrent_execute(_ => { x = x * x; },
         sets <kbd>x</kbd> to
         <kbd>x</kbd> times <kbd>x</kbd>,
         and $P_2$, which
-	increments <kbd>x</kbd>.  After execution is
+	increments&nbsp;<kbd>x</kbd>.  After execution is
 	complete, <kbd>x</kbd> will be left with one of five
 	possible values, depending on the interleaving of the events of
         $P_1$ and $P_2$:
@@ -2109,7 +2109,7 @@ concurrent_execute( s(_ => { x = x * x; }),
     
     <span style="color:green">procedure</span>
     <span style="color:blue">function</span>
-    from section <REF NAME="sec:local-state-variables"><a class="superscript" id="3.4.2-sec-link-3.1.1" href="./3.1.1.html">3.1.1</a></REF>,
+    from section&nbsp;<REF NAME="sec:local-state-variables"><a class="superscript" id="3.4.2-sec-link-3.1.1" href="./3.1.1.html">3.1.1</a></REF>,
     where the deposits and withdrawals have been serialized:
     
             
@@ -2171,7 +2171,7 @@ concurrent_execute( s(_ => { x = x * x; }),
     <span style="color:blue">threads</span> 
     cannot be withdrawing from or
     depositing into a single account concurrently.  This eliminates the source
-    of the error illustrated in figure <REF NAME="fig:bank-access"><a class="superscript" id="3.4.2-fig-link-3.52" href="./3.4.1.html#fig_3.52">3.52</a></REF>,
+    of the error illustrated in figure&nbsp;<REF NAME="fig:bank-access"><a class="superscript" id="3.4.2-fig-link-3.52" href="./3.4.1.html#fig_3.52">3.52</a></REF>,
     where Peter changes the account balance between the times when Paul accesses
     the balance to compute the new value and when Paul actually performs the
     assignment.  On the other hand, each account has its own serializer,
@@ -2544,7 +2544,7 @@ concurrent_execute( s(_ => { x = x * x;     }),
     <span style="color:blue"><kbd>make_account</kbd></span>
     
     is identical to the original version given in
-    section <REF NAME="sec:local-state-variables"><a class="superscript" id="3.4.2-sec-link-3.1.1" href="./3.1.1.html">3.1.1</a></REF>, except that a
+    section&nbsp;<REF NAME="sec:local-state-variables"><a class="superscript" id="3.4.2-sec-link-3.1.1" href="./3.1.1.html">3.1.1</a></REF>, except that a
     serializer is provided to protect the balance variable, and the serializer
     is exported via message passing:
             
@@ -2674,7 +2674,7 @@ concurrent_execute( s(_ => { x = x * x;     }),
     after any number of concurrent exchanges, the account balances should be 
     \$10, \$20, and \$30 in some order.
     Draw a timing diagram like the one in
-    figure <REF NAME="fig:bank-access"><a class="superscript" id="3.4.2-fig-link-3.52" href="./3.4.1.html#fig_3.52">3.52</a></REF> to
+    figure&nbsp;<REF NAME="fig:bank-access"><a class="superscript" id="3.4.2-fig-link-3.52" href="./3.4.1.html#fig_3.52">3.52</a></REF> to
     show how this condition can be violated if the exchanges are
     implemented using the first version of the account-exchange program in
     this section.  On the other hand, argue that even with this
@@ -3060,8 +3060,8 @@ function clear(cell) {
      
     can test the cell.  If we do not make this guarantee, then the mutex can
     fail in a way similar to the bank-account failure in
-    figure <REF NAME="fig:bank-access"><a class="superscript" id="3.4.2-fig-link-3.52" href="./3.4.1.html#fig_3.52">3.52</a></REF>. (See
-    exercise <REF NAME="ex:atomic-test-and-set"><a class="superscript" id="3.4.2-ex-link-3.46" href="./3.4.2.html#ex_3.46">3.46</a></REF>.)
+    figure&nbsp;<REF NAME="fig:bank-access"><a class="superscript" id="3.4.2-fig-link-3.52" href="./3.4.1.html#fig_3.52">3.52</a></REF>. (See
+    exercise&nbsp;<REF NAME="ex:atomic-test-and-set"><a class="superscript" id="3.4.2-ex-link-3.46" href="./3.4.2.html#ex_3.46">3.46</a></REF>.)
   </p></div>
 
   <div class='permalink'>
@@ -3127,7 +3127,7 @@ function clear(cell) {
     
     as shown in the text, without attempting to make the operation atomic.
     Draw a timing diagram like the one in
-    figure <REF NAME="fig:bank-access"><a class="superscript" id="3.4.2-fig-link-3.52" href="./3.4.1.html#fig_3.52">3.52</a></REF> to demonstrate how the mutex
+    figure&nbsp;<REF NAME="fig:bank-access"><a class="superscript" id="3.4.2-fig-link-3.52" href="./3.4.1.html#fig_3.52">3.52</a></REF> to demonstrate how the mutex
     implementation can fail by allowing two 
     
       <span style="color:green">processes</span>
@@ -3280,8 +3280,8 @@ function clear(cell) {
     protecting the lowest-numbered account first.  Although this method works
     well for the exchange problem, there are other situations that require more
     sophisticated deadlock-avoidance techniques, or where deadlock cannot
-    be avoided at all.  (See exercises <REF NAME="ex:deadlock-avoid"><a class="superscript" id="3.4.2-ex-link-3.48" href="./3.4.2.html#ex_3.48">3.48</a></REF>
-    and <REF NAME="ex:deadlock-cannot-avoid"><a class="superscript" id="3.4.2-ex-link-3.49" href="./3.4.2.html#ex_3.49">3.49</a></REF>.)<a class='superscript' id='footnote-link-9' href='#footnote-9'>[9]</a>
+    be avoided at all.  (See exercises&nbsp;<REF NAME="ex:deadlock-avoid"><a class="superscript" id="3.4.2-ex-link-3.48" href="./3.4.2.html#ex_3.48">3.48</a></REF>
+    and&nbsp;<REF NAME="ex:deadlock-cannot-avoid"><a class="superscript" id="3.4.2-ex-link-3.49" href="./3.4.2.html#ex_3.49">3.49</a></REF>.)<a class='superscript' id='footnote-link-9' href='#footnote-9'>[9]</a>
   </p></div>
 
   
@@ -3494,14 +3494,14 @@ function clear(cell) {
     the balances should still be \$10, \$20, and \$30 in
     some order.  Serializing the deposits to individual accounts is not
     sufficient to guarantee this. See
-    exercise <REF NAME="ex:exchange-bug"><a class="superscript" id="3.4.2-ex-link-3.43" href="./3.4.2.html#ex_3.43">3.43</a></REF>.
+    exercise&nbsp;<REF NAME="ex:exchange-bug"><a class="superscript" id="3.4.2-ex-link-3.43" href="./3.4.2.html#ex_3.43">3.43</a></REF>.
     </FOOTNOTE></div>
     
     
     <div class='footnote'>
       <a class='footnote-number' id='footnote-4' href='#footnote-link-4' >[4] </a>
     <FOOTNOTE>
-    Exercise <REF NAME="ex:export-serializer"><a class="superscript" id="3.4.2-ex-link-3.45" href="./3.4.2.html#ex_3.45">3.45</a></REF>
+    Exercise&nbsp;<REF NAME="ex:export-serializer"><a class="superscript" id="3.4.2-ex-link-3.45" href="./3.4.2.html#ex_3.45">3.45</a></REF>
     investigates why deposits and withdrawals are no longer automatically
     serialized by the account.
     </FOOTNOTE></div>
@@ -3520,7 +3520,7 @@ function clear(cell) {
     mutex is a simple variant of the 
     
     <EM>semaphore</EM> mechanism (see
-    exercise <REF NAME="ex:semaphore"><a class="superscript" id="3.4.2-ex-link-3.47" href="./3.4.2.html#ex_3.47">3.47</a></REF>), which was introduced in the 
+    exercise&nbsp;<REF NAME="ex:semaphore"><a class="superscript" id="3.4.2-ex-link-3.47" href="./3.4.2.html#ex_3.47">3.47</a></REF>), which was introduced in the 
     
     <QUOTE>THE</QUOTE> Multiprogramming System developed at the
     

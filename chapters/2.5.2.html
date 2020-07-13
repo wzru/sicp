@@ -1856,7 +1856,7 @@ function javascript_number_to_complex(n) {
       
       function
     
-    of section <REF NAME="sec:data-directed"><a class="superscript" id="2.5.2-sec-link-2.4.3" href="./2.4.3.html">2.4.3</a></REF>.  When asked to apply an
+    of section&nbsp;<REF NAME="sec:data-directed"><a class="superscript" id="2.5.2-sec-link-2.4.3" href="./2.4.3.html">2.4.3</a></REF>.  When asked to apply an
     operation, we first check whether the operation is defined for the
     arguments' types, just as before.  If so, we dispatch to the
     
@@ -1983,7 +1983,7 @@ function javascript_number_to_complex(n) {
     hierarchy we have here is of a very simple kind, in which each type
     has at most one supertype and at most one subtype.  Such a structure,
     called a <EM>tower</EM>, is illustrated in
-    figure <REF NAME="fig:tower"><a class="superscript" id="2.5.2-fig-link-2.25" href="./2.5.2.html#fig_2.25">2.25</a></REF>.
+    figure&nbsp;<REF NAME="fig:tower"><a class="superscript" id="2.5.2-fig-link-2.25" href="./2.5.2.html#fig_2.25">2.25</a></REF>.
     
     <FIGURE>
       <img class="scale_factor_" id="fig_2.25" src="../img_original/ch2-Z-G-66.svg">
@@ -2040,8 +2040,8 @@ function javascript_number_to_complex(n) {
     which <QUOTE>raises</QUOTE> objects of that type one level in the tower.
     Then when the system is required to operate on objects of different types
     it can successively raise the lower types until all the objects are at
-    the same level in the tower.  (Exercises <REF NAME="ex:raise"><a class="superscript" id="2.5.2-ex-link-2.83" href="./2.5.2.html#ex_2.83">2.83</a></REF>
-    and  <REF NAME="ex:apply-with-raise"><a class="superscript" id="2.5.2-ex-link-2.84" href="./2.5.2.html#ex_2.84">2.84</a></REF>
+    the same level in the tower.  (Exercises&nbsp;<REF NAME="ex:raise"><a class="superscript" id="2.5.2-ex-link-2.83" href="./2.5.2.html#ex_2.83">2.83</a></REF>
+    and &nbsp;<REF NAME="ex:apply-with-raise"><a class="superscript" id="2.5.2-ex-link-2.84" href="./2.5.2.html#ex_2.84">2.84</a></REF>
     concern the details of implementing such a strategy.)
   </p></div>
   <div class='permalink'>
@@ -2082,7 +2082,7 @@ function javascript_number_to_complex(n) {
     $2+3i$ to $4-3i$,
     it would be nice to obtain the answer as the integer 6 rather than as the
     complex number $6+0i$.
-    Exercise <REF NAME="ex:simplify"><a class="superscript" id="2.5.2-ex-link-2.85" href="./2.5.2.html#ex_2.85">2.85</a></REF> discusses a way to implement
+    Exercise&nbsp;<REF NAME="ex:simplify"><a class="superscript" id="2.5.2-ex-link-2.85" href="./2.5.2.html#ex_2.85">2.85</a></REF> discusses a way to implement
     such a lowering operation.  (The trick is that we need a general way
     to distinguish those objects that can be lowered, such as
     $6+0i$, from those that cannot, such as
@@ -2109,7 +2109,7 @@ function javascript_number_to_complex(n) {
     If the data types in our system can be naturally arranged in a tower,
     this greatly simplifies the problems of dealing with generic operations
     on different types, as we have seen.  Unfortunately, this is usually
-    not the case.  Figure <REF NAME="fig:relations-among-figures"><a class="superscript" id="2.5.2-fig-link-2.26" href="./2.5.2.html#fig_2.26">2.26</a></REF>
+    not the case.  Figure&nbsp;<REF NAME="fig:relations-among-figures"><a class="superscript" id="2.5.2-fig-link-2.26" href="./2.5.2.html#fig_2.26">2.26</a></REF>
     illustrates a more complex arrangement of mixed types, this one showing
     relations among different types of geometric figures.  We see that, in
     general,
@@ -2180,7 +2180,78 @@ put_coercion("javascript_number", "javascript_number",
 put_coercion("complex", "complex",
              complex_to_complex);</pre></div></div>
 
-    
+    <OL type="a">
+      <LI>
+        With Louis's coercion
+        
+	  
+	  functions
+	
+        installed, what happens if
+	
+	  
+	  <kbd>apply_generic</kbd>
+	  
+	
+        is called with two arguments of type
+	
+	  
+	  <kbd>"javascript_number"</kbd>
+	  
+	
+	or two arguments of
+        type
+	
+	  
+	  <kbd>"complex"</kbd>
+	  
+	
+	for an operation that is not found in the table for those types?
+	For example, assume that we've defined a generic exponentiation
+        operation:
+        <div class='snippet' id='javascript_47_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function exp(x, y) { 
+    return apply_generic("exp", list(x, y)); 
+}</pre></div></div>
+        and have put a
+        
+	  
+	  function
+	
+        for exponentiation in the 
+	
+	  
+	  JavaScript-number
+	
+        package but not in any other package:
+        <div class='snippet' id='javascript_47_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+// following added to JavaScript-number package
+put("exp", list("javascript_number", "javascript_number"),
+    (x, y) => tag(math_exp(x, y))); // using primitive math_exp</pre></div></div>
+        What happens if we call <kbd>exp</kbd> with two
+	complex numbers as arguments?
+      </LI>
+      <LI>
+        Is Louis correct that something had to be done about coercion with
+	arguments of the same type, or does
+	
+	  
+	  <kbd>apply_generic</kbd>
+	  
+	
+        work correctly as is?
+      </LI>
+      <LI>
+        Modify
+	
+	  
+	  <kbd>apply_generic</kbd>
+	  
+	
+	so that it doesn't try coercion if the two arguments have the
+	same type.
+      </LI>
+    </OL>
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_47_1_div" data-toggle="collapse">Add solution</button></div>
@@ -2224,7 +2295,7 @@ put_coercion("complex", "complex",
    
     
     Suppose you are designing a generic arithmetic system for dealing with
-    the tower of types shown in figure <REF NAME="fig:tower"><a class="superscript" id="2.5.2-fig-link-2.25" href="./2.5.2.html#fig_2.25">2.25</a></REF>:
+    the tower of types shown in figure&nbsp;<REF NAME="fig:tower"><a class="superscript" id="2.5.2-fig-link-2.25" href="./2.5.2.html#fig_2.25">2.25</a></REF>:
     integer, rational, real, complex.  For
     each type (except complex), design a
     
@@ -2250,7 +2321,7 @@ put_coercion("complex", "complex",
   
     
     Using the <kbd>raise</kbd> operation of
-    exercise <REF NAME="ex:raise"><a class="superscript" id="2.5.2-ex-link-2.83" href="./2.5.2.html#ex_2.83">2.83</a></REF>, modify the
+    exercise&nbsp;<REF NAME="ex:raise"><a class="superscript" id="2.5.2-ex-link-2.83" href="./2.5.2.html#ex_2.83">2.83</a></REF>, modify the
     
       
       <kbd>apply_generic</kbd>
@@ -2288,7 +2359,7 @@ put_coercion("complex", "complex",
       function
     
     <kbd>drop</kbd> that accomplishes this for the tower
-    described in exercise <REF NAME="ex:raise"><a class="superscript" id="2.5.2-ex-link-2.83" href="./2.5.2.html#ex_2.83">2.83</a></REF>.  The key is to decide,
+    described in exercise&nbsp;<REF NAME="ex:raise"><a class="superscript" id="2.5.2-ex-link-2.83" href="./2.5.2.html#ex_2.83">2.83</a></REF>.  The key is to decide,
     in some general way, whether an object can be lowered.  For example, the
     complex number $1.5+0i$ can be lowered as far as
     
@@ -2320,7 +2391,7 @@ put_coercion("complex", "complex",
     various projection operations<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a> and install
     <kbd>project</kbd> as a generic operation in the system.
     You will also need to make use of a generic equality predicate, such as
-    described in exercise <REF NAME="ex:equ?"><a class="superscript" id="2.5.2-ex-link-2.79" href="./2.5.1.html#ex_2.79">2.79</a></REF>.  Finally, use
+    described in exercise&nbsp;<REF NAME="ex:equ?"><a class="superscript" id="2.5.2-ex-link-2.79" href="./2.5.1.html#ex_2.79">2.79</a></REF>.  Finally, use
     <kbd>drop</kbd>
     to rewrite
     
@@ -2328,7 +2399,7 @@ put_coercion("complex", "complex",
       <kbd>apply_generic</kbd>
       
     
-    from exercise <REF NAME="ex:apply-with-raise"><a class="superscript" id="2.5.2-ex-link-2.84" href="./2.5.2.html#ex_2.84">2.84</a></REF> so that it
+    from exercise&nbsp;<REF NAME="ex:apply-with-raise"><a class="superscript" id="2.5.2-ex-link-2.84" href="./2.5.2.html#ex_2.84">2.84</a></REF> so that it
     <QUOTE>simplifies</QUOTE> its answers.
     
   
@@ -2388,7 +2459,7 @@ put_coercion("complex", "complex",
     <div class='footnote'>
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
     <FOOTNOTE>
-    See exercise <REF NAME="ex:multi-coercion"><a class="superscript" id="2.5.2-ex-link-2.82" href="./2.5.2.html#ex_2.82">2.82</a></REF> for
+    See exercise&nbsp;<REF NAME="ex:multi-coercion"><a class="superscript" id="2.5.2-ex-link-2.82" href="./2.5.2.html#ex_2.82">2.82</a></REF> for
     generalizations.
     </FOOTNOTE></div>
 
@@ -2440,9 +2511,9 @@ put_coercion("complex", "complex",
     differences among contemporary object-oriented
     languages—centers on the treatment of generic operations on
     interrelated types.  Our own discussion of computational objects in
-    chapter 3 avoids these issues entirely.  Readers familiar with
+    chapter&nbsp;3 avoids these issues entirely.  Readers familiar with
     object-oriented programming will notice that we have much to say in
-    chapter 3 about local state, but we do not even mention
+    chapter&nbsp;3 about local state, but we do not even mention
     <QUOTE>classes</QUOTE> or <QUOTE>inheritance.</QUOTE>  In fact, we suspect
     that these problems cannot be adequately addressed in terms of
     computer-language design alone, without also drawing on work in knowledge

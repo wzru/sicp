@@ -1884,7 +1884,7 @@ married("Mickey", who)</pre></div></div>
     interrelated rules can lead to loops that are much harder to anticipate, and
     the appearance of a loop can depend on the order of clauses in an
     <kbd>and</kbd> (see
-    exercise <REF NAME="ex:query-simple-loop"><a class="superscript" id="4.4.3-ex-link-4.64" href="./4.4.3.html#ex_4.64">4.64</a></REF>) or on low-level details
+    exercise&nbsp;<REF NAME="ex:query-simple-loop"><a class="superscript" id="4.4.3-ex-link-4.64" href="./4.4.3.html#ex_4.64">4.64</a></REF>) or on low-level details
     concerning the order in which the system processes queries.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
     
   </p></div>
@@ -1902,7 +1902,7 @@ married("Mickey", who)</pre></div></div>
     
     Another quirk in the query system concerns <kbd>not</kbd>.
     Given the data base of
-    section <REF NAME="sec:deductive-info-retrieval"><a class="superscript" id="4.4.3-sec-link-4.4.1" href="./4.4.1.html">4.4.1</a></REF>, consider the
+    section&nbsp;<REF NAME="sec:deductive-info-retrieval"><a class="superscript" id="4.4.3-sec-link-4.4.1" href="./4.4.1.html">4.4.1</a></REF>, consider the
     following two queries:
     <div class='snippet' id='javascript_94_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 and(supervisor(x, y),
@@ -1980,7 +1980,7 @@ and(not(job(x, list("computer", "programmer"))),
       JavaScript
     
     predicate can't work if some of its arguments are unbound.  See
-    exercise <REF NAME="ex:not-query-filter"><a class="superscript" id="4.4.3-ex-link-4.77" href="./4.4.4.html#ex_4.77">4.77</a></REF>.
+    exercise&nbsp;<REF NAME="ex:not-query-filter"><a class="superscript" id="4.4.3-ex-link-4.77" href="./4.4.4.html#ex_4.77">4.77</a></REF>.
   </p></div>
 
   <div class='permalink'>
@@ -1993,7 +1993,7 @@ and(not(job(x, list("computer", "programmer"))),
     however, <QUOTE>not $P$</QUOTE> means that
     $P$ is not deducible from the knowledge in the
     data base.  For example, given the personnel data base of
-    section <REF NAME="sec:deductive-info-retrieval"><a class="superscript" id="4.4.3-sec-link-4.4.1" href="./4.4.1.html">4.4.1</a></REF>, the system would
+    section&nbsp;<REF NAME="sec:deductive-info-retrieval"><a class="superscript" id="4.4.3-sec-link-4.4.1" href="./4.4.1.html">4.4.1</a></REF>, the system would
     happily deduce all sorts of <kbd>not</kbd> statements,
     such as that Ben Bitdiddle is not a baseball fan, that it is not raining
     outside, and that $2 + 2$
@@ -2016,7 +2016,7 @@ and(not(job(x, list("computer", "programmer"))),
       
       <kbd>outranked_by</kbd>
     
-    rule (section <REF NAME="sec:deductive-info-retrieval"><a class="superscript" id="4.4.3-sec-link-4.4.1" href="./4.4.1.html">4.4.1</a></REF>) from the
+    rule (section&nbsp;<REF NAME="sec:deductive-info-retrieval"><a class="superscript" id="4.4.3-sec-link-4.4.1" href="./4.4.1.html">4.4.1</a></REF>) from the
     data base.  When he realizes this, he quickly reinstalls it.  Unfortunately,
     he makes a slight change in the rule, and types it in as
     <div class='snippet' id='javascript_94_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
@@ -2049,7 +2049,7 @@ outanked_by(list("Bitdiddle", "Ben"), who)</pre></div></div>
     Cy D. Fect, looking forward to the day when he will rise in the
     organization, gives a query to find all the wheels (using the
     <kbd>wheel</kbd> rule of
-    section <REF NAME="sec:deductive-info-retrieval"><a class="superscript" id="4.4.3-sec-link-4.4.1" href="./4.4.1.html">4.4.1</a></REF>):
+    section&nbsp;<REF NAME="sec:deductive-info-retrieval"><a class="superscript" id="4.4.3-sec-link-4.4.1" href="./4.4.1.html">4.4.1</a></REF>):
     <div class='snippet' id='javascript_94_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 wheel(who)</pre></div></div>
     To his surprise, the system responds
@@ -2109,7 +2109,7 @@ sum(amount,
     accumulation function.  Just as Ben completes the implementation and is
     about to try it out, Cy walks by, still puzzling over the
     <kbd>wheel</kbd> query result in
-    exercise <REF NAME="ex:multiple-query"><a class="superscript" id="4.4.3-ex-link-4.65" href="./4.4.3.html#ex_4.65">4.65</a></REF>.  When Cy shows Ben the
+    exercise&nbsp;<REF NAME="ex:multiple-query"><a class="superscript" id="4.4.3-ex-link-4.65" href="./4.4.3.html#ex_4.65">4.65</a></REF>.  When Cy shows Ben the
     system's response, Ben groans, <QUOTE>Oh, no, my simple accumulation
     scheme won't work!</QUOTE>
     <p></p>
@@ -2132,13 +2132,13 @@ sum(amount,
     
     Devise a way to install a loop detector in the query system so as to
     avoid the kinds of simple loops illustrated in the text and in
-    exercise <REF NAME="ex:query-simple-loop"><a class="superscript" id="4.4.3-ex-link-4.64" href="./4.4.3.html#ex_4.64">4.64</a></REF>.  The general idea is
+    exercise&nbsp;<REF NAME="ex:query-simple-loop"><a class="superscript" id="4.4.3-ex-link-4.64" href="./4.4.3.html#ex_4.64">4.64</a></REF>.  The general idea is
     that the system should maintain some sort of history of its current chain of
     deductions and should not begin processing a query that it is already
     working on.  Describe what kind of information (patterns and frames)
     is included in this history, and how the check should be made.  (After
     you study the details of the query-system implementation in
-    section <REF NAME="sec:implementing-the-query-system"><a class="superscript" id="4.4.3-sec-link-4.4.4" href="./4.4.4.html">4.4.4</a></REF>, you may
+    section&nbsp;<REF NAME="sec:implementing-the-query-system"><a class="superscript" id="4.4.3-sec-link-4.4.4" href="./4.4.4.html">4.4.4</a></REF>, you may
     want to modify the system to include your loop detector.)
     
   
@@ -2156,7 +2156,7 @@ sum(amount,
   
     
     Define rules to implement the <kbd>reverse</kbd> operation
-    of exercise <REF NAME="ex:reverse"><a class="superscript" id="4.4.3-ex-link-2.18" href="./2.2.1.html#ex_2.18">2.18</a></REF>, which returns a list containing
+    of exercise&nbsp;<REF NAME="ex:reverse"><a class="superscript" id="4.4.3-ex-link-2.18" href="./2.2.1.html#ex_2.18">2.18</a></REF>, which returns a list containing
     the same elements as a given list in reverse order.  (Hint: Use
     
       
@@ -2194,11 +2194,43 @@ sum(amount,
   
 	
 	Let us modify the data base and the rules of
-	exercise <REF NAME="ex:genesis"><a class="superscript" id="4.4.3-ex-link-4.63" href="./4.4.1.html#ex_4.63">4.63</a></REF> to add 
+	exercise&nbsp;<REF NAME="ex:genesis"><a class="superscript" id="4.4.3-ex-link-4.63" href="./4.4.1.html#ex_4.63">4.63</a></REF> to add 
 	<QUOTE>great</QUOTE> to a grandson relationship. This should enable the
 	system to deduce that Irad is the great-grandson of Adam, or that Jabal
 	and Jubal are the great-great-great-great-great-grandsons of Adam.
-	
+	<OL type="a">
+	  <LI>
+	    Change the assertions in the database such that there is only one
+	    kind of information, namely
+	    <kbd>related</kbd>. The first argument
+	    then describes the relationship. Thus instead of
+	    <kbd>son("Adam", "Cain")</kbd>, you would
+	    write
+	    <kbd>related("son", "Adam", "Cain")</kbd>.
+	  </LI>
+	  <LI>
+	    Represent the fact about Irad, for example, as
+	    <div class='snippet' id='javascript_94_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+related(list("great", "grandson"), "Adam", "Irad")</pre></div></div>
+	  </LI>
+	  <LI>
+	    Write rules that determine if a list ends in the word
+	    <kbd>"grandson"</kbd>.
+	  </LI>
+	  <LI>
+	    Use this to express a rule that allows one to derive the relationship
+	    <div class='snippet' id='javascript_94_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+list(pair("great", rel), x, y)</pre></div></div>
+	    where <kbd>rel</kbd> is a list ending in
+	    <kbd>"grandson"</kbd>.
+	  </LI>
+	  <LI>
+	    Check your rules on queries such as
+	    <kbd>related(list("great", "grandson"), g, ggs)</kbd>
+	    and
+	    <kbd>related(relationship, "Adam", "Irad")</kbd>.
+	  </LI>
+	</OL>
 	
       
       <div class="Solution">
@@ -2284,10 +2316,10 @@ sum(amount,
     advantage of the order of deductions in our programs.  One attempt to
     build sophisticated control into such a program is described in
     
-    <CITATION>deKleer et al. 1977</CITATION>.  
+    <CITATION>deKleer et al.&nbsp;1977</CITATION>.  
     Another technique, which does not lead to such serious control problems, is
     to put in special knowledge, such as detectors for particular kinds of loops
-    (exercise <REF NAME="ex:query-loop-detector"><a class="superscript" id="4.4.3-ex-link-4.67" href="./4.4.3.html#ex_4.67">4.67</a></REF>).  However, there can
+    (exercise&nbsp;<REF NAME="ex:query-loop-detector"><a class="superscript" id="4.4.3-ex-link-4.67" href="./4.4.3.html#ex_4.67">4.67</a></REF>).  However, there can
     be no general scheme for reliably preventing a system from going down
     infinite paths in performing deductions.  Imagine a diabolical rule of
     the form <QUOTE>To show $P(x)$ is true, show that

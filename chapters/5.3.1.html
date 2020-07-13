@@ -1848,7 +1848,7 @@
     
       
       
-	Figure <REF NAME="fig:box-and-pointer-memory"><a class="superscript" id="5.3.1-fig-link-5.14" href="./5.3.1.html#fig_5.14">5.14</a></REF>
+	Figure&nbsp;<REF NAME="fig:box-and-pointer-memory"><a class="superscript" id="5.3.1-fig-link-5.14" href="./5.3.1.html#fig_5.14">5.14</a></REF>
       
     
     illustrates the use of this method to represent the list
@@ -1859,9 +1859,9 @@
     
     whose box-and-pointer diagram is also shown.  We use letter prefixes to
     denote the data-type information.  Thus, a pointer to the pair with
-    index 5 is denoted <kbd>p5</kbd>, the empty list
+    index&nbsp;5 is denoted <kbd>p5</kbd>, the empty list
     is denoted by the pointer <kbd>e0</kbd>, and a pointer to
-    the number 4 is denoted <kbd>n4</kbd>.  In the
+    the number&nbsp;4 is denoted <kbd>n4</kbd>.  In the
     box-and-pointer diagram, we have indicated at the lower left of each pair
     the vector index that specifies where the
     
@@ -2202,7 +2202,7 @@ assign("the_stack", list(op("tail"), reg("the_stack")))</kbd>
     
       
       
-	(as in figure <REF NAME="fig:box-and-pointer-memory"><a class="superscript" id="5.3.1-fig-link-5.14" href="./5.3.1.html#fig_5.14">5.14</a></REF>)
+	(as in figure&nbsp;<REF NAME="fig:box-and-pointer-memory"><a class="superscript" id="5.3.1-fig-link-5.14" href="./5.3.1.html#fig_5.14">5.14</a></REF>)
       
     
     of the list structure produced by
@@ -2237,7 +2237,47 @@ const y = list(x, x);</pre></div></div>
     
     Assume that the list-structure memory operations are available as
     machine primitives.
-    
+    <OL type="a">
+      <LI>
+	Recursive
+	
+	  
+	  <kbd>count_leaves</kbd>:
+	  
+	
+
+	<div class='snippet' id='javascript_109_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0EYBQuAzAVwDsBjAFwEsB7E0Mm0igfQBsBTAQwDcOBnABQUAThw4BKUAG9coeaDEUiI+lX4sSRNm2FjJchUYD8oAAyGj8gFygAhKHUsADlyoi94ibgCQ803hWVraMzOzcfEIAFtwAJp6SUgDUoJZBCqEkrJy8AsJuuqJeEgDcuAC++JnZEXmu7oJs6hSC2AA0oABMEh1N-C0YHQAsEqMlQA')">function count_leaves(tree) {
+    return is_null(tree)
+        ? 0
+        : ! is_pair(tree)
+	  ? 1
+          : count_leaves(head(tree)) + 
+            count_leaves(tail(tree));
+}
+</pre></div></div>
+      </LI>
+      <LI>
+	Recursive
+	
+	  
+	  <kbd>count_leaves</kbd>
+	  
+	
+	with explicit counter:
+	<div class='snippet' id='javascript_109_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0EYBQuAzAVwDsBjAFwEsB7E0Mm0igfQBsBTAQwDcOBnABQUAThw4BKUAG9coeaGLlqdBkxKsqFDiOFiOAGlAkpshedBiKREfSr8WJImzZ7xEuRa8B+Y56-mAFygAISg9iwADlxUuqLuoP4B5r70ANSgeACQXsGMzCxaOsIxrvGSBknJ1V75GoXaugAW3AAmbhXGEhIA3EkAvklWNvR1mo0dRgAMvbiDuGPs3HxC0bGCbPYUgthGAEwSRpv82xhGACzdvUA')">function count_leaves(tree) {
+    function count_iter(tree, n) {
+        return is_null(tree)
+            ? n
+            : ! is_pair(tree) 
+              ? n + 1
+	      : count_iter(tail(tree),
+                           count_iter(head(tree), n));
+    }
+    return count_iter(tree, 0);
+}
+</pre></div></div>
+      </LI>
+    </OL>
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_109_2_div" data-toggle="collapse">Add solution</button></div>
@@ -2253,8 +2293,8 @@ const y = list(x, x);</pre></div></div>
   
     
     
-    Exercise <REF NAME="ex:append"><a class="superscript" id="5.3.1-ex-link-3.12" href="./3.3.1.html#ex_3.12">3.12</a></REF> of
-    section <REF NAME="sec:mutable-list-structure"><a class="superscript" id="5.3.1-sec-link-3.3.1" href="./3.3.1.html">3.3.1</a></REF>
+    Exercise&nbsp;<REF NAME="ex:append"><a class="superscript" id="5.3.1-ex-link-3.12" href="./3.3.1.html#ex_3.12">3.12</a></REF> of
+    section&nbsp;<REF NAME="sec:mutable-list-structure"><a class="superscript" id="5.3.1-sec-link-3.3.1" href="./3.3.1.html">3.3.1</a></REF>
     presented an <kbd>append</kbd>
     
       
@@ -2325,7 +2365,7 @@ const y = list(x, x);</pre></div></div>
     precisely the same 
     
     
-    <QUOTE>tagged data</QUOTE> idea we introduced in chapter 2 for
+    <QUOTE>tagged data</QUOTE> idea we introduced in chapter&nbsp;2 for
     dealing with generic operations.  Here, however, the data types are
     included at the primitive machine level rather than constructed
     through the use of lists.
@@ -2403,7 +2443,7 @@ const y = list(x, x);</pre></div></div>
     <EM>free list</EM>.  Our free locations are consecutive (and hence can be
     accessed by incrementing a pointer) because we are using a compacting
     garbage collector, as we will see in
-    section <REF NAME="sec:gc"><a class="superscript" id="5.3.1-sec-link-5.3.2" href="./5.3.2.html">5.3.2</a></REF>.
+    section&nbsp;<REF NAME="sec:gc"><a class="superscript" id="5.3.1-sec-link-5.3.2" href="./5.3.2.html">5.3.2</a></REF>.
     </FOOTNOTE></div>
 
     
@@ -2425,7 +2465,7 @@ const y = list(x, x);</pre></div></div>
       
       <kbd>set_tail</kbd>,
     
-    as described in section <REF NAME="sec:mutable-list-structure"><a class="superscript" id="5.3.1-sec-link-3.3.1" href="./3.3.1.html">3.3.1</a></REF>.
+    as described in section&nbsp;<REF NAME="sec:mutable-list-structure"><a class="superscript" id="5.3.1-sec-link-3.3.1" href="./3.3.1.html">3.3.1</a></REF>.
     The operation
     
       
