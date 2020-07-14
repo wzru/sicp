@@ -1708,10 +1708,10 @@
       
       
     <div class='snippet' id='javascript_107_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-list(list("initialize-stack", 
+list(list("initialize_stack", 
           () => stack("initialize")),
-     list("print-stack-statistics", 
-          () => stack("print-statistics")));</pre></div></div>
+     list("print_stack_statistics", 
+          () => stack("print_statistics")));</pre></div></div>
   </p></div>
 
   <div class='permalink'>
@@ -1723,7 +1723,7 @@ list(list("initialize-stack",
       <kbd>make_stack</kbd>:
     
       
-    <div class='snippet' id='javascript_107_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9QuUFNAAbNhVBdQAXlAkiMmQG5J0uQvUMARmwBOHAA5EuACzZLVABh3TZ8xkwAeHACZsLFDYqoM66UvqgZESmpmwkFL7+gcGhrsTk1HSgVrYCniKiYa6KwRZMVKZ5ADSKQi7FUoYm5jl2DmpExmaW1m2gANSgAIz1DVExcQl+AUGq47HxiTMDw6PFzN7TyarMgRwbAvOTS4E1uzb7XnVFAL5F6ZS09BY0FsJiRa5UBKACVFwcdSaARcIQFT4NUBmUw0SoAIgAogwAgBPRS8figKjPV5w64QqQ3KEyLhsD6Q4pkOg8UAUV7BOxMHwg64U1ztXhUGQstYUo6LLazSLRBZTJJBAC0qwJxViFGi9DpFl50jurjV0gemXo2Ko1CYMioAC82O9ChT2kDtDKmt1WvYUiqpBsTkLUpD+WLlk4dDK5QrQHCfHQ2HC1hqpFqntlTNiEjwmNQeFQyFwzTKfP8LDImCiQRRYyQAObfPMytmyf4UARwgA6JDhNThdN4Mgl9vajY6XRavXsVXLFdcdYbTY2VAYnQlguCXZdgrBrNV91Ijyyma4ZQoZBsAgY9i4TCLbHBFP9pno+64h+PKmUqjhrThg6kAH5sr0X6AAFyMA9Hsl7wfF4LGfIdQHfEDhC-X8rxvQD70DXV9UNE0wKHd9kKoA1jVNIQYL-a8ALvYDCwoCUEyTahU3QitILI7heColM03w8Df2hWE93-Y8mwAVRIFgSBoAB3ehYgARyIewKF-cAABUAEFoAAaTxcMinPegNy3HcdBuIA')">function make_stack() { 
+    <div class='snippet' id='javascript_107_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0BYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9QuUFNAAbNhVBdQAXlAkiMmQG5J0uQvUMARmwBOHAA5EuACzZLVABh3TZ8xkwAeHACZsLFDYqoM66UvqgZESmpmwkFL7+gcGhrsTk1HSgVrYCniKiYa6KwRZMVKZ5ADSKQi7FUoYm5jl2DmpExmaW1m2gANSgAIz1DVExcQl+AUGq47HxiTMDw6PFzN7TyarMgRwbAvOTS4E1uzb7XnVFAL5F6ZS09BY0FsJiRa5UBKACVFwcdSaARcIQFT4NUBmUw0SoAIgAogwAgBPRS8figKjPV5w64QqQ3KEyLhsD6Q4pkOg8UAUV7BOxMHwg64U1ztXhUGQstYUo6LLazSLRBZTJJBAC0qwJxViFGi9DpFl50jurjV0gemXo2Ko1CYMioAC82O9ChT2kDtDKmt1WvYUiqpBsTkLUpD+WLlk4dDK5QrQHCfHQ2HC1hqpFqntlTNiEjwmNQeFQyFwzTKfP8LDImCiQRRYyQAObfPMytmyf4UARwgA6JDhNThdN4Mgl9vajY6XRavXsVXLFdcdYbTY2VAYnQlguCXZdgrBrNV91Ijyyma4ZQoZBsAgY9i4TCLbHBFP9pno+64h+PKmUqjhrThg6kAH5sr0X6AAFyMA9Hsl7wfF4LGfIdQHfEDhC-X8rxvQD70DXV9UNE0wKHd9kKoA1jVNIQYL-a8ALvYDC3jXgk2oVN0IrSCyO4CiqxTNN8PA39oVhPd-2PJsAFUSBYEgaAAd3oWIAEciHsChf3AAAVABBaAAGk8XDIpz3oDctx3HQbiAA')">function make_stack() { 
     let s = null;
     let number_pushes = 0;
     let max_depth = 0;
@@ -1765,7 +1765,7 @@ list(list("initialize-stack",
             ? pop()
             : message === "initialize"
             ? initialize()
-            : message === "print-statistics"
+            : message === "print_statistics"
             ? print_statistics()
             : error(message, "Unknown request: STACK");
     }
@@ -1952,7 +1952,7 @@ list(list("initialize-stack",
     that sets a breakpoint just before the $n$th
     instruction after the given label.  For example,
     <div class='snippet' id='javascript_107_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-set_breakpoint(gcd_machine, "test-b", 4)</pre></div></div>
+set_breakpoint(gcd_machine, "test_b", 4)</pre></div></div>
     installs a breakpoint in
     
       
