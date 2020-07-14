@@ -1705,21 +1705,13 @@
   into the machine and use the
   evaluator to call it:
 
-  <div class='snippet' id='javascript_123_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsGMB7AWwAcBLAGwFMB9AQwDsATGgcwIAptQfQS6ATgGcqXXuNAAiAGYBXBngAuZAg1DS6SggLJ0KHBgEpQAb24SLoAVUWyBatQF5noAIyhzlrwH43nrxYAXKBqAFTqmorauvpqALRuhgDc-hIAvpKGybhJuaAAotBx+QBueqBlFLJUgdgEANY5eYXFlaBkDCSyirUcGlo65SiG2LlJBUWl5ZXVta4ATAAMQA')">compile_and_go(
+  <div class='snippet' id='javascript_123_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsGMB7AWwAcBLAGwFMB9AQwDsATGgcwIAptQfQS6ATgGcqXXuNAAiAGYBXBngAuZAg1DS6SggLJ0KHBgEpQAbwniAOt3PmBVRbIFq1AXjegAjDZtXvfgPyefsE8viESAFygagBU6pqK2rr6agC0noYA3KBhNgC+koZZQA')">compile_and_go(
     parse(
-        "function factorial(n) {
-             return n === 1 
-                 ? 1
-                 : n * factorial(n - 1);
+        "function factorial(n) {         \
+             return n === 1              \
+                 ? 1                     \
+                 : n * factorial(n - 1); \
          }"));
-
-;;; EC-Eval value:
-ok
-
-;;; EC-Eval input:
-(factorial 5)
-;;; EC-Eval value:
-120
 </pre></div></div>
       </p></div>
 
@@ -1736,14 +1728,14 @@ ok
   (as distinct from compound or primitive
   functions) and transfers control directly to the entry point of the
   compiled code:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-  <div class='snippet' id='javascript_123_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsCIBDAByIBsBPAfQBMBLAZyIIBcBjACzwBptQ-RmAU3rMAFAHsiovEQBOtALa1mtAG6DKc8a0HUArrMF4AlF1CGA5tK2sTp3vwBGsggDsOo0gUeDS1+Uoq6pTEZOR2PPwCwmKS0qziCkTieq7UmrLaugZGpuaCVjKZtsb2Uc5uHl4+fngJSSlpISQUEQ58QiISUnWJRLSkuhlZ+oYmZpb+2m3lLu7snt6+8X0DQ6GtpZH8FuKUzOKLNdKpANau4gDursM6oxrM5ES59vj1-YPpG+HbfIYi4kMK1cKlcelyv1ABHo9FoFlc0lUBFI3FApAYsR67zW6Rs2UMlEEINk4TykyK01KZR2ewOonJSJRWyAA')">"apply_dispatch",
-    test(op("primitive_procedure"), reg("proc")),
+  <div class='snippet' id='javascript_123_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsCIBDAByIBsBPAfQBMBLAZyIIBcBjACzwBptQ-RmAU3rMAFAHsiovA0pEATrQC2tZrQBugygDMArgDtWa8frwBKLqHmCA5tL2mzF3vwBG8gofajSBV4NJpBWVVDS1iMnJzZ34BYTFJaVZxJSJxA2odAyNaE3NLazs8B2ieWPdPDh8-AKSUtIzKCIpSlz4hEQkpGXpKZNTaUkFMhxy8iytbewNW8o8vav9AvH6iQeGmkhanMv4bcUpmcUXavAMAa31xAHd9LMNjO+ZyIkFW-FX1zOao3b5rETiax1fRqfS6N4xfgEej0Wg2fTSdQEUjcUCkBgJbqfIaZBTiVjDXTWSiCUHyKITQpBeQE6JQvj7Q7Hal4ZGonZAA')">"apply_dispatch",
+    test(op("is_primitive_function"), reg("fun")),
     branch(label("primitive_apply")),
-    test(op("compound_procedure"), reg("proc")),
+    test(op("compound_function"), reg("fun")),
     branch(label("compound_apply")),
-    test(op("compiled_procedure"), reg("proc")),
+    test(op("is_compiled_function"), reg("fun")),
     branch(label("compiled_apply")),
-    go_to(label("unknown_procedure_type")),
+    go_to(label("unknown_function_type")),
 
 "compiled_apply",
     restore("continue"),
@@ -1772,12 +1764,12 @@ ok
   <kbd class='snippet'>branch(label("external_entry")), // branches if flag is set
 "read_eval_print_loop",
 perform(op("initialize_stack")),
-$\langle\ldots\rangle$</kbd>
+...</kbd>
       </p></div>
 
       <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-  <kbd>External_entry</kbd> assumes that the machine is started with
+  The function <kbd>external_entry</kbd> assumes that the machine is started with
   <kbd>val</kbd> containing the location of an instruction sequence that
   puts a result into <kbd>val</kbd> and ends with <kbd>go_to(reg("continue"))</kbd>.  Starting at this entry point jumps to the location designated
   by <kbd>val</kbd>, but first assigns <kbd>continue</kbd> so that execution will return
@@ -1831,23 +1823,13 @@ $\langle\ldots\rangle$</kbd>
   section&nbsp;<REF NAME="sec:running-evaluator"><a class="superscript" id="5.5.7-sec-link-5.4.4" href="./5.4.4.html">5.4.4</a></REF>, we can examine the
   stack usage of compiled code:
 
-  <div class='snippet' id='javascript_123_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsGMB7AWwAcBLAGwFMB9AQwDsATGgcwIAptQfQS6ATgGcqXXuNAAiAGYBXBngAuZAg1DS6SggLJ0KHBgEpQAb24SLoAVUWyBatQF5noAIyhzlrwH43nrxYAXKBqAFTqmorauvpqALRuhgDc-hIAvpKGybgcUYp6cSSyQgAWVEKgjqAADKBEdAAeZESyRHFMVCSKJZU1hthJg6AAotBxwwBueqBTFLJUgdgEANa4g0kjY5PTZAxFioscGlo60yj9uQT5FIXFZRVVAMzu9U0tbR1dPVWuACz960241mMz080WrgATNUgA')">compile_and_go(
+  <div class='snippet' id='javascript_123_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsGMB7AWwAcBLAGwFMB9AQwDsATGgcwIAptQfQS6ATgGcqXXuNAAiAGYBXBngAuZAg1DS6SggLJ0KHBgEpQAbwniAOt3PmBVRbIFq1AXjegAjDZtXvfgPyefsE8viESAFygagBU6pqK2rr6agC0noYA3KBhNgC+koZZQA')">compile_and_go(
     parse(
-        "function factorial(n) {
-             return n === 1 
-                 ? 1
-                 : n * factorial(n - 1);
+        "function factorial(n) {         \
+             return n === 1              \
+                 ? 1                     \
+                 : n * factorial(n - 1); \
          }"));
-
-(total-pushes = 0 maximum-depth = 0)
-;;; EC-Eval value:
-ok
-
-;;; EC-Eval input:
-(factorial 5)
-(total-pushes = 31 maximum-depth = 14)
-;;; EC-Eval value:
-120
 </pre></div></div>
       </p></div>
 
@@ -2034,7 +2016,7 @@ ok
   and compiled
   functions, but interpreted
   functions
-  as well.  This requires modifying <kbd>compile_procedure_call</kbd>
+  as well.  This requires modifying <kbd>compile_function_call</kbd>
   to handle the case of compound (interpreted)
   functions.
   Be sure to handle all the same <kbd>target</kbd> and <kbd>linkage</kbd> combinations
@@ -2048,8 +2030,9 @@ ok
   called <kbd>compapp</kbd> to the evaluator machine to hold this
   entry point, and add an instruction to initialize it:
   <kbd class='snippet'>assign("compapp", label("compound_apply")),
-branch(label("external_entry")),"read_eval_print_loop"
-$\ldots$</kbd>
+branch(label("external_entry")),      // branches if flag is set
+"read_eval_print_loop"
+...</kbd>
   To test your code, start by defining a
   function
   <kbd>f</kbd> that calls a
@@ -2078,21 +2061,13 @@ $\ldots$</kbd>
   interface by providing a <kbd>compile_and_run</kbd> primitive that can be
   called from within the explicit-control evaluator as follows:
 
-  <div class='snippet' id='javascript_123_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsGMB7AWwAcBLAGwFMB9AQwDsATGgJwFcGAKbUP0EnVYBnKj34TQAIgBmnPABcyBBqBl1FBVmToUuDAJSgA3r0nnQrKgvatVqgLxPQARlBmLngPyuPn8wBcoKoAVGoaClo6eqoAtK4GANx+kgC+UgZJuIk5oACi0LF5AG66oKUU7FQB2AQA1tm5BUUVoGQMJOwKNVzqmtplKAbYOYn5hSVlFVU1LgBMAAxAA')">compile_and_run(
+  <div class='snippet' id='javascript_123_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsGMB7AWwAcBLAGwFMB9AQwDsATGgJwFcGAKbUP0EnVYBnKj34TQAIgBmnPABcyBBqBl1FBVmToUuDAJSgA3pIkAdXmbOsqC9q1WqAvK9ABGa9ctffAfg9fIL4fYMkALlBVACo1DQUtHT1VAFoPAwBuUFDrAF8pA0ygA')">compile_and_run(
     parse(
-        "function factorial(n) {
-             return n === 1 
-                 ? 1
-                 : n * factorial(n - 1);
+        "function factorial(n) {         \
+             return n === 1              \
+                 ? 1                     \
+                 : n * factorial(n - 1); \
          }"));
-
-;;; EC-Eval value:
-ok
-
-;;; EC-Eval input:
-(factorial 5)
-;;; EC-Eval value:
-120
 </pre></div></div>
       
       <div class="Solution">
