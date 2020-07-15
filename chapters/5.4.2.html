@@ -1846,7 +1846,7 @@
     <div class='snippet' id='javascript_113_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_sequence",
     assign("stmt", list(op("first_statement"), reg("unev"))),
-    test(op("is_last_statement"), reg("unev")),
+    test(list(op("is_last_statement"), reg("unev"))),
     branch(label("ev_sequence_last_exp")),
     save("unev"),
     save("env"),
@@ -1986,7 +1986,7 @@ function sqrt_iter(guess, x) {
     evaluated:<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
     <div class='snippet' id='javascript_113_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_sequence",
-     test(op("has_no_more_exps"), reg("unev")),
+     test(list(op("has_no_more_exps"), reg("unev"))),
      branch(label("ev_sequence_end")),
      assign(exp(op("first_exp"), reg("unev")),
      save("unev"),
