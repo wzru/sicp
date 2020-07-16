@@ -2414,7 +2414,7 @@ function branch_structure(b) {
                     scale_tree(tail(tree), factor));
 }
 </pre></div></div>
-    <div class='snippet' id='javascript_33_39_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHTpQKCwZwMYCGANgKYD6ALgE6mkAUxAlrpfQIwA0ozr9K3XmwDM3ACwBKbgFYpPFmwBs3AOwSpWUFu07Q7AAwSA3EA')">scale_tree(list(1, list(2, list(3, 4), 5), list(6, 7)),
+    <div class='snippet' id='javascript_33_39_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHTpQKCwMwK4B2AxgC4CWA9oaAM7ECGANgKYD6pATiywBRc8ANKFwMylTgEpQAbyygFobqXyca5Wm0L4mTftxaT5ik4oD8obbuOmTALlABCUBrYAHBuU76eR2-4sBFlAAKhExUgkbf0UHDy9eemZ2IN4ACxYGABMfQ2FRcSlhaJiYpNYOA35PPSDJfIiJSUkAbiwAXxxylKqmDVJeAEZhPtoBlBH+3gBmYQAWetAAVkXRgYA2YQB2ZsES20GABlagA')">scale_tree(list(1, list(2, list(3, 4), 5), list(6, 7)),
            10);
 </pre><pre class='prettyprintoutput'>
 list(10, list(20, list(30, 40), 50), list(60, 70))</pre></div></div>
@@ -2434,7 +2434,7 @@ list(10, list(20, list(30, 40), 50), list(60, 70))</pre></div></div>
     We map over the sequence, scaling each sub-tree in turn, and return the
     list of results.  In the base case, where the tree is a leaf, we simply
     multiply by the factor:
-    <div class='snippet' id='javascript_33_40_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHTpQKCwMwK4B2AxgC4CWA9oaAM7ECGANgKYD6pATiywBRc8ANKFwMylTgEpQAbyygFobqXycaAWwYAHXrXwAjDtxagAvAD5Q5Wmy0NynXQaM9J8xR89fvoAPx1GVhc+PUMBFmFRcSl3HzifAC46Z3DQACoRMVIJYVj4hXDJAG4sAF8cemZ2cN4ma1JeAEZhOtoGlBb63gBmYQAWSWEAVkHQVoaANmEAdklBvO9GgAZioA')">function scale_tree(tree, factor) {
+    <div class='snippet' id='javascript_33_40_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHTpQKCwMwK4B2AxgC4CWA9oaAM7ECGANgKYD6pATiywBRc8ANKFwMylTgEpQAbyygFobqXyca5Wm0L4mTftxaT5ik4oD8obbuOmTALlABCUBrYAHBuU76eR2-4sBFlAAKhExUgkbf0UHDy9eemZ2IN4ACxYGABMfQ2FRcSlhaJiYpNYOA35PPSDJfIiJSUkAbiwAXxwCEgpqOkYK1KCGwuk5E2VVGgBbBjdE-AAjSp5QAF4APhdNeO9aJZXDEtKT837kw4Xl4fDR49OTh33rg1DbyM5ih8U6ts6scopKpMDSkXgARmEINoYJQUNBvAAzMIACz1UAAVnR0LBADZhAB2ZqCe4mcEABlaQA')">function scale_tree(tree, factor) {
     return map(sub_tree => is_pair(sub_tree)
                            ? scale_tree(sub_tree, factor)
                            : sub_tree * factor, 
