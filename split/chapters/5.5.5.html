@@ -1676,21 +1676,26 @@
       </div>
       <div class='chapter-text'>
         <div class='SECTION'><SECTION>
-    <div style="color:red" class="wip-stamp">Note: this section is a work in progress!</div>
+    
 
-      
-      
-      
-      <div class='permalink'>
+  
+  
+  
+  <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
-  Now that we have seen all the elements of the compiler, let us examine
-  an example of compiled code to see how things fit together.  We will
-  compile the definition of a recursive <span style="color:green"><kbd>factorial</kbd></span><span style="color:blue"><kbd>factorial</kbd></span>
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  by
-  calling <kbd>compile</kbd>:
-
-  <table width="100%">
+    Now that we have seen all the elements of the compiler, let us examine
+    an example of compiled code to see how things fit together.  We will
+    compile the definition of a recursive
+    
+      <span style="color:green"><kbd>factorial</kbd></span>
+      <span style="color:blue"><kbd>factorial</kbd></span>
+    
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    by calling <kbd>compile</kbd>:
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -1702,81 +1707,142 @@
             (* (factorial (- n 1)) n)))
       'val
       'next)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_121_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHTpQKCwYwPYC2ADgJYA2ApgBTECGATgM40BEoHnX3oAOlgDMArgDtcAF1L4RoAXQn4GpOuWoiAlKADePDvy4NK4oQxkyAvJdABGXT326A-DfZ23fLHYBcoGQCpZeXFFZVUZAFobdQBufgBfd0S3VnUAGk8eVgA3FVZ03VYRSgAPcRTooA')">compile(parse("                \
+            <td><div class='snippet' id='javascript_121_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+compile(parse("                \
 function factorial(n) {        \
     return n === 1             \
         ? 1"                   \
         : n * factorial(n - 1);\
 }                              "),
        "val",
-       "next");
-</pre></div></div></td></tr></table>
-      </p></div>
+       "next");</pre></div></div></td></tr></table>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-  We have specified that the value of the <kbd>define</kbd> expression should
-  be placed in the <kbd>val</kbd> register.  We don't care what the compiled
-  code does after executing the <kbd>define</kbd>, so our choice of <kbd>next</kbd> as the linkage descriptor is arbitrary.
-      </p></div>
+    We have specified that the value of the
+    <kbd>define</kbd> expression should
+    be placed in the <kbd>val</kbd> register.
+    We don't care what the compiled
+    code does after executing the <kbd>define</kbd>,
+    so our choice of
+    
+      <span style="color:green">
+	<kbd>next</kbd>
+      </span>
+      <span style="color:blue">
+	<kbd>"next"</kbd>
+      </span>
+    
+    as the linkage
+    descriptor is arbitrary.
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-  <kbd>Compile</kbd> determines that the expression is a definition, so it calls <span style="color:green"><kbd>compile-definition</kbd></span><span style="color:blue"><kbd>compile_definition</kbd></span> to compile code to compute the value to be assigned
-  (targeted to <kbd>val</kbd>), followed by code to install the definition, followed
-  by code to put the value of the <kbd>define</kbd> (which is the symbol <kbd>ok</kbd>)
-  into the target register, followed finally by the linkage code.  <kbd>Env</kbd> is
-  preserved around the computation of the value, because it is needed in order
-  to install the definition.  Because the linkage is <kbd>next</kbd>, there is no
-  linkage code in this case.  The skeleton of the compiled code is thus
-
-  <kbd class='snippet'>$\langle \textit{save}$ env $\textit{if modified by code to compute value}\rangle$
+    <kbd>Compile</kbd> determines that the expression is a
+    definition, so it calls
+    
+      <span style="color:green"><kbd>compile-definition</kbd></span>
+      <span style="color:blue"><kbd>compile_definition</kbd>
+      </span>
+    
+    to compile code to compute the value to be assigned (targeted to
+    <kbd>val</kbd>), followed by code to install the
+    definition, followed by code to put the value of the
+    <kbd>define</kbd> (which is the symbol
+    <kbd>ok</kbd>)
+    into the target register, followed finally by the linkage code.
+    <kbd>Env</kbd> is preserved around the computation of the
+    value, because it is needed in order to install the definition.  Because
+    the linkage is
+    
+      <span style="color:green">
+	<kbd>next</kbd>,
+      </span>
+      <span style="color:blue">
+	<kbd>"next"</kbd>,
+      </span>
+    
+    there is no linkage code
+    in this case.  The skeleton of the compiled code is thus
+    <kbd class='snippet'>$\langle \textit{save}$ env $\textit{if modified by code to compute value}\rangle$
 $\langle \textit{compilation of definition value, target}$ val$, \textit{linkage}$ next$\rangle$
 $\langle \textit{restore}$ env $\textit{if saved above}\rangle$
-perform(
-    op("define_variable"),
-    constant("factorial"),
-    reg("val"),
-    reg("env"));
+perform(list(op("define_variable"),
+             constant("factorial"), reg("val"), reg("env"));
 assign("val", constant(ok));</kbd>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
-  The expression that is to be compiled to produce the value for the
-  variable <kbd>factorial</kbd> is a <kbd>lambda</kbd> expression whose value is
-  the
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  that computes factorials.  <kbd>Compile</kbd> handles this by
-  calling <span style="color:green"><kbd>compile-lambda</kbd></span><span style="color:blue"><kbd>compile_lambda</kbd></span>, which compiles the
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  body,
-  labels it as a new entry point, and generates the instruction that
-  will combine the
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  body at the new entry point with the
-  run-time environment and assign the result to <kbd>val</kbd>.  The sequence
-  then skips around the compiled
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  code, which is inserted at
-  this point.  The
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  code itself begins by extending the
-  <span style="color:green">procedure</span><span style="color:blue">function</span>'s definition environment by a frame that binds
-  the formal parameter <kbd>n</kbd> to the
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  argument.  Then comes the actual
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  body.  Since this code for the value of the variable
-  doesn't modify the <kbd>env</kbd> register, the optional <kbd>save</kbd>
-  and <kbd>restore</kbd> shown above aren't generated.  (The
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  code at
-  <kbd>entry2</kbd> isn't executed at this point, so its use of <kbd>env</kbd>
-  is irrelevant.)
-  Therefore, the skeleton for the compiled code becomes
-
-  <kbd class='snippet'>  assign("val", list(op("make_compiled_function"),
+    The expression that is to be compiled to produce the value for the
+    variable <kbd>factorial</kbd> is a
+    <kbd>lambda</kbd> expression whose value is the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    that computes factorials. <kbd>Compile</kbd> handles this
+    by calling
+    
+      <span style="color:green"><kbd>compile-lambda</kbd>,</span>
+      <span style="color:blue"><kbd>compile_lambda</kbd>,
+      </span>
+    
+    which compiles the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    body, labels it as a new entry point, and generates the instruction that
+    will combine the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    body at the new entry point with the run-time environment and assign the
+    result to <kbd>val</kbd>.  The sequence then skips around
+    the compiled
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    code, which is inserted at this point.  The
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    code itself begins by extending the
+    
+      <span style="color:green">procedure's</span>
+      <span style="color:blue">function's</span>
+    
+    definition environment by a frame that binds
+    the formal parameter <kbd>n</kbd> to the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    argument.  Then comes the actual
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    body.  Since this code for the value of the variable
+    doesn't modify the <kbd>env</kbd> register, the
+    optional <kbd>save</kbd>
+    and <kbd>restore</kbd> shown above aren't
+    generated.  (The
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    code at
+    <kbd>entry2</kbd> isn't executed at this point,
+    so its use of <kbd>env</kbd> is irrelevant.)
+    Therefore, the skeleton for the compiled code becomes
+    <kbd class='snippet'>  assign("val", list(op("make_compiled_function"),
                      label(entry2), 
                      reg("env"))),
   go_to(label("after_lambda1")),
@@ -1786,24 +1852,38 @@ assign("val", constant(ok));</kbd>
                      constant(n), 
                      reg("argl"), 
                      reg("env"))),
-  $\langle \textit{compilation of procedure body} \rangle$
+  $\langle \textit{compilation of function body} \rangle$
 "after_lambda1",
-  perform(op("define_variable"), 
-          constant("factorial"), 
-          reg("val"), 
-          reg("env")),
-  assign("val", constant(ok)),</kbd>
-      </p></div>
+  perform(list(op("define_variable"), 
+               constant("factorial"), reg("val"), reg("env"))),
+  assign("val", constant("ok")),</kbd>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-  A
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  body is always compiled (by <span style="color:green"><kbd>compile-lambda-body</kbd></span><span style="color:blue"><kbd>compile_lambda_body</kbd></span>) as
-  a sequence with target <kbd>val</kbd> and linkage <kbd>return</kbd>.  The
-  sequence in this case consists of a single <kbd>if</kbd> expression:
-
-  <table width="100%">
+    A
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    body is always compiled (by
+    
+      <span style="color:green"><kbd>compile-lambda-body</kbd>)</span>
+      <span style="color:blue">
+      <kbd>compile_lambda_body</kbd>)</span>
+    
+    as a sequence with target <kbd>val</kbd> and linkage
+    
+      <span style="color:green">
+	<kbd>return</kbd>.
+      </span>
+      <span style="color:blue">
+	<kbd>"return"</kbd>.
+      </span>
+    
+    The sequence in this case consists of
+    a single <kbd>if</kbd> expression:
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -1811,55 +1891,119 @@ assign("val", constant(ok));</kbd>
 (if (= n 1)
       1
       (* (factorial (- n 1)) n))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_121_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHTpQKCwO1ALxGgCMoWoloA-KeVaAFyj4BUoAZgIYDGALgHsATgEsuAGwAU+ALSkAlEA')">n === 1 
+            <td><div class='snippet' id='javascript_121_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+n === 1 
     ? 1 
-    : n * factorial(n - 1)
-</pre></div></div></td></tr></table>
-      </p></div>
+    : n * factorial(n - 1)</pre></div></div></td></tr></table>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
-  <span style="color:green"><kbd>Compile-if</kbd></span><span style="color:blue"><kbd>Compile_if</kbd></span> generates code that first computes the predicate (targeted to
-  <kbd>val</kbd>), then checks the result and branches around the true branch if the
-  predicate is false.  <kbd>Env</kbd> and <kbd>continue</kbd> are preserved around the
-  predicate code, since they may be needed for the rest of the <kbd>if</kbd>
-  expression.  Since the <kbd>if</kbd> expression is the final expression (and only
-  expression) in the sequence making up the
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  body, its target is <kbd>val</kbd> and its linkage is <kbd>return</kbd>, so the true and false branches are both
-  compiled with target <kbd>val</kbd> and linkage <kbd>return</kbd>.
-  (That is, the value of the conditional, which is the value computed by
-  either of its branches, is the value of the
-  <span style="color:green">procedure</span><span style="color:blue">function</span>.)
-
-  <kbd class='snippet'>  $\langle \textit{save}$ continue$,$ env $\textit{if modified by predicate and needed by branches} \rangle$
+    
+      <span style="color:green"><kbd>Compile-if</kbd></span>
+      <span style="color:blue"><kbd>Compile_if</kbd></span>
+    
+    generates code that first computes the predicate (targeted to
+    <kbd>val</kbd>), then checks the result and branches
+    around the true branch if the predicate is false.
+    <kbd>Env</kbd> and <kbd>continue</kbd>
+    are preserved around the predicate code, since they may be needed for the
+    rest of the <kbd>if</kbd> expression.  Since the
+    <kbd>if</kbd> expression is the final expression (and
+    only expression) in the sequence making up the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    body, its target is <kbd>val</kbd> and its linkage is
+    
+      <span style="color:green">
+	<kbd>return</kbd>,
+      </span>
+      <span style="color:blue">
+	<kbd>"return"</kbd>,
+      </span>
+    
+    so the true and false branches are both
+    compiled with target <kbd>val</kbd> and linkage
+    
+      <span style="color:green">
+	<kbd>return</kbd>.
+      </span>
+      <span style="color:blue">
+	<kbd>"return"</kbd>.
+      </span>
+    
+    (That is, the value of the conditional,
+    which is the value computed by either of its branches, is the value of the
+    
+      <span style="color:green">procedure.)</span>
+      <span style="color:blue">function.)</span>
+    
+    <kbd class='snippet'>  $\langle \textit{save}$ continue$,$ env $\textit{if modified by predicate and needed by branches} \rangle$
   $\langle \textit{compilation of predicate, target}$ val$, \textit{linkage}$ next$\rangle$
   $\langle \textit{restore}$ continue$,$ env $\textit{if saved above}\rangle$
-  test(op("false"), reg("val")),
+  test(list(op("is_false"), reg("val"))),
   branch(label("false_branch4")),
 "true_branch5",
   $\langle \textit{compilation of true branch, target}$ val$, \textit{linkage}$ return$\rangle$
 "false_branch4",
   $\langle \textit{compilation of false branch, target}$ val$, \textit{linkage}$ return$\rangle$
 "after_if3",</kbd>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
-  The predicate <span style="color:green"><kbd>(= n 1)</kbd></span><span style="color:blue"><kbd>n === 1</kbd></span> is a
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  call.  This
-  looks up the operator (the symbol <kbd>=</kbd>) and places this value in
-  <span style="color:green"><kbd>proc</kbd></span><span style="color:blue"><kbd>fun</kbd></span>.  It then assembles the arguments <kbd>1</kbd> and the value of
-  <kbd>n</kbd> into <kbd>argl</kbd>.  Then it tests whether <span style="color:green"><kbd>proc</kbd></span><span style="color:blue"><kbd>fun</kbd></span> contains a
-  primitive or a compound
-  <span style="color:green">procedure</span><span style="color:blue">function</span>, and dispatches to a primitive branch
-  or a compound branch accordingly.  Both branches resume at the <span style="color:green"><kbd>after-call</kbd></span><span style="color:blue"><kbd>after_call</kbd></span> label.  The requirements to preserve registers
-  around the evaluation of the operator and operands don't result in
-  any saving of registers, because in this case those evaluations don't
-  modify the registers in question.
+    The predicate
+    
+      <span style="color:green"><kbd>(= n 1)</kbd></span>
+      <span style="color:blue"><kbd>n === 1</kbd></span>
+    
+    is a
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    call. This looks up the
+    
+      <span style="color:green">
+    operator 
+    (the symbol <kbd>===</kbd>)
+      </span>
+      <span style="color:blue">
+	operator
+	(the name <kbd>"==="</kbd>)
+      </span>
+    
+    and places this value in
+    
+      <span style="color:green"><kbd>proc</kbd>.</span>
+      <span style="color:blue"><kbd>fun</kbd>.</span>
+    
+    It then assembles the arguments <kbd>1</kbd> and the value
+    of <kbd>n</kbd> into <kbd>argl</kbd>.
+    Then it tests whether
+    
+      <span style="color:green"><kbd>proc</kbd></span>
+      <span style="color:blue"><kbd>fun</kbd></span>
+    
+    contains a primitive or a compound
+    
+      <span style="color:green">procedure,</span>
+      <span style="color:blue">function,</span>
+    
+    and dispatches to a primitive branch or a compound branch accordingly.
+    Both branches resume at the
+    
+      <span style="color:green"><kbd>after-call</kbd></span>
+      <span style="color:blue"><kbd>after_call</kbd></span>
+    
+    label.  The requirements to preserve registers
+    around the evaluation of the operator and operands don't result in
+    any saving of registers, because in this case those evaluations don't
+    modify the registers in question.
 
-  <table width="100%">
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -1881,76 +2025,121 @@ assign("val", constant(ok));</kbd>
             (reg proc)
             (reg argl))
       after-call15</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_121_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHTpQKCwQwM74CWA5gHYAUARAGYCuZVANKADZH4AuFA9gA7VWPHgGs6fAPoA3XACciuAEasAptNys6KqgEoWAYx5kuuMtyoBeXS1kqS1FWSm6devIVKUqM1s1CHjTlNuAEZXJndicmo5El8Wdi5eASpEzmtQW3tvDRc3AiivHz805MFhMUkZeSVVdU1tPX8jEzMKMiashyc8iILPGNk4ko5ufmoA-AyunN9Ou0Hh1zdOFSTxqj55AFsiTiIpNXoyfX2jaYXaBhcIxVlTfQALClYlFVZqLaJd-cOJO4ejxCAHYblgqIZtnwiKoACb-e4nIEANmYkQGEKM+zIWhGSVeineMRoq1kEn0GlYIRQvXR0VmeLGKUh0LhEmOpyIRgkjk4sgAnhdssdaSQeBJODwKDNiuFwV8fgc1ACkSC0f16cUEqMylRcHw+Kx+RIFXsleyGJzzvNhdcbYs5nK9SSVGSKawqTSmEA')">assign("fun", list(op("lookup_variable_value"), constant("="), reg("env"))),
-assign("val", constant(1)),
-assign("argl", list(op("list"), reg("val"))),
-assign("val", list(op("lookup_variable_value"), constant(n), reg("env"))),
-assign("argl", list(op("cons"), reg("val"), reg("argl"))),
-test(op("primitive_function"), reg("fun")),
-branch(label("primitive_branch17")),
+            <td><div class='snippet' id='javascript_121_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+assign("fun", list(op("lookup_symbol_value"), constant("==="), 
+                     reg("env"))),
+  assign("val", constant(1)),
+  assign("argl", list(op("list"), reg("val"))),
+  assign("val", list(op("lookup_symbol_value"), constant(n), 
+                     reg("env"))),
+  assign("argl", list(op("pair"), reg("val"), reg("argl"))),
+  test(list(op("primitive_function"), reg("fun"))),
+  branch(label("primitive_branch17")),
 "compiled_branch16",
-assign("continue", list(label("after_call15"))),
-assign("val", list(op("compiled_function_entry"), reg("fun"))),
-go_to(reg("val")),
+  assign("continue", list(label("after_call15"))),
+  assign("val", list(op("compiled_function_entry"), reg("fun"))),
+  go_to(reg("val")),
 "primitive_branch17",
-assign("val", list(op("apply_primitive_function"), reg("fun"), reg("argl"))),
-"after_call15",
-</pre></div></div></td></tr></table>
-      </p></div>
+  assign("val", list(op("apply_primitive_function"), reg("fun"), 
+                     reg("argl"))),
+"after_call15",</pre></div></div></td></tr></table>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
-  The true branch, which is the constant 1, compiles (with target
-  <kbd>val</kbd> and linkage <kbd>return</kbd>) to
-
-  <table width="100%">
+    The true branch, which is the constant 1, compiles (with target
+    <kbd>val</kbd> and linkage
+    
+      <span style="color:green">
+	<kbd>return</kbd>)
+      </span>
+      <span style="color:blue">
+	<kbd>"return"</kbd>)
+      </span>
+    
+    to
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_121_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (assign val (const 1))
       (goto (reg continue))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_121_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHTpQKCwQwM74CWA5gHYAUARAG64A2VANKAMYD2Z+ALrmdxQCMASmFMsJdgH1u7CgCcApiWod+RMgFdFVUUyA')">assign("val", constant(1)),
-go_to(reg("continue")),
-</pre></div></div></td></tr></table>
-      </p></div>
+            <td><div class='snippet' id='javascript_121_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+assign("val", constant(1)),
+go_to(reg("continue")),</pre></div></div></td></tr></table>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p9' class='permalink'></a><p>
-  The code for the false branch is another a
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  call, where the
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  is the value of the symbol <kbd>*</kbd>, and the arguments are
-  <kbd>n</kbd> and the result of another
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  call (a call to <kbd>factorial</kbd>).
-  Each of these calls sets up
-  <span style="color:green"><kbd>proc</kbd></span><span style="color:blue"><kbd>fun</kbd></span>
-  and <kbd>argl</kbd> and its own primitive
-  and compound branches.  Figure&nbsp;
-  shows the complete compilation of the
-  definition of the <kbd>factorial</kbd>
-  <span style="color:green">procedure</span><span style="color:blue">function</span>.
-  Notice that the possible <kbd>save</kbd> and <kbd>restore</kbd> of
-  <kbd>continue</kbd> and <kbd>env</kbd> around the predicate, shown above,
-  are in fact generated, because these registers are modified by the
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  call in the predicate and needed for the
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  call and the
-  <kbd>return</kbd> linkage in the branches.
-  
-      </p></div>
+    The code for the false branch is another a
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    call, where the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    is the value of the symbol <kbd>*</kbd>, and the arguments
+    are <kbd>n</kbd> and the result of another
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    call (a call to <kbd>factorial</kbd>).
+    Each of these calls sets up
+    
+      <span style="color:green"><kbd>proc</kbd></span>
+      <span style="color:blue"><kbd>fun</kbd></span>
+    
+    and <kbd>argl</kbd> and its own primitive
+    and compound branches.  Figure&nbsp;<REF NAME="fig:comp-factorial1"><a class="superscript" id="5.5.5-fig-link-5.21" href="./5.5.5.html#fig_5.21">5.21</a></REF>
+    shows the complete compilation of the
+    definition of the <kbd>factorial</kbd>
+    
+      <span style="color:green">procedure.</span>
+      <span style="color:blue">function.</span>
+    
+    Notice that the possible <kbd>save</kbd> and
+    <kbd>restore</kbd> of
+    <kbd>continue</kbd> and
+    <kbd>env</kbd> around the predicate, shown above,
+    are in fact generated, because these registers are modified by the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    call in the predicate and needed for the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    call and the
+    
+      <span style="color:green">
+	<kbd>return</kbd>
+      </span>
+      <span style="color:blue">
+	<kbd>"return"</kbd>
+      </span>
+    
+    linkage in the branches.
+    
+  </p></div>
 
-      
+  
     <div class="permalink">
     <a name="ex_5.33" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.33">Exercise 5.33 </a></b> 
   
-  Consider the following definition of a factorial
-  <span style="color:green">procedure</span><span style="color:blue">function</span>, which is
-  slightly different from the one given above:
-  <table width="100%">
+    Consider the following definition of a factorial
+    
+      <span style="color:green">procedure,</span>
+      <span style="color:blue">function,</span>
+    
+    which is slightly different from the one given above:
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -1959,18 +2148,21 @@ go_to(reg("continue")),
       (if (= n 1)
       1
       (* n (factorial-alt (- n 1)))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_121_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHTpQKCwMwK4B2AxgC4CWA9oaLgIZmUBO5dANgPrukAUhAlKADeWUGNBMApqXxMaoGgF5loAIxjR4rQH41mrWIBctBqWatO3PqAC0awQCoFAbiwBfIA')">function factorial_alt(n) {
+            <td><div class='snippet' id='javascript_121_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function factorial_alt(n) {
     return  n === 1  
         ? 1
         : factorial_alt(n - 1) * n;
-}
-</pre></div></div></td></tr></table>
-  Compile this
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  and compare the resulting code with that produced for
-  <kbd>factorial</kbd>.  Explain any differences you find.  Does either
-  program execute more efficiently than the other?
-      
+}</pre></div></div></td></tr></table>
+    Compile this
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    and compare the resulting code with that produced for
+    <kbd>factorial</kbd>.  Explain any differences you find.
+    Does either program execute more efficiently than the other?
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_121_1_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_121_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1979,15 +2171,18 @@ go_to(reg("continue")),
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.34" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.34">Exercise 5.34 </a></b> 
   
-  
-  
-  Compile the iterative factorial
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  <table width="100%">
+    
+    
+    Compile the iterative factorial
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -1999,7 +2194,8 @@ go_to(reg("continue")),
             (iter (* counter product)
             (+ counter 1))))
       (iter 1 1))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_121_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHTpQKCwMwK4B2AxgC4CWA9oaLgIZmUBO5dANgBSECUoA3llBDaRMlRrlSAUyYcADk0oATfGQA0oYpSLSmvAcMOgmU0viY0tOmaAB8oQoKPOA-KAXLVpJ88MAuUEkZeUUVMlAAKk1tQl0NK1ibAGpQAEZuAG4fUABfHEMTMwtA3Q5UjXSsnKA')">function factorial(n) {
+            <td><div class='snippet' id='javascript_121_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function factorial(n) {
     function iter(product, counter) {
         return counter > n
             ? product
@@ -2007,14 +2203,13 @@ go_to(reg("continue")),
     }
 
     return iter(1, 1);
-}
-</pre></div></div></td></tr></table>
-  Annotate the resulting code, showing the essential difference between
-  the code for iterative and recursive versions of <kbd>factorial</kbd> that
-  makes one process build up stack space and the other run in constant
-  stack space.
+}</pre></div></div></td></tr></table>
+    Annotate the resulting code, showing the essential difference between
+    the code for iterative and recursive versions of
+    <kbd>factorial</kbd> that makes one process build up
+    stack space and the other run in constant stack space.
+    
   
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_121_2_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_121_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2022,22 +2217,265 @@ go_to(reg("continue")),
     
 </EXERCISE></div>
 
+
+  <FIGURE><table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_121_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+;; construct the procedure and skip over code for the procedure body
+      (assign val
+            (op make-compiled-procedure) (label entry2) (reg env))
+      (goto (label after-lambda1))
+
+      entry2     ; calls to factorial will enter here
+      (assign env (op compiled-procedure-env) (reg proc))
+      (assign env
+            (op extend-environment) (const (n)) (reg argl) (reg env))
+      ;; begin actual procedure body
+      (save continue)
+      (save env)
+
+      ;; compute (= n 1)
+      (assign proc (op lookup-variable-value) (const =) (reg env))
+      (assign val (const 1))
+      (assign argl (op list) (reg val))
+      (assign val (op lookup-variable-value) (const n) (reg env))
+      (assign argl (op cons) (reg val) (reg argl))
+      (test (op primitive-procedure?) (reg proc))
+      (branch (label primitive-branch17))
+      compiled-branch16
+      (assign continue (label after-call15))
+      (assign val (op compiled-procedure-entry) (reg proc))
+      (goto (reg val))
+      primitive-branch17
+      (assign val (op apply-primitive-procedure) (reg proc) (reg argl))
+
+      after-call15   ; val now contains result of (= n 1)
+      (restore env)
+      (restore continue)
+      (test (op false?) (reg val))
+      (branch (label false-branch4))
+      true-branch5  ; return 1
+      (assign val (const 1))
+      (goto (reg continue))
+
+      false-branch4
       
+      (assign proc (op lookup-variable-value) (const *) (reg env))
+      (save continue)
+      (save proc)   ; save * procedure
+      (assign val (op lookup-variable-value) (const n) (reg env))
+      (assign argl (op list) (reg val))
+      (save argl)   ; save partial argument list for *
+
+      ;; compute (factorial (- n 1)), which is the other argument for *
+      (assign proc
+            (op lookup-variable-value) (const factorial) (reg env))
+      (save proc)  ; save factorial procedure</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_121_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+// construct the function and skip over code for the function body
+  assign("val",
+    list(op("make-compiled-procedure"), label("entry2"), reg("env"))),
+  goto(label("after-lambda1")),
+
+"entry2",     // calls to factorial will enter here
+  assign("env", list(op("compiled-function-env"), reg("fun"))),
+  assign("env",
+    list(op("extend-environment"), const(list("n")),
+         reg("argl"), reg("env"))),
+// begin actual procedure body
+  save("continue"),
+  save("env"),
+
+// compute n === 1
+  assign("fun", list(op("lookup_symbol_value"), 
+                     const("==="), reg("env"))),
+  assign("val", const(1)),
+  assign("argl", list(op("list","), reg("val"))),
+  assign("val", list(op("lookup_symbol_value"), 
+                     const(n), reg("env"))),
+  assign("argl, list(op("pair"), reg("val"), reg("argl"))),
+  test(list(op("is_primitive_function"), reg("proc"))),
+  branch(label("primitive-branch17")),
+"compiled-branch16",
+  assign("continue", label("after-call15")),
+  assign(val, list(op("compiled-procedure-entry"), 
+                   reg("fun"))),
+  goto(reg("val")),
+"primitive-branch17",
+  assign("val",
+    list(op("apply-primitive-procedure"), 
+         reg("fun"), reg("argl"))),
+"after-call15",            // val now contains result of n === 1
+  restore env),
+  restore continue),
+  test(list(op("is_false"), reg("val"))),
+  branch(label("false-branch4")),
+"true-branch5",            // return 1
+  assign("val", const(1)),
+  goto(reg("continue")),
+
+"false-branch4",
+                           // compute & return factorial(n - 1) * n
+  assign("fun", list(op("lookup_symbol_value"),
+                     const("*"), reg("env"))),
+  save("continue"),
+  save("proc"),            // save * function</pre></div></div></td></tr></table>
+      <div class="chapter-text-CAPTION">
+      <b><a class="caption" href="./5.5.5.html#fig_5.21">Figure 5.21 </a></b>
+    Compilation of the definition of the <kbd>factorial</kbd>
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+  (continued on next page).
+  </div>
+    </FIGURE>
+  
+
+
+    <FIGURE><table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_121_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+;; compute (- n 1), which is the argument for factorial
+      (assign proc (op lookup-variable-value) (const -) (reg env))
+      (assign val (const 1))
+      (assign argl (op list) (reg val))
+      (assign val (op lookup-variable-value) (const n) (reg env))
+      (assign argl (op cons) (reg val) (reg argl))
+      (test (op primitive-procedure?) (reg proc))
+      (branch label primitive-branch8))
+      compiled-branch7
+      (assign continue (label after-call6))
+      (assign val (op compiled-procedure-entry) (reg proc))
+      (goto (reg val))
+      primitive-branch8
+      (assign val (op apply-primitive-procedure) (reg proc) (reg argl))
+
+      after-call6   ; val now contains result of (- n 1)
+      (assign argl (op list) (reg val))
+      (restore proc) ; restore factorial
+      ;; apply factorial
+      (test (op primitive-procedure?) (reg proc))
+      (branch (label primitive-branch11))
+      compiled-branch10
+      (assign continue (label after-call9))
+      (assign val (op compiled-procedure-entry) (reg proc))
+      (goto (reg val))
+      primitive-branch11
+      (assign val (op apply-primitive-procedure) (reg proc) (reg argl))
+
+      after-call9      ; val now contains result of (factorial (- n 1))
+      (restore argl) ; restore partial argument list for *
+      (assign argl (op cons) (reg val) (reg argl))
+      (restore proc) ; restore *
+      (restore continue)
+      ;; apply * and return its value
+      (test (op primitive-procedure?) (reg proc))
+      (branch (label primitive-branch14))
+      compiled-branch13
+      ;; note that a compound procedure here is called tail-recursively
+      (assign val (op compiled-procedure-entry) (reg proc))
+      (goto (reg val))
+      primitive-branch14
+      (assign val (op apply-primitive-procedure) (reg proc) (reg argl))
+      (goto (reg continue))
+      after-call12
+      after-if3
+      after-lambda1
+      ;; assign the procedure to the variable factorial
+      (perform
+      (op define-variable!) (const factorial) (reg val) (reg env))
+      (assign val (const ok))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_121_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+assign("val", list(op("lookup_symbol_value"), 
+                     const(n), reg("env"))),
+  assign("argl, list(op("list"), reg("val"))),
+  save("argl"),            // save partial argument list for *
+
+// compute factorial(n - 1), which is the other argument for *
+  assign("fu",n",
+    list(op("lookup_symbol_value"), const(factorial), reg("env"))),
+  save("proc"),            // factorial function
+
+// compute n - 1, which is the argument for factorial
+  assign("fun", list(op("lookup_symbol_value"), 
+                     const("-"), reg("env"))),
+  assign("val", const(1)),
+  assign("argl", list(op("list","), reg("val"))),
+  assign("val", list(op("lookup_symbol_value"), const(n), 
+                     reg("env"))),
+  assign("argl, list(op("pair"), reg("val"), reg("argl"))),
+  test(list(op("primitive-procedure?"), reg("fun"))),
+  branch(label("primitive-branch8")),
+      compiled-branch7
+  assign("continue label("after-call6")),
+  assign(val, list(op("compiled-procedure-entry"), reg("fun"))),
+  goto(reg("val")),
+"primitive-branch8",
+  assign("val", list(op("apply-primitive-procedure"), 
+                     reg("fun"), reg("argl"))),
+  
+"after-call6",            // val now contains result of n - 1
+  assign(","argl, list(op("list"), reg("val"))),
+  restore proc),          // restore factorial
+                          // apply factorial
+  test(list(op("is_primitive_function"), reg("fun"))),
+  branch(label("primitive-branch11")),
+"compiled-branch10",
+  assign("continue label("after-call9")),
+  assign(val, list(op("compiled-procedure-entry"), reg("fun"))),
+  goto(reg("val")),
+"primitive-branch11",
+  assign("val", list(op("apply-primitive-procedure"), 
+                     reg("fun"), reg("argl"))),</pre></div></div></td></tr></table>
+      <div class="chapter-text-CAPTION">
+      <b><a class="caption" href="./5.5.5.html#fig_5.22">Figure 5.22 </a></b>(continued)</div>
+    </FIGURE>
+  
+
+    <FIGURE><div class='snippet' id='javascript_121_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"after-call9",            // val now has result of factorial(n - 1)
+  restore("argl"),        // restore partial argument list for *
+  assign("argl", list(op("pair"), reg("val"), reg("argl"))),
+  restore("fun"),         // restore *
+  restore("continue"),    // apply * and return its value
+  test(list(op("is_primitive_function"), reg("fun"))),
+  branch(label("primitive-branch14")),
+"compiled-branch13",
+                          // note that compound function here
+                          // is called tail-recursively
+  assign("val", list(op("compiled-procedure-entry"), reg("fun"))),
+  goto(reg("val")),
+"primitive-branch14",
+  assign("val", list(op("apply-primitive-procedure"), 
+                     reg("fun"), reg("argl"))),
+  goto(reg("continue")),
+"after-call12",
+"after-if3",
+"after-lambda1",
+// assign the function to the name factorial
+  perform(list(op("assign_symbol_value"), 
+               const(factorial), reg("val"), reg("env"))),
+  assign("val", const(ok)),</pre></div></div>
+      <div class="chapter-text-CAPTION">
+      <b><a class="caption" href="./5.5.5.html#fig_5.23">Figure 5.23 </a></b>(continued)</div>
+    </FIGURE>
+  
+
+    
+    
 
       
     <div class="permalink">
     <a name="ex_5.35" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.35">Exercise 5.35 </a></b> 
-   
   
-  
-  What order of evaluation does our compiler produce for operands of a
-  combination?  Is it left-to-right, right-to-left, or some other order?
-  Where in the compiler is this order determined?  Modify the compiler
-  so that it produces some other order of evaluation.  (See the
-  discussion of order of evaluation for the explicit-control evaluator
-  in section&nbsp;<REF NAME="sec:eceval-core"><a class="superscript" id="5.5.5-sec-link-5.4.1" href="./5.4.1.html">5.4.1</a></REF>.)  How does changing the order of
-  operand evaluation affect the efficiency of the code that constructs
-  the argument list?
+	
+  What expression was compiled to produce the code shown in
+  figure&nbsp;<REF NAME="fig:compilation-example1"><a class="superscript" id="5.5.5-fig-link-5.24" href="./5.5.5.html#fig_5.24">5.24</a></REF>?
       
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_121_3_div" data-toggle="collapse">Add solution</button></div>
@@ -2046,21 +2484,173 @@ go_to(reg("continue")),
     
 </EXERCISE></div>
 
+      
+  <FIGURE><table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_121_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(assign val (op make-compiled-procedure) label entry16)
+            (reg env))
+      (goto (label after-lambda15))
+      entry16
+      (assign env (op compiled-procedure-env) (reg proc))
+      (assign env
+            (op extend-environment) (const (x)) (reg argl) (reg env))
+      (assign proc (op lookup-variable-value) (const +) (reg env))
+      (save continue)
+      (save proc)
+      (save env)
+      (assign proc (op lookup-variable-value) (const g) (reg env))
+      (save proc)
+      (assign proc (op lookup-variable-value) (const +) (reg env))
+      (assign val (const 2))
+      (assign argl (op list) (reg val))
+      (assign val (op lookup-variable-value) (const x) (reg env))
+      (assign argl (op cons) (reg val) (reg argl))
+      (test (op primitive-procedure?) (reg proc))
+      (branch (label primitive-branch19))
+      compiled-branch18
+      (assign continue (label after-call17))
+      (assign val (op compiled-procedure-entry) (reg proc))
+      (goto (reg val))
+      primitive-branch19
+      (assign val (op apply-primitive-procedure) (reg proc) (reg argl))
+      after-call17
+      (assign argl (op list) (reg val))
+      (restore proc)
+      (test (op primitive-procedure?) (reg proc))
+      (branch (label primitive-branch22))
+      compiled-branch21
+      (assign continue (label after-call20))
+      (assign val (op compiled-procedure-entry) (reg proc))
+      (goto (reg val))
+      primitive-branch22
+      (assign val (op apply-primitive-procedure) (reg proc) (reg argl))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_121_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+assign("val", list(op("make-compiled-procedure"),
+                     label("entry16")),
+        reg env)),
+  goto(label("after-lambda15")),
+"entry16",
+  assign(env, list(op("compiled-procedure-env"), 
+                   reg("fun"))),
+  assign("env", list(op("extend-environment","), 
+                     const((x)), reg("argl"), reg("env"))),
+  assign("fun", list(op("lookup_symbol_value"), 
+                     const(+), reg("env"))),
+  save("continue"),
+  save("proc"),
+  save("env"),
+  assign("fun", list(op("lookup_symbol_value"),
+                     const(g), reg("env"))),
+  save("proc"),
+  assign("fun", list(op("lookup_symbol_value"),
+                     const(+), reg("env"))),
+  assign("val", const(2)),
+  assign("argl", list(op("list","), reg("val"))),
+  assign("val", list(op("lookup_symbol_value"),
+                     const(x), reg("env"))),
+  assign("argl, list(op("pair"), reg("val"), reg("argl"))),
+  test(list(op("is_primitive_function"), reg("fun"))),
+  branch(label("primitive-branch19")),
+"compiled-branch18",
+  assign("continue", label("after-call17")),
+  assign(val, list(op("compiled-procedure-entry"), 
+                   reg("fun"))),
+  goto(reg("val")),
+"primitive-branch19",
+  assign("val", list(op("apply-primitive-procedure"), 
+                     reg("fun"), reg("argl"))),
+"after-call17",
+  assign("argl", list(op("list"), reg("val"))),
+  restore("proc"),
+  test(list(op("primitive-procedure?"), reg("fun"))),
+  branch(label("primitive-branch22")),
+"compiled-branch21",
+  assign("continue", label("after-call20")),
+  assign(val, list(op("compiled-procedure-entry"), 
+                   reg("fun"))),
+  goto(reg("val")),
+"primitive-branch22",
+  assign("val", list(op("apply_primitive_function"),
+                     reg("fun"), reg("argl"))),</pre></div></div></td></tr></table>
+      <div class="chapter-text-CAPTION">
+      <b><a class="caption" href="./5.5.5.html#fig_5.24">Figure 5.24 </a></b>An example of compiler output (continued on next page).
+  See exercise&nbsp;<REF NAME="ex:compiled-code"><a class="superscript" id="5.5.5-ex-link-5.35" href="./5.5.5.html#ex_5.35">5.35</a></REF>.
+  </div>
+    </FIGURE>
+  
+
+
+  <FIGURE><table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_121_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+after-call20
+      (assign argl (op list), (reg val))
+      (restore env)
+      (assign val (op lookup-variable-value) const(x) (reg env))
+      (assign argl (op cons) (reg val) (reg argl))
+      (restore proc)
+      (restore continue)
+      (test (op primitive-procedure?) (reg proc))
+      (branch label primitive-branch25))
+      compiled-branch24
+      (assign val (op compiled-procedure-entry) (reg proc))
+      (goto (reg val))
+      primitive-branch25
+      (assign val (op apply-primitive-procedure) (reg proc) (reg argl))
+      (goto (reg continue))
+      after-call23
+      after-lambda15
+      (perform (op define-variable!) (const f) (reg val) (reg env))
+      (assign val (const ok))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_121_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"after-call20",
+  assign("argl", list(op("list"), reg("val"))),
+  restore("env"),
+  assign("val", list(op("lookup_symbol_value"),
+                   const(x), reg("env"))),
+  assign("argl", list(op("pair"), reg("val"), reg("argl"))),
+  restore("fun"),
+  restore("continue"),
+  test(list(op("is_primitive_function"), reg("fun"))),
+  branch(label("primitive-branch25")),
+"compiled-branch24",
+  assign("val", list(op("compiled-procedure-entry"), 
+                     reg("fun"))),
+  goto(reg("val")),
+"primitive-branch25",
+  assign("val", list(op("apply_primitive_function"), 
+                     reg("fun"), reg("argl"))),
+  goto(reg("continue")),
+"after-call23",
+"after-lambda15",
+  perform(list(op("define-variable"), 
+               const("f"), reg("val"), reg("env"))),
+  assign("val", const("ok"))</pre></div></div></td></tr></table>
+      <div class="chapter-text-CAPTION">
+      <b><a class="caption" href="./5.5.5.html#fig_5.25">Figure 5.25 </a></b>(continued)</div>
+    </FIGURE>
+  
 
       
     <div class="permalink">
     <a name="ex_5.36" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.36">Exercise 5.36 </a></b> 
+   
+    
+    
+    What order of evaluation does our compiler produce for operands of a
+    combination?  Is it left-to-right, right-to-left, or some other order?
+    Where in the compiler is this order determined?  Modify the compiler
+    so that it produces some other order of evaluation.  (See the
+    discussion of order of evaluation for the explicit-control evaluator
+    in section&nbsp;<REF NAME="sec:eceval-core"><a class="superscript" id="5.5.5-sec-link-5.4.1" href="./5.4.1.html">5.4.1</a></REF>.)  How does changing the
+    order of operand evaluation affect the efficiency of the code that
+    constructs the argument list?
   
-  
-  
-  One way to understand the compiler's <kbd>preserving</kbd> mechanism for
-  optimizing stack usage is to see what extra operations would
-  be generated if we did not use this idea.  Modify <kbd>preserving</kbd> so
-  that it always generates the <kbd>save</kbd> and <kbd>restore</kbd> operations.
-  Compile some simple expressions and identify the unnecessary stack
-  operations that are generated.
-  Compare the code to that generated with the <kbd>preserving</kbd> mechanism intact.
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_121_4_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_121_4_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2069,99 +2659,24 @@ go_to(reg("continue")),
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.37" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.37">Exercise 5.37 </a></b> 
   
+    
+    
+    One way to understand the compiler's
+    <kbd>preserving</kbd> mechanism for
+    optimizing stack usage is to see what extra operations would
+    be generated if we did not use this idea.  Modify
+    <kbd>preserving</kbd> so
+    that it always generates the <kbd>save</kbd> and
+    <kbd>restore</kbd> operations.
+    Compile some simple expressions and identify the unnecessary stack
+    operations that are generated.
+    Compare the code to that generated with the
+    <kbd>preserving</kbd> mechanism intact.
   
-  
-  Our compiler is clever about avoiding unnecessary stack operations,
-  but it is not clever at all when it comes to compiling calls to the primitive
-  <span style="color:green">procedures</span><span style="color:blue">functions</span>
-  of the language in terms of the primitive operations
-  supplied by the machine.  For example, consider how much code is
-  compiled to compute <span style="color:green"><kbd>(+ a 1)</kbd></span><span style="color:blue"><kbd>a + 1</kbd></span>: The code sets up an argument list
-  in <kbd>argl</kbd>, puts the primitive addition
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  (which it finds
-  by looking up the symbol <kbd>+</kbd> in the environment) into <span style="color:green"><kbd>proc</kbd></span><span style="color:blue"><kbd>fun</kbd></span>,
-  and tests whether the
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  is primitive or compound.  The
-  compiler always generates code to perform the test, as well as code
-  for primitive and compound branches (only one of which will be executed).
-  We have not shown the part of the controller that implements
-  primitives, but we presume that these instructions make use of
-  primitive arithmetic operations in the machine's data paths.  Consider
-  how much less code would be generated if the compiler could <EM>
-    open-code</EM> primitives—that is, if it could generate code to directly
-  use these primitive machine operations.  The expression <span style="color:green"><kbd>(+ a 1)</kbd></span><span style="color:blue"><kbd>a + 1</kbd></span>
-  might be compiled into something as simple as<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-  <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_121_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(assign val (op lookup-variable-value) (const a) (reg env))
-      (assign val (op +) (reg val) (const 1))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_121_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHTpQKCwQwM74CWA5gHYAUARAG64A2VANKAPYAO19rrA1gK7sA+nQBORXACN6AUxEN+MqgEoWAY1Zl8AF1xlt1XCpaiZJajLI0VqvIVKVaDZm05UA1MdCnzTxqtANLV19CgBGZVUgA')">assign("val", op("lookup_variable_value"), constant("a"), reg("env")),
-assign("val", op("+"), reg("val"), constant(1)),
-</pre></div></div></td></tr></table>
-  In this exercise we will extend our compiler to support open coding of
-  selected primitives.  Special-purpose code will be generated for calls to these primitive
-  <span style="color:green">procedures</span><span style="color:blue">functions</span>
-  instead of the general
-  <span style="color:green">procedure</span><span style="color:blue">function</span>-application code.  In order to support this, we will augment
-  our machine with special argument registers <kbd>arg1</kbd> and <kbd>arg2</kbd>.
-  The primitive arithmetic operations of the machine will take their
-  inputs from <kbd>arg1</kbd> and <kbd>arg2</kbd>. The results may be put into
-  <kbd>val</kbd>, <kbd>arg1</kbd>, or <kbd>arg2</kbd>.
-
-  The compiler must be able to recognize the application of an
-  open-coded primitive in the source program.  We will augment the
-  dispatch in the <kbd>compile</kbd>
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  to recognize the names of
-  these primitives in addition to the 
-  
-  reserved words (the special forms)
-  it currently recognizes.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a> For each special form our compiler has a code generator.  In
-  this exercise we will construct a family of code generators for the
-  open-coded primitives.
-  <OL type="a">
-    <LI>
-      The open-coded primitives, unlike the special forms, all need their
-      operands evaluated.  Write a code generator <span style="color:green"><kbd>spread-arguments</kbd></span><span style="color:blue"><kbd>spread_arguments</kbd></span> for use by
-      all the open-coding code generators.  <span style="color:green"><kbd>Spread-arguments</kbd></span><span style="color:blue"><kbd>Spread_arguments</kbd></span> should take an
-      operand list and compile the given operands targeted to successive argument
-      registers.  Note that an operand may contain a call to an open-coded
-      primitive, so argument registers will have to be preserved during operand
-      evaluation.
-    </LI>
-    <LI>
-      For each of the primitive
-      <span style="color:green">procedures</span><span style="color:blue">functions</span>
-      <kbd>=</kbd>, <kbd>*</kbd>, <kbd>-</kbd>, and
-      <kbd>+</kbd>, write a code generator that takes a combination with that
-      operator, together with a target and a linkage descriptor, and
-      produces code to spread the arguments into the registers and then
-      perform the operation targeted to the given target with the given
-      linkage.  You need only handle expressions with two operands.  Make
-      <kbd>compile</kbd> dispatch to these code generators.
-    </LI>
-    <LI>
-      Try your new compiler on the <kbd>factorial</kbd> example.  Compare the
-      resulting code with the result produced without open coding.
-    </LI>
-    <LI>
-      Extend your code generators for <kbd>+</kbd> and <kbd>*</kbd> so that they
-      can handle expressions with arbitrary numbers of operands.  An
-      expression with more than two operands will have to be compiled into a
-      sequence of operations, each with only two inputs.
-      
-    </LI>
-  </OL>
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_121_5_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_121_5_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2170,14 +2685,167 @@ assign("val", op("+"), reg("val"), constant(1)),
 </EXERCISE></div>
 
 
-    <hr>
+  
+    <div class="permalink">
+    <a name="ex_5.38" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.38">Exercise 5.38 </a></b> 
+  
+    
+    
+    Our compiler is clever about avoiding unnecessary stack operations,
+    but it is not clever at all when it comes to compiling calls to the primitive
+    
+      <span style="color:green">procedures</span>
+      <span style="color:blue">functions</span>
+    
+    of the language in terms of the primitive operations
+    supplied by the machine.  For example, consider how much code is
+    compiled to compute
+    
+      <span style="color:green"><kbd>(+ a 1)</kbd>:</span>
+      <span style="color:blue"><kbd>a + 1</kbd>:</span>
+    
+    The code sets up an argument list in <kbd>argl</kbd>, puts
+    the primitive addition
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    (which it finds by looking up the symbol <kbd>+</kbd> in
+    the environment) into
+    
+      <span style="color:green"><kbd>proc</kbd>,</span>
+      <span style="color:blue"><kbd>fun</kbd>,</span>
+      
+    and tests whether the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    is primitive or compound.  The
+    compiler always generates code to perform the test, as well as code
+    for primitive and compound branches (only one of which will be executed).
+    We have not shown the part of the controller that implements
+    primitives, but we presume that these instructions make use of
+    primitive arithmetic operations in the machine's data paths.  Consider
+    how much less code would be generated if the compiler could <EM>
+    open-code</EM> primitives—that is, if it could generate code to
+    directly use these primitive machine operations.  The expression
+    
+      <span style="color:green"><kbd>(+ a 1)</kbd></span>
+      <span style="color:blue"><kbd>a + 1</kbd></span>
+    
+    might be compiled into something as simple as<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_121_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(assign val (op lookup-variable-value) (const a) (reg env))
+	(assign val (op +) (reg val) (const 1))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_121_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+assign("val", op("lookup_symbol_value"), constant("a"), reg("env")),
+	assign("val", op("+"), reg("val"), constant(1)),</pre></div></div></td></tr></table>
+    In this exercise we will extend our compiler to support open coding of
+    selected primitives.  Special-purpose code will be generated for calls to these primitive
+    
+      <span style="color:green">procedures</span>
+      <span style="color:blue">functions</span>
+    
+    instead of the general
+    
+      <span style="color:green">procedure-application</span>
+      <span style="color:blue">function-application</span>
+    
+    code.  In order to support this, we will augment
+    our machine with special argument registers
+    <kbd>arg1</kbd> and <kbd>arg2</kbd>.
+    The primitive arithmetic operations of the machine will take their
+    inputs from <kbd>arg1</kbd> and
+    <kbd>arg2</kbd>. The results may be put into
+    <kbd>val</kbd>, <kbd>arg1</kbd>, or
+    <kbd>arg2</kbd>.
+    <p></p>
+    The compiler must be able to recognize the application of an
+    open-coded primitive in the source program.  We will augment the
+    dispatch in the <kbd>compile</kbd>
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    to recognize the names of these primitives in addition to the 
+    
+    reserved words (the special forms) it currently recognizes.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a> For each special form our compiler has a code
+    generator.  In this exercise we will construct a family of code generators
+    for the open-coded primitives.
+    <OL type="a">
+      <LI>
+	The open-coded primitives, unlike the special forms, all need their
+	operands evaluated.  Write a code generator
+	
+	  <span style="color:green"><kbd>spread-arguments</kbd></span>
+	  <span style="color:blue"><kbd>spread_arguments</kbd>
+	  </span>
+	
+	for use by all the open-coding code generators.
+	
+	  <span style="color:green"><kbd>Spread-arguments</kbd></span>
+	  <span style="color:blue"><kbd>Spread_arguments</kbd>
+	  </span>
+	
+	should take an operand list and compile the given operands targeted to
+	successive argument registers.  Note that an operand may contain a call
+	to an open-coded primitive, so argument registers will have to be
+	preserved during operand evaluation.
+      </LI>
+      <LI>
+	For each of the primitive
+	
+	  <span style="color:green">procedures</span>
+	  <span style="color:blue">functions</span>
+	
+	<kbd>=</kbd>, <kbd>*</kbd>,
+	<kbd>-</kbd>, and <kbd>+</kbd>,
+	write a code generator that takes a combination with that
+	operator, together with a target and a linkage descriptor, and
+	produces code to spread the arguments into the registers and then
+	perform the operation targeted to the given target with the given
+	linkage.  You need only handle expressions with two operands.  Make
+	<kbd>compile</kbd> dispatch to these code generators.
+      </LI>
+      <LI>
+	Try your new compiler on the <kbd>factorial</kbd>
+	example.  Compare the resulting code with the result produced without
+	open coding.
+      </LI>
+      <LI>
+	Extend your code generators for <kbd>+</kbd> and
+	<kbd>*</kbd> so that they
+	can handle expressions with arbitrary numbers of operands.  An
+	expression with more than two operands will have to be compiled into a
+	sequence of operations, each with only two inputs.
+	
+      </LI>
+    </OL>
+  
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_121_6_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_121_6_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+<hr>
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1' >[1] </a>
     <FOOTNOTE>
     We have used
-    the same symbol <kbd>+</kbd> here to denote both the source-language
-    <span style="color:green">procedure</span><span style="color:blue">function</span>
+    the same symbol <kbd>+</kbd> here to denote both the
+    source-language
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
     and the machine operation.  In general there will not be a
     one-to-one correspondence between primitives of the source language
     and primitives of the machine.
@@ -2187,15 +2855,22 @@ assign("val", op("+"), reg("val"), constant(1)),
     <div class='footnote'>
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2' >[2] </a>
     <FOOTNOTE>
-    Making the primitives into reserved
-    words is in general a bad idea, since a user cannot then rebind these
-    names to different
-    <span style="color:green">procedures</span><span style="color:blue">functions</span>.  Moreover, if we add reserved words to
+    Making
+    the primitives into reserved words is in general a bad idea, since a user
+    cannot then rebind these names to different
+    
+      <span style="color:green">procedures.</span>
+      <span style="color:blue">functions.</span>
+    
+    Moreover, if we add reserved words to
     a compiler that is in use, existing programs that define
-    <span style="color:green">procedures</span><span style="color:blue">functions</span>
+    
+      <span style="color:green">procedures</span>
+      <span style="color:blue">functions</span>
+    
     with these names will stop working.  See
-    exercise&nbsp;<REF NAME="ex:cte-open-code"><a class="superscript" id="5.5.5-ex-link-5.43" href="./5.5.6.html#ex_5.43">5.43</a></REF> for ideas on how to avoid this
-    problem.
+    exercise&nbsp;<REF NAME="ex:cte-open-code"><a class="superscript" id="5.5.5-ex-link-5.44" href="./5.5.6.html#ex_5.44">5.44</a></REF> for ideas on how to avoid
+    this problem.
     </FOOTNOTE></div>
     
     

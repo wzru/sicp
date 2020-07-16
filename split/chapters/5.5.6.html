@@ -1678,25 +1678,37 @@
         <div class='SECTION'><SECTION>
     
 
-      
-      
-      
-      <div class='permalink'>
+  
+  
+  
+  <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
-  One of the most common optimizations performed by compilers is the
-  optimization of variable lookup.  Our compiler, as we have implemented
-  it so far, generates code that uses the <span style="color:green"><kbd>lookup-variable-value</kbd></span><span style="color:blue"><kbd>lookup_variable_value</kbd></span>
-  operation of the evaluator machine.  This searches for a variable by
-  comparing it with each variable that is currently bound, working frame
-  by frame outward through the run-time environment.  This search can be
-  expensive if the frames are deeply nested or if there are many
-  variables.  For example, consider the problem of looking up the value
-  of <kbd>x</kbd> while evaluating the expression <span style="color:green"><kbd>(* x y z)</kbd></span><span style="color:blue"><kbd>x * y * z</kbd></span> in an
-  application of the
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  that is returned by
-
-  <table width="100%">
+    One of the most common optimizations performed by compilers is the
+    optimization of variable lookup.  Our compiler, as we have implemented
+    it so far, generates code that uses the
+    
+      <span style="color:green"><kbd>lookup-variable-value</kbd></span>
+      <span style="color:blue">
+	<kbd>lookup_variable_value</kbd>
+      </span>
+    
+    operation of the evaluator machine.  This searches for a variable by
+    comparing it with each variable that is currently bound, working frame
+    by frame outward through the run-time environment.  This search can be
+    expensive if the frames are deeply nested or if there are many
+    variables.  For example, consider the problem of looking up the value
+    of <kbd>x</kbd> while evaluating the expression
+    
+      <span style="color:green"><kbd>(* x y z)</kbd></span>
+      <span style="color:blue"><kbd>x * y * z</kbd></span>
+    
+    in an application of the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    that is returned by
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -1714,13 +1726,20 @@ let y = 4;
     return x * y * z;
 }
 </pre></div></div></td></tr></table>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-  Since a <kbd>let</kbd> expression is just syntactic sugar for a <span style="color:green"><kbd>lambda</kbd></span><span style="color:blue"><kbd>function declaration expression</kbd></span> combination, this expression is equivalent to
-
-  <table width="100%">
+    Since a <kbd>let</kbd> expression is just syntactic sugar
+    for a
+    
+      <span style="color:green"><kbd>lambda</kbd></span>
+      <span style="color:blue">
+	<kbd>function declaration expression</kbd>
+      </span>
+    
+    combination, this expression is equivalent to
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -1736,129 +1755,184 @@ let y = 4;
     ((a, b, c, d, e) =>
         ((y, z) => x * y * z)(a * b * x, c + d + x)))(3, 4)
 </pre></div></div></td></tr></table>
-  Each time <span style="color:green"><kbd>lookup-variable-value</kbd></span><span style="color:blue"><kbd>lookup_variable_value</kbd></span> searches for <kbd>x</kbd>, it must
-  determine that the symbol <kbd>x</kbd> is not <kbd>eq?</kbd> to <kbd>y</kbd> or <kbd>z</kbd> (in the first frame), nor to <kbd>a</kbd>, <kbd>b</kbd>, <kbd>c</kbd>, <kbd>d</kbd>, or
-  <kbd>e</kbd> (in the second frame).  We will assume, for the moment, that
-  our programs do not use <kbd>define</kbd>—that variables are
-  bound only with <kbd>lambda</kbd>.  Because our language is 
-  
-  lexically
-  scoped, the run-time environment for any expression will have a
-  structure that parallels the lexical structure of the program in which
-  the expression appears.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+    Each time
+    
+      <span style="color:green"><kbd>lookup-variable-value</kbd></span>
+      <span style="color:blue"><kbd>lookup_variable_value</kbd>
+      </span>
+    
+    searches for <kbd>x</kbd>, it must determine that the
+    symbol <kbd>x</kbd> is not
+    <kbd>eq?</kbd> to <kbd>y</kbd> or
+    <kbd>z</kbd> (in the first frame), nor to
+    <kbd>a</kbd>, <kbd>b</kbd>,
+    <kbd>c</kbd>, <kbd>d</kbd>, or
+    <kbd>e</kbd> (in the second frame).  We will assume,
+    for the moment, that our programs do not use
+    <kbd>define</kbd>—that variables are bound only
+    with <kbd>lambda</kbd>.  Because our language is 
+    
+    lexically scoped, the run-time environment for any expression will have a
+    structure that parallels the lexical structure of the program in which
+    the expression appears.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
   Thus, the compiler can know, when it analyzes the
   above expression, that each time the
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
+  
+    <span style="color:green">procedure</span>
+    <span style="color:blue">function</span>
+  
   is applied the variable
-  <kbd>x</kbd> in <span style="color:green"><kbd>(* x y z)</kbd></span><span style="color:blue"><kbd>x * y * z</kbd></span> will be found two frames out from the
+  <kbd>x</kbd> in
+  
+    <span style="color:green"><kbd>(* x y z)</kbd></span><span style="color:blue"><kbd>x * y * z</kbd></span> will be found two frames out from the
   current frame and will be the first variable in that frame.
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-  
-  We can exploit this fact by inventing a new kind of variable-lookup
-  operation, <span style="color:green"><kbd>lexical-address-lookup</kbd></span><span style="color:blue"><kbd>lexical_address_lookup</kbd></span>, that takes as arguments an
-  environment and a <EM>lexical address</EM> that consists of two numbers:
-  a <EM>frame number</EM>, which specifies how many frames to pass over,
-  and a <EM>displacement number</EM>, which specifies how many variables to
-  pass over in that frame.  
-  
-  <span style="color:green"><kbd>Lexical-address-lookup</kbd></span><span style="color:blue"><kbd>Lexical_address_lookup</kbd></span> will produce
-  the value of the variable stored at that lexical address relative to
-  the current environment.  If we add the <span style="color:green"><kbd>lexical-address-lookup</kbd></span><span style="color:blue"><kbd>lexical_address_lookup</kbd></span>
-  operation to our machine, we can make the compiler generate code that
-  references variables using this operation, rather than <span style="color:green"><kbd>lookup-variable-value</kbd></span><span style="color:blue"><kbd>lookup_variable_value</kbd></span>.  Similarly, our compiled code can use a new
-  
-  <span style="color:green"><kbd>lexical-address-set!</kbd></span><span style="color:blue"><kbd>lexical_address_set</kbd></span>  operation instead of <span style="color:green"><kbd>set-variable-value!</kbd></span><span style="color:blue"><kbd>set_variable_value</kbd></span>.
-      </p></div>
+    
+    We can exploit this fact by inventing a new kind of variable-lookup
+    operation, <span style="color:green"><kbd>lexical-address-lookup</kbd></span><span style="color:blue"><kbd>lexical_address_lookup</kbd></span>, that takes as arguments an
+    environment and a <EM>lexical address</EM> that consists of two numbers:
+    a <EM>frame number</EM>, which specifies how many frames to pass over,
+    and a <EM>displacement number</EM>, which specifies how many variables to
+    pass over in that frame.  
+    
+    <span style="color:green"><kbd>Lexical-address-lookup</kbd></span><span style="color:blue"><kbd>Lexical_address_lookup</kbd></span> will produce
+    the value of the variable stored at that lexical address relative to
+    the current environment.  If we add the <span style="color:green"><kbd>lexical-address-lookup</kbd></span><span style="color:blue"><kbd>lexical_address_lookup</kbd></span>
+    operation to our machine, we can make the compiler generate code that
+    references variables using this operation, rather than <span style="color:green"><kbd>lookup-variable-value</kbd></span><span style="color:blue"><kbd>lookup_variable_value</kbd></span>.  Similarly, our compiled code can use a new
+    
+    <span style="color:green"><kbd>lexical-address-set!</kbd></span><span style="color:blue"><kbd>lexical_address_set</kbd></span>  operation instead of <span style="color:green"><kbd>set-variable-value!</kbd></span><span style="color:blue"><kbd>set_variable_value</kbd></span>.
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
-  In order to generate such code, the compiler must be able to determine
-  the lexical address of a variable it is about to compile a reference
-  to.  The lexical address of a variable in a program depends on where
-  one is in the code.  For example, in the following program, the
-  address of <kbd>x</kbd> in expression e1 is (2,0)—two frames back
-  and the first variable in the frame.  At that point <kbd>y</kbd> is at
-  address (0,0) and <kbd>c</kbd> is at address (1,2).  In expression
-  e2,$\,$ <kbd>x</kbd> is at (1,0), $\,$ <kbd>y</kbd> is at (1,1), and <kbd>c</kbd> is at (0,2).
+    In order to generate such code, the compiler must be able to determine
+    the lexical address of a variable it is about to compile a reference
+    to.  The lexical address of a variable in a program depends on where
+    one is in the code.  For example, in the following program, the
+    address of <kbd>x</kbd> in expression e1 is (2,0)—two frames back
+    and the first variable in the frame.  At that point <kbd>y</kbd> is at
+    address (0,0) and <kbd>c</kbd> is at address (1,2).  In expression
+    e2,$\,$ <kbd>x</kbd> is at (1,0), $\,$ <kbd>y</kbd> is at (1,1), and <kbd>c</kbd> is at (0,2).
 
-  <kbd class='snippet'>((x, y) =>
+    <kbd class='snippet'>((x, y) =>
     ((a, b, c, d, e) =>
         ((y, z) => $e_1$)($e_2$, c + d + x)))(3, 4)</kbd>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-
-  One way for the compiler to produce code that uses lexical addressing
-  is to maintain a data structure called a <EM>compile-time
-    environment</EM>.  This keeps track of which variables will be at which
-  positions in which frames in the run-time environment when a
-  particular variable-access operation is executed.  The compile-time
-  environment is a list of frames, each containing a list of variables.
-  (There will of course be no values bound to the variables, since
-  values are not computed at compile time.)  The compile-time
-  environment becomes an additional argument to <kbd>compile</kbd> and is
-  passed along to each code generator.  The top-level call to <kbd>compile</kbd> uses an empty compile-time environment.
-  When a <kbd>lambda</kbd> body is compiled, <span style="color:green"><kbd>compile-lambda-body</kbd></span><span style="color:blue"><kbd>compile_lambda_body</kbd></span>
-  extends the compile-time environment by a frame containing the
-  <span style="color:green">procedure</span><span style="color:blue">function</span>'s parameters, so that the sequence making up the body
-  is compiled with that extended environment.
-  At each point in the compilation, <span style="color:green"><kbd>compile-variable</kbd></span><span style="color:blue"><kbd>compile_variable</kbd></span> and <span style="color:green"><kbd>compile-assignment</kbd></span><span style="color:blue"><kbd>compile_assignment</kbd></span> use the compile-time
-  environment in order to generate the appropriate lexical addresses.
-      </p></div>
-
-      <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
-  Exercises&nbsp;<REF NAME="ex:lexical-address-start"><a class="superscript" id="5.5.6-ex-link-5.38" href="./5.5.6.html#ex_5.38">5.38</a></REF>
-  through&nbsp;<REF NAME="ex:lexical-address-end"><a class="superscript" id="5.5.6-ex-link-5.42" href="./5.5.6.html#ex_5.42">5.42</a></REF> describe how to complete this sketch of
-  the lexical-addressing strategy in order to incorporate lexical lookup
-  into the compiler.
-  Exercise&nbsp;<REF NAME="ex:cte-open-code"><a class="superscript" id="5.5.6-ex-link-5.43" href="./5.5.6.html#ex_5.43">5.43</a></REF> describes another use for the
-  compile-time environment.
-  
-  
-      </p></div>
-
-      
-    <div class="permalink">
-    <a name="ex_5.38" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.38">Exercise 5.38 </a></b> 
-  
-  
-  Write a
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  <span style="color:green"><kbd>lexical-address-lookup</kbd></span><span style="color:blue"><kbd>lexical_address_lookup</kbd></span> that implements the new
-  lookup operation.  It should take two arguments—a lexical address
-  and a run-time environment—and return the value of the variable
-  stored at the specified lexical address.  <span style="color:green"><kbd>Lexical-address-lookup</kbd></span><span style="color:blue"><kbd>Lexical_address_lookup</kbd></span>
-  should signal an error if the value of the variable is the symbol <kbd>*unassigned*</kbd>.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a> Also write a
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  <span style="color:green"><kbd>lexical-address-set!</kbd></span><span style="color:blue"><kbd>lexical_address_set</kbd></span> that
-  implements the operation that changes the value of the variable at a
-  specified lexical address.
-  
-  
-      
-      <div class="Solution">
-      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_1_div" data-toggle="collapse">Add solution</button></div>
-      <div class="solution_content collapse" id="no_solution_122_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
-      </div>
     
-</EXERCISE></div>
+    One way for the compiler to produce code that uses lexical addressing
+    is to maintain a data structure called a <EM>compile-time
+    environment</EM>.  This keeps track of which variables will be at which
+    positions in which frames in the run-time environment when a
+    particular variable-access operation is executed.  The compile-time
+    environment is a list of frames, each containing a list of variables.
+    (There will of course be no values bound to the variables, since
+    values are not computed at compile time.)  The compile-time
+    environment becomes an additional argument to
+    <kbd>compile</kbd> and is
+    passed along to each code generator.  The top-level call to
+    <kbd>compile</kbd> uses an empty compile-time environment.
+    When a <kbd>lambda</kbd> body is compiled,
+    
+      <span style="color:green"><kbd>compile-lambda-body</kbd></span>
+      <span style="color:blue"><kbd>compile_lambda_body</kbd>
+      </span>
+    
+    extends the compile-time environment by a frame containing the
+    
+      <span style="color:green">procedure's</span>
+      <span style="color:blue">function's</span>
+    
+    parameters, so that the sequence making up the body
+    is compiled with that extended environment.
+    At each point in the compilation,
+    
+      <span style="color:green"><kbd>compile-variable</kbd></span>
+      <span style="color:blue"><kbd>compile_variable</kbd>
+      </span>
+    
+    and
+    
+      <span style="color:green"><kbd>compile-assignment</kbd></span>
+      <span style="color:blue"><kbd>compile_assignment</kbd>
+      </span>
+    
+    use the compile-time
+    environment in order to generate the appropriate lexical addresses.
+  </p></div>
 
+  <div class='permalink'>
+<a name='p6' class='permalink'></a><p>
+    Exercises&nbsp;<REF NAME="ex:lexical-address-start"><a class="superscript" id="5.5.6-ex-link-5.39" href="./5.5.6.html#ex_5.39">5.39</a></REF>
+    through&nbsp;<REF NAME="ex:lexical-address-end"><a class="superscript" id="5.5.6-ex-link-5.43" href="./5.5.6.html#ex_5.43">5.43</a></REF> describe how to
+    complete this sketch of the lexical-addressing strategy in order to
+    incorporate lexical lookup into the compiler.
+    Exercise&nbsp;<REF NAME="ex:cte-open-code"><a class="superscript" id="5.5.6-ex-link-5.44" href="./5.5.6.html#ex_5.44">5.44</a></REF> describes another use for the
+    compile-time environment.
+    
+    
+  </p></div>
 
-      
+  
     <div class="permalink">
     <a name="ex_5.39" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.39">Exercise 5.39 </a></b> 
   
+    
+    Write a
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    
+      <span style="color:green"><kbd>lexical-address-lookup</kbd></span>
+      <span style="color:blue"><kbd>lexical_address_lookup</kbd>
+      </span>
+    
+    that implements the new lookup operation.  It should take two
+    arguments—a lexical address and a run-time environment—and
+    return the value of the variable stored at the specified lexical address.
+    
+      <span style="color:green"><kbd>Lexical-address-lookup</kbd></span>
+      <span style="color:blue"><kbd>Lexical_address_lookup</kbd>
+      </span>
+    
+    should signal an error if the value of the variable is the 
+    <span style="color:green">symbol <kbd>*unassigned*</kbd></span><span style="color:blue">string <kbd>"*unassigned*"</kbd>.<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:blue">[2]</a> Also write a
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    
+      <span style="color:green"><kbd>lexical-address-set!</kbd></span>
+      <span style="color:blue"><kbd>lexical_address_set</kbd>
+      </span>
+    
+    that implements the operation that changes the value of the variable at a
+    specified lexical address.
+    
+    
   
-  Modify the compiler to maintain the compile-time environment as
-  described above.  That is, add a compile-time-environment argument to
-  <kbd>compile</kbd> and the various code generators, and extend it in
-  <span style="color:green"><kbd>compile-lambda-body</kbd></span><span style="color:blue"><kbd>compile_lambda_body</kbd></span>.
+
+  
+    <div class="permalink">
+    <a name="ex_5.40" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.40">Exercise 5.40 </a></b> 
+  
+    
+    Modify the compiler to maintain the compile-time environment as
+    described above.  That is, add a compile-time-environment argument to
+    <kbd>compile</kbd> and the various code generators, and extend it in
+    
+      <span style="color:green"><kbd>compile-lambda-body</kbd>.</span>
+      <span style="color:blue"><kbd>compile_lambda_body</kbd>.
+      </span>
       
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_2_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_122_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1867,52 +1941,87 @@ let y = 4;
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
-    <a name="ex_5.40" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.40">Exercise 5.40 </a></b> 
+    <a name="ex_5.41" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.41">Exercise 5.41 </a></b> 
   
-  
-  Write a
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  <span style="color:green"><kbd>find-variable</kbd></span><span style="color:blue"><kbd>find_variable</kbd></span> that takes as arguments a
-  variable and a compile-time environment and returns the lexical
-  address of the variable with respect to that environment.  For
-  example, in the program fragment that is shown above, the compile-time
-  environment during the compilation of expression $e_1$ is <span style="color:green"><kbd>((y z) (a b c d e) (x y))</kbd></span><span style="color:blue"><kbd>list(list("y", "z"), list("a", "b", "c", "d", "e"), list("x", "y"))</kbd></span>.  <span style="color:green"><kbd>Find-variable</kbd></span><span style="color:blue"><kbd>Find_variable</kbd></span> should produce
-
-  <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_122_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(find-variable 'c '((y z) (a b c d e) (x y)))</pre><pre class='prettyprintoutput'>
-      (1 2)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_122_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToGwChsDMBLAOwBMB9ANwEMAnAqgIwBsBTACgCIBjDgGlCYEAzgBc2g0ZwCefUBwBeHAJT8JYjlVkcGWnvw4ktLZauHqAHlplKbAbmyhHTgNoBGfgCYAukA')">find_variable("c", list(list("y", "z"), list("a", "b", "c", "d", "e"), list("x", "y")));
-      [1, 2]
-</pre></div></div></td></tr></table>
-
-  <table width="100%">
+    
+    
+    Write a
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    
+      <span style="color:green"><kbd>find-variable</kbd></span>
+      <span style="color:blue"><kbd>find_variable</kbd>
+      </span>
+    
+    that takes as arguments a variable and a compile-time environment and
+    returns the lexical address of the variable with respect to that
+    environment.  For example, in the program fragment that is shown above, the
+    compile-time environment during the compilation of expression
+    $e_1$ is
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td><span style="color:green"><kbd>((y z) (a b c d e) (x y))</kbd>.
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+	<div class='snippet' id='javascript_122_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToGwChsBsBLAZwBcAKQ0sgIgE9qAaUagL2oEontQefLzqAQ0bMARiOoBjCQBMJAUw5defYgIAeE+u3ZA')">list(list("y", "z"), 
+     list("a", "b", "c", "d", "e"), 
+     list("x", "y"))
+</pre></div></div>
+      </span></td></tr></table>
+    
+      <span style="color:green"><kbd>Find-variable</kbd></span>
+      <span style="color:blue"><kbd>Find_variable</kbd>
+      </span>
+    
+    should produce
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_122_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(find-variable 'x '((y z) (a b c d e) (x y)))</pre><pre class='prettyprintoutput'>
-      (2 0)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_122_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToGwChsDMBLAOwBMB9ANwEMAnAqgIwBsBTACgCIAPDgGlCYEAzgBc2g0ZwCefUBwBeHAJT8JYjlVkcGWgMZaSWlstXD1PfhxlKbAbmyhHTgNoAmfgAYAukA')">find_variable("x", list(list("y", "z"), list("a", "b", "c", "d", "e"), list("x", "y")));
-      [2, 0]
-</pre></div></div></td></tr></table>
+(find-variable 'c '((y z) (a b c d e) (x y)))</pre><pre class='prettyprintoutput'>
+      (1 2)</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_122_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToGwChsDMBLAOwBMB9ANwEMAnAqgIwBsBTACgCIBjDgGlCYEAzgBc2g0ZwCefUBwBeHAJT9sodRs1btGiWI5VZHBkZ78OJIy2Wqdd+3s4APIzKXuA3EA')">find_variable("c", list(list("y", "z"), 
+                        list("a", "b", "c", "d", "e"), 
+                        list("x", "y")));
+</pre><pre class='prettyprintoutput'>
+[1, [2, null]]</pre></div></div></td></tr></table>
 
-  <table width="100%">
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
             <td><div class='snippet' id='javascript_122_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(find-variable 'x '((y z) (a b c d e) (x y)))</pre><pre class='prettyprintoutput'>
+      (2 0)</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_122_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToGwChsDMBLAOwBMB9ANwEMAnAqgIwBsBTACgCIAPDgGlCYEAzgBc2g0ZwCefUBwBeHAJT9sodRs1btGiWI5VZHBkYDGRkkZbLVASHt7OPfhxlL3AbiA')">find_variable("x", list(list("y", "z"), 
+                        list("a", "b", "c", "d", "e"), 
+			list("x", "y")));
+</pre><pre class='prettyprintoutput'>
+[2, [0, null]]</pre></div></div></td></tr></table>
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_122_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (find-variable 'w '((y z) (a b c d e) (x y)))</pre><pre class='prettyprintoutput'>
       not-found</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_122_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToGwChsDMBLAOwBMB9ANwEMAnAqgIwBsBTACgCIB3DgGlCYEAzgBc2g0ZwCefUBwBeHAJT8JYjlVkcGWgMZaSWlstXD1ADy0ylNgNzZQjp0QD2IgLR4XAV1JA')">find_variable("w", list(list("y", "z"), list("a", "b", "c", "d", "e"), list("x", "y")));
-      not-found
-</pre></div></div></td></tr></table>
-      
+            <td><div class='snippet' id='javascript_122_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToGwChsDMBLAOwBMB9ANwEMAnAqgIwBsBTACgCIB3DgGlCYEAzgBc2g0ZwCefUBwBeHAJT9sodRs1btGiWI5VZHBkYDGRkkZbLe2AJAO9nAB5GZSjwG4gA')">find_variable("w", list(list("y", "z"), 
+                        list("a", "b", "c", "d", "e"),
+			list("x", "y")));
+</pre><pre class='prettyprintoutput'>
+"not-found"</pre></div></div></td></tr></table>
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_3_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_122_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1921,27 +2030,63 @@ let y = 4;
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
-    <a name="ex_5.41" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.41">Exercise 5.41 </a></b> 
+    <a name="ex_5.42" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.42">Exercise 5.42 </a></b> 
   
-  Using <span style="color:green"><kbd>find-variable</kbd></span><span style="color:blue"><kbd>find_variable</kbd></span> from exercise&nbsp;<REF NAME="ex:find-variable"><a class="superscript" id="5.5.6-ex-link-5.40" href="./5.5.6.html#ex_5.40">5.40</a></REF>,
-  rewrite <span style="color:green"><kbd>compile-variable</kbd></span><span style="color:blue"><kbd>compile_variable</kbd></span> and <span style="color:green"><kbd>compile-assignment</kbd></span><span style="color:blue"><kbd>compile_assignment</kbd></span> to output
-  lexical-address instructions.  In cases where <span style="color:green"><kbd>find-variable</kbd></span><span style="color:blue"><kbd>find_variable</kbd></span>
-  returns <span style="color:green"><kbd>not-found</kbd></span><span style="color:blue"><kbd>not_found</kbd></span> (that is, where the variable is not in the
-  compile-time environment), you should have the code generators use the
-  evaluator operations, as before, to search for the binding.
-  (The only place a variable that is not found at compile time can be is in
-  the global environment, which is part of the run-time environment but
-  is not part of the compile-time 
-  environment.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
-  Thus, if you wish, you may have the evaluator operations look directly in
-  the global environment, which can be obtained with the operation <span style="color:green"><kbd>(op~get-global-environment)</kbd></span><span style="color:blue"><kbd>op("get_global_environment")</kbd></span>, instead of having them search the whole run-time
-  environment found in <kbd>env</kbd>.)
-  Test the modified compiler on a few simple cases, such as the nested
-  <kbd>lambda</kbd> combination at the beginning of this section.
+    Using
+    
+      <span style="color:green"><kbd>find-variable</kbd></span>
+      <span style="color:blue"><kbd>find_variable</kbd>
+      </span>
+    
+    from exercise&nbsp;<REF NAME="ex:find-variable"><a class="superscript" id="5.5.6-ex-link-5.41" href="./5.5.6.html#ex_5.41">5.41</a></REF>,
+    rewrite
+    
+      <span style="color:green"><kbd>compile-variable</kbd></span>
+      <span style="color:blue"><kbd>compile_variable</kbd>
+      </span>
+    
+    and
+    
+      <span style="color:green"><kbd>compile-assignment</kbd></span>
+      <span style="color:blue">
+	<kbd>compile_assignment</kbd>
+      </span>
+    
+    to output lexical-address instructions.  In cases where
+    
+      <span style="color:green"><kbd>find-variable</kbd></span>
+      <span style="color:blue"><kbd>find_variable</kbd></span>
+    
+    returns
+    
+      <span style="color:green"><kbd>not-found</kbd></span>
+      <span style="color:blue"><kbd>not_found</kbd></span>
+    
+    (that is, where the variable is not in the
+    compile-time environment), you should have the code generators use the
+    evaluator operations, as before, to search for the binding.
+    (The only place a variable that is not found at compile time can be is in
+    the global environment, which is part of the run-time environment but
+    is not part of the compile-time 
+    environment.<a class='superscript' id='footnote-link-3' href='#footnote-3'style="color:blue">[3]</a>
+    Thus, if you wish, you may have the evaluator operations looks directly in
+    the global environment, which can be obtained with the operation
+    
+      <span style="color:green"><kbd>(op~get-global-environment)</kbd>,
+      </span>
+      <span style="color:blue">
+	<kbd>op("get_global_environment")</kbd>,
+      </span>
+    
+    instead of having them search the whole run-time
+    environment found in <kbd>env</kbd>.)
+    Test the modified compiler on a few simple cases, such as the nested
+    <kbd>lambda</kbd> combination at the beginning of this
+    section.
+    
   
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_4_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_122_4_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1950,27 +2095,39 @@ let y = 4;
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
-    <a name="ex_5.42" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.42">Exercise 5.42 </a></b> 
+    <a name="ex_5.43" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.43">Exercise 5.43 </a></b> 
   
+    
+    
+    We argued in section&nbsp;<REF NAME="sec:internal-definitions"><a class="superscript" id="5.5.6-sec-link-4.1.6" href="./4.1.6.html">4.1.6</a></REF> that
+    internal definitions for block structure should not be considered
+    <QUOTE>real</QUOTE> <kbd>define</kbd>s.  Rather, a
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    body should be interpreted as if the internal variables being defined were
+    installed as ordinary <kbd>lambda</kbd> variables
+    initialized to their correct values using
+    
+      <span style="color:green"><kbd>set!</kbd>.</span>
+      <span style="color:blue">assignment.</span>
+    
+    Section&nbsp;<REF NAME="sec:internal-definitions"><a class="superscript" id="5.5.6-sec-link-4.1.6" href="./4.1.6.html">4.1.6</a></REF> and
+    exercise&nbsp;<REF NAME="ex:internal-defs"><a class="superscript" id="5.5.6-ex-link-4.20" href="./4.1.6.html#ex_4.20">4.20</a></REF> showed how to modify the
+    metacircular interpreter to accomplish this by scanning out internal
+    definitions.  Modify the compiler to perform the same transformation before
+    it compiles a
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    body.
+    
+    
   
-  
-  We argued in section&nbsp;<REF NAME="sec:internal-definitions"><a class="superscript" id="5.5.6-sec-link-4.1.6" href="./4.1.6.html">4.1.6</a></REF> that internal definitions
-  for block structure should not be considered <QUOTE>real</QUOTE> <kbd>define</kbd>s.  Rather,
-  a
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  body should be interpreted as if the internal variables being
-  defined were installed as ordinary <kbd>lambda</kbd> variables initialized to their
-  correct values using <span style="color:green"><kbd>set!</kbd></span><span style="color:blue">assignment</span>.  Section&nbsp;<REF NAME="sec:internal-definitions"><a class="superscript" id="5.5.6-sec-link-4.1.6" href="./4.1.6.html">4.1.6</a></REF> and
-  exercise&nbsp;<REF NAME="ex:internal-defs"><a class="superscript" id="5.5.6-ex-link-4.20" href="./4.1.6.html#ex_4.20">4.20</a></REF> showed how to modify the metacircular
-  interpreter to accomplish this by scanning out internal definitions.  Modify
-  the compiler to perform the same transformation before it compiles a
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  body.
-  
-  
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_5_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_122_5_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1979,47 +2136,82 @@ let y = 4;
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
-    <a name="ex_5.43" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.43">Exercise 5.43 </a></b> 
+    <a name="ex_5.44" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.44">Exercise 5.44 </a></b> 
   
-  
-  
-  
-  
-  In this section we have focused on the use of the compile-time
-  environment to produce lexical addresses.  But there are other uses
-  for compile-time environments.  For instance, in
-  exercise&nbsp;<REF NAME="ex:open-code"><a class="superscript" id="5.5.6-ex-link-5.37" href="./5.5.5.html#ex_5.37">5.37</a></REF> we increased the efficiency of compiled
-  code by open-coding primitive
-  <span style="color:green">procedures</span><span style="color:blue">functions</span>.  Our implementation treated
-  the names of open-coded
-  <span style="color:green">procedures</span><span style="color:blue">functions</span>
-  as reserved words.  If a program
-  were to rebind such a name, the mechanism described in
-  exercise&nbsp;<REF NAME="ex:open-code"><a class="superscript" id="5.5.6-ex-link-5.37" href="./5.5.5.html#ex_5.37">5.37</a></REF> would still open-code it as a primitive,
-  ignoring the new binding.  For example, consider the
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-
-  <table width="100%">
+    
+    
+    
+    
+    In this section we have focused on the use of the compile-time
+    environment to produce lexical addresses.  But there are other uses
+    for compile-time environments.  For instance, in
+    exercise&nbsp;<REF NAME="ex:open-code"><a class="superscript" id="5.5.6-ex-link-5.38" href="./5.5.5.html#ex_5.38">5.38</a></REF> we increased the efficiency of
+    compiled code by open-coding primitive
+    
+      <span style="color:green">procedures.</span>
+      <span style="color:blue">functions.</span>
+    
+    Our implementation treated the names of open-coded
+    
+      <span style="color:green">procedures</span>
+      <span style="color:blue">functions</span>
+    
+    as reserved words.  If a program were to rebind such a name, the mechanism
+    described in exercise&nbsp;<REF NAME="ex:open-code"><a class="superscript" id="5.5.6-ex-link-5.38" href="./5.5.5.html#ex_5.38">5.38</a></REF> would still
+    open-code it as a primitive, ignoring the new binding.  For example,
+    consider the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_122_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_122_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (lambda (+ * a b x y)
       (+ (* a x) (* b y)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_122_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToGwChsAoBqUAKlAENQAjUAD1AE8BKUAXgD5Q8LSbmi9qpJkA')">(+ * a b x y) => (a * x) + (b * y)
+            <td><div class='snippet' id='javascript_122_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToGwChsAoBqUAKlAENQAjUAD1AE8BKUAXgD5Q8LSbmi9qpJkA')">(+ * a b x y) => (a * x) + (b * y)
 </pre></div></div></td></tr></table>
-  which computes a linear combination of <kbd>x</kbd> and <kbd>y</kbd>.  We might
-  call it with arguments <kbd>+matrix</kbd>, <kbd>*matrix</kbd>, and four
-  matrices, but the open-coding compiler would still open-code the <kbd>+</kbd> and the <kbd>*</kbd> in <span style="color:green"><kbd>(+ (* a x) (* b y))</kbd></span><span style="color:blue"><kbd>(a * x) + (b * y)</kbd></span> as primitive <kbd>+</kbd>
-  and <kbd>*</kbd>.  Modify the open-coding compiler to consult the
-  compile-time environment in order to compile the correct code for
-  expressions involving the names of primitive
-  <span style="color:green">procedures</span><span style="color:blue">functions</span>.
-  (The code will work correctly as long as the program does not <kbd>define</kbd> or <span style="color:green"><kbd>set!</kbd></span><span style="color:blue">assignment</span> these names.)
+    which computes a linear combination of <kbd>x</kbd> and
+    <kbd>y</kbd>.  We might call it with arguments
+    <kbd>+matrix</kbd>, <kbd>*matrix</kbd>,
+    and four matrices, but the open-coding compiler would still open-code the
+    <kbd>+</kbd> and the <kbd>*</kbd> in
+    
+      <span style="color:green">
+      <kbd>(+ (* a x) (* b y))</kbd></span>
+      <span style="color:blue">
+	<kbd>(a * x) + (b * y)</kbd>
+      </span>
+    
+    as primitive <kbd>+</kbd> and
+    <kbd>*</kbd>.  Modify the open-coding compiler to consult
+    the compile-time environment in order to compile the correct code for
+    expressions involving the names of primitive
+    
+      <span style="color:green">procedures.</span>
+      <span style="color:blue">functions.</span>
+    
+    (The code will work correctly as long as the program does not
+    
+      <span style="color:green">
+	<kbd>define</kbd>
+      </span>
+      <span style="color:blue">
+	declare
+      </span>
+    
+    or
+    
+      <span style="color:green"><kbd>set!</kbd></span>
+      <span style="color:blue">assign</span>
+    
+    these names.)
+    
   
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_6_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_122_6_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2027,45 +2219,54 @@ let y = 4;
     
 </EXERCISE></div>
 
-
-    <hr>
+</span>
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_122_1_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_122_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+<hr>
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1' >[1] </a>
     <FOOTNOTE>
     This is not true if we allow
     internal definitions, unless we scan them out.
-    See exercise&nbsp;<REF NAME="ex:lexical-address-end"><a class="superscript" id="5.5.6-ex-link-5.42" href="./5.5.6.html#ex_5.42">5.42</a></REF>. 
+    See exercise&nbsp;<REF NAME="ex:lexical-address-end"><a class="superscript" id="5.5.6-ex-link-5.43" href="./5.5.6.html#ex_5.43">5.43</a></REF>.
+    
   
     </FOOTNOTE></div>
     
     
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' >[2] </a>
+    <div class='footnote'><span style="color:blue">
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' style="color:blue">[2] </a>
     <FOOTNOTE>
-    This is the modification to variable lookup
+    This is the modification
+    to variable lookup
     
     
     required if we implement the scanning method to eliminate internal
-    definitions (exercise&nbsp;<REF NAME="ex:lexical-address-end"><a class="superscript" id="5.5.6-ex-link-5.42" href="./5.5.6.html#ex_5.42">5.42</a></REF>). 
-    We will need
-    to eliminate these definitions in order for lexical addressing to
-    work.
-    </FOOTNOTE></div>
+    definitions (exercise&nbsp;<REF NAME="ex:lexical-address-end"><a class="superscript" id="5.5.6-ex-link-5.43" href="./5.5.6.html#ex_5.43">5.43</a></REF>).
+    
+    We will need to eliminate these definitions in order for lexical addressing
+    to work.
+    </FOOTNOTE></span></div>
     
     
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' >[3] </a>
+    <div class='footnote'><span style="color:blue">
+      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' style="color:blue">[3] </a>
     <FOOTNOTE>
-    Lexical addresses cannot be used to access variables in the global
-    environment, because these names can be defined and redefined
+    Lexical addresses cannot be used to access variables
+    in the global environment, because these names can be defined and redefined
     interactively at any time.  With internal definitions scanned out, as
-    in exercise&nbsp;<REF NAME="ex:lexical-address-end"><a class="superscript" id="5.5.6-ex-link-5.42" href="./5.5.6.html#ex_5.42">5.42</a></REF>, 
+    in exercise&nbsp;<REF NAME="ex:lexical-address-end"><a class="superscript" id="5.5.6-ex-link-5.43" href="./5.5.6.html#ex_5.43">5.43</a></REF>,
+    
     the only definitions the
     compiler sees are those at top level, which act on the global
     environment.  Compilation of a definition does not cause the defined
     name to be entered in the compile-time environment.
-    </FOOTNOTE></div>
+    </FOOTNOTE></span></div>
     
     
 </SUBSECTION></div></div>

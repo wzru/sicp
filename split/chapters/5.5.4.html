@@ -1678,20 +1678,23 @@
         <div class='SECTION'><SECTION>
     
 
-      
-      
-      <div class='permalink'>
+  
+  
+  <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
-  This section describes the details on how instruction sequences are
-  represented and combined.  Recall from
-  section&nbsp;<REF NAME="sec:instruction-sequences"><a class="superscript" id="5.5.4-sec-link-5.5.1" href="./5.5.1.html">5.5.1</a></REF> that an instruction sequence
-  is represented as a list of the registers needed, the registers
-  modified, and the actual instructions.  We will also consider a label
-  (symbol) to be a degenerate case of an instruction sequence, which doesn't
-  need or modify any registers.
-  So to determine the registers needed
-  and modified by instruction sequences we use the selectors
-  <table width="100%">
+    This section describes the details on how instruction sequences are
+    represented and combined.  Recall from
+    section&nbsp;<REF NAME="sec:instruction-sequences"><a class="superscript" id="5.5.4-sec-link-5.5.1" href="./5.5.1.html">5.5.1</a></REF> that an instruction
+    sequence is represented as a list of the registers needed, the registers
+    modified, and the actual instructions.  We will also consider a label
+    (symbol) to be a degenerate case of an instruction sequence, which
+    doesn't need or modify any registers.
+    So to determine the registers needed
+    and modified by instruction sequences we use the selectors
+    
+    
+    
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -1699,31 +1702,28 @@
 (define (registers-needed s)
       (if (symbol? s) '() (car s)))
 
-      
       (define (registers-modified s)
       (if (symbol? s) '() (cadr s)))
 
-      
       (define (statements s)
       (if (symbol? s) (list s) (caddr s)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_120_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function registers_needed(s) {
-     return is_symbol(s) ? null : head(s);
+     return is_string(s) ? null : head(s);
 }
-
 
 function registers_modified(s) {
-     return is_symbol(s) ? null : head(tail(s));
+     return is_string(s) ? null : head(tail(s));
 }
 
-
 function statements(s) {
-     return is_symbol(s) ? list(s) : head(tail(tail(s));
+     return is_string(s) ? list(s) : head(tail(tail(s)));
 }</pre></div></div></td></tr></table>
-
-  and to determine whether a given
-  sequence needs or modifies a given register we use the predicates
-  <table width="100%">
+    and to determine whether a given
+    sequence needs or modifies a given register we use the predicates
+    
+    
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -1731,7 +1731,6 @@ function statements(s) {
 (define (needs-register? seq reg)
       (memq reg (registers-needed seq)))
 
-      
       (define (modifies-register? seq reg)
       (memq reg (registers-modified seq)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_120_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
@@ -1739,46 +1738,70 @@ function needs_register(seq, reg) {
     return is_null(member(reg, registers_needed(seq)));
 }
 
-
 function modifies_register(seq, reg) {
     return is_null(member(reg, registers_modified(seq)));
 }</pre></div></div></td></tr></table>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-  In terms of these predicates and selectors, we can implement the
-  various instruction sequence combiners used throughout the compiler.
-      </p></div>
+    In terms of these predicates and selectors, we can implement the
+    various instruction sequence combiners used throughout the compiler.
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-  The basic combiner is <span style="color:green"><kbd>append-instruction-sequences</kbd></span><span style="color:blue"><kbd>append_instruction_sequences</kbd></span>.  This takes as
-  arguments an arbitrary number of instruction sequences that are to be executed
-  sequentially and returns an instruction sequence whose statements are the
-  statements of all the sequences appended together.  The subtle point is to
-  determine the registers that are needed and modified by the resulting
-  sequence.  It modifies those registers that are modified by any of the
-  sequences; it needs those registers that must be initialized before the first
-  sequence can be run (the registers needed by the first sequence), together
-  with those registers needed by any of the other sequences that are not
-  initialized (modified) by sequences preceding it.
-      </p></div>
+    The basic combiner is
+    
+      <span style="color:green"><kbd>append-instruction-sequences</kbd>.
+      </span>
+      <span style="color:blue">
+	<kbd>append_instruction_sequences</kbd>.
+      </span>
+    
+    This takes as
+    arguments an arbitrary number of instruction sequences that are to be
+    executed sequentially and returns an instruction sequence whose statements
+    are the statements of all the sequences appended together.  The subtle point
+    is to determine the registers that are needed and modified by the resulting
+    sequence.  It modifies those registers that are modified by any of the
+    sequences; it needs those registers that must be initialized before the first
+    sequence can be run (the registers needed by the first sequence), together
+    with those registers needed by any of the other sequences that are not
+    initialized (modified) by sequences preceding it.
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
-  The sequences are appended two at a time by <span style="color:green"><kbd>append-2-sequences</kbd></span><span style="color:blue"><kbd>append_2_sequences</kbd></span>.  This
-  takes two instruction sequences <kbd>seq1</kbd> and <kbd>seq2</kbd> and returns the
-  instruction sequence whose statements are the statements of <kbd>seq1</kbd>
-  followed by the statements of <kbd>seq2</kbd>, whose modified registers are those
-  registers that are modified by either <kbd>seq1</kbd> or <kbd>seq2</kbd>, and whose
-  needed registers are the registers needed by <kbd>seq1</kbd> together with those
-  registers needed by <kbd>seq2</kbd> that are not modified by <kbd>seq1</kbd>.  (In terms
-  of set operations, the new set of needed registers is the union of the set of
-  registers needed by <kbd>seq1</kbd> with the set difference of the registers needed
-  by <kbd>seq2</kbd> and the registers modified by <kbd>seq1</kbd>.)  Thus, <span style="color:green"><kbd>append-instruction-sequences</kbd></span><span style="color:blue"><kbd>append_instruction_sequences</kbd></span> is implemented as follows:
-
-  <table width="100%">
+    The sequences are appended two at a time by
+    
+      <span style="color:green"><kbd>append-2-sequences</kbd>.</span>
+      <span style="color:blue"><kbd>append_2_sequences</kbd>.
+      </span>
+    
+    This takes two instruction sequences <kbd>seq1</kbd> and
+    <kbd>seq2</kbd> and returns the instruction sequence whose
+    statements are the statements of <kbd>seq1</kbd> followed
+    by the statements of <kbd>seq2</kbd>, whose modified
+    registers are those registers that are modified by either
+    <kbd>seq1</kbd> or <kbd>seq2</kbd>, and
+    whose needed registers are the registers needed by
+    <kbd>seq1</kbd> together with those registers needed by
+    <kbd>seq2</kbd> that are not modified by
+    <kbd>seq1</kbd>.  (In terms of set operations, the new set
+    of needed registers is the union of the set of registers needed by
+    <kbd>seq1</kbd> with the set difference of the registers
+    needed by <kbd>seq2</kbd> and the registers modified by
+    <kbd>seq1</kbd>.)  Thus,
+    
+      <span style="color:green"><kbd>append-instruction-sequences</kbd></span>
+      <span style="color:blue">
+	<kbd>append_instruction_sequences</kbd>
+      </span>
+    
+    is implemented as follows:
+    
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -1799,37 +1822,30 @@ function modifies_register(seq, reg) {
             (append-seq-list (cdr seqs)))))
       (append-seq-list seqs))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_120_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function append_instruction_sequences( . seqs) {
-    function append_2_sequences(seq1, seq2) {
-        return make_instruction_sequence(
-            list_union(registers_needed(seq1),
-                       list_difference(registers_needed(seq2)
-                                       registers_modified(seq1))),
-            list_union(registers_modified(seq1),
-                       registers_modified(seq2)),
-            append(statements(seq1), statements(seq2)));
-    }
-    
-    function append_seq_list(seqs) {
-        return is_null(seqs)
-            ? empty_instruction_sequence
-            : append_2_sequences(
-                head(seqs),
-                append_seq_list(tail(seqs)));
-    }
-    
-    return append_seq_list(seqs);
+function append_instruction_sequences(seq1, seq2) {
+    return make_instruction_sequence(
+              list_union(registers_needed(seq1),
+                  list_difference(registers_needed(seq2),
+                      registers_modified(seq1))),
+              list_union(registers_modified(seq1),
+                      registers_modified(seq2)),
+              append(statements(seq1), statements(seq2)));
 }</pre></div></div></td></tr></table>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-  This
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  uses some simple operations for manipulating sets
-  represented as lists, similar to the (unordered) set representation
-  described in section&nbsp;<REF NAME="sec:representing-sets"><a class="superscript" id="5.5.4-sec-link-2.3.3" href="./2.3.3.html">2.3.3</a></REF>:
-  <table width="100%">
+    This
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    uses some simple operations for manipulating sets
+    represented as lists, similar to the (unordered) set representation
+    described in section&nbsp;<REF NAME="sec:representing-sets"><a class="superscript" id="5.5.4-sec-link-2.3.3" href="./2.3.3.html">2.3.3</a></REF>:
+      
+      
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -1839,7 +1855,6 @@ function append_instruction_sequences( . seqs) {
             ((memq (car s1) s2) (list-union (cdr s1) s2))
             (else (cons (car s1) (list-union (cdr s1) s2)))))
 
-      
       (define (list-difference s1 s2)
       (cond ((null? s1) '())
             ((memq (car s1) s2) (list-difference (cdr s1) s2))
@@ -1854,7 +1869,6 @@ function list_union(s1, s2) {
         : pair(head(s1), list_union(tail(s1), s2));
 }
 
-      
 function list_difference(s1, s2) {
     return is_null(s1)
         ? null
@@ -1862,26 +1876,38 @@ function list_difference(s1, s2) {
         ? list_difference(tail(s1), s2)
         : pair(head(s1), list_difference(tail(s1), s2));
 }</pre></div></div></td></tr></table>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
-  <kbd>Preserving</kbd>, the second major instruction sequence combiner, takes a list
-  of registers <kbd>regs</kbd> and two instruction sequences <kbd>seq1</kbd> and <kbd>seq2</kbd> that are to be executed sequentially.  It returns an instruction
-  sequence whose statements are the statements of <kbd>seq1</kbd> followed by the
-  statements of <kbd>seq2</kbd>, with appropriate <kbd>save</kbd> and <kbd>restore</kbd>
-  instructions around <kbd>seq1</kbd> to protect the registers in <kbd>regs</kbd> that are
-  modified by <kbd>seq1</kbd> but needed by <kbd>seq2</kbd>.  To accomplish this, <kbd>preserving</kbd> first creates a sequence that has the required <kbd>save</kbd>s
-  followed by the statements of <kbd>seq1</kbd> followed by the required <kbd>restore</kbd>s.  This sequence needs the registers being saved and restored in
-  addition to the registers needed by <kbd>seq1</kbd>, and modifies the registers
-  modified by <kbd>seq1</kbd> except for the ones being saved and restored.  This
-  augmented sequence and <kbd>seq2</kbd> are then appended in the usual way.  The
-  following
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  implements this strategy recursively, walking down the
-  list of registers to be 
-  preserved:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-  <table width="100%">
+    <kbd>Preserving</kbd>, the second major instruction
+    sequence combiner, takes a list of registers
+    <kbd>regs</kbd> and two instruction sequences
+    <kbd>seq1</kbd> and <kbd>seq2</kbd> that
+    are to be executed sequentially.  It returns an instruction sequence whose
+    statements are the statements of <kbd>seq1</kbd> followed
+    by the statements of <kbd>seq2</kbd>, with appropriate
+    <kbd>save</kbd> and <kbd>restore</kbd>
+    instructions around <kbd>seq1</kbd> to protect the
+    registers in <kbd>regs</kbd> that are modified by
+    <kbd>seq1</kbd> but needed by
+    <kbd>seq2</kbd>.  To accomplish this,
+    <kbd>preserving</kbd> first creates a sequence that has
+    the required <kbd>save</kbd>s followed by the statements
+    of <kbd>seq1</kbd> followed by the required
+    <kbd>restore</kbd>s.  This sequence needs the registers
+    being saved and restored in addition to the registers needed by
+    <kbd>seq1</kbd>, and modifies the registers modified by
+    <kbd>seq1</kbd> except for the ones being saved and
+    restored.  This augmented sequence and <kbd>seq2</kbd>
+    are then appended in the usual way.  The following
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    implements this strategy recursively, walking down the list of registers to
+    be preserved:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -1906,11 +1932,11 @@ function list_difference(s1, s2) {
             <td><div class='snippet' id='javascript_120_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function preserving(regs, seq1, seq2) {
     if (is_null(regs)) {
-        return append_instruction_sequences(seq1, seq2)
+        return append_instruction_sequences(seq1, seq2);
     } else {
         const first_reg = head(regs);
-
-        if (need_register(seq2, first_reg) && modifies_register(seq1, first_reg)) {
+        if (needs_register(seq2, first_reg) &&
+	    modifies_register(seq1, first_reg)) {
             return preserving(
                 tail(regs),
                 make_instruction_sequence(
@@ -1920,32 +1946,53 @@ function preserving(regs, seq1, seq2) {
                                     list(first_reg)),
                     append(list(save(first_reg)),
                            append(statements(seq1),
-                                  list(restore(first_reg)))))
+                                  list(restore(first_reg))))),
                 seq2);
         } else {
             return preserving(tail(regs), seq1, seq2);
         }
     }
 }</pre></div></div></td></tr></table>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
-  Another sequence combiner, <span style="color:green"><kbd>tack-on-instruction-sequence</kbd></span><span style="color:blue"><kbd>tack_on_instruction_sequence</kbd></span>,
-  is used by <span style="color:green"><kbd>compile-lambda</kbd></span><span style="color:blue"><kbd>compile_lambda</kbd></span> to append a
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  body to another
-  sequence.  Because the
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  body is not <QUOTE>in line</QUOTE> to be
-  executed as part of the combined sequence, its register use has no
-  impact on the register use of the sequence in which it is embedded.
-  We thus ignore the
-  <span style="color:green">procedure</span><span style="color:blue">function</span>
-  body's sets of needed and modified
-  registers when we tack it onto the other sequence.
-
-  <table width="100%">
+    Another sequence combiner,
+    
+      <span style="color:green"><kbd>tack-on-instruction-sequence</kbd>,
+      </span>
+      <span style="color:blue">
+	<kbd>tack_on_instruction_sequence</kbd>,
+      </span>
+    
+    is used by
+    
+      <span style="color:green"><kbd>compile-lambda</kbd></span>
+      <span style="color:blue"><kbd>compile_lambda</kbd>
+      </span>
+    
+    to append a
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    body to another sequence.  Because the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    body is not <QUOTE>in line</QUOTE> to be executed as part of the combined
+    sequence, its register use has no impact on the register use of the sequence
+    in which it is embedded. We thus ignore the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    body's sets of needed and modified
+    registers when we tack it onto the other sequence.
+    
+    
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -1962,18 +2009,39 @@ function tack_on_instruction_sequence(seq, body_seq) {
         registers_modified(seq),
         append(statements(seq), statements(body_seq)));
 }</pre></div></div></td></tr></table>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
-  <span style="color:green"><kbd>Compile-if</kbd></span><span style="color:blue"><kbd>Compile_if</kbd></span> and <span style="color:green"><kbd>compile-procedure-call</kbd></span><span style="color:blue"><kbd>compile_procedure_call</kbd></span> use a special
-  combiner called <span style="color:green"><kbd>parallel-instruction-sequences</kbd></span><span style="color:blue"><kbd>parallel_instruction_sequences</kbd></span> to append the two
-  alternative branches that follow a test.  The two branches will never be
-  executed sequentially; for any particular evaluation of the test, one
-  branch or the other will be entered.  Because of this, the registers needed by the second branch are still needed by the combined sequence,
-  even if these are modified by the first branch.
-
-  <table width="100%">
+    
+      <span style="color:green"><kbd>Compile-if</kbd></span>
+      <span style="color:blue">The functions
+      <kbd>compile_conditional</kbd>
+      </span>
+    
+    and
+    
+      <span style="color:green"><kbd>compile-procedure-call</kbd>
+      </span>
+      <span style="color:blue"><kbd>compile_function_call</kbd>
+      </span>
+    
+    use a special combiner called
+    
+      <span style="color:green">
+	<kbd>parallel-instruction-sequences</kbd>
+      </span>
+      <span style="color:blue">
+	<kbd>parallel_instruction_sequences</kbd>
+      </span>
+    
+    to append the two alternative branches that follow a test.  The two branches
+    will never be executed sequentially; for any particular evaluation of the
+    test, one branch or the other will be entered.  Because of this, the
+    registers needed by the second branch are still needed by the combined
+    sequence, even if these are modified by the first branch.
+      
+    <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -1998,19 +2066,23 @@ function parallel_instruction_sequences(seq1, seq2) {
             statements(seq1),
             statements(seq2)));
 }</pre></div></div></td></tr></table>
-  
-      </p></div>
-
-    <hr>
+    
+  </p></div>
+<hr>
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1' >[1] </a>
     <FOOTNOTE>
-    Note that <kbd>preserving</kbd> calls <kbd>append</kbd> with three
+    Note that <kbd>preserving</kbd>
+    calls <kbd>append</kbd> with three
     
-    arguments.  Though the definition of <kbd>append</kbd> shown in this book
-    accepts only two arguments, Scheme standardly provides an <kbd>append</kbd>
-    <span style="color:green">procedure</span><span style="color:blue">function</span>
+    arguments.  Though the definition of <kbd>append</kbd>
+    shown in this book accepts only two arguments, Scheme standardly provides an
+    <kbd>append</kbd>
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
     that takes an arbitrary number of arguments.
     </FOOTNOTE></div>
     

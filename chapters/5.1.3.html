@@ -1798,29 +1798,8 @@
     Figure&nbsp;<REF NAME="fig:gcd-machine-2cont"><a class="superscript" id="5.1.3-fig-link-5.9" href="./5.1.3.html#fig_5.9">5.9</a></REF> shows the relevant portion
     of the resulting controller sequence, which includes only a single copy of
     the <kbd>gcd</kbd> instructions.
-    <FIGURE><table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_100_0_div'><div style='text-align: left;' class='pre-prettyprint'><pre class='prettyprint no-eval'>
-gcd-1
- (test (op =) (reg b) (const 0))
- (branch (label after-gcd-1))
- (assign t (op rem) (reg a) (reg b))
- (assign a (reg b))
- (assign b (reg t))
- (goto (label gcd-1))
-after-gcd-1
-     ...
-gcd-2
- (test (op =) (reg b) (const 0))
- (branch (label after-gcd-2))
- (assign t (op rem) (reg a) (reg b))
- (assign a (reg b))
- (assign b (reg t))
- (goto (label gcd-2))
-after-gcd-2</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_100_0_div'><div style='text-align: left;' class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0GYBQuAiAcwGMATAfQwIBpdQHQAXAUwGcmAKAGwEsPOAewAOnAgF4CAShqgATiyJiARtNklBAOw4BDTVwAMU43UahlcvSQAWPHcpbcxOgGas5FUpWon6jHWxsvESaYky0oHwCImIKALZq8orOiQpKBKrGMn4MAUEhKbJpKtLZZnnBoRkRxQThvmZEghRMgnYOTsTkVKWmoASu7p7d1H1moGiTfl2UAEy0OczsXFFcMRKpydUyoBraTHqGWWPmlpo27Y7ObiweXhTzDf6BlWERq0KiBPGb6Tq-JWOiwqBQGNS2mTKz3yVVURS29ShDCaLTa3HsVxmD1600Gt2GcwIQA')">"gcd_1",
+    <FIGURE><div class='snippet' id='javascript_100_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"gcd_1",
     test(list(op("="), reg("b"), constant(0))),
     branch(label("after_gcd_1")),
     assign("t", list(op("rem"), reg("a"), reg("b"))),
@@ -1836,42 +1815,15 @@ after-gcd-2</pre></div></div>    </td>
     assign("a", reg("b")),
     assign("b", reg("t")),
     go_to(label("gcd_2")),
-  "after_gcd_2"
-</pre></div></div></td></tr></table>
+  "after_gcd_2"</pre></div></div>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.1.3.html#fig_5.8">Figure 5.8 </a></b>Portions of the controller sequence for a machine that
       uses the same data-path components for two different GCD
       computations.</div>
     </FIGURE>
   
-    <FIGURE><table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_100_0_div'><div style='text-align: left;' class='pre-prettyprint'><pre class='prettyprint no-eval'>
-gcd
- (test (op =) (reg b) (const 0))
- (branch (label gcd-done))
- (assign t (op rem) (reg a) (reg b))
- (assign a (reg b))
- (assign b (reg t))
- (goto (label gcd))
-gcd-done
- (test (op =) (reg continue) (const 0))       
- (branch (label after-gcd-1))
- (goto (label after-gcd-2))
- 
- 
- 
- (assign continue (const 0))
- (goto (label gcd))
-after-gcd-1
- 
- 
- (assign continue (const 1))
- (goto (label gcd))
-after-gcd-2</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_100_0_div'><div style='text-align: left;' class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0GYBQuAiAcwGMATAgGl1FtABcBTAZ3oAoAbAS1bYHsADmwIBeAgEpKoAE6MiwgEYSpJPgDtWAQzXsADOIPU6oBdO0kAFp00LGHYaTIB9MusYTJNOpubMuRNWF6KlBuXkFhWQBbZRk5YU1Y2XkCJQNPYx8-AISQ5MUPI29ff0DUvPiCYMMvWiI+J3o+a1t7YnJCr3bnVzV3ItomXjD2CNEkytUdLjUAV3dJUCmtHTZ9GuNTcysOGzsEgDMmaSdHJwxO43rG5t3Ww+PT8icAJkvjWjQv2tAQUAAhRgHPiyExmNSWGZEBh8UDdAigA7SPhRBgWRiIrjSVigAS7EgYgDu6NkPz+XHooB4oD6jDIdKkhIxeM0BNAuipajRGIIU3oM3mCOSPGOPyypWEfIF-SW6hWeg2dGuTRa+3hioImiOjBOZwuA2MXzQZLAgOBoPo6NAzEYUzIoFmNtAfAOcMcISZuPxGIwnO5JrhUrm7jiRBFOrFJRyvPU-ODIWW9G07AwirqDRVdzV7o1WseZzeQA')">"gcd",
+    <FIGURE><div class='snippet' id='javascript_100_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"gcd",
     test(list(op("="), reg("b"), constant(0))),
     branch(label("gcd_done")),
     assign("t", list(op("rem"), reg("a"), reg("b"))),
@@ -1893,8 +1845,7 @@ after-gcd-2</pre></div></div>    </td>
     // "continue" register
     assign("continue", constant(1)),
     go_to(label("gcd")),
-  "after_gcd_2"
-</pre></div></div></td></tr></table>
+  "after_gcd_2"</pre></div></div>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.1.3.html#fig_5.9">Figure 5.9 </a></b>
 	Using a <kbd>continue</kbd> register to avoid
@@ -1903,32 +1854,7 @@ after-gcd-2</pre></div></div>    </td>
       </div>
     </FIGURE>
   
-    <FIGURE><table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_100_0_div'><div style='text-align: left;' class='pre-prettyprint'><pre class='prettyprint no-eval'>
-gcd
- (test (op =) (reg b) (const 0))
- (branch (label gcd-done))
- (assign t (op rem) (reg a) (reg b))
- (assign a (reg b))
- (assign b (reg t))
- (goto (label gcd))
-gcd-done
- (goto (reg continue))
- 
- 
- 
- (assign continue (label after-gcd-1))
- (goto (label gcd))
-after-gcd-1
- 
- 
- (assign continue (label after-gcd-2))
- (goto (label gcd))
-after-gcd-2</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_100_0_div'><div style='text-align: left;' class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQEY0GYBQuAiAcwGMATAgGl1FtABcBTAZ3oAoAbAS1bYHsADmwIBeAgEpKoAE6MiwgEYSpJPgDtWAQzXsADOIPU6oBdO0kAFp00LGHYaTIB9MusYTJNOpubMuRNWF6KlBuXkFhWQBbZRk5YU1Y2XkCJQNPYx8-AISQ5MUPI29ff0DUvPiCYMMvWiI+J3o+a1t7YnJCr3bnVzV3IrqGprZ8glUdLjUAV3ca4zo0RdrQEFAAIUYAMz5ZUBJNDm41IlBukIB3RlAs0oY+U-H6SZmCZdX6CyuOGzs70HOLFxLKdHARQMwLHwphwyHF6FNpGo0MsbjkxuontN+qEfm1NJsmNInI4nBgPBk6PVGs1vq0HB05qd8YTieRSVRlgslsZVgAJRi7HgMT7gxjjWH7Q5-M5Sc5cD7XUBkLibTYCxg6PYY56aJ7qZGZEpox7PbG0uwJAkC1nOABMnWMVOG5raoMZBGZ1pJ9qAA')">"gcd",
+    <FIGURE><kbd class='snippet'>  "gcd",
     test(list(op("="), reg("b"), constant(0))),
     branch(label("gcd_done")),
     assign("t", list(op("rem"), reg("a"), reg("b"))),
@@ -1947,8 +1873,7 @@ after-gcd-2</pre></div></div>    </td>
     // Here is the second call to "gcd", with a different continuation.
     assign("continue", label("after_gcd_2")),
     go_to(label("gcd")),
-  "after_gcd_2"
-</pre></div></div></td></tr></table>
+  "after_gcd_2"</kbd>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.1.3.html#fig_5.10">Figure 5.10 </a></b>
 	Assigning labels to the <kbd>continue</kbd> register
