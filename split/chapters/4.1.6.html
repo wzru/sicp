@@ -2050,7 +2050,7 @@
 	not appear in the user's program. Consider the
 	<kbd>solve</kbd> function
 	from section&nbsp;<REF NAME="sec:streams-and-delayed-evaluation"><a class="superscript" id="4.1.6-sec-link-3.5.4" href="./3.5.4.html">3.5.4</a></REF>:
-	<div class='snippet' id='javascript_81_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzAVwDsBjAFwEsB7E0AZxoBsA3AUwAoCAaUATwAMfACYUAlKADeuUHNBk6DCgNABeUFRIV2AcwBOAQ2adQnSWoB8oEfz5DREgNyz5ikspv91jCvvaGALYA+oGGAA7c9uIu8qD+FET69PwuAL5AA')">function solve(f, y0, dt) {
+	<div class='snippet' id='javascript_81_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzAVwDsBjAFwEsB7E0KkigUwHMAnAQwBsAKAgDShOQgEZCAJgA8AlKADeuUMtDFy1OsIkSA+tN6yFSlSfbMKRdvSmgA1KGkBuY8oC+L0GYtXQAZyIAtvxCnHYONmAATCHaelJicgBU4c7uhKSUtPT+QSzsASFCJMxSFAlGpuaW9KEAfKCiHiYqAPygAAxNzaAAXKB5QZxy9jm8A0UlFLxDE6UJqfhqmZq+NNwAbszBoACe7ZIUcoomZHS+FLugALwMTGxcfKC8clf1EjtCewcyzidnF+9rn4KGZOAEdAFOAAHbY7H4eLzVXapIA')">function solve(f, y0, dt) {
     const y = integral( () => dy, y0, dt);
     const dy = stream_map(f, y);
     return y;
