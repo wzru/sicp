@@ -1678,286 +1678,417 @@
         <div class='SECTION'><SECTION>
     
 
-      
-      
-      
-      
-      <div class='permalink'>
-<a name='p1' class='permalink'></a><p>
-  We have not yet explained how to load compiled code into the evaluator machine
-  or how to run it.  We will assume that the explicit-control-evaluator machine
-  has been defined as in section&nbsp;<REF NAME="sec:running-evaluator"><a class="superscript" id="5.5.7-sec-link-5.4.4" href="./5.4.4.html">5.4.4</a></REF>, with the
-  additional operations specified in footnote&nbsp;<REF NAME="foot:compiler-ops"><a class="superscript" id="5.5.7-foot-link-1" href="./5.5.2.html#footnote-1">1</a></REF>.
-  We will implement
-  a
-  function
   
-  <kbd>compile_and_go</kbd> that compiles a Scheme expression, loads the
-  resulting object code into the evaluator machine,
-  and causes the machine to run the code in the
-  evaluator global environment, print the result, and
-  enter the evaluator's driver loop.  We will also modify the evaluator so that
-  interpreted expressions can call compiled
-  functions
-  as well as interpreted
-  ones.  We can then put a compiled
-  function
-  into the machine and use the
-  evaluator to call it:
-
-  <div class='snippet' id='javascript_123_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsGMB7AWwAcBLAGwFMB9AQwDsATGgcwIAptQfQS6ATgGcqXXuNAAiAGYBXBngAuZAg1DS6SggLJ0KHBgEpQAbwniAOt3PmBVRbIFq1AXjegAjDZtXvfgPyefsE8viESAFygagBU6pqK2rr6agC0noYA3KBhNgC+koZZQA')">compile_and_go(
+  
+  
+  
+  <div class='permalink'>
+<a name='p1' class='permalink'></a><p>
+    We have not yet explained how to load compiled code into the evaluator
+    machine or how to run it.  We will assume that the explicit-control-evaluator
+    machine has been defined as in
+    section&nbsp;<REF NAME="sec:running-evaluator"><a class="superscript" id="5.5.7-sec-link-5.4.4" href="./5.4.4.html">5.4.4</a></REF>, with the additional
+    operations specified in footnote&nbsp;<REF NAME="foot:compiler-ops"><a class="superscript" id="5.5.7-foot-link-1" href="./5.5.2.html#footnote-1">1</a></REF>.
+    We will implement a
+    
+      
+      function
+    
+    
+    
+      
+      <kbd>compile_and_go</kbd>
+      
+    
+    that compiles a Scheme expression, loads the
+    resulting object code into the evaluator machine,
+    and causes the machine to run the code in the
+    evaluator global environment, print the result, and
+    enter the evaluator's driver loop.  We will also modify the evaluator
+    so that interpreted expressions can call compiled
+    
+      
+      functions
+    
+    as well as interpreted ones.  We can then put a compiled
+    
+      
+      function
+    
+    into the machine and use the
+    evaluator to call it:
+    <div class='snippet' id='javascript_123_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsGMB7AWwAcBLAGwFMB9AQwDsATGgcwIAptQfQS6ATgGcqXXuNAAiAGYBXBngAuZAg1DS6SggLJ0KHBgEpQAb24SLoAVUWyBatQF5noAIyhzlrwH43nrxYAXKBqAFTqmorauvpqALRuhgDc-hIAvpKGybhJuaAAotBx+QBueqBlFLJUgdgEANY5eYXFlaBkDCSyirUcGlo65SiG2LlJBUWl5ZXVta4ATAAMQA')">compile_and_go(
     parse(
-        "function factorial(n) {         \
-             return n === 1              \
-                 ? 1                     \
-                 : n * factorial(n - 1); \
+        "function factorial(n) {
+             return n === 1 
+                 ? 1
+                 : n * factorial(n - 1);
          }"));
-</pre></div></div>
-      </p></div>
 
-      <div class='permalink'>
+;;; EC-Eval value:
+ok
+
+;;; EC-Eval input:
+(factorial 5)
+;;; EC-Eval value:
+120
+</pre></div></div>
+  </p></div>
+
+  <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
-  To allow the evaluator to handle compiled
-  functions
-  (for example,
-  to evaluate the call to <kbd>factorial</kbd> above),
-  we need to change the code at <kbd>apply_dispatch</kbd>
-  (section&nbsp;<REF NAME="sec:procedure-application"><a class="superscript" id="5.5.7-sec-link-5.4.1" href="./5.4.1.html">5.4.1</a></REF>) so that it recognizes
-  compiled
-  functions
-  (as distinct from compound or primitive
-  functions) and transfers control directly to the entry point of the
-  compiled code:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-  <div class='snippet' id='javascript_123_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsCIBDAByIBsBPAfQBMBLAZyIIBcBjACzwBptQ-RmAU3rMAFAHsiovA0pEATrQC2tZrQBugygDMArgDtWa8frwBKLqHmCA5tL2mzF3vwBG8gofajSBV4NJpBWVVDS1iMnJzZ34BYTFJaVZxJSJxA2odAyNaE3NLazs8B2ieWPdPDh8-AKSUtIzKCIpSlz4hEQkpGXpKZNTaUkFMhxy8iytbewNW8o8vav9AvH6iQeGmkhanMv4bcUpmcUXavAMAa31xAHd9LMNjO+ZyIkFW-FX1zOao3b5rETiax1fRqfS6N4xfgEej0Wg2fTSdQEUjcUCkBgJbqfIaZBTiVjDXTWSiCUHyKITQpBeQE6JQvj7Q7Hal4ZGonZAA')">"apply_dispatch",
-    test(op("is_primitive_function"), reg("fun")),
+    To allow the evaluator to handle compiled
+    
+      
+      functions
+    
+    (for example,
+    to evaluate the call to <kbd>factorial</kbd> above),
+    we need to change the code at
+    
+      
+      <kbd>apply_dispatch</kbd>
+      
+    
+    (section&nbsp;<REF NAME="sec:procedure-application"><a class="superscript" id="5.5.7-sec-link-5.4.1" href="./5.4.1.html">5.4.1</a></REF>) so that it
+    recognizes compiled
+    
+      
+      functions
+    
+    (as distinct from compound or primitive
+    
+      
+      functions)
+    
+    and transfers control directly to the entry point of the
+    compiled code:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+    
+    
+    <div class='snippet' id='javascript_123_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsCIBDAByIBsBPAfQBMBLAZyIIBcBjACzwBptQ-RmAU3rMAFAHsiovEQBOtALa1mtAG6DKAMwCuAO1YrxuvAEouoWYIDm0ncZNne-AEayC+9qNIFng0tLlFZTUNYjJyU0d+AWExSWlWcQUicT1qLT0DWiNTc0sbPDtInmjXdw4vHz8EpJS0yjCKYqc+IREJKTxE5NpSQXS7LJyzC2tbPWbStw9K338u2t7+hpImhxL+K3FKZnFZ6rw9AGtdcQB3XQz9Q0vmciJBZoWevvTGiI2+SxFxSxrdFS6bSPKL8Aj0ei0Ky6aSqAikbigUgMOKdbpEJYDTI3SiCAGyCIjfLjezrFqgLY7PbEvBwhHrIA')">"apply_dispatch",
+    test(op("primitive_function"), reg("fun")),
     branch(label("primitive_apply")),
     test(op("compound_function"), reg("fun")),
     branch(label("compound_apply")),
-    test(op("is_compiled_function"), reg("fun")),
+    test(op("compiled_function"), reg("fun")),
     branch(label("compiled_apply")),
     go_to(label("unknown_function_type")),
-
 "compiled_apply",
     restore("continue"),
-    assign("val", list(op("compiled_procedure_entry"), reg("proc"))),
+    assign("val", list(op("compiled_function_entry"), reg("fun"))),
     go_to(reg("val")),
 </pre></div></div>
-      </p></div>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-  Note the restore of <kbd>continue</kbd> at <kbd>compiled_apply</kbd>.  Recall that the
-  evaluator was arranged so that at <kbd>apply_dispatch</kbd>, the continuation would
-  be at the top of the stack.  The compiled code entry point, on the other hand,
-  expects the continuation to be in <kbd>continue</kbd>, so <kbd>continue</kbd> must be
-  restored before the compiled code is executed.
-      </p></div>
+    Note the restore of <kbd>continue</kbd> at
+    
+      
+      
+	<kbd>compiled_apply</kbd>.
+      
+    
+    Recall that the evaluator was arranged so that at
+    
+      
+      <kbd>apply_dispatch</kbd>,
+      
+    
+    the continuation would be at the top of the stack.  The compiled code entry
+    point, on the other hand, expects the continuation to be in
+    <kbd>continue</kbd>, so
+    <kbd>continue</kbd> must be
+    restored before the compiled code is executed.
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
-  To enable us to run some compiled code when we start the evaluator
-  machine, we add a <kbd>branch</kbd> instruction at
-  the beginning of the evaluator machine, which causes the machine to
-  go to a new entry point if the <kbd>flag</kbd> register 
-  is set.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-
-  <kbd class='snippet'>branch(label("external_entry")), // branches if flag is set
+    To enable us to run some compiled code when we start the evaluator
+    machine, we add a <kbd>branch</kbd> instruction at
+    the beginning of the evaluator machine, which causes the machine to
+    go to a new entry point if the <kbd>flag</kbd> register 
+    is set.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+    <kbd class='snippet'>branch(label("external_entry")), // branches if flag is set
 "read_eval_print_loop",
 perform(op("initialize_stack")),
-...</kbd>
-      </p></div>
+$\langle\ldots\rangle$</kbd>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-  The function <kbd>external_entry</kbd> assumes that the machine is started with
-  <kbd>val</kbd> containing the location of an instruction sequence that
-  puts a result into <kbd>val</kbd> and ends with <kbd>go_to(reg("continue"))</kbd>.  Starting at this entry point jumps to the location designated
-  by <kbd>val</kbd>, but first assigns <kbd>continue</kbd> so that execution will return
-  to <kbd>print_result</kbd>, which prints the value in <kbd>val</kbd> and then goes to
-  the beginning of the evaluator's read-eval-print 
-  loop.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
-
-  <div class='snippet' id='javascript_123_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsCIBTADwBcCAnAOwEMAbAfQMpPIE88AabUH0ABwoAzAPbkAtgAphfCXgCWlOSTl05ALwL0AziWoBjANZ4AlMa69Q1LVrkBzSrKYA3TqGmzbBEvVu1hAIzpGSic5cmFKMSYSEzNuXisbe1k9COVKAFcCV1pqfwJaWT5yBW9yAi0M2hjTc15bYXoSYQly21knOliOIA')">"external_entry",
-    perform(op("initialize_stack")),
-    assign("env", op("get_global_environment")),
-    assign("continue", label("print_result")),
-    go_to(reg("val")),
-</pre></div></div>
-  
-      </p></div>
-
-      <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
-  Now we can use the following
-  function
-  to compile a
-  function
-  definition,
-  execute the compiled code, and run the read-eval-print loop so we can try the
-  function.  Because we want the compiled code to return to the location in
-  <kbd>continue</kbd> with its result in <kbd>val</kbd>, we compile the expression with a
-  target of <kbd>val</kbd> and a linkage of <kbd>return</kbd>.  In order to transform the
-  object code produced by the compiler into executable instructions for the
-  evaluator register machine, we use the
-  function
-  <kbd>assemble</kbd> from the
-  register-machine simulator (section&nbsp;<REF NAME="sec:assembler"><a class="superscript" id="5.5.7-sec-link-5.2.2" href="./5.2.2.html">5.2.2</a></REF>).  We then initialize
-  the <kbd>val</kbd> register to point to the list of instructions, set the
-  <kbd>flag</kbd> so that the evaluator will go to <kbd>external_entry</kbd>, and start
-  the evaluator.
-
-  <div class='snippet' id='javascript_123_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsDMBXAOwGMAXASwHsjQSqBbABwoBsBTAfQEMiATTgHMqACnYAPJgCd2AZ1nUiASlABvbKE10assqApFdUguUWzQAXlDd57BgCMOI3dzJ32RMrJH1mbdmKSMvKKADSgAEQAbtysEeERMmQEUkQRSkoJ7CTsMXFKANwaWmQAFlyCrFT2sZweURRSNAweelay7MlMdUQNTUQtniKFxZodZJwyghS67FKc9J6t3hHZubHxkXmbBkYmlDojWqDjk+zTs-OLbp4ra9sJeKzcgptkxuxHWkkptC5SZBEqxy2xGAF8gA')">function compile_and_go(expression) {
-    const instructions = assemble(statements(compile(expression, "val", "return")), "eceval");
-    the_global_environment = setup_environment();
-    set_register_contents("eceval", "val", instructions);
-    set_register_contents("eceval", "flag", true);
-    return start("eceval");
-}
-</pre></div></div>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
-  
-  If we have set up stack monitoring, as at the end of
-  section&nbsp;<REF NAME="sec:running-evaluator"><a class="superscript" id="5.5.7-sec-link-5.4.4" href="./5.4.4.html">5.4.4</a></REF>, we can examine the
-  stack usage of compiled code:
-
-  <div class='snippet' id='javascript_123_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsGMB7AWwAcBLAGwFMB9AQwDsATGgcwIAptQfQS6ATgGcqXXuNAAiAGYBXBngAuZAg1DS6SggLJ0KHBgEpQAbwniAOt3PmBVRbIFq1AXjegAjDZtXvfgPyefsE8viESAFygagBU6pqK2rr6agC0noYA3KBhNgC+koZZQA')">compile_and_go(
-    parse(
-        "function factorial(n) {         \
-             return n === 1              \
-                 ? 1                     \
-                 : n * factorial(n - 1); \
-         }"));
-</pre></div></div>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
-  
-  Compare this example with the evaluation of <kbd>factorial(5)</kbd> using
-  the interpreted version of the same
-  function, shown at the end of
-  section&nbsp;<REF NAME="sec:running-evaluator"><a class="superscript" id="5.5.7-sec-link-5.4.4" href="./5.4.4.html">5.4.4</a></REF>.  The interpreted version required
-  144 pushes and a maximum stack depth of 28.  This illustrates the
-  optimization that results from our compilation strategy.
-      </p></div>
-
+    
       
+      <kbd>External_entry</kbd>
+      
+    
+    assumes that the machine is started with <kbd>val</kbd>
+    containing the location of an instruction sequence that puts a result into
+    <kbd>val</kbd> and ends with
+    
+      
+      <kbd>go_to(reg("continue"))</kbd>.
+      
+    
+    Starting at this entry point jumps to the location designated
+    by <kbd>val</kbd>, but first assigns
+    <kbd>continue</kbd> so that execution will return to
+    
+      
+      <kbd>print_result</kbd>,
+      
+    
+    which prints the value in <kbd>val</kbd> and then goes to
+    the beginning of the evaluator's read-eval-print loop.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+    <div class='snippet' id='javascript_123_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsCIBTADwBcCAnAOwEMAbAfQMpPIE88AabUUABwoBmAe3IBbABRDe4vAEtKskrLqyAXgXoBnEtQDGAazwBKI1x7VNm2QHNKMpgDdOoKTOsES9a7SEAjOoyUDrLkQpSiTCTGptygFla2MrphSpQArgTOtNS+BLQyvOTynuQEmmm0USZmoNZC9CRC4qXWMg500RxAA')">"external_entry",
+  perform(op("initialize_stack")),
+  assign("env", op("get_global_environment")),
+  assign("continue", label("print_result")),
+  go_to(reg("val")),
+</pre></div></div>
+    
+  </p></div>
+
+  <div class='permalink'>
+<a name='p6' class='permalink'></a><p>
+    Now we can use the following
+    
+      
+      function
+    
+    to compile a
+    
+      
+      function
+    
+    definition, execute the compiled code, and run the read-eval-print loop so
+    we can try the
+    
+      
+      function.
+    
+    Because we want the compiled code to return to the location in
+    <kbd>continue</kbd> with its result in
+    <kbd>val</kbd>, we compile the expression with a
+    target of <kbd>val</kbd> and a linkage of
+    
+      
+      
+	<kbd>"return"</kbd>.
+      
+    
+    In order to transform the
+    object code produced by the compiler into executable instructions for the
+    evaluator register machine, we use the
+    
+      
+      function
+    
+    <kbd>assemble</kbd> from the
+    register-machine simulator
+    (section&nbsp;<REF NAME="sec:assembler"><a class="superscript" id="5.5.7-sec-link-5.2.2" href="./5.2.2.html">5.2.2</a></REF>).  We then initialize
+    the <kbd>val</kbd> register to point to the list of
+    instructions, set the
+    <kbd>flag</kbd> so that the evaluator will go to
+    
+      
+      <kbd>external_entry</kbd>,
+      
+    
+    and start the evaluator.
+    
+    <div class='snippet' id='javascript_123_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+function compile_and_go(expression) {
+    const instructions =
+              assemble(statements(
+                           compile(expression, "val", "return")),
+              eceval);
+    the_global_environment = setup_environment();
+    set_register_contents(eceval, "val", instructions);
+    set_register_contents(eceval, "flag", true);
+    return start(eceval);
+}</pre></div></div>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p7' class='permalink'></a><p>
+    
+    If we have set up stack monitoring, as at the end of
+    section&nbsp;<REF NAME="sec:running-evaluator"><a class="superscript" id="5.5.7-sec-link-5.4.4" href="./5.4.4.html">5.4.4</a></REF>, we can examine the
+    stack usage of compiled code:
+    <div class='snippet' id='javascript_123_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChslAGYCuAdgMYAuAlgPYkDOhATjQLYQzxKgAsaAjGgBMuYuWp1QVegH16AUwA2BGfIBuAQ0VEN1EgHMAFPQqsKASlABvbKDugm8ikSYkpskkVYAjeU2OmFnYAPsG29hH20nIUTFQGAWaWoKHhkRHR3jQ0ivIaJIlBqemR0Z6KioXmANzYAL6ipJS0btEUGvr68gAmMorSFIUANKAUABbyMu36ljYRjs6u7jIADhpU-iZJoABkO6ATGt1VoAC856MTUx21DdhizZJlGqzyJ3P2Cy6tstNdvf0TMNQAAiEgveQgmr1e5NCRuegATx8ORkNBU4Ne7zSDic3wOeWO7SolS2Fmhdwe8OWGno9Co+hIrxIgzJszSXyWbQ6-z6A2BINp9MZzIoUNusPELVAQoZTPkLLkyKypMC7M+eKWhyJ60q2sMxNVSXMJolVOlspFCooMk02jebOsHM1bn1hoNuqqpphksePxkZDoJnyNu68jIig0TF0LWxGsW-r+PT5QLJIxBgYY7UVYYjUZjdHFMPNkkzwZz4cj0fhSpRRqCH1xCYJRw9JMMbs9bJNFN91LL2dDlfzNbtRAdaqd8fxnfb7u7vZL-s0cQ03lyMlzVYLBUdjc5iZ5ycBrMC6ZXVDXG63I5aRYaS9AF6vkxv1ZatZVcbsB5bOvbs71j2i5wtKz7rq+w7vnQtpaOO35NjOhJtpU85qt6lKgU8siRj43QaKoAAeKyOHSsZ7s6zbcp0x78mmoK4d4+FESR8hkYWIFSpIjHMWs0avBQfj0Ahv6sBoKzGMqqLojImLyCMgFepxfqgDxBFZN0iIiS6f4oXpC4Sn20rRAeMS6PIoraVRvxHgCdFnqCpnBoJor3kZkimfIxGkfSdBWUhrZocahmPtEmbdFQ8JaCxPnkZO+46dRvInsCOIlJEGZ0BFUWKDFbG+SQbmPuFMWrI4xwUdOSwnjIjgEMC-DKf2WWlWW-nVQMtXyPV9FCE10olV5JEyFop7bAlzY1XVwIAMy9u5-oKAAjuO5ATuNlH4kltGpg5ILLatZCQv1khiQA1pMB0KkdhT0OqP46Sl+3yCt12QiMZJ3WaWEIi9h2Xe0LnWsJe72JtWrIUF5LfVxbgEBsJhmUDLK3fdiEQ62n0nW4pE2s5FnA6jU4Pc2UNfcWP3LBZKwUIich-W9RMTVtHhEBUqMwyp0SRoj+OWVjxPo-65SoV2gR3fNoWyOuNBkGdCFC8sSZ2btZjpjLctFZT52TBr8uVST+JPXrIIfWqnPUnrMgaVpBuGxj-5AZLlPROJKz9GQO7tYeNEq2NFDpm7Hs7lrsOED9eXsbu8Xg66kNi8FFNh1G+ggzHVVx4FnpQz2FvSiQNAjUwqeGDQKx3YLv5lGzlRl+TD6U-DTCIynpfl2jv76nX2O4i3xfCd3lc6e63eGfgS6MAQLDsFAcCIMgfCCDNjRh20TDwYRaOK4RZwXLE44hdrGgXTIS6GHxEKCc3Iw2yMCpqFvv5PYGrArDQpC9Euptpel9gXwJQkb40E0nfEgD887YQDGwN+H9T4-UMAQR+iUbK+xTIMAg6YX4wJIJ-H6ocVJLlWPmABzcEFIMmp1aaGDQCNQgXDCONsyGC0VlNbqCCRh9ToeHWGqgwEbDoJZRBzCn6ULYdQuah8w46y6gmWC9pDCZkEiychRt+QglMmOd6oBFHWh7iZF0cj4KaJUVyFByV+SaPTBouCx0uHWPtFAlk1pDDGOETpRSxjnZh2uooGg9IDC8LUPw+UKN74mLcO6MJXCm6IynhCQwYS3HNn1FEpOKkfF+N1lpOJrxQEP2sBEHEv41gbAQfxeSoBUkNAHJcSY1NaaBOCaKM4oARa1AWqAaROSHRSUUPQEYmiK6NkViUzYvT+lPhsfXDp3TPw5GEt02YhT5juOQos6J5TDFsTKRCJZYMVmk09Osn0j4vJKN6PfJpzikR1gmXaCZ3haR1LAeE1SCp9DjEkrcyw5xThvIMJ8+55gf6RAAPygFGYYLp5SvkqjuVoO6N8nmBOBb-OwAAuf5HyxiwvmZYAAPFiwFCLUVorsOCvwLB-AggACrZE6fkREMpi5eGBqAegRAVjuyoD0TFIJQAAGpQAgrJfYEwcQDBUAILbcZlghWm1BIK4Vorf7iviPoKVWkgWkrJZiylNBqV0poIQeQAB3Zl+hWUskYByrl-ReWKqFSKlVarJXStxX0uVoJ0xKudaK11Gr3XaskSpXxNAzqcrmblTRHq8lb1OWAvo2QJKJOGRER89BPa7nGQMklzD0pV1ZuzG5cKdUqvsBSxNYaJJ+pVRk-x+hGksBCYMMJZby2gExSWnIu8-n6m7Z62taLwX6iBUO3+Xas36VlSMd0waRUNHSlK0ACSwG9tqaoV+DTLnNtFFvdK+qxl1nTAAVRIFkD+rSIRFnSnUSpfT5D5pKDU7pLSYk2m6au8BQ7fyZvyDs14UaFnlPMEMcdZLZmDIA-Ib0t6cSLozpUqtyav1eJUpaEgUatmxsmYoONzCE1qCTWXVDT67AZqnQO+FnqyORELbJGuHq7rgfJUhoj1bDAsciPW9VTaBHOLbVxrtvT139tlVx1jCgbSjoRbmxQ7aVWTv-fOGdoxPTztvcqkoy6v3rvGHUrddMd38eUbRiIh6cMgjPRenBV7XigAALQOZlGRK0LIb0lDvUoBQZn7AvvKW+hGH6YWpNFb+qdsyqPQdAxJkokGpnRehHBiICH7ZuHvsRlNLyx5gAnswNgHA57cEXmgHgK8uayBIlQVgkUqBqEmGfMQHdkHXFQSlMQ6Yqs1eoPV-B1Iuu1fqzIar7sCYsi9k1oeyT47tia-NGpA2esNZ+owP5KUQVPW1Aq+w2oVUxZKE9Q0227CGj22Bg7ajRnHYhesJgZ2NtqJPNdk892LtAhBNXCoCrPuKDRft9IT0Ir0HdhoRECqgcg6Zb-f7kQnqHuO4e0VMOIhPTEuMEa3h6CmzR2MDHjB0rI-sE9AV137CGEIiMREPyAB8oAd5Cqh4TuwT0HOk7sOTynNO6eOdAIz87AO1EACo2crop7zrnO9Be87sEz1SajgAi45+Ls4tOd5gD5w997ABSRXYuqcq+51r6XoBZdPV+aTpX+vTiq-XVT-nsO1EAEJzgW71xL0Azu-l2814MEE+Ldec4NzvQldhvdvd9-i04bPLfu8j6H03ajqcB+V9b7ntP4-25R4nqPIxIgx6D6AanfzxeZ6J07kX3OIip7sI7+wm8QXQgW3EbrdXls8Ko2cEVYkJLahGIt1vcDYbkyb9Vwbbe-Rom8AAK3DBQVbXfxIINIAbp6-fesKRm5UObsvIhr-H-Ccm2AR8t6GwOEMq25dAieh-bq8QegKpv-DEgPQd8drRU9SAJAn+RTB7nz-3-aZX8390pUddBcdYBIBjsccZAICgDgCBd3toCABRa7ZAuA+ArPd7AAOQ0CwJFxwKwIUwwJKEbyDAoAhWbzH0cXLDxnGU73Sm7wQQN31EQT70oKW2oMHGHzIIoNHw4LP0VEGXoJKEYIIGYM3zIVA14JP0mAELn2hA6SDjpj30Hz9CXxIBGBTjQVeSUOG0wxvyYEUERF4ynw0E0EzTiBpk4zfxUJG1yFFAm1IHQIiC0JPBqEiBOUpik0jWMxbUMFeTOQVAuT4V3WcRYzdiCPPnYIH0ISoxGFiwiBULkKA2cLsAiJwSiL4JiIjhoGn1nwmQSL-miNPzIJDC2URRY3003RpiMxCJMwsEMhqSqP0F8UeVyl8OaT+W8JWD4z8IUMfC6BtEcA1RMD8ChQ0DIDGDvxGGGNkl2SSXxDEkmLv0MBBEGK6hGKvihEMFmLkjQ2pAww2LmKxEOPiHFSID9FeUUlOKzHXkuJ7kOM0RYkMBuPOMuIKSKVWSzjnE9FeP3nuP2OlDDQjR6K6xwzLj8B3CGRxBqTtBaSFFlnBJWEhIPyS0QzhN+VAEfzv26BFQpSYCpUszPTOgLlNTcAhOglaDcCFAsggnRShBFUxQ8S0AwnK2pGBMjUjF8EqC5O8xGF5Nyj2OYVhK0HhLpERIFOOIqQFPJgOXxAxIuGxOf1xPSnxMJMlLklPRwVv2VNUjXCUCkGpLpFpNyHpKIM7TU3bDtEBNOmPkmBUKGgSWIhGCWKmOf35P1Jo2GR0zClKMVEdKGhNFoxqTIBaWSKGmw0DNqALR0n8INzIGjPsC8wfSkDEMMG5k9OeMDP3T8x4LOLnxaQ5J6IFMMBlI9O5JYj6E9KdJWFgxKF-DjNT3zPoETLsGTJ8x9NkGGIGD8CzOIiDLTVzKzAcBaXWO7NGP8FdOmNxE2N7IjOGJrLrPSAbK53WJ0WtR2PcPg3vR80HLsAsyGi1JJJoDJMqW8nymlFpmRMNJcwUB8FNI8zbM8KkTtLRGRMpL7JWBdImLdOlM9ImQpKhK3hqTLkLOyBBLKmqzbhRI-AjJI0DJGEAtRNbO0R4PEhYDIAv0YMfVT2kQdOIgSW-OWPdL1O5IqOIPsCQtguIjfMhJwWEmzJQpXIN10PiBkAMKMJMLMNpDIEsMGEKNADLm-IkhWANwkikPQtlglhDQONcwKHHKvilI+nfiYCOleSegwwVQUt7M1PZRUrUpkulGkQw3TKzCIt-PLL5MEvfKhL7zIGAp4PaGLicFHKcA2J7MnJ-OnMON2PiXzKXNQuHKeKGjFOFEw2CoIv8pQpFIcTEGEPSGiCopgkdIitrLxIZRPiSswxSpsRYnMunLLOspgqDHNMxTwuKLqQItSvypIplLRLSxXS5z3PZTcvXLnw9GcoDlw3HEH38PqsiCOE0DWlWDIHPnsuqC0zbMMskEGvyCOhGrGq3ik0cSUXapWDIFnU9DXLoFWuEnWtzmFUwhfJPkEiBHzJqr-LIsQpsoPxGAIEjH0DsocuHPClq0kD+VOptFevhFMpMH6s7Noo-MdO+paAHJFRDKyjeswzir+WkSyueJBroFLwooYK8tqv-OuuKoYH6rlKWEbNp2ao7WWraoWQepGERuhtID6pQowNmuGvWsWomoErqBQvbMfWaos3OtBAACEjhRg2JyD8y7jqR4hbyTT5AzTWa0lqRPrjAGY1p1K1FPqFUroFauFPrHFspYwNahaLj4QriJCdbbi9bQabS3BpFvBoxyAcUuapz0arrCAyaIV7LhSeCwwTAWlLa5rcd3bBgoqcQAbJTHTfawb0oalmywLw1OTqzCqg6aKSyQ6cbEN8bfMVUdNtqnENz7qOhQ6UaIhiadrCZ1qRhmyk7gC2bU6386b5qGb9qab4DUsG7Wadz2aRVOazKea+avbrbDS3iRajS7y6THzQAGgG4w5u7JjSzPTFb3sJ6xgFUBSe457NwBbDBl7db3jhlO4JD17jb7jpqcZ5AjAhSt7Ho1FhiFU9iuF9FZymBPzXlto-YayrEj6+tpRtK775yj7FyFiHY9JGLpaBo-TBhXFT6KF3s5CFVjFr7ZBwyCLAzf6fZzEgRDzQRIGe44GeiY0EGwGApHZFye4SyT7PjwHfcBTL7dkYGqyKyAz+zEGlZbI0Fn6GJPS37uJMyIySycGSG8H-7+yzaMrJh9BC4KAaBfquq7bLqrL9rXbhzfbRyaBRGV6zqsx-q0yMyaGCLE7gy8yswL8izqGlAp6Ha47izqzE766GqU6C7M61qNre75Dm7vNH0AaP7njtHmqalhjXKhij6PLxjiKKk3Gv6jALGRVmLU8bHdqxqRgM7onhiAqK6OaCSDVxH0xebuhQBhGphjUN7+6xb7yJbh7R62TpRsnRHjGlAZ7fdymaAF7p6uFhGlHfbDAmnC48nQb6HFI2m9C+7TaD6IUSNgw5ZXlhn5YQQ34Vg2G3AVgiB6AcUxm5NxxRn2g5ZVjZn5ntjoHnyVJpF6AzC3hba0aKlFnnbnqPbvG-kxy-GJyAmLL2VVmzpenfHG05JxGAqImCaEiNmFnHnYnWrC6NyEmy7RVq77TRq66JMWbAHbST5cYDVDmO7JGzYJizonrZGLmj6fH3LbnkWHnUXnmji3n-L+rPnK6SgonCZhi+8hnHmAqO0wWFq67Jry1oWjqVJ9n6sdij7qnVjOWtEEm7EBaEXuWZh6Gnp4XHAtKeWuExnCXfKsQ5WOm6ADbvjVQCXlWSBWSOkSNiHca3Anoy4KHXg9FZB4baHaz6HohIUEG9gGG2t+QUl+z0wjWe5zWaKSN3XLXcG-73Qu4brqLazWTHwvXAb8hugB4A3kq6GfWIlPQvWBG8K-ACADVWA0mGVAnLK+lMbKSJkZHhkakJjqQ-l3yU2mBWARo1D-aMh1GzWo3sqCKi3TadHhym2YIYbBGw2axHS22NCM2LKBK87CqsrZT6zYymqWXaaJ8xB-CJrGXa7xrJ239oWUsW7aN26TB0m+bS3U2HHhbjIB7xbimYWZnk3U2XjN6eGOp3sd3y2FVe2e5b2K3e33mumJCSWmb2XqRpEvJwwiAawz4ubCq8XB2yVi7HaOgUW5ZrroT9XdJ-L11BQ5KQR0rjK5L028Xh3y4nrGT4PVHEPlbUPXzZajnM3SKrK647qnb9rcP9QEPMSQQ56UPVTO256MPjms2Jls7HqznaPkJ6OLg1iRG6miOT5an2OyPCqaP0omT+P8OGP+XmOShwU9mDmJP7nTnpOShZPWwBO-l1FhWpXRPJhJXEXN3+3pzNP7K+PdP5PBOn2lP0gVPXyn31OCqMbrK83rOZPKkUn-AuarMSBjzTzNXRhERrzRaaTCnJadnv3XzNWDQzlXlIVBJCIuqRY9E96axUu-b8PY28O-rr6svqK-2awSJESEP8v3R-ax6OW3LNWiJSuPxyvRquaWulq3LquO72vP3SnJBOV8JBJnnhJmzOOLrznyD1rsWP67npyJmyBh6X0Hrpubmr5ZuSKQRuPFueCxmWlJG+XHntvhy649vjnViR2juPblqeVRKuj6vivo2muYIWvoqeCf3bvO3f2yB-2PwlwmKdJGCqADdrv5AJIqBkaUb3vxH92YIcv0zUiUayzQOVVkXkfRVi60eIMybMe0VFmcff5u4EfS6BnpEg6WQmAtINSIQS69HkvbtKnBTqeHHpkOkzloxKBDG+lEu0uZjwx5BW941KYJhFB3zxGJk6qPiw6eDn80vnmWk3QkvLHFZogA1DAZebR-Kh1wVHAjpW8xe+96fSeOHyetJ1fnmaeTBEVyPPVzSIhMUdf+euXIVpEEuzf-KLf5DOP+rG7fwcv10lSegUhghlgRZueLB0qHe9eRYRgMvcO2ei3OfhJ3QcupDhf3yBGouIIFEdqWAKheycvxunRfx4+OeZTs-yechcg76C-B39freK5U9Ca38BvzJhu6-gPjmQXgCq49GlfWXE3Xyxm4zhlchyDdu-k2kcRHwfnyclkRVx+btSkxcxmtyYzmwQRug6BIQpb01KZJnh+RUAbQ+V+cz0gLMQQkDDN8W5ZMVYAAB5WAYe1d5xyupo0CvtZCFfvvsVR5lpNCVFrvohlEYrAlejdRuqFBIC1YtAVAAAF5vBT+1-M6C0kn5r98QG-LfiCB372BHwEOXQJPVeB0gOgMGWjKJHyhEDEOPzRzr-HBQ-Mh0ZVMgV0AoFGstegzcSnQM6QMCcKgneIFAP6BwCqBLHHgdQGgFwD-C7A8-sSVJKH1XoHtUWmM3pIulOB3vK9m4FwEUBJiJPV8jNz1ZE4XKJNFpCCEFykAMMPQYXChRwHSA1g6gnFAQP2ZdAEBpAwgYwIY6DEBBynQKrtXYG2DyBCnJwG4JY6aIDcVgDwWyj+SaIJqjdNFHqj85QpOB8RFGoF2C7SDxwsg82loNW5+AYuKWFQaADUEaDYuFocUqNQuiIheegYJgBGwfpFpKgOvA1JUNrTgoA+KpKIZUhWhaBDAJQjfK2H1C1CKhEsW3hEBHTIReh9QxTLeURKdDLSNQ8MHUOkoFDJAcTKlhkKYCvIZuaxPwT3EpZAtlhSzYgflzWFSYtmNiAfifGfymoZA+3Cbs7VO5wtlh6zBbv1SW4dAbhJnO4ZtweqXcx+v-WGoP0eazscQo-DdA11VpHRkBNcFCoCKqInc1s-IJ6EIMvB8CAYqLBVPj2sZ-CPskA4QYiKhABVARbjdoBBELKwjLsC3J6vyTURbcqOOdBQrv2TgVBZYrfbQfMWao6YESo1XSviJfA-JFS2pJ-C-krqcjCRJbenilF0rSImRJrBHhgUFG5AQWSTIdBZl0oggAAsmzGoDuwmUYYPkZkw-p8o5R4THSAZ1vojR6RnsQSN0EwHwYp+lMAxhKL2Hg0eCGJcYeyKZ4yiYMSvX8AqT+RNCWBiopnokKkEzkPKZpdgcyXkzKDaR6SQiKV3gEttUhlvbFiTUZqH9a2DGdmKXQQFwd0Bz+S0Zphf5N87ATeWWC0ga5fcfuz3DCh2Dk6W9TQS7dIC11nZ1i6MOkMsYJH+HJYky1osOHkJsFKCSBAPTgYh2DBMAxQLAlOsEK2F2NZ0VwYEfLQMqDti+0Y77m2PcKRDtOHApwVwP075ktAuUWca9DWj+CwULVJaEEKBEPdMMIInCieIiFeDBxDHXcQyKG4f0jxgwmUKaMZHLC7xm4xDtc1vqviK0qkcCpGg-rfi7BW40EDuIqBdsWgWOFgdCIJobpoRMoLlJEShHYdPOq4sCT4ME5jMAJkmR5thOcGCcLuLA9CfQHEExDvBXQI8oGMcAyDBaaQwJlkM7Fwcexmgk+PtzcZyQAKGExRLnyr5TAkuGLcgpIxeGyQzUFws7v1TLaqAfyorDylKQNwsZ9ugoD8c+OWHbFuJuyeIWFmWFSlR2dgVSVBNygXdzAbcQyRZ2fyrETJzzGHpeLnHHRa0LxY0oU3L6xBK++fM5ON1JYA9jmAzYcYMEkavJVJgU7Yj3D-GKSkxeLbSSa3oaLCNykU3FhxyDETkpSwbLwm5TcbRSUpsUipKAxxCTjhISUtbjFP0l7Fdhvk9fpvxzEDMsEJIdaF1ScqDFyRQXIgVUPpjKBVAY4GMAkDZDpV6pG4BQF1PUBwRepRgeiM1KcCtSzo7U3Ds8EVZqgBp0CBqVKWBBTSuq-QNqfYPmmwNgGK9PMJSSqDLTX4q05Im+C9iTSU400uXNtJgy7TYIq4CCAdO3A-V+pLHQaZMHAjXgoIl0hyBtJmlzSfOrsOSvzCWkfSVpG4DDGDLVhqZOqgMnacDL2k4Ioa0UIaLFD8jvT3Bn0zWqjPaLnko46066ZtPiCzTEZ64jMnhAIjoyLymM8GdjMhmTA1IkcAqETPhm3SyZ90pGfTAPE3QsZTnVCqdKGmOS5avMpEcjHapshNq7MraZzOBTAApcFM6WL4jWb8zjxOMvWGzJakcygZSsmRN8CRhjZ-Y5pcFDjKciAwjZWsm6bLPamgBBcwAB6UHCoBmi4oSQE6SsFWlOyXZdM2GQDJ1nkz0g0QwkvRADEnkEQFs5pFeUfROZBZHs3IG5A6Qu8LxPM-6Gr3kA9AJkrAYBFKh5QTI+YwMXls-gzkuls58MNiCiwlks9TkhmOySbRghXiD+cHJOX03rkiyUoUhdueSKBDatiojMvkHdNLKkzbZ+XG2cRP04HgjxznE+PuNTngZn4O1eIOOChC6TRU0fOefyHE4LlMoLIRecdB7C4dR5EEsEGcgAkUoa5M8xmAMLKrxdk5DcrjNHybHpQH5XGFKOJxLKHzgIAzIIjIFNSRRcch8weXdI972SU5b0dkMUlIh+AgkCQeeTvM8DHQIeZKC+WtEQVoocZACj+QIxxnDSVAo07QONOYZ+yP59Db+b-PRwAKWMh81BekGbn-Eawd8jAmvIwIpQNpUosvECBMp+y5CBDXOPMLcA4y3mqDIhUPPsEkKcEP8v+f3M5nWFy0VClSTfJbkOSxZMi4AnDjATLyEiLC4mWwuZz8hOFxMleXnQdxAgSMIIAxgOi2QaKjFoqbhQhRnKrF74OIz+VaI6Q4zoZ1yf6QYv9n2iIgNSAdKFTlCigo0VQV7kFVyqBgww8VMlJ9JclhUglMaKWaCDtAKpj5aXYer+DcWgzrQZUNiFAvVSxoWMTxCJRUmEVAL7FIIZJT3MpiZK4l2S1iAoCYDQKjA46AdLsKgRhhpZ2sqhULDkQBFxFZC-+SIreCUKhl1C3fJAsaX5LNFaiRxTou6qyFgE8kBIrQpAUMLEeMy9ReeC0BWL1lQIVhWMtFQpRXO+PCIKYsOIWLNEOy6xZEG4UDo5lKqLeZUoOXEEt5sy+5elH0Xsz7EwELBX3POm-S3pnimWUMquH+K-k-yw6TuGCVshQlHtIpYsqiVoLGZ5fGgi9NvAwQElaoLZYoBSXq90lOkGpYErqUTKmlBSjtPCo6VwyuloywKjQUMBNCqlYcHGd9MgiQrAVvsrxcQoLaOiowl4IUZMiek-S2VH4AdCEphI8qHExSxFb-BiUsq0VH5TFUkGxW4qT5VU-EISrcw2h6leShICyueV2AKVJSzlTSu4UMr5ogIyUoGFIBXwWkAABnaSPgzhnPBjD4DGJbxLV78JxHdjWyZkrVXqpVPwH+6TRfVnqq+BxKZnVkdBDVOSEqgDSao055wjUl4F8D+BGVKkHGRTTRkEzWZV04FXdPdUuUbQc9cSSWRBD7xdYVtSYsPUBEqBi1Pwk+KWoIAIoK13tatS5Q0AEBFK4UEtdWUFCdrey4UNteQTLDy0bQh86VQLjumIc8VoAcFB2q7VZQLSh8iES5R6JSrwVyKwaN5ByUVQsVSS7ZemDxX9VARZAdpdeJiVbrhobUKWWjy4VBhR1Ui9qSuvIIER11schqeXwuTbrRoVQfVWSlKVyz2kcHbVZMoSDjo1FagFJYol3lXL0eZ6v9ekV6DIKjowkCTCsrrlKLZ5zCtRE8oEqdy8N-IWWqYuiBNqH0y88pZUveWRA2OJZWtZWrGDAQ-1F8PPnuNvmOTUNwBRDbXInxXik+1sejeTTPVsKuNyG7ZHRu9qaEhNCPedQOqyhprmoQsy6CLOWidLrZIKq1jhFpB4wI51yF6CbPfW5AEEQWQ2fzD02qaSZ+a3DiBtJVDoINUGhefAtg1S9FNRm5uNpvMimaloUhP2akrFDoFsFIs3GCZsJjLRvNxq-NScIWWKbcEsMVdLEFKFsZeWmUaLaoXhAKprQFPONAM19Ipaz47XDTa1mQaDAWumCRmTFr9D3hhUrisraltgom8FEZUWWKq3wanr2uvy3LRHHvgNb8t+XRSO6Fa0YVeFX7IBopqrJUyWZsYIReFrlnMIa1pAXhPFp7XckHFJvIdTKH7V301IS2oxn2sUpqRxQLLC1S8CYgERx1pwWzUMunUnzZ162vbcdvwhLqhlQa-ECJrY1iyONJQR5miEwyiaVFJQUhZIooWHL7tp20ZUOnQ08aRZ6897LMsMXv5CN2i-VSlE+XazMeKUUxdIk+nla0tVG3+LRvm0Za7c5St5Yxr9ToKQd1sYBFpFQZiAFtFPE0Kgpk2baQd7WuORGvG2MJUGLXOnfrhH4uUy2YkPpHYB9Xjb-4TgISIuWe1LBXtii0BWtA+00KFFdCkVVDsOUbLINnWDCikpTg4r0CdmvXfyG52E6-1aRdDiCEcVdzBgpirHbVuSrqKpCJysdkYE26kAnFJu28nKBW0a7L8VuiSObrS7fyOi1ocjY7vSDcKBdJKd3dKO-qChi4uuuHdcubHO6SdO+ALcouZmc7nW+6nFS-QTBOK6pfcr2V7Cm15qZt3K4crTrfUxLCENMwmXYpd2FRD1qqpmr4rQospRQe092hOpEKL4U48ZZFSnGVVN60lOilOAxX4ZS6ZmJK-JXZtK1wKl5Du8tNZpn0UjXdc+vQAvoT02KyCwtIuC0T0Xt7gYZ68ihRRxmEJPY7MADe1Pk1AMsue+5HcXGP1XDHARGLQsUovwv6hIbwN-YssPw1sV0P2F4o-vf251lyfk6eW9qw1kpn5au97Drqc3h5Ylnu2PS0QXr8huFYIGuE4sSZrtPGPBYpTkxkDrEeYNoPvedvLQy7ldrc97X9vLQ9D1Ae+p-VHoh30LVdFFJ6Lht2W+54DVG5HWbvgOW624qxJ7IvsT3R7ndlG5xagNMRpjRY7YF-YwZAMDDWMBBpRsQa01772By+sDW-n10m7VDhcdQ33EepcYDDRBrKQLT31J9PQChn-e7V4XZDhtpYRZYQeubGHhIdhtiFcIIOySzeZBigrktA3NKQCaiHg1vt0ieGT9iuiA7LrWXw73sySwOHHpD2wHuDyRg3Rwv4PJHBDpiq7KIbENO7ViTy8pTwZ+WT6Q+jGd0JEZNDLSwwp8A1BJNl4pwrN0+mBeroQMdofDDRvw8XCj25k6jahiw+4b0jVGb9zh0beft3EdVqV+akSdISoJ1rO2palQkx0eH4Gatixo3stuS1s7egqx2FS+o20Bhdx22yoLtoHW7iiw4ql6jVrO3eKrtaSm7UzuOMVBHtd0lCjkMoOrL2NtB+wCwZV3KKLt72MQB0eMWDAMjgwWWujr90qEv4UhLeSCZ7Du6aN1ZFY-RsY1NjmNuQVjbEZ+NDovjGGuXSht+NIqUtc9fQ33Np1BxpjN0m3ZgoOUEnIdNBrjGiYk1cYAd5CoZSSZVRyLiC-x6g1Aa4OrEQTSR1A7jp900mLAfRsE0gcZCSnpTqRoQ4KDtTKEKqtuwqOKYeUx7ETvPZ3aUc1MuEjjF+8Mc4ruCFtoJwxfRu0fTAins92u7I2gwc0L6HV1Syk-NupNX7RF3pNMhtMQ7JLdg+wcdZ7kcgugoQ-Y5sPycw2MwgTvuHU-iYtNH1+kMZ7kx8rN3QbHNgh9+SCoZ1cYTKFSg9RKet01aa9q2-IwUY1DO7ETOZt-JvJj2SHvea7HTL6eDP5mcVAZ+4y2YnkICX08238PWojXbHadXZoDWOwjNK7vjgJxUw3tBMuEEzqcA5etirppmnTWiFKPjswwHgkTuZs3YkcLN+6bdJZ+LSkfLMrJKzrurczWeE6isij2y6sx2iHMugTdKOtTUCEeW3m7z5aN+THWzM4GX+TZ4mX6e2XtmztgnLs+GcWLjnCTcRvHavsb2On59CC+M7lEtMLn+Q25sKjeZz17nViB5zraWfCOJ6ET55j8yqlrMSH3zv5lMv+c6oe5BO-pu1iBfHmhmEBFmHzSIjKW+mC45BOEjHM+nFNcDJTDpB-Q8DpywwFUfdPRlV4VxwUIsC0v2gEbCWLhpcnlOJfzSSXYg+S6S60hrhyWJCcwpw+HI80haJLLWKS5YHBQpQK4OnfBvOCG19c3ARciNjizW4qaZyHU0Pq8FdX+BqWqUq+CJZ6A9BRZdlxOcpbYjOWxirlhJgVo8u0kxiPlxS1nIihlyKoemsY9SVQniLRNIMF6PwA+gvQ+o9DSM0SeGWyLOopAWMIpccuBXlojUKPTVCSsEA-AjMSq6Jeqv5WqNCV0KylaWiNQSL8Rm0OVb8idWkrKl0WbVYXHLDZAiVnOW1aWh9RUiiGgIEZY3I1WpC+cla+1bSs+72KkAzGblfZQFX8ugB+gI1HSr0ARA3MmK15arGYxarB1moyxxqiDWCg84O6+ddKqL9-A-aO609d2svWuwb1+awM3qtSpGrjgNaMYH2vvXorjGE6-ppFgPSrrKam6xVEBsPX3BINggGDcZivW1rfUKzfT2+sdzOoDVpqxDdxsfQgbfCgIw0tJUoWTxUN9q8wiP6MZLToB5sc2EZOsGaDNVvK3NYbP5iHRFe4zZc10hs2leOmRy12TuHLQhAd1EWzywDPYAAAkBEGmtlzpbt9Ma-Lbc0bF2b0hqfYEZs1v53QbNk3UVegu6Gyrf1weUCHfR62FTaKFqwFe6u9XpTmN7GxDeGszXXbBp-q65sRjAtpTi1yy2p3ttB2cei19a5LJyt+3EDpnAOy8x+Um7Zbco3Az+h0jaGjAptxM2tZyt83OEC6K0QZbUxyxvt3G7m6nNcs2weZIUyC0ycFNJ6PK-lsS0FcQXe3krbdkVFHZ00bWvNFco2cJBruhatrWJpQBXYBP-RsrPVgu3XZiNUGozENkVL9djAZ3b6Ld2a+Nb0nr2JJLt0WfNcQUr2-Ia95u0pZGub30CHd0a6nZ3yLWh00d6e1vbJQP397wVjNE5RtB887QjcsVBYeNFJiv7WgG0x8LurNq1VSwQKQkiOjWkBmczXslVhRi5EZ8lALeADSwSersdsYJB7Pn1v2AIckYSnmhdFQ7GMH6p7+KKkIRi6-LpcPIig4OWEJGE2Duh0Oj9yfSmADme+EnkosdlUxuF2LUw-JC0Z8HoOVYviix0OYlwXDpximWarCOtIAj5QSXbcXiLhGNZDGVqzmOat58FB1yVnxfs48YltegqEPpDN56+rv8QB-JhQrLVspgLdqpY5MdaP+qNj-SQA+gdAPQQlI0YOvHdE5DIHlj+bIXpUdiMcQfEBQNyYb0EIi2BqBEWrz2S-wAAOuOl-BuBMS-AN-Ek+ALgp0nKNTJ2-kxRuApcTaygDE-aFuBnMtCewHk5PO-w6gOI6oEAA')">compile_and_go(
+    parse(
+        "function factorial(n) {           \
+             return n === 1                \
+                 ? 1                       \
+                 : n * factorial(n - 1);   \
+                                          }"));
+</pre><pre class='prettyprintoutput'>
+(total-pushes = 0 maximum-depth = 0)
+EC-evaluate value:
+"ok"
+
+EC-evaluate input:</pre></div></div>
+    <div class='snippet' id='javascript_123_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsDMBDAYwBcB7AJwEsCAbAChQEoBuIA')">factorial(5);
+</pre><pre class='prettyprintoutput'>
+(total-pushes = 31 maximum-depth = 14)
+EC-evaluate value:
+120</pre></div></div>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p8' class='permalink'></a><p>
+    
+    Compare this example with the evaluation of
+    
+      
+      <kbd>factorial(5)</kbd>
+      
+    
+    using the interpreted version of the same
+    
+      
+      function,
+    
+    shown at the end of section&nbsp;<REF NAME="sec:running-evaluator"><a class="superscript" id="5.5.7-sec-link-5.4.4" href="./5.4.4.html">5.4.4</a></REF>.
+    The interpreted version required 144 pushes and a maximum stack depth of 28.
+    This illustrates the optimization that results from our compilation strategy.
+  </p></div>
+
+  
       <div class='permalink'>
         <a name='h1' class='permalink'></a><h2>
     
-  Interpretation and compilation
-      </h2></div>
+    Interpretation and compilation
+  </h2></div>
 
-      
-      
-      <div class='permalink'>
+  
+  
+  <div class='permalink'>
 <a name='p9' class='permalink'></a><p>
-  With the programs in this section, we can now experiment with the
-  alternative execution strategies of interpretation and
-  compilation.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>  An interpreter raises
-  the machine to the level of the user program; a compiler lowers the
-  user program to the level of the machine language.  We can regard the
-  Scheme language (or any programming language) as a coherent family of
-  abstractions erected on the machine language.  Interpreters are good
-  for interactive program development and debugging because the steps of
-  program execution are organized in terms of these abstractions, and
-  are therefore more intelligible to the programmer.  Compiled code can
-  execute faster, because the steps of program execution are organized
-  in terms of the machine language, and the compiler is free to make
-  optimizations that cut across the higher-level
-  abstractions.<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
-      </p></div>
+    With the programs in this section, we can now experiment with the
+    alternative execution strategies of interpretation and
+    compilation.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
+    An interpreter raises the machine to the level of the user program; a
+    compiler lowers the user program to the level of the machine language.
+    We can regard the Scheme language (or any programming language) as a
+    coherent family of abstractions erected on the machine language.
+    Interpreters are good for interactive program development and debugging
+    because the steps of
+    program execution are organized in terms of these abstractions, and
+    are therefore more intelligible to the programmer.  Compiled code can
+    execute faster, because the steps of program execution are organized
+    in terms of the machine language, and the compiler is free to make
+    optimizations that cut across the higher-level
+    abstractions.<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p10' class='permalink'></a><p>
-  
-  Compilers for popular languages, such as C and C++,
-  put hardly any error-checking operations into
-  running code, so as to make things run as fast as possible.  As a
-  result, it falls to programmers to explicitly provide error checking.
-  Unfortunately, people often neglect to do this, even in
-  critical applications where speed is not a constraint.  Their programs
-  lead fast and dangerous lives.  For example, the notorious 
-  
-  <QUOTE>Worm</QUOTE>
-  that paralyzed the Internet in 1988 exploited the 
-  
-  UNIX$^{\textrm{TM}}$
-  operating system's failure to check whether the input buffer has
-  
-  overflowed in the finger daemon. (See <CITATION>Spafford 1989</CITATION>.)
-      </p></div>
+    
+    Compilers for popular languages, such as C and C++,
+    put hardly any error-checking operations into
+    running code, so as to make things run as fast as possible.  As a
+    result, it falls to programmers to explicitly provide error checking.
+    Unfortunately, people often neglect to do this, even in
+    critical applications where speed is not a constraint.  Their programs
+    lead fast and dangerous lives.  For example, the notorious 
+    
+    <QUOTE>Worm</QUOTE>
+    that paralyzed the Internet in 1988 exploited the 
+    
+    UNIX$^{\textrm{TM}}$
+    operating system's failure to check whether the input buffer has
+    
+    overflowed in the finger daemon. (See <CITATION>Spafford 1989</CITATION>.)
+  </p></div>
 
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p11' class='permalink'></a><p>
-  The alternatives of interpretation and compilation also lead to
-  
-  different strategies for porting languages to new computers. Suppose
-  that we wish to implement JavaScript for a new machine.  One strategy is
-  to begin with the explicit-control evaluator of section&nbsp;<REF NAME="sec:eceval"><a class="superscript" id="5.5.7-sec-link-5.4" href="./5.4.html">5.4</a></REF>
-  and translate its instructions to instructions for the
-  new machine.  A different strategy is to begin with the compiler and
-  change the code generators so that they generate code for the new
-  machine.  The second strategy allows us to run any JavaScript program on
-  the new machine by first compiling it with the compiler running on our
-  original JavaScript system, and linking it with a compiled version of the
-  run-time library.<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a>  Better yet, we can compile the compiler itself, and run
-  this on the new machine to compile other JavaScript programs.<a class='superscript' id='footnote-link-7' href='#footnote-7'>[7]</a>  Or we can
-  compile one of the interpreters of section&nbsp;<REF NAME="sec:mc-eval"><a class="superscript" id="5.5.7-sec-link-4.1" href="./4.1.html">4.1</a></REF> to
-  produce an interpreter that runs on the new machine.
-      </p></div>
-
+    The alternatives of interpretation and compilation also lead to
+    
+    different strategies for porting languages to new computers. Suppose
+    that we wish to implement
+    
       
+      JavaScript
+    
+    for a new machine.  One strategy is
+    to begin with the explicit-control evaluator of
+    section&nbsp;<REF NAME="sec:eceval"><a class="superscript" id="5.5.7-sec-link-5.4" href="./5.4.html">5.4</a></REF>
+    and translate its instructions to instructions for the
+    new machine.  A different strategy is to begin with the compiler and
+    change the code generators so that they generate code for the new
+    machine.  The second strategy allows us to run any
+    
+    JavaScript
+    
+    program on the new machine by first compiling it with the compiler running
+    on our
+    original JavaScript system, and linking it with a compiled version of the run-time
+    library.<a class='superscript' id='footnote-link-6' href='#footnote-6'>[6]</a>  Better yet, we can compile the compiler itself, and run
+    this on the new machine to compile other
+    JavaScript programs.<a class='superscript' id='footnote-link-7' href='#footnote-7'>[7]</a>  Or we can compile one of the interpreters of
+    section&nbsp;<REF NAME="sec:mc-eval"><a class="superscript" id="5.5.7-sec-link-4.1" href="./4.1.html">4.1</a></REF> to produce an interpreter that
+    runs on the new machine.
+  </p></div>
+
+  
     <div class="permalink">
     <a name="ex_5.45" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.45">Exercise 5.45 </a></b> 
   
-  
-  
-  
-  By comparing the stack operations used by compiled code to the stack
-  operations used by the evaluator for the same computation, we can
-  determine the extent to which the compiler optimizes use of the stack,
-  both in speed (reducing the total number of stack operations) and in
-  space (reducing the maximum stack depth).  Comparing this optimized
-  stack use to the performance of a special-purpose machine for the same
-  computation gives some indication of the quality of the compiler.
+    
+    
+    
+    By comparing the stack operations used by compiled code to the stack
+    operations used by the evaluator for the same computation, we can
+    determine the extent to which the compiler optimizes use of the stack,
+    both in speed (reducing the total number of stack operations) and in
+    space (reducing the maximum stack depth).  Comparing this optimized
+    stack use to the performance of a special-purpose machine for the same
+    computation gives some indication of the quality of the compiler.
 
-  <OL type="a">
-    <LI>
-      Exercise&nbsp;<REF NAME="ex:rec-fact"><a class="superscript" id="5.5.7-ex-link-5.27" href="./5.4.4.html#ex_5.27">5.27</a></REF> asked you to determine, as a function of
-      $n$, the number of pushes and the maximum stack depth needed by the
-      evaluator to compute $n!$ using the recursive factorial
-      function
-      given above.  Exercise&nbsp;<REF NAME="ex:measure-fact"><a class="superscript" id="5.5.7-ex-link-5.14" href="./5.2.4.html#ex_5.14">5.14</a></REF> asked you to do the same
-      measurements for the special-purpose factorial machine shown in
-      Figure&nbsp;<REF NAME="fig:fact-machine"><a class="superscript" id="5.5.7-fig-link-5.11" href="./5.1.4.html#fig_5.11">5.11</a></REF>. Now perform the same analysis using the
-      compiled <kbd>factorial</kbd>
-      function.
-
-      Take the ratio of the number of pushes in the compiled version to the
-      number of pushes in the interpreted version, and do the same for the
-      maximum stack depth.  Since the number of operations and the stack
-      depth used to compute $n!$ are linear in $n$, these ratios should
-      approach constants as $n$ becomes large.  What are these constants?
-      Similarly, find the ratios of the stack usage in the special-purpose
-      machine to the usage in the interpreted version.
-
-      Compare the ratios for special-purpose versus interpreted code to the ratios
-      for compiled versus interpreted code.  You should find that the
-      special-purpose machine does much better than the compiled code, since
-      the hand-tailored controller code should be much better than what is
-      produced by our rudimentary general-purpose compiler.
-    </LI>
-    <LI>
-      Can you suggest improvements to the compiler that would help it
-      generate code that would come closer in performance to the
-      hand-tailored version?
-    </LI>
-  </OL>
-      
+    <OL type="a">
+      <LI>
+	Exercise&nbsp;<REF NAME="ex:rec-fact"><a class="superscript" id="5.5.7-ex-link-5.27" href="./5.4.4.html#ex_5.27">5.27</a></REF> asked you to determine, as a
+	function of $n$, the number of pushes and
+	the maximum stack depth needed by the evaluator to compute
+	$n!$ using the recursive factorial
+	
+	  
+	  function
+	
+	given above.  Exercise&nbsp;<REF NAME="ex:measure-fact"><a class="superscript" id="5.5.7-ex-link-5.14" href="./5.2.4.html#ex_5.14">5.14</a></REF> asked you
+	to do the same measurements for the special-purpose factorial machine
+	shown in figure&nbsp;<REF NAME="fig:fact-machine"><a class="superscript" id="5.5.7-fig-link-5.11" href="./5.1.4.html#fig_5.11">5.11</a></REF>. Now perform the
+	same analysis using the ompiled <kbd>factorial</kbd>
+	
+	  
+	  function.
+	
+	<p></p>
+	Take the ratio of the number of pushes in the compiled version to the
+	number of pushes in the interpreted version, and do the same for the
+	maximum stack depth.  Since the number of operations and the stack
+	depth used to compute $n!$ are linear in
+	$n$, these ratios should
+	approach constants as $n$ becomes large.
+	What are these constants? Similarly, find the ratios of the stack usage
+	in the special-purpose machine to the usage in the interpreted version.
+	<p></p>
+	Compare the ratios for special-purpose versus interpreted code to the
+	ratios for compiled versus interpreted code.  You should find that the
+	special-purpose machine does much better than the compiled code, since
+	the hand-tailored controller code should be much better than what is
+	produced by our rudimentary general-purpose compiler.
+      </LI>
+      <LI>
+	Can you suggest improvements to the compiler that would help it
+	generate code that would come closer in performance to the
+	hand-tailored version?
+      </LI>
+    </OL>
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_123_1_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_123_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -1967,32 +2098,34 @@ perform(op("initialize_stack")),
 
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.46" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.46">Exercise 5.46 </a></b> 
   
-  
-  
-  Carry out an analysis like the one in
-  exercise&nbsp;<REF NAME="ex:measure-factorial-ratio"><a class="superscript" id="5.5.7-ex-link-5.45" href="./5.5.7.html#ex_5.45">5.45</a></REF> to determine the effectiveness of
-  compiling the tree-recursive Fibonacci
-  function
-
-  <div class='snippet' id='javascript_123_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsDMBXAOwGMAXASwHsjQ8KAjACiIEpQBvbUH0AJwCmZAn1q0APKABMobr3kB+UETnyeALjqMWoALSgAjOwDUW5rX1TWAbmwBfIA')">function fib(n) {
+    
+    
+    Carry out an analysis like the one in
+    exercise&nbsp;<REF NAME="ex:measure-factorial-ratio"><a class="superscript" id="5.5.7-ex-link-5.45" href="./5.5.7.html#ex_5.45">5.45</a></REF> to determine the
+    effectiveness of compiling the tree-recursive Fibonacci
+    
+      
+      function
+    
+    <div class='snippet' id='javascript_123_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsDMBXAOwGMAXASwHsjQ8KAjACiIEpQBvbUH0AJwCmZAn1q0APKABMobr3kB+UETnyeALjqMWoALSgAjOwDUW5rX1TWAbmwBfIA')">function fib(n) {
     return n < 2 
         ? n
         : fib(n - 1) + fib(n - 2);
 }
 </pre></div></div>
-
-  compared to the effectiveness of using the special-purpose Fibonacci machine of
-  figure&nbsp;<REF NAME="fig:fib-machine"><a class="superscript" id="5.5.7-fig-link-5.12" href="./5.1.4.html#fig_5.12">5.12</a></REF>.  (For measurement of the interpreted
-  performance, see exercise&nbsp;<REF NAME="ex:rec-fib"><a class="superscript" id="5.5.7-ex-link-5.28" href="./5.4.4.html#ex_5.28">5.28</a></REF>.)
-  For Fibonacci, the time resource used is not linear in $n$; hence the
-  ratios of stack operations will not approach a limiting value that is
-  independent of $n$.
+    compared to the effectiveness of using the special-purpose Fibonacci machine
+    of figure&nbsp;<REF NAME="fig:fib-machine"><a class="superscript" id="5.5.7-fig-link-5.12" href="./5.1.4.html#fig_5.12">5.12</a></REF>.  (For measurement of the
+    interpreted performance, see exercise&nbsp;<REF NAME="ex:rec-fib"><a class="superscript" id="5.5.7-ex-link-5.28" href="./5.4.4.html#ex_5.28">5.28</a></REF>.)
+    For Fibonacci, the time resource used is not linear in
+    $n$; hence the ratios of stack operations will not
+    approach a limiting value that is independent of
+    $n$.
+    
   
-      
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_123_2_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_123_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2001,47 +2134,97 @@ perform(op("initialize_stack")),
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.47" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.47">Exercise 5.47 </a></b> 
   
-  This section described how to modify the explicit-control evaluator so
-  that interpreted code can call compiled
-  functions.  Show how to
-  modify the compiler so that compiled
-  functions
-  can call not only
-  primitive
-  functions
-  and compiled
-  functions, but interpreted
-  functions
-  as well.  This requires modifying <kbd>compile_function_call</kbd>
-  to handle the case of compound (interpreted)
-  functions.
-  Be sure to handle all the same <kbd>target</kbd> and <kbd>linkage</kbd> combinations
-  as in <kbd>compile_proc_appl</kbd>.  To do the actual
-  function
-  application,
-  the code needs to jump to the evaluator's <kbd>compound_apply</kbd> entry point.
-  This label cannot be directly referenced in object code
-  (since the assembler requires that all labels referenced by the
-  code it is assembling be defined there), so we will add a register
-  called <kbd>compapp</kbd> to the evaluator machine to hold this
-  entry point, and add an instruction to initialize it:
-  <kbd class='snippet'>assign("compapp", label("compound_apply")),
-branch(label("external_entry")),      // branches if flag is set
-"read_eval_print_loop"
-...</kbd>
-  To test your code, start by defining a
-  function
-  <kbd>f</kbd> that calls a
-  function
-  <kbd>g</kbd>.  Use <kbd>compile_and_go</kbd> to compile the definition
-  of <kbd>f</kbd> and start the evaluator.  Now, typing at the evaluator,
-  define <kbd>g</kbd> and try to call <kbd>f</kbd>.
-  
+    This section described how to modify the explicit-control evaluator so
+    that interpreted code can call compiled
+    
       
+    functions.
+    Show how to modify the compiler so that compiled
+    
+      
+      functions
+    
+    can call not only primitive
+    
+      
+      functions
+    
+    and compiled
+    
+      
+      functions,
+    
+    but interpreted
+    
+      
+      functions
+    
+    as well.  This requires modifying
+    
+      
+      <kbd>compile_function_call</kbd>
+      
+    
+    to handle the case of compound (interpreted)
+    
+      
+      functions.
+    
+    Be sure to handle all the same <kbd>target</kbd> and
+    <kbd>linkage</kbd> combinations
+    as in
+    
+      
+      <kbd>compile_fun_appl</kbd>.
+      
+    
+    To do the actual
+    
+      
+      function
+    
+    application,
+    the code needs to jump to the evaluator's
+    
+      
+      
+	<kbd>compound_apply</kbd>
+      
+    
+    entry point. This label cannot be directly referenced in object code
+    (since the assembler requires that all labels referenced by the
+    code it is assembling be defined there), so we will add a register
+    called <kbd>compapp</kbd> to the evaluator machine to
+    hold this entry point, and add an instruction to initialize it:
+    <kbd class='snippet'>  assign("compapp", label("compound_apply")),
+  branch(label("external_entry")),     // branches if flag is set
+"read_eval_print_loop"
+  $\ldots$</kbd>
+    To test your code, start by defining a
+    
+      
+      function
+    
+    <kbd>f</kbd> that calls a
+    
+      
+    function
+    <kbd>g</kbd>.  Use
+    
+      
+      <kbd>compile_and_go</kbd>
+      
+    
+    to compile the definition of <kbd>f</kbd> and start the
+    evaluator.  Now, typing at the evaluator, define
+    <kbd>g</kbd> and try to call
+    <kbd>f</kbd>.
+    
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_123_3_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_123_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2050,26 +2233,47 @@ branch(label("external_entry")),      // branches if flag is set
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.48" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.48">Exercise 5.48 </a></b> 
   
-  
-  The <kbd>compile_and_go</kbd> interface implemented in this section is
-  awkward, since the compiler can be called only once (when the
-  evaluator machine is started).  Augment the compiler-interpreter
-  interface by providing a <kbd>compile_and_run</kbd> primitive that can be
-  called from within the explicit-control evaluator as follows:
-
-  <div class='snippet' id='javascript_123_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsGMB7AWwAcBLAGwFMB9AQwDsATGgJwFcGAKbUP0EnVYBnKj34TQAIgBmnPABcyBBqBl1FBVmToUuDAJSgA3pIkAdXmbOsqC9q1WqAvK9ABGa9ctffAfg9fIL4fYMkALlBVACo1DQUtHT1VAFoPAwBuUFDrAF8pA0ygA')">compile_and_run(
-    parse(
-        "function factorial(n) {         \
-             return n === 1              \
-                 ? 1                     \
-                 : n * factorial(n - 1); \
-         }"));
-</pre></div></div>
+    
+    The
+    
       
+      <kbd>compile_and_go</kbd>
+      
+    
+    interface implemented in this section is
+    awkward, since the compiler can be called only once (when the
+    evaluator machine is started).  Augment the compiler-interpreter
+    interface by providing a
+    
+      
+      <kbd>compile_and_run</kbd>
+      
+    
+    primitive that can be called from within the explicit-control evaluator
+    as follows:
+    <div class='snippet' id='javascript_123_8_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
+EC-evaluate input:</pre></div></div>
+    <div class='snippet' id='javascript_123_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+compile_and_run(
+    parse(
+        "function factorial(n) {          \
+             return n === 1               \
+                 ? 1                      \
+                 : n * factorial(n - 1);  \
+         }                                "));</pre><pre class='prettyprintoutput'>
+EC-evaluate value:
+ok
+
+EC-evaluate input:</pre></div></div>
+    <div class='snippet' id='javascript_123_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsDMBDAYwBcB7AJwEsCAbAChQEog')">factorial(5)
+</pre><pre class='prettyprintoutput'>
+EC-Eval value:
+120</pre></div></div>
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_123_4_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_123_4_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2078,21 +2282,25 @@ branch(label("external_entry")),      // branches if flag is set
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.49" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.49">Exercise 5.49 </a></b> 
   
-  As an alternative to using the explicit-control evaluator's
-  read-eval-print loop, design a register machine that performs a
-  read-compile-execute-print loop.  That is, the machine should run a
-  loop that reads an expression, compiles it, assembles and
-  executes the resulting code, and prints the result.  This is easy to
-  run in our simulated setup, since we can arrange to call the
-  functions
-  <kbd>compile</kbd> and <kbd>assemble</kbd> as <QUOTE>register-machine
-    operations.</QUOTE>
-  
+    As an alternative to using the explicit-control evaluator's
+    read-eval-print loop, design a register machine that performs a
+    read-compile-execute-print loop.  That is, the machine should run a
+    loop that reads an expression, compiles it, assembles and
+    executes the resulting code, and prints the result.  This is easy to
+    run in our simulated setup, since we can arrange to call the
+    
       
+      functions
+    
+    <kbd>compile</kbd> and
+    <kbd>assemble</kbd> as <QUOTE>register-machine
+    operations.</QUOTE>
+    
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_123_5_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_123_5_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2101,18 +2309,23 @@ branch(label("external_entry")),      // branches if flag is set
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.50" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.50">Exercise 5.50 </a></b> 
   
-  
-  Use the compiler to compile the metacircular evaluator of
-  section&nbsp;<REF NAME="sec:mc-eval"><a class="superscript" id="5.5.7-sec-link-4.1" href="./4.1.html">4.1</a></REF> and run this program using the register-machine
-  simulator.  (To compile more than one definition at a time, you can
-  package the definitions in a sequence.)  The resulting interpreter
-  will run very slowly because of the multiple levels of interpretation,
-  but getting all the details to work is an instructive exercise.
+    
+    Use the compiler to compile the metacircular evaluator of
+    section&nbsp;<REF NAME="sec:mc-eval"><a class="superscript" id="5.5.7-sec-link-4.1" href="./4.1.html">4.1</a></REF> and run this program using the
+    register-machine simulator.  (To compile more than one definition at a time,
+    you can package the definitions in a
+    
       
+      sequence.)
+    
+    The resulting interpreter will run very slowly because of the multiple
+    levels of interpretation, but getting all the details to work is an
+    instructive exercise.
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_123_6_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_123_6_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2121,19 +2334,23 @@ branch(label("external_entry")),      // branches if flag is set
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.51" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.51">Exercise 5.51 </a></b> 
   
-  
-  Develop a rudimentary implementation of JavaScript in C (or some other
-  low-level language of your choice) by translating the explicit-control
-  evaluator of section&nbsp;<REF NAME="sec:eceval"><a class="superscript" id="5.5.7-sec-link-5.4" href="./5.4.html">5.4</a></REF> into C.  In order to run this code
-  you will need to also
-  provide appropriate storage-allocation routines and other run-time
-  support.
-  
+    
+    Develop a rudimentary implementation of
+    
       
+      JavaScript
+    
+    in C (or some other low-level language of your choice) by translating the
+    explicit-control evaluator of section&nbsp;<REF NAME="sec:eceval"><a class="superscript" id="5.5.7-sec-link-5.4" href="./5.4.html">5.4</a></REF>
+    into C.  In order to run this code you will need to also
+    provide appropriate storage-allocation routines and other run-time
+    support.
+    
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_123_7_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_123_7_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2142,23 +2359,28 @@ branch(label("external_entry")),      // branches if flag is set
 </EXERCISE></div>
 
 
-      
+  
     <div class="permalink">
     <a name="ex_5.52" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.52">Exercise 5.52 </a></b> 
   
-  
-  
-  
-  As a counterpoint to exercise&nbsp;<REF NAME="ex:interp-in-C"><a class="superscript" id="5.5.7-ex-link-5.51" href="./5.5.7.html#ex_5.51">5.51</a></REF>, modify the compiler
-  so that it compiles 
-  JavaScript functions
-  into sequences of C
-  instructions.  Compile the metacircular evaluator of
-  section&nbsp;<REF NAME="sec:mc-eval"><a class="superscript" id="5.5.7-sec-link-4.1" href="./4.1.html">4.1</a></REF> to produce a
-  JavaScript  
-  interpreter written in C.
-  
+    
+    
+    
+    As a counterpoint to exercise&nbsp;<REF NAME="ex:interp-in-C"><a class="superscript" id="5.5.7-ex-link-5.51" href="./5.5.7.html#ex_5.51">5.51</a></REF>, modify
+    the compiler so that it compiles 
+    
       
+      JavaScript functions
+    
+    into sequences of C instructions.  Compile the metacircular evaluator of
+    section&nbsp;<REF NAME="sec:mc-eval"><a class="superscript" id="5.5.7-sec-link-4.1" href="./4.1.html">4.1</a></REF> to produce a
+    
+      
+      JavaScript
+      
+    interpreter written in C.
+    
+  
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_123_8_div" data-toggle="collapse">Add solution</button></div>
       <div class="solution_content collapse" id="no_solution_123_8_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
@@ -2166,23 +2388,28 @@ branch(label("external_entry")),      // branches if flag is set
     
 </EXERCISE></div>
 
-      
-      
-      
-
-    <hr>
+  
+  
+  
+<hr>
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
     <FOOTNOTE>
     Of course, compiled
-    functions
+    
+      
+      functions
+    
     as well as interpreted
-    functions
-    are compound (nonprimitive).  For compatibility with
-    the terminology used in the explicit-control evaluator, in this
-    section we will use <QUOTE>compound</QUOTE> to mean interpreted (as opposed
-    to compiled).
+    
+      
+      functions
+    
+    are compound (nonprimitive).  For compatibility with the terminology used
+    in the explicit-control evaluator, in this section we will use
+    <QUOTE>compound</QUOTE> to mean interpreted (as opposed to
+    compiled).
     </FOOTNOTE></div>
 
     
@@ -2190,10 +2417,12 @@ branch(label("external_entry")),      // branches if flag is set
       <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
     <FOOTNOTE>
     Now that the evaluator machine starts
-    with a <kbd>branch</kbd>, we must always initialize the <kbd>flag</kbd> register
-    before starting the evaluator machine.  To start the machine at
-    its ordinary read-eval-print loop, we could use
-    <div class='snippet' id='javascript_123_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsDMBXAOwGMAXASwHsjQBnMgQwCcyB9AUxI4DdGAbABQBKUAG9soKaDIALDmwDm-KgCMBnIjwrMaAWw5EyoALz0OZAgAdN23UQNGRAbknS6Ftsw6KKDDsxsJDRkhmR0gly8AgA0oABEePyMivFxeAIewq7SoN6WzLQMLGSR3Hz82dgAvkA')">function start_eceval() {
+    with a <kbd>branch</kbd>, we must always initialize the
+    <kbd>flag</kbd> register before starting the evaluator
+    machine.  To start the machine at its ordinary read-eval-print loop, we
+    could use
+    
+    <div class='snippet' id='javascript_123_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsDMBXAOwGMAXASwHsjQBnMgQwCcyB9AUxI4DdGAbABQBKUAG9soKfQ7tmHAOYUGHZmxI0yHImTqCuvAQBpQAIjz9GC0ybwC6HYQG5J0+WQLNaDFmX3c+fmdsAF8gA')">function start_eceval() {
     the_global_environment = setup_environment();
     set_register_contents(eceval, "flag", false);
     return start(eceval);
@@ -2205,29 +2434,39 @@ branch(label("external_entry")),      // branches if flag is set
     <div class='footnote'>
       <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
     <FOOTNOTE>
-    Since a compiled
-    function
-    is an
-    object that the system may try to print, we also modify the system
-    print operation <kbd>user_print</kbd> (from section&nbsp;<REF NAME="sec:running-eval"><a class="superscript" id="5.5.7-sec-link-4.1.4" href="./4.1.4.html">4.1.4</a></REF>)
-    so that it will not attempt to print the
-    components of a compiled
-    function:
-    <div class='snippet' id='javascript_123_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsDMBXAOwGMAXASwHsjQCBnAUwCcB9AB2YqLIAoqARgCtG5AJSgA3tlCzQFPKF4kqAW3ZViAEw7MqJRloLNG-YaLJiJ0ubdBaK9dgBsAhgE9ezx3xl3-AEQq6ppEOpz6hsaMAQA0fv62EQZGJhyuzK6qjGQs9GYi4vGJdslRaQJUWp6ChZbFJXIBADzB7BTOLAC0jEQAbgB8AVYA3AmgAL6gjM5M8orKau2d4Xop0QUWVlLjtg5Obp4tbR3dZamMQ2JjtlMzczaJ+y4em+I3chPYE0A')">function user_print(object) {
-    if (compound_procedure(object)) {
+    Since
+    a compiled
+    
+      
+      function
+    
+    is an object that the system may try to print, we also modify the system
+    print operation
+    
+      
+      <kbd>user_print</kbd>
+    
+    (from section&nbsp;<REF NAME="sec:running-eval"><a class="superscript" id="5.5.7-sec-link-4.1.4" href="./4.1.4.html">4.1.4</a></REF>) so that it will not
+    attempt to print the components of a compiled
+    
+      
+      function:
+      
+      
+      <div class='snippet' id='javascript_123_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHToOwChsDMBXAOwGMAXASwHsjQCBnAUwCcB9AB2YqLIAoqARgCtG5AJSgA3tlCzQFPKF4V6rElQC27KsQAmrQqUo1+w0WTETpcm6F0r2AGwCGAT16OVfGbd8AidS0dIn1DcmoiPwAaH18bMOMiDmdmZw1GMhZ6UxFxGLjbBIjWASpdd0Fci3yCuT8AHkD2CkcWAFpGIgA3AD4-SwBuWNAAX1BGRyZ5RWVVJpbGUOJwk0rzSylhm3t6JzdeBvnW3Taimj6xIZsxianrOJ29irNxK7kR7BGgA')">function user_print(object) {
+    if (is_compound_function(object)) {
         display(list(
-            "compound_procedure",
-            procedure_parameters(object),
-            procedure_body(object),
+            "compound_function",
+            function_parameters(object),
+            function_body(object),
             "<compiler-env>"));
-    } else if (compiled_procedure(object)) {
-        display("<compiler-procedure>");
+    } else if (is_compiled_function(object)) {
+        display("<compiled-function>");
     } else {
         display(object);
     }
 }
 </pre></div></div>
-  
     </FOOTNOTE></div>
 
     
@@ -2236,8 +2475,11 @@ branch(label("external_entry")),      // branches if flag is set
     <FOOTNOTE>
     We can do even better by extending the compiler
     to allow compiled code to call interpreted
-    functions.  See
-    exercise&nbsp;<REF NAME="ex:compiled-call-interpreted"><a class="superscript" id="5.5.7-ex-link-5.47" href="./5.5.7.html#ex_5.47">5.47</a></REF>.
+    
+      
+      functions.
+    
+    See exercise&nbsp;<REF NAME="ex:compiled-call-interpreted"><a class="superscript" id="5.5.7-ex-link-5.47" href="./5.5.7.html#ex_5.47">5.47</a></REF>.
     </FOOTNOTE></div>
 
     
@@ -2264,14 +2506,18 @@ branch(label("external_entry")),      // branches if flag is set
     <div class='footnote'>
       <a class='footnote-number' id='footnote-6' href='#footnote-link-6'>[6] </a>
     <FOOTNOTE>
-    Of course, with either the
-    interpretation or the compilation strategy we must also implement for
-    the new machine storage allocation, input and output, and all the
-    various operations that we took as <QUOTE>primitive</QUOTE> in our discussion of
+    Of course, with either the interpretation or the
+    compilation strategy we must also implement for the new machine storage
+    allocation, input and output, and all the various operations that we took
+    as <QUOTE>primitive</QUOTE> in our discussion of
     the evaluator and compiler.  One strategy for minimizing work here is
-    to write as many of these operations as possible in JavaScript and then
-    compile them for the new machine.  Ultimately, everything reduces to a
-    small kernel (such as garbage collection and the mechanism for
+    to write as many of these operations as possible in
+    
+      
+      JavaScript
+    
+    and then compile them for the new machine.  Ultimately, everything reduces
+    to a small kernel (such as garbage collection and the mechanism for
     applying actual machine primitives) that is hand-coded for the new
     machine.
     </FOOTNOTE></div>
@@ -2285,9 +2531,14 @@ branch(label("external_entry")),      // branches if flag is set
     the compiler, such as checking
     whether the compilation of a program on the new machine, using the
     compiled compiler, is identical with the
-    compilation of the program on the original JavaScript system.  Tracking
-    down the source of differences is fun but often frustrating, because
-    the results are extremely sensitive to minuscule details.
+    compilation of the program on the original
+    
+      
+      JavaScript
+    
+    system.  Tracking down the source of differences is fun but often
+    frustrating, because the results are extremely sensitive to minuscule
+    details.
     </FOOTNOTE></div>
 
     
