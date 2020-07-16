@@ -1743,6 +1743,7 @@
     <EM>code
     generator</EM>:
     
+    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2032,9 +2033,19 @@ $seq_2$</kbd>
     </span>    </td>
           <td></td>
           <td><span style="color:blue">
-      
-        <img class="scale_factor_" src="../img_javascript/preserving_table.svg">
-      
+    
+      \[
+      {
+      \begin{array}{l|l|l|l}
+\textit{seq}_1 & \texttt{save(}\textit{reg}_1\texttt{)}    & \texttt{save(}\textit{reg}_2\texttt{)}      & \texttt{save(}\textit{reg}_2\texttt{)}    \\
+\textit{seq}_2 & \textit{seq}_1                            & \textit{seq}_1                              & \texttt{save(}\textit{reg}_1\texttt{)}    \\
+               & \texttt{restore(}\textit{reg}_1\texttt{)} & \texttt{restore(}\textit{reg}_2\texttt{)}   & \textit{seq}_1                            \\
+               & \textit{seq}_2                            & \textit{seq}_2                              & \texttt{restore(}\textit{reg}_1\texttt{)} \\
+               &                                           &                                             & \texttt{restore(}\textit{reg}_2\texttt{)} \\
+               &                                           &                                             & \textit{seq}_2                            
+\end{array}}
+      \]
+    
     </span></td></tr></table>
   
   

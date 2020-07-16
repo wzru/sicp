@@ -1743,6 +1743,7 @@
     <EM>code
     generator</EM>:
     
+    
     <div class='snippet' id='javascript_117_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile(stmt, target, linkage) {
     return is_self_evaluating(stmt)
@@ -1968,9 +1969,19 @@ $seq_2$</kbd>
   
     
     
-      
-        <img class="scale_factor_" src="../img_javascript/preserving_table.svg">
-      
+    
+      \[
+      {
+      \begin{array}{l|l|l|l}
+\textit{seq}_1 & \texttt{save(}\textit{reg}_1\texttt{)}    & \texttt{save(}\textit{reg}_2\texttt{)}      & \texttt{save(}\textit{reg}_2\texttt{)}    \\
+\textit{seq}_2 & \textit{seq}_1                            & \textit{seq}_1                              & \texttt{save(}\textit{reg}_1\texttt{)}    \\
+               & \texttt{restore(}\textit{reg}_1\texttt{)} & \texttt{restore(}\textit{reg}_2\texttt{)}   & \textit{seq}_1                            \\
+               & \textit{seq}_2                            & \textit{seq}_2                              & \texttt{restore(}\textit{reg}_1\texttt{)} \\
+               &                                           &                                             & \texttt{restore(}\textit{reg}_2\texttt{)} \\
+               &                                           &                                             & \textit{seq}_2                            
+\end{array}}
+      \]
+    
     
   
   
