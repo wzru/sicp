@@ -1,0 +1,2905 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="description" content="4.1.1  The Core of the Evaluator" />
+    <title>
+      4.1.1  The Core of the Evaluator
+    </title>
+    
+  <meta name="csrf-param" content="authenticity_token" />
+  <meta name="csrf-token" content="EMTEijVc2kiiKUH4nYH0lQG3pLPfMowQ/Stg//t6DCo0e5pWMQwamnTvIdmVZqY/MqSx2IYYE+2bpNV6UNSMwQ==" />
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    -->
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata&display?swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans|Droid+Serif" rel="stylesheet">
+    <link rel="stylesheet" media="all" href="../assets/stylesheet.css" />
+
+   <link rel="shortcut icon" type="image/x-icon" href="../assets/favicon.ico" />
+
+<!--    <link rel="shortcut icon" type="image/png" href="../images/lambda.png" /> -->
+
+    <!-- for support of progressive web app, see github README, DISABLED!
+    <link rel="manifest" href="../static/manifest.json">
+    -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" 
+		     	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	          crossorigin="anonymous">
+    </script> 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script> -->
+    <script type="text/javascript" 
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-AMS-MML_HTMLorMML-full">
+    </script>
+   <!--  <script type="text/javascript" 
+      src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full">
+    </script> -->
+  
+    <script src="../assets/application.js"></script>
+  
+    <!-- Rendering inline LaTeX -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true,
+          jax: ["input/TeX","output/HTML-CSS"]
+        }
+      });
+    </script>
+    <!--<script src="/mathjax/MathJax.js?config=TeX-AMS_HTML-full.js" type="text/javascript"></script>-->
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js" type="text/javascript"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    
+    <!-- support for progressive web app, see README, DISABLED
+    <script>
+      if ('serviceWorker' in navigator && !navigator.serviceWorker.controller) {
+          navigator.serviceWorker.register("../sw.js").then(function(reg) {
+              console.log("Service worker has been registered for scope: " + reg.scope);
+          });
+      }
+    </script>
+    -->
+
+     <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top justify-content-between">
+       <button id="btn" class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#nav-sidebar" aria-controls="nav-sidebar" aria-expanded="false" aria-label="Toggle navigation" title="navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <span class="navbar-brand-short"><a title="Go back to front page" href="../index.html" class="gray">SICP &mdash; Scheme/JS</a></span>
+       <span class="navbar-brand-long" ><a title="Go back to front page" href="../index.html" class="gray">Structure and Interpretation of Computer Programs &mdash; Comparison Edition</a></span>
+
+       <!-- edit the search engine by visiting: 
+	    https://cse.google.com/cse/setup/basic?cx=015760785273492757659:nc_tznrzlsg 
+	       -->
+       <form class="form-inline ml-auto" id="xxx">
+         <div id="search-box">
+	         <script>
+	           (function() {
+	               var cx = 015760785273492757659:nc_tznrzlsg
+	               var gcse = document.createElement("script");
+	               gcse.type = "text/javascript";
+	               gcse.async = true;
+	               gcse.src = "https://cse.google.com/cse.js?cx=" + cx;
+	               var s = document.getElementsByTagName("script")[0];
+	               s.parentNode.insertBefore(gcse, s);
+	           })();
+	           window.onload = function()
+	           { 
+	               var searchBox =  document.getElementById("gsc-i-id1");
+	               searchBox.placeholder="search web edition";
+	               searchBox.title="search web edition"; 
+	           }
+	         </script>
+	         <gcse:search></gcse:search>
+         </div>
+       </form>
+       <span class="navbar-brand-short">
+         &nbsp;
+         &nbsp;
+         <a href="https://source-academy.github.io/source/" title="Go to the Source language(s) definition(s)" class="gray">S</a>
+       </span>
+       <span class="navbar-brand-long">
+         &nbsp;
+         &nbsp;
+         <a href="https://source-academy.github.io/source/" title="Go to the Source language(s) definition(s)" class="gray">Source</a>
+       </span>
+     </nav>
+     
+     <div class="container scroll">
+
+            
+        <div class="collapse" id="nav-sidebar" role="tablist" aria-multiselectable="true">
+        <!-- insert a dummy entry, to give one extra line of space -->
+        <a class="navbar-brand" href="index.html">&nbsp;</a>
+    
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-1">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-1" aria-expanded="false" aria-controls="sidebar-collapse-1">
+                <a href="./foreword.html">  Foreword</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-2">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-2" aria-expanded="false" aria-controls="sidebar-collapse-2">
+                <a href="./prefaces.html">  Prefaces</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-3">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-3" aria-expanded="false" aria-controls="sidebar-collapse-3">
+                <a href="./acknowledgements.html">  Acknowledgments from Second Edition of SICP, 1996</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-4">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-4" aria-expanded="true" aria-controls="sidebar-collapse-4">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-4" aria-expanded="true" aria-controls="sidebar-collapse-4">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./1.html">1  Building Abstractions with <span style="color:green"> Procedures </span> <span style="color:blue"> Functions </span></a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-4" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-5">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-5" aria-expanded="true" aria-controls="sidebar-collapse-5">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-5" aria-expanded="true" aria-controls="sidebar-collapse-5">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./1.1.html">1.1  The Elements of Programming</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-5" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-6">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-6" aria-expanded="false" aria-controls="sidebar-collapse-6">
+                <a href="./1.1.1.html"> 1.1.1  Expressions</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-7">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-7" aria-expanded="false" aria-controls="sidebar-collapse-7">
+                <a href="./1.1.2.html"> 1.1.2  Naming and the Environment</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-8">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-8" aria-expanded="false" aria-controls="sidebar-collapse-8">
+                <a href="./1.1.3.html"> 1.1.3  Evaluating <span style="color:green"> Combinations </span> <span style="color:blue"> Operator Combinations </span></a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-9">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-9" aria-expanded="false" aria-controls="sidebar-collapse-9">
+                <a href="./1.1.4.html"> 1.1.4  Compound <span style="color:green"> Procedures </span> <span style="color:blue"> Functions </span></a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-10">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-10" aria-expanded="false" aria-controls="sidebar-collapse-10">
+                <a href="./1.1.5.html"> 1.1.5  The Substitution Model for <span style="color:green"> Procedure </span> <span style="color:blue"> Function </span> Application</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-11">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-11" aria-expanded="false" aria-controls="sidebar-collapse-11">
+                <a href="./1.1.6.html"> 1.1.6  Conditional Expressions and Predicates</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-12">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-12" aria-expanded="false" aria-controls="sidebar-collapse-12">
+                <a href="./1.1.7.html"> 1.1.7  Example: Square Roots by Newton s Method</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-13">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-13" aria-expanded="false" aria-controls="sidebar-collapse-13">
+                <a href="./1.1.8.html"> 1.1.8  <span style="color:green"> Procedures </span> <span style="color:blue"> Functions </span> as Black-Box Abstractions</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-14">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-14" aria-expanded="true" aria-controls="sidebar-collapse-14">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-14" aria-expanded="true" aria-controls="sidebar-collapse-14">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./1.2.html">1.2  <span style="color:green"> Procedures </span> <span style="color:blue"> Functions </span> and the Processes They Generate</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-14" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-15">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-15" aria-expanded="false" aria-controls="sidebar-collapse-15">
+                <a href="./1.2.1.html"> 1.2.1  Linear Recursion and Iteration</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-16">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-16" aria-expanded="false" aria-controls="sidebar-collapse-16">
+                <a href="./1.2.2.html"> 1.2.2  Tree Recursion</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-17">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-17" aria-expanded="false" aria-controls="sidebar-collapse-17">
+                <a href="./1.2.3.html"> 1.2.3  Orders of Growth</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-18">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-18" aria-expanded="false" aria-controls="sidebar-collapse-18">
+                <a href="./1.2.4.html"> 1.2.4  Exponentiation</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-19">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-19" aria-expanded="false" aria-controls="sidebar-collapse-19">
+                <a href="./1.2.5.html"> 1.2.5  Greatest Common Divisors</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-20">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-20" aria-expanded="false" aria-controls="sidebar-collapse-20">
+                <a href="./1.2.6.html"> 1.2.6  Example: Testing for Primality</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-21">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-21" aria-expanded="true" aria-controls="sidebar-collapse-21">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-21" aria-expanded="true" aria-controls="sidebar-collapse-21">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./1.3.html">1.3  Formulating Abstractions with Higher-Order <span style="color:green"> Procedures </span> <span style="color:blue"> Functions </span></a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-21" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-22">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-22" aria-expanded="false" aria-controls="sidebar-collapse-22">
+                <a href="./1.3.1.html"> 1.3.1  <span style="color:green"> Procedures </span> <span style="color:blue"> Functions </span> as Arguments</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-23">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-23" aria-expanded="false" aria-controls="sidebar-collapse-23">
+                <a href="./1.3.2.html"> 1.3.2  <span style="color:green"> Constructing Procedures using Lambda </span> <span style="color:blue"> Constructing Functions using Lambda Expressions </span></a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-24">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-24" aria-expanded="false" aria-controls="sidebar-collapse-24">
+                <a href="./1.3.3.html"> 1.3.3  <span style="color:green"> Procedures </span> <span style="color:blue"> Functions </span> as General Methods</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-25">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-25" aria-expanded="false" aria-controls="sidebar-collapse-25">
+                <a href="./1.3.4.html"> 1.3.4  <span style="color:green"> Procedures </span> <span style="color:blue"> Functions </span> as Returned Values</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-26">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-26" aria-expanded="true" aria-controls="sidebar-collapse-26">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-26" aria-expanded="true" aria-controls="sidebar-collapse-26">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./2.html">2  Building Abstractions with Data</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-26" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-27">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-27" aria-expanded="true" aria-controls="sidebar-collapse-27">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-27" aria-expanded="true" aria-controls="sidebar-collapse-27">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./2.1.html">2.1  Introduction to Data Abstraction</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-27" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-28">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-28" aria-expanded="false" aria-controls="sidebar-collapse-28">
+                <a href="./2.1.1.html"> 2.1.1  Example: Arithmetic Operations for Rational Numbers</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-29">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-29" aria-expanded="false" aria-controls="sidebar-collapse-29">
+                <a href="./2.1.2.html"> 2.1.2  Abstraction Barriers</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-30">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-30" aria-expanded="false" aria-controls="sidebar-collapse-30">
+                <a href="./2.1.3.html"> 2.1.3  What Is Meant by Data?</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-31">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-31" aria-expanded="false" aria-controls="sidebar-collapse-31">
+                <a href="./2.1.4.html"> 2.1.4  Extended Exercise: Interval Arithmetic</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-32">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-32" aria-expanded="true" aria-controls="sidebar-collapse-32">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-32" aria-expanded="true" aria-controls="sidebar-collapse-32">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./2.2.html">2.2  Hierarchical Data and the Closure Property</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-32" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-33">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-33" aria-expanded="false" aria-controls="sidebar-collapse-33">
+                <a href="./2.2.1.html"> 2.2.1  Representing Sequences</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-34">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-34" aria-expanded="false" aria-controls="sidebar-collapse-34">
+                <a href="./2.2.2.html"> 2.2.2  Hierarchical Structures</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-35">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-35" aria-expanded="false" aria-controls="sidebar-collapse-35">
+                <a href="./2.2.3.html"> 2.2.3  Sequences as Conventional Interfaces</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-36">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-36" aria-expanded="false" aria-controls="sidebar-collapse-36">
+                <a href="./2.2.4.html"> 2.2.4  Example: A Picture Language</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-37">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-37" aria-expanded="true" aria-controls="sidebar-collapse-37">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-37" aria-expanded="true" aria-controls="sidebar-collapse-37">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./2.3.html">2.3  Symbolic Data</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-37" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-38">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-38" aria-expanded="false" aria-controls="sidebar-collapse-38">
+                <a href="./2.3.1.html"> 2.3.1  <span style="color:green"> Quotation </span> <span style="color:blue"> Strings </span></a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-39">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-39" aria-expanded="false" aria-controls="sidebar-collapse-39">
+                <a href="./2.3.2.html"> 2.3.2  Example: Symbolic Differentiation</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-40">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-40" aria-expanded="false" aria-controls="sidebar-collapse-40">
+                <a href="./2.3.3.html"> 2.3.3  Example: Representing Sets</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-41">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-41" aria-expanded="false" aria-controls="sidebar-collapse-41">
+                <a href="./2.3.4.html"> 2.3.4  Example: Huffman Encoding Trees</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-42">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-42" aria-expanded="true" aria-controls="sidebar-collapse-42">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-42" aria-expanded="true" aria-controls="sidebar-collapse-42">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./2.4.html">2.4  Multiple Representations for Abstract Data</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-42" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-43">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-43" aria-expanded="false" aria-controls="sidebar-collapse-43">
+                <a href="./2.4.1.html"> 2.4.1  Representations for Complex Numbers</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-44">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-44" aria-expanded="false" aria-controls="sidebar-collapse-44">
+                <a href="./2.4.2.html"> 2.4.2  Tagged data</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-45">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-45" aria-expanded="false" aria-controls="sidebar-collapse-45">
+                <a href="./2.4.3.html"> 2.4.3  Data-Directed Programming and Additivity</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-46">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-46" aria-expanded="true" aria-controls="sidebar-collapse-46">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-46" aria-expanded="true" aria-controls="sidebar-collapse-46">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./2.5.html">2.5  Systems with Generic Operations</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-46" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-47">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-47" aria-expanded="false" aria-controls="sidebar-collapse-47">
+                <a href="./2.5.1.html"> 2.5.1  Generic Arithmetic Operations</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-48">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-48" aria-expanded="false" aria-controls="sidebar-collapse-48">
+                <a href="./2.5.2.html"> 2.5.2  Combining Data of Different Types</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-49">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-49" aria-expanded="false" aria-controls="sidebar-collapse-49">
+                <a href="./2.5.3.html"> 2.5.3  Example: Symbolic Algebra</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-50">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-50" aria-expanded="true" aria-controls="sidebar-collapse-50">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-50" aria-expanded="true" aria-controls="sidebar-collapse-50">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./3.html">3  Modularity, Objects, and State</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-50" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-51">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-51" aria-expanded="true" aria-controls="sidebar-collapse-51">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-51" aria-expanded="true" aria-controls="sidebar-collapse-51">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./3.1.html">3.1  Assignment and Local State</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-51" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-52">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-52" aria-expanded="false" aria-controls="sidebar-collapse-52">
+                <a href="./3.1.1.html"> 3.1.1  Local State Variables</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-53">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-53" aria-expanded="false" aria-controls="sidebar-collapse-53">
+                <a href="./3.1.2.html"> 3.1.2  The Benefits of Introducing Assignment</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-54">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-54" aria-expanded="false" aria-controls="sidebar-collapse-54">
+                <a href="./3.1.3.html"> 3.1.3  The Costs of Introducing Assignment</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-55">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-55" aria-expanded="true" aria-controls="sidebar-collapse-55">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-55" aria-expanded="true" aria-controls="sidebar-collapse-55">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./3.2.html">3.2  The Environment Model of Evaluation</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-55" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-56">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-56" aria-expanded="false" aria-controls="sidebar-collapse-56">
+                <a href="./3.2.1.html"> 3.2.1  The Rules for Evaluation</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-57">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-57" aria-expanded="false" aria-controls="sidebar-collapse-57">
+                <a href="./3.2.2.html"> 3.2.2  Applying Simple <span style="color:green"> Procedures </span> <span style="color:blue"> Functions </span></a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-58">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-58" aria-expanded="false" aria-controls="sidebar-collapse-58">
+                <a href="./3.2.3.html"> 3.2.3  Frames as the Repository of Local State</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-59">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-59" aria-expanded="false" aria-controls="sidebar-collapse-59">
+                <a href="./3.2.4.html"> 3.2.4  Internal <span style="color:green"> Definitions </span> <span style="color:blue"> Declarations </span></a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-60">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-60" aria-expanded="true" aria-controls="sidebar-collapse-60">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-60" aria-expanded="true" aria-controls="sidebar-collapse-60">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./3.3.html">3.3  Modeling with Mutable Data</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-60" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-61">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-61" aria-expanded="false" aria-controls="sidebar-collapse-61">
+                <a href="./3.3.1.html"> 3.3.1  Mutable List Structure</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-62">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-62" aria-expanded="false" aria-controls="sidebar-collapse-62">
+                <a href="./3.3.2.html"> 3.3.2  Representing Queues</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-63">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-63" aria-expanded="false" aria-controls="sidebar-collapse-63">
+                <a href="./3.3.3.html"> 3.3.3  Representing Tables</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-64">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-64" aria-expanded="false" aria-controls="sidebar-collapse-64">
+                <a href="./3.3.4.html"> 3.3.4  A Simulator for Digital Circuits</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-65">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-65" aria-expanded="false" aria-controls="sidebar-collapse-65">
+                <a href="./3.3.5.html"> 3.3.5  Propagation of Constraints</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-66">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-66" aria-expanded="true" aria-controls="sidebar-collapse-66">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-66" aria-expanded="true" aria-controls="sidebar-collapse-66">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./3.4.html">3.4  Concurrency: Time Is of the Essence</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-66" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-67">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-67" aria-expanded="false" aria-controls="sidebar-collapse-67">
+                <a href="./3.4.1.html"> 3.4.1  The Nature of Time in Concurrent Systems</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-68">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-68" aria-expanded="false" aria-controls="sidebar-collapse-68">
+                <a href="./3.4.2.html"> 3.4.2  Mechanisms for Controlling Concurrency</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-69">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-69" aria-expanded="true" aria-controls="sidebar-collapse-69">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-69" aria-expanded="true" aria-controls="sidebar-collapse-69">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./3.5.html">3.5  Streams</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-69" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-70">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-70" aria-expanded="false" aria-controls="sidebar-collapse-70">
+                <a href="./3.5.1.html"> 3.5.1  Streams Are Delayed Lists</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-71">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-71" aria-expanded="false" aria-controls="sidebar-collapse-71">
+                <a href="./3.5.2.html"> 3.5.2  Infinite Streams</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-72">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-72" aria-expanded="false" aria-controls="sidebar-collapse-72">
+                <a href="./3.5.3.html"> 3.5.3  Exploiting the Stream Paradigm</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-73">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-73" aria-expanded="false" aria-controls="sidebar-collapse-73">
+                <a href="./3.5.4.html"> 3.5.4  Streams and Delayed Evaluation</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-74">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-74" aria-expanded="false" aria-controls="sidebar-collapse-74">
+                <a href="./3.5.5.html"> 3.5.5  Modularity of Functional Programs and Modularity of Objects</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-75">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-75" aria-expanded="true" aria-controls="sidebar-collapse-75">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-75" aria-expanded="true" aria-controls="sidebar-collapse-75">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./4.html">4  Metalinguistic Abstraction</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-75" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-76">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-76" aria-expanded="true" aria-controls="sidebar-collapse-76">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-76" aria-expanded="true" aria-controls="sidebar-collapse-76">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./4.1.html">4.1  The Metacircular Evaluator</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-76" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-77">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-77" aria-expanded="false" aria-controls="sidebar-collapse-77">
+                <a href="./4.1.1.html"> 4.1.1  The Core of the Evaluator</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-78">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-78" aria-expanded="false" aria-controls="sidebar-collapse-78">
+                <a href="./4.1.2.html"> 4.1.2  Representing <span style="color:green"> Expressions </span> <span style="color:blue"> Statements and Expressions </span></a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-79">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-79" aria-expanded="false" aria-controls="sidebar-collapse-79">
+                <a href="./4.1.3.html"> 4.1.3  Evaluator Data Structures</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-80">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-80" aria-expanded="false" aria-controls="sidebar-collapse-80">
+                <a href="./4.1.4.html"> 4.1.4  Running the Evaluator as a Program</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-81">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-81" aria-expanded="false" aria-controls="sidebar-collapse-81">
+                <a href="./4.1.5.html"> 4.1.5  Data as Programs</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-82">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-82" aria-expanded="false" aria-controls="sidebar-collapse-82">
+                <a href="./4.1.6.html"> 4.1.6  Internal <span style="color:green"> Definitions </span> <span style="color:blue"> Declarations </span></a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-83">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-83" aria-expanded="false" aria-controls="sidebar-collapse-83">
+                <a href="./4.1.7.html"> 4.1.7  Separating Syntactic Analysis from Execution</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-84">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-84" aria-expanded="true" aria-controls="sidebar-collapse-84">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-84" aria-expanded="true" aria-controls="sidebar-collapse-84">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./4.2.html">4.2  <span style="color:green"> Variations on a Scheme: </span> Lazy Evaluation</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-84" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-85">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-85" aria-expanded="false" aria-controls="sidebar-collapse-85">
+                <a href="./4.2.1.html"> 4.2.1  Normal Order and Applicative Order</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-86">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-86" aria-expanded="false" aria-controls="sidebar-collapse-86">
+                <a href="./4.2.2.html"> 4.2.2  An Interpreter with Lazy Evaluation</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-87">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-87" aria-expanded="false" aria-controls="sidebar-collapse-87">
+                <a href="./4.2.3.html"> 4.2.3  Streams as Lazy Lists</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-88">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-88" aria-expanded="true" aria-controls="sidebar-collapse-88">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-88" aria-expanded="true" aria-controls="sidebar-collapse-88">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./4.3.html">4.3  <span style="color:green"> Variations on a Scheme: </span> Nondeterministic Computing</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-88" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-89">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-89" aria-expanded="false" aria-controls="sidebar-collapse-89">
+                <a href="./4.3.1.html"> 4.3.1  Amb and Search</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-90">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-90" aria-expanded="false" aria-controls="sidebar-collapse-90">
+                <a href="./4.3.2.html"> 4.3.2  Examples of Nondeterministic Programs</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-91">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-91" aria-expanded="false" aria-controls="sidebar-collapse-91">
+                <a href="./4.3.3.html"> 4.3.3  Implementing the <span style="color:green"> Amb </span> <span style="color:blue"> amb </span> Evaluator</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-92">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-92" aria-expanded="true" aria-controls="sidebar-collapse-92">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-92" aria-expanded="true" aria-controls="sidebar-collapse-92">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./4.4.html">4.4  Logic Programming</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-92" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-93">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-93" aria-expanded="false" aria-controls="sidebar-collapse-93">
+                <a href="./4.4.1.html"> 4.4.1  Deductive Information Retrieval</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-94">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-94" aria-expanded="false" aria-controls="sidebar-collapse-94">
+                <a href="./4.4.2.html"> 4.4.2  How the Query System Works</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-95">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-95" aria-expanded="false" aria-controls="sidebar-collapse-95">
+                <a href="./4.4.3.html"> 4.4.3  Is Logic Programming Mathematical Logic?</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-96">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-96" aria-expanded="false" aria-controls="sidebar-collapse-96">
+                <a href="./4.4.4.html"> 4.4.4  Implementing the Query System</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-97">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-97" aria-expanded="true" aria-controls="sidebar-collapse-97">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-97" aria-expanded="true" aria-controls="sidebar-collapse-97">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./5.html">5  Computing with Register Machines</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-97" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-98">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-98" aria-expanded="true" aria-controls="sidebar-collapse-98">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-98" aria-expanded="true" aria-controls="sidebar-collapse-98">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./5.1.html">5.1  Designing Register Machines</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-98" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-99">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-99" aria-expanded="false" aria-controls="sidebar-collapse-99">
+                <a href="./5.1.1.html"> 5.1.1  A Language for Describing Register Machines</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-100">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-100" aria-expanded="false" aria-controls="sidebar-collapse-100">
+                <a href="./5.1.2.html"> 5.1.2  Abstraction in Machine Design</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-101">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-101" aria-expanded="false" aria-controls="sidebar-collapse-101">
+                <a href="./5.1.3.html"> 5.1.3  Subroutines</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-102">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-102" aria-expanded="false" aria-controls="sidebar-collapse-102">
+                <a href="./5.1.4.html"> 5.1.4  Using a Stack to Implement Recursion</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-103">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-103" aria-expanded="false" aria-controls="sidebar-collapse-103">
+                <a href="./5.1.5.html"> 5.1.5  Instruction Summary</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-104">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-104" aria-expanded="true" aria-controls="sidebar-collapse-104">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-104" aria-expanded="true" aria-controls="sidebar-collapse-104">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./5.2.html">5.2  A Register-Machine Simulator</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-104" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-105">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-105" aria-expanded="false" aria-controls="sidebar-collapse-105">
+                <a href="./5.2.1.html"> 5.2.1  The Machine Model</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-106">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-106" aria-expanded="false" aria-controls="sidebar-collapse-106">
+                <a href="./5.2.2.html"> 5.2.2  The Assembler</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-107">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-107" aria-expanded="false" aria-controls="sidebar-collapse-107">
+                <a href="./5.2.3.html"> 5.2.3  Generating Execution <span style="color:green"> Procedures </span> <span style="color:blue"> Functions </span> for Instructions</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-108">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-108" aria-expanded="false" aria-controls="sidebar-collapse-108">
+                <a href="./5.2.4.html"> 5.2.4  Monitoring Machine Performance</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-109">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-109" aria-expanded="true" aria-controls="sidebar-collapse-109">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-109" aria-expanded="true" aria-controls="sidebar-collapse-109">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./5.3.html">5.3  Storage Allocation and Garbage Collection</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-109" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-110">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-110" aria-expanded="false" aria-controls="sidebar-collapse-110">
+                <a href="./5.3.1.html"> 5.3.1  Memory as Vectors</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-111">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-111" aria-expanded="false" aria-controls="sidebar-collapse-111">
+                <a href="./5.3.2.html"> 5.3.2  Maintaining the Illusion of Infinite Memory</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-112">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-112" aria-expanded="true" aria-controls="sidebar-collapse-112">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-112" aria-expanded="true" aria-controls="sidebar-collapse-112">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./5.4.html">5.4  The Explicit-Control Evaluator</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-112" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-113">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-113" aria-expanded="false" aria-controls="sidebar-collapse-113">
+                <a href="./5.4.1.html"> 5.4.1  The Core of the Explicit-Control Evaluator</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-114">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-114" aria-expanded="false" aria-controls="sidebar-collapse-114">
+                <a href="./5.4.2.html"> 5.4.2  Sequence Evaluation and Tail Recursion</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-115">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-115" aria-expanded="false" aria-controls="sidebar-collapse-115">
+                <a href="./5.4.3.html"> 5.4.3  Conditionals, Assignments, and <span style="color:green"> Definitions </span> <span style="color:blue"> Declarations and Blocks </span></a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-116">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-116" aria-expanded="false" aria-controls="sidebar-collapse-116">
+                <a href="./5.4.4.html"> 5.4.4  Running the Evaluator</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-117">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-117" aria-expanded="true" aria-controls="sidebar-collapse-117">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-117" aria-expanded="true" aria-controls="sidebar-collapse-117">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./5.5.html">5.5  Compilation</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-117" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-118">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-118" aria-expanded="false" aria-controls="sidebar-collapse-118">
+                <a href="./5.5.1.html"> 5.5.1  Structure of the Compiler</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-119">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-119" aria-expanded="false" aria-controls="sidebar-collapse-119">
+                <a href="./5.5.2.html"> 5.5.2  Compiling Expressions</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-120">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-120" aria-expanded="false" aria-controls="sidebar-collapse-120">
+                <a href="./5.5.3.html"> 5.5.3  Compiling Combinations</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-121">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-121" aria-expanded="false" aria-controls="sidebar-collapse-121">
+                <a href="./5.5.4.html"> 5.5.4  Combining Instruction Sequences</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-122">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-122" aria-expanded="false" aria-controls="sidebar-collapse-122">
+                <a href="./5.5.5.html"> 5.5.5  An Example of Compiled Code</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-123">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-123" aria-expanded="false" aria-controls="sidebar-collapse-123">
+                <a href="./5.5.6.html"> 5.5.6  Lexical Addressing</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-124">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-124" aria-expanded="false" aria-controls="sidebar-collapse-124">
+                <a href="./5.5.7.html"> 5.5.7  Interfacing Compiled Code to the Evaluator</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+                </div>
+              </div>
+            </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-125">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-125" aria-expanded="false" aria-controls="sidebar-collapse-125">
+                <a href="./references.html">  References</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-126">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-126" aria-expanded="false" aria-controls="sidebar-collapse-126">
+                <a href="./making-of.html">  Making of the JavaScript Adaptation</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        </div>
+<div id='permalink-msg'>
+<div class='screen'>
+  <div class='alert alert-success'>
+    <strong>Permalink copied!</strong>
+  </div>
+</div>
+</div>
+<div class='chapter-content'>
+
+      <div class='chapter-title'>
+        <div class='permalink'>
+        <a name='top' class='permalink'> 
+    4.1.1  The Core of the Evaluator
+        </a>
+        </div>
+      </div>
+      <div class='chapter-text'>
+        <div class='SECTION'><SECTION>
+    
+
+  <div class='permalink'>
+<a name='p1' class='permalink'></a><p>
+    
+
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td><span style="color:green">
+	
+
+	
+    <FIGURE>
+      <img class="scale_factor_" id="fig_4.1" src="../img_original/ch4-Z-G-1.svg">
+      <div class="chapter-text-CAPTION">
+      <b><a class="caption" href="./4.1.1.html#fig_4.1">Figure 4.1 </a></b>
+	    The
+	    <kbd>eval</kbd>–<kbd>apply</kbd> 
+	    cycle exposes the essence of a computer language.
+	  </div>
+    </FIGURE>
+  
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+	
+	
+    <FIGURE>
+      <img class="scale_factor_" id="fig_4.2" src="../img_javascript/ch4-Z-G-1.svg">
+      <div class="chapter-text-CAPTION">
+      <b><a class="caption" href="./4.1.1.html#fig_4.2">Figure 4.2 </a></b>
+	    The
+	    <kbd>evaluate</kbd>–<kbd>apply</kbd> 
+	    cycle exposes the essence of a computer language.
+	  </div>
+    </FIGURE>
+  
+      </span></td></tr></table>
+    The evaluation process can be described as the interplay between two
+    
+      <span style="color:green">procedures:</span>
+      <span style="color:blue">functions:</span>
+    
+    
+      <span style="color:green"><kbd>eval</kbd></span>
+      <span style="color:blue"><kbd>evaluate</kbd>
+      </span>
+    
+    and <kbd>apply</kbd>.
+  </p></div>
+  
+  
+      <div class='permalink'>
+        <a name='h1' class='permalink'></a><h2>
+    
+    
+      <span style="color:green">Eval</span>
+      <span style="color:blue">The function 
+      evaluate</span>
+    
+  </h2></div>
+
+  <div class='permalink'>
+<a name='p2' class='permalink'></a><p>
+    <span class='comment'>
+      In JavaScript's strict mode—our preferred way to run JavaScript
+      programs—the name <kbd>eval</kbd> cannot
+      be declared in user programs. It is reserved for a related but quite
+      different pre-declared function. We opt for the complete word
+      <kbd>evaluate</kbd> as a replacement.
+    </span>
+  </p></div>
+  <div class='permalink'>
+<a name='p3' class='permalink'></a><p>
+    
+      <span style="color:green"><kbd>Eval</kbd></span>
+      <span style="color:blue">The function <kbd>evaluate</kbd>
+      </span>
+    
+    takes as arguments
+    <span style="color:blue">a statement or</span> an
+    expression<span style="color:blue"><a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:blue">[1]</a> 
+    </span> and an environment. It  classifies the 
+    
+      <span style="color:green">expression</span>
+      <span style="color:blue">statement/expression</span>
+     
+    and directs its evaluation.  
+    
+      <span style="color:green"><kbd>Eval</kbd></span>
+      <span style="color:blue">The function <kbd>evaluate</kbd>
+      </span>
+    
+    is structured as a case analysis of the syntactic type of the
+    
+      <span style="color:green">expression</span>
+      <span style="color:blue">statement/expression</span>
+     
+    to be evaluated.  In order to keep the
+    <span style="color:green">procedure</span>
+    <span style="color:blue">function</span>
+    general, we express
+    the determination of the type of 
+    <span style="color:green">an expression</span>
+    <span style="color:blue">a statement/expression</span>
+    abstractly, making no
+    commitment to any particular 
+    
+    representation for the various types of
+    <span style="color:green">expressions.</span>
+    <span style="color:blue">statements/expressions.</span>
+    Each type of 
+    <span style="color:green">expression</span>
+    <span style="color:blue">statement/expression</span>
+    has a predicate that tests for
+    it and an abstract means for selecting its parts.  This 
+    
+    
+    <EM>abstract syntax</EM> makes it easy to see how we can change the syntax of
+    the language by using the same evaluator, but with a different collection of
+    syntax
+    <span style="color:green">procedures.</span>
+    <span style="color:blue">functions.</span>
+  </p></div>
+
+  
+      <div class='permalink'>
+        <a name='h2' class='permalink'></a><h3>
+    
+    Primitive expressions
+  </h3></div>
+  
+  <UL>
+    <LI>
+      
+      
+      For self-evaluating expressions, such as numbers,
+      
+	<span style="color:green"><kbd>eval</kbd></span>
+	<span style="color:blue"><kbd>evaluate</kbd></span>
+      
+      returns the expression itself.
+    </LI>
+    <LI>
+      
+	<span style="color:green"><kbd>Eval</kbd></span>
+	<span style="color:blue">The function
+	<kbd>evaluate</kbd></span>
+      
+      must look up
+      
+	<span style="color:green">variables</span>
+	<span style="color:blue">names</span>
+      
+      in the environment to find their values.
+    </LI>
+  </UL>
+
+  <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td><span style="color:green">
+      
+      
+      <div class='permalink'>
+        <a name='h3' class='permalink'></a><h3>
+    
+	Special forms
+      </h3></div>
+      
+      <div class='permalink'>
+<a name='p4' class='permalink'></a><p>
+        <UL>
+	  <LI>
+	    For quoted expressions, 
+	    <kbd>eval</kbd>
+	    returns the expression that was
+	    quoted.
+	  </LI>
+	  <LI>
+	    An assignment to (or a definition of) a variable
+	    must recursively call      
+	    <kbd>eval</kbd>
+	    to compute the new value to be associated with the variable.
+	    The environment must be modified to change (or create) the
+	    binding of the variable.
+	  </LI>
+	  <LI>
+	    An if expression requires special processing of its parts, so as to
+	    evaluate the consequent if the predicate is true, and otherwise to
+	    evaluate the alternative.
+	  </LI>
+	  <LI>
+	    A <kbd>lambda</kbd> expression
+	    must be transformed into an applicable
+	    procedure by packaging together the parameters and body
+	    specified by the
+	    <kbd>lambda</kbd>
+	    expression with the environment of the evaluation.
+	  </LI>
+	  <LI>
+	    A <kbd>begin</kbd> expression
+	    requires evaluating its sequence of
+	    expressions in the order in which they appear.
+	  </LI>
+	  <LI>
+	    A case analysis (<kbd>cond</kbd>) is transformed
+	    into a nest of <kbd>if</kbd>
+	    expressions and then evaluated.
+	  </LI>
+        </UL>
+      </p></div>
+    </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+      
+      
+      <div class='permalink'>
+        <a name='h4' class='permalink'></a><h3>
+    	
+	Language constructs
+      </h3></div>
+      
+      <div class='permalink'>
+<a name='p5' class='permalink'></a><p>
+        <UL>
+	  <LI>
+	    An assignment to (or a declaration of) a name must recursively call
+	    <kbd>evaluate</kbd> to compute the new
+	    value to be associated with the name.  The environment must be
+	    modified to change the binding of the name.
+	  </LI>
+	  <LI>
+	    A conditional expression requires special processing of its parts,
+	    so as to evaluate the consequent if the predicate is true, and
+	    otherwise to evaluate the alternative.
+	  </LI>
+	  <LI>
+	    A lambda expression must be transformed into an applicable
+	    function by packaging together the parameters and body specified
+	    by the lambda expression with the environment of the evaluation.
+	  </LI>
+	  <LI>
+	    A sequence of statements requires evaluating its component
+	    statements in the order in which they appear.
+	  </LI>
+	  <LI>
+	    A block requires evaluating its body, while ensuring that
+	    declarations within the block remain local to the block.
+	  </LI>
+	  <LI>
+	    When <kbd>evaluate</kbd> encounters a
+	    <kbd>return</kbd> statement, the
+	    <kbd>return</kbd> expression is
+	    evaluated and marked as a return value. 
+	  </LI>
+        </UL>
+      </p></div>
+    </span></td></tr></table>
+
+  
+      <div class='permalink'>
+        <a name='h5' class='permalink'></a><h3>
+    
+    Combinations
+  </h3></div>
+  
+  <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td><span style="color:green">
+      <div class='permalink'>
+<a name='p6' class='permalink'></a><p>
+        <UL>
+	  <LI>
+	    For a procedure application, <kbd>eval</kbd>
+	    must recursively evaluate the operator part and the operands of
+	    the combination.  The resulting procedure
+	    and arguments are passed to <kbd>apply</kbd>,
+	    which handles the actual procedure application.
+	  </LI>
+        </UL>
+      </p></div>
+    </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+      <div class='permalink'>
+<a name='p7' class='permalink'></a><p>
+        <UL>
+	  <LI>
+	    An operator combination is treated as a function application.
+	    The operator symbol is the name of the function being applied, and
+	    the operands are the arguments. Thus 
+	    <kbd>evaluate</kbd> does not need any
+	    rules for operators combinations.
+	  </LI>
+	  <LI>
+	    For a function application,
+	    <kbd>evaluate</kbd> must recursively
+	    evaluate the function expression and the arguments of the
+	    application.  The resulting function and arguments are passed to
+	    <kbd>apply</kbd>, which handles the actual
+	    function application.
+	  </LI>
+        </UL>
+      </p></div>
+    </span></td></tr></table>
+  
+  <div class='permalink'>
+<a name='p8' class='permalink'></a><p>
+    
+    Here is the definition of
+    <span style="color:green"><kbd>eval</kbd>:</span>
+    <span style="color:blue"><kbd>evaluate</kbd>:</span>
+    
+    
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_76_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(define (eval exp env)
+  (cond ((self-evaluating? exp) exp)
+        ((variable? exp) (lookup-variable-value exp env))
+        ((quoted? exp) (text-of-quotation exp))
+        ((assignment? exp) (eval-assignment exp env))
+        ((definition? exp) (eval-definition exp env))
+        ((if? exp) (eval-if exp env))
+        ((lambda? exp)
+         (make-procedure (lambda-parameters exp)
+                         (lambda-body exp)
+                         env))
+        ((begin? exp) 
+         (eval-sequence (begin-actions exp) env))
+        ((cond? exp) (eval (cond->if exp) env))
+        ((application? exp)
+         (apply (eval (operator exp) env)
+                (list-of-values (operands exp) env)))
+        (else
+         (error "Unknown expression type - - EVAL" exp))))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_76_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEZMChslAGYCuAdgMYAuAlgPYkDOhATjQLYQzxKqY7bHlqdUAEMADmIA2ATwAUAgDSimAc3oBKUAG9soPVQKhZVegH0xTKqyrUAbgFNTAyrRLzS6zTr0-QTexRETCSiEjLmltZ2js5CborKauoA3Lp6AL6g9pL09qAGRiamZGxiNKQAJk6kLnTuJJ7aab4lDBR+9vREku0AvFm2IpJEIhT29bUkpgBGNBVyAuoKzb6ra+v2AB5jJFX2JLZULCSs+xSyK+tX14Q1ceYiTCKnY0z09UuXN98+j2rLP0BvlirlM+0Ox1OJHOi08qTW-kCwXyZkRQSmg2G438XR66i+6wA-B0kRihkRHK0duccd0KPjAQAuUCVewEKgkewVeEZLI5PLeVb2JgsJj1JQAIgAqiQANYkGgAdxCIOEFGkYjyAFotaEpNIJSlmulsCb+HdXKBJCYKKYaARTJiKe8tmJ6EpwV5LmjkQrTH8XZs3QyrsSSN1JAS9MyxCIjrJ7E7RuN2W9bX8E0GNB6Dp8gXprfRbfbHeTOrIcenVIHgznbHDTbhVSFE0NinQKjZXG3XTj6K5ZEXWBQ617fD6QkUKEwKQmk2NZK09kGmBEuYOKMOlllcyHrsTW8Nk4uO2CV+2GBut6Ooz5mYeRgul2eLP6elf6aPUmbmwM27kAEcKXIcYhwod0d3rJpfAKYwzHsVgxHVUxAOAshQM3cDGkFBEAnRFldjZDkuR5XlslyfJDDg0xJBEIsUIoZMoXOMCNDHb4Jz-I8F1TeiiyYs4P2zT1SNATJyIFKNWiLQgjj4zDSyxUB+lvHwH2PXjbX4sZmKEpYRKjWCignRTZ00hjh1M+xsNUvROPMsCrNE3xxP5aCOLw5FDxQ+wgP2dCLnzDp5IE6F3lY-Tc2cnwTRcxtzUES1C2LB1SDo-sVE5CpZBIZ5OnYuzPMnMxw0kSQcryjQozDCMoxjOMxQlAAqNL6AyrKmolJRkrtVLcraqhMvXRiqHK3LTjYlIAEhfHi396DIEQpnKW0KnsMhaKeOJwswgrKMKMxUP8jCtz2lo6Bk1jlNAI6QIY0LwI-I0rk4ooEKQ6QfL8kC9Ns0AarKv7mXETVdkHRblqIVb1s20ZXHeBzGJ0wSIrzILfAWpa7Sh0w1o2x44Yu2RWBEWVHFugK-vR3CQuRsK9M8Z6Yr5CicNWV6zGkxjoVxmGCbiJ6-uJZKTzaJbofxrbQXoaRWFmcqwM8IGUVLSwRGmSRHDx2GBcVqn-qtG1ZEGNWNa1vmpboFDZflp692+ZlSskUSTR-C1hG8jWaDIWUP1Hdy9C50BZnma6vZ9mY5jkRXRKDyRvaGRh+kxyGJZ1+HZBD6QmcDi72la9quSTw36JLAvBqy2R48WnIc5JfD1IXLOAXzLYdj2A4jjoXTq8TpRy6GioIM9I03cSj3MVMEztIQlHMP9tnOJJsmp6KqzAqBRvsTX3tOn7OpFZb6nfBH78m3dltJ-SivdLAheViDp08n6a-MutuWaEkdfX5OM539tw+UYt6yB-sxdeh9IJozWAZccRVQBPzPglSYXFVZUHVprXmktCZuDvpAgOogBpvxlh-L+T9jaPDQWbTB6crbEIAbtI+Qp5zjBNpQjB2t+agjIRAz0jCT5RVND4JBcQUFc3FtQzhB9554LZj-f+n915iJ5hwy2Uw6GfyenwtSzDRb8WURbbB4CGGQK0XoAyZp8DNkYAQFg7AoBwEQMgdAWAABM59x7FR8pIB0jcOQqCevgjmphwxy2FAE0AAAfCJtkihFksCQfxis9BRJiWYWYn97BLQCSk74RQnZPUQb+KcIgVAqC5DRI2uCKAAAtHCMRUHtIJsZ4xJIAGStNALUkQ2Ukm9D6aAGpdSSmFIvircaJ16SBLgcU0p5SRa4IlOMw0Z95o2wUSWcZATF5wK6dlEaCtdqj3ccgoooC55bgDkE+pZSqjzOkRKM50JlmNl-I8rSayDkXJwpxXZsh9myF+f8xWjMVmjLeUYr5zQfmZL2XGcqQLDlHOEZaIoSi06SJwbtS50yzDXLmZU+5aKJGqOeSaX8RKVGGPUZ8yZ3ydkwr+XCgFDKEWnQbGS0ZFKDH3G4ViulpJOksqZay+k7LkXCCKKw9B5ssG6z5VCnFpg8W3IJcOSUUqqGUriKS8VIQNXsO5dLD5WyFUCsBUy81o07Zit-PqmVNCyRYhNT4aF3TGVWpFSCuaoyii0TlhUEQL4+wDiSfy-CMybkVKLH7UAEo-XTADUGvergdW-njYm2MTwXjCh2pCl1cCSZiEHB83qwS8pKEtTSr1HKPFWmeAmwNWdnWFTNUKj1TLgVIqKaiNeM9b7yvzQKiN+Lo0LOnkjWeTyjm-hMrvAaUi80tvwpWu2Iza2oo7F2OgPYVzJoXbS014bcUlMjXctVoB9Z6AlEuLduUv5zv3iQVNnLTy9jXD0gdS7kQ9X8AQGNGBp0vt2EGi8uaD2Dvwj+tkMaXGAdrc+N9QwWKfvrt+m0q8-24IAMxdp9YdXyaEJkFSuSekdyHz0SgpvYZ9tbl7kwI8dPS2KBUi0owxkCXUbqYQ0KC2tVH7p00eqGoREHkQruBbx5BiMHpMbDWJhlEVJMiMrAJydQnuPEbgSKnjLy8NgkQshKjsnD3IjyRGPSSmUVmForTNTxnROePydpsVuqVbh19qGlYJHZkqtHfc9zNHkF0ZmNXDzKHOKsYC0oGOuna3ucjvMZtX6QjicOWuk5ZgQbWkWnKxdqHPHKqjeRkcsastUByymuDUmL5JvnZivLrrYVWok7F5BAYkuNfdfCjtiLLPCD9O1mgwZmNHuCeZobOma1SbklWfxE3NOtrdfNvrIQVODeG3JkI-zlvxUsRfaxtiOAOO4M4tAWHjkiKnDOcYmxGlwM2Mpfp04KTpZEcF5sshM15VeBBZuMivNwNYyURC5RgPNi6pe0AX3s1vCUH98xrmN0g8qNUDx8g7tDuPT5or8hJTA7KCj8HVWRHNgeFmgIOb0dTJY+h39uPQAAZW7cDxCWFgY8g7T6DBAlCwaZ6T8EXdf7Qip9smn9E6fc9ADh17lpgsmTIVSM47O0PRolPLssnHFfQmJ1Z1epJ15P2VwV0jvnzhP0lOrrEgXlNryfheak5CsRG8FW6-5hvcO1v8vHfsCSwSd0hIJT01P8L-IR7+cyNi8oJlzMH+Tbqw+jK9zQXIMwFjk4XrNWBArmlikj6cL8jYg6DP0x9P3EJu5nGuk7VIrn3vk+LSQiCT8NCx5CDnhv8sm9lkm65vP5MPkI3J14TPDmXfZT7zr4QferKD7ysPkTo--kT5lx7bY+wO7l6FyxAfShMS-boo4IPovIP7BUDUjvn8W99P6JrBJ5+9-2yJFDhqxNSYxHr9Srvtc4cH7L4-tYzIt+Z+1SF+tcoAAAPFaKfvfonP-k-sKKKLIBKAACo0A0CgAkwkDSCJBEDMSMBdBhBUBcjMgSigAADUF6x8egcSfiBg0cA+mgFBnGpBFBkOqwNBCSdBjubEVM94IoNAjUqB6BBA9gioOBeBN0RAhBxBsa5BlBVBHBKgXBn+jBsakochbBGM04tBBAcgD+HuyC8cNAsoUh8ipCZYoB98wIieBwNEaBRaR+UY80EMoBX+LebML0iq+SKhmhBs4IdhQ2G8VBO4G0yefiZeguukI8vhzI1Kj2-QvyPhwRxIvyD+vh0YN0LhQKDBSgbusBdccUVwsE4I8RAytSJeyEAuAe2u+CVwCBAhlhsaMoswlQoASyBRzMEktR6wQcfe10Ee9eMCHkAqKc8g5OZhs+pwUCwR0+zeYxc+HRGQKwsUo+-hRhDhAiY8bWhCaiJa3CHyu+QwVhPgv4ax9h0eUEHhJxoyoxn+hxYBVxuEmOY2ZUrhcB+4kEARRa6RSePuKgER1R5w0RQUsRHypRiRDBmhxIuQtoqRfc8CQw7xNwsRWRHaORAyTK+h0UvIhkVEJR1+ZRh+Bmn0VRFeNRjxQo-BYo1KkozRoOFQbReUoAOoBC7UzEzyVwrkrMf0vR5O-RM2TggxAiPwnEox0+n+8xUxpi6Msx3ekp1kixYkyxAOAqZxgRCOeAYAVizAbAR2XATivAKAF2uuFgVgXYDgqOkwHwI2pmWOp6RsCQEoppUQVADg1ulozp5pjgVgUgam2C1pm2Y+XWHwSKQcnp0Qlp2010IsBIrGuynGPguygI0xPgrG+yCZeg+yyZpirGOeGZz+Rw2ZsZRscaNo+ZyURZ6wrGZmZUnGNZkgNwKZBYJZnY9AUgIgBoSgrZ7Z2B1wTZJc5wEo9RTAGZw5Pw-ZrGJMNS-o0w9AXUU51SM5jAVwE5JZZB+ZPgsgmwSg2cykAAfKAA9hQb2auarlqBuXoFuTuZoL0AeQ9rqCeTmSWZ1EoGsFeaALubeYeaAE1B+XoKeYOcABeUYNuR+TeXeaAGAI+cWargAKTAXvmfkQWwV-mgAAVIHX4bmIXgXfkEnZxPmq4ACEfSWFoFSF35xF-Q+FMFg54BCFZFOFD2kBeg1FVZJZ4BvQF52F+535HFLF6FEoe59F15PFD2B5-FBFg5e5nFr5vg3FX5Yl-QYFklSBhFwF35vgX5eghFPgt2BIRoYZkQXpkZRqjeykUYhazK3SSg4ZrpMQ+2BlecUORlEZpONA0wAAVutOBOZVcJZQIDxbmS5XZZxiurCP2asLZRaVYkaNgIZWaRGWisXCLKxqyOyFlJxmlcRBUBFcEb4KxpACQOlTYJ2XoIVcVeqLlXlc2arguaYLAJABmXVQ1VVdVZOaMIuQAKL5l1WdWtV5WsYAByIgg1wFw1g1SJ1VjlbQzlCVdloG3M7yZlvQFl4g8gPFvyBA24UVlIec4sOm8VLpFpRKzevl6w-lG1ba5UW121wVx1e1YUsVryYQn0O1JldQCQfwRWzuWWn0HIpgrITAMg4RHlIggwC0lgSEQRgIb1PpmszE-piw0pVwX1yUKQqw3qfGeEYgAJZJ5wzubc6+uNW+0N3wIM6+n2d19lLOdx8hVBb1RKKhyNaw5NYMb1blnl3lEE6RegDND1toze-VPgxe70lR-ueNoZTlxeKg8c0wPY4tW+10MJphpJJNT1ieOiuCjho+sS2QPi84figsNwxIXGw4qkzIeSUeesxtVoaBJhON1K4CJaGyVtxino5tKsXKsqIau0qkB4k8XtDqMa7tyJKsdqxK-p1tHx3k4dWqPt56Id1wFtmWOx-aW4ftKCbywduYHtG6uwt6O6Fge69W9IGd3kN6cQhdwa+6N4odvq9aiaD68dpdNt72F8VcDdga0OFObwmiPNqw6ajaUcfd1VakOddd+G30AUUdoYKCRm-GfaZwYG24idVwydIW3sYW6dNtnsoW2d9YudPa+ui9wuM98Bk846MmWt49SdKsZWFW+6k1xIv1c45IGkNWTdj9o4zNVwPUJYcx7WPCu4Htw5Ma0ocoCoyoN00g0IIg95uoW8OqcVTlrAr1LAKgWa10mauQSBGAyQ2gAy12+DWG+D6QzywCqDEQNAGDzwuR5RotJJCtzEKQQAA')">function evaluate(stmt, env) {
+   return is_self_evaluating(stmt)
+          ?  stmt
+          : is_name(stmt)
+          ? lookup_symbol_value(symbol_of_name(stmt), env)
+          : is_constant_declaration(stmt)
+          ? eval_constant_declaration(stmt, env)
+          : is_variable_declaration(stmt)
+          ? eval_variable_declaration(stmt, env)
+          : is_assignment(stmt)
+          ? eval_assignment(stmt, env)
+          : is_conditional_expression(stmt)
+          ? eval_conditional_expression(stmt, env)
+          : is_lambda_expression(stmt)
+          ? make_function(lambda_parameters(stmt),
+                          lambda_body(stmt),
+                          env)
+          : is_sequence(stmt)
+          ? eval_sequence(sequence_statements(stmt), env)
+          : is_block(stmt)
+          ? eval_block(stmt, env)
+          : is_return_statement(stmt)
+          ? eval_return_statement(stmt, env)
+          : is_application(stmt)
+          ? apply(evaluate(function_expression(stmt), env),
+                  list_of_values(args(stmt), env))
+          : error(stmt, "Unknown syntax -- evaluate");
+}
+</pre></div></div></td></tr></table>
+    
+  </p></div>
+
+  <div class='permalink'>
+<a name='p9' class='permalink'></a><p>
+    
+    
+    For clarity, 
+    
+      <span style="color:green"><kbd>eval</kbd></span>
+      <span style="color:blue"><kbd>evaluate</kbd></span>
+    
+    has been implemented as a case analysis using
+    <span style="color:green"><kbd>cond</kbd>.</span>
+    <span style="color:blue">conditional expressions.</span>
+    The disadvantage of this is that our
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    handles only a few distinguishable types of 
+    
+      <span style="color:blue">statements and</span>
+    
+    expressions, and no new ones can be defined without editing the
+    definition of 
+    
+      <span style="color:green"><kbd>eval</kbd>.</span>
+      <span style="color:blue"><kbd>evaluate</kbd>.</span>
+    
+    In most
+    
+      <span style="color:green">Lisp</span>
+      <span style="color:blue">interpreter</span>
+    
+    implementations, dispatching on the type of
+    
+      <span style="color:green">an expression</span>
+      <span style="color:blue">a statement or expression</span>
+    
+    is done in a data-directed style.  This allows a user to add new types of    
+    
+      <span style="color:green">expressions that <kbd>eval</kbd></span>
+      <span style="color:blue">statements and expressions that
+      <kbd>evaluate</kbd>
+      </span>
+    
+    can distinguish, without modifying the definition of 
+    
+      <span style="color:green"><kbd>eval</kbd></span>
+      <span style="color:blue"><kbd>evaluate</kbd></span>
+    
+    itself. (See exercise&nbsp;<REF NAME="ex:data-directed-eval"><a class="superscript" id="4.1.1-ex-link-4.6" href="./4.1.2.html#ex_4.6">4.6</a></REF>.)
+  </p></div>
+
+  
+      <div class='permalink'>
+        <a name='h6' class='permalink'></a><h2>
+    
+    Apply
+  </h2></div>
+
+  <div class='permalink'>
+<a name='p10' class='permalink'></a><p>
+    
+      <span style="color:green"><kbd>Apply</kbd></span>
+      <span style="color:blue">The function <kbd>apply</kbd>
+      </span>
+    
+    takes two arguments, a
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    and a list of arguments  to which the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    should be applied.  
+    
+      <span style="color:green"><kbd>Apply</kbd></span>
+      <span style="color:blue">The function <kbd>apply</kbd>
+      </span>
+    
+    classifies
+    
+      <span style="color:green">procedures</span>
+      <span style="color:blue">functions</span>
+    
+    into two kinds: It calls 
+    
+    
+      <span style="color:green">
+	<kbd>apply-primitive-procedure</kbd>
+      </span>
+      <span style="color:blue">
+	<kbd>apply_primitive_function</kbd>
+      </span>
+    
+    to apply primitives; it applies compound
+    
+      <span style="color:green">procedures</span>
+      <span style="color:blue">functions</span>
+    
+    by sequentially evaluating the 
+    
+      <span style="color:green">expressions that make up the body of the procedure.</span>
+      <span style="color:blue">statements that make up the body of the function.</span>
+    
+    The environment for the evaluation of the body of a compound
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    is constructed by extending the base environment carried by the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    to include a frame that binds the parameters of the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    to the arguments to which the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    is to be applied. 
+    Here is the definition of <kbd>apply</kbd>:
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_76_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(define (apply procedure arguments)
+  (cond ((primitive-procedure? procedure)
+         (apply-primitive-procedure procedure arguments))
+        ((compound-procedure? procedure)
+         (eval-sequence
+           (procedure-body procedure)
+           (extend-environment
+             (procedure-parameters procedure)
+             arguments
+             (procedure-environment procedure))))
+        (else
+         (error
+          "Unknown procedure type - - APPLY" procedure))))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_76_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEZMChslAGYCuAdgMYAuAlgPYkDOhATjQLYQzxKqY7bHlqdUAFMAbgEMANkQkURACnoVWFADSiSYgJSgA3tlBGmIikSYlQVegH16IqQRvjps6iQDmSlRW2GjAYEA-EbKqv6BgQBcVrYkEqyKYb4RkUYhUjQ0ANZEAA52AJ6sAEY0UjaSMknFZRU0TvGJ3qraGiJafmnRsTZkdMoSJBQ2ACYiZFISTHK0JC0p3QEhLhX9DBRDI+OT07N0C+2dqWkx1pXTVBIlUiJjE1MzQvPJXUugK1UXTFc3dzuPfYvHxHHQnSJnWwSej0KgeEiJYYLN5LT7SGzQ2HwxEUQ6aMHvUCQvp0UZUZ7okQADzyJhhc2R4OCoi+6zJFIq1NpInpB2SoJR3WJU1KowkzhpdNhfJ8grSIVYEmydwElAZIpKYpseT2iXkTHoyLUTMJ7w1WrKo0KRpNpu6HQJ72J9gAjkQOmQkrLbR8WejXe7yEkRG6PXdBvIcYbXgKfcSbjQyNlGYS0RUE0m8Q65RDeiYzBY7JtIx1ca8fWmbPnzCQi3IRDis8dCcSJHk8lIqGQgSn3iE2x3ras3IpVc8JdzecDWgLjXa0p3lDYGhdqobph5o7KBTmeiImCwmHiAEQAVRI2RINAA7pZ6IVhhIqaAALQvv0yevH7QAbmwAF9cDHOZQEXEYVyqd1DS5egBX0E5qwsUArwxJhNwUGDd3SZCiCkKRbRiHUqCPYd6wUAhiKXDcMJpeg2nxNofQXaxwKcSCeQUOkRg3aDaPo7NfwAoDSDVYRVhJEh2TmSlJR5aVp3UBj4MCRDLHOCgmHdDDILItkJyYbUTFGI0GKw5YPxHBQ9K5Az1i3GcGKYmJSPkKzSX0jEpDLbcGL-QD+BE54PzsENA09BZYKUgxAioAhQAUc4GzyChChC0Mgwi7RdGi7pVNAUhxgokgRFGP9An-UQpHsKw4oS2wpiXCMG1LTLsqY0A8pc0dKJGJrG2SOi1GzMqAgqhxqpytI7IoQgeqLVRV3dUAAF5QHarryLmvqWoGtphpNWL4vOVTFu6g1ep8U6suU008oo875pGdiRrSMaqpEG7CU6r4AzDBR2pUnkLvrKNMqGzoXsiQDyqEgLBBAsDlycUhMThYrjKaHk2sBgs1LiXCpAUTG6JNEISAJk1CIkYiFGPAAqFH6XhEq6ePDREZXRmsXRhRNioQniay38AEhAlh4DhHobtaxoIhtgePZnns3xPpqo7bF+jLXmx7pptAAaVv10KwzrEthmVwSljyxLWGS1LNfC3b2rJim7RiAcOmMqWhmXOX7l2J45kNe7GuLZqkV2xj5yWb2Zb9gFFaDhRFWVNKwsUAHo6toHTfDihlbooXIbeiaTWt2xpq2f3AWeXtU1Ali3I2KuE8DugilKcpkTMgJiUkH5rluavE5lVpM4yRv+9+IfW6BDu6m7zOYnJvDi-FwKQPEjNk35KLUj1y1CkN7ebEP5FIb1zJuyqw3Y99+WA6BQ1D8tgI9a5tGSsYVaOeR+ImZ5lfaQdFIbfVcGRQ+c4s7UnkJJZwWhiJ0EbEAqqGgP7M1GJFASflhLwzEl8E620I4gj3jjGsoAU53BOuxf60CdKuROjZOSDIYyZ0JNg9eeDLDiVRtiHaJDsyqz1uxQ2vDaz3k7hUGhYicTzy7qwpYG0ZGllOiZbMUC0j7TIUhZ6nDRLcK+FPQe-wFZtwUnBSaoAxFyKka4RQRi-jDzMTYm0ij6H2MuMYpxc8aExgYhoyI+0KpGDhvo4KldhjeNrrvQRljrESLqKoiJD8a5zBcQo+07im6DEibPccvifLqJNEE3A+AJYMGYGwDgcBEDIHQFgAATLgsJ5x7COGcPQqgnhkSq3LjYcmpR9w9NAAAHxGUxVpGkuleFeEYMZEzbBlHKCIIYPT5mmnOCvQmrwcGhKCupCQHgPAlRsGBPEFAAAWdxNgeB1sYUw5DzhESPLMgAZK80AVyJBe1lCtZaq1LnXMObs8pvRMY9MsX0m5xzRinMbrvY8mNvw4NBQk8oSN+kJC9K0XpDykJfOMnzbZspBL+VBecZRxCcWTShYcmFcLlAnkpRQZFQlQXMvSb8mleLLAEt5tTQmfKiXdyyiijewgOUFOpREPKQqBX8v5iKkF4q8YSRySkkeCk7m0qOScs5CLklRLmKywCoLDV5LSWi4l0qAiypWYS+VcrFXa1FWylVoBzWmJ8XYiFMqeWfPtQqwmwqXViq4b0BxM8vXRK5X63GvRoV6vhSQ48kaTGP2eCavZIE01Gvbla31tr-VOsFYGkNJLXWmvdbmi17cpUq25fGktQalV6P2fVBImpxRMKnIW+58aDm6thfqlN5pu2ySnFm0FY7tS6lMPuC2n08qKjyEoWo6KVyYw0M20Nbrw0zrPrMxt5Dm3ltaJW5p7aqw8tzv1WNRaB22ETcO5NqgNDHkIWHHEU73WMInfJPtHVi1lvldrZV4bzhsnJNJTk-6WH3v7Y8p9dKk2Mt3mw0Ax4oMcn0swugP7w3WUlIZEqgG8qIxMAQPEGBSXZuEER2kaqyP+ooyIKju8Gm0bNe5GynlvI2sQ0hVj7GSEAGZaN0dVQ7bFDa41IZsM+hl-HFLHmkwRsJlC05-V2kuljjdVPGyDGzfWPgQF7rCdJ29pZF16ACHJ-FIHnUkrDWEkOwMzbKborpptgbdouaClxKz5tMrefIWe-OXH3U2ztlprWpntX+s2QTTK-mQLnAau5vOIXj1ISS3hFtkdwMtMWVfHeCHBOqsUyOt9mHt7qaCpp7ezH41nOPHVjQOzzNBRPoe8rQGfPfIK85ttaWoTtk7N2GNAn+vyaq6+lTA4JtAnqyBcpuHe1Hvs7yxz1rfCRfDTxZrJ6dtDfPftsJKFDs0DyF5nLqqtkKGu2Zqt4a3OoS8E9hLA3jKfdS8IQLV2btfbC-K37sMykqsYAQFg7AoA1O4PUtAonL2jYU5pRQVI7kzaQs+f5AL0dFYa0qFUKqFA6hmHqBdGhIGkIfeQ1r-RbayzgeUtmGHydYv1JFGnJTyUVzYHkZnsLynkSxzq+lZyCDvsZ4LgqNhWfnaCmtjnlODSi9xS1li16qNS9ADRv7lg1tnwIGLvTS5KPkQ0Jxg3hAVXwLEIghELUTca-p1ri3uvxOE5App6hPr1iwNk9oywrW-fVGMwH0sivUdh60uxU3j6FMoZfYy9i77Y8iBW-9m97EJKB4UPH13DnBvCvjxJ0FHpMiwk8Pbx3jZYmpDysK3n7q3vQ6xRhToRftuDZb+GyvNB7Cn2tO3xIFixbB9AM88iFORAChwXrQFzhbYpVrywJ3wxDZbL-JJihxP5ez7XZIyK7FbuN-9dPq1J+7HPd36P8M66qoz6xdlCfdPi-GXv9H4Q9-TrB1n6-nZpPsKl-t7mJFSLArCg6HXjtI-tfqgqACUNCHcA3pPrcJ4JckfnUF5njqBB0B4JgVUCTKaCENPppvflgeUPAYNIgcgfbj3ESHgRgRcpQVVLoAADxMEEEsFEEMHYT7iHi0wAAqWQe+JAR8G4RAUY+s+QHYVAJUMQx4oAAA1GtFnGkMoD8J4LFNaFfroKocZkoaoRhpEJodMjoQXsAllADM5AeDQEeMeCITQIQCINeFYmhFIdZjIeNvIaMIoSoWoeoYEGYdoQQLoXAfoZhu+gESYcEVMqEdaLweXu6pkDkPkDYqolahYqkBXloKclkKuqgd0KitLKwdQVjtnIng9nobEb6A6PkddrQkEYEuQFXtMmvkgi1AJLUTEFan8qtHyjUc0eZHyrwbUUYL0aUSGhERoKXlYa-K9AdLVA6P0aAEvklKvtAevjiBUfaHYS8o-u+ueGUAVMhFiqyksCXB9JYksHrPfobG3oflordP6rHM-okDYv-i-gEsMcwFin-u8SIK6pcakNDO-twnkakYURDCNhKgAhkb4ocaAFUNkYELkWIA0dCToKrGie6m8VfhoLwTiblIlvjPlkMVnCsJCQUU0c0QPtXh4B0RvriN0eob0Y-qsYMREbESEPYCMKMcAoSdIHwacPrFMaBjMWsfKkkZDOVIEWkIdJ3mIKsesSvqlFsZ0cMLsZovsawUcSQCcZJGcYkK+O+Myhcd0FccSVNAMDNPcatI8R3s8V9K8aUb-lfoCVHL8QEL-qfp6QsVDKCefvGvUVCUqRJhDlwlDjDtUlwHUrwCgCjsIE8j8KwNBmICTlwuRKQMDrlshkOkptmSQO+rSFQGmdQBmVnpYKWeWVQBmTYGWR2HnD2AILmT3g6oqq2RJnrDWemZmfot-A3IykyK1gSsZgEASvOF6ZEK1kSuOUYESlOT8UYK1s8vOVPtTEwEuSOfpmBOuWBNud0K1nllIMZieYSNOYEK1mSPQB2BIIUMZjeXeUfO8JeQEK1gIfYfOZ+VuaaG+SufpoqJchiCUPQGzEBRciBYwEsP+UObiMeMoeuQEAoFSBoIULoMtAAHygDPiqEvmwWtYvhIVGAoVoUYXYXPjvj4XLlwW0yswaBpCkWgDoUrQUWgB0zMVGAEX6bADEXxSoXMXkU4WgBgDUU7mMrHgACkfFTFLFWFwlklnFoA3FEleOSFslQluO-yglNFrWAAhP8upQJXJWxQZatOhbpfpuwTJcZZpaAJwUYBZeJfBewctMRRpaxcJa5Y5SpfBZhTZWRZ5c+NhT5ZZRJZhW5QxYEB5fJcFatDpc5bTHpXxcJYEPJUYHpQEJjkyIJD2amX2fLnblfitCaCugoAShoL2RWf2UrLlbaVPvldVYVVwsuCUAAFYTD5wlVLBlUCCeWrmNV1mZ7bonZdmwWRBVVDXNUDmCTYB5VlkFXJKDlnKtYFRsZdIlTGZrVFQlTjXelXn6aQAkBFTkgPkMVHUnUpR7X7UAUSUQU2CwCQDzn3WPXXU3Wtb3UACi65X1b1+1rWAAchIADXxUDQDSKcMXVRsA1QtU1YasVctKVW2ORJ5XyibpVYNfWUtVDcoDDbWVjbaVXKft1d0L1ajaNVlBjbDVNdjTvuyuNqlJNfWSLgIBoBuEpgnuQotqlF0jYGtUwFIIUO0W1RIJIFLD8MlLSfOEzXcI2bcDiC2TmTRe8OzWBL+JELCXeA8gUBqcyQoJzUhDAp7EyY2Gwh7JJGTpjTVZanARoOMUYDLWqpsJEnocrd0ObcZI7WtjQO1Z1ZFPbXjYtYTZEqfn9QEKqTFrrTsbsovlcjYB4JkEgZyAgtsaWLfNrSbS1LNfTYOEWWzWhGfgEIqSmdTczaTl2cSXlNzYZKXdbQcKze4ZuAsVacXfzkznLizTmbsXrHSLhDNKtBtEbjQFaEWWHXaEbXAlHS1AHcUXbirvOmrq2W7b8TxMvcMWtlPUiGNbKdjqqhnpxDyH3SKSEBnnni1L3V5CKTENtRtaVBEFaTcaILqQ3WeBeFeLeLbuGilHkB9G+FYgzRaaAIBP5D2TIMtfpjLcZjFWxXhYJNzWTmA+zI3BgFbqKkAA')">function apply(fun, args) {
+   if (is_primitive_function(fun)) {
+      return apply_primitive_function(fun, args);
+   } else if (is_compound_function(fun)) {
+      const result = evaluate(function_body(fun),
+                         extend_environment(
+                             function_parameters(fun),
+                             args,
+                             function_environment(fun)));
+      return is_return_value(result)
+             ? return_value_content(result)
+             : undefined;
+   } else {
+      error(fun, "Unknown function type -- apply");
+   }
+}
+</pre></div></div></td></tr></table>
+    <span class='comment'>
+      The name <kbd>arguments</kbd>
+      is reserved in JavaScript's strict mode. We chose
+      <kbd>args</kbd> instead.
+    </span>
+    
+    
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td>    </td>
+          <td></td>
+          <td><span style="color:blue">
+	In order to return a value, JavaScript functions need to evaluate a
+	return statement. If a function terminates without return, the value 
+	<kbd>undefined</kbd> is returned. Thus, if
+	the evaluation of the function body yields a return value, the content
+	of the return value is retrieved, and otherwise the value
+	<kbd>undefined</kbd> is returned.
+      </span></td></tr></table>
+  </p></div>
+
+  
+      <div class='permalink'>
+        <a name='h7' class='permalink'></a><h2>
+    
+    
+    
+      <span style="color:green">Procedure</span>
+      <span style="color:blue">Function</span>
+    
+      arguments
+    
+  </h2></div>
+
+  <div class='permalink'>
+<a name='p11' class='permalink'></a><p>
+    When
+    
+      <span style="color:green"><kbd>eval</kbd></span>
+      <span style="color:blue"><kbd>evaluate</kbd></span>
+    
+    processes a
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    application, it uses
+    
+      <span style="color:green"><kbd>list-of-values</kbd></span>
+      <span style="color:blue"><kbd>list_of_values</kbd>
+      </span>
+    
+    to produce the list of arguments to which the
+    
+      <span style="color:green">procedure</span>
+      <span style="color:blue">function</span>
+    
+    is to be applied.
+    
+      <span style="color:green"><kbd>List-of-values</kbd></span>
+      <span style="color:blue">The function
+      <kbd>list_of_values</kbd>
+      </span>
+    
+    takes as an argument the
+    
+      <span style="color:green">operands of the combination.</span>
+      <span style="color:blue">arguments of the application.</span>
+    
+    It evaluates each
+    
+      <span style="color:green">operand</span>
+      <span style="color:blue">argument</span>
+    
+    and returns a
+    list of the corresponding values:<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_76_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(define (list-of-values exps env)
+  (if (no-operands? exps)
+      \'()
+      (cons (eval (first-operand exps) env)
+            (list-of-values (rest-operands exps) env))))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_76_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=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-uMDa2wsaB0vqHRh-aOSP3gZEZYEjjkY76gXvOuBio8hKFnZ6oOGgQPruLaWj2JHtI4dDjWLVx7l1IfAWayjeYtYgIqbBgDD7bVisIwmp1MTxalk-R7LJc1sM9vk0Jzjc6Q0TvDpNdkcxZqTgWgJvtSnn0qfifk0Aw7STTXiJyHTC1NOScupKQ6uq9O4YfYXEwBA8QYAo1M3ztJJr0ezcFjBVZ8p4gxZFu50WDrSHvnJoLQmQvJckQAZmMxe3+ltAuCZIopuNg7VANQ3t5qZySyvDwfgxhLCbjwNY0IzHjkmN4yfnlagIcGH2GaIX1qZOtBvZYoDBeLBnV29bdVpnkts55zYRgtkiSHHErck6vaGhQWuA0Ztt0z-KEaTZxbYAm6275bfvUJvlkc12ZrJhJqZ5xxECcq6Zgj9nZsNXEY1u5zWfsVbWgw48IOeuCv21MhR-GKt-eE0B0DTbPs3YxGRLs3aD2jee-hp98agfObAnjsdaWQJ+Sw9ZyH8G3sTYR3c6CNnGcnox2e67IErwYiYoaGgeR5tPaqxHfhCghd7a3ZJ6bG5JfC-a4txdUvqfCGAWz1X53DXLtVxM2FY14WIo4Ci7g6K0CFdQ-9zaigqSKrgc+fVKkNruixyBZr9kFA0ecgaDQbiEm+rgdDviAkhIiUo-nJz3vTAuT90owoAoedofbfxQSJlw+RPEvbhTxO7Ok-Eg1EPafhL2VBzTsayqnIx4NFnklQfEuhYL6ACLSftYV-4wQbPeWG-JYIBoVLrfWqUf8mIQKlkkSd7rx1kYje++gGK274QzXUmuEUOlUsXeSLQ5X9UfONS6AZTV6ZnfMV9ab-+yThh+sGon5EGX9X0n9aTQyow1f5+0cIajmfkrJTyCZFhJ4CPmPo2FUtag+vmlciZoQDfAipaqAYHmNqupAT9B6P-ncCUBBFXksvXKMg+inEeLAYkIng3OPEas4GvMdmZL4qWALPyn+FAR7lXixpwqEvrCLggUJvgcwXUKwavtLlAYQeGLOq5FXrBDgfpiRLmoIUfswDHKlCITHGISNrgUJvmtIYvuNFSMZN4qPtQQzMIRoFUKEiUNCHcPASoVvh0B4LKtweUPNk7p7FYTYUYcQr6FwYwZah8rwRxG0KACYfYCPq4TELcJ4DYV4boAADyOGhEyqv4+EAIrAHg0BHjHgAAqWQoAioJAhQoETERAUYE8+QHYVAxUMQx4oAAA1ILIAqEAyp4AhNaOEZUc5g1M0U5pEMoD8PUQQNaC4a4UYA9EkSkekTQIQCINeLkR4PkaWIwPQEUZ2KUc5m0TURPHUR4A0bYT4c0XvuUVUe0YEJ0YShsX0RoZ7FkLkAUB6pWrOksqkCgVoPjFkMxuYd0O6q3Jsd4ewabHhl6q9uEfsb6A6I8ULukisagTQAAR4EAXobiIUgCTEB8spAarmv8SsSELmi4QCQMS-FykWsIb4fmicc7DLNxA6Eic7nKuQUdtCUFBvtUt0kMZsQ1OeGUEJKAC6oYkbFAvSd0OPIIQLNNoIQoCMqaGtC3FyoIRmgoYkHpCsQEJKWweJKIZya7JjBwSRECZkCCZAVAe8qxtcZwoYdILcXZL-mIMCc8a8jAqaf1u8V4UaVsdad0EqpdqibZCsA8VqcxlieCZCTSePrCZ0P0T0IiQ4SififsSEPYCMBiQ4g6cGbmOKfMHiSwQScukSUsGxCSUhGSQ4WQVDDDFQbScMKPPaIyR8sySQKySZOyTHD1KBOWhpiqZAhVNAjZHyVXgKTAUwSKZrA+kmUqXIV4YOTKUMs-AqXwSOSIM2pmWqRYeNJ6U8cKdCrgAbpRkbmwCblwGirwCgFbr0KhFRJhNhJRnVErmLjYADvnpBM5oeRhFhPfpYHedRHcGhB2HfD2PhNruNhJBMuPM+ceRnt3ALAwkyNDv6nvgEP6vOLKQuFKseIGpBUYIGjBWOdDvgUhaAPgahWBfBV7JhV7Dhd0NDi9vwnvqRVIISLBZENDmSPQB2BIP1BoHRQxTke8NRYENDjVMkUhdxUwHaBxQENDoqLKhiCUPQPnCJTKmJYwEsIJUYNDhUZhQEAoFSBoIULoEpAAHygDPhVFsXyWezwUvjKVGCqXqWaU6XPjvgGVoXwV5waBpDmWgAaXKRWWgDpwuVGCGXQ7ACmVIRqUuWWW6WgBgC2W4WdYACk-lzlrl2lIVkVXloAPl8FTuylsVwVjuBqGldlnWAAhPqulYFXFe5QVSpDlRFbiMeBETFcVZlaAFEUYBVcRfBREUpKZRlW5SFW1U1SlZ1lpbVRZV1c+Dpb1blVVVpe1Y5YEJ1fFSNSpEFeNWnHlf5SFYEPFUYHlQEHbkyCxP+ZRPeSeZElKcpCaExiujqhoABTRHCntcYlhQdS+UBZpDQCUAAFYTBzanVLDnUCBdXoWPXHl74-m6QERjmRDXVHXdwsTYD7VoSHWxabDzwgVSrQ6oyFTFR77o3oyGVymcXwWQAkBozkhMVGCE3E0dS4140KXwVSU2CwCQBIV00M1U3U3CVyDSUACimFdNnNrNeN0OAAchIILf5cLYLQmc-HdRsA9fDU9d8l4d9d0L9V1VIb4ZDYjVsHtnDUeTRN8mwUrWkCrfFT+WDbLbrWlB2vPDDWmmRMdhrZ7jeRuKTu-n1DYIVDYHlEwOBISjYG9RIJIC3D8NDKCfOBrW+bcDiJ+bpODUsM7V7L+JEC2u6slAUEWQGQoO-p4ununY2PkgOF4l7oDTdRXvadUSsRrQrfibHWkAXUfA7RXq9R9ZQKEliUYJXVbSMGwfzYEPmRQf6TiMZqQZSR4JkCYZyD4sWYpCpNGfkAPVZDbbxoliuIqVyKEi8RIZYHzmzmvadLvPwraMnCqkeMLHLkxMKTSDBLOE5lYk4IqRrgLhfYrjuH+fdawMdjquZuwnTiBCpI5PYGnBgM0Rij+K6rffIQoAwhgBoO-RiKMF-bWD-XQBoAAOw90BBkGj2vWUiT0Bm-hAA')">function list_of_values(exps, env) {
+     return no_args(exps)
+         ? null
+         : pair(evaluate(first_arg(exps), env),
+                list_of_values(rest_args(exps), env));
+}
+</pre></div></div></td></tr></table>
+    
+  </p></div>
+  
+  
+      <div class='permalink'>
+        <a name='h8' class='permalink'></a><h2>
+    
+    
+      
+	<span style="color:green">Conditionals</span>
+	<span style="color:blue">Conditional expressions</span>
+      
+    
+  </h2></div>
+
+  <div class='permalink'>
+<a name='p12' class='permalink'></a><p>
+    
+      <span style="color:green"><kbd>Eval-if</kbd></span>
+      <span style="color:blue">The function
+      <kbd>eval_conditional_expression</kbd>
+      </span>
+    
+    evaluates the predicate part of 
+    
+      <span style="color:green">an <kbd>if</kbd> expression</span>
+      <span style="color:blue">a conditional expression</span>
+    
+    in the given environment.  If the result is true, 
+    
+      <span style="color:green"><kbd>eval-if</kbd>
+      evaluates the consequent, otherwise it evaluates the alternative:
+      </span>
+      <span style="color:blue">
+	the consequent is evaluated, otherwise the alternative:
+      </span>
+    
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_76_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(define (eval-if exp env)
+  (if (true? (eval (if-predicate exp) env))
+      (eval (if-consequent exp) env)
+      (eval (if-alternative exp) env)))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_76_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEZMChslAGYCuAdgMYAuAlgPYkDOhATjQLYQzxKqY7bHlqdUAFMAbgEMANkQkURACnoVWFADSiSYgJSgA3tlBGmIikSYlQVegH16IqQRvjps6iQDmSlRW2GjAYEA-EbKqv6BgQBcVrYkEqyKYb4RkUYhUjQ0ANZEAA52AJ6sAEY0UjaSMknFZRU0TvGJ3qraGiJafmnRsTZkdMoSJBQ2ACYiZFISTHK0JC0p3QEhLhX9DBRDI+OT07N0C+2dqWkx1pXTVBIlUiJjE1MzQvPJXUugK1UXTFc3dzuPfYvHxHHQnSJnWwSej0KgeEiJYYLN5LT7SGzQ2HwxEUQ6aMHvUCQvp0UZUZ7okQADzyJhhc2R4OCoi+6zJFIq1NpInpB2SoJR3WJU1KowkzhpdNhfJ8grSIVYEmydwElAZIpKYpseT2iXkTHoyLUTMJ7w1WrKo0KRpNpu6HQJ72J9gAjkQOmQkrLbR8WejXe7yEkRG6PXdBvIcYbXgKfcSbjQyNlGYS0RUE0m8Q65RDeiYzBY7JtIx1ca8fWmbPnzCQi3IRDis8dCcSJHk8lIqGQgSn3iE2x3ras3IpVc8JdzecDWgLjXa0p3lDYGhdqobph5o7KBTmeiImCwmHiAEQAVRI2RINAA7pZ6IVhhIqaAALQvv0yevH7QAbmwAF9cDHOZQAHKRrQEDQN3oXQDACKgCFABRzlpKhWHJKgxBVUg1QOARtFg8FqwsUD23A7UfnQ6gsJsYC8NIKCmE3X8In-UQpHsKxEOQ2x+lYPIaFIUZaJw54FHwwi0nWZRQDpIgpAoUAAF4PxHcTRLmGxLQg0g2h9ecjGpeQSGEh0qBYBFSwUfSDMCOjax1GY9X3Q18LnWz52g9yPNNeznC0cy6EbCSWLSYjLHOcLV3dBQ5IU3d5Vk0wa2iu51mM3E4sWO0YiEkQCCoEgRFGP8AjYhxOLgyJ90PdSSA0M8LyvW9CA04QKEKPIRFfd8wMKb9SqMQDAP4NrLEXEYVyqd1DS5egBX0E5wtAK8MSY2aaRg20QhIeSpFtGIdXMhRh3rcTzKXDcTs2tp8T0jyJuXJxpp5WKeRGaDrryGCdz-Eb7I-OwQ0DT0Fnmu7FsCBCkPOBs8g6oHQyDMGCMh7plrygqipK1Jyo47roZ4mwpiXCMGys5IYMk01ltO+RzoNEYycbSm2mzQahvYyqTWkxSCsZotVFS5TQBsunRwupni3JpFWbUdmTUJyLksLF6GdJnxUtRqrCWW-mNaFl6OciPHubtWmvgDMNrI8ukpfrKMUflzpjcCQC3YAoCxtAR6V1ITE4WxhQmh5anjBViK4j24OElDk0dr2k1DokY7jwAKn9+l4WKtPjw0X2nEzrEg82KgpBjxIqd-ABIQJPdGwQQPobta0E7YHj2Z4t1aNGjCV2wreR14w8iXnQEpkXB89OsS2GbvfFdgJlth-iEanr1VC2u0E6kfactIrqTKUFvlyIdvdieOZXMlmeZbLHwqe8nzx5Ptv7gvoFDUVZVEZBxQbOfpEO2t9HaswIqFMqXNuo6yARHXovMtjv0BGJcs28fbWFxAg4YSDO6aXvKUcoyIEo9HOJIH41xbg4MvjKVoADfQTQUGQ34lCAS4LoEUAh5dh50JiLtXexthpe0bsIVYWlMiZn5BDGBY9tIiwzNkLSNArTImNmPcR0hGAqWbkMU+59kFXwUNpCBRgx5F0DsVTR6Clx+3iFnIO6iOLGKSgWSw4tDFKMKE-O0RkOimQChZRsDjwZmOzqMcG2YWL-W9qIqKzMKYgikakZa387hRTVnQ1SZ0opcilAyGMGT3gRL+kI3CrivgB2xPE1QC1pEDEUi9EWFTaz4LqKlBQTScQcLqDaJYbiOmljaTGO6XiAgK0CMtI29cAaiKYRQ-4HdqHTnUIkwITSunlDabMv4VCgTrK4duE0bitksIWbstWQzswjMMi7ACAQG6lMBlgvRbClk1NSGslpGy1ZPJ2eOT5+yZyHOmmdH5rDFmDO3MMw5NyRr4HsowAgLB2BQDgIgZA6AsAACYSnPF6PYRwzhgXuC8K8Xuziay9F2qUfcyIjAAB86X6XOMoH4nhaWgAZUy2wZRygiCGLSzlppzh8IBQvKZ3tzibA8B4YqxMMF4goAACzuFKkey9bBHSPKSgAZNq0AyqJCjFpUpE1oAlUqokB4Yp9zcXCtjrSmB6qbBSplcJBhkjjwhwGp7AG-yno2BDg6pJcCDVGtLqKgi1qAbnH6bLWUvcnUutle6hJx5Y0UG9YBAG6a9lBqXiGvlYaU7l1DQocNRDI0+u9jm858adbLVLeW8tw9Ik4pAucUFpyUF1oiImy1rq5XKBPJ2j+zxM02pAiO-R7D-l5vDi4-Vhay3FoUI2ldLbW0AynS8iFPd60FsNcusuR6I2VqzRK2wxz5mjryT2-NC7JX9uTfKj1V7flzHHQDN9YLdmztJfuhda7j1AdPWeidwhv1ds0rWvdvaD1FuPc22UYHwOR2JgkTU4ock8mlEssOfbpXPqHR680WHJQ4Y-Zu72pHtS6lMC5Od5KSKKjyEoWoGyVwhw0CBitxSAY0e0oxhtS6m3ruQ621DeYI4gKqb4BNcDH2EbdS+1NsTpY4k-d7bJ5GpxCfgyeohUaL0khMhhOglIdO4b0w+2wSblPEYSQU48bIzPxE5JZyjfHvZsgnEwCixVrMUseiYAgeIMBUeEZYHzOSTPz3w3A4L+U8SYoiw86LkoMQKUCyRRLoXJEAGYJPRoHsDa2-64M2edU++z99qmgGPOvTTkXQApN-mVh+8WF0MIa6VoMedx4da8819eMm54OrufeilPHh5DYefre2s9asUBgvJwDS7WazdxcAuJY3WarYpUhzeqXbW2DhmvXroM9sAYpcK6OG2q3NfOCTBbd8Ub7ZIrd3eBmwFGce9y8RyZyvjIU7Z6rg6lsNXkU1h5rX5HZfGvK48UONCvE2yBeRijlFA8myRabyHfsPJjWRLsPZsdMbQ3Z8HJ4wIk7HcdkCflsO6bJ8Jw9h3fD0+EJ9Fn+nRPHpbWj4Qq1Po0G+p1m7Ucvui5goLyw821peGl+L3HS6ley6SpddaCglfvcsOWtX9c4VjQRUijgqLuAYrQPlttwhJVMBilSNVcDnwmpUhQe3IgCe4ta-ZBQjlY76nBtpN5wOuuI74gJISIlIt5wKf75yBoNDB7uurjtbBI8mWj6U8STvKuU4YQQBqEfBKZ-stD3Ffl4-0YNDnsly1cviQ0OF9XflBMEFz0FjBVYkuF9ACllvY1-JiECpZJE7e68Ja7yFxvoBCte5Aq1tJrhFDpVLB3nLiOl-VH66v4YnO0Nb5ii9dfFOwcMJeg1Q-Ihy8gSvyZjKjDl8n8XWzldx+ivRPIJkWEngh8j8bNmBPguuWgrOes1vLoivaoAY6vpqAZJh6N-ncCUBBE5CIDUnXKHhSpquJKgQKMUmPOas4KvIUH-gEqWCLCKn+JJj7qgWxpwuDC9CtjAQutgf8gwcvjLg9nNqgXsq5KgbBBgTjpYKWpAYkPvswLHKlHwbHAIRNkIWaiuqISIB-s1j4pnmZGQbLOxhxBoFUEHtCHcNAcGl1h0B4EqnQXUCtq7j7KYeYXocQukKANgTQfamwboRordCUAYUPg4USDYZ4OYWwboAADz+FmGKqP6OIAIrAHg0BHjHgAAqWQLWQwhQoETERAUY48+QHYVAxUMQx4oAAA1KLIAqEO7oVB4AhNaEEcUfVg1HUQUpECypUdUZEVTAAjEDVHEQoIkckQQCINeOkR4JkaWIwPQDkZ2PkfVo0WUQNqylUQQDUdoStiUf1oUSUU0YEC0Z4G0fYSoQ8pkDkPkHsoMtoSHgENMloMTFkKxkYUsL6i3BYeUOwY4mSksE6iKs8VEYAisNcUcaxlsdVF-jQD-h4KQUFFZBEkCTEP8spKaqWkEUCY4aWvYciX4dovMM2isbdOWvsYvENIrNxA6PCW7sqkQfDCQRoZCXvu8faLEVqucfVueGUEJCtLHN6ksKbNAjZGPEoSLBAbQWMjTHApiTgZIWweKWIVcj5EoVIVKcoU4h7MqfIQ6DcaLidDCjbpYB8toWcZwu4VIBcUYFcWIOqXcZ0HSSad7GKW4aAPYVabApVl8UiR5H8WaQCTbIAggaCZURCaPriNCR5LCdoaSS-kaq6T5CEPYCMKiRooab4UKC-PytifQbiW-h4UqZAkSUhCSdYYQWdlSf4jSXJjAr0gyd8Q1CySXqMOyYkD1KBHYhplmZzBVDyXaHyagQKTfEoZqToASU6RSmKXKZKUofdHMSaTwYwQqZWlybjMYRSmqZ6XAXgGAPCswGwGblwOirwCgNqb0KhFRJhNhJFnVMrqfkplTpBPVoeRhFhDfsILedRHcGhB2HfD2PhLruGQZhJNamPE+ceVnl3CLAwkyN1qGv1gEKGvOOOZEN1uGpBUYOGjBVct1pqohU4SnEwChWBYjhNBhRNDhd0N1p9lIP1qRYSLBYEN1mSPQB2BIP1BoLRfRWke8FRQEN1t0UwIhVxXaOxUYN1oqEqhiCUPQHnEJYqiJYwEsPxVYriMeEURhQEAoFSBoIULoEpAAHygDPglGsWyXdYvhKVGAqVqUaXaXPjvj6WoWI65waBpCmWgDqXKQWWgBpxOVGAGWI7ADGVISqVOXmU6WgBgDWW4VDrHgACkvljlzlWlQVEVHloAXl4VruSlMVgVLupq6lNl4VAAhCamlf5bFa5flSpNlWFfJcEdFUVRlaAKEUYOVcRYjsEUpMZelS5UFS1Q1clfJZpdVWZR1c+Npd1Tlb1a1fZYEO1XFUNSpAFaNb0blb5UFYEHFUYLlQEI7kyCxP+ZRHeSeaUrwcpCaCxquoWhoABTRPCttXUk4btc+UBZpDQCUAAFYTDLZHVLAnUCAdVoV3XHn9Y8YhQymBAXX7VdwsTYA7VoR7WxabBzwgXyrdaYyFTFT9bI3YyyUTnUWI6QAkBYzkiMVGC4340dSY1Y0CWI4SU2CwCQCIVU001k3k2CVyCSUACiGFVNrNjNWN3WAAchILzb5fzbzYmWUddRsLddDfdT8mwR9d0F9R1SIbdKDbDVsJwVDUeTRD8owXLWkArXFYDQROdX9VrXUmrRDdmmRCQSrb7teRuODs-n1DYIVDYHlEwOBH6c9RIJIM3D8PDF6QZCra+bcDiB+bpMDd0PbRNL+JEOKsNslAUNSQGQoM-moX4sPpobiBkgOL4n7ibWDXgisRoOiZLZrWlGbdgkERHZEDnUfDbYPk9a9ZQODCXSrdrRwdzYEAWcQf6TiBJgQeSR4JkF4ZyMWQGZPAnb3VZBbdEqyKSK5hZpOFZpIvcfIXbjFG4ulrSP5hGZCkGamJkvTFvX5tJEaHdPpF0USivqSL5plktrdCuWPKwCQcfSLI5PYL0e7u6L6BgH4Zij+N6qIi5hyL5hRgcM-SZqZJKBoN3ZSVPXvj+EAA')">function eval_conditional_expression(stmt, env) {
+    return is_true(evaluate(cond_expr_pred(stmt), env))
+           ? evaluate(cond_expr_cons(stmt), env)
+           : evaluate(cond_expr_alt(stmt), env);
+}
+</pre></div></div></td></tr></table>
+    
+  </p></div>
+
+  <div class='permalink'>
+<a name='p13' class='permalink'></a><p>
+    
+    The use of 
+    
+      <span style="color:green"><kbd>true?</kbd></span>
+      <span style="color:blue"><kbd>is_true</kbd></span>
+    
+    in 
+    
+      <span style="color:green"><kbd>eval-if</kbd></span>
+      <span style="color:blue">
+	<kbd>eval_conditional_expression</kbd>
+      </span>
+    
+    highlights the issue of the connection between an implemented language and
+    an implementation language.  The 
+    
+      <span style="color:green"><kbd>if-predicate</kbd></span>
+      <span style="color:blue">predicate</span>
+    
+    is evaluated in the language being implemented and thus yields a value in
+    that language.  The interpreter predicate 
+    
+      <span style="color:green"><kbd>true?</kbd></span>
+      <span style="color:blue"><kbd>is_true</kbd></span>
+     
+    translates that value into a value that can be tested by the
+    <span style="color:green"><kbd>if</kbd></span>
+    <span style="color:blue">conditional expression</span>
+    in the implementation language: The metacircular representation of truth
+    might not be the same as that of the underlying 
+    <span style="color:green">Scheme</span><span style="color:blue">JavaScript</span>.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+  </p></div>
+
+  
+      <div class='permalink'>
+        <a name='h9' class='permalink'></a><h2>
+    
+    Sequences
+  </h2></div>
+
+  <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td><span style="color:green">
+      <div class='permalink'>
+<a name='p14' class='permalink'></a><p>
+	<kbd>Eval-sequence</kbd> is used by
+	<kbd>apply</kbd> to evaluate the sequence of
+	expressions in a procedure body and by <kbd>eval</kbd>
+	to evaluate the sequence of expressions in a
+	<kbd>begin</kbd> expression.  It takes as arguments a
+	sequence of expressions and an environment, and evaluates the
+	expressions in the order in which they occur.  The value returned is the
+	value of the final expression.
+	<div class='snippet' id='javascript_76_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(define (eval-sequence exps env)
+  (cond ((last-exp? exps) (eval (first-exp exps) env))
+        (else (eval (first-exp exps) env)
+              (eval-sequence (rest-exps exps) env))))</pre></div></div>
+      </p></div>
+    </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+      <div class='permalink'>
+<a name='p15' class='permalink'></a><p>
+	The function <kbd>eval_sequence</kbd>
+	is used by <kbd>evaluate</kbd>
+	to evaluate a sequence of statements at the toplevel, in a block.
+	It takes as arguments a sequence of statements and an
+	environment, and evaluates the statements in the order in which they
+	occur. The value returned is the value of the final statement, except
+	if the result of evaluating any statement in the sequence yields
+	a return value, that value is returned and the subsequent statements are
+	ignored.
+	<div class='snippet' id='javascript_76_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEZMChslAGYCuAdgMYAuAlgPYkDOhATjQLYQzxKqY7bHlqdUAFMAbgEMANkQkURACnoVWFADSiSYgJSgA3tlBGmIikSYlQVegH16IqQRvjps6iQDmSlRW2GjAYEA-EbKqv6BgQBcVrYkEqyKYb4RkUYhUjQ0ANZEAA52AJ6sAEY0UjaSMknFZRU0TvGJ3qraGiJafmnRsTZkdMoSJBQ2ACYiZFISTHK0JC0p3QEhLhX9DBRDI+OT07N0C+2dqWkx1pXTVBIlUiJjE1MzQvPJXUugK1UXTFc3dzuPfYvHxHHQnSJnWwSej0KgeEiJYYLN5LT7SGzQ2HwxEUQ6aMHvUCQvp0UZUZ7okQADzyJhhc2R4OCoi+6zJFIq1NpInpB2SoJR3WJU1KowkzhpdNhfJ8grSIVYEmydwElAZIpKYpseT2iXkTHoyLUTMJ7w1WrKo0KRpNpu6HQJ72J9gAjkQOmQkrLbR8WejXe7yEkRG6PXdBvIcYbXgKfcSbjQyNlGYS0RUE0m8Q65RDeiYzBY7JtIx1ca8fWmbPnzCQi3IRDis8dCcSJHk8lIqGQgSn3iE2x3ras3IpVc8JdzecDWgLjXa0p3lDYGhdqobph5o7KBTmeiImCwmHiAEQAVRI2RINAA7pZ6IVhhIqaAALQvv0yevH7QAbmwAF9cDHOZQAHKRrQEDQN3oXQDACKgCFABRzlpKhWHJKgxBVUg1QOARtFg8FqwsUD23A7UfnQ6gsJsYC8NIKCmE3X8In-UQpHsKxEOQ2x+lYPIaFIUZaJw54FHwwi0nWZRQDpIgpAoUAAF4PxHcTRLmGxLQg0g2h9ecjGpeQSGEh0qBYBFSwUfSDMCOjax1GY9X3Q18LnWz52g9yPNNeznC0cy6EbCSWLSYjLHOcLV3dBQ5IU3d5Vk0wa2iu51mM3E4sWO0YiEkQCCoEgRFGP8AjYhxOLgyJ90PdSSA0M8LyvW9CA04QKEKPIRFfd8wMKb9SqMQDAP4NrLEXEYVyqd1DS5egBX0E5wtAK8MSY2aaRg20QhIeSpFtGIdXMhRh3rcTzKXDcTs2tp8T0jyJuXJxpp5WKeRGaDrryGCdz-Eb7I-EkTIwuhKUlHlpWndQ7sWwJlvOCgmBi075AUNkJyYCjiqNO6EuWVSzvRrlMeknHs30mIUcUInJQxBSyc6P6gLG0BHpXUhMThIrRgUJoeUkgJ4biPbeYSfmTR2vaTUOiRjuPAAqDn6XhYr5ePDQ2acJWsW5hRNioKRRcSGCCJ-ABIQIAOZwQQPobta0E7YHj2Z4t1aWH4O484AzDZEBakgZFOSRgVJ9oM6xLYY3d8QawuSkjzgbPIOrsENA09BYtrtSWpH2nLSK6kylHt5ciCd3YnjmVyLpGCMGys4OCO8nzQDtoZS-LwFXYURVlVT0Mg2slufLpWvi3rqPM4I03UnKjjuqquOCwi3jA62e4K57cts9Z6xcWkzZhg3rvNPvUpyj9mziUkH5rluY+XYZbf5wyPeFBv3574BR+6CKc-DdeHjXMu1c6x1AMNa2uFLCrC0pkTM-IYaL1AAfUA2llKoLgdkLSNArTIjASguB0gQ6txLo7B+lcBgKG0qFAIKDtZc2KsQzWNh6Eqx5oQjiNDjDx2gdNM62lm52iMh0UyAULKNg4fNUArDuZSOzCxf6LMYFRTro2BB2YPbcOXqAXudwoovSHgZKmb1l4Ywhk-bcNkhGdAUZA54gNObYgbiCRBqQUEvXQY42sZ86ipQUF4nEf86g2iWMYgJpY-ExjuoIgI2YwHLRekzUaNthAwI-nff4zsKFQwWkgrxQTyh+PSX8chQICkAMsaEvhqNilfyyWUgxUTswxMMozACARklQMBgfde39slNh0Jo0CytvG1EKQYnpR8+llJ8RfGMJpjGTM7j-WsjTtzRIWW0ka+B7KMAICwdgUA4CIGQOgLAAAmOxIFvYOCcCjQqXhXhDKFjYXapR9zIiMAAHy+fpb2iMHmfNAD8v5tgyjlBEEMT5ILTTnBARU1oSSAYIwkB4DwxUbATTxBQAAFncTYHh-ZJW0ShWWR4nkADIKWgDxRIHmTylKMtALi-FqKkUszhWLT5SCXkEvRcJLFCDjx8wGlbAGsz6iNC5U8nlPCaWQp5vrBFvhbGdPseccJSIZURF5ai-lmK35Cs1RQUVgEAbGvKdynVcraWKtlobW1et7V+xnmalmFq1nu0XstR1SqnUGxdeylJK8gaDCmfUsS2rBZypRWijFgqXHHiWaU54pq1UgWTdM8cEqrXRu0b651BaA2ANdem4QmaI2aU9b4TRPqFX+sNn6ktTNkW2FqZkzekbZS1pjbYPl8bDWJvbSmuYaaAbDqzafMZyr-Z1rpQ2hQRaZ3TxbSzCdlbf7VtnTa+tfqm2ylLWWkN5pxTE3MTKL11qSV9r1QO5QJ4T1mKnGOlmj7HJi31NHbd2jFR5CUNOp6ryxYaCXYGsVr6EianFNpXNWiazyvnXu51zarZHrzDwiOE8yzdu9b2mw-aBWDtUA1FR48cQvuDcSlKZ6pywaoyRUDgCg1dPOGyEG8ROTg1o1GuDCcb1xsI-ehBViAhJtJOxsGk5IYUa6TTWkWN6U4avfBx6JgCB4gwLYgGcmSaUJ4-R8ae8qz5TxOcrTLMdN02w5evNKmjNqbxAAZlVa2-u6cvQ2d4yGgjBqhOJrDp6GT9jdFud9o3Ht2isXHgCyIdWrcfAwVXZRmLmGozco6bZhju7kMHqS10gqBox71jUQl798HHWNzy-Y0eqXSzRxghF+D+7VCJfA5RxO-EU4xano1vjryRaVbayx2wUwlyqOcS1srfX4ULsbi5jlYLMF0YM70HzCbiOgGPBmbIQWQIhe23R5aUXttxdeFVkC23sG4P0ytxjuXUOubAl2LeSnMvedvYJ6z0NjxPe7Km8zlG-I0chodndiGcutAB10z6+m512oDc1lVUP7GrU+jQb6U2Q0zfR61t1gOa5rS8DjzHCGebE-O8IGraOMe9csH68nqGdljT2QcjgxzuBnLQI5q5wgEZI0UFSIly1nyMpUojd0zHgtKmwsGhQ77nIGg0AI1xcM5VRb4gJISIlg3qxE0YeXpgXJK5wYUAUFOQ0a8EiZbXUDxJC7w2tt+BAGqW61-ZXbwg-IG8-Xb55av7Mmed6ATT5vWrBquxBe3kWA-qaD2Z0PQOxFBSsgQKPdmlwOaD85yXe3pfGdMRMugGU08kSi-o1wsWNDpVLMj65thy-VHfhXkv72BO+dxC9EjGGXoe8sA390QMMpN+qC30nC6XqHoBh6TIsJPD+TEIFSySINGyu0X6uJQ37EFaXPsrlK-Uhw5OlstD0+aD2C0hBJyIhcmW1V9oo6R5d+JDN1bFBLLnCdcKPPxfOJ0Hwr-GhiFk-jUP-FIi9A1qvvBg-v+qARoOAbXp7lfuUq5FfrBLfm9mPsAQgZYMAalCgWLGgRlhgX6lgTnqklSMZKIgvuIg3NOmAUQkrtCHcPvnfiph0B4LijAXUA1qLqzOwZwVUFnKmKANAUAVflweUPQZwowefuTKaDELcJ4JwRKg1gADx8FKE4rD5CGmgrAHg0BHjHgAAqWQOiQwhQoETERAUYrc+QHYVAxUMQx4oAAA1KAHrmkMoD8J4AhNaCoboG4XFs4W4R4ZEF4Q8r4doQRFYpTPoYYSYTQIQCINeJYR4NYXVrYWRA4aME4a4e4cPKEACj4QQH4XQQEZtg1HkaEYEOEcUdaIIZPq+lkLkAUBKpEtOrkqkFPloJilkH+iwd0OKvbBIRxHAUQkSksC8jNv4dUb6A6L0ejoYgUZoJMGfg8t-jQcvjYrMTEBKspEyhVmUbMekGPg0ccUSCQlCk2mURoH6g0VwpEIBEsAhEhA6PsWLnih-snF-mZJsTWkgqEnESMQ1OeGUEJCtGLKKksHPJVDZCgsAegtviMMAUfjoGApMXKm3PMLgSoeJKgS0j5LgeAXiQQQ8YEE8WVAfnKvMZkIsRvoopRvkm0Y0h0aAFUJ0XZEoj0bSf0Z0EMpyclsMSoWMZwvyd0FMQNkcR5CsNyX0UsT5KfrPh4BscnlsToEAqcK3NOu8WPjMS3CEPYCMI6oISKRqUKJcfMNcaAbdHceMWSWVPkd0C8aiTqe-knCnL8aqf8TZDVAYcCZtqCVbqMBCYkD1MMjrORvaUNOxLCXaPCVfoiQTiiRvnaMtFiSSYkMgRmSIPdMsUYESRXvgYkDPNCbPFSdojSXKfSbgEzsGizmwGzlwKcrwCgDziGqhFRJhDLrbvhLTqth9u3nVA1B2RhFhL3iIZRKOXcGhB2Fhj2L2bhvmtlgGhJEkigiOdRN2a7OglikyFFranFgELavOLmZEFFkqoeUYEqieS0lFg-peSIWSjeXuW-MeBNA+RNM+d0FFnCntHFr+bnISKeYEFFmSPQB2BIP1BoGBRBRYe8MBQEFFr6UwJechXaAhUYFFoqLihiCUPQOrNhTirhYwEsBhbvPeseC4Q+QEAoFSBoIULoEpAAHygDPhuFwVkVRYvjUVGC0X0WMUsXPjvgcW3mvlqwaBpB8WgAMXKSCWgDyzSVGCcWvnAA8VIR0XSUCWsWgBgAiUvkUUACkalUlMlzF2lBliloAylFFou1FJlWlIuTKDFolFFAAhIynZRpaZXJe5SpM5fpbiMeKocZV5Q5aAOoUYP5d+a+aoUpDxfZbJdpbFZFdZYFUxSFfxYlc+CxSlS5WlXFRJYEAlWZdlSpJpXlQoMeK5WpdpYEGZUYK5QEILkyCxOuZOZuTbtmnQcpCaL+ougqhoBuV2Z1VXK1YHBOWhFOSNb-DQCUAAFYTAUAhy9Vth1SJV3ntVdlxagYhQEmBBDU0S7IsTYBtWTUdVLJMJvxRZ5QFTcxxY3WFTFRkV5kgWvmQAkC3XkhQVGDvWfUdTPUvWYWvmEU2CwCQCXkg1g0A2A1YVyBEUACiD5IN8N0NL1UWAAchIOjWpZjejWaQUWNRsBNZ2TRMmioT1UsH1YhGZY6qnoNZtaTWvFHITTJAdWlEzSMOARTd0FTYlTtU3MTVNRdcdeamRF-mzdNdiQxKke3qPn1DYIVCwiZPuOBOsXNRIJIHbD8MnPKXaBLTObcDiPObpHtd0BuLLT+JEA9izIafkCqUvriKPsItbp6Q7brYSAOCInLgzVuVOrAY6QURLWTTcXrp7UXBLX5LNQtZQFIucYLedRzXgajYEG6Z-vbTiKqm-p8R4JkCUJSEng7egrbQUK7Y2CLUol8N1sHByZ7EhB1t8aFoPHNmKV5tIsrbdcVGAjCd1M6ecKNkVpHF9ibC3ZEMtMYkibVlqqVmoCmQ6RVAvCaPCQTskKlOgj6dUqOMvWRhNktW0LPWkL3fXt3hXudIVkWKoKlARCPawSRBPSvYkiaN3dfRgTAt1h4TVuNpPI3DPW0qWeSahigqwF-jFugqBo5PYJVRgJbeLiIJbY5j+N+DPK-WnL7EA43Z6LcZ8e6T8QXRnT+EAA')">function eval_sequence(stmts, env) {
+    if (is_empty_sequence(stmts)) {
+        return undefined;
+    } else if (is_last_statement(stmts)) {
+            return evaluate(first_statement(stmts),env);
+    } else {
+        const first_stmt_value = 
+            evaluate(first_statement(stmts),env);
+        if (is_return_value(first_stmt_value)) {
+            return first_stmt_value;
+        } else {
+            return eval_sequence(
+                rest_statements(stmts),env);
+        }
+    }
+}
+</pre></div></div>
+	
+      </p></div>
+    </span></td></tr></table>
+
+  <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td><span style="color:green">
+    </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+      
+      <div class='permalink'>
+        <a name='h10' class='permalink'></a><h2>
+    
+	Blocks
+      </h2></div>
+      <div class='permalink'>
+<a name='p16' class='permalink'></a><p>
+	The function <kbd>eval_block</kbd> is used by  
+	<kbd>evaluate</kbd>
+	to evaluate block statements. The constants and variables
+	declared in the block need to be local to the block. 
+	The evaluation of block statements evaluates the body of the
+	block with respect to an environment that extends the current
+	environment with a binding of the local names of the block
+	body to a special value
+	<kbd>"*unassigned*"</kbd>.
+	<div class='snippet' id='javascript_76_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEZMChsDMBXAOwGMAXASwHsjQAbCgZzIH0q8XiBDRxigcyIBTACYAKIlwC2QxgEpQAb2yhVoAE5CyBdbSYsiBOnQnTZclWqsB+UIeOWrqgFygADlwrqxAIgBU3LwCwiJ+PgA09Eys7JySQYKiYmSeJpIy8nJyANwAkFbYAL5AA')">function list_of_unassigned(names) {
+    return is_null(names)
+        ? null
+        : pair("*unassigned*", list_of_unassigned(tail(names)));	    
+}
+</pre></div></div>
+	<div class='snippet' id='javascript_76_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEZMChsDMBXAOwGMAXASwHsjQAbCgZzIH0q8XiBDRxigcyIBTACYAKIlwC2QxgEpQAb2yhVoAE5CyBdbSYsiBOnQnTZclWqsB+UIeOWrqgFygADlwrqxAIgBU3LwCwiJ+PgA09Eys7JySQYKiYmSeJpIy8nJyANwAkFbYAL64hKSUNKCMJFxEbASsIkIkdFzqXOVEjGLMUmQKylYUeKBi+oxCAI4EQqRC3WS9WUqOTiQ0zJULZIygALyVk9OzLMztQjJE2-OL2StWmtq6oPrnbmQAnieHMyRzPdsWJxA0C2ex0O7A1xcNxuGbiKo1OoNJotNodLp4LzME4pMjnGZka4AuThCHA8kI2pUeosRrNVrtaidMRSLgAayEXymPzmZPJ-IFGlkrFOeIuV3+mSytyshVAQjo42W5IeOj0jBYa06KUutJRDI6RMBgtsDGYYi1p11dNRjJoJ3eUgARlQTP8snyrK59AA3VoULhOuicm0GplGz1OU3RMR+9QBoMh-VopkO52uo3GwWgVxgmVqYrFbAgUClchMnZ4dRUKQQGDwJCoTA4fDEcsVIR+ugEM5EyIzH39Ryqp5jBUcTtcbuMoj8CMC2ybXqR70a9J-LZZ4GmqhUNkENxpl10Fhd6bdR3HtgcddG-tEQcr54ay065H0lM0ef82yTk+vmp31tQ1-nvR8BVXU9-UDYM9Q-O0iG-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-rfkaW8-kLDyn1Cu7C9p6zyXovaALZ53zqX29C0y4cZ85V3yax1n+Y2IFaBUtgcJ3vOYHFhPI+ujK2VxuMcg-ZFDZVYgCNaCI5EfmpcrV1ZjJZqmNM6a8wiBEp3KtXfMfeLhWXZafc+3pv-AaZuvVE5jHgf7axoG+5j62qLH1dZB6I3H+FEPQvheT6AHzEfdaI7wPHwv2Ji+REi+X5VesDZG2r-U5LXmS-pZtxUSrvjzxaldm3z35ofD96epEQfBIs+lvNgJwZs7h+iZM2yua-3x8U7l-P2d89XaxkXwX1nha5qgd4wA0gr2+Czmb9WfJbiPErERoWiRaanHqKrGqh-fKnixpf2f2izQVA4wCO305kQg7uBQ3+tAHgXgA0YB4er0rMcqUCMCN+0sBIXMeYhuOkdu+kYBFGx4oCw8S+0BgqEaRBs6IunO2eYB-SGIYB-QkBBOKOAGH+MgM+lOtBw8cBZgjBfWUBoAhabByiPeACHEYsd8kst+1EPaFBioruPAnIX+zBwYs4nKBBro-0lu9AMw-A6hXY8gHktgMB3glWwhGh8hDSU4vcoAToihesl8rgqhehHKFh-0AAPDoWoa4QYZfKoL+BHN4D4AACq7g4FEDvB4z8BIrdaVAHgtQUCiCuA+CgAADUoAESTgzA8Ys4Qwbk5BCg6RzWKR6RmRVg2RuK-AeR++ioHodkrg4cW0vgoRVApYQgx0URMRcUcR2OSRaGaRGR2sqgFRuReA+RshhRaG-2AxZRagIxVRYxNRj2TSuGu4+4h4EaFSPa7uKwzSD4rKu4bgNcRyfIJq1QmkshkQvhrCQIXqNKBRsxv4+xr2vO-iQxNSF+QBlRaBd+hIF8sxrgEa0q+wsaDx7xtgsavhsx60lI7OExkQx+1hJs5IdiwIECA4wJghXKKBO2A4Le0+NxTgjRkcFh-2+0LoPsdgZgRqKJuihJVg7CYBXM7++BtSqiNasJwhdBPB7B1ScsXJ3BwhyJwIqJqgopyOA4Bxrxf+-+JyPaWxEyVxU4OxVgexPoUpRxyhQIZx5K5BSptR9JzB1Kx2YJnkTx6pLxRx0JPwl+3xeJ0hJC-xk0gJPamJoJExZRtg4wrAkJ1h+pfh+ElQ5xcJEyNhiJtRhMIpgxaJ5MGJ2hyB22nw9p6BlwZudygRpJaG5JvuVJMgqcn0bqQakZQIzCIcssjJZgzJ1C5hbJAoiMnJtB5BPJyifJwsAplBzZwpJZKw4pFCzxhxxx7yauYAXypYPy2uDYgKzYKA2BIMaMEM9uOcA0TMt2taBW4mhI0coM6MFAkMm+7g85GMnIYMLUIiBysMq5r6xs0SrM25C5GeFYXMbKZI9WNqzWagNqdkqywI9WSa75qgSaX5fJ9WJh-5zcXgQFL5Xu00YF00kFP5XuxpxgzWSFdAAo35QI9WzEjALUXA7wzW2FuFkR-IGFTg9WxJ6g-5FF2YpFVg9WrInKVcTojAEQDFHKTFOw5ItFag9WqRYFagYgHEkQ7wCguwAAfKANdOkcRdxVNF7jdPxaoIJcJaJRJddPdDJcBV7mEJEECMpaACJXsGpaAH4AZaoLJVEKPsAIpSMEJQZapZJaAGAJpVBaPgAKQ2X6WGXiWOVuVmWgAWX1aW78VeUOUW4yr2VaWj4ACEMqIVdl3lxlsV+wIlUVhIPg7hnlCVYVoAnhqgqVrl6V7huwiloVRljlxV+VgVXuYlWVKl5V10ElVVaVvgYlJVulVgZVPljV+wkVhVvg0VNljlVgPlqg0VagpuZIL0t5h5u5i5-8dBewfIrIRxNqkQd5R5D56w016wnMG1c1W1VIToAAVk0NsEteSCtcubQD5SBbNXuTRqjiYMbBZU4PtZjF8i9NgDNWDPeRcjsPsGyvVugpgiIM1iDbiqIK9e8XRV7pAEQH7CxPhbpfDYjR8NDTDXJaPmxSwLAJAP+TjXjRjZjfRe0OxQAKJgU43k3E0w31YAByXA9NNljN9NAZ2sO12oB5v1m1Dy5BF1wIV1wwPlsaVe6191nI-1nNGw71ktu1gESiANy15GwtElV5WQ4tPNB1UttwspyMnwsth111v0+MP2JBSMLUnwuKcQjQ6g3U3xx1XAfoVQ8YbwbxnkhtJ5wY4o55ask0i0Zt2QTgKx7WqCh4yZvxYg5toscIPxMsnkzUcIjuEth1dBkQ0JqghtfN8JASidtMydWtH1TeVAJ1Z1oCGd3NO5mMDyxBrZwICZ0CuJUhKZfQN5u1WJnI-Ar2dhumzdvxXM3pB4cdJCX1zSqEYONEWpoArM-MXM8OiOMOKwrMr21QioA95xSIt66IYg-MxZ097dgQREIQANllM0cQGSSQK9SJ2ChisivYbuESMd4sEdJEV9lhh9wQogoCUSDirMUgnwgOXMZk4wvgig+9XNFupeQdqWQdKAwKQdhQRqgCYO-9COK9bICJ2JiZw9qZ2QQAA')">function eval_block(stmt, env) {
+    const body = block_body(stmt);
+    const locals = scan_out_declarations(body);
+    const unassigneds = list_of_unassigned(locals);
+    return evaluate(body,
+                extend_environment(locals, unassigneds, env));
+}
+</pre></div></div>
+	The function <kbd>scan_out_declarations</kbd>
+	collects the list of all names declared in the body statements. For a
+	name to be included in the list, it needs to be declared outside of any
+	other block.
+	<div class='snippet' id='javascript_76_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEZMChslAGYCuAdgMYAuAlgPYkDOhATjQLYQzxKqY7bHlqdUAFMAbgEMANkQkURACnoVWFADSiSYgJSgA3tlBGmIikSYlQVegH16IqQRvjps6iQDmSlRW2GjAYEA-EbKqv6BgQBcVrYkEqyKYb4RkUYhUjQ0ANZEAA52AJ6sAEY0UjaSMknFZRU0TvGJ3qraGiJafmnRsTZkdMoSJBQ2ACYiZFISTHK0JC0p3QEhLhX9DBRDI+OT07N0C+2dqWkx1pXTVBIlUiJjE1MzQvPJXUugK1UXTFc3dzuPfYvHxHHQnSJnWwSej0KgeEiJYYLN5LT7SGzQ2HwxEUQ6aMHvUCQvp0UZUZ7okQADzyJhhc2R4OCoi+6zJFIq1NpInpB2SoJR3WJU1KowkzhpdNhfJ8grSIVYEmydwElAZIpKYpseT2iXkTHoyLUTMJ7w1WrKo0KRpNpu6HQJ72J9gAjkQOmQkrLbR8WejXe7yEkRG6PXdBvIcYbXgKfcSbjQyNlGYS0RUE0m8Q65RDeiYzBY7JtIx1ca8fWmbPnzCQi3IRDis8dCcSJHk8lIqGQgSn3iE2x3ras3IpVc8JdzecDWgLjXa0p3lDYGhdqobph5o7KBTmeiImCwmHiAEQAVRI2RINAA7pZ6IVhhIqaAALQvv0yevH7QAbmwAF9cDHOZQAHKRrQEDQN3oXQDACKgCFABRzlpKhWHJKgxBVUg1QOARtFg8FqwsUD23A7UfnQ6gsJsYC8NIKCmE3X8In-UQpHsKxEOQ2x+lYPIaFIUZaJw54FHwwi0nWZRQDpIgpAoUAAF4PxHcTRLmGxLQg0g2h9ecjGpeQSGEh0qBYBFSwUfSDMCOjax1GY9X3Q18LnWz52g9yPNNeznC0cy6EbCSWLSYjLHOcLV3dBQ5IU3d5Vk0wa2iu51mM3E4sWO0YiEkQCCoEgRFGP8AjYhxOLgyJ90PdSSA0M8LyvW9CA04QKEKPIRFfd8wMKb9SqMQDAP4NrLEXEYVyqd1DS5egBX0E5wtAK8MSY2aaRg20QhIeSpFtGIdXMhRh3rcTzKXDcTs2tp8T0jyJuXJxpp5WKeRGaDrryGCdz-Eb7I-EkTIwuhKUlHlpWndQ7sWwJlvOCgmBi075AUNkJyYCjiqNO6EuWVSzvRrlMeknHs30mIUcUInJQxBSyc6P6gLGwGAzDBZ5phqqjAQpDzgbPIOrsENA09DmCNh7plrygqipK1Jyo47reZ4mwpiXCMGys5IYMk01lqp86DRGTXGx1tps0Gob2Mqk1pMUgrjaLVRUuU0AbMNx2NeLLWkXNtRLZNFXIuSwsXqN72XZeiXufeZavZNnxUqtyJFdtu0Da+Nmg2sjy6UT+so3FgPGZNQDAmG5nBBAx6V1ITE4TlhQmh5PXjFDiK4j25uElbk0dr2k1DokY7jwAKnr+l4WKsfjw0WunEnrEm82KgpB7xJdd-ABIQIAKr3DLFWLTMkzfkudSe3QG0t2M2yLSaCtZEU6v0-pEYFT6G7WtBO2B49meIabSoUAhXyXo3YqH9QALxsOA6eowFBvw4iA9uBYj7TTOtpby84jIdFMgFCyjYkGczgXLTm2YWL-RZsfKKpttYggvnDDuoBFTKirB3VKucDKGyisTCGDIYw2TtBQpmo1q7CGPg3bE9DVALVjlfF6bspG1nvKUconDlE4iKGo9egiliG00aWThMY7rYMCIHJhaDQAvVEQDY+kgfjXFuPcXYTwBEMOzJLIwyjtF1E4Q434ziAQAM0qouoNp9EYNRgEpx-x-5uLoMY7cpiTSBzYkYMRh9Ab2y2C4wEYlz6eNjj4sJ6jw45OGHkkJiTSm6O3KkqJ1MBibEqcEhJtZw4mOzGYgIaTcD4HsowAgLB2BQDgIgZA6AsAACYD7PF6PYRwzgomFS8K8LxSUrHnF2qUfcyIjAAB8Dn6XOMoH4nh9mgCOSc2wZRygiCGPs65pptnd1eLYlmCMJAeA8MVNW1gywMIoAACzuJsDwbdNk1l6EdI86yABk8LQCgokAg9ZSkMWgBBWC75HzxGdxsC3fZsd4a2HBb84SE0TwtwGvvAGtSnqEt7sS1Iy0UUINXnU1olC5kgXOIYv2sovGkpsOSv5VLz7HgFRQWlgEAbSt8eUFlAQ2UPI5SPde7KFCcuRARHl8qp6WUqZ0oV3NVWou1Rqy1a9dU8syfM84FS-6uJ7Oss1zCvk-PFQCk8TqqntNlfakCfq2lAkVVy3wwrmFap1TGq1rw9VMwBiG+JYaTWtCjVYuNNqdUJv1Z82wMS-j+tdaaiIIqxWUp9ZKotQTU3PEDQDWtcSXXjlqcq1B0Ls2arVdaiNer834usZcWJJbxzpsje6rNvadW5tlARPFWTzjmnFHwqcHaoUkU9RS-5ygTwroxvwugjaWYHscr3fUW4M1TuhYqPIShajqJXC3DQ3bbVJtPQkTU4ptIbvNeqnN8b512oBiHNBdYSyCuveWj1ZLvk7olQw48tCfY4hPUO3h4N11upg9Oi1c7uWLodbxUkIN4iciw5DP9sHRXwe9Xu8+QiAjHjZGRsGk5IboayTTWkWM0VlpVcwx6JgCB4gwIO7jpIMZAyvZO3D0LhP5TxNMiT8yeOY2kIC6DgmrGKdE+fAAzCBgtwtQw5xwzp6F276NaehsebOnouPzNYeGEW7NzaZoUz6+zbmgxz1AObD9Q6HPhlQ6WWTsEAjyZIm+hNQWskJwg77WzMFPMxd7YFulLN85JaLh5m9JECMUBgvF4jzh+JCxC+LNLBLdpSAjSVrLQ7l3QgLpBlLbcRV1fXkV3WRG+W3NPsmCzlmt1wa9VWhjSG75OZAi5k+iZhsCc7SRKlx4ZsaHeU1rJd8H5PxGytywsX539eEPysiXZS3acO70Stu7bMNTApdhtqmQJ+TXVRg7-6+26tKyBT6X3o0zqtUVxN235mrU+jQb6nWaPdYUNDxrcqWaJauoj2HeGEHo7+8IHLUOYc1axVa7H+88BgEGcwNgHBxncCmWgAzvKztkqRooKkkLlrPgxSpRG7pTuWHm-ZBQ57nIGg0Fgxho3xreb4gJISIl8VzyY0YYXpgXJi8foUAUOOCUy8EiZeXh9xLs5o3dqlBAGq67l-ZWbwg-Iq8vUbjZy09PiQ0OJ7XrV8V7Ygsb3TAL2GifN6AFTHv3sEKClZAgvuvNLhE670ARm+csKVHcKK5S6AZWj6t7zafXAiH8+lUsr2mfsPA+HaOTuTd0cm7iF6DVc-VBt5YBv7ogYZQUBXklQP8NWujsZodHpMiwk8P5MQgUjW4iKay5hOq+kA0S8M5lU-LFdt7XP6h5Ah93BKBBJyIg5F7xXyRWF4k99a-3lfbF5XBaFFH+PnEbtut-iDcIAXe+H06M5i9VLXerEn9qV-nnkji-pYIvokOGq5HvpFlFkfkdr2mASIMXqAXvqlJAb3NARkrAUTjaggf3lkrgvrmZIQtrI+hxBoFUJzCUNCHcMvpLtAh0B4CCh-nUKllzvQZ4EwRQXjOkKACfm-sygAeQe-LdFQfYKPtwUSOwYwcCsweUKlgADxSGcHCFCIrAHg0BHjHgAAqWQyeJAhQoETERAUYAW+QHYVAxUMQx4oAAA1O7D5IEGcqsghNaAAboHYf5tYXYUrmkE4Z4C4R3sIRIUYJTOoZoToTQIQCINeIYR4MYeFqYRdpYaAF4fYQ4aEIjM4QQK4aQalh4Q1LYWkekX4R4AEVwXgfMpkDkPkOGsYqQXIqkHYloGrFkPerQWkPSt-LIWQcOsghsksF1m8rkcEd0CsM0VUfej4faJvjQMPh4HfsQUiBQlMSEQFqQcpJilqm4SsfjFqlwTsasV-I8rmsMRoDquUSnBXEHNxA6BsdzqCtfkLEQRHsMJCvomEd0Q1OeGUEJCtL3LSksGnN1LHEsFfAgW7Avu-hYvrMwkcfMAgRAafugT0g4Qid-kiYkAumXArNPlYg6C0dDidKXFQkOiUqQXUTokIVIA0XZBvmIASW0Z0P0QEJ0Y8oIb0T-jZIMfVt0VtB5GMfSRMVwg4YPrMasgsS8ZPp0CMQEDELUnccihlsMSsSEPYCMHse-FSTKT0HCT9m4Wcb3kEZcWVEUZECrLcWwVfgLE8eHhPm8faB8bUl8SQD8SZH8YkD1KBIamhigqnDbMCTZGCXvhCRdCMAgUSToMaWFLCV0QiQARiYgSiT5GiUAQmViYCTiVgfiUKX0mTp7ofEMiMtTlwJMrwCgIzgSqhFRJhNhPinVBjlZuNghj6pBCkVWRhFhE3rwZRB2XcGhB2Mlj2PhITm+hJKIlfO2dRLWQWW7FSkyGtuyv5gEOyvOPdAuN5pykuUYJyquSiWtrClubwSPEwLufOd5hNIeRNKed0Gtq8vVv5neVIISGuZEGtmSPQB2BIP1BoO+Z+QYe8C+YEGtjVBoVuSBSeaaIBQEGtoqCChiCUPQHPLBcCvBYwEsFBUYGtjYYeQEAoFSBoIULoEpAAHygDPh2H-kYXQLeYvg4VGB4UEVEWkXPjviUV7neazwaBpAMWgCEXKTMWgBjy8VGBUVrbAB0VIT4W8VMVkWgBgBsVnl7rHgACkElPFfFJFslylwloAol3mXOOF6lMlnOmKhF7FSlAAhBioZVJRpQJVZSpGZYpbiMePIWpbZcZaAIoUYE5Ted5vIUpHRUZfxbJQFT5XpUpcRe5YxSFc+KReFeZS5cRYFVxYEMFZpXFSpNJYlQoMeBZRJbJYEJpUYBZQEGzkyCxBOT2VOQbm2rkcpCaHegoOyhoJOTWbVXMI1lVWhL2R1YkjQCUAAFYTDFYNVLBNUCAhX7nVU1n+ajm6QERJmBBtU0SDIsTYDdXVk0ROpQJUprYyyFTFT+YHVyxUXpF+VKWQAkCyzkjflGBXU3UdRnXnWvnebIU2CwCQBbnvWfXPUvXQVvVyAoUACih571wNf1-11FSlAAchIDDRJXDTDdqT5JVc0t2T1TVX6gAWNd0BNSFVqlHq1TNdtc0lsF1ejStWlGTcakAbjWkPjZpaOYtRjVtdTRsOTetfKmRLflTX1fCQxLEfdlnpYH1DYIVLAiZPuOBOKYNRIJIF-D8ILMKfOHzf2bcDiEObpEtd0BuMLT+JEKTvSslAUM8RPgoCLaIFSMZPgmPosbiErgOHgkLiTdOXVZ-hoAccrq7TJi0ibKcY7e2M7XzX5ANcNZQJzF7azb1X6t-pDYEFaRVrfmbTiHapfg8R4JkFQZyLaQ-p-CbRKebVzSzHCcuEQM6vkp1RulxHzLYFVgmsyUYFfDrG7CFrluFs-CaCKtabfvXT4HyaaAPPVjZDEE7SZEoN-GXRXdUgwBHG1sluLPHe8KXb-GOlXfNlVlHfODlnQsMLJlvL6UCY3ZujrjTdPe0r2KmNDbiCmq2qEqQbqiPb0M2mvTKK0ExhkD6i-aGu7eEgmkxjEE-jiSNCveXa-bPY5PYLlVfJzqABgAbbcIpAYSpNMj+N+L+EAA')">function scan_out_declarations(stmt) {
+    if (is_sequence(stmt)) {
+        const stmts = sequence_statements(stmt);
+        return is_empty_sequence(stmts)
+            ? null
+            : append(scan_out_declarations(first_statement(stmts)),
+                     scan_out_declarations(make_sequence(
+                                   rest_statements(stmts))));
+    } else {
+        return is_constant_declaration(stmt)
+            ? list(constant_declaration_symbol(stmt))
+            : is_variable_declaration(stmt)
+              ? list(variable_declaration_symbol(stmt))
+              : null;
+    }
+}
+</pre></div></div>
+	
+	The purpose of the lambda expression is purely to create a unique
+	identity; the function will never be applied and its return value
+	(here <kbd>null</kbd>) is irrelevant.
+	
+      </p></div>
+
+      
+      <div class='permalink'>
+        <a name='h11' class='permalink'></a><h2>
+    
+	Return statements
+      </h2></div>
+
+      <div class='permalink'>
+<a name='p17' class='permalink'></a><p>
+	The function <kbd>eval_return_statement</kbd>
+	is used by  
+	<kbd>evaluate</kbd>
+	to evaluate return statements. As seen in the evaluation
+	of sequences, the result of evaluation of return statements
+	needs to be identifiable so that the evaluation of function
+	bodies can return immediately, even if there are statements
+	after the return statement. For this purpose,
+	the evaluation of a return statement wraps the result of
+	evaluating the return expression in a return value object.
+	<div class='snippet' id='javascript_76_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEZMChslAGYCuAdgMYAuAlgPYkDOhATjQLYQzxKqY7bHlqdUAFMAbgEMANkQkURACnoVWFADSiSYgJSgA3tlBGmIikSYlQVegH16IqQRvjps6iQDmSlRW2GjAYEA-EbKqv6BgQBcVrYkEqyKYb4RkUYhUjQ0ANZEAA52AJ6sAEY0UjaSMknFZRU0TvGJ3qraGiJafmnRsTZkdMoSJBQ2ACYiZFISTHK0JC0p3QEhLhX9DBRDI+OT07N0C+2dqWkx1pXTVBIlUiJjE1MzQvPJXUugK1UXTFc3dzuPfYvHxHHQnSJnWwSej0KgeEiJYYLN5LT7SGzQ2HwxEUQ6aMHvUCQvp0UZUZ7okQADzyJhhc2R4OCoi+6zJFIq1NpInpB2SoJR3WJU1KowkzhpdNhfJ8grSIVYEmydwElAZIpKYpseT2iXkTHoyLUTMJ7w1WrKo0KRpNpu6HQJ72J9gAjkQOmQkrLbR8WejXe7yEkRG6PXdBvIcYbXgKfcSbjQyNlGYS0RUE0m8Q65RDeiYzBY7JtIx1ca8fWmbPnzCQi3IRDis8dCcSJHk8lIqGQgSn3iE2x3ras3IpVc8JdzecDWgLjXa0p3lDYGhdqobph5o7KBTmeiImCwmHiAEQAVRI2RINAA7pZ6IVhhIqaAALQvv0yevH7QAbmwAF9cDHOZQAHKRrQEDQN3oXQDACKgCFABRzlpKhWHJKgxBVUg1QOARtFg8FqwsUD23A7UfnQ6gsJsYC8NIKCmE3X8In-UQpHsKxEOQ2x+lYPIaFIUZaJw54FHwwi0nWZRQDpIgpAoUAAF4PxHcTRLmGxLQg0g2h9ecjGpeQSGEh0qBYBFSwUfSDMCOjax1GY9X3Q18LnWz52g9yPNNeznC0cy6EbCSWLSYjLHOcLV3dBQ5IU3d5Vk0wa2iu51mM3E4sWO0YiEkQCCoEgRFGP8AjYhxOLgyJ90PdSSA0M8LyvW9CA04QKEKPIRFfd8wMKb9SqMQDAP4NrLEXEYVyqd1DS5egBX0E5wtAK8MSY2aaRg20QhIeSpFtGIdXMhRh3rcTzKXDcTs2tp8T0jyJuXJxpp5WKeRGaDrryGCdz-Eb7I-EkTIwuhKUlHlpWndQ7sWwJlvOCgmBi075AUNkJyYCjiqNO6EuWVSzvRrlMeknHs30mIUcUInJQxBSyc6P6gLGwGAzDBZ5phqqjAQpDzgbPIOrsENA09DmCNh7plrygqipK1Jyo47reZ4mwpiXCMGys5IYMk01lqp86DRGTXGx1tps0Gob2Mqk1pMUgrjaLVRUuU0AbMNx2NeLLWkXNtRLZNFXIuSwsXqN72XZeiXufeZavZNnxUqtyJFdtu0Da+Nmg2sjy6UT+so3FgPGZNQDAmG5nBBAx6V1ITE4TlhQmh5PXjFDiK4j25uElbk0dr2k1DokY7jwAKnr+l4WKsfjw0WunEnrEm82KgpB7xJdd-ABIQIAKr3C727WtBO2B49meLdWklnnuPObOxdeNvInt0Adbdh-wx9ovXhTuGO96ALIWn9xY2QHlIfaOVSJdRMkoY+y4iBn12E8OYrkLoFxLH7HwutvI+TfvA0+9xkFAkNIqZUwtQw5xsngyI+c6yYIoFfRhBECIpzTt1WO-8CydyBoMYYRDARiXLHaDI1hcT2y2AIi+ml7ylHKMiPGARiSSB+NcW4UiUEylaNQ30E0FAqN+OogE0i6BFDkevJ+OiYi7QgWw-eo1q7CFWFpTImZ+Rc1SK-bSbsMzZC0jQK0yIU6v1cdIRgKl6AEMQRokhChtKhQCK-JejdirhNAAvGwyTp6jAUKEjiCT27cIJqjbSuC7RGQ6KZAKFlGx5M5lkuWnNswsX+izZxDdsTaxBB4wIr8Xpuw6bWWRdRUoKEGTiMxdQbRLENuM0soyYx3TKQEQOXCaygBekzBxh9AYGLUf8c+mioYLVjoMyZ5RRl7L+DE8cwz5ExhNIbK5RjDlAgWduJZjzS5sSMNs54gMJH8OMUcpsOgb6gSnkM2oFzw6AqQYImR0KLHbkedNQmAxNhAteeOcOizszLMMt83A+B7KMAICwdgUA4CIGQOgLAAAmA+-z74OCcCjQqXhXjgvhl3Uo+5kRGAAD6Cv0vfRGHKBWgGFaK2wZRygiCGAK6Vppzg2ORa0LZAMEYSA8B4YqasxF4goAACzuJsDwz8eXahHkeLlAAyO1oBTUSByVypS7rQAmrNTqzVLNVW9wFbHK15q9XCT0e448LcBr7wBnc+ojQA1cqDQA51OTV7qt8C0plIFzhzKwdfbmwadWhoNcoE8eaKDRsAgDCt5yM1t2WqmhQ6aFBNpbU-VhMaWa1txbKG+jaFVppHuvdtspO2tMcTwuFNyGRJoiEW3V+rw3dOPNO4FQIq1-JAmu7FiLzGBvnSmwdzbh2tuPaO1oLCmYAx3cQnFrgvQFsPUUttp6L2ZqzVq2wzyDl3tnX2wtADtWLrDYaiNP6Z10E3QDCD67blIoPQEAdLqT1rzPSh99LDP0s1g7u0xvan1IaPRht9p6O2+snb0c04piYQ3-YRwp6zgMluXaoBq1GMZ0ag9hyjHHHK931EwhtADFR5CUEip6NgW4aFfWh8jXbeMJE1OKbSiHGMkVkyOsjY6s1buECHbh9DfZlgA8+pjtgQ1LrAyuqKptSzQZZlFWjU41NJRfee7Tl6KM7POGyEG8ROTgxc3OojRTmNWbLe4nRRhV2kn82DSckMHOUZprSLGrrTOhfWY9EwBA8QYB4zs1LJMBiueWjl-KeJ6WFf+cVumJmGNuey2IqslX3EAGZdNfooaLR9vh+1AYs8WiLDXobHk-slnZZDwwi3ZubAbRS9Hjdm0GOeb9sE1ZAp-IzP8AMBDMxpjzcmx3XpZgnHbXTVAwQW+spt5tTuUboXZ4YTDruAaKe+mCD2fO2CAYUHrc2Ns3ZIqq7u92FM-bVtCDBxnxbA54Wq1DGbdbeeZbK1xyYQtZZB0NkDpbRsNV8ZN-502XGJkx5l9T41DXHiJxoX+EP-m+P8YErHVOnVHfrV1v1UIyJdh7GzhdLHrNsdAMeMC-PnjE5An5ZzkMyvEaHcdrzjOQKfUF4rpHWv5PVpZqtT6NBvrCbC13CBChDdfdV8Ic7V0LfG9u8eu333-l0IN0b+HnrT1O-sSSsaZKKUcGpdwOlaB2vZv0xZpGigqSWoAc+d1KlEbulRyBUn9kFD8ecgaDQpSenY+p2W2L-FBImREpOue0XQCZ9MC5HPATCgCmdzm3ibABJCTL4fcSseTc2Es6BstBAGp8Tb6X+y0vrdjWtU5GvBou-coARVvLg-QAFabxPydLOILd+a0uXL4kNDVbX5YWX1SgpWQINvkii-9+gE6yn4QpOoqwroBlS-BfcTHifw+tb6VSybYj61oZuHNHPPj3n3vjvog+g1F-tUOPpYDAe6EDBlJAdUG-hziRmhtHNzpRh6JkLCJ4P5GIIFJZEiNmKAesi2oHLrpRuduSgGmQcmu5ihlQXppYLgTQPYFpBBNPicnvGsiREdEeHQYkI3vvK-F6s4PxELGZDUqWG7Gqn+KwaAGntPuJuYpzC9G9qkMtIIWoXUBoQ+pbtQTssIeGEiq5NPrBHwfnugTkqYf-sftPqlBYb3FYftvwZYC2vYffmwVSMZFUkQbIX7OYRoFUJzCUNCHcAwdoQvh0B4CanoeUNdgnuknEQkWEYor6LoSoYmiERsmErdBEZweTKaDELcJ4AkXGtdgADypEVHGooFbTzgrAHg0BHjHgAAqWQyhQwhQoETERAUYb8+QHYVAxUMQx4oAAA1O7DQqEOKp4AhNaFUboDMWtpMTMZXpEMoD8IsQQNaBkZkUYJTK0e0V0TQIQCINeP0R4IMaWIwPQCMZ2OMWLtMbMXMTsRyksYkfkm8esW8VsYEJ8XsQcQUdgTspkDkPkHWgskiicqkADA6GrFkGJtEUsLGsfD8QYb8ZwlLINlJmDuYUcd0CsFoMiYbrnHMYSpMBwRyoQcQY2M0oCUSG-EispB6ndkScyekLYY0cSUsDEJEoqu2kSRoC2ocX-GVEHNxA6OyYnqapIYLP9jIWfsMM-DMqcT8Q1OeGUEJCtL3NGksOwuCksK-KYW7LQaoasvrAAkKfMKYXWi4YkPdFSUYA6ZoeJJYQUqnArDEUUkiZCaiUSkoWcnGrCeYqEdIPCXZG0mSYGSdJ0CaQEBiYqlUZGTiTZFaojisZXqSWIOSWJtyewfgR4PSUEbiEyR5IKWySkZyeofycyPYCME2mEemQ2UovgsKWRqKZ7pgWCZKdbNKUhLKSkRIX9mWaqf1riWkDVG0VqWLjqSXqMPqYkD1BCsvDiIad0MadOS-BiswL3BaegrRFaaXBnLaZiQ6VUZ6a4QSj5O6YYTec6d6RXL6R4fiAWQmToFsr7pOv7mwIHlwLSrwCgOHjwqhFRJhNhJOnVPbjjr3sNv3riJBGLhBRhFhHAVXpROhXcGhB2MZj2PhB7pprBbpq-GhdRNBYfGknokyEtqmmtgEKmvOC6ZEEtumoxUYOmixQSktoIZxVXjajxXRTThNAJRNMJd0EtqDhAmtjJVIISKxYEEtmSPQB2BIP1BoKpepX0e8EpQEEtrOUwJxUZXaPpUYEtoqCahiCUPQHPFZcajZYwEsOZekjTlMQJQEAoFSBoIULoEpAAHygDPgzG6WuVLYvieVGDeW+X+VBXPjvhhW8U06zwaBpAxWgB+XKTxWgBjyZVGDhU07ABRVIQ+WZVxXBWgBgBJUiWF4ACkJVGVWVgVlVdV+VoAhVheCenlTVFV8eHqflyVheAAhO6j1WVc1TlaNSpINbVR-tUY1RNX1aALUUYLNVJTTtUUpFFb1dlZVVtWtZ1R-gFYtbFXtc+EFYdUNcddtWlYELtS1RdSpOVddQoMeMNSVZVYEC1UYMNQEDHkyCxORdhZRR3vBuocpCaKJuhqMBoBRVBWDagkDfufDTRH5DQCUAAFYTCMKQ1LDQ0CB7V8Ug1QVrYkUhR3mBCo1UWXwsTYDA1oQ4W8KYq40qR6JLYyyFTFRrac1yyuWunKU06QAkCyzkiaVGDC2i0dT80C0WU04OU2CwCQCcUK1K0y2y2WVyCOUACiAlCt2t6tAtS2AAchIMbSVabcbe2R5MjRsFhYzaDdOlUXjd0ATXtU2hfnDSTTRHCpbgzZBT7RipIpoS7WkG7S1eTQRF7Q7Qjb7XTTWmRP9tTYjfRPVDcfjmgX1DYIVJkiZPuOBHSZjRIJIJEj8ILJSQZMnXhbcDiIRbpJTd0BuBnT+JEPYrGslAUCqSQbiGgRUqXl3Y2NFgOJUhnt7TTXuvoRoNyUYMnU7aKUPe2CPcnejVjTjZzNPfbQHWlEHfwpoYbYEGOVIcqaft3WRfuRIR4JkBEZyCfTiB-B3ROd3QoPHW0l8LZt-JdtDGiTYY-h3KMtFobE5kFvLg8rLc0lsq-KwEnSwB4E5G7I5PYG9XoK1DQc-foE1iRBgC3WxHlr+KAP+NGobFAxRDQLAwkGKQqZfRjZSLfX-j+EAA')">function eval_return_statement(stmt, env) {
+    return make_return_value(
+               evaluate(return_expression(stmt),
+                        env));
+}
+</pre></div></div>
+	
+      </p></div>
+    </span></td></tr></table>
+
+  
+      <div class='permalink'>
+        <a name='h12' class='permalink'></a><h2>
+    
+    Assignments and
+    
+      <span style="color:green">definitions</span>
+      <span style="color:blue">declarations</span>
+    
+  </h2></div>
+
+  <div class='permalink'>
+<a name='p18' class='permalink'></a><p>
+    The following
+    <span style="color:green">procedure</span>
+    <span style="color:blue">function</span>
+    
+    handles assignments to variables.  It calls
+    
+      <span style="color:green"><kbd>eval</kbd></span>
+      <span style="color:blue"><kbd>evaluate</kbd></span>
+    
+    to find the value to be assigned and transmits the variable
+    and the resulting value to 
+    
+      <span style="color:green"><kbd>set-variable-value!</kbd></span>
+      <span style="color:blue"><kbd>assign_symbol_to_value</kbd>
+      </span>
+    
+    to be installed  in the designated environment.
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_76_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(define (eval-assignment exp env)
+  (set-variable-value! (assignment-variable exp)
+                       (eval (assignment-value exp) env)
+                       env)
+  \'ok)</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_76_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEZMChslAGYCuAdgMYAuAlgPYkDOhATjQLYQzxKqY7bHlqdUAFMAbgEMANkQkURACnoVWFADSiSYgJSgA3tlBGmIikSYlQVegH16IqQRvjps6iQDmSlRW2GjAYEA-EbKqv6BgQBcVrYkEqyKYb4RkUYhUjQ0ANZEAA52AJ6sAEY0UjaSMknFZRU0TvGJ3qraGiJafmnRsTZkdMoSJBQ2ACYiZFISTHK0JC0p3QEhLhX9DBRDI+OT07N0C+2dqWkx1pXTVBIlUiJjE1MzQvPJXUugK1UXTFc3dzuPfYvHxHHQnSJnWwSej0KgeEiJYYLN5LT7SGzQ2HwxEUQ6aMHvUCQvp0UZUZ7okQADzyJhhc2R4OCoi+6zJFIq1NpInpB2SoJR3WJU1KowkzhpdNhfJ8grSIVYEmydwElAZIpKYpseT2iXkTHoyLUTMJ7w1WrKo0KRpNpu6HQJ72J9gAjkQOmQkrLbR8WejXe7yEkRG6PXdBvIcYbXgKfcSbjQyNlGYS0RUE0m8Q65RDeiYzBY7JtIx1ca8fWmbPnzCQi3IRDis8dCcSJHk8lIqGQgSn3iE2x3ras3IpVc8JdzecDWgLjXa0p3lDYGhdqobph5o7KBTmeiImCwmHiAEQAVRI2RINAA7pZ6IVhhIqaAALQvv0yevH7QAbmwAF9cDHOZQAHKRrQEDQN3oXQDACKgCFABRzlpKhWHJKgxBVUg1QOARtFg8FqwsUD23A7UfnQ6gsJsYC8NIKCmE3X8In-UQpHsKxEOQ2x+lYPIaFIUZaJw54FHwwi0nWZRQDpIgpAoUAAF4PxHcTRLmGxLQg0g2h9ecjGpeQSGEh0qBYBFSwUfSDMCOjax1GY9X3Q18LnWz52g9yPNNeznC0cy6EbCSWLSYjLHOcLV3dBQ5IU3d5Vk0wa2iu51mM3E4sWO0YiEkQCCoEgRFGP8AjYhxOLgyJ90PdSSA0M8LyvW9CA04QKEKPIRFfd8wMKb9SqMQDAP4NrLEXEYVyqd1DS5egBX0E5wtAK8MSY2aaRg20QhIeSpFtGIdXMhRh3rcTzKXDcTs2tp8T0jyJuXJxpp5WKeRGaDrryGCdz-Eb7I-EkTIwuhKUlHlpWndQ7sWwJlvOCgmBi075AUNkJyYCjiqNO6EuWVSzvRrlMeknHs30mIUcUInJQxBSyc6P6gLGwGAzDBZ5phqqjAQpDzgbPIOrsENA09DmCNh7plrygqipK1Jyo47reZ4mwpiXCMGys5IYMk01lqp86DRGTXGx1tps0Gob2Mqk1pMUgrjaLVRUuU0AbMNx2NeLLWkXNtRLZNFXIuSwsXqN72XZeiXufeZavZNnxUqtyJFdtu0Da+Nmg2sjy6UT+so3FgPGZNQDAmG5nBBAx6V1ITE4TlhQmh5PXjFDiK4j25uElbk0dr2k1DokY7jwAKnr+l4WKsfjw0WunEnrEm82KgpB7xJdd-ABIQIAKr3C727WtBO2B49meLdWklnnuPObOxdeNvInt0Adbdh-wx9ovXhTuGO96ALIWn9xY2QHlIfaOVSJdRMkoY+y4iBn12E8OYrkLoFxLH7HwutvI+TfvA0+9xkFAkNIqZUwtQw5xsngyI+c6yYIoFfRhBECIpzTt1WO-8CydyBoMYYRDARiXLHaDI1hcT2y2AIi+ml7ylHKMiPGARiSSB+NcW4UiUEylaNQ30E0FAqN+OogE0i6BFDkevJ+OiYi7QgWw-eo1q7CFWFpTImZ+Rc1SK-bSbsMzZC0jQK0yIU6v1cdIRgKl6AEMQRokhChtKhQCK-JejdirhNAAvGwyTp6jAUKEjiCT27cIJqjbSuC7RGQ6KZAKFlGx5M5lkuWnNswsX+izZxUVTbaxBB4rhNZQBkLuFFcOOjimKCisTCGDIYwjPeM0pmDjD6AwMWo-459NFQwWrHBu8IzF1FSvoy4KyYnjlkXUG0SxDbLL+MczS4cYx3TKQEQObEjALOeIDCR-DjHrKbDoG+oEp61lOeUfZnykGCJkbUeR0yLnTUJgMTYXy1lAn2fc7MjzDKlxGvgeyjACAsHYFAOAiBkDoCwAAJgPu8++DgnAo0Kl4V4-z4Zd1KPuZERgAA+nL9L30RgyjloBuW8tsGUcoIghgcuFaac4NiLGynmQDBGEgPAeGKmrMReIKAAAs7ibA8M-Fl2oR5HiZQAMjNaAXVEgclMqUva0AOq9UqsVSzWVvcOWxyNfqtVwk9HuOPC3Aa+8AbAvqI0D1TKvUAOtTk1e8rWgtKpSBc42zLJYOvtzb1KrfUauUCeNNOJg2AQBoW0suzoWyhvstWNCh40KFrfWp+rCQ0szLfwu5Vas0xolXGke68m2yhba0xxPCwU3K0b4atADlWqvVf67px5x3fKBMWt5IFl3IpOVChNU7u1FMbf2htva61HubUmgGm7iHjk7ZmiINaT31sHYmi9brbBXKMVuqZXb70ztsD6+dmqA0ftWdeuYa6AYgYnUCndnrf0HsfUew9a8FHDvXcIKDK6b2uC9HegID6bWnpQ8+3waH0M8PNOKCZU44P4b-TYADfqgOLsoxjSZdAIMs1Y45Xu+omFt2WoqPISgd1PRsC3DQyHd0sKZgDVj2laOFL6VJoj0myNKtsB07+XS8NKZIrO3NC7VANS04XUsnHR1JW4WxmjUb4PKcQyhp+rrLPnDZCDeInJwa2Z-XRopBnAP5vcTMpdpIPNg0nJDCziyaa0ixra3zenxpiKrPlPEGBX2WdiyTAYimrN9MeiYAgeJyWZZi6SDGdMyyJfyyRQraX3EAGYk3kd6CAuzfm+kBaY0Fxdn9ovvIGRQ0WuHmHTqKXo48-WNDm1kyzT+9DfaMM9QEezJEVPOdbZZhOi2zbYIEz2wjs2tuLLoZ04YTCYLjb6SRmCc3XO2CAYUYb7NzbXf013CB4t7uLPOOrDBS3xbvZ4XK1T4sWsaZcYmZMHXOsfYYzmwL1XjOgGPL4gbIEhu+Ly8tSb6OZsKpO+83x-jAmw6S1axzamXO-ahGRLsPZyfZrnT15H0NjxgQZ88DHwg-LUchjjw7fanNDp++8z6TOhdg5IzJonIFVqfRoN9A7-nPvryV3duXvP0FrS8BrlXDnCP67FyBOhivlfA8dUe439icVjTxQSjgxLuBkrQI15NwgEZI0UFSQ1ADnz2pUojd0NPBtKmwqOhQPHnIGg0KUnpcPkv5tC-xQSJkRKjrnjM6PpgXJx4CYUAUJvPe8TYAJISGfD7iT96rhHLO824gIA1Pi5f0-2R55YPyOe+PV+ZQA+rxWm+gAy8XzvY1ScQRrwVlLRXxIaFK6P1qo7-JiECumxvU+6sz7S0P5rofMfh9S9Z8O6VSyb6T7iY8QycNz1AKf4YZXqWaY7vs6Offa+MYbwc6oJmX8vQ77VrWC9EDBlN-u6OfpToRvWtHBDm0uQJkLCJ4Cvmvo2NmO-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-+MGobD-RRDQP-QkBoCvWvRvbYQvb+EAA')">function eval_assignment(stmt, env) {
+    const value = assign_symbol_value(assignment_symbol(stmt),
+        evaluate(assignment_value(stmt), env),
+        env);
+    return value;
+}
+</pre></div></div></td></tr></table>
+    
+  </p></div>
+
+  <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td><span style="color:green">
+      <div class='permalink'>
+<a name='p19' class='permalink'></a><p>
+	Definitions of variables are handled in a similar manner.<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:green">[4]</a>
+	<div class='snippet' id='javascript_76_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(define (eval-definition exp env)
+  (define-variable! (definition-variable exp)
+                    (eval (definition-value exp) env)
+                    env)
+  \'ok)</pre></div></div>
+      </p></div>
+
+      <div class='permalink'>
+<a name='p20' class='permalink'></a><p>
+	We have chosen here to return the symbol <kbd>ok</kbd>
+	as the value of an assignment or a definition.<a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:green">[5]</a>
+	
+      </p></div>
+    </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+      <div class='permalink'>
+<a name='p21' class='permalink'></a><p>
+	Declarations of constants and variables are treated like assignments;
+	they replace the current value of the name in the environment (which
+	must be <kbd>"*unassigned*"</kbd>) by the
+	result of evaluating the value statement.
+	Exercise&nbsp;<REF NAME="ex:mutable"><a class="superscript" id="4.1.1-ex-link-4.16" href="./4.1.3.html#ex_4.16">4.16</a></REF> explains how we
+	distinguish variables from constants and how we prevent
+	assignment to constants.
+	<div class='snippet' id='javascript_76_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEZMChslAGYCuAdgMYAuAlgPYkDOhATjQLYQzxKqY7bHlqdUAFMAbgEMANkQkURACnoVWFADSiSYgJSgA3tlBGmIikSYlQVegH16IqQRvjps6iQDmSlRW2GjAYEA-EbKqv6BgQBcVrYkEqyKYb4RkUYhUjQ0ANZEAA52AJ6sAEY0UjaSMknFZRU0TvGJ3qraGiJafmnRsTZkdMoSJBQ2ACYiZFISTHK0JC0p3QEhLhX9DBRDI+OT07N0C+2dqWkx1pXTVBIlUiJjE1MzQvPJXUugK1UXTFc3dzuPfYvHxHHQnSJnWwSej0KgeEiJYYLN5LT7SGzQ2HwxEUQ6aMHvUCQvp0UZUZ7okQADzyJhhc2R4OCoi+6zJFIq1NpInpB2SoJR3WJU1KowkzhpdNhfJ8grSIVYEmydwElAZIpKYpseT2iXkTHoyLUTMJ7w1WrKo0KRpNpu6HQJ72J9gAjkQOmQkrLbR8WejXe7yEkRG6PXdBvIcYbXgKfcSbjQyNlGYS0RUE0m8Q65RDeiYzBY7JtIx1ca8fWmbPnzCQi3IRDis8dCcSJHk8lIqGQgSn3iE2x3ras3IpVc8JdzecDWgLjXa0p3lDYGhdqobph5o7KBTmeiImCwmHiAEQAVRI2RINAA7pZ6IVhhIqaAALQvv0yevH7QAbmwAF9cDHOZQAHKRrQEDQN3oXQDACKgCFABRzlpKhWHJKgxBVUg1QOARtFg8FqwsUD23A7UfnQ6gsJsYC8NIKCmE3X8In-UQpHsKxEOQ2x+lYPIaFIUZaJw54FHwwi0nWZRQDpIgpAoUAAF4PxHcTRLmGxLQg0g2h9ecjGpeQSGEh0qBYBFSwUfSDMCOjax1GY9X3Q18LnWz52g9yPNNeznC0cy6EbCSWLSYjLHOcLV3dBQ5IU3d5Vk0wa2iu51mM3E4sWO0YiEkQCCoEgRFGP8AjYhxOLgyJ90PdSSA0M8LyvW9CA04QKEKPIRFfd8wMKb9SqMQDAP4NrLEXEYVyqd1DS5egBX0E5wtAK8MSY2aaRg20QhIeSpFtGIdXMhRh3rcTzKXDcTs2tp8T0jyJuXJxpp5WKeRGaDrryGCdz-Eb7I-EkTIwuhKUlHlpWndQ7sWwJlvOCgmBi075AUNkJyYCjiqNO6EuWVSzvRrlMeknHs30mIUcUInJQxBSyc6P6gLGwGAzDBZ5phqqjAQpDzgbPIOrsENA09DmCNh7plrygqipK1Jyo47reZ4mwpiXCMGys5IYMk01lqp86DRGTXGx1tps0Gob2Mqk1pMUgrjaLVRUuU0AbMNx2NeLLWkXNtRLZNFXIuSwsXqN72XZeiXufeZavZNnxUqtyJFdtu0Da+Nmg2sjy6UT+so3FgPGZNQDAmG5nBBAx6V1ITE4TlhQmh5PXjFDiK4j25uElbk0dr2k1DokY7jwAKnr+l4WKsfjw0WunEnrEm82KgpB7xJdd-ABIQIAKr3C727WtBO2B49meLdWklnnuPObOxdeNvInt0Adbdh-wx9ovXhTuGO96ALIWn9xY2QHlIfaOVSJdRMkoY+y4iBn12E8OYrkLoFxLH7HwutvI+TfvA0+9xkFAkNIqZUwtQw5xsngyI+c6yYIoFfRhBECIpzTt1WO-8CydyBoMYYRDARiXLHaDI1hcT2y2AIi+ml7ylHKMiPGARiSSB+NcW4UiUEylaNQ30E0FAqN+OogE0i6BFDkevJ+OiYi7QgWw-eo1q7CFWFpTImZ+Rc1SK-bSbsMzZC0jQK0yIU6v1cdIRgKl6AEMQRokhChtKhQCK-JejdirhNAAvGwyTp6jAUKEjiCT27cIJqjbSuC7RGQ6KZAKFlGx5M5lkuWnNswsX+izZxUVTbaxBB4rhNZQBkLuFFcOOjimKCisTCGDIYwjPeM0pmDjD6AwbtiLpqgFqx1fi9N2yzayyLqKlBQOycRmLqDaJYhsjmlgOTGO6ZSAiB16SRF68z8D2UYAQFg7AoBwEQMgdAWAABMB9ni9HsI4Zw01ZieGRDfJKRTzi7VKPuGFoAAA+qL9L30RoVLwrwjDosxbYMo5QRBDBhQS00CLu6-3sQDBGEgPAeGKmrMReIKAAAs7ibA8M-eGtgjpHjxQAMiFaATlEgcl4qUtK0AHKuUMvmXSuIvcYWxz5TYblTLhJ6PcceFuA194Az2eUJ6NgW6qtSMtcVOTV4WNlC04FIFziXKwdfbm6rNXMp1d048LqKAGsAgDP1Jz5F4vdQA61ChbUKEjdGp+rDDUs2DeHMNEQrWkptSPdecb7UOoWSC84Ej+HGM0VDNuHqGVapZcoE8RakGCLmAG-NIE60xPHMau1bq00RozVGrNMbe05taCwpmANW0lqBNc2UN900Sr7WvednbfAJsDSzc4Bi1H-HPqWi1AQK2Mq9ay3VG6-htsbQ6gGJ6jHbsnR23dhS+mxv7U+hd8aL0syvVu4h44U3TvDUUl92b+3xsVWu2w5pxQTKnPeuFfT6UHu1Uen1EGMaTLoE2gGKHHK931Ew8tADFR5CULUE1K4W4aEAwo99jjxoJE1OKbSMHZ2ZoXUO5dealVVg7vQ32ZY-3dvhbYT1iGa26o6d-UsGGWbjPBtB1Ne6e1zrYyux1whC2khBvETksnIZMYAfBqt3q1nuw8seNkmmwaTkhlJmjoAaa0ixpK-jCmimPRMAQPEGBqOLPsyTAYenXNiK4x59xALvMgt83TPjXaXN9Lc-lPEABmDjYGKGiy9DFh9JEDOHtEz6z+NnFkDLS+zc2M6AF6OPAVjQ5tR0s0-jxn+f6AgCcfYO4D9q6u2YTo11ZzDysAd7bVxNtm6GdOGEwmCA2+lsZgl1xZ-N+LAJFqV7B+HBNmupWt+bBbwPQgwbx8W03stdwgYu8WKXbPnF8TB2DJ2NWVty9F6Gx5fGFZBcVm78msvjVZa91x2Q55v1lDtkCvj-GBO+z9sV7XX2ddpalsCXYexQ-3YZpDxnfVkWR88d7IE-JQd06jxTLGl0qaDetALbWlP9uU+Tlmq1Po0G+utuDp317M7myNxZPWrqc9ZyRSN-PQfCDoUzlnx3LDRuF-Y15Y13mfI4D87g-y0CJdUzwxGMUqS8oAc+aVKktciFA7Z4r9kFDYecgaDQpSemxZIpVviAkhIiRo3PGZlvTAuRtwEwoAoRc8Kd4JEyrvD7iV1xt4T1bcQEAakHl39k8fCD8p73D4fYXLXix52PoAvMB9ajRiHEEI9xaC+58SGgwv54J9UoKVkCAl4d2XhLOfksm6K0qQZ3Hw7pVLI337NbjxDNcCIIHvfhjhadbYYf1R9Ej-770KPeiXoNRn+6JPlg19pToBlOf1QF+UejpdxZHpMiwk8P5MQgVLJImzBngB0bA6ru6+g2iTlFB37VSTk6pdn8n-IGfncCUBBO-usnvI8pYAKuJKAXdEzK-HKs4EtoUJftfjiG7DYlIH+M2sIGbu-sRuYpzC9FNl-kUlAR2oQSPlzn-iCh8r3CGhxNAb3LBOAfbpYJGrQYkJPsnu-qlK5O-swS1hAbKv2hwSIMfiChUiHmZDUtrCRhxBoFUJzCUNCHcJ-pahVh0B4ByvgXUFNgbukpodoYoYor6FAbgSquQQoWErdMofYJfiYTELcJ4NoeQboAADwGHOHsp75bTzgrAHg0BHjHgAAqWQ-SQwhQoETERAUYb8+QHYVAxUMQx4oAAA1CZjQsDj8J4AhNaK4WkaAEDikekTMpEMoNkR4LkT4QRNQpTAEUEaETQIQCINeFER4DEaWIwPQPEZ2EkYUQUaUYEOUTilUfkekUUQMZkVkSMQQNaMYeITXFkLkAUB2tcnIesqkADA6GrFkERmoUsEasfDoeUBQfkrCksOqhgccfkoMb6NsZkMzrnFMZoJMDQOfh4CgTIbfp0CYUsDEB2spDKpGq4bcekDDnOsYaCUSPgmSnGnIT9MIQuvMX-GVEHNxA6ICYbpyogYLMgdIXXhPucfaPUdcQ1OeGUEJCtL3AaksOwkSVJAMA7O-m7D1qIT-joCiWFAApEmSqIfQXwUwXcngnyUQYwZwQUqnArOoUUvcbseyQscIDsvQWseYlYVIBsXZG0loDsY8fsd0IcWSpYaAMYfSbQvpuztcb4bZCsNqQ8URqCafm8Tip8QSbiM0jMv8XIZieCZKvCb8YlPYCMJGooWqf6bmDyfMHCQQbdNGsiWXBkWkCrBifoQgUAnibXjfr4KaYEDVIEaSYUeScHqMFSYkD1KBFPJmTSd0HSZwt0K-KISya-myQ8vrNyUcXyeQWKWIUKT5CKZQV2QmrSVKUIbKbqb-rgHLjRgrmwErlwH8rwCgBrr0KhFRJhNhDRnVALpro9iJjHgxIUSuRhFhBvqAIedRHcGhB2Lxj2PhJLj6edhJPMq-GeWuaHpfG7HokyJVtakDgENavOPdAuH9rar+UYLagBUKZVgKqBaeSPEwBBV+X9hNDBRNAhd0JVlShAkDphVIISIBZEJVmSPQB2BIP1BoERSRZEe8PhYEJVrmUwKBfRXaDRQEJVoqByhiCUPQHPOxeypxYwEsCxUYJVqkTBQEAoFSBoIULoEpAAHygDPjpFUVCXpJ-YvhiVGASVSUyXyXPjvjKWQV-azwaBpBaWgDSXKS6WgBjzmVGAqWVbAAaVISSXmU6UKWgBgAGWIWD4ACkTlZlFlcl7lPltloA9lf2BuYlAVbl+uMq0lhlg+AAhNKlFS5YFVZclSpPFd5biMeG4f5WlTFaAB4UYNlehX9m4UpBpdFZZe5ZVaVeFYPrJQVdpbVc+PJQ1QlblbJVVSZYEDVUFe1SpK5V1QoMeIlU5e5YEEFUYIlQEDrkyCxM+ZREeeuYfPycpCaIRgOhKhoC+TRG8ktYyaeSteeW+ZpDQCUAAFYTCMKbVLDbUCC1VQWnVrlA6UYhQ9mBD7VrWXwsTYDLVoSrW8KbATYfmsqVYyyFTFRA5Q1ywqXPG0V-aQAkCyzkhkVGAo1o0dQI2I3CV-a8U2CwCQCgWE3E24141sVyB8UACiMFhNNNFNiNlWAAchICzU5WzSzWGXgkdRsCdUDWda2uQfdd0I9bVewbdD9SDVsFzoDauTRK2kQaLWkOLUFR9QRHta9YrYybLf9UGmRMgdLebpBG0dHgvn1DYIVJkiZPuOBM6VdRIJIJEj8ILE8QZNLZebcDiDebpF9d0BuObT+JEAjrZoGfkC6ZmQoAvpIVUlfl8biCMgOJUhbtrb9TIvCRoFCQLQrdvhsJIq4f7ZEMnbAsbWNMuNdbdZzNndLUrZQUzYEKmUgZHTiHmvAdiR4JkMoZyBmWgREslAUPiVHfrW0l8J+melotDHqUYEqaseHOPROu2nIWcvaJCqjAvTej+iPgzDoD2U-i1lsayLrcWpvVMt0tPeWcvMqT3sffWiYrssvdMucmvdTLfRPbWL+jOLciaE-rgK-KwEbSwB4E5G7I5PYGNXoAYYpPrrnsHa-JESpACsHYpeZcHf+AaobAAxRDQMAwkBoAgZ3ZdZSL3X3j+EAA')">function eval_variable_declaration(stmt, env) {
+    assign_symbol_value(variable_declaration_symbol(stmt),
+        evaluate(variable_declaration_value(stmt), env),
+        env);
+}   
+function eval_constant_declaration(stmt, env) {
+    assign_symbol_value(constant_declaration_symbol(stmt),
+        evaluate(constant_declaration_value(stmt), env),
+        env);
+}
+</pre></div></div>
+	
+      </p></div>
+      <div class='permalink'>
+<a name='p22' class='permalink'></a><p>
+	Note that the returned value of constant and variable declaration is the
+	value <kbd>undefined</kbd>, as prescribed by
+	the ECMAScript standard (<CITATION>Ecma 1997</CITATION>).
+	
+      </p></div>
+    </span></td></tr></table>
+  
+
+  <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td><span style="color:green">
+      
+    <div class="permalink">
+    <a name="ex_4.1" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.1">Exercise 4.1 </a></b> 
+  
+	
+	
+	Notice that we cannot tell whether the metacircular evaluator
+	evaluates operands from left to right or from right to left.  Its
+	evaluation order is inherited from the underlying Lisp:	If the
+	arguments to <kbd>cons</kbd> in
+	<kbd>list-of-values</kbd> are evaluated from left to
+	right, then <kbd>list-of-values</kbd>	will evaluate
+	operands from left to right; and if the arguments to
+	<kbd>cons</kbd> are evaluated from right to left, then
+	<kbd>list-of-values</kbd> will evaluate operands
+	from right to left.
+	<p></p>
+	Write a version of <kbd>list-of-values</kbd> that
+	evaluates <span style="color:green">operands</span> from left to right regardless of the
+	order of evaluation in the underlying Lisp. Also write a version of
+	<kbd>list-of-values</kbd> that evaluates
+	operands from right to left.
+	
+      
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_76_1_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_76_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+    </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+      
+    <div class="permalink">
+    <a name="ex_4.2" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.2">Exercise 4.2 </a></b> 
+  
+	
+	
+	Notice that we cannot tell whether the metacircular evaluator
+	evaluates arguments from left to right or from right to left.  Its
+	evaluation order is inherited from the function
+	<kbd>map</kbd> of the underlying JavaScript
+	environment: If the arguments to
+	<kbd>pair</kbd> in
+	<kbd>map</kbd> are evaluated from left to
+	right, then <kbd>evaluate</kbd> will evaluate
+	arguments from left to right; and if the arguments to
+	<kbd>pair</kbd> are evaluated from right to
+	left, then <kbd>evaluate</kbd> will evaluate
+	arguments from right to left.
+	<p></p>
+	Write a version of <kbd>evaluate</kbd>
+	that evaluates arguments from left to right regardless of the order of
+	evaluation in the underlying JavaScript. Also write a version of
+	<kbd>evaluate</kbd> that evaluates
+	arguments from right to left.
+	
+      
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_76_2_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_76_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+    </span></td></tr></table>
+
+  
+  
+  
+
+  
+  
+  
+<hr>
+
+    <div class='footnote'><span style="color:blue">
+      <a class='footnote-number' id='footnote-1' href='#footnote-link-1' style="color:blue">[1] </a>
+    <FOOTNOTE>
+    We see no
+    need to distinguish between expressions and statements in our evaluator. For
+    example, we do not need to differentiate between expressions and expression
+    statements; we represent them identically and consequently they are handled
+    in the same way by the <kbd>evaluate</kbd>
+    function. JavaScript is syntactically restricted such that statements cannot
+    appear inside of expressions except in function bodies, but our evaluator is
+    going to ignore such restrictions. For example, JavaScript does not allow
+    nesting of return statements inside of expressions, but our evaluator would
+    happily accept programs in which such nesting occurs, provided that we
+    represent them appropriately, according to
+    section&nbsp;<REF NAME="sec:representing-expressions"><a class="superscript" id="4.1.1-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>.
+    </FOOTNOTE></span></div>
+    
+    
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' >[2] </a>
+    <FOOTNOTE>
+    We could have simplified the 
+    
+      <span style="color:green"><kbd>application?</kbd></span>
+      <span style="color:blue">
+	<kbd>is_application</kbd> function
+      </span>
+    
+    clause in
+    
+      <span style="color:green"><kbd>eval</kbd></span>
+      <span style="color:blue"><kbd>evaluate</kbd></span>
+    
+    by using
+    <kbd>map</kbd> (and stipulating that
+    
+      <span style="color:green"><kbd>operands</kbd></span>
+      <span style="color:blue"><kbd>args</kbd></span>
+    
+    returns a list) rather than writing
+    an explicit
+    
+      <span style="color:green"><kbd>list-of-values</kbd> procedure.</span>
+      <span style="color:blue">
+	<kbd>list_of_values</kbd>
+      function.
+      </span>
+    
+    We chose not to use <kbd>map</kbd> here to emphasize the
+    fact that the
+    
+    
+    evaluator can be implemented without any use of higher-order
+    
+      <span style="color:green">procedures</span>
+      <span style="color:blue">functions</span>
+    
+    (and thus could be written in a language that doesn't
+    have higher-order
+    
+      <span style="color:green">procedures),</span>
+      <span style="color:blue">functions),</span>
+    
+    even though the language that it supports
+    will include higher-order
+    
+      <span style="color:green">procedures.</span>
+      <span style="color:blue">functions.</span>
+    
+    
+    </FOOTNOTE></div>
+    
+    
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' >[3] </a>
+    <FOOTNOTE>
+    In this case, the language being implemented and the
+    implementation language are the same.  Contemplation of the meaning of
+    
+    <span style="color:green"><kbd>true?</kbd></span>
+    <span style="color:blue"><kbd>is_true</kbd></span>
+    
+    here yields expansion of consciousness without the abuse of
+    substance.
+    </FOOTNOTE></div>
+    
+    
+    <div class='footnote'><span style="color:green">
+      <a class='footnote-number' id='footnote-4' href='#footnote-link-4' style="color:green">[4] </a>
+    <FOOTNOTE>
+    This
+	implementation of <kbd>define</kbd> ignores a subtle
+	issue in the handling of internal definitions, although it works
+	correctly in most cases.  We will see what the problem is and how to
+	solve it in
+	section&nbsp;<REF NAME="sec:internal-definitions"><a class="superscript" id="4.1.1-sec-link-4.1.6" href="./4.1.6.html">4.1.6</a></REF>.
+    </FOOTNOTE></span></div>
+    
+    
+    <div class='footnote'><span style="color:green">
+      <a class='footnote-number' id='footnote-5' href='#footnote-link-5' style="color:green">[5] </a>
+    <FOOTNOTE>
+    As we said when
+	we introduced <kbd>define</kbd> and 
+        <kbd>set!</kbd>, these values
+        are implementation-dependent in Scheme—that is, the implementor
+        can choose what value to return.
+    </FOOTNOTE></span></div>
+    
+    
+</SUBSECTION></div></div>
+
+    <div class='nav'>
+  
+        <a class='btn btn-secondary btn-nav' href='./4.1.html'>&lt; Previous</a>
+    
+    <div style='flex-grow: 1;'></div>
+  
+        <a class='btn btn-secondary btn-nav' id='78' href='./4.1.2.html'>Next &gt;</a>
+      </div>
+    <div class='chapter_sign'>
+      4.1.1  The Core of the Evaluator
+    </div>
+    <script> var chapter_id = 77; </script>
+    <script> var chapter_path = "chapters/4.1.1.html"; </script>
+    <div class='next-page'></div>
+    </div>
+    </div> <!-- /.container -->
+    </body></html>

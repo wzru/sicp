@@ -1,0 +1,2494 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="description" content="4.1.2  Representing Statements and Expressions" />
+    <title>
+      4.1.2  Representing Statements and Expressions
+    </title>
+    
+  <meta name="csrf-param" content="authenticity_token" />
+  <meta name="csrf-token" content="EMTEijVc2kiiKUH4nYH0lQG3pLPfMowQ/Stg//t6DCo0e5pWMQwamnTvIdmVZqY/MqSx2IYYE+2bpNV6UNSMwQ==" />
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    -->
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata&display?swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans|Droid+Serif" rel="stylesheet">
+    <link rel="stylesheet" media="all" href="../assets/stylesheet.css" />
+
+   <link rel="shortcut icon" type="image/x-icon" href="../assets/favicon.ico" />
+
+<!--    <link rel="shortcut icon" type="image/png" href="../images/lambda.png" /> -->
+
+    <!-- for support of progressive web app, see github README, DISABLED!
+    <link rel="manifest" href="../static/manifest.json">
+    -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" 
+		     	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	          crossorigin="anonymous">
+    </script> 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script> -->
+    <script type="text/javascript" 
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-AMS-MML_HTMLorMML-full">
+    </script>
+   <!--  <script type="text/javascript" 
+      src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full">
+    </script> -->
+  
+    <script src="../assets/application.js"></script>
+  
+    <!-- Rendering inline LaTeX -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true,
+          jax: ["input/TeX","output/HTML-CSS"]
+        }
+      });
+    </script>
+    <!--<script src="/mathjax/MathJax.js?config=TeX-AMS_HTML-full.js" type="text/javascript"></script>-->
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js" type="text/javascript"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    
+    <!-- support for progressive web app, see README, DISABLED
+    <script>
+      if ('serviceWorker' in navigator && !navigator.serviceWorker.controller) {
+          navigator.serviceWorker.register("../sw.js").then(function(reg) {
+              console.log("Service worker has been registered for scope: " + reg.scope);
+          });
+      }
+    </script>
+    -->
+
+     <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top justify-content-between">
+       <button id="btn" class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#nav-sidebar" aria-controls="nav-sidebar" aria-expanded="false" aria-label="Toggle navigation" title="navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <span class="navbar-brand-short"><a title="Go back to front page" href="../index.html" class="gray">SICP &mdash; JS</a></span>
+       <span class="navbar-brand-long" ><a title="Go back to front page" href="../index.html" class="gray">Structure and Interpretation of Computer Programs &mdash; JavaScript Adaptation</a></span>
+
+       <!-- edit the search engine by visiting: 
+	    https://cse.google.com/cse/setup/basic?cx=015760785273492757659:nc_tznrzlsg 
+	       -->
+       <form class="form-inline ml-auto" id="xxx">
+         <div id="search-box">
+	         <script>
+	           (function() {
+	               var cx = 015760785273492757659:nc_tznrzlsg
+	               var gcse = document.createElement("script");
+	               gcse.type = "text/javascript";
+	               gcse.async = true;
+	               gcse.src = "https://cse.google.com/cse.js?cx=" + cx;
+	               var s = document.getElementsByTagName("script")[0];
+	               s.parentNode.insertBefore(gcse, s);
+	           })();
+	           window.onload = function()
+	           { 
+	               var searchBox =  document.getElementById("gsc-i-id1");
+	               searchBox.placeholder="search web edition";
+	               searchBox.title="search web edition"; 
+	           }
+	         </script>
+	         <gcse:search></gcse:search>
+         </div>
+       </form>
+       <span class="navbar-brand-short">
+         &nbsp;
+         &nbsp;
+         <a href="https://source-academy.github.io/source/" title="Go to the Source language(s) definition(s)" class="gray">S</a>
+       </span>
+       <span class="navbar-brand-long">
+         &nbsp;
+         &nbsp;
+         <a href="https://source-academy.github.io/source/" title="Go to the Source language(s) definition(s)" class="gray">Source</a>
+       </span>
+     </nav>
+     
+     <div class="container scroll">
+
+            
+        <div class="collapse" id="nav-sidebar" role="tablist" aria-multiselectable="true">
+        <!-- insert a dummy entry, to give one extra line of space -->
+        <a class="navbar-brand" href="index.html">&nbsp;</a>
+    
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-1">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-1" aria-expanded="false" aria-controls="sidebar-collapse-1">
+                <a href="./foreword.html">  Foreword</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-2">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-2" aria-expanded="false" aria-controls="sidebar-collapse-2">
+                <a href="./prefaces.html">  Prefaces</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-3">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-3" aria-expanded="false" aria-controls="sidebar-collapse-3">
+                <a href="./acknowledgements.html">  Acknowledgments from Second Edition of SICP, 1996</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-4">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-4" aria-expanded="true" aria-controls="sidebar-collapse-4">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-4" aria-expanded="true" aria-controls="sidebar-collapse-4">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./1.html">1  Building Abstractions with Functions</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-4" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-5">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-5" aria-expanded="true" aria-controls="sidebar-collapse-5">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-5" aria-expanded="true" aria-controls="sidebar-collapse-5">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./1.1.html">1.1  The Elements of Programming</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-5" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-6">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-6" aria-expanded="false" aria-controls="sidebar-collapse-6">
+                <a href="./1.1.1.html"> 1.1.1  Expressions</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-7">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-7" aria-expanded="false" aria-controls="sidebar-collapse-7">
+                <a href="./1.1.2.html"> 1.1.2  Naming and the Environment</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-8">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-8" aria-expanded="false" aria-controls="sidebar-collapse-8">
+                <a href="./1.1.3.html"> 1.1.3  Evaluating Operator Combinations</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-9">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-9" aria-expanded="false" aria-controls="sidebar-collapse-9">
+                <a href="./1.1.4.html"> 1.1.4  Compound Functions</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-10">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-10" aria-expanded="false" aria-controls="sidebar-collapse-10">
+                <a href="./1.1.5.html"> 1.1.5  The Substitution Model for Function Application</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-11">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-11" aria-expanded="false" aria-controls="sidebar-collapse-11">
+                <a href="./1.1.6.html"> 1.1.6  Conditional Expressions and Predicates</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-12">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-12" aria-expanded="false" aria-controls="sidebar-collapse-12">
+                <a href="./1.1.7.html"> 1.1.7  Example: Square Roots by Newton s Method</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-13">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-13" aria-expanded="false" aria-controls="sidebar-collapse-13">
+                <a href="./1.1.8.html"> 1.1.8  Functions as Black-Box Abstractions</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-14">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-14" aria-expanded="true" aria-controls="sidebar-collapse-14">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-14" aria-expanded="true" aria-controls="sidebar-collapse-14">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./1.2.html">1.2  Functions and the Processes They Generate</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-14" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-15">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-15" aria-expanded="false" aria-controls="sidebar-collapse-15">
+                <a href="./1.2.1.html"> 1.2.1  Linear Recursion and Iteration</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-16">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-16" aria-expanded="false" aria-controls="sidebar-collapse-16">
+                <a href="./1.2.2.html"> 1.2.2  Tree Recursion</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-17">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-17" aria-expanded="false" aria-controls="sidebar-collapse-17">
+                <a href="./1.2.3.html"> 1.2.3  Orders of Growth</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-18">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-18" aria-expanded="false" aria-controls="sidebar-collapse-18">
+                <a href="./1.2.4.html"> 1.2.4  Exponentiation</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-19">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-19" aria-expanded="false" aria-controls="sidebar-collapse-19">
+                <a href="./1.2.5.html"> 1.2.5  Greatest Common Divisors</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-20">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-20" aria-expanded="false" aria-controls="sidebar-collapse-20">
+                <a href="./1.2.6.html"> 1.2.6  Example: Testing for Primality</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-21">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-21" aria-expanded="true" aria-controls="sidebar-collapse-21">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-21" aria-expanded="true" aria-controls="sidebar-collapse-21">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./1.3.html">1.3  Formulating Abstractions with Higher-Order Functions</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-21" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-22">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-22" aria-expanded="false" aria-controls="sidebar-collapse-22">
+                <a href="./1.3.1.html"> 1.3.1  Functions as Arguments</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-23">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-23" aria-expanded="false" aria-controls="sidebar-collapse-23">
+                <a href="./1.3.2.html"> 1.3.2  Constructing Functions using Lambda Expressions</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-24">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-24" aria-expanded="false" aria-controls="sidebar-collapse-24">
+                <a href="./1.3.3.html"> 1.3.3  Functions as General Methods</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-25">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-25" aria-expanded="false" aria-controls="sidebar-collapse-25">
+                <a href="./1.3.4.html"> 1.3.4  Functions as Returned Values</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-26">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-26" aria-expanded="true" aria-controls="sidebar-collapse-26">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-26" aria-expanded="true" aria-controls="sidebar-collapse-26">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./2.html">2  Building Abstractions with Data</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-26" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-27">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-27" aria-expanded="true" aria-controls="sidebar-collapse-27">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-27" aria-expanded="true" aria-controls="sidebar-collapse-27">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./2.1.html">2.1  Introduction to Data Abstraction</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-27" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-28">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-28" aria-expanded="false" aria-controls="sidebar-collapse-28">
+                <a href="./2.1.1.html"> 2.1.1  Example: Arithmetic Operations for Rational Numbers</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-29">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-29" aria-expanded="false" aria-controls="sidebar-collapse-29">
+                <a href="./2.1.2.html"> 2.1.2  Abstraction Barriers</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-30">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-30" aria-expanded="false" aria-controls="sidebar-collapse-30">
+                <a href="./2.1.3.html"> 2.1.3  What Is Meant by Data?</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-31">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-31" aria-expanded="false" aria-controls="sidebar-collapse-31">
+                <a href="./2.1.4.html"> 2.1.4  Extended Exercise: Interval Arithmetic</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-32">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-32" aria-expanded="true" aria-controls="sidebar-collapse-32">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-32" aria-expanded="true" aria-controls="sidebar-collapse-32">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./2.2.html">2.2  Hierarchical Data and the Closure Property</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-32" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-33">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-33" aria-expanded="false" aria-controls="sidebar-collapse-33">
+                <a href="./2.2.1.html"> 2.2.1  Representing Sequences</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-34">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-34" aria-expanded="false" aria-controls="sidebar-collapse-34">
+                <a href="./2.2.2.html"> 2.2.2  Hierarchical Structures</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-35">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-35" aria-expanded="false" aria-controls="sidebar-collapse-35">
+                <a href="./2.2.3.html"> 2.2.3  Sequences as Conventional Interfaces</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-36">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-36" aria-expanded="false" aria-controls="sidebar-collapse-36">
+                <a href="./2.2.4.html"> 2.2.4  Example: A Picture Language</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-37">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-37" aria-expanded="true" aria-controls="sidebar-collapse-37">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-37" aria-expanded="true" aria-controls="sidebar-collapse-37">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./2.3.html">2.3  Symbolic Data</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-37" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-38">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-38" aria-expanded="false" aria-controls="sidebar-collapse-38">
+                <a href="./2.3.1.html"> 2.3.1  Strings</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-39">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-39" aria-expanded="false" aria-controls="sidebar-collapse-39">
+                <a href="./2.3.2.html"> 2.3.2  Example: Symbolic Differentiation</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-40">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-40" aria-expanded="false" aria-controls="sidebar-collapse-40">
+                <a href="./2.3.3.html"> 2.3.3  Example: Representing Sets</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-41">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-41" aria-expanded="false" aria-controls="sidebar-collapse-41">
+                <a href="./2.3.4.html"> 2.3.4  Example: Huffman Encoding Trees</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-42">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-42" aria-expanded="true" aria-controls="sidebar-collapse-42">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-42" aria-expanded="true" aria-controls="sidebar-collapse-42">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./2.4.html">2.4  Multiple Representations for Abstract Data</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-42" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-43">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-43" aria-expanded="false" aria-controls="sidebar-collapse-43">
+                <a href="./2.4.1.html"> 2.4.1  Representations for Complex Numbers</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-44">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-44" aria-expanded="false" aria-controls="sidebar-collapse-44">
+                <a href="./2.4.2.html"> 2.4.2  Tagged data</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-45">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-45" aria-expanded="false" aria-controls="sidebar-collapse-45">
+                <a href="./2.4.3.html"> 2.4.3  Data-Directed Programming and Additivity</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-46">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-46" aria-expanded="true" aria-controls="sidebar-collapse-46">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-46" aria-expanded="true" aria-controls="sidebar-collapse-46">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./2.5.html">2.5  Systems with Generic Operations</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-46" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-47">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-47" aria-expanded="false" aria-controls="sidebar-collapse-47">
+                <a href="./2.5.1.html"> 2.5.1  Generic Arithmetic Operations</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-48">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-48" aria-expanded="false" aria-controls="sidebar-collapse-48">
+                <a href="./2.5.2.html"> 2.5.2  Combining Data of Different Types</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-49">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-49" aria-expanded="false" aria-controls="sidebar-collapse-49">
+                <a href="./2.5.3.html"> 2.5.3  Example: Symbolic Algebra</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-50">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-50" aria-expanded="true" aria-controls="sidebar-collapse-50">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-50" aria-expanded="true" aria-controls="sidebar-collapse-50">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./3.html">3  Modularity, Objects, and State</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-50" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-51">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-51" aria-expanded="true" aria-controls="sidebar-collapse-51">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-51" aria-expanded="true" aria-controls="sidebar-collapse-51">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./3.1.html">3.1  Assignment and Local State</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-51" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-52">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-52" aria-expanded="false" aria-controls="sidebar-collapse-52">
+                <a href="./3.1.1.html"> 3.1.1  Local State Variables</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-53">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-53" aria-expanded="false" aria-controls="sidebar-collapse-53">
+                <a href="./3.1.2.html"> 3.1.2  The Benefits of Introducing Assignment</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-54">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-54" aria-expanded="false" aria-controls="sidebar-collapse-54">
+                <a href="./3.1.3.html"> 3.1.3  The Costs of Introducing Assignment</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-55">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-55" aria-expanded="true" aria-controls="sidebar-collapse-55">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-55" aria-expanded="true" aria-controls="sidebar-collapse-55">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./3.2.html">3.2  The Environment Model of Evaluation</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-55" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-56">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-56" aria-expanded="false" aria-controls="sidebar-collapse-56">
+                <a href="./3.2.1.html"> 3.2.1  The Rules for Evaluation</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-57">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-57" aria-expanded="false" aria-controls="sidebar-collapse-57">
+                <a href="./3.2.2.html"> 3.2.2  Applying Simple Functions</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-58">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-58" aria-expanded="false" aria-controls="sidebar-collapse-58">
+                <a href="./3.2.3.html"> 3.2.3  Frames as the Repository of Local State</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-59">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-59" aria-expanded="false" aria-controls="sidebar-collapse-59">
+                <a href="./3.2.4.html"> 3.2.4  Internal Declarations</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-60">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-60" aria-expanded="true" aria-controls="sidebar-collapse-60">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-60" aria-expanded="true" aria-controls="sidebar-collapse-60">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./3.3.html">3.3  Modeling with Mutable Data</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-60" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-61">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-61" aria-expanded="false" aria-controls="sidebar-collapse-61">
+                <a href="./3.3.1.html"> 3.3.1  Mutable List Structure</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-62">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-62" aria-expanded="false" aria-controls="sidebar-collapse-62">
+                <a href="./3.3.2.html"> 3.3.2  Representing Queues</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-63">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-63" aria-expanded="false" aria-controls="sidebar-collapse-63">
+                <a href="./3.3.3.html"> 3.3.3  Representing Tables</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-64">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-64" aria-expanded="false" aria-controls="sidebar-collapse-64">
+                <a href="./3.3.4.html"> 3.3.4  A Simulator for Digital Circuits</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-65">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-65" aria-expanded="false" aria-controls="sidebar-collapse-65">
+                <a href="./3.3.5.html"> 3.3.5  Propagation of Constraints</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-66">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-66" aria-expanded="true" aria-controls="sidebar-collapse-66">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-66" aria-expanded="true" aria-controls="sidebar-collapse-66">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./3.4.html">3.4  Concurrency: Time Is of the Essence</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-66" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-67">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-67" aria-expanded="false" aria-controls="sidebar-collapse-67">
+                <a href="./3.4.1.html"> 3.4.1  The Nature of Time in Concurrent Systems</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-68">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-68" aria-expanded="false" aria-controls="sidebar-collapse-68">
+                <a href="./3.4.2.html"> 3.4.2  Mechanisms for Controlling Concurrency</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-69">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-69" aria-expanded="true" aria-controls="sidebar-collapse-69">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-69" aria-expanded="true" aria-controls="sidebar-collapse-69">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./3.5.html">3.5  Streams</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-69" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-70">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-70" aria-expanded="false" aria-controls="sidebar-collapse-70">
+                <a href="./3.5.1.html"> 3.5.1  Streams Are Delayed Lists</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-71">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-71" aria-expanded="false" aria-controls="sidebar-collapse-71">
+                <a href="./3.5.2.html"> 3.5.2  Infinite Streams</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-72">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-72" aria-expanded="false" aria-controls="sidebar-collapse-72">
+                <a href="./3.5.3.html"> 3.5.3  Exploiting the Stream Paradigm</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-73">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-73" aria-expanded="false" aria-controls="sidebar-collapse-73">
+                <a href="./3.5.4.html"> 3.5.4  Streams and Delayed Evaluation</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-74">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-74" aria-expanded="false" aria-controls="sidebar-collapse-74">
+                <a href="./3.5.5.html"> 3.5.5  Modularity of Functional Programs and Modularity of Objects</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-75">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-75" aria-expanded="true" aria-controls="sidebar-collapse-75">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-75" aria-expanded="true" aria-controls="sidebar-collapse-75">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./4.html">4  Metalinguistic Abstraction</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-75" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-76">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-76" aria-expanded="true" aria-controls="sidebar-collapse-76">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-76" aria-expanded="true" aria-controls="sidebar-collapse-76">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./4.1.html">4.1  The Metacircular Evaluator</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-76" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-77">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-77" aria-expanded="false" aria-controls="sidebar-collapse-77">
+                <a href="./4.1.1.html"> 4.1.1  The Core of the Evaluator</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-78">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-78" aria-expanded="false" aria-controls="sidebar-collapse-78">
+                <a href="./4.1.2.html"> 4.1.2  Representing Statements and Expressions</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-79">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-79" aria-expanded="false" aria-controls="sidebar-collapse-79">
+                <a href="./4.1.3.html"> 4.1.3  Evaluator Data Structures</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-80">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-80" aria-expanded="false" aria-controls="sidebar-collapse-80">
+                <a href="./4.1.4.html"> 4.1.4  Running the Evaluator as a Program</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-81">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-81" aria-expanded="false" aria-controls="sidebar-collapse-81">
+                <a href="./4.1.5.html"> 4.1.5  Data as Programs</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-82">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-82" aria-expanded="false" aria-controls="sidebar-collapse-82">
+                <a href="./4.1.6.html"> 4.1.6  Internal Declarations</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-83">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-83" aria-expanded="false" aria-controls="sidebar-collapse-83">
+                <a href="./4.1.7.html"> 4.1.7  Separating Syntactic Analysis from Execution</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-84">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-84" aria-expanded="true" aria-controls="sidebar-collapse-84">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-84" aria-expanded="true" aria-controls="sidebar-collapse-84">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./4.2.html">4.2  Lazy Evaluation</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-84" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-85">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-85" aria-expanded="false" aria-controls="sidebar-collapse-85">
+                <a href="./4.2.1.html"> 4.2.1  Normal Order and Applicative Order</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-86">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-86" aria-expanded="false" aria-controls="sidebar-collapse-86">
+                <a href="./4.2.2.html"> 4.2.2  An Interpreter with Lazy Evaluation</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-87">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-87" aria-expanded="false" aria-controls="sidebar-collapse-87">
+                <a href="./4.2.3.html"> 4.2.3  Streams as Lazy Lists</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-88">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-88" aria-expanded="true" aria-controls="sidebar-collapse-88">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-88" aria-expanded="true" aria-controls="sidebar-collapse-88">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./4.3.html">4.3  Nondeterministic Computing</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-88" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-89">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-89" aria-expanded="false" aria-controls="sidebar-collapse-89">
+                <a href="./4.3.1.html"> 4.3.1  Amb and Search</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-90">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-90" aria-expanded="false" aria-controls="sidebar-collapse-90">
+                <a href="./4.3.2.html"> 4.3.2  Examples of Nondeterministic Programs</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-91">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-91" aria-expanded="false" aria-controls="sidebar-collapse-91">
+                <a href="./4.3.3.html"> 4.3.3  Implementing the amb Evaluator</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-92">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-92" aria-expanded="true" aria-controls="sidebar-collapse-92">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-92" aria-expanded="true" aria-controls="sidebar-collapse-92">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./4.4.html">4.4  Logic Programming</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-92" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-93">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-93" aria-expanded="false" aria-controls="sidebar-collapse-93">
+                <a href="./4.4.1.html"> 4.4.1  Deductive Information Retrieval</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-94">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-94" aria-expanded="false" aria-controls="sidebar-collapse-94">
+                <a href="./4.4.2.html"> 4.4.2  How the Query System Works</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-95">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-95" aria-expanded="false" aria-controls="sidebar-collapse-95">
+                <a href="./4.4.3.html"> 4.4.3  Is Logic Programming Mathematical Logic?</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-96">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-96" aria-expanded="false" aria-controls="sidebar-collapse-96">
+                <a href="./4.4.4.html"> 4.4.4  Implementing the Query System</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-97">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-97" aria-expanded="true" aria-controls="sidebar-collapse-97">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-97" aria-expanded="true" aria-controls="sidebar-collapse-97">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./5.html">5  Computing with Register Machines</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-97" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-98">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-98" aria-expanded="true" aria-controls="sidebar-collapse-98">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-98" aria-expanded="true" aria-controls="sidebar-collapse-98">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./5.1.html">5.1  Designing Register Machines</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-98" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-99">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-99" aria-expanded="false" aria-controls="sidebar-collapse-99">
+                <a href="./5.1.1.html"> 5.1.1  A Language for Describing Register Machines</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-100">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-100" aria-expanded="false" aria-controls="sidebar-collapse-100">
+                <a href="./5.1.2.html"> 5.1.2  Abstraction in Machine Design</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-101">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-101" aria-expanded="false" aria-controls="sidebar-collapse-101">
+                <a href="./5.1.3.html"> 5.1.3  Subroutines</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-102">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-102" aria-expanded="false" aria-controls="sidebar-collapse-102">
+                <a href="./5.1.4.html"> 5.1.4  Using a Stack to Implement Recursion</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-103">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-103" aria-expanded="false" aria-controls="sidebar-collapse-103">
+                <a href="./5.1.5.html"> 5.1.5  Instruction Summary</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-104">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-104" aria-expanded="true" aria-controls="sidebar-collapse-104">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-104" aria-expanded="true" aria-controls="sidebar-collapse-104">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./5.2.html">5.2  A Register-Machine Simulator</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-104" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-105">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-105" aria-expanded="false" aria-controls="sidebar-collapse-105">
+                <a href="./5.2.1.html"> 5.2.1  The Machine Model</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-106">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-106" aria-expanded="false" aria-controls="sidebar-collapse-106">
+                <a href="./5.2.2.html"> 5.2.2  The Assembler</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-107">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-107" aria-expanded="false" aria-controls="sidebar-collapse-107">
+                <a href="./5.2.3.html"> 5.2.3  Generating Execution Functions for Instructions</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-108">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-108" aria-expanded="false" aria-controls="sidebar-collapse-108">
+                <a href="./5.2.4.html"> 5.2.4  Monitoring Machine Performance</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-109">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-109" aria-expanded="true" aria-controls="sidebar-collapse-109">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-109" aria-expanded="true" aria-controls="sidebar-collapse-109">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./5.3.html">5.3  Storage Allocation and Garbage Collection</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-109" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-110">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-110" aria-expanded="false" aria-controls="sidebar-collapse-110">
+                <a href="./5.3.1.html"> 5.3.1  Memory as Vectors</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-111">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-111" aria-expanded="false" aria-controls="sidebar-collapse-111">
+                <a href="./5.3.2.html"> 5.3.2  Maintaining the Illusion of Infinite Memory</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-112">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-112" aria-expanded="true" aria-controls="sidebar-collapse-112">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-112" aria-expanded="true" aria-controls="sidebar-collapse-112">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./5.4.html">5.4  The Explicit-Control Evaluator</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-112" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-113">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-113" aria-expanded="false" aria-controls="sidebar-collapse-113">
+                <a href="./5.4.1.html"> 5.4.1  The Core of the Explicit-Control Evaluator</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-114">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-114" aria-expanded="false" aria-controls="sidebar-collapse-114">
+                <a href="./5.4.2.html"> 5.4.2  Sequence Evaluation and Tail Recursion</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-115">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-115" aria-expanded="false" aria-controls="sidebar-collapse-115">
+                <a href="./5.4.3.html"> 5.4.3  Conditionals, Assignments, and Declarations and Blocks</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-116">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-116" aria-expanded="false" aria-controls="sidebar-collapse-116">
+                <a href="./5.4.4.html"> 5.4.4  Running the Evaluator</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-117">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-117" aria-expanded="true" aria-controls="sidebar-collapse-117">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-117" aria-expanded="true" aria-controls="sidebar-collapse-117">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./5.5.html">5.5  Compilation</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-117" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-118">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-118" aria-expanded="false" aria-controls="sidebar-collapse-118">
+                <a href="./5.5.1.html"> 5.5.1  Structure of the Compiler</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-119">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-119" aria-expanded="false" aria-controls="sidebar-collapse-119">
+                <a href="./5.5.2.html"> 5.5.2  Compiling Expressions</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-120">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-120" aria-expanded="false" aria-controls="sidebar-collapse-120">
+                <a href="./5.5.3.html"> 5.5.3  Compiling Combinations</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-121">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-121" aria-expanded="false" aria-controls="sidebar-collapse-121">
+                <a href="./5.5.4.html"> 5.5.4  Combining Instruction Sequences</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-122">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-122" aria-expanded="false" aria-controls="sidebar-collapse-122">
+                <a href="./5.5.5.html"> 5.5.5  An Example of Compiled Code</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-123">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-123" aria-expanded="false" aria-controls="sidebar-collapse-123">
+                <a href="./5.5.6.html"> 5.5.6  Lexical Addressing</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-124">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-124" aria-expanded="false" aria-controls="sidebar-collapse-124">
+                <a href="./5.5.7.html"> 5.5.7  Interfacing Compiled Code to the Evaluator</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+                </div>
+              </div>
+            </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-125">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-125" aria-expanded="false" aria-controls="sidebar-collapse-125">
+                <a href="./references.html">  References</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-126">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-126" aria-expanded="false" aria-controls="sidebar-collapse-126">
+                <a href="./making-of.html">  Making of the JavaScript Adaptation</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        </div>
+<div id='permalink-msg'>
+<div class='screen'>
+  <div class='alert alert-success'>
+    <strong>Permalink copied!</strong>
+  </div>
+</div>
+</div>
+<div class='chapter-content'>
+
+      <div class='chapter-title'>
+        <div class='permalink'>
+        <a name='top' class='permalink'> 
+    4.1.2  Representing Statements and Expressions
+        </a>
+        </div>
+      </div>
+      <div class='chapter-text'>
+        <div class='SECTION'><SECTION>
+    
+
+  
+  
+  
+
+  <div class='permalink'>
+<a name='p1' class='permalink'></a><p>
+    
+    The evaluator is reminiscent of the symbolic differentiation program
+    discussed in section&nbsp;<REF NAME="sec:symbolic-differentiation"><a class="superscript" id="4.1.2-sec-link-2.3.2" href="./2.3.2.html">2.3.2</a></REF>.
+    Both programs operate on symbolic expressions.  In both programs, the
+    result of operating on a compound expression is determined by
+    operating recursively on the pieces of the expression and combining
+    the results in a way that depends on the type of the expression.  In
+    both programs we used 
+    
+    data abstraction to decouple the general rules
+    of operation from the details of how expressions are represented.  In
+    the differentiation program this meant that the same differentiation
+    
+    function
+    could deal with algebraic expressions in prefix form, in
+    infix form, or in some other form.  For the evaluator, this means that
+    the syntax of the language being evaluated is determined solely by the
+    
+    functions
+    that classify and extract pieces of expressions.
+  </p></div>
+
+  
+    
+    
+      <div class='permalink'>
+<a name='p2' class='permalink'></a><p>
+	Here is the specification of the syntax of our language:
+	<UL>
+          <LI>
+	    The self-evaluating items are numbers, strings, boolean values, and
+	    <kbd>null</kbd>.
+	    
+	    <div class='snippet' id='javascript_77_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH1GBTAGwObYDcBDDkX7USAcwAUjCgFsKASlABvXKDWgATmwpEN9JsxJEZAIzYapshWoA+N1esfqD0jVXGW5i0HYdPHBiY0NBxs-CSe1r7+TgZGHByR8gDcuAC++GR00qAyAJ7MAA4aNGIa-DKgALyghfwa7BIARBQaRGzJoBjJTSm4WSQ5+cyt7awUImwybCQU1aAcTBTMWgQSw8Wl5TIANKAADH0unNx8gsKiksOjbOOT07MpQA')">function is_self_evaluating(stmt) {
+    return is_number(stmt)  ||
+           is_string(stmt)  ||
+           is_boolean(stmt) ||
+           is_null(stmt);
+}
+</pre></div></div>
+	    
+          </LI>
+
+          <LI>
+	    The function <kbd>is_name</kbd> tests
+	    whether the given statement is a name
+	    expression, and the function
+	    <kbd>symbol_of_name</kbd> accesses
+	    the JavaScript string that represents the name.
+	    <div class='snippet' id='javascript_77_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCwkbBLc7nYaWjr6hsbR-jz8QuKJsgBEsfEFKkGh4ZS09IwAnhIARjQCzDQEzMUJ4h7JOnoGRvQubuxUAokqZSH4ZHTioBK1HXFK4mwU3PEkFKCeoBa6jAkFAB4BpUG8TGYCbLUipp0ii8vxzGsbW3ZTV4w3d2J6k0Wm1XgkXp13uxPtxtpMAkA')">function is_name(stmt) {
+    return is_tagged_list(stmt, "name");
+}
+function symbol_of_name(stmt) {
+    return head(tail(stmt));
+}
+</pre></div></div>
+	    
+	    The function <kbd>is_name</kbd> 
+	    is defined in terms of the function
+	    <kbd>is_tagged_list</kbd>,
+	    which identifies lists beginning with a designated string that
+	    we call <EM>tag</EM>:
+	    <div class='snippet' id='javascript_77_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvim7Fx8gsIiQuIiAEQkbBLcCbIJAB4JKhnJqTkBQA')">function is_tagged_list(stmt, the_tag) {
+    return is_pair(stmt) && head(stmt) === the_tag;
+}
+</pre></div></div>
+	    
+          </LI>
+
+          <LI>
+	    Assignments have the form
+	    $\textit{name}$
+	    <kbd>=</kbd>
+	    $\textit{value}$:
+	    <div class='snippet' id='javascript_77_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCxsjIxUHCQS3CSi4h4aWtr6hsbR-jz8QuLuMqAARLHxicmp5SpBoeGUtPRVCUkpFMyMAJ4SAEY0AqVqmjo5RvQubuxUIzMicyPpdirrjYSkLVHtNV3MAG5sAkTco5kTBlPO3K5LliPLoxsh+GR04qASvcx7nakeuwKNxahRQJ5QBZdIxzuUAB4Q0AYAL1IK8JhmARsXoif5gnr9IYjH5-OIdAniNggsGvDGMLE4vHk-aA46nc6k-EHKk0robIA')">function is_assignment(stmt) {
+   return is_tagged_list(stmt, "assignment");
+}
+function assignment_symbol(stmt) {
+   return head(tail(head(tail(stmt))));
+}
+function assignment_value(stmt) {
+   return head(tail(tail(stmt)));
+}
+</pre></div></div>
+	    
+          </LI>
+
+          <LI>
+	    Declarations have the form
+	    <kbd class='snippet'>const $name$ = $value$;</kbd>
+	    or
+	    <kbd class='snippet'>let $name$ = $value$;</kbd>
+	    or
+	    <kbd class='snippet'>function $name$($parameter_{1}$, $\ldots$, $parameter_{n}$) {
+    $body$
+}</kbd>
+
+	    
+	    
+	    Here, we treat the latter form (function
+	    declarations) as syntactic sugar<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+	    for
+	    <kbd class='snippet'>const $name$ = ($parameter_{1}$, $\ldots$, $parameter_{n}$) => { $body$; };</kbd>
+	    The corresponding syntax functions are the following:
+	    <div class='snippet' id='javascript_77_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCxkdOJsJBTMvNxkAmy6bJEk7nYaWtr6hsbR-jz8QuK5sgBEsSTxicmp6ZnZNSpBoeGUtPT1jUkpaRlZfcyMAJ4SAEY0ArlqmjpFRvQubuxUCxsiWwviHirHXYSkvVED7E3DrWN0zABubAJE3Iv5KwZrztyue5YFvtFicQmcIn1Ss9dFQ2DMBEpbqNsh9loVviVTOwuHxBMJqqAatDYfDES1kX0OqcetlQMS4QjmiM2uMprN5qiCnoMes-ptASJdsDDnZjp0wTTIfTSUy7tkni83pyvsVef9gcLbGLTrgrqAJJNZRSHvEKNwJNxEqBPKALLpGO8agiKKAAB7W0AYAJU3C8JhmdKTESmaWMpEsugiA1GiMkCbsM0WxKgv2MANsIOhsnM+5xtlzBbR8O5+NZc2W0VBVPpzMZElh8mxhWvd5Fxsl03l5OdIA')">function is_constant_declaration(stmt) {
+   return is_tagged_list(stmt, "constant_declaration");
+}
+function constant_declaration_symbol(stmt) {
+   return head(tail(head(tail(stmt))));
+}
+function constant_declaration_value(stmt) {
+   return head(tail(tail(stmt)));
+}
+function is_variable_declaration(stmt) {
+   return is_tagged_list(stmt, "variable_declaration");
+}
+function variable_declaration_symbol(stmt) {
+   return head(tail(head(tail(stmt))));
+}
+function variable_declaration_value(stmt) {
+   return head(tail(tail(stmt)));
+}
+</pre></div></div>
+	    
+          </LI>
+
+          <LI>
+	    Lambda expressions are lists that begin with the 
+	    string <kbd>"lambda_expression"</kbd>:
+	    <div class='snippet' id='javascript_77_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCwkbBLc7nYaWjr6hsbR-jz8QuKJsgBEsfEFKkGh4ZS09IwAnhIARjQCzDQEzMUJ4h7JOnoGRvQubuxUAokqZSFhpFVRpgJxDbxszNwAHmb6jIzVE73aaYOZ7Fx8gsL5oAWLjStrm9u7dKXlhLOR9LfLqxa6cQZuLpGPtNKkBhkJGwzGJ6k0Wm0OgDZMMRKNxt07JM3pVPqBvvcmrxaqCUv10kNuK40ZZxuiJtjprgyHRxKAJLVBEsVqBPKA-owEgV1ryAHygdYBV64XhMMyLEkLbmrDZbbg7PYcrl3NiM2WMeVsEkE35sf7xChAkFak16uUKkQm5hEkk25XYoA')">function is_lambda_expression(stmt) {
+   return is_tagged_list(stmt, "lambda_expression");
+}
+function lambda_parameters(stmt) {
+   return map(symbol_of_name, head(tail(stmt)));
+}
+function lambda_body(stmt) {
+   return head(tail(tail(stmt)));
+}
+</pre></div></div>
+	    
+          </LI>
+
+	  <LI>
+	    <kbd>return</kbd> statements are objects
+	    tagged with the string 
+	    <kbd>"return"</kbd>:
+	    <div class='snippet' id='javascript_77_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCz6hsbM4mwU3BLcJKLiHhpa2rFGJizsXHyCwu4yoABEefGJyanplSpBoeGUtPQ1JMzcAB5m+oyMHeVqmjpdztyuIuxUAqPNIfhkdOKgEgCezG2R3bzcZAJsukkdoJ6gFrqM3CKVu+cEIr1jegb5oL0BoMFNQasSOstoI2BIAEa8NgXUBCcTMfTPEGPOjMA5HE5nOiybBLQHA7aTS5wigI7hI7bHCFQnFLUxdBLseppUQgrpLBl9AbcIYjNkfYzNIA')">function is_return_statement(stmt) {
+   return is_tagged_list(stmt, "return_statement");
+}
+function return_expression(stmt) {
+   return head(tail(stmt));
+}
+</pre></div></div>
+	    
+          </LI>
+
+          <LI>
+	    Conditional expressions are tagged with 
+	    <kbd>"conditional_expression"</kbd>
+	    and have a predicate, a consequent, and an alternative. 
+	    <div class='snippet' id='javascript_77_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCxkdLxUkSRsAszcAB5m+oyMtCTudhpa2vqGxtH+PPxC4vmyRToNjdoARLEk8YnJqRlZOXTNKkGh4ZS5oG386Znm+m7iHoU6JUb01RTM+gS1oBiDIYSko1ET3dNtjPlqmksGK6BrG9xb8zKg2HvDh4njcae6zMlRC8rvVlmUHpttgBmD74c4UUASACezBOU10oE8oHqoAsukY3BEzQouiI3FAAH4dqAAFxvAIDILxRhmARsJEiUwTBK5Lro7jZXIiZGo37olR7Zms9kiNE9GZ8YUouWZCVMpjSjkq-7nJWi9p-NW4KVsrVi+WAvXatVAA')">function is_conditional_expression(stmt) {
+   return is_tagged_list(stmt, 
+                "conditional_expression");
+}
+function cond_expr_pred(stmt) {
+   return list_ref(stmt, 1);
+}
+function cond_expr_cons(stmt) {
+   return list_ref(stmt, 2);
+}
+function cond_expr_alt(stmt) {
+   return list_ref(stmt, 3);
+}
+</pre></div></div>
+	    
+	    
+          </LI>
+
+          <LI>
+	    A sequence statement packages a sequence of statements into a
+	    single statement.  We include syntax operations on sequences 
+	    to extract the actual sequence from the sequence statement, 
+	    selectors that return the first statement and the rest of the
+	    statements in the sequence, and predicates that test whether a
+	    sequence is empty or has only one statement.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
+	    <div class='snippet' id='javascript_77_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCyM3ACORNzk3O52Glra+obG0f48-ELiqbIARLEJSWTcJSpBoeGUtPQSbADWSuWJyamMapo6WUb0haJl8V1VJbLiUr11hKSNUZ2VHewU3BJJFIypfToZegZDztyuIuxUAnu1IQsRTaAEVuLM4mwbWySiMzt9h4Mci43L85ncGpF6PpXu9PttdqD-gNjjlLtdEfMIY9TJszBQAJ5vcarHpIzIokwsEhEATo2xg+qLSG5ARsGHrTbbUnpZHZSnMam0i6WOmzFS3UK4Mh0cSgCSElbJUCeUAWXSxEQlDABOS6RI6lAAVgCNSCvCYZlZ+JEpkVVRE8qJFWS4qC0pIssdbCWHuVoDtaw+nO+u0dAdu5sYlrY1pxEjxCuJ3S9Pt6EYtVptLFZ7KDX1EKchabNGZjIme6oobw5+YdhO9RdduEj0et0KrsODOzrzAbTWLQA')">function is_sequence(stmt) {
+   return is_tagged_list(stmt, "sequence");
+}
+function make_sequence(stmts) {
+   return list("sequence", stmts);
+}
+function sequence_statements(stmt) {   
+   return head(tail(stmt));
+}
+function first_statement(stmts) {
+   return head(stmts);
+}
+function rest_statements(stmts) {
+   return tail(stmts);
+}
+function is_empty_sequence(stmts) {
+   return is_null(stmts);
+}
+function is_last_statement(stmts) {
+   return is_null(tail(stmts));
+}
+</pre></div></div>
+	    
+          </LI>
+
+          <LI>
+	    A block contains its body statement.
+	    <div class='snippet' id='javascript_77_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCwARgI0ZADW7nYaWjr6hsbR-jz8QuIpsgBEcQmJxSpBoeGUtPQSbIlKZUkpapoZBkb0BaKl8UnFsuIe1YSkdVGticwxNLwAnu1pOnrd2S5u7FQC7VUh+GR04qASi3ODiaCeoBa6jNwixeqgGAFyukTcHygArB9gpUgrwmGYBGxlqYZiJzpdyioDqDGODISIZnMFss4TNEQEgA')">function is_block(stmt) {
+    return is_tagged_list(stmt, "block");
+}
+function make_block(stmt) {
+   return list("block", stmt);
+}
+function block_body(stmt) {
+    return head(tail(stmt));
+}
+</pre></div></div>
+	    
+          </LI>
+	  
+          <LI>
+	    A function application is an object tagged with
+	    the string <kbd>"application"</kbd>.
+	    We provide access functions for the 
+	    <kbd>operator</kbd>, the
+	    <kbd>operands</kbd>, and three
+	    functions for iterating  through the operand list:
+	    <div class='snippet' id='javascript_77_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCxsZmZCZGyRJO52Glra+obG0f48-ELiqbIARLHxVInJJSpBoeGUtPQNyczcAB5m+oyMTalqmjpZRvQubuxUAv21IYSkjVFsuhyM-elDBiPO3K4iE1P70zP188mgJDTMSysiNGaMAxl6mzmmJEQCU3cPdXMRTaACFZxFdlrd7o8NtlRjs3N9jn8FvRuhRQTd4etMi96Id4b9cGQ6OJQBIAJ5XOIJJIAzygCy6RjcEQlCRJeTmGgAdxEAGZZChajUgrwmPE2KSRKZylTkiIyRSKlUmioZiLGGKJS0mm1Ot1enQ5eTpZVqXQVUFCSRifLroxQLTbYaFTLlcLRQJxSILmjVjblg9Ve7PUCGajrk7bebcGqNSIUT6I-7zUA')">function is_application(stmt) {
+   return is_tagged_list(stmt, "application");
+}
+function function_expression(stmt) {
+   return head(tail(stmt));
+}
+function args(stmt) {
+   return head(tail(tail(stmt)));
+}
+function no_args(ops) {
+   return is_null(ops);
+}
+function first_arg(ops) {
+   return head(ops);
+}
+function rest_args(ops) {
+   return tail(ops);
+}
+</pre></div></div>
+	    
+	  </LI>
+	</UL>
+      </p></div>
+    
+  
+
+  
+    
+    
+    
+  
+
+  
+  
+  
+    
+    
+      
+    <div class="permalink">
+    <a name="ex_4.2" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.2">Exercise 4.2 </a></b> 
+  
+      In this section, we assume that the given program is represented using
+      tagged list notation. Of course, for actually writing our programs we
+      prefer the JavaScript syntax. The JavaScript environment for this book
+      provides a function <kbd>parse</kbd> that
+      translates a given string in JavaScript syntax into the corresponding
+      tagged list  notation.
+      <div class='snippet' id='javascript_77_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiAYwHsA7MgF1AA9QBeUDAbhoBKfkA')">parse("const x = 1;");
+</pre><pre class='prettyprintoutput'>
+list("constant_declaration", list("name", "x"), 1)</pre></div></div>
+      <OL type="a">
+	<LI>
+	  Verify experimentally that the 
+	  <kbd>parse</kbd> function in your
+	  JavaScript environment treats function declarations
+	  as constant declarations, ignoring the subtle difference
+	  between the two mentioned in
+	  footnote&nbsp;<REF NAME="foot:function-decl-vs-lambda"><a class="superscript" id="4.1.2-foot-link-1" href="./1.3.2.html#footnote-1">1</a></REF>
+	  of chapter 1.
+	</LI>
+	<LI>
+	  Explore how <kbd>parse</kbd> treats the
+	  variant of lambda expressions introduced in
+	  footnote&nbsp;<REF NAME="foot:lambda_with_block"><a class="superscript" id="4.1.2-foot-link-1" href="./2.2.4.html#footnote-1">1</a></REF> of chapter 2
+	  by comparing the results of
+	  <div class='snippet' id='javascript_77_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiAD1AF4A+UDAbhoEp2g')">parse("x => 1;");
+</pre></div></div>
+	  and
+	  <div class='snippet' id='javascript_77_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiAD1AF4A+UAb1BIoBcBXEgHagMAblABfETQCUIoA')">parse("x => { return 1; };");
+</pre></div></div>
+	</LI>
+	<LI>
+	  Verify experimentally that 
+	  <kbd>parse</kbd> treats operator combinations
+	  as applications of primitive functions. Why does this not lead to
+	  any confusion in the interpreter?
+	</LI>
+	<LI>
+	  Explore how <kbd>parse</kbd> treats
+	  conditional statements
+	  <kbd>if (...) {...} else {...}</kbd>
+	  introduced in section&nbsp;<REF NAME="sec:lambda"><a class="superscript" id="4.1.2-sec-link-1.3.2" href="./1.3.2.html">1.3.2</a></REF>.
+	  Install conditional statements for the evaluator by defining 
+	  appropriate syntax functions and the evaluation function
+	  <kbd>eval_conditional_statement</kbd>.
+	</LI>
+       </OL>
+      
+      
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_1_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_77_1_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+    
+  
+
+  
+    
+    
+      
+    <div class="permalink">
+    <a name="ex_4.3" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.3">Exercise 4.3 </a></b> 
+  
+	
+	
+	
+	Rewrite <kbd>evaluate</kbd> so that the
+	dispatch is done in data-directed style.  Compare this with the
+	data-directed differentiation function of
+	exercise&nbsp;<REF NAME="ex:data-directed-differentiation"><a class="superscript" id="4.1.2-ex-link-2.73" href="./2.4.3.html#ex_2.73">2.73</a></REF>. (You may
+	use the <kbd>head</kbd> of a compound
+	expression as the type of the expression, as is appropriate for the
+	syntax implemented in this section.)
+	
+      
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_2_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_77_2_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+    
+  
+
+  
+    <div class="permalink">
+    <a name="ex_4.4" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.4">Exercise 4.4 </a></b> 
+   
+    
+    
+    Recall the definitions of the
+          
+      
+      logical composition operations
+      <kbd>&&</kbd>
+    
+    and
+    
+      
+      <kbd>||</kbd>
+    
+    from chapter&nbsp;1:
+    
+      
+      
+	<UL>
+	  <LI>
+	    $\textit{expression}_1$
+	    <kbd>&&</kbd>
+	    $\textit{expression}_2$: The expression
+	    $\textit{expression}_1$ is evaluated
+	    first. If it evaluates to false, false is returned; the
+	    expression $\textit{expression}_2$
+	    is not evaluated.  If it evaluates to true, the value of
+	    $\textit{expression}_2$ is returned.  
+	  </LI>
+	  <LI>
+	    $\textit{expression}_1$
+	    <kbd>||</kbd>
+	    $\textit{expression}_2$: The expression
+	    $\textit{expression}_1$ is evaluated
+	    first. If it evaluates to true, true is returned; the
+	    expression $\textit{expression}_2$ is not
+	    evaluated.  If it evaluates to false, the value of
+	    $\textit{expression}_2$ is returned.  
+	  </LI>
+	</UL>
+	Explore how <kbd>parse</kbd>
+	represents 
+	<kbd>&&</kbd> and
+	<kbd>||</kbd> expressions.
+	Explain why we should not treat these expressions as
+	applications of primitive functions, similar to operator
+	combinations. Install 
+	<kbd>&&</kbd> and
+	<kbd>||</kbd> operations for the
+	evaluator by defining 
+	appropriate syntax functions and evaluation functions
+	<kbd>eval_and</kbd> and 
+	<kbd>eval_or</kbd>.
+	
+      
+    
+  
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_3_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_77_3_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+  
+  
+    <div class="permalink">
+    <a name="ex_4.5" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.5">Exercise 4.5 </a></b> 
+  
+    
+      
+      
+	In JavaScript, lambda expressions must not have duplicate parameters. The
+	<kbd>evaluate</kbd> function in
+	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.2-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> does not check for this.
+	<UL>
+	  <LI>
+	    Modify the <kbd>evaluate</kbd> function such
+	    that any attempt to apply a function with duplicate parameters
+	    raises an error.
+	  </LI>
+	  <LI>
+	    Implement a <kbd>verify</kbd> function that
+	    checks whether any lambda expression in a given program contains
+	    duplicate parameters. With such a function, we could check the entire
+	    given program before we pass it to
+	    <kbd>evaluate</kbd>.
+	  </LI>
+	</UL>
+	In order to implement this check in a JavaScript interpreter, which one
+	of these two approaches would you prefer? Why?
+	<p></p>
+	The names declared in the body of a lambda expression outside of a block
+	must be distinct from each other, and also distinct from the names of
+	the parameters of the lambda expression. Use your preferred approach
+	above to check for this, as well.
+      
+    
+  
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_4_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_77_4_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+
+    
+      
+    
+
+    
+    <div class="permalink">
+    <a name="ex_4.6" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.6">Exercise 4.6 </a></b> 
+  
+    
+      
+      
+	The language Scheme includes a variant of
+	<kbd>let</kbd> called
+	<kbd>let*</kbd>. We could approximate
+	the semantics of
+	<kbd>let*</kbd> in JavaScript by stipulating
+	that a
+	<kbd>let*</kbd> declaration implicitly
+	introduces a new block whose body includes the declaration and all
+	subsequent statements of the statement sequence in which the
+	declaration occurs. For example, the program
+	<div class='snippet' id='javascript_77_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+display(1);
+let* x = 2;
+let* y = x + 3;
+display(x + y);</pre></div></div>
+	could be seen as a shorthand for
+	<div class='snippet' id='javascript_77_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+display(1);
+{
+  let x = 2;
+  {
+    let y = x + 3;
+    display(x + y);
+  }
+}</pre></div></div>
+	<OL type="a">
+	  <LI>
+	    Write programs in such an extended JavaScript language
+	    that behave differently when some occurrences of the keyword
+	    <kbd>let</kbd> are replaced
+	    with <kbd>let*</kbd>.
+	  </LI>
+	  <LI>
+	    Define appropriate syntax functions for this 
+	    <kbd>let*</kbd> variant.
+	  </LI>
+	  <LI>
+	    Write a function
+	    <kbd>let_star_to_nested_let</kbd> that
+	    that transforms any occurrence of 
+	    <kbd>let*</kbd> in a given program as
+	    described above. We can
+	    then evaluate programs <kbd>p</kbd> in the
+	    extended language by running
+	    <kbd>evaluate(let_star_to_nested_let(p));</kbd>.
+	  </LI>
+	  <LI>
+	    Consider the alternative of implementing
+	    <kbd>let*</kbd> as we implemented
+	    <kbd>let</kbd> and 
+	    <kbd>const</kbd>, namely by
+	    introducing an evaluation function
+	    <kbd>eval_let_star_declaration</kbd>.
+	    Why does this approach not work?
+	  </LI>
+	</OL>
+      
+    
+  
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_5_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_77_5_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+
+  
+    <div class="permalink">
+    <a name="ex_4.7" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.7">Exercise 4.7 </a></b> 
+  
+    
+    
+      
+      
+	The language JavaScript supports
+	<kbd>while</kbd> loops that execute a given
+	statement repeatedly. More specifically,
+	<kbd class='snippet'>while ( $predicate$ ) { $body$ }</kbd>
+	evaluates the $\textit{predicate}$, and
+	if it holds, it evaluates the
+	$\textit{body}$, followed by evaluating
+	the whole <kbd>while</kbd> loop again.
+	Once the result of evaluating the
+	$\textit{condition}$ is false, the
+	<kbd>while</kbd> loop terminates. Using
+	this syntax, we can for example compute the greatest common divisor
+	of two numbers using the following function:
+	
+	<div class='snippet' id='javascript_77_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AczIBMAKAQwBpQAjASlABvXKFGgA7gAsqAGwCmoDqACEAXlW8BwsTtBUCSgHyahI3efagNlgLS8A3GfMBfUHJkBnBdvO6eV3lA7dkdfUGcASFEncJiAJzkKIjj6EIjcZ3wmNhRsbgxsPnsgA')">function gcd(a, b) {
+    while (a !== b) {
+        if(a > b) {
+            a = a - b;
+        } else {
+            b = b - a;
+        }	  
+    }
+    return a;	
+}
+</pre></div></div>
+	<OL type="a">
+	  <LI>
+	    Declare a function <kbd>while_loop</kbd>
+	    that takes as arguments a predicate and a
+	    body—both represented by 
+	    functions of no arguments—and simulates the behavior of the
+	    <kbd>while</kbd> loop. The
+	    <kbd>gcd</kbd> function would then
+	    look as follows:
+	    <div class='snippet' id='javascript_77_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuRQB3ACwEsAbAUwH0KB7egB1ABd7QAjK4gJzNasqAOy4BPUAGdWAVwAmI1pNwAzGcIDGrMvVEBzDXIAUAQwA0XAJSgA3rlAPi5anUZMjoI9YC8APlAmoACE3t5cZvaOUdGOXqB+tg5kKp6B-pzWdjHZOTmBYYEAtFwA3JG5FVEAvqBUFJI8WZXN0ZzxXKDFJmUtzVXlvdH9vZY9jrxUsryi3bhVQA')">function gcd(a, b) {
+    while_loop( () => a !== b,
+                () => {  if (a > b) {
+                             a = a - b;
+                         } else {
+                             b = b - a;
+                         }	  
+                      }
+              );
+    return a;	
+}
+</pre></div></div>
+	    Make sure that your function
+	    <kbd>while_loop</kbd> generates an
+	    iterative process, see
+	    section&nbsp;<REF NAME="sec:recursion-and-iteration"><a class="superscript" id="4.1.2-sec-link-1.2.1" href="./1.2.1.html">1.2.1</a></REF>.
+	  </LI>
+	  <LI>
+	    Explore how <kbd>parse</kbd> represents
+	    <kbd>while</kbd> loops.
+	  </LI>
+	  <LI>
+	    Install <kbd>while</kbd> loops for the
+	    evaluator by defining appropriate syntax functions and a
+	    transformation function
+	    <kbd>while_to_function_call</kbd> 
+	    that makes use of your function
+	    <kbd>while_loop</kbd>.
+	  </LI>
+	  <LI>
+	    What problem arises with this approach for implementing
+	    <kbd>while</kbd> loops, when
+	    the programmer decides within the body of the loop to
+	    return from the function that contains the loop?
+	  </LI>
+	  <LI>
+	    Change your approach to address the problem. How about directly
+	    installing <kbd>while</kbd> loops for the
+	    evaluator, using a function
+	    <kbd>eval_while</kbd>?
+	  </LI>
+	</OL>
+      
+    
+  
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_6_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_77_6_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+  
+  
+    <div class="permalink">
+    <a name="ex_4.8" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.8">Exercise 4.8 </a></b> 
+  
+    
+      
+      
+	      
+	Another kind of loop available in JavaScript is the
+	<kbd>for</kbd> loop, which combines
+	an initialization, a predicate, an update statement and a body in a single
+	construct. Similar to the <kbd>while</kbd>
+	loop, the body is repeatedly executed as long as the predicate holds. After
+	every execution, the update statement is evaluated. Here is a function
+	that reverses a list, using a <kbd>for</kbd>
+	loop. 
+	
+	<div class='snippet' id='javascript_77_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDjQAGyYVGTDkUmyAvKBKLJAbjESCNBqG7TZZIg2YkVofptABCUFQ4B9dZMndT5ppYG2vFlYUAIZUHgE+FAJCohJxcgpKoKoADqEM3AAWTMEAJp5mgQIANAmKUdpxAL464swUZvTMiRTaNbjMbJw8kk4U3Bil2KUAzNGaQA')">function reverse(xs) {
+    let result = null;
+    for (let current = xs; ! is_null(current); current = tail(current)) {
+        result = pair(head(current), result);
+    }
+    return result;
+}
+</pre></div></div>
+	<OL type="a">
+	  <LI>
+	    Explore how <kbd>parse</kbd> represents
+	    <kbd>for</kbd> loops.
+	  </LI>
+	  <LI>
+	    Following the approach for <kbd>while</kbd>
+	    loops in exercise&nbsp;<REF NAME="ex:while_loop"><a class="superscript" id="4.1.2-ex-link-4.7" href="./4.1.2.html#ex_4.7">4.7</a></REF>, first implement
+	    a function <kbd>for_loop</kbd> that takes
+	    as arguments four functions of no arguments, and simulates the
+	    behavior of the <kbd>for</kbd> loop. Then
+	    install <kbd>for</kbd> loops for the
+	    evaluator by defining appropriate syntax functions and a
+	    transformation function
+	    <kbd>for_to_function_call</kbd> 
+	    that makes use of your function
+	    <kbd>for_loop</kbd>. Finally,
+	    install <kbd>for</kbd> loops directly
+	    in the interpreter, using a function
+	    <kbd>eval_for</kbd>.
+	  </LI>
+	  <LI>
+	    Assume the you have solved the last part of
+	    exercise&nbsp;<REF NAME="ex:while_loop"><a class="superscript" id="4.1.2-ex-link-4.7" href="./4.1.2.html#ex_4.7">4.7</a></REF>. Would this allow
+	    for a particularly elegant way to install
+	    <kbd>for</kbd> loops for the evaluator?
+	  </LI>
+	</OL>
+      
+    
+  
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_7_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_77_7_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+
+  
+    <div class="permalink">
+    <a name="ex_4.9" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.9">Exercise 4.9 </a></b> 
+  
+    
+    
+      
+      
+	The designers of JavaScript decided to devote particular support to
+	the variable declared in the initialization part of
+	<kbd>for</kbd> loops. Consider the following
+	example.
+	<div class='snippet' id='javascript_77_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDiANkwqMmHIhJkBeUCQUSA3GPEEaDUNykyyRBsxLLQ-DaACEoKhwD6aiRO4mzTCwJufzlhQAhlTu-t4UAkKi4rGy8oqgKgAOIQzc3EJKAHygABZMQQAmHqYBAgA08QqRWrEAvtqyFKb0zAkUWvVAA')">function reverse(xs) {
+   let result = null;
+   for (let current = xs; ! is_null(current); current = tail(current)) {
+      result = pair(() => head(current), result);
+   }
+   return result;
+}
+</pre></div></div>
+	In most programming languages, the functions in the result list of
+	<kbd>reverse</kbd> are useless: They apply
+	<kbd>head</kbd> to
+	<kbd>null</kbd> because after execution
+	of the
+	<kbd>for</kbd> loop, the value of the variable
+	<kbd>current</kbd> is
+	<kbd>null</kbd>. The designers of JavaScript
+	decided to support programmers who expect the functions to return
+	their respective list element.
+	<OL type="a">
+	  <LI>
+	    Modify your solutions to exercise&nbsp;<REF NAME="ex:for_loops"><a class="superscript" id="4.1.2-ex-link-4.8" href="./4.1.2.html#ex_4.8">4.8</a></REF>
+	    such that each iteration of the loop has its own
+	    <QUOTE>instance</QUOTE> of the <EM>loop control variable</EM>
+	    declared in the initialization statement.
+	  </LI>
+	  <LI>
+	    Discuss whether this decision was a good one.
+	  </LI>
+	</OL>
+      
+    
+  
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_8_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_77_8_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+
+  
+<hr>
+
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
+    <FOOTNOTE>
+    In 
+	    JavaScript, there is a subtle difference between the two
+	    forms, see footnote&nbsp;<REF NAME="foot:function-decl-vs-lambda"><a class="superscript" id="4.1.2-foot-link-1" href="./1.3.2.html#footnote-1">1</a></REF>
+	    in chapter 1.
+            
+    </FOOTNOTE></div>
+
+    
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
+    <FOOTNOTE>
+    These
+	    selectors for a list of statements—and the corresponding
+	    ones for a list of operands—are not intended
+	    as a data abstraction.
+	    They are introduced as mnemonic names for the
+	    basic list operations in order to make it easier to understand the
+	    explicit-control evaluator in
+	    section&nbsp;<REF NAME="sec:eceval"><a class="superscript" id="4.1.2-sec-link-5.4" href="./5.4.html">5.4</a></REF>.
+	    
+            
+    </FOOTNOTE></div>
+
+    
+</SUBSECTION></div></div>
+
+    <div class='nav'>
+  
+        <a class='btn btn-secondary btn-nav' href='./4.1.1.html'>&lt; Previous</a>
+    
+    <div style='flex-grow: 1;'></div>
+  
+        <a class='btn btn-secondary btn-nav' id='79' href='./4.1.3.html'>Next &gt;</a>
+      </div>
+    <div class='chapter_sign'>
+      4.1.2  Representing Statements and Expressions
+    </div>
+    <script> var chapter_id = 78; </script>
+    <script> var chapter_path = "chapters/4.1.2.html"; </script>
+    <div class='next-page'></div>
+    </div>
+    </div> <!-- /.container -->
+    </body></html>

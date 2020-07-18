@@ -1,0 +1,2225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <meta name="description" content="5.2.1  The Machine Model" />
+    <title>
+      5.2.1  The Machine Model
+    </title>
+    
+  <meta name="csrf-param" content="authenticity_token" />
+  <meta name="csrf-token" content="EMTEijVc2kiiKUH4nYH0lQG3pLPfMowQ/Stg//t6DCo0e5pWMQwamnTvIdmVZqY/MqSx2IYYE+2bpNV6UNSMwQ==" />
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    -->
+    <link href="https://fonts.googleapis.com/css?family=Inconsolata&display?swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans|Droid+Serif" rel="stylesheet">
+    <link rel="stylesheet" media="all" href="../assets/stylesheet.css" />
+
+   <link rel="shortcut icon" type="image/x-icon" href="../assets/favicon.ico" />
+
+<!--    <link rel="shortcut icon" type="image/png" href="../images/lambda.png" /> -->
+
+    <!-- for support of progressive web app, see github README, DISABLED!
+    <link rel="manifest" href="../static/manifest.json">
+    -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" 
+		     	  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	          crossorigin="anonymous">
+    </script> 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script> -->
+    <script type="text/javascript" 
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-AMS-MML_HTMLorMML-full">
+    </script>
+   <!--  <script type="text/javascript" 
+      src="../MathJax/MathJax.js?config=TeX-AMS-MML_HTMLorMML-full">
+    </script> -->
+  
+    <script src="../assets/application.js"></script>
+  
+    <!-- Rendering inline LaTeX -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+          processEscapes: true,
+          jax: ["input/TeX","output/HTML-CSS"]
+        }
+      });
+    </script>
+    <!--<script src="/mathjax/MathJax.js?config=TeX-AMS_HTML-full.js" type="text/javascript"></script>-->
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js" type="text/javascript"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    
+    <!-- support for progressive web app, see README, DISABLED
+    <script>
+      if ('serviceWorker' in navigator && !navigator.serviceWorker.controller) {
+          navigator.serviceWorker.register("../sw.js").then(function(reg) {
+              console.log("Service worker has been registered for scope: " + reg.scope);
+          });
+      }
+    </script>
+    -->
+
+     <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top justify-content-between">
+       <button id="btn" class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#nav-sidebar" aria-controls="nav-sidebar" aria-expanded="false" aria-label="Toggle navigation" title="navigation">
+         <span class="navbar-toggler-icon"></span>
+       </button>
+       <span class="navbar-brand-short"><a title="Go back to front page" href="../index.html" class="gray">SICP &mdash; JS</a></span>
+       <span class="navbar-brand-long" ><a title="Go back to front page" href="../index.html" class="gray">Structure and Interpretation of Computer Programs &mdash; JavaScript Adaptation</a></span>
+
+       <!-- edit the search engine by visiting: 
+	    https://cse.google.com/cse/setup/basic?cx=015760785273492757659:nc_tznrzlsg 
+	       -->
+       <form class="form-inline ml-auto" id="xxx">
+         <div id="search-box">
+	         <script>
+	           (function() {
+	               var cx = 015760785273492757659:nc_tznrzlsg
+	               var gcse = document.createElement("script");
+	               gcse.type = "text/javascript";
+	               gcse.async = true;
+	               gcse.src = "https://cse.google.com/cse.js?cx=" + cx;
+	               var s = document.getElementsByTagName("script")[0];
+	               s.parentNode.insertBefore(gcse, s);
+	           })();
+	           window.onload = function()
+	           { 
+	               var searchBox =  document.getElementById("gsc-i-id1");
+	               searchBox.placeholder="search web edition";
+	               searchBox.title="search web edition"; 
+	           }
+	         </script>
+	         <gcse:search></gcse:search>
+         </div>
+       </form>
+       <span class="navbar-brand-short">
+         &nbsp;
+         &nbsp;
+         <a href="https://source-academy.github.io/source/" title="Go to the Source language(s) definition(s)" class="gray">S</a>
+       </span>
+       <span class="navbar-brand-long">
+         &nbsp;
+         &nbsp;
+         <a href="https://source-academy.github.io/source/" title="Go to the Source language(s) definition(s)" class="gray">Source</a>
+       </span>
+     </nav>
+     
+     <div class="container scroll">
+
+            
+        <div class="collapse" id="nav-sidebar" role="tablist" aria-multiselectable="true">
+        <!-- insert a dummy entry, to give one extra line of space -->
+        <a class="navbar-brand" href="index.html">&nbsp;</a>
+    
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-1">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-1" aria-expanded="false" aria-controls="sidebar-collapse-1">
+                <a href="./foreword.html">  Foreword</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-2">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-2" aria-expanded="false" aria-controls="sidebar-collapse-2">
+                <a href="./prefaces.html">  Prefaces</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-3">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-3" aria-expanded="false" aria-controls="sidebar-collapse-3">
+                <a href="./acknowledgements.html">  Acknowledgments from Second Edition of SICP, 1996</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-4">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-4" aria-expanded="true" aria-controls="sidebar-collapse-4">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-4" aria-expanded="true" aria-controls="sidebar-collapse-4">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./1.html">1  Building Abstractions with Functions</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-4" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-5">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-5" aria-expanded="true" aria-controls="sidebar-collapse-5">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-5" aria-expanded="true" aria-controls="sidebar-collapse-5">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./1.1.html">1.1  The Elements of Programming</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-5" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-6">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-6" aria-expanded="false" aria-controls="sidebar-collapse-6">
+                <a href="./1.1.1.html"> 1.1.1  Expressions</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-7">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-7" aria-expanded="false" aria-controls="sidebar-collapse-7">
+                <a href="./1.1.2.html"> 1.1.2  Naming and the Environment</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-8">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-8" aria-expanded="false" aria-controls="sidebar-collapse-8">
+                <a href="./1.1.3.html"> 1.1.3  Evaluating Operator Combinations</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-9">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-9" aria-expanded="false" aria-controls="sidebar-collapse-9">
+                <a href="./1.1.4.html"> 1.1.4  Compound Functions</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-10">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-10" aria-expanded="false" aria-controls="sidebar-collapse-10">
+                <a href="./1.1.5.html"> 1.1.5  The Substitution Model for Function Application</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-11">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-11" aria-expanded="false" aria-controls="sidebar-collapse-11">
+                <a href="./1.1.6.html"> 1.1.6  Conditional Expressions and Predicates</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-12">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-12" aria-expanded="false" aria-controls="sidebar-collapse-12">
+                <a href="./1.1.7.html"> 1.1.7  Example: Square Roots by Newton s Method</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-13">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-13" aria-expanded="false" aria-controls="sidebar-collapse-13">
+                <a href="./1.1.8.html"> 1.1.8  Functions as Black-Box Abstractions</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-14">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-14" aria-expanded="true" aria-controls="sidebar-collapse-14">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-14" aria-expanded="true" aria-controls="sidebar-collapse-14">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./1.2.html">1.2  Functions and the Processes They Generate</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-14" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-15">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-15" aria-expanded="false" aria-controls="sidebar-collapse-15">
+                <a href="./1.2.1.html"> 1.2.1  Linear Recursion and Iteration</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-16">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-16" aria-expanded="false" aria-controls="sidebar-collapse-16">
+                <a href="./1.2.2.html"> 1.2.2  Tree Recursion</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-17">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-17" aria-expanded="false" aria-controls="sidebar-collapse-17">
+                <a href="./1.2.3.html"> 1.2.3  Orders of Growth</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-18">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-18" aria-expanded="false" aria-controls="sidebar-collapse-18">
+                <a href="./1.2.4.html"> 1.2.4  Exponentiation</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-19">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-19" aria-expanded="false" aria-controls="sidebar-collapse-19">
+                <a href="./1.2.5.html"> 1.2.5  Greatest Common Divisors</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-20">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-20" aria-expanded="false" aria-controls="sidebar-collapse-20">
+                <a href="./1.2.6.html"> 1.2.6  Example: Testing for Primality</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-21">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-21" aria-expanded="true" aria-controls="sidebar-collapse-21">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-21" aria-expanded="true" aria-controls="sidebar-collapse-21">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./1.3.html">1.3  Formulating Abstractions with Higher-Order Functions</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-21" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-22">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-22" aria-expanded="false" aria-controls="sidebar-collapse-22">
+                <a href="./1.3.1.html"> 1.3.1  Functions as Arguments</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-23">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-23" aria-expanded="false" aria-controls="sidebar-collapse-23">
+                <a href="./1.3.2.html"> 1.3.2  Constructing Functions using Lambda Expressions</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-24">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-24" aria-expanded="false" aria-controls="sidebar-collapse-24">
+                <a href="./1.3.3.html"> 1.3.3  Functions as General Methods</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-25">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-25" aria-expanded="false" aria-controls="sidebar-collapse-25">
+                <a href="./1.3.4.html"> 1.3.4  Functions as Returned Values</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-26">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-26" aria-expanded="true" aria-controls="sidebar-collapse-26">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-26" aria-expanded="true" aria-controls="sidebar-collapse-26">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./2.html">2  Building Abstractions with Data</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-26" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-27">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-27" aria-expanded="true" aria-controls="sidebar-collapse-27">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-27" aria-expanded="true" aria-controls="sidebar-collapse-27">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./2.1.html">2.1  Introduction to Data Abstraction</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-27" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-28">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-28" aria-expanded="false" aria-controls="sidebar-collapse-28">
+                <a href="./2.1.1.html"> 2.1.1  Example: Arithmetic Operations for Rational Numbers</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-29">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-29" aria-expanded="false" aria-controls="sidebar-collapse-29">
+                <a href="./2.1.2.html"> 2.1.2  Abstraction Barriers</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-30">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-30" aria-expanded="false" aria-controls="sidebar-collapse-30">
+                <a href="./2.1.3.html"> 2.1.3  What Is Meant by Data?</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-31">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-31" aria-expanded="false" aria-controls="sidebar-collapse-31">
+                <a href="./2.1.4.html"> 2.1.4  Extended Exercise: Interval Arithmetic</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-32">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-32" aria-expanded="true" aria-controls="sidebar-collapse-32">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-32" aria-expanded="true" aria-controls="sidebar-collapse-32">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./2.2.html">2.2  Hierarchical Data and the Closure Property</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-32" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-33">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-33" aria-expanded="false" aria-controls="sidebar-collapse-33">
+                <a href="./2.2.1.html"> 2.2.1  Representing Sequences</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-34">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-34" aria-expanded="false" aria-controls="sidebar-collapse-34">
+                <a href="./2.2.2.html"> 2.2.2  Hierarchical Structures</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-35">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-35" aria-expanded="false" aria-controls="sidebar-collapse-35">
+                <a href="./2.2.3.html"> 2.2.3  Sequences as Conventional Interfaces</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-36">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-36" aria-expanded="false" aria-controls="sidebar-collapse-36">
+                <a href="./2.2.4.html"> 2.2.4  Example: A Picture Language</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-37">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-37" aria-expanded="true" aria-controls="sidebar-collapse-37">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-37" aria-expanded="true" aria-controls="sidebar-collapse-37">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./2.3.html">2.3  Symbolic Data</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-37" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-38">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-38" aria-expanded="false" aria-controls="sidebar-collapse-38">
+                <a href="./2.3.1.html"> 2.3.1  Strings</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-39">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-39" aria-expanded="false" aria-controls="sidebar-collapse-39">
+                <a href="./2.3.2.html"> 2.3.2  Example: Symbolic Differentiation</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-40">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-40" aria-expanded="false" aria-controls="sidebar-collapse-40">
+                <a href="./2.3.3.html"> 2.3.3  Example: Representing Sets</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-41">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-41" aria-expanded="false" aria-controls="sidebar-collapse-41">
+                <a href="./2.3.4.html"> 2.3.4  Example: Huffman Encoding Trees</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-42">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-42" aria-expanded="true" aria-controls="sidebar-collapse-42">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-42" aria-expanded="true" aria-controls="sidebar-collapse-42">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./2.4.html">2.4  Multiple Representations for Abstract Data</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-42" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-43">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-43" aria-expanded="false" aria-controls="sidebar-collapse-43">
+                <a href="./2.4.1.html"> 2.4.1  Representations for Complex Numbers</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-44">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-44" aria-expanded="false" aria-controls="sidebar-collapse-44">
+                <a href="./2.4.2.html"> 2.4.2  Tagged data</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-45">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-45" aria-expanded="false" aria-controls="sidebar-collapse-45">
+                <a href="./2.4.3.html"> 2.4.3  Data-Directed Programming and Additivity</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-46">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-46" aria-expanded="true" aria-controls="sidebar-collapse-46">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-46" aria-expanded="true" aria-controls="sidebar-collapse-46">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./2.5.html">2.5  Systems with Generic Operations</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-46" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-47">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-47" aria-expanded="false" aria-controls="sidebar-collapse-47">
+                <a href="./2.5.1.html"> 2.5.1  Generic Arithmetic Operations</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-48">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-48" aria-expanded="false" aria-controls="sidebar-collapse-48">
+                <a href="./2.5.2.html"> 2.5.2  Combining Data of Different Types</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-49">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-49" aria-expanded="false" aria-controls="sidebar-collapse-49">
+                <a href="./2.5.3.html"> 2.5.3  Example: Symbolic Algebra</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-50">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-50" aria-expanded="true" aria-controls="sidebar-collapse-50">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-50" aria-expanded="true" aria-controls="sidebar-collapse-50">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./3.html">3  Modularity, Objects, and State</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-50" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-51">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-51" aria-expanded="true" aria-controls="sidebar-collapse-51">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-51" aria-expanded="true" aria-controls="sidebar-collapse-51">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./3.1.html">3.1  Assignment and Local State</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-51" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-52">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-52" aria-expanded="false" aria-controls="sidebar-collapse-52">
+                <a href="./3.1.1.html"> 3.1.1  Local State Variables</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-53">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-53" aria-expanded="false" aria-controls="sidebar-collapse-53">
+                <a href="./3.1.2.html"> 3.1.2  The Benefits of Introducing Assignment</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-54">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-54" aria-expanded="false" aria-controls="sidebar-collapse-54">
+                <a href="./3.1.3.html"> 3.1.3  The Costs of Introducing Assignment</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-55">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-55" aria-expanded="true" aria-controls="sidebar-collapse-55">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-55" aria-expanded="true" aria-controls="sidebar-collapse-55">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./3.2.html">3.2  The Environment Model of Evaluation</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-55" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-56">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-56" aria-expanded="false" aria-controls="sidebar-collapse-56">
+                <a href="./3.2.1.html"> 3.2.1  The Rules for Evaluation</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-57">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-57" aria-expanded="false" aria-controls="sidebar-collapse-57">
+                <a href="./3.2.2.html"> 3.2.2  Applying Simple Functions</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-58">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-58" aria-expanded="false" aria-controls="sidebar-collapse-58">
+                <a href="./3.2.3.html"> 3.2.3  Frames as the Repository of Local State</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-59">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-59" aria-expanded="false" aria-controls="sidebar-collapse-59">
+                <a href="./3.2.4.html"> 3.2.4  Internal Declarations</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-60">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-60" aria-expanded="true" aria-controls="sidebar-collapse-60">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-60" aria-expanded="true" aria-controls="sidebar-collapse-60">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./3.3.html">3.3  Modeling with Mutable Data</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-60" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-61">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-61" aria-expanded="false" aria-controls="sidebar-collapse-61">
+                <a href="./3.3.1.html"> 3.3.1  Mutable List Structure</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-62">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-62" aria-expanded="false" aria-controls="sidebar-collapse-62">
+                <a href="./3.3.2.html"> 3.3.2  Representing Queues</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-63">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-63" aria-expanded="false" aria-controls="sidebar-collapse-63">
+                <a href="./3.3.3.html"> 3.3.3  Representing Tables</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-64">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-64" aria-expanded="false" aria-controls="sidebar-collapse-64">
+                <a href="./3.3.4.html"> 3.3.4  A Simulator for Digital Circuits</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-65">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-65" aria-expanded="false" aria-controls="sidebar-collapse-65">
+                <a href="./3.3.5.html"> 3.3.5  Propagation of Constraints</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-66">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-66" aria-expanded="true" aria-controls="sidebar-collapse-66">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-66" aria-expanded="true" aria-controls="sidebar-collapse-66">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./3.4.html">3.4  Concurrency: Time Is of the Essence</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-66" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-67">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-67" aria-expanded="false" aria-controls="sidebar-collapse-67">
+                <a href="./3.4.1.html"> 3.4.1  The Nature of Time in Concurrent Systems</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-68">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-68" aria-expanded="false" aria-controls="sidebar-collapse-68">
+                <a href="./3.4.2.html"> 3.4.2  Mechanisms for Controlling Concurrency</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-69">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-69" aria-expanded="true" aria-controls="sidebar-collapse-69">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-69" aria-expanded="true" aria-controls="sidebar-collapse-69">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./3.5.html">3.5  Streams</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-69" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-70">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-70" aria-expanded="false" aria-controls="sidebar-collapse-70">
+                <a href="./3.5.1.html"> 3.5.1  Streams Are Delayed Lists</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-71">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-71" aria-expanded="false" aria-controls="sidebar-collapse-71">
+                <a href="./3.5.2.html"> 3.5.2  Infinite Streams</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-72">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-72" aria-expanded="false" aria-controls="sidebar-collapse-72">
+                <a href="./3.5.3.html"> 3.5.3  Exploiting the Stream Paradigm</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-73">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-73" aria-expanded="false" aria-controls="sidebar-collapse-73">
+                <a href="./3.5.4.html"> 3.5.4  Streams and Delayed Evaluation</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-74">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-74" aria-expanded="false" aria-controls="sidebar-collapse-74">
+                <a href="./3.5.5.html"> 3.5.5  Modularity of Functional Programs and Modularity of Objects</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-75">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-75" aria-expanded="true" aria-controls="sidebar-collapse-75">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-75" aria-expanded="true" aria-controls="sidebar-collapse-75">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./4.html">4  Metalinguistic Abstraction</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-75" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-76">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-76" aria-expanded="true" aria-controls="sidebar-collapse-76">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-76" aria-expanded="true" aria-controls="sidebar-collapse-76">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./4.1.html">4.1  The Metacircular Evaluator</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-76" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-77">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-77" aria-expanded="false" aria-controls="sidebar-collapse-77">
+                <a href="./4.1.1.html"> 4.1.1  The Core of the Evaluator</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-78">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-78" aria-expanded="false" aria-controls="sidebar-collapse-78">
+                <a href="./4.1.2.html"> 4.1.2  Representing Statements and Expressions</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-79">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-79" aria-expanded="false" aria-controls="sidebar-collapse-79">
+                <a href="./4.1.3.html"> 4.1.3  Evaluator Data Structures</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-80">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-80" aria-expanded="false" aria-controls="sidebar-collapse-80">
+                <a href="./4.1.4.html"> 4.1.4  Running the Evaluator as a Program</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-81">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-81" aria-expanded="false" aria-controls="sidebar-collapse-81">
+                <a href="./4.1.5.html"> 4.1.5  Data as Programs</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-82">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-82" aria-expanded="false" aria-controls="sidebar-collapse-82">
+                <a href="./4.1.6.html"> 4.1.6  Internal Declarations</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-83">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-83" aria-expanded="false" aria-controls="sidebar-collapse-83">
+                <a href="./4.1.7.html"> 4.1.7  Separating Syntactic Analysis from Execution</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-84">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-84" aria-expanded="true" aria-controls="sidebar-collapse-84">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-84" aria-expanded="true" aria-controls="sidebar-collapse-84">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./4.2.html">4.2  Lazy Evaluation</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-84" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-85">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-85" aria-expanded="false" aria-controls="sidebar-collapse-85">
+                <a href="./4.2.1.html"> 4.2.1  Normal Order and Applicative Order</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-86">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-86" aria-expanded="false" aria-controls="sidebar-collapse-86">
+                <a href="./4.2.2.html"> 4.2.2  An Interpreter with Lazy Evaluation</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-87">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-87" aria-expanded="false" aria-controls="sidebar-collapse-87">
+                <a href="./4.2.3.html"> 4.2.3  Streams as Lazy Lists</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-88">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-88" aria-expanded="true" aria-controls="sidebar-collapse-88">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-88" aria-expanded="true" aria-controls="sidebar-collapse-88">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./4.3.html">4.3  Nondeterministic Computing</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-88" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-89">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-89" aria-expanded="false" aria-controls="sidebar-collapse-89">
+                <a href="./4.3.1.html"> 4.3.1  Amb and Search</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-90">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-90" aria-expanded="false" aria-controls="sidebar-collapse-90">
+                <a href="./4.3.2.html"> 4.3.2  Examples of Nondeterministic Programs</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-91">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-91" aria-expanded="false" aria-controls="sidebar-collapse-91">
+                <a href="./4.3.3.html"> 4.3.3  Implementing the amb Evaluator</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-92">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-92" aria-expanded="true" aria-controls="sidebar-collapse-92">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-92" aria-expanded="true" aria-controls="sidebar-collapse-92">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./4.4.html">4.4  Logic Programming</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-92" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-93">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-93" aria-expanded="false" aria-controls="sidebar-collapse-93">
+                <a href="./4.4.1.html"> 4.4.1  Deductive Information Retrieval</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-94">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-94" aria-expanded="false" aria-controls="sidebar-collapse-94">
+                <a href="./4.4.2.html"> 4.4.2  How the Query System Works</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-95">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-95" aria-expanded="false" aria-controls="sidebar-collapse-95">
+                <a href="./4.4.3.html"> 4.4.3  Is Logic Programming Mathematical Logic?</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-96">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-96" aria-expanded="false" aria-controls="sidebar-collapse-96">
+                <a href="./4.4.4.html"> 4.4.4  Implementing the Query System</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-97">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-97" aria-expanded="true" aria-controls="sidebar-collapse-97">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-97" aria-expanded="true" aria-controls="sidebar-collapse-97">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./5.html">5  Computing with Register Machines</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-97" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-98">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-98" aria-expanded="true" aria-controls="sidebar-collapse-98">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-98" aria-expanded="true" aria-controls="sidebar-collapse-98">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./5.1.html">5.1  Designing Register Machines</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-98" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-99">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-99" aria-expanded="false" aria-controls="sidebar-collapse-99">
+                <a href="./5.1.1.html"> 5.1.1  A Language for Describing Register Machines</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-100">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-100" aria-expanded="false" aria-controls="sidebar-collapse-100">
+                <a href="./5.1.2.html"> 5.1.2  Abstraction in Machine Design</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-101">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-101" aria-expanded="false" aria-controls="sidebar-collapse-101">
+                <a href="./5.1.3.html"> 5.1.3  Subroutines</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-102">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-102" aria-expanded="false" aria-controls="sidebar-collapse-102">
+                <a href="./5.1.4.html"> 5.1.4  Using a Stack to Implement Recursion</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-103">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-103" aria-expanded="false" aria-controls="sidebar-collapse-103">
+                <a href="./5.1.5.html"> 5.1.5  Instruction Summary</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-104">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-104" aria-expanded="true" aria-controls="sidebar-collapse-104">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-104" aria-expanded="true" aria-controls="sidebar-collapse-104">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./5.2.html">5.2  A Register-Machine Simulator</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-104" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-105">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-105" aria-expanded="false" aria-controls="sidebar-collapse-105">
+                <a href="./5.2.1.html"> 5.2.1  The Machine Model</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-106">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-106" aria-expanded="false" aria-controls="sidebar-collapse-106">
+                <a href="./5.2.2.html"> 5.2.2  The Assembler</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-107">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-107" aria-expanded="false" aria-controls="sidebar-collapse-107">
+                <a href="./5.2.3.html"> 5.2.3  Generating Execution Functions for Instructions</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-108">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-108" aria-expanded="false" aria-controls="sidebar-collapse-108">
+                <a href="./5.2.4.html"> 5.2.4  Monitoring Machine Performance</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-109">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-109" aria-expanded="true" aria-controls="sidebar-collapse-109">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-109" aria-expanded="true" aria-controls="sidebar-collapse-109">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./5.3.html">5.3  Storage Allocation and Garbage Collection</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-109" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-110">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-110" aria-expanded="false" aria-controls="sidebar-collapse-110">
+                <a href="./5.3.1.html"> 5.3.1  Memory as Vectors</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-111">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-111" aria-expanded="false" aria-controls="sidebar-collapse-111">
+                <a href="./5.3.2.html"> 5.3.2  Maintaining the Illusion of Infinite Memory</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-112">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-112" aria-expanded="true" aria-controls="sidebar-collapse-112">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-112" aria-expanded="true" aria-controls="sidebar-collapse-112">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./5.4.html">5.4  The Explicit-Control Evaluator</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-112" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-113">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-113" aria-expanded="false" aria-controls="sidebar-collapse-113">
+                <a href="./5.4.1.html"> 5.4.1  The Core of the Explicit-Control Evaluator</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-114">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-114" aria-expanded="false" aria-controls="sidebar-collapse-114">
+                <a href="./5.4.2.html"> 5.4.2  Sequence Evaluation and Tail Recursion</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-115">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-115" aria-expanded="false" aria-controls="sidebar-collapse-115">
+                <a href="./5.4.3.html"> 5.4.3  Conditionals, Assignments, and Declarations and Blocks</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-116">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-116" aria-expanded="false" aria-controls="sidebar-collapse-116">
+                <a href="./5.4.4.html"> 5.4.4  Running the Evaluator</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+            <div class="card card-inverse">
+              <div class="card-header" role="tab" id="sidebar-117">
+                <h5 class="mb-0">
+                  <a class="sidebar-show collapsed" data-toggle="collapse" href="#sidebar-collapse-117" aria-expanded="true" aria-controls="sidebar-collapse-117">
+                  &#10148;   <!-- ➤ (because this one is rendered blue on mobile: ▶  -->
+                  </a>
+                  <a class="sidebar-hide collapsed" data-toggle="collapse" href="#sidebar-collapse-117" aria-expanded="true" aria-controls="sidebar-collapse-117">
+                  &#x25BC;    <!-- ▼ (because the corresponding one is not rendered) -->
+                  </a>
+                  <a href="./5.5.html">5.5  Compilation</a>
+                </h5>
+              </div>
+    
+              <div id="sidebar-collapse-117" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                <div class="card-block">
+            
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-118">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-118" aria-expanded="false" aria-controls="sidebar-collapse-118">
+                <a href="./5.5.1.html"> 5.5.1  Structure of the Compiler</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-119">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-119" aria-expanded="false" aria-controls="sidebar-collapse-119">
+                <a href="./5.5.2.html"> 5.5.2  Compiling Expressions</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-120">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-120" aria-expanded="false" aria-controls="sidebar-collapse-120">
+                <a href="./5.5.3.html"> 5.5.3  Compiling Combinations</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-121">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-121" aria-expanded="false" aria-controls="sidebar-collapse-121">
+                <a href="./5.5.4.html"> 5.5.4  Combining Instruction Sequences</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-122">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-122" aria-expanded="false" aria-controls="sidebar-collapse-122">
+                <a href="./5.5.5.html"> 5.5.5  An Example of Compiled Code</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-123">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-123" aria-expanded="false" aria-controls="sidebar-collapse-123">
+                <a href="./5.5.6.html"> 5.5.6  Lexical Addressing</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-124">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-124" aria-expanded="false" aria-controls="sidebar-collapse-124">
+                <a href="./5.5.7.html"> 5.5.7  Interfacing Compiled Code to the Evaluator</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+                </div>
+              </div>
+            </div>
+        
+                </div>
+              </div>
+            </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-125">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-125" aria-expanded="false" aria-controls="sidebar-collapse-125">
+                <a href="./references.html">  References</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        
+        <div class="card card-inverse">
+          <div class="card-header" role="tab" id="sidebar-126">
+            <h5 class="mb-0">
+              <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-126" aria-expanded="false" aria-controls="sidebar-collapse-126">
+                <a href="./making-of.html">  Making of the JavaScript Adaptation</a>
+              </span>
+            </h5>
+          </div>
+        </div>
+        </div>
+<div id='permalink-msg'>
+<div class='screen'>
+  <div class='alert alert-success'>
+    <strong>Permalink copied!</strong>
+  </div>
+</div>
+</div>
+<div class='chapter-content'>
+
+      <div class='chapter-title'>
+        <div class='permalink'>
+        <a name='top' class='permalink'> 
+    5.2.1  The Machine Model
+        </a>
+        </div>
+      </div>
+      <div class='chapter-text'>
+        <div class='SECTION'><SECTION>
+    
+
+  
+
+  <div class='permalink'>
+<a name='p1' class='permalink'></a><p>
+    The machine model generated by
+    
+      
+      <kbd>make_machine</kbd>
+    
+    is represented as a
+    
+      
+      function
+    
+    with local state using the message-passing techniques
+    developed in chapter&nbsp;3.  To build this model,
+    
+      
+      <kbd>make_machine</kbd>
+    
+    begins by calling the
+    
+      
+      function
+    
+    
+      
+      <kbd>make_new_machine</kbd>
+      
+    
+    to construct
+    the parts of the machine model that are common to all register
+    machines.  This basic machine model constructed by
+    
+      
+      <kbd>make_new_machine</kbd>
+      
+    
+    is essentially a container for some registers and a stack, together with an
+    execution mechanism that processes the controller instructions one by one.
+  </p></div>
+
+  <div class='permalink'>
+<a name='p2' class='permalink'></a><p>
+    
+      
+      
+	The function
+	<kbd>make_machine</kbd>
+      
+    
+    then extends this basic model (by sending it
+    messages) to include the registers, operations, and controller of the
+    particular machine being defined.  First it allocates a register in
+    the new machine for each of the supplied register names and installs
+    the designated operations in the machine.  Then it uses an 
+    
+    <EM>assembler</EM> (described below in
+    section&nbsp;<REF NAME="sec:assembler"><a class="superscript" id="5.2.1-sec-link-5.2.2" href="./5.2.2.html">5.2.2</a></REF>) to transform the controller list
+    into instructions for the new machine and installs these as the
+    machine's instruction sequence.
+    
+      
+      
+	The function
+	<kbd>make_machine</kbd>
+      
+    
+    returns as its value the modified machine model.
+    
+    
+    <div class='snippet' id='javascript_104_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0EYBQuAzAVwDsBjAFwEsB7E0AcwFMKB9AJyYaoGcKn2ACgC2AQzIALKiSYAaUJwasSo4UwCUoAN65QehSyLt6YydKaCARMzaLe-dpfWDFy1RoDcuAL75i5ajpQUR4eKgYSDi43NUEQsIjWaT52IkpaEk0dfQMKI3oJJlEAE0EKUSoAGzjQ8MjkilT0unV1L19-Zvp4utYAN1FKoiZWJgAPAAcahPqSFLTAzO1QXX1OPONQQpKyiuryqunehqbF1rafP1Iu0EqaGgBrIgnWCfYqYUEeAE9hACMaJV5DQJgJRIseFlVnoyHQ+KABpVQABeYKhGhkL6-AFA0AgsEQi45db5BGDFHI1GkYpMAjmYrQnKgAD8oAE7BoQh+-0B8ksAFUSA8SDQAO70fHscEZUDSNE8Jj-SpMABcTkZORVWyKpQO1URrXaVwCMruj2erEqoj+TGqVptlR48nttpiGm0jNhcwoZKRqPiGMELsqbud1ttkK8xMMm0RFKpJBpdJkDKZ+lZ7M5QfDIZUaj5gqT9NuOdl3VCir+yrV6g1+i1esEBqNhGui1AYgeIzeHyo1D6I3GUyH8lMUhkYYdkI9OSoBFAgl4rC9fFEJDYQ8EQ9aM7ToBXPrIKP3cPK69Gk36g2GW8mRL3JM2gk0yIAfPuo-pvGzHUxZfPFx4S0cwvYc7yhPcT29Ms+B4Y8zSeF5g2zKdJ1dIdgIdW8JkNOs9EfehnxRd8Gh4T89G-CM-znBclzsPgBFA7Cd2yPcDwUY8bCibgGKEMdzHkeiHFA7jmPvNMCIXF93y4r1+HXHgXDaFYcko39dzTTMhBHUABSFEVxTZSZOFqIIKG+UEy3lStqyccjQF8XxWxNIJOxGSVpToJidP4icS1QvFQSlQkNKg+EQXg+5ENed5Pg8xYRJBZjgSCzy5nEsKfVEN4MTg1ExGHYiO1ELsYt7ftB0mLdR3Ecc5H8iN1FkPDIMg+KMkS1LE0U7cMskoi32CCYJkqb4kkiakBFG6QlAAK1EAYeDId4JgoQQWtanIQRqqYJiKqYmqGjkyEhC4nM6dsegiFwuHsRi83qngaCMMh3VY-CY3oSp7CsK6SEsQTbt40NQCel7PEuZybjc1g-sXb0arMPzgydQKCQyVGJjICD9HY8p2BsTiWG4u6+NqgT5V6VwHvhvhcJydjEWGUDjz+q8hkqqYGgyxnrxGfwURapd2q8zcmc52tINZGGRciMW+dAxG6rQx0UvRuFJb3LUYZ7YQ+yoAcmPFxXiqR+qUb6z6pKK96mQVNg5KYBTdgJlh5GN-xnwynISgGchu0xLHlMZbwWwumVfbXV7XkD7HQvt5c6HkihFKx+RG1kpOnZTwQg8NFZzrbGUYf4PhaYoJWKZRtXgox+QCCtBh5CD0L2K9Yp9aCVFS4dugO8WcuMpowDWFlpj287zIcbTNu+8n1gBfykr3NShLNwnxZms27ed9N5WGtVtHa41+zow2QjpNC3e0wTx3nYb0Qm6g-uOs9+nr8gyP-Zj3PsY8FSP5MlDiHH8Cor76C0uXPkAAhEooAe4wUaAsGUcp4g2VVHZEOlxw5mSYGXBUABHYY-tp65FJN9Mulge4A1BkwIhTtXpnShu2HuidEyTzKHgtgJxkEtFCpJbYuo9icL4ONeYXRcKFxciYZerA-hSnIBIKBe8q45lRg-J+LdbbsRpPCVE8io4SFYLota3N7LDyXMGJiJiWItXYqRSK5okI5hQhGFWIlkI2O9msK2A13y20AfoYemd1zZ0Uho2xgTNq3yzs7NOiDIwbWvmpMBASok+2KH7aOWNf7eMCb4dJFF7IpL-GkvQkCGgwLgQYxRiDTgoPLAqJUGCMqOWYTKGpkhXGVFIZJCha1LCdIkDQ4MTCcH0CGcYrhghJk8Ikfwq2gjdiHFmd6epLQmHtKCEucoDBmDFEtD9PgwgK7wMKKwXZvSrZLgmBULkFATmaAAGRPO1DsY5FAXyUjOSMXZYci5BEUIIB6Vzz63B+pYRQNCQVGnGbKICQlGKbm3AssFOzH77MOWXHSkKuCYI6AC+giL2AiSBSi22AidTLOqL1WFhLMprjWuLUF5CIUHkZTQ5ldLpHwrYauc8yK7yotJOivZTADn9Ownydl658VbPoDKjcl5xbMWFZsJZjZaXYPpchEFaqvoQuDNC9wYz6WWJAoKnC+reW7MxZKnFRrTU8qsRhZC5LGSUp2Jq8C-yeUwwYDQC5NBlG+XNmo5ucdtGnlACYziNAKCBpMYPcxAFzUOmsVwyJbFo0ONRAhC0yFq4Hw8S4rxp8fFgr8bQ3uoS4lkHkKRVpoDqKpoRUDYSm4vHgJhNGxQRNbDtoECIcmfliWkq4IIMtLV+qXxibWnO8SQnJ0Uood+FFm3drZOwDkQhKm6VgcURggaE11N4fQVBFZmk1mKZDOFAag3dJZZsSV1hj00BGTmJ1NwA0JqmWXH9ga5lnGtRq4RAGxFIIkZsuFEwkqrjIA8J99B4MPCsLBiYcqYNEB4EolD7s+ZIdBuUBDaHsPDOcFy299KYY8AWhYPdob5B4dAFoz0vauD9pJrxYdZsmPEYeBB7ibpB6W0rZfMpO8Jhka+Px+QS6wk3QYGuwBX9smxzyZtYBBK-WyJMgmzgIaR2PVkyxyNbHoJ9tRFxYlPH94ocE9TdwIn7Izptkk1qc7l2KebnB-jymP6qYDrk-+7m0xaeNDcWjA5FOEZfVFpgNDV3cpuHpzkFhV3WpfalzgiWuBfvbPZhoQmaaFbWWewjoHDilfEWcaD9Kkp6opVbF9IJjVqHyygoCY9LWEZuXc1VLybUYvFVitaSztx8lax1oI3XLxJVm1aprYLKvVCWQt84yX2wLdHl1Yoil1vWsbOt310NZFBQIJyT4DGjMq1RrLTGZmGbRvEO2VE53Luwy6MmxkFiuurw6puF7GQs0z2e10BepBjwy3+6LKqQO6CVwnKFwpO8i33Y065waWgAEo-h5EN+-9As-yDiFlHwDVIbokxUhG+64HvfYMIU9NwL1NKrAl1p2qeX08+Hj2LELuc0N55tmU3PPsD25iBqljZubBykad0q4wmBkCIAlcZyii2MZxyj1q8SNF8fEA8FK04lukiWRLykqJLB-UsC1aWsi4bXd4wfO7EwHuazTFqM33ovmW+obb4qpUe6Gad2j139dG4Rvd0yT3VLzffMGQoyQNupYB5GEM4P+8i169M1HzUbzShx8t-ehNye9x29KsX4NjvM-hpzy1GPOxC+6Xi6XtM5eRjxYzxTZjQd6-58HvGXS2WEv+5hsPrvfke-Yz717umg-LAC9H2dgQF2GcT7DQFEEbu+-U74AWfSYpz1lZuOZSyLP0HXqozp0qQGMicLGJ861tyqBCH4A-+QJAiCVB6cL7Zx+Epv6mLe6S6N7e6-5H41YA5jBK4q4dQ5SYgS4m6bDS5gGc6RbEy36w4wEJTwHKLwGkIJwoF74sbHSy4RbtjPDFDggjCkTlyowa5GakLsRYycY2aa4L5kCYJPbQQaKsGDpkxO6WAaJcG4zRooZQ5GZWAoYiE9rQRb4SFmxWD3YyGZTVpJBMB7SogJyYFyzQHK44HHT2TsQwwaESEK56GwFeTjIuZWwFSLhFTaEaGLhbza5MgmFcz-4dSAGLhNTI6uHVx+Ha6MaBEo5pwhGFJ67hHpJ4ZRFRJb6tAuG7yNonbtgwwurrjsDfDdIgyNpP79ZWIPQNreiJJy7tjjCNAvaYQRj36nKcCvQGxvSMhwqFCVBBR0G3ZZBa7cHwgyAP4QbHgarlEY7XJAQpAzTArlEQa55l4GD1HRakTNz9ZpEWoZFZG9HcI06NodHTEe6zFMANG5xLGyI6ETF9HcxFGwSHQWw3pnykiAGD6TTJjiqgAAA+LxvKn+3+NROxLIexBxnxuIAJPxWo5RUolAVRjo1K3x8gLRQUdWPKaCzSggckHI3+jEgBiOjRkkoJlRKMyJScqJyoJKGJsR+g7Rzu4mpJTIlB1BEGikCxzumJGmgSkkpE5agC3g8J8uHe-GREtsyoPo4hqIAJ9kWGOGggYwnRLUQpLG-WYw+uCGwckEkklgxQdACWNx+gMGSUpCs4raygX+1QKGIOrUkClgAAosIKtN8ERgblqLAAAPKwAqEU5USbrdE+gJqaH97Gnsl2z8bHiNi+mhaSRel+kFJfhNFmokD6yDBUAABeFgup+gMpIp06Vsqp6plgmpegcKHcPAtyFAXSagoQj8jRyptheCtGzA8+UmOGrerUrIdZEgoW2sVZZZtZrWoWTZOprZHY7ZNZFuuk0gsZ30iZDZKeI51AcZiZz4fZZpgowoh+Bg9C8IcoKGaoo4A5EMqkHqVs+ZhZkgKRxcum-BwKJqoUApUEy6x4lgAAVKQH9OKnedmVGTygeeCMWducmR9GCiWdWX+EOdYCwBOTMXfCnH2f+R2UBfbKBSnuLDbNeWEseOLP-BGTvCCdulmFBcwPIFSbpIuQZESnQsMGuTIqVMSpfrubcZsB+UWRIMeUEAGJiF2N8IDLCOwHtr1kBACTdBxVxe5qyI8fSO5iCUQoMIIKxTCVSksnUZyFxa0MjqyLJUrvJZCMjlqMxZJUwGxfAsInJZxadIxfQPJs7MSoRjZsBRQJhvSp5gpsSvhhzBZWeZYLBRRgRsZansoEwKKKwKGnyeZvCCwUvBRS5VjCoexLwSFSMJZcITzGIQGdFawChs+PZFeRQOcjoclSRQwoBaAGmTkOlecvIXmj9C+lOVQDOTyQbjQvhWmFWilZYBVVVU4MpleWOuUGzvBGVfzpwZHs6BCsIeHo-LhG+TcIMHcGQLSTZo1kLABFpYUQYDxMJJ1cqD7qAMJSmD+UyB1daMqMeM-kIJKotWPmeSCr4a4dvLtWzhpiUu6RAlhUIItZYAALJf7UAjQ2lFgphLWkxagumRkVlgq4rLWMQTUYjUHFCvnUVak6pRQWgzUXkSa8x+jyiBiLXXVrV+mSRxhDmbXirdlbo7rnn5gEUH6GSUXqgYX96NgGgc45BwqK76FJmbr2LFGcbgWpx-xzW0Q8WGl0EmlA2kiZkyDQ17h3USYekkEYjHhZVM2WGRC4Gz4pz5yha4FKlXVWzy38CpUtToUORjXth0VfmlnMDbWSQ4WAXx6rjsDWWE1VrY52V1rpyZWeFeSELEKMJ+nXzYkWE63KT62QRtmm1W2W4NATUQbrKRAe25VwVMisiEKIUZU0Fu3R05X+zHiEJoWQXbnz7g1TX8BcYOBx05Csj53TX8E50h3z7Wb8El3pi3Dw0vDEpV0AXz7h3f47bqxzD116CsglX+I-I7Z5RDSgiJhlDFVh6BSRgG3U2W3z7SGE0oat3QXx7KGE3J3D3zmPUiDbn75LkU05VkUqIyBUWA0VqkjG0MVX6Rb4xrShqEb+WuV31OC63abfrExjqc22YUxjqzU0UmXEzf212g0CH7x-0mrTbIaf38FsJeaa4QOk3MrxxAOxI5wgOkw-2jqwMgqOXDCibC1qmi2eUwz+WIN4JG7yAomAhEkXJDGtzRqhpmEjAyC+X+UZSr6jC1SKakxuhFSBFP3l2F3Eqv3kOHTI7kOJI5BP0d0hjKHODxH2QyPegR1ZUx3+xU2bTTDoL4kZE0PonlFMkEObChotjsQMBkAHJMPIiMikOSEtQvqiA0KDLOPWUXV7iSpZaKg0JxDyB-CXyiCgAACkoA-jiRm0L6yIPjogfjATg+-j7jaYkqSSVCXCciAMoWQekqSUlgUTh0QKLjh0iqggAADOcOE5BOnshNYJY8YlmQkaFnDFQiMj9Dk5wMIE4IDAwL9J00tVYH8K1Yk61E00410-061RU3uE0wM2M80w0zvJXt0lYKwgM-M61DUwckQ+zhcAnF-Wg4pBY1YzdrpKM6ABgCUwAGw7MwOgNwMKaHN+XHMuPyAAAsZTXgNta0DzD9XgGDwMwDtT7BTjbQQAA')">function make_machine(register_names, ops, controller_text) {
+    const machine = make_new_machine();
+    for_each(register_name => 
+               machine("allocate_register")(register_name), 
+             register_names);
+    machine("install_operations")(ops);
+    machine("install_instruction_sequence")
+           (assemble(controller_text, machine));
+    return machine;
+}
+</pre></div></div>
+  </p></div>
+
+  
+      <div class='permalink'>
+        <a name='h1' class='permalink'></a><h2>
+    
+    Registers
+  </h2></div>
+
+  
+
+  <div class='permalink'>
+<a name='p3' class='permalink'></a><p>
+    We will represent a register as a
+    
+      
+      function
+    
+    with local state, as in
+    chapter&nbsp;3.  The
+    
+      
+      function
+    
+    
+      
+      <kbd>make_register</kbd>
+       creates a register that
+    holds a value that can be accessed or changed:
+    
+    <div class='snippet' id='javascript_104_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0EYBQuAzAVwDsBjAFwEsB7E0AcwFMKB9AJyYaoGcKn2ACgC2AQzIALKiSYAaUJwasSo4UwCUoAN65QehSyLt6YydKaCARMzaLe-dpfWDFy1RoDcuAL75i5ajpQUR4eKgYSDi43NUEQsIjWaT52IkpaEk0dfQMKI3oJJlEAE0EKUSoAGzjQ8MjkilT0unV1L19-Zvp4utYAN1FKoiZWJgAPAAcahPqSFLTAzO1QXX1OPONQQpKyiuryqunehqbF1rafP1Iu0EqaGgBrIgnWCfYqYUEeAE9hACMaJV5DQJgJRIseFlVnoyHQ+KABpVQABeYKhGhkL6-AFA0AgsEQi45db5BGDFHI1GkYpMAjmYrQnKgAD8oAE7BoQh+-0B8ksAFUSA8SDQAO70fHscEZUDSNE8Jj-SpMABcTkZORVWyKpQO1URrXaVwCMruj2erEqoj+TGqVptlR48nttpiGm0jNhcwoZKRqPiGMELsqbud1ttkK8xMMm0RFKpJBpdJkDKZ+lZ7M5QfDIZUaj5gqT9NuOdl3VCir+yrV6g1+i1esEBqNhGui1AYgeIzeHyo1D6I3GUyH8lMUhkYYdkI9OSoBFAgl4rC9fFEJDYQ8EQ9aM7ToBXPrIKP3cPK69Gk36g2GW8mRL3JM2gk0yIAfPuo-pvGzHUxZfPFx4S0cwvYc7yhPcT29Ms+B4Y8zSeF5g2zKdJ1dIdgIdW8JkNOs9EfehnxRd8Gh4T89G-CM-znBclzsPgBFA7Cd2yPcDwUY8bCibgGKEMdzHkeiHFA7jmPvNMCIXF93y4r1+HXHgXDaFYcko39dzTTMhBHUABSFEVxTZSZOFqIIKG+UEy3lStqyccjQF8XxWxNIJOxGSVpToJidP4icS1QvFQSlQkNKg+EQXg+5ENed5Pg8xYRJBZjgSCzy5nEsKfVEN4MTg1ExGHYiO1ELsYt7ftB0mLdR3Ecc5H8iN1FkPDIMg+KMkS1LE0U7cMskoi32CCYJkqb4kkiakBFG6QlAAK1EAYeDId4JgoQQWtanIQRqqYJiKqYmqGjkyEhC4nM6dsegiFwuHsRi83qngaCMMh3VY-CY3oSp7CsK6SEsQTbt40NQCel7PEuZybjc1g-sXb0arMPzgydQKCQyVGJjICD9HY8p2BsTiWG4u6+NqgT5V6VwHvhvhcJydjEWGUDjz+q8hkqqYGgyxnrxGfwURapd2q8zcmc52tINZGGRciMW+dAxG6rQx0UvRuFJb3LUYZ7YQ+yoAcmPFxXiqR+qUb6z6pKK96mQVNg5KYBTdgJlh5GN-xnwynISgGchu0xLHlMZbwWwumVfbXV7XkD7HQvt5c6HkihFKx+RG1kpOnZTwQg8NFZzrbGUYf4PhaYoJWKZRtXgox+QCCtBh5CD0L2K9Yp9aCVFS4dugO8WcuMpowDWFlpj287zIcbTNu+8n1gBfykr3NShLNwnxZms27ed9N5WGtVtHa41+zow2QjpNC3e0wTx3nYb0Qm6g-uOs9+nr8gyP-Zj3PsY8FSP5MlDiHH8Cor76C0uXPkAAhEooAe4wUaAsGUcp4g2VVHZEOlxw5mSYGXBUABHYY-tp65FJN9Mulge4A1BkwIhTtXpnShu2HuidEyTzKHgtgJxkEtFCpJbYuo9icL4ONeYXRcKFxciYZerA-hSnIBIKBe8q45lRg-J+LdbbsRpPCVE8io4SFYLota3N7LDyXMGJiJiWItXYqRSK5okI5hQhGFWIlkI2O9msK2A13y20AfoYemd1zZ0Uho2xgTNq3yzs7NOiDIwbWvmpMBASok+2KH7aOWNf7eMCb4dJFF7IpL-GkvQkCGgwLgQYxRiDTgoPLAqJUGCMqOWYTKGpkhXGVFIZJCha1LCdIkDQ4MTCcH0CGcYrhghJk8Ikfwq2gjdiHFmd6epLQmHtKCEucoDBmDFEtD9PgwgK7wMKKwXZvSrZLgmBULkFATmaAAGRPO1DsY5FAXyUjOSMXZYci5BEUIIB6Vzz63B+pYRQNCQVGnGbKICQlGKbm3AssFOzH77MOWXHSkKuCYI6AC+giL2AiSBSi22AidTLOqL1WFhLMprjWuLUF5CIUHkZTQ5ldLpHwrYauc8yK7yotJOivZTADn9Ownydl658VbPoDKjcl5xbMWFZsJZjZaXYPpchEFaqvoQuDNC9wYz6WWJAoKnC+reW7MxZKnFRrTU8qsRhZC5LGSUp2Jq8C-yeUwwYDQC5NBlG+XNmo5ucdtGnlACYziNAKCBpMYPcxAFzUOmsVwyJbFo0ONRAhC0yFq4Hw8S4rxp8fFgr8bQ3uoS4lkHkKRVpoDqKpoRUDYSm4vHgJhNGxQRNbDtoECIcmfliWkq4IIMtLV+qXxibWnO8SQnJ0Uood+FFm3drZOwDkQhKm6VgcURggaE11N4fQVBFZmk1mKZDOFAag3dJZZsSV1hj00BGTmJ1NwA0JqmWXH9ga5lnGtRq4RAGxFIIkZsuFEwkqrjIA8J99B4MPCsLBiYcqYNEB4EolD7s+ZIdBuUBDaHsPDOcFy299KYY8AWhYPdob5B4dAFoz0vauD9pJrxYdZsmPEYeBB7ibpB6W0rZfMpO8Jhka+Px+QS6wk3QYGuwBX9smxzyZtYBBK-WyJMgmzgIaR2PVkyxyNbHoJ9tRFxYlPH94ocE9TdwIn7Izptkk1qc7l2KebnB-jymP6qYDrk-+7m0xaeNDcWjA5FOEZfVFpgNDV3cpuHpzkFhV3WpfalzgiWuBfvbPZhoQmaaFbWWewjoHDilfEWcaD9Kkp6opVbF9IJjVqHyygoCY9LWEZuXc1VLybUYvFVitaSztx8lax1oI3XLxJVm1aprYLKvVCWQt84yX2wLdHl1Yoil1vWsbOt310NZFBQIJyT4DGjMq1RrLTGZmGbRvEO2VE53Luwy6MmxkFiuurw6puF7GQs0z2e10BepBjwy3+6LKqQO6CVwnKFwpO8i33Y065waWgAEo-h5EN+-9As-yDiFlHwDVIbokxUhG+64HvfYMIU9NwL1NKrAl1p2qeX08+Hj2LELuc0N55tmU3PPsD25iBqljZubBykad0q4wmBkCIAlcZyii2MZxyj1q8SNF8fEA8FK04lukiWRLykqJLB-UsC1aWsi4bXd4wfO7EwHuazTFqM33ovmW+obb4qpUe6Gad2j139dG4Rvd0yT3VLzffMGQoyQNupYB5GEM4P+8i169M1HzUbzShx8t-ehNye9x29KsX4NjvM-hpzy1GPOxC+6Xi6XtM5eRjxYzxTZjQd6-58HvGXS2WEv+5hsPrvfke-Yz717umg-LAC9H2dgQF2GcT7DQFEEbu+-U74AWfSYpz1lZuOZSyLP0HXqozp0qQGMicLGJ861tyqBCH4A-+QJAiCVB6cL7Zx+Epv6mLe6S6N7e6-5H41YA5jBK4q4dQ5SYgS4m6bDS5gGc6RbEy36w4wEJTwHKLwGkIJwoF74sbHSy4RbtjPDFDggjCkTlyowa5GakLsRYycY2aa4L5kCYJPbQQaKsGDpkxO6WAaJcG4zRooZQ5GZWAoYiE9rQRb4SFmxWD3YyGZTVpJBMB7SogJyYFyzQHK44HHT2TsQwwaESEK56GwFeTjIuZWwFSLhFTaEaGLhbza5MgmFcz-4dSAGLhNTI6uHVx+Ha6MaBEo5pwhGFJ67hHpJ4ZRFRJb6tAuG7yNonbtgwwurrjsDfDdIgyNpP79ZWIPQNreiJJy7tjjCNAvaYQRj36nKcCvQGxvSMhwqFCVBBR0G3ZZBa7cHwgyAP4QbHgarlEY7XJAQpAzTArlEQa55l4GD1HRakTNz9ZpEWoZFZG9HcI06NodHTEe6zFMANG5xLGyI6ETF9HcxFGwSHQWw3pnykiAGD6TTJjiqgAAA+LxvKn+3+NROxLIexBxnxuIAJPxWo5RUolAVRjo1K3x8gLRQUdWPKaCzSggckHI3+jEgBiOjRkkoJlRKMyJScqJyoJKGJsR+g7Rzu4mpJTIlB1BEGikCxzumJGmgSkkpE5agC3g8J8uHe-GREtsyoPo4hqIAJ9kWGOGggYwnRLUQpLG-WYw+uCGwckEkklgxQdACWNx+gMGSUpCs4raygX+1QKGIOrUkClgAAosIKtN8ERgblqLAAAPKwAqEU5USbrdE+gJqaH97Gnsl2z8bHiNi+mhaSRel+kFJfhNFmokD6yDBUAABeFgup+gMpIp06Vsqp6plgmpegcKHcPAtyFAXSagoQj8jRyptheCtGzA8+UmOGrerUrIdZEgoW2sVZZZtZrWoWTZOprZHY7ZNZFuuk0gsZ30iZDZKeI51AcZiZz4fZZpgowoh+Bg9C8IcoKGaoo4A5EMqkHqVs+ZhZkgKREc6ImIXY3wgMsI7Ae2vWQEAJN0V5N57mrIjx9I7mIJRCgwgg55MJVKSydRnIN5rQyOrI-5SugFkIyOWoAYZ5TAF58CwiAF15p0x5QQ8mzsxKhGNm1gLAmG9KnmCmxK+GHMWF-BUhuFFGBGqFMipUMgoorAoafJ5m8ILBS8pU2FWMKh7EvBbFIw2FwhPMYhAZvFrAKGz49kApPyEG6ykQhCxCr0x4aZOQklFA5y8heaP0L6U5VAM5PJBuNCVJe4VaYllg2lulTgymklY65QbO8Eml-OnBkezoEKwh4ej8uEUZCJ3+GItJNmjWQsAEMFwK7ggMPEwkNlyoPuoAr5KYyZEk-BFy1oyox4z+QgkqhRqeXGDgwV7Wvhrh281lSVO5e4JS7pEC26WYGVlgAAsl-tQCNDaUWCmAYGFQIFqC6ZGRWWCriq1SSoMHcGQNQcUNmVgjkHCvmi8H5SapurzH6PKIGBlYVWzsMWCnGEOTFeKt2VujujlfVHpEuYZMSjWH2Stk2IMMphGbmfSorvoUmTNTmsUZxnfAun-AFbRHeYaXQSaV1aSJmTICNZBKVRJh6SQRiMeDoReNgXAcdIILPinPnKFrgUqQVVbDdSrkmeGaNVqfSgeeCMWduXFWQpsCWdWX+EOZYKuOwBQBOTMVWtjgRXWunOchDXJQwsVYUtiRYfwOJQ5H2STR2eTQ0P1dJWeqJXQvJSPjvKyIQjbFJSzeLWzceIQv-Jda1G2aWYOfHv1T5fwFlQIDTW3sEN5YNbrcSnzdufPtZvwQbUyKyBNXrewObRrWTfHkLd-jturHMDbTkKyOpf4lJepUNKCImGUGpWHoFJGLzTvOraTfPtIVtShk7bHeTcoVtapSvDwPORVXxNufvgdUSgrWuTImbJfrubcZsLjUWRINRZlYxWOg9C7qjCiYCESRckMa3NGqGmYSMHRQxZIRlKvqMLVIpqTG6EVIEYxVbsbb5dbc4PXSavIMjvPSWRlJPW7SGMoc4PEfZGvd6MLfLfQv7OqNvNMOgviRkS3eieUUyaJqSKGjXZTWtKGoRpPY-U4OJWge2Fbb1Wwl5prsveWRWqSOhTnN-aTLZhTAA5IvKmoWOs9YpP-QlRlcyvHMTPA4IGA9xogz-SCsRcMLfZsH9RqVftyQ7btaQpJfA8eJYAAFSkB-Tio0MA3Y08qV343O2E2ST82a1F64VbXwNJ0C3x72ze222+jDCy1UOojiwq1+EgnZ0iC51dGBL7UGQF2rk+hyhj78Gl2dVAMV28CHnV2QzsQMBkAHJd3IiMgwyMUtQvqiA0KDKOPU15V7iSpZaKg0JxDyB-CXyiCgAACkoAvjiRm0L6yIXjogPjfjg+vjrjaYkqSSVCXCciAMoWQekqSUlgETh0QKTjh0iqggAADOcKE5BOnshNYOY8YlmQkaFnDFQiMj9Fk5wMIE4KFb9O0y1VYH8BZfE61A0w4x0-k-05-LUNdE48My46M3uJXt0lYKwr03U5tFUwcmqf9bhAnHA7EqA9U+wUM6ABgEUwAGwXBbMJXoNmMWM3a6S9PyAAAsJTXgj9GDezjBXgmDwklzbzghDjbQQAA')">function make_register(name) {
+    let contents = "*unassigned*";
+    function dispatch(message) {
+        return message === "get"
+            ? contents
+            : message === "set"
+              ? value => { contents = value; }
+              : error(message, 
+                      "Unknown request in make_register:");
+    }
+    return dispatch;
+}
+</pre></div></div>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p4' class='permalink'></a><p>
+    The following
+    
+      
+      functions
+    
+    are used to access registers:
+    
+    
+    <div class='snippet' id='javascript_104_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0EYBQuAzAVwDsBjAFwEsB7E0AcwFMKB9AJyYaoGcKn2ACgC2AQzIALKiSYAaUJwasSo4UwCUoAN65QehSyLt6YydKaCARMzaLe-dpfWDFy1RoDcuAL75i5ajpQUR4eKgYSDi43NUEQsIjWaT52IkpaEk0dfQMKI3oJJlEAE0EKUSoAGzjQ8MjkilT0unV1L19-Zvp4utYAN1FKoiZWJgAPAAcahPqSFLTAzO1QXX1OPONQQpKyiuryqunehqbF1rafP1Iu0EqaGgBrIgnWCfYqYUEeAE9hACMaJV5DQJgJRIseFlVnoyHQ+KABpVQABeYKhGhkL6-AFA0AgsEQi45db5BGDFHI1GkYpMAjmYrQnKgAD8oAE7BoQh+-0B8ksAFUSA8SDQAO70fHscEZUDSNE8Jj-SpMABcTkZORVWyKpQO1URrXaVwCMruj2erEqoj+TGqVptlR48nttpiGm0jNhcwoZKRqPiGMELsqbud1ttkK8xMMm0RFKpJBpdJkDKZ+lZ7M5QfDIZUaj5gqT9NuOdl3VCir+yrV6g1+i1esEBqNhGui1AYgeIzeHyo1D6I3GUyH8lMUhkYYdkI9OSoBFAgl4rC9fFEJDYQ8EQ9aM7ToBXPrIKP3cPK69Gk36g2GW8mRL3JM2gk0yIAfPuo-pvGzHUxZfPFx4S0cwvYc7yhPcT29Ms+B4Y8zSeF5g2zKdJ1dIdgIdW8JkNOs9EfehnxRd8Gh4T89G-CM-znBclzsPgBFA7Cd2yPcDwUY8bCibgGKEMdzHkeiHFA7jmPvNMCIXF93y4r1+HXHgXDaFYcko39dzTTMhBHUABSFEVxTZSZOFqIIKG+UEy3lStqyccjQF8XxWxNIJOxGSVpToJidP4icS1QvFQSlQkNKg+EQXg+5ENed5Pg8xYRJBZjgSCzy5nEsKfVEN4MTg1ExGHYiO1ELsYt7ftB0mLdR3Ecc5H8iN1FkPDIMg+KMkS1LE0U7cMskoi32CCYJkqb4kkiakBFG6QlAAK1EAYeDId4JgoQQWtanIQRqqYJiKqYmqGjkyEhC4nM6dsegiFwuHsRi83qngaCMMh3VY-CY3oSp7CsK6SEsQTbt40NQCel7PEuZybjc1g-sXb0arMPzgydQKCQyVGJjICD9HY8p2BsTiWG4u6+NqgT5V6VwHvhvhcJydjEWGUDjz+q8hkqqYGgyxnrxGfwURapd2q8zcmc52tINZGGRciMW+dAxG6rQx0UvRuFJb3LUYZ7YQ+yoAcmPFxXiqR+qUb6z6pKK96mQVNg5KYBTdgJlh5GN-xnwynISgGchu0xLHlMZbwWwumVfbXV7XkD7HQvt5c6HkihFKx+RG1kpOnZTwQg8NFZzrbGUYf4PhaYoJWKZRtXgox+QCCtBh5CD0L2K9Yp9aCVFS4dugO8WcuMpowDWFlpj287zIcbTNu+8n1gBfykr3NShLNwnxZms27ed9N5WGtVtHa41+zow2QjpNC3e0wTx3nYb0Qm6g-uOs9+nr8gyP-Zj3PsY8FSP5MlDiHH8Cor76C0uXPkAAhEooAe4wUaAsGUcp4g2VVHZEOlxw5mSYGXBUABHYY-tp65FJN9Mulge4A1BkwIhTtXpnShu2HuidEyTzKHgtgJxkEtFCpJbYuo9icL4ONeYXRcKFxciYZerA-hSnIBIKBe8q45lRg-J+LdbbsRpPCVE8io4SFYLota3N7LDyXMGJiJiWItXYqRSK5okI5hQhGFWIlkI2O9msK2A13y20AfoYemd1zZ0Uho2xgTNq3yzs7NOiDIwbWvmpMBASok+2KH7aOWNf7eMCb4dJFF7IpL-GkvQkCGgwLgQYxRiDTgoPLAqJUGCMqOWYTKGpkhXGVFIZJCha1LCdIkDQ4MTCcH0CGcYrhghJk8Ikfwq2gjdiHFmd6epLQmHtKCEucoDBmDFEtD9PgwgK7wMKKwXZvSrZLgmBULkFATmaAAGRPO1DsY5FAXyUjOSMXZYci5BEUIIB6Vzz63B+pYRQNCQVGnGbKICQlGKbm3AssFOzH77MOWXHSkKuCYI6AC+giL2AiSBSi22AidTLOqL1WFhLMprjWuLUF5CIUHkZTQ5ldLpHwrYauc8yK7yotJOivZTADn9Ownydl658VbPoDKjcl5xbMWFZsJZjZaXYPpchEFaqvoQuDNC9wYz6WWJAoKnC+reW7MxZKnFRrTU8qsRhZC5LGSUp2Jq8C-yeUwwYDQC5NBlG+XNmo5ucdtGnlACYziNAKCBpMYPcxAFzUOmsVwyJbFo0ONRAhC0yFq4Hw8S4rxp8fFgr8bQ3uoS4lkHkKRVpoDqKpoRUDYSm4vHgJhNGxQRNbDtoECIcmfliWkq4IIMtLV+qXxibWnO8SQnJ0Uood+FFm3drZOwDkQhKm6VgcURggaE11N4fQVBFZmk1mKZDOFAag3dJZZsSV1hj00BGTmJ1NwA0JqmWXH9ga5lnGtRq4RAGxFIIkZsuFEwkqrjIA8J99B4MPCsLBiYcqYNEB4EolD7s+ZIdBuUBDaHsPDOcFy299KYY8AWhYPdob5B4dAFoz0vauD9pJrxYdZsmPEYeBB7ibpB6W0rZfMpO8Jhka+Px+QS6wk3QYGuwBX9smxzyZtYBBK-WyJMgmzgIaR2PVkyxyNbHoJ9tRFxYlPH94ocE9TdwIn7Izptkk1qc7l2KebnB-jymP6qYDrk-+7m0xaeNDcWjA5FOEZfVFpgNDV3cpuHpzkFhV3WpfalzgiWuBfvbPZhoQmaaFbWWewjoHDilfEWcaD9Kkp6opVbF9IJjVqHyygoCY9LWEZuXc1VLybUYvFVitaSztx8lax1oI3XLxJVm1aprYLKvVCWQt84yX2wLdHl1Yoil1vWsbOt310NZFBQIJyT4DGjMq1RrLTGZmGbRvEO2VE53Luwy6MmxkFiuurw6puF7GQs0z2e10BepBjwy3+6LKqQO6CVwnKFwpO8i33Y065waWgAEo-h5EN+-9As-yDiFlHwDVIbokxUhG+64HvfYMIU9NwL1NKrAl1p2qeX08+Hj2LELuc0N55tmU3PPsD25iBqljZubBykad0q4wmBkCIAlcZyii2MZxyj1q8SNF8fEA8FK04lukiWRLykqJLB-UsC1aWsi4bXd4wfO7EwHuazTFqM33ovmW+obb4qpUe6Gad2j139dG4Rvd0yT3VLzffMGQoyQNupYB5GEM4P+8i169M1HzUbzShx8t-ehNye9x29KsX4NjvM-hpzy1GPOxC+6Xi6XtM5eRjxYzxTZjQd6-58HvGXS2WEv+5hsPrvfke-Yz717umg-LAC9H2dgQF2GcT7DQFEEbu+-U74AWfSYpz1lZuOZSyLP0HXqozp0qQGMicLGJ861tyqBCH4A-+QJAiCVB6cL7Zx+Epv6mLe6S6N7e6-5H41YA5jBK4q4dQ5SYgS4m6bDS5gGc6RbEy36w4wEJTwHKLwGkIJwoF74sbHSy4RbtjPDFDggjCkTlyowa5GakLsRYycY2aa4L5kCYJPbQQaKsGDpkxO6WAaJcG4zRooZQ5GZWAoYiE9rQRb4SFmxWD3YyGZTVpJBMB7SogJyYFyzQHK44HHT2TsQwwaESEK56GwFeTjIuZWwFSLhFTaEaGLhbza5MgmFcz-4dSAGLhNTI6uHVx+Ha6MaBEo5pwhGFJ67hHpJ4ZRFRJb6tAuG7yNonbtgwwurrjsDfDdIgyNpP79ZWIPQNreiJJy7tjjCNAvaYQRj36nKcCvQGxvSMhwqFCVBBR0G3ZZBa7cHwgyAP4QbHgarlEY7XJAQpAzTArlEQa55l4GD1HRakTNz9ZpEWoZFZG9HcI06NodHTEe6zFMANG5xLGyI6ETF9HcxFGwSHQWw3pnykiAGD6TTJjiqgAAA+LxvKn+3+NROxLIexBxnxuIAJPxWo5RUolAVRjo1K3x8gLRQUdWPKaCzSggckHI3+jEgBiOjRkkoJlRKMyJScqJyoJKGJsR+g7Rzu4mpJTIlB1BEGikCxzumJGmgSkkpE5agC3g8J8uHe-GREtsyoPo4hqIAJ9kWGOGggYwnRLUQpLG-WYw+uCGwckEkklgxQdACWNx+gMGSUpCs4raygX+1QKGIOrUkClgAAosIKtN8ERgblqLAAAPKwAqEU5USbrdE+gJqaH97Gnsl2z8bHiNi+mhaSRel+kFJfhNFmokD6yDBUAABeFgup+gMpIp06Vsqp6plgmpegcKHcPAtyFAXSagoQj8jRyptheCtGzA8+UmOGrerUrIdZEgoW2sVZZZtZrWoWTZOprZHY7ZNZFuuk0gsZ30iZDZKeI51AcZiZz4fZZpgowoh+Bg9C8IcoKGaoo4A5EMqkHqVs+ZhZkgKRxcum-BwKJqoUApUEy6x4lgAAVKQH9OKnedmVGTygeeCMWducmR9GCiWdWX+EOdYCwBOTMXfCnH2f+R2UBfbKBSnuLDbNeWEseOLP-BGTvCCdulmFBcwPIFSbpIuQZESnQsMGuTIqVMSpfrubcZsB+UWRIMeUEAGJiF2N8IDLCOwHtr1kBACTdBxVxe5qyI8fSO5iCUQoMIIKxTCVSksnUZyFxa0MjqyLJUrvJZCMjlqMxZJUwGxfAsInJZxadIxeRSMDIKKKwKGnyeZvCCwUvBRWeRwSoexLwXZSMDZkIY3E5WIQGa5awChs+PZFeRQOcjoX5SRQwoBaAGmTkEFecvIXmj9C+lOVQDOTyQbjQvhWmFWv5ZYMlalU4MpleWOuUGzvBIlfzpwZHs6BCsIeHo-LhG+TcIMHcGQLSTZo1kLABFpYUQYDxMJCVcqD7qAMJSmD+UyMVdaMqMeM-kIJKj1WPmeSCr4a4dvBNWzhpiUu6RAlhUID1ZYAALJf7UAjQ2lFgpi9WkxagumRkVlgq4p9WMTNUYjUHFCvnUVak6pRQWjtUXkSa8x+jyiBg9VrWDV+mSRxhDkjXirdlbo7rnn5gEUH6GSUXqgYX96NgGgc45BwqK76FJmbr2LFGcbgWpx-ydW0Q8WGl0Emm3WkiZkyBvV7ibUSYekkEYjHihW42WGRC4Gz4pz5yha4FKmrVWxc38ABUtToUOSNXth0VfmlnMBjWSQ4WAXx6rjsAUBwVMishVrY6eYKbxLBU0GeFeSELEKMJ+nXzYkWHi3KRS2QRtkK2q2W4NDNUQbrKRBm0RVa05CsiEKIVG3u1nphX0L+zHiEJoWQXbnz5PWtX8BcYOA+3pjBDf7PXx3EpR1O3z7Wb8FJ16Csj5ovAZ1o0q3z6u3f47bqxzB52-HxX+I-I7Z5RDSgiJhlBxVh6BSRjS0l3R0wX8Y11+38aZ0AXz7KEw2B1b7zk7UiDbn75LnI3hVkUqIyBUU3UVqkhy0MVX7ckWWSFjoPQu6owomAhEkXJDGtzRqhpmGmVMDmWWUZSr6jC1SKakxuhFSBGWVW6p1x1uW53OD70mp4W7wAMlkZSf3l0hjKHODxH2TgPehu2hVe3+yo2bTTDoL4kZEn3onlFMmiakihrGW2ka22bmCEaf3q2a3ODTb0A50PUkok0kOjr8FuiEbybOy0OkyMP1QgMaDUNqFjoMOa48P4YcwEHEwMMcPcZCPMMgoiPDB4ObD00anb3thsM5zEqEbuU2CYb0r63OzEpyPlnr2bDuWwUUYEYtjsQMBkAHJX3IiMgwyWUtQvqiA0KDJuOUOJFMiSpZaKg0JxDyB-CXyiCgAACkoAQTXjrUL6yI-joggTwTg+QTy1e4kqSSVCXCciAMoWQekqSUlgsTh0QK7jh0iqggAADOcFE3uOnshNYDY8YlmQkaFnDFQiMj9Pk5wMIE4IDAwL9D071VYH8AVSk5tK064700MwVdU2mK08M5M2080zvJXt0lYKwsM0s61PUwcmqQzbhAnAI7EjnNY7YzdrpBM6ABgOUwAGwXAHPMMSMNPsHzOgAAAslTXgFDggJzu9ZsFwkjwkjzpzghrjbQQAA')">function get_contents(register) {
+    return register("get");
+}
+function set_contents(register, value) {
+    return register("set")(value);
+}
+</pre></div></div>
+  </p></div>
+
+  
+      <div class='permalink'>
+        <a name='h2' class='permalink'></a><h2>
+    
+    The stack
+  </h2></div>
+
+  
+
+  <div class='permalink'>
+<a name='p5' class='permalink'></a><p>
+    We can also represent a stack as a
+    
+      
+      function
+    
+    with local state.  The
+    
+      
+      function
+    
+    
+      
+      <kbd>make_stack</kbd>
+    
+    creates a stack whose local state consists
+    of a list of the items on the stack.  A stack accepts requests to
+    <kbd>push</kbd> an item onto the stack, to
+    <kbd>pop</kbd> the top item off the stack
+    and return it, and to
+    <kbd>initialize</kbd> the stack to empty.
+    
+    <div class='snippet' id='javascript_104_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0EYBQuAzAVwDsBjAFwEsB7E0AcwFMKB9AJyYaoGcKn2ACgC2AQzIALKiSYAaUJwasSo4UwCUoAN65QehSyLt6YydKaCARMzaLe-dpfWDFy1RoDcuAL75i5ajpQUR4eKgYSDi43NUEQsIjWaT52IkpaEk0dfQMKI3oJJlEAE0EKUSoAGzjQ8MjkilT0unV1L19-Zvp4utYAN1FKoiZWJgAPAAcahPqSFLTAzO1QXX1OPONQQpKyiuryqunehqbF1rafP1Iu0EqaGgBrIgnWCfYqYUEeAE9hACMaJV5DQJgJRIseFlVnoyHQ+KABpVQABeYKhGhkL6-AFA0AgsEQi45db5BGDFHI1GkYpMAjmYrQnKgAD8oAE7BoQh+-0B8ksAFUSA8SDQAO70fHscEZUDSNE8Jj-SpMABcTkZORVWyKpQO1URrXaVwCMruj2erEqoj+TGqVptlR48nttpiGm0jNhcwoZKRqPiGMELsqbud1ttkK8xMMm0RFKpJBpdJkDKZ+lZ7M5QfDIZUaj5gqT9NuOdl3VCir+yrV6g1+i1esEBqNhGui1AYgeIzeHyo1D6I3GUyH8lMUhkYYdkI9OSoBFAgl4rC9fFEJDYQ8EQ9aM7ToBXPrIKP3cPK69Gk36g2GW8mRL3JM2gk0yIAfPuo-pvGzHUxZfPFx4S0cwvYc7yhPcT29Ms+B4Y8zSeF5g2zKdJ1dIdgIdW8JkNOs9EfehnxRd8Gh4T89G-CM-znBclzsPgBFA7Cd2yPcDwUY8bCibgGKEMdzHkeiHFA7jmPvNMCIXF93y4r1+HXHgXDaFYcko39dzTTMhBHUABSFEVxTZSZOFqIIKG+UEy3lStqyccjQF8XxWxNIJOxGSVpToJidP4icS1QvFQSlQkNKg+EQXg+5ENed5Pg8xYRJBZjgSCzy5nEsKfVEN4MTg1ExGHYiO1ELsYt7ftB0mLdR3Ecc5H8iN1FkPDIMg+KMkS1LE0U7cMskoi32CCYJkqb4kkiakBFG6QlAAK1EAYeDId4JgoQQWtanIQRqqYJiKqYmqGjkyEhC4nM6dsegiFwuHsRi83qngaCMMh3VY-CY3oSp7CsK6SEsQTbt40NQCel7PEuZybjc1g-sXb0arMPzgydQKCQyVGJjICD9HY8p2BsTiWG4u6+NqgT5V6VwHvhvhcJydjEWGUDjz+q8hkqqYGgyxnrxGfwURapd2q8zcmc52tINZGGRciMW+dAxG6rQx0UvRuFJb3LUYZ7YQ+yoAcmPFxXiqR+qUb6z6pKK96mQVNg5KYBTdgJlh5GN-xnwynISgGchu0xLHlMZbwWwumVfbXV7XkD7HQvt5c6HkihFKx+RG1kpOnZTwQg8NFZzrbGUYf4PhaYoJWKZRtXgox+QCCtBh5CD0L2K9Yp9aCVFS4dugO8WcuMpowDWFlpj287zIcbTNu+8n1gBfykr3NShLNwnxZms27ed9N5WGtVtHa41+zow2QjpNC3e0wTx3nYb0Qm6g-uOs9+nr8gyP-Zj3PsY8FSP5MlDiHH8Cor76C0uXPkAAhEooAe4wUaAsGUcp4g2VVHZEOlxw5mSYGXBUABHYY-tp65FJN9Mulge4A1BkwIhTtXpnShu2HuidEyTzKHgtgJxkEtFCpJbYuo9icL4ONeYXRcKFxciYZerA-hSnIBIKBe8q45lRg-J+LdbbsRpPCVE8io4SFYLota3N7LDyXMGJiJiWItXYqRSK5okI5hQhGFWIlkI2O9msK2A13y20AfoYemd1zZ0Uho2xgTNq3yzs7NOiDIwbWvmpMBASok+2KH7aOWNf7eMCb4dJFF7IpL-GkvQkCGgwLgQYxRiDTgoPLAqJUGCMqOWYTKGpkhXGVFIZJCha1LCdIkDQ4MTCcH0CGcYrhghJk8Ikfwq2gjdiHFmd6epLQmHtKCEucoDBmDFEtD9PgwgK7wMKKwXZvSrZLgmBULkFATmaAAGRPO1DsY5FAXyUjOSMXZYci5BEUIIB6Vzz63B+pYRQNCQVGnGbKICQlGKbm3AssFOzH77MOWXHSkKuCYI6AC+giL2AiSBSi22AidTLOqL1WFhLMprjWuLUF5CIUHkZTQ5ldLpHwrYauc8yK7yotJOivZTADn9Ownydl658VbPoDKjcl5xbMWFZsJZjZaXYPpchEFaqvoQuDNC9wYz6WWJAoKnC+reW7MxZKnFRrTU8qsRhZC5LGSUp2Jq8C-yeUwwYDQC5NBlG+XNmo5ucdtGnlACYziNAKCBpMYPcxAFzUOmsVwyJbFo0ONRAhC0yFq4Hw8S4rxp8fFgr8bQ3uoS4lkHkKRVpoDqKpoRUDYSm4vHgJhNGxQRNbDtoECIcmfliWkq4IIMtLV+qXxibWnO8SQnJ0Uood+FFm3drZOwDkQhKm6VgcURggaE11N4fQVBFZmk1mKZDOFAag3dJZZsSV1hj00BGTmJ1NwA0JqmWXH9ga5lnGtRq4RAGxFIIkZsuFEwkqrjIA8J99B4MPCsLBiYcqYNEB4EolD7s+ZIdBuUBDaHsPDOcFy299KYY8AWhYPdob5B4dAFoz0vauD9pJrxYdZsmPEYeBB7ibpB6W0rZfMpO8Jhka+Px+QS6wk3QYGuwBX9smxzyZtYBBK-WyJMgmzgIaR2PVkyxyNbHoJ9tRFxYlPH94ocE9TdwIn7Izptkk1qc7l2KebnB-jymP6qYDrk-+7m0xaeNDcWjA5FOEZfVFpgNDV3cpuHpzkFhV3WpfalzgiWuBfvbPZhoQmaaFbWWewjoHDilfEWcaD9Kkp6opVbF9IJjVqHyygoCY9LWEZuXc1VLybUYvFVitaSztx8lax1oI3XLxJVm1aprYLKvVCWQt84yX2wLdHl1Yoil1vWsbOt310NZFBQIJyT4DGjMq1RrLTGZmGbRvEO2VE53Luwy6MmxkFiuurw6puF7GQs0z2e10BepBjwy3+6LKqQO6CVwnKFwpO8i33Y065waWgAEo-h5EN+-9As-yDiFlHwDVIbokxUhG+64HvfYMIU9NwL1NKrAl1p2qeX08+Hj2LELuc0N55tmU3PPsD25iBqljZubBykad0q4wmBkCIAlcZyii2MZxyj1q8SNF8fEA8FK04lukiWRLykqJLB-UsC1aWsi4bXd4wfO7EwHuazTFqM33ovmW+obb4qpUe6Gad2j139dG4Rvd0yT3VLzffMGQoyQNupYB5GEM4P+8i169M1HzUbzShx8t-ehNye9x29KsX4NjvM-hpzy1GPOxC+6Xi6XtM5eRjxYzxTZjQd6-58HvGXS2WEv+5hsPrvfke-Yz717umg-LAC9H2dgQF2GcT7DQFEEbu+-U74AWfSYpz1lZuOZSyLP0HXqozp0qQGMicLGJ861tyqBCH4A-+QJAiCVB6cL7Zx+Epv6mLe6S6N7e6-5H41YA5jBK4q4dQ5SYgS4m6bDS5gGc6RbEy36w4wEJTwHKLwGkIJwoF74sbHSy4RbtjPDFDggjCkTlyowa5GakLsRYycY2aa4L5kCYJPbQQaKsGDpkxO6WAaJcG4zRooZQ5GZWAoYiE9rQRb4SFmxWD3YyGZTVpJBMB7SogJyYFyzQHK44HHT2TsQwwaESEK56GwFeTjIuZWwFSLhFTaEaGLhbza5MgmFcz-4dSAGLhNTI6uHVx+Ha6MaBEo5pwhGFJ67hHpJ4ZRFRJb6tAuG7yNonbtgwwurrjsDfDdIgyNpP79ZWIPQNreiJJy7tjjCNAvaYQRj36nKcCvQGxvSMhwqFCVBBR0G3ZZBa7cHwgyAP4QbHgarlEY7XJAQpAzTArlEQa55l4GD1HRakTNz9ZpEWoZFZG9HcI06NodHTEe6zFMANG5xLGyI6ETF9HcxFGwSHQWw3pnykiAGD6TTJjiqgAAA+LxvKn+3+NROxLIexBxnxuIAJPxWo5RUolAVRjo1K3x8gLRQUdWPKaCzSggckHI3+jEgBiOjRkkoJlRKMyJScqJyoJKGJsR+g7Rzu4mpJTIlB1BEGikCxzumJGmgSkkpE5agC3g8J8uIwNmjWjIyoh4sSKcx4lgAAVKQH9OKqKZYPZHCh3DwLchQF0moKEI-I0ZBJJCqbRswPPjYK3q1KyHfCnKFtrHgtqX+Bbs3iwPqZtKyOLDbFBMuseOLP-AUrvCCdulmFqWqfIFSbpIKMKIfgYPQvCHKGPvwZfqpB6lbPKYqZICkRHOiJiF2N8IDLCOwHtr1kBACTdOmZme5qyI8fSO5iCUQoMIICmTCVSksnUZyJma0MjqyDWUrnWZCMjlqAGMmUwKmfAsIrWRmadAmUEPJs7MSoRjZtYNadNshsTEaSuvwfhhzOOfwVIVOU2ARkOTIqVDIKKKwKGkRFGtBCwUvKVBOVjCoexLwSeTySuUIY3BeWIfxmYR3vxs+PZAKT8hBuspEIQsQq9MeACe+SwJ+fIXmj9C+tIPrIMFQAAF4vkG40J+lphVooZWCQXUDQVwVODKYfljrlBs7wTgX86cGR7OgQrCHh6Py4RNH0qDB3BkC0m8kmqbrDydnAruCAw8TCT4XKg+6gBFkpikIan8EXLWjKjHjP5CCSqFGp5cYODsXta+GuHbx4ViUQyQQlKbo5CQIyWWAACyX+1AI03wMatIxYxKWoKhUZwlYKuKXFjEdFGI1BxQMpWCOQcK+aLwTF7Wm6vMfo8ogYMlqlbOwxYKcYlpAl4qoWGYnpQgulAZBkRKEZ6oO8DeQihwBoHO7l9Kiu+hFgQloh0EuajAs5Qpqcf8QsraygX+1QjaBVEkVslgxQdACW7JDklOoWzBx0x4OhF42BcBx0ggs+Kc+coWuBwcO82JFh-Ab5LUbpFENFPKsZ4IypZpap9VZCmw3pOplplgq47AFANpMxVa2OnmCm8SFA5yvVv5DC6lKOU12B+VrpJpHYa1O18eDQdFX5Z6rAN1-sR1betCBCDpl1NBnhXkf1-5WhdCz1qVr1qp71lujlDF-AclAgANTIrIyNjF-BL121Fp8e1m-BGNOQrInlaN7AeNb1BNlun13+O26scwJN6YgUeU-iIFrurMw0Tsuo5yW+Ruyk81rUppCNNNze-GzNegrIKGVNot8+yh0VHNPAL1kC+N++gZhknAIZPoYZRmkZX40ZYKy1SpEgm5sl+5Y6D0LuqMKJgIRJFyQxrc0aoaz5ygTAu5+5GUq+owtUimpMboRUgR+5Vu3+TlqNxKTgftwMIKvpu8lt7giSOQwddNIYyhzg8R9kyd3oX111dCf57O7m0w6C+JGRdt6J5RTJompIoaZt+1a0oahGwdddkd05JVA69lJKc5tmFM8dPlSB9AI5OcRNHd3do6IlIKrdCcY6Xdmuvd9UzK8cpV86ikw9pMo99Uc9h0lGtxmwTVLVrlpRxcsiqFpCH54hqIgFi1NwUmOGggYwnRLU59LG-WYw+uCGE1D4jVzVMgrl1l+gMGSUG1v21VXxKGIOrUkClgAAosIKtCZShlqLAAAPKwBWVfgdU7x4wRSohLJgNtU5BP2Nh4OhaSQJoTBtVC1C1wroVUCYX5WbpP2X02Wkh70-03H-30rG2rWi0bWanU3z433DKK2COy3mkCOtbCOAOiNqnz40N0OS2-FyPfRwXPgq2xVWAJVBla3DChnIb8ZqijjU1ZUVqkhcOm2QzsQMBkAHIu3IiMgwz7ktQvqiA0KDKuOHVKV7iSpZaKg0JxDyB-CXyiCgAACkoAgTiRm0L6yIfjogATQTg+gTnjaYkqSSVCXCciAMoWQekqSUlgMTh0QKbjh0iqggAADOcJE5BOnshNYNY8YvvQkaFnDFQiMj9Hk5wMIE4Jxb9N0wYAwFYH8Nhck61C0y4z08UyM5-LUNdG4xMx41M3uJXt0lYKwkM005tHUwct-ezhcFPSJV3VYzYzdrpOM6ABgGUwAGx7PEzT1lWCBHN7knNzOgAAAsFTXgddDz9TDdXgq9wMhzPzzzLjbQQAA')">function make_stack() {
+    let stack = null;
+    function push(x) { 
+        stack = pair(x, stack); 
+        return "done";
+    }
+    function pop() {
+        if (is_null(stack)) {
+            error("Empty stack: POP");
+        } else {
+            const top = head(stack);
+            stack = tail(stack);
+            return top;
+        }
+    }
+    function initialize() {
+        stack = null;
+        return "done";
+    }
+    function dispatch(message) {
+        return message === "push"
+            ? push
+            : message === "pop"
+            ? pop()
+            : message === "initialize"
+            ? initialize()
+            : error("Unknown request in stack:", message);
+    }
+    return dispatch;
+}
+</pre></div></div>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p6' class='permalink'></a><p>
+    The following
+    
+      
+      functions
+    
+    are used to access stacks:
+    
+    
+    <div class='snippet' id='javascript_104_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0EYBQuAzAVwDsBjAFwEsB7E0AcwFMKB9AJyYaoGcKn2ACgC2AQzIALKiSYAaUJwasSo4UwCUoAN65QehSyLt6YydKaCARMzaLe-dpfWDFy1RoDcuAL75i5ajpQUR4eKgYSDi43NUEQsIjWaT52IkpaEk0dfQMKI3oJJlEAE0EKUSoAGzjQ8MjkilT0unV1L19-Zvp4utYAN1FKoiZWJgAPAAcahPqSFLTAzO1QXX1OPONQQpKyiuryqunehqbF1rafP1Iu0EqaGgBrIgnWCfYqYUEeAE9hACMaJV5DQJgJRIseFlVnoyHQ+KABpVQABeYKhGhkL6-AFA0AgsEQi45db5BGDFHI1GkYpMAjmYrQnKgAD8oAE7BoQh+-0B8ksAFUSA8SDQAO70fHscEZUDSNE8Jj-SpMABcTkZORVWyKpQO1URrXaVwCMruj2erEqoj+TGqVptlR48nttpiGm0jNhcwoZKRqPiGMELsqbud1ttkK8xMMm0RFKpJBpdJkDKZ+lZ7M5QfDIZUaj5gqT9NuOdl3VCir+yrV6g1+i1esEBqNhGui1AYgeIzeHyo1D6I3GUyH8lMUhkYYdkI9OSoBFAgl4rC9fFEJDYQ8EQ9aM7ToBXPrIKP3cPK69Gk36g2GW8mRL3JM2gk0yIAfPuo-pvGzHUxZfPFx4S0cwvYc7yhPcT29Ms+B4Y8zSeF5g2zKdJ1dIdgIdW8JkNOs9EfehnxRd8Gh4T89G-CM-znBclzsPgBFA7Cd2yPcDwUY8bCibgGKEMdzHkeiHFA7jmPvNMCIXF93y4r1+HXHgXDaFYcko39dzTTMhBHUABSFEVxTZSZOFqIIKG+UEy3lStqyccjQF8XxWxNIJOxGSVpToJidP4icS1QvFQSlQkNKg+EQXg+5ENed5Pg8xYRJBZjgSCzy5nEsKfVEN4MTg1ExGHYiO1ELsYt7ftB0mLdR3Ecc5H8iN1FkPDIMg+KMkS1LE0U7cMskoi32CCYJkqb4kkiakBFG6QlAAK1EAYeDId4JgoQQWtanIQRqqYJiKqYmqGjkyEhC4nM6dsegiFwuHsRi83qngaCMMh3VY-CY3oSp7CsK6SEsQTbt40NQCel7PEuZybjc1g-sXb0arMPzgydQKCQyVGJjICD9HY8p2BsTiWG4u6+NqgT5V6VwHvhvhcJydjEWGUDjz+q8hkqqYGgyxnrxGfwURapd2q8zcmc52tINZGGRciMW+dAxG6rQx0UvRuFJb3LUYZ7YQ+yoAcmPFxXiqR+qUb6z6pKK96mQVNg5KYBTdgJlh5GN-xnwynISgGchu0xLHlMZbwWwumVfbXV7XkD7HQvt5c6HkihFKx+RG1kpOnZTwQg8NFZzrbGUYf4PhaYoJWKZRtXgox+QCCtBh5CD0L2K9Yp9aCVFS4dugO8WcuMpowDWFlpj287zIcbTNu+8n1gBfykr3NShLNwnxZms27ed9N5WGtVtHa41+zow2QjpNC3e0wTx3nYb0Qm6g-uOs9+nr8gyP-Zj3PsY8FSP5MlDiHH8Cor76C0uXPkAAhEooAe4wUaAsGUcp4g2VVHZEOlxw5mSYGXBUABHYY-tp65FJN9Mulge4A1BkwIhTtXpnShu2HuidEyTzKHgtgJxkEtFCpJbYuo9icL4ONeYXRcKFxciYZerA-hSnIBIKBe8q45lRg-J+LdbbsRpPCVE8io4SFYLota3N7LDyXMGJiJiWItXYqRSK5okI5hQhGFWIlkI2O9msK2A13y20AfoYemd1zZ0Uho2xgTNq3yzs7NOiDIwbWvmpMBASok+2KH7aOWNf7eMCb4dJFF7IpL-GkvQkCGgwLgQYxRiDTgoPLAqJUGCMqOWYTKGpkhXGVFIZJCha1LCdIkDQ4MTCcH0CGcYrhghJk8Ikfwq2gjdiHFmd6epLQmHtKCEucoDBmDFEtD9PgwgK7wMKKwXZvSrZLgmBULkFATmaAAGRPO1DsY5FAXyUjOSMXZYci5BEUIIB6Vzz63B+pYRQNCQVGnGbKICQlGKbm3AssFOzH77MOWXHSkKuCYI6AC+giL2AiSBSi22AidTLOqL1WFhLMprjWuLUF5CIUHkZTQ5ldLpHwrYauc8yK7yotJOivZTADn9Ownydl658VbPoDKjcl5xbMWFZsJZjZaXYPpchEFaqvoQuDNC9wYz6WWJAoKnC+reW7MxZKnFRrTU8qsRhZC5LGSUp2Jq8C-yeUwwYDQC5NBlG+XNmo5ucdtGnlACYziNAKCBpMYPcxAFzUOmsVwyJbFo0ONRAhC0yFq4Hw8S4rxp8fFgr8bQ3uoS4lkHkKRVpoDqKpoRUDYSm4vHgJhNGxQRNbDtoECIcmfliWkq4IIMtLV+qXxibWnO8SQnJ0Uood+FFm3drZOwDkQhKm6VgcURggaE11N4fQVBFZmk1mKZDOFAag3dJZZsSV1hj00BGTmJ1NwA0JqmWXH9ga5lnGtRq4RAGxFIIkZsuFMMeALQsHu0N8hVxkAeBG0h7E+2oi4sS4dZtkPlFQxB7ibpB6W0rZfMpO8JhEB4EolDaHGDEzvjnVdeSd5f2ybHdjrVgEEr9bIkyCbOAhpHY9QjjGtGel7VwftJNeJ4f3gx4j1N3BkfsjOm2STWpzuXTdTRSUGNrsAZxgOuT-7abTHx40Nw4MDn00+g1lC7NMBoau7lNwhOcgsKu61L6vOcDc1wL97ZlMNBIzTMLayz2ObeUIw4UXxFnGg-SpKeqKVWxfSCY1agQsoKAmPS1sWbl3NVS8m1GLxVYrWks7cfJst5aCIVy8SVmtWoy2C0DhwlltfOB59sbXR5dWKIpXr1rGy9d9dDWRQUCCck+IhsTKtUay0xpG6T0FxDtlRLN+bsMujJsZBYgrq8Oqbi2xkLNM9o0Xa8ovYqpU2txC6JXCclnCk7yLat9jmnBpaAAR927kQ37-1Mz-IOFmPvANUhuqjFSEb7rgbt9gwhT03AvU0qsrnWnap5cjz4QPYsvvxzQwn-WZT4-2wPbmIGqWNm5sHKR03SrjCYGQIgCVxnKKLUhgHH3WrxI0QR8QjGQTTg66SJZNPKSoksH9SwLVpayLhot-DB8VsTDW5rNMWopfei+bL6hiuHu-Omar-eX3Nf10buhlquuqXS++YMhRkgFdSxN3Il3SjzeqICkL0AQc7dxcHvGXS96E1u73Er0q4fg0++RuGgP2Mg967pqHywLnI9pmjyMFzom1cMdt5Be3OxHey4C6543MMK-56UxJovWtg9l90iTqvM2BBzZR7X33bjApa6D-DvgBZ9JinPdFm45lLIY-Qde299KYZAYyJwsYnzrW3KoEIfgK-5AkCIJUHp5Ptnj4Slv0x+vael-14fsfSWztjDZxzjqOVMQ04l5senV-ce2eJov0W9-2cJTP7KLP6kIJwf5D4B7HSM42btjPDFDggjCkTlyow85iYYbRpYxya4a86WBYyYIMzRoaJYGDpkxq6WAaL4G4zRoMbHihpWAMaUE9rQRi60FiZWCraMGZTVpJBMB7SogJy-5yz-6P5eTP72TsQwy8GsEs7CGc6EoaZWwFSLhFQCG8GLhbz85MiSFczH4dSn6LhNTvaaHVxGH85IamEfZpwWGFJC7WHpKF52FRJi6tAaG7yNpTbtgwwurrjsDfDdIgyNpr6lZWIPQNreiJJM7tjjCNBbaYQRjL6nKcCvQGxvSMhwqFCVBBTIHLZZB84EHQQyAr4QbHgarRE-bXJAQpAzTArREQba6tSshJFMApHZEB6lZeEWo+F+GFHcII6No5H1HF4GDJH2br5kylSCE1FFHcxhGwSHQWw3pnykin6h6TTJjiqgAAA+mxvKu+++CRgx6YwxzR9mexuIZxhxegWo0RUolAcRjo1KBx8gGRQUKWPKaCzSggckHI++jEp+r2qRkkNxsRKMXxScPxyoJK-xjh+grRFsWmmhegcBCBEGikpEy2AJPGgCkkpE5agC3gbxzOueEmREtsyoPoNBqIZx9kcKNGdGggYwuRLUlJbRG+DJwuqGwckEkklgxQdArmix+gtJSUpCs4rayge+1QRmope4kClgAAosIKtN8KDBJlqLAAAPKwCcEw5USbr5HwgJp8HB5GZ4l2wSbHiNimmWaSRGlmkFJfhpFmokD6yDBUAABeFgMpegLJ1J06VsvJ-JlggpegcKHcPAtyFAXSagoQj8qR3JiheCcGzA6edJwylmrIaZlm2sSZcZqZ2WGZAeIp2ZHYuZKZMuuk0grp30npWeDRZY1ZHpXpJZcpgowoo+Bg9C8IcoDGaoo4ZZEMqkHqVs4ZkZkgHhxcgmJBwKJqoU5JUEy6x4lgAAVKQH9OKsucGU6TyqOeCNGQOd6WQpsDGcmX+BWdYCwHWe7ixjwCWSeXmeefbFefWeLDbAuWEseOLP-A6TvNcdulmPecwPIDCXoHpO2YZJwF2T6HKNXiQbPkOUsZsLuVGRIBOUEAGJiF2N8IDLCOwCNsVkBGcTdLhfhdpqyGsfSNptcUQoMIIFhc8VSkskkZyPha0O9qyExWzixZCO9lqBhXRUwNhfAsIsxXhadGhfQEumEvpqTLFrhheRQHKnCrptJcSu7HzHJdORnpec4FynPgJqVDIKKKwHQegdBJgUvKVPJXgTzIQY3NISMPJRQbZdBCybBiSRlPORQOcoIawIQsQq9MeH6TkF5eciwXmj9C+lWdQG6Z6X5RJjQiBXuFWgxlYNFVQLFdjsZvOWOuUFjvBJFRCngehs6BChQdbo-LhNuTcIMHcGQCibhulkLABPxaEQYDxMJHlcqAbqABRSmIedGB1X8daMqMeGMUGD9G1bBUNUICCoYYiZtLlSNYOXuCUvqRAv+bNe4HyAALJ77UAjQqlFgpjtWkxag6mOkJlgq4ozWwz74YgIHFBbkIVCk6pRQWiNWzlUa8x+jyiBhtVLVY7lFgpxgVl9XiqFmQJtVgUGREpwXqi-nB6NgGg445Bwqs4AFembr2LhFyY3nmbNW0SEWSnIFXatQ8l8kyDPWrWw6WbsTP7Hi+UY0iGRBAGp4pz5yWZAFcnbxAmyFen2lYJo30rIX7mxnMCHmSSAVnlO6rjsCKWFlVr-YqV1rpw+W6FeT+UMIrWFJ80P78DPjfl3kDnp4NC1UQbrKRBa3+zPnZ60IEJvneWIEa1W10IBVnn21G2I3S3p61UPX8DyYOC21Mish+31UB3ErG3i0y2y44YkHB05Csj5ovCR3e0m3nlm375DbqxzAJ1HHhX+I-JDZ5RDSgiJhlBhVW597KQ-mtQ5nR3p4MGFkMZR2nnp4cGFlO3F0tmbUiADnD7gVw1QVWShrwWXUVqkii2oX6VEkmVsFjoPQa6ozfGAiQkXJlGtzRqhoOXKBMDGWmU0mcijC1QyXAwPRFSmF0Fy73Xh2OXx3OAL0mrAW7yP0xkZRX2Z0hgcHODOH2Qf3ejm2+XW2vQI2bTTDoJgk+Gr1-HRGYnkakihoSWqmiDy2KbmCxZX1y2KXOCNaSXExjr4286v3xkT2bBSXOxx0zVoOjokFuiSLyrcEEOxI5xEO0NtXMrxzMbMOKSUOkzUP1TEOHR6WIX0CBlU1IMTCGYSaxapW4ENbX4B60b0b16+jDAyMkm4FKNOBNgaUtjsQMBkAHLb3IiMgwx0EtQvqiA0KDLWPYOuFMiSr+aKg0JxDyB-CXyiCgAACkoA7j9jrUL6yILjogbjHjoe7j81e4kqSSVCXCciAMlmPcE1ZcSUlgQTh0QKNjh0iqggAADOcP43uEMt0lYAYwcpTVlYU2mHDFQiMj9Kk5wMIE4IDAwL9M0+1VYH8E4C4ZZjU1Yy050901U0yDU10wM7Uz0zvLHiU7E6Il05M61NYIY8YkGbhAnEw-Ojw8szgf06ABgLkwAGwXDrO0P41lNz1kFjOgAAAs+TXgWDgg5zoaFwvDwMZz2zS2ukVjbQQAA')">function pop(stack) {
+    return stack("pop");
+}
+function push(stack, value) {
+    return stack("push")(value);
+}
+</pre></div></div>
+  </p></div>
+
+  
+      <div class='permalink'>
+        <a name='h3' class='permalink'></a><h2>
+    
+    The basic machine
+  </h2></div>
+
+  <div class='permalink'>
+<a name='p7' class='permalink'></a><p>
+    The
+    
+      
+      <kbd>make_new_machine</kbd>
+      
+    
+    
+      
+      function,
+    
+    shown in figure&nbsp;<REF NAME="fig:make-new-machine"><a class="superscript" id="5.2.1-fig-link-5.13" href="./5.2.1.html#fig_5.13">5.13</a></REF>, constructs an
+    object whose local state consists of a stack, an initially empty instruction
+    sequence, a list of operations that initially contains an operation to 
+    
+    initialize the stack, and a 
+    
+    <EM>register table</EM> that initially contains two
+    
+    
+    registers, named
+    <kbd>flag</kbd> and
+    <kbd>pc</kbd>
+    
+    (for <QUOTE>program counter</QUOTE>). The internal
+    
+      
+      function
+    
+    
+      
+      <kbd>allocate_register</kbd>
+      
+    
+    adds new entries to the register table, and the internal
+    
+      
+      function
+    
+    
+      
+      <kbd>lookup_register</kbd>
+      
+    
+    looks up registers in the table.
+  </p></div>
+
+  <div class='permalink'>
+<a name='p8' class='permalink'></a><p>
+    The <kbd>flag</kbd> register is used to control branching
+    in the simulated machine.
+    
+      
+      Our <kbd>test</kbd>
+      
+    
+    instructions set the contents of
+    <kbd>flag</kbd> to the result of the test (true or false).
+    
+      
+      Our <kbd>branch</kbd>
+      
+    
+    instructions decide whether or not to branch by examining the contents of
+    <kbd>flag</kbd>.
+  </p></div>
+
+  <div class='permalink'>
+<a name='p9' class='permalink'></a><p>
+    The <kbd>pc</kbd> register determines the sequencing of
+    instructions as the machine runs.  This sequencing is implemented by the
+    internal
+    
+      
+      function
+    
+    <kbd>execute</kbd>.
+    In the simulation model, each machine instruction is a data structure
+    that includes a
+    
+      
+      function
+    
+    of no arguments, called the 
+    
+    
+    
+    
+      
+      <EM>instruction execution function</EM>,
+    
+    such that calling this
+    
+      
+      function
+    
+    simulates executing the instruction.  As the simulation runs,
+    <kbd>pc</kbd> points to the place in the instruction
+    sequence beginning with the next instruction to be executed.  
+    
+    
+      
+      The function <kbd>execute</kbd>
+      
+    
+    gets that instruction, executes it by calling the instruction execution
+    
+      
+      function,
+    
+    and repeats this cycle until there are no more instructions to execute
+    (i.e., until <kbd>pc</kbd> points to the end of the
+    instruction sequence).
+      
+    
+      
+      
+	<FIGURE><div class='snippet' id='javascript_104_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0EYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0BnCpslgBQBKUAG9coSaAA2bCqB58WoALygSRadIDcEqcXLU6oAA5EuACwEAPEaNB6pUxf1WmmVAE42ANAt78QtoOTk6eckSe9ABEACZ0bNG6TgC+jqAGlLT0JjQmwmLpTlQEoAJUXBwaWgIuLEJ2RaGSbJ6eNN7RAKIMJhQAnv5KAFygsADysNFBTZIpoGzSXGyFzc1kdDygFHluFmxMsbUB9clrTnVuvFTSx0oz52ERUdt5Z81pqemZRvRUJFRqExpFQAF5sAric6XNTVHSzUDhCiRGLxEiJd6gT76UhZYyxComJgUMhWBhsLhcJgAczYjXOSJRjApVNpqhUamiZks0QRTgA-KZzBY+VJRuTKTSVhzObkTLzHlJBXLhKLJOKWVL2Zz-oCqMCwYk1aBBbqgSDwarFeqFm0OgJogBVEgsEg0ADu9HCAEciBT5P8hvxhtE-BLWXTMdjJIyXgSuESSRZdGlCLjfoxWJxwtSKhRWgISExyfSpLJ5BsSPmq1w3NEAFSkJiUqjU9GxetJb7p7KgeOJ0kCcNS0vNWP0YdsmWgaK0igK62CyvVihcY0ayVTjkz5bz42SQUAN2BftUAD4xKBl2wa25j9I-cFo9bRq12t5J2w-PvHk6XW7PURNhfX9UBA2YdgOBzPNWhDB4pGfcc+0JYlSRTfAfl7ZsuBoMgBHYfo-HCDZPFiLhRyA5EXgqKpNFuYiOjIoQ1UFUhYjYAh-jYWI1VfX1gXwthCNAfZDgEUSjgY0jyIafdBQkgQpKY-dRmw3DBOE656LYEimJmVNMOMOcOGvGtFLYXMeFaCikOgqzOjnaZ0MM+hdxMugVy4czLPzTw-HvP0bOeL0LJgzpd2mAQAsjXADJ7YwIM4f4eE8Ig8RIAR82sCggqonIPG8LKKD8OF9LTQxe2SihUvSjgivKEgeFypkFKqsqXLAxrqrS34ODYawdKIXqTHaPC2tWKQkK0hqmuc+LXLkDgqpq3r+sG4bRpm4rTFGii3Omqq-BG3CggcOKKqMxa7N8oc+AsLiiIsqpizpCaY2CzNSS4h1jOu1pIpzZ6S3Q8r0tAbDWxIKCnqLckBAhtslq6lbsmal4FOmhGoeWnrUfa+bwZbRHor66x8ixpGUtxug7BCSaPoxjxbkxonseR6mSAaMrQYzaQaBoFgiBMDgRqoBhan6BgACMaGkPw8laYlsnIt6r02eR7zcNS8K4SWZbl0AFc8JXNng968tATXpzYjiuJ485BTfe1del2W-D-V0PXoI2Tb+ehsLYaXZDghFRkZm4ouBBoQY6vmBaFjhpCYKXFgEJOU6WPx08WIHXqhKRKy2K3CZwvDs+kXOs+TxZyMxJCre3G3OPbBFHbtbxy8rmdnXY5vuJkavpE6kvA6l4PplD7Ymcj6RuY6xKRc8MW9UPTh+vydewzuh6B4zlX88kEoyhowveCrUmN7JhpVacU+rzcU+mHP9eOGigR17N0IkIKFQLzIKMFhLBWEfcolRO7r3flfCit91adR4LWNQcdBbC3LmnQeXAq4ZwvonQekCTDRwRN-EQv84GrgATXYBpRQHQx8q0C+eDr4H1CHfTwbhfqhXsrdL66JHq0M8NgnMDDP5PAtj-C8xlTKrkUqddI8wKE3ykE7bwm9u7-i9gsMm4QWzGAGCYYB-tKSj3Hp-NI50wYLx9qtMmeCt7cK-LvGu8s9HG1+PvdId9diIP5sgxeYsBCWOyNgvIDCnGK1cZ-O+TBjpkAQZmDe55MyQVFgwFea9rH2OYHYzBNchA+B-I8AJdAgnOKfmRIRdcPpiPBiYEw0h+hIw4DbTwdT-jUg4AAKyYMeLgZAl59AEPk5oeQt75BMAk-IuTqmjRkjHAmWNvJhS7jhSIZA87pCQiCHgDosahiAnwpZNAVkxTMRmBe8zDqfXujwhxmdDYlNcUdMgFE768E8HONhV0OE3UyVc+xFNAawwhG1CJsCSbry1qzV+J40n5DapiO+JMDCqARDRQpUMIFgqvq3RJnA0X0MxSYWxvzsm3LReRSeC9kmpPxdCi+RKd7l1rusypxCLxMIuItSRXlXlzn8rSgwwhhFSEOMecgnATB4QlTI1IsyLr+1iKK1ZItJVPNVm5LlAgJV+GmhIjyN4pFSujmdDCBMF75i2Rcn5DL0GhJccrPwBAk7Ukec82BlYCQZjUOaig7kSAeuyFtT+IDUX3MCRA91eoabQILm6ug-qilIrUBY0NRTw1xsjSQPJ1ps3WitdcxltrfZMoZCyhJ7Kc2hHVXqsyjqaR+Ajb1AVBCK2PBFU-JVErNVPOCIM0IKRyFAIUS0duW13YACFDjbFAjjMGgYA5BzYHBKMsUea9m9bUYCfoxVo3oJsigDpvW7OWCBbdc05VTp4L6+NGVvWU26ulHdIkDhHGmremdvwCEnN7AvKWxtyBWEtdvfNNqMhOpdarO+7EthqF-e2iwHAoP7rhekYNYDB70MQ4whEd8qqxKQQnVBBabnYNQZhoV5smRVPLS2w+VDdVVn1V5Wt1IsM0etFWhjZktWkOLWxvtgDlhDr45INtYrlVdvIzR58bH+2yIEysajtp3yjpnBO2IoBYP-tISjYwc7DELqXbIldHVNODnLo+vdDpTMWF2eZs9YNrMIf9AIRz77UaqyQuHW4rn2YPrngTGivBqS0liInPMxwGDbQoPsOqNJH00SJF4CLOVQAADJUtPrEjwSLxDtzRc4EF2VYNBGAos+F6IOZdmlfsxmGif1+EQI-h5j6gWaQhbC1slRFWLJOWMwTerAiLIMOaxbLz5S+vnsflWGegURtMks9EKb84+UPmOau3TlQlv0Ka0wpCrXgvcQ6-urrS3etpA6ltl+b8dvMtG8+zK08P743Pag0rc2XgLfLlVl6z3Z1oawY1q+72-iVCC+1yzXWvu-d5uhl+qCbsiJavd6aT2iunKzBwakNA6o0BU3m+xRGpUQdgYhthNAdhOYtV1INVCaLgOsWRoTOGup4e8QR3BRH6coNwWRzEiOXhVI455LtfhcMmPk2BWnlQBsQMZ4plhFkPk+vq1w4lezFkv0EbzwhpaSFC8YyL0A9Hhc5mbQhCXimlEqeiGpo32OdjaY5sPedY9F29a+F+oy9vcfmeBzIcrWOce2cHtD3sWOKeIYEOH7HbmaZ+7G9Hu9OnOb+fPSqOoj66gOjlGd9bORhR3H4Ct2bu2PpZ65MKSK0VU-mIx1SVeeOgP2LqOBphCvqRK5oWFVXO86h3pobnQNn8iFlt7ZIbkVgW9G85dWqRpvJPWlEx2lVC-ziyfO6ajHWidjhEb1koMLBW-uNgTmTvKv8d+D71VAfgKh8VNEayoT7GZ+cbnxZI6wSM+r9bQq9t4qV89oyZo69j14Qim5+4LagG7Km41a9jb4dBgEWRlZbLdY8AIHQFIGwHGBX5dQ34vSF4sBJ4cyPpjY4FUx+bAHGDBJval4WwLZ5DfbAwTZ-YcB4qA74J+4JYFTDbpZgSg5taHaWYKQfzuwMGh5UEpropkysH5BsFA60FI5iTTQKRyH4Kfp553JhJhrSE+x+peSqGPrTQGGUETgY7OIEAdDiyAb75EZkpH4wJdTgxgxqDmGWEcB8C-CBqYioYyFaGprWIeF4xM6wKBEJqkBuDJp+FSHkzpT0o8Jj7CZrC2GSG8Zji65sp0yJFOGNqkDCDBBL7-4SaAGJGyapAW4IhW4XI26TquGeAMCO6zoGLLALru4ITMEZi1HiyhGcwQHladG7LdHiE5CtAWF1HuHpSBrx7I7TzAo9qe6mGQRrRkBDSBIuQqZEYX6ZFZGPDcbMaX4nBOJuL870CtTU7agzg7LYpnKsx75q7JEYKmBPKTynFNTnHRCHpXEY7rrWF3EgZ5APF7GPHMTnBhz3bjTTjRDWYLjNCCg-p-qDg-HWp7wOpgZAnPFglnEQmB47DQmhCwkY7Ym46InAbIlokgmZZHDgnbjRBQGfGQSgG3G94HFklrCgliRUmcjwHhC4kCg4rQxoG77EnN7MlSronsmYnUn9F0niojGWGMkkmOJ3IPGinkmVFdTuzOieyASx70C6L6IjwGa54aFCyxDEhJQs5bQPEbFN6uqOESpn5fIFibFchkCtGSB3zMYOl8I97XLRDMZulqyOEwiXLfQ0knABkeImCxL44OhkoRmwJuRUBsBjJqCJm+ZWLrSBLRLwqwILzJkREY5LErFhFyr35MjMCwoJKJnJnlBZrbGhB5mwrpmBL1RUC5IJFsYFodk0YX7dktpap9kVp7GDk5ot4jnZr-ENB1k5pi4mF8ngJVieD9BoJYKAqi4s6PqJYdzoZrk8Y14Zj9TVQeE4J7yZSHmPSrJUCrwUQdT7DSDOKWkkr7xbEOFbDojZR3p7DI6HmSZ7aVApStKFiHl3rAmLhASXkN64ZHTcELwLnVTLnvk+oXJi5PmyTZqjDERsBXkQhbm3SQQ6lAUfltTrnwKTKMomK3ZMhFTnFNx2ygAAA+9FfBtENQRUoFMJ4FWFDecIJUdE7FoQr42UxslAJ5NcD2EcbFfgd5zi+5WE+mruAgy47QWgdCRUcRaySEh5wlPqjKilHkylsg-CalfZj5NyKsJCimbGJpZpd6XkUFZl6l3+Fae2LOfOMmslCUGOMZA2gKDx-x9a+lsshldUP5xOjh+OBZkE6I7oHAMZn8oxfUd0Cy9kucCS+SMZ0QwIfMZANl9WAMjp-CpW34OaPlL0qRIZ6IDoVUWVvhdqmwkUk5mIGV1VWgRBtUx6W6qyE81o8M8lsgeli5QVql55FVdIw+H0+Oc5igng+6+Oj6GV0184QgeR7RYeny+yGqmxpVJYfuxuBu7C3pW1BVuc6hHUbkA2m1TevCiyu51eaqL+wuB13eR1+yRVls0K41FscQCQXY8xfJ0VsVTekIx+dpZAkV2YBV2erpIKjhnpSaW+kNfpTq8ZQZJw4N3AJwK1Tg5Y2wMWOp3Am6N4qybgcImION+WMheG4WC2Zo+oFonAdQuy45UggumN0QtNBo4I0wZukgONA2vArubglmC2EquyUqWc5W-pKJcWMw3Y56WVuEuVkNNBKKVC2shYL011KVAtsguWagtF7Y0aaR+yOt0o7gSWlmu5C8KupW7Z9Z1o-Nycutblcw5R2aVuu50QAAspoNQLUoML3HRfVqMAGV8CWl9QNgrTlfmLEF2GHTiC9mzsLDbT9sEY4cXOrbuY7a7r+R9A3PrX6rbC3Nmm3Mpp7ZqQBCFHwiHOhRSeJbcPeDzViHLWDEWfmMDecMzvAp3hqlKi7ZLsfJUHCJaaxg7R9N9eiHHWsHIoOpZTGnaaNG4PjW3VmZtC8auEasaNEnkS+WsJpQNMse3ZJs+M+B1P2KhGSJqLSEbZROWVfdKNSYtTyWsIKFRgoA9QbtxhTfjR1UTTFNsfvetBCKdNJqycyJuA-TqF1DVT-YTWKs-RxcemWrjeaeQb1L-WKm4Mek+OuOAxGG8VHUrXwgg3ieDFoIrfmF3vZLg5+G8U9fZCQ7yfhsnQVTQ-fW8S1RXHGcaIKP8cgxTXw2oFEnon6plDFv5UqSA2wxA28YzTwwftI-gxCdwyXSg5Tbg1bp+BqWooBD6H6FsOBE3oZvHRRnGChEmCDHfNSGQKFhFSoOkAvDGQiAtkwLspCW40tdOaEMLeVuEAwLsvDH4FLI-kwKAAAKQaZ23ZoLYqABNMBBMhPnHBNRPNCWaijvH+gcBSyhjGjrqWbBLRCxOTKCLuOTJLYCAAAMXMXj5w1mK5qcs4NjCGP1U5xo8y7xtm4WBTfj0wvC2yvTeyVm3NKTraNxmVGB1IQzrT2a7T2TfTHT0z1ohJ9TtwGTl62Tiz5wjToWaIiQBC51x1Gq1jtjV1FxuyGAFTAAbDMAcxtbPl5Mc4Dfvu434AACxVO6CLVR5NNzW6D0O+S+qPU-OnPjNBBAA')">function make_new_machine() {
+    const pc = make_register("pc");
+    const flag = make_register("flag");
+    const stack = make_stack();
+    let the_instruction_sequence = null;
+    let the_ops = list(list("initialize_stack", 
+                            () => stack("initialize")));
+    let register_table = list(list("pc", pc), list("flag", flag));
+
+    function allocate_register(name) {
+        if (assoc(name, register_table) === undefined) {
+            register_table = pair(list(name, make_register(name)),
+                                  register_table);
+        } else {
+            error(name, "Multiply defined register: ");
+        }
+        return "register_allocated";
+    }
+    function lookup_register(name) {
+        const val = assoc(name, register_table);
+        return val === undefined
+            ? error(name, "Unknown register:")
+            : head(tail(val));
+    }
+    function execute() {
+        const insts = get_contents(pc);
+        if (is_null(insts)) {
+            return "done";
+        } else {
+            const proc = instruction_execution_proc(head(insts)); 
+            proc(); 
+            return execute();
+        }
+    }
+    function dispatch(message) {
+        return message === "start"
+            ? () => { set_contents(pc, the_instruction_sequence);
+                      return execute(); }
+            : message === "install_instruction_sequence"
+            ? seq => { the_instruction_sequence = seq; }
+            : message === "allocate_register"
+            ? allocate_register
+            : message === "get_register"
+            ? lookup_register
+            : message === "install_operations"
+            ? ops => { the_ops = append(the_ops, ops); }
+            : message === "stack"
+            ? stack
+            : message === "operations"
+            ? the_ops
+            : error(message, "Unknown request in machine:");
+    }
+    return dispatch;
+}
+</pre></div></div>
+      <div class="chapter-text-CAPTION">
+      <b><a class="caption" href="./5.2.1.html#fig_5.13">Figure 5.13 </a></b>
+	    The <kbd>make_new_machine</kbd>
+	    function, which implements the basic machine model.
+	  </div>
+    </FIGURE>
+  
+      
+    
+  </p></div>
+
+  <div class='permalink'>
+<a name='p10' class='permalink'></a><p>
+    As part of its operation, each instruction execution
+    
+      
+      function
+    
+    modifies
+    <kbd>pc</kbd> to indicate the next instruction to be
+    executed.
+    
+      
+      
+	The instructions
+	<kbd>branch</kbd>
+	and
+	<kbd>go_to</kbd>
+      
+    
+    change <kbd>pc</kbd> to point to the new destination.
+    All other instructions simply advance <kbd>pc</kbd>,
+    making it point to the next instruction in the sequence.  Observe that
+    each call to <kbd>execute</kbd> calls
+    <kbd>execute</kbd> again, but this does not produce an
+    infinite loop because running the instruction execution
+    
+      
+      function
+    
+    changes the contents of <kbd>pc</kbd>.
+  </p></div>
+
+  <div class='permalink'>
+<a name='p11' class='permalink'></a><p>
+    
+      
+      
+	The function
+	<kbd>make_new_machine</kbd>
+      
+    
+    returns a
+    
+      
+      dispatch
+    
+    
+      
+      function
+    
+    that implements message-passing access to the internal state.  Notice that
+    starting the machine is accomplished by setting
+    <kbd>pc</kbd> to the beginning of the instruction sequence
+    and calling <kbd>execute</kbd>.
+  </p></div>
+
+  <div class='permalink'>
+<a name='p12' class='permalink'></a><p>
+    For convenience, we provide an alternate procedural interface to a
+    machine's <kbd>start</kbd> operation,
+    as well as
+    
+      
+      functions
+    
+    to set and examine register contents, as specified at the beginning of
+    section&nbsp;<REF NAME="sec:simulator"><a class="superscript" id="5.2.1-sec-link-5.2" href="./5.2.html">5.2</a></REF>:
+      
+      
+      
+    <div class='snippet' id='javascript_104_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0EYBQuAzAVwDsBjAFwEsB7E0AcwFMKB9AJyYaoGcKn2ACgC2AQzIALKiSYAaUJwasSo4UwCUoAN65QehSyLt6YydKaCARMzaLe-dpfWDFy1RoDcuAL75i5ajpQUR4eKgYSDi43NUEQsIjWaT52IkpaEk0dfQMKI3oJJlEAE0EKUSoAGzjQ8MjkilT0unV1L19-Zvp4utYAN1FKoiZWJgAPAAcahPqSFLTAzO1QXX1OPONQQpKyiuryqunehqbF1rafP1Iu0EqaGgBrIgnWCfYqYUEeAE9hACMaJV5DQJgJRIseFlVnoyHQ+KABpVQABeYKhGhkL6-AFA0AgsEQi45db5BGDFHI1GkYpMAjmYrQnKgAD8oAE7BoQh+-0B8ksAFUSA8SDQAO70fHscEZUDSNE8Jj-SpMABcTkZORVWyKpQO1URrXaVwCMruj2erEqoj+TGqVptlR48nttpiGm0jNhcwoZKRqPiGMELsqbud1ttkK8xMMm0RFKpJBpdJkDKZ+lZ7M5QfDIZUaj5gqT9NuOdl3VCir+yrV6g1+i1esEBqNhGui1AYgeIzeHyo1D6I3GUyH8lMUhkYYdkI9OSoBFAgl4rC9fFEJDYQ8EQ9aM7ToBXPrIKP3cPK69Gk36g2GW8mRL3JM2gk0yIAfPuo-pvGzHUxZfPFx4S0cwvYc7yhPcT29Ms+B4Y8zSeF5g2zKdJ1dIdgIdW8JkNOs9EfehnxRd8Gh4T89G-CM-znBclzsPgBFA7Cd2yPcDwUY8bCibgGKEMdzHkeiHFA7jmPvNMCIXF93y4r1+HXHgXDaFYcko39dzTTMhBHUABSFEVxTZSZOFqIIKG+UEy3lStqyccjQF8XxWxNIJOxGSVpToJidP4icS1QvFQSlQkNKg+EQXg+5ENed5Pg8xYRJBZjgSCzy5nEsKfVEN4MTg1ExGHYiO1ELsYt7ftB0mLdR3Ecc5H8iN1FkPDIMg+KMkS1LE0U7cMskoi32CCYJkqb4kkiakBFG6QlAAK1EAYeDId4JgoQQWtanIQRqqYJiKqYmqGjkyEhC4nM6dsegiFwuHsRi83qngaCMMh3VY-CY3oSp7CsK6SEsQTbt40NQCel7PEuZybjc1g-sXb0arMPzgydQKCQyVGJjICD9HY8p2BsTiWG4u6+NqgT5V6VwHvhvhcJydjEWGUDjz+q8hkqqYGgyxnrxGfwURapd2q8zcmc52tINZGGRciMW+dAxG6rQx0UvRuFJb3LUYZ7YQ+yoAcmPFxXiqR+qUb6z6pKK96mQVNg5KYBTdgJlh5GN-xnwynISgGchu0xLHlMZbwWwumVfbXV7XkD7HQvt5c6HkihFKx+RG1kpOnZTwQg8NFZzrbGUYf4PhaYoJWKZRtXgox+QCCtBh5CD0L2K9Yp9aCVFS4dugO8WcuMpowDWFlpj287zIcbTNu+8n1gBfykr3NShLNwnxZms27ed9N5WGtVtHa41+zow2QjpNC3e0wTx3nYb0Qm6g-uOs9+nr8gyP-Zj3PsY8FSP5MlDiHH8Cor76C0uXPkAAhEooAe4wUaAsGUcp4g2VVHZEOlxw5mSYGXBUABHYY-tp65FJN9Mulge4A1BkwIhTtXpnShu2HuidEyTzKHgtgJxkEtFCpJbYuo9icL4ONeYXRcKFxciYZerA-hSnIBIKBe8q45lRg-J+LdbbsRpPCVE8io4SFYLota3N7LDyXMGJiJiWItXYqRSK5okI5hQhGFWIlkI2O9msK2A13y20AfoYemd1zZ0Uho2xgTNq3yzs7NOiDIwbWvmpMBASok+2KH7aOWNf7eMCb4dJFF7IpL-GkvQkCGgwLgQYxRiDTgoPLAqJUGCMqOWYTKGpkhXGVFIZJCha1LCdIkDQ4MTCcH0CGcYrhghJk8Ikfwq2gjdiHFmd6epLQmHtKCEucoDBmDFEtD9PgwgK7wMKKwXZvSrZLgmBULkFATmaAAGRPO1DsY5FAXyUjOSMXZYci5BEUIIB6Vzz63B+pYRQNCQVGnGbKICQlGKbm3AssFOzH77MOWXHSkKuCYI6AC+giL2AiSBSi22AidTLOqL1WFhLMprjWuLUF5CIUHkZTQ5ldLpHwrYauc8yK7yotJOivZTADn9Ownydl658VbPoDKjcl5xbMWFZsJZjZaXYPpchEFaqvoQuDNC9wYz6WWJAoKnC+reW7MxZKnFRrTU8qsRhZC5LGSUp2Jq8C-yeUwwYDQC5NBlG+XNmo5ucdtGnlACYziNAKCBpMYPcxAFzUOmsVwyJbFo0ONRAhC0yFq4Hw8S4rxp8fFgr8bQ3uoS4lkHkKRVpoDqKpoRUDYSm4vHgJhNGxQRNbDtoECIcmfliWkq4IIMtLV+qXxibWnO8SQnJ0Uood+FFm3drZOwDkQhKm6VgcURggaE11N4fQVBFZmk1mKZDOFAag3dJZZsSV1hj00BGTmJ1NwA0JqmWXH9ga5lnGtRq4RAGxFIIkZsuFEwkqrjIA8J99B4MPCsLBiYcqYNEB4EolD7s+ZIdBuUBDaHsPDOcFy299KYY8AWhYPdob5B4dAFoz0vauD9pJrxYdZsmPEYeBB7ibpB6W0rZfMpO8Jhka+Px+QS6wk3QYGuwBX9smxzyZtYBBK-WyJMgmzgIaR2PVkyxyNbHoJ9tRFxYlPH94ocE9TdwIn7Izptkk1qc7l2KebnB-jymP6qYDrk-+7m0xaeNDcWjA5FOEZfVFpgNDV3cpuHpzkFhV3WpfalzgiWuBfvbPZhoQmaaFbWWewjoHDilfEWcaD9Kkp6opVbF9IJjVqHyygoCY9LWEZuXc1VLybUYvFVitaSztx8lax1oI3XLxJVm1aprYLKvVCWQt84yX2wLdHl1Yoil1vWsbOt310NZFBQIJyT4DGjMq1RrLTGZmGbRvEO2VE53Luwy6MmxkFiuurw6puF7GQs0z2e10BepBjwy3+6LKqQO6CVwnKFwpO8i33Y065waWgAEo-h5EN+-9As-yDiFlHwDVIbokxUhG+64HvfYMIU9NwL1NKrAl1p2qeX08+Hj2LELuc0N55tmU3PPsD25iBqljZubBykad0q4wmBkCIAlcZyii2MZxyj1q8SNF8fEA8FK04lukiWRLykqJLB-UsC1aWsi4bXd4wfO7EwHuazTFqM33ovmW+obb4qpUe6Gad2j139dG4Rvd0yT3VLzffMGQoyQNupYB5GEM4P+8i169M1HzUbzShx8t-ehNye9x29KsX4NjvM-hpzy1GPOxC+6Xi6XtM5eRjxYzxTZjQd6-58HvGXS2WEv+5hsPrvfke-Yz717umg-LAC9H2dgQF2GcT7DQFEEbu+-U74AWfSYpz1lZuOZSyLP0HXqozp0qQGMicLGJ861tyqBCH4A-+QJAiCVB6cL7Zx+Epv6mLe6S6N7e6-5H41YA5jBK4q4dQ5SYgS4m6bDS5gGc6RbEy36w4wEJTwHKLwGkIJwoF74sbHSy4RbtjPDFDggjCkTlyowa5GakLsRYycY2aa4L5kCYJPbQQaKsGDpkxO6WAaJcG4zRooZQ5GZWAoYiE9rQRb4SFmxWD3YyGZTVpJBMB7SogJyYFyzQHK44HHT2TsQwwaESEK56GwFeTjIuZWwFSLhFTaEaGLhbza5MgmFcz-4dSAGLhNTI6uHVx+Ha6MaBEo5pwhGFJ67hHpJ4ZRFRJb6tAuG7yNonbtgwwurrjsDfDdIgyNpP79ZWIPQNreiJJy7tjjCNAvaYQRj36nKcCvQGxvSMhwqFCVBBR0G3ZZBa7cHwgyAP4QbHgarlEY7XJAQpAzTArlEQa55l4GD1HRakTNz9ZpEWoZFZG9HcI06NodHTEe6zFMANG5xLGyI6ETF9HcxFGwSHQWw3pnykiAGD6TTJjiqgAAA+LxvKn+3+NROxLIexBxnxuIAJPxWo5RUolAVRjo1K3x8gLRQUdWPKaCzSggckHI3+jEgBiOjRkkoJlRKMyJScqJyoJKGJsR+g7Rzu4mpJTIlB1BEGikCxzumJGmgSkkpE5agC3g8J8uHe-GREtsyoPo4hqIAJ9kWGOGggYwnRLUQpLG-WYw+uCGwckEkklgxQdACWNx+gMGSUpCs4raygX+1QKGIOrUkClgAAosIKtN8ERgblqLAAAPKwAqEU5USbrdE+gJqaH97Gnsl2z8bHiNi+mhaSRel+kFJfhNFmokD6yDBUAABeFgup+gMpIp06Vsqp6plgmpegcKHcPAtyFAXSagoQj8jRyptheCtGzA8+UmOGrerUrIdZEgoW2sVZZZtZrWoWTZOprZHY7ZNZFuuk0gsZ30iZDZKeI51AcZiZz4fZZpgowoh+Bg9C8IcoKGaoo4A5EMqkHqVs+ZhZkgKRxcum-BwKJqoUApUEy6x4lgAAVKQH9OKnedmVGTygeeCMWducmR9GCiWdWX+EOdYCwBOTMXfCnH2f+R2UBfbKBSnuLDbNeWEseOLP-BGTvCCdulmFBcwPIFSbpIuQZESnQsMGuTIqVMSpfrubcZsB+UWRIMeUEAGJiF2N8IDLCOwHtr1kBACTdBxVxe5qyI8fSO5iCUQoMIIKxTCVSksnUZyFxa0MjqyLJUrvJZCMjlqMxZJUwGxfAsInJZxadIxfQPJs7MSoRjZsBRQJhvSp5gpsSvhhzBZWeZYLBRRgRsZansoEwKKKwKGnyeZvCCwUvBRS5VjCoexLwSFSMJZcITzGIQGdFawChs+PZFeRQOcjoclSRQwoBaAGmTkOlecvIXmj9C+lOVQDOTyQbjQvhWmFWilZYBVVVU4MpleWOuUGzvBGVfzpwZHs6BCsIeHo-LhG+TcIMHcGQLSTZo1kLABFpYUQYDxMJJ1cqD7qAMJSmD+UyB1daMqMeM-kIJKotWPmeSCr4a4dvLtWzhpiUu6RAlhUIItZYAALJf7UAjQ2lFgphLWkxagumRkVlgq4rLWMQTUYjUHFCvnUVak6pRQWgzUXkSa8x+jyiBiLXXVrV+mSRxhDmbXirdlbo7rnn5gEUH6GSUXqgYX96NgGgc45BwqK76FJmbr2LFGcbgWpx-xzW0Q8WGl0EmlA2kiZkyDQ17h3USYekkEYjHhZVM2WGRC4Gz4pz5yha4FKlXVWzy38CpUtToUORjXth0VfmlnMDbWSQ4WAXx6rjsDWWE1VrY52V1rpyZWeFeSELEKMJ+nXzYkWE63KT62QRtmm1W2W4NATUQbrKRAe25VwVMisiEKIUZU0Fu3R05X+zHiEJoWQXbnz7g1TX8BcYOBx05Csj53TX8E50h3z7Wb8El3pi3Dw0vDEpV0AXz7h3f47bqxzD116CsglX+I-I7Z5RDSgiJhlDFVh6BSRgG3U2W3z7SGE0oat3QXx7KGE3J3D3zmPUiDbn75LkU05VkUqIyBUWA0VqkjG0MVX7cl+WSFjoPQu6owomAhEkXJDGtzRqhpmEjAyC+X+UZSr6jC1SKakxuhFSBH+VW7f4Q2F3EpOCgPAwgp4W7wP3uCJI5BQMd0hjKHODxH2RYPegR1ZUx3+xU2bTTDoL4kZGv3onlFMmiakihqeU21rShqEZQOsMIPTYmXExjqc22YUxoPtbWqmU5y12g0CH7zCMaA8NqH8OxI5ya4yOOXDAEHEwCMSOkyCOjr8FuiHSUY0X0Ai0amQzsQMBkAHLf3IiMgwz+UtQvqiA0KDLOPWUXV7iSpZaKg0JxDyB-CXyiCgAACkoA-jiRm0L6yIPjogfjATg+-j7jaYkqSSVCXCciAMoWQekqSUlgUTh0QKLjh0iqggAADOcOE5BOnshNYJY8YlmQkaFnDFQiMj9Dk5wMIE4IDAwL9J00tVYH8K1Yk61E00410-061RU3uE0wM2M80w0zvJXt0lYKwgM-M61DUwcmqaLbhAnAo-OopBY1YzdrpKM6ABgCUwAGwXC7N6OaO1PsEzOgAAAsZTXgrDgghzd9ZsFwWjwMdzRzghTjbQQAA')">function start(machine) {
+    return machine("start")();
+}
+function get_register_contents(machine, register_name) {
+    return get_contents(get_register(machine, register_name));
+}
+function set_register_contents(machine, register_name, value) {
+    set_contents(get_register(machine, register_name), value);
+    return "done";
+}
+</pre></div></div>
+  </p></div>
+
+  <div class='permalink'>
+<a name='p13' class='permalink'></a><p>
+    These
+    
+      
+      functions
+    
+    (and many
+    
+      
+      functions
+    
+    in sections&nbsp;<REF NAME="sec:assembler"><a class="superscript" id="5.2.1-sec-link-5.2.2" href="./5.2.2.html">5.2.2</a></REF> and <REF NAME="sec:ex-proc"><a class="superscript" id="5.2.1-sec-link-5.2.3" href="./5.2.3.html">5.2.3</a></REF>)
+    use the following to look up the register with a given name in a given
+    machine:
+    
+    <div class='snippet' id='javascript_104_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQCY0EYBQuAzAVwDsBjAFwEsB7E0AQwGcmqBzEgfQCcBTNziQYBbXgApmrDpyokmFbkUq0SASlABvXKB2g+FIt3oALXgwAmYigyoAbCS3ZdZ8xcrqrVAblwBfQqTu9JJOnABuDLZEvJy8AB4ADg5SznIKStQemqDauvqGJmaW1nZWNvYh0i7pQZ7efvjE5Jn0tjQ0ANZECZwJ3FTCYkwAnsIARjS2ADSgNAm83AwtTOpauqBkdPKgEbagALyMLDRkQ6MT07Pzi8v16-lGO5EH+4ek5rwEsrzmues6AH5QAtuDRuGdxpMZgAiACqJA6JBoAHd6HMFksVKBZEcmLxxrZeAAuaGqP7-ImgUwWMqlXaeHz+ALNLFtTrdTi2BhjXj2Lk82xMGb83mCES8VbkzZpJ57Q6SE5iEW2MWiYXc3krHz3XgGR67F5vEgfL4kH7k9ZAkFgpUalVCNWgOHGz7fcygZXY4IsfFjQkksn-XSUkr2emMxqBFqgYQMDoxPoDKjUMIxeJJdMzWNkYzfdUClaaclUAigMRUJicaXyBgkCixRJidOeItBnTVigbA4bLbWOsNnq7aJNxJ3NsPehidT7AB8G21ul8wMFvGxpfLleVA5HCRbazbHa98iY3bZXR6yttBfzovTnLtO4ZFryuoKZenc+qTAXOiXmtXJZlhWPD8BWFALNuzaSm2PYytw3ZsLqIFsGBCxiNmuZmjMfAofIEF3jhj5jkGE7vgcc6IfW0rgXWTBiNw3g5Osf4rq2bbWuCmZOvCiIovQ6Z8I4dCgBQwzzF6uK+v6pI-qA-hMk0QQxnGMTojcKiQYkWYMDmeYenaQpXBitxse2vZXKe7Tnr0-SDGpmJ0AOnBzI+Mz2bcsmHgwfQnCehyxhm5HKfGNlJimaaNrw2m6Vh+kFqoUzPjByXuRpd72cadFQbJpFTkF3kJLYwwyFw7wLEVsgCAAVgwERMGQ-QJBQYhJcl-xzNpSQJEFSQJYwPlkCs9QKVGWKVCQ9GgXh3CqlFoBMDQhhkBKpl6K+jy2GBYjQuN0LYVN4EzQ6c0LUtEoRsySmxiF43lmk0WYXNyqGalWwzAkZDQboh7WNwlEIUhOGoeCGF6eNyGzXd8hPush5DhF3Xyo40jw9u1TEbB2yo00BytcBr1cOmYio82rVAtdqnXA5hONiTWnKTFT0GW5VO3K1lIU6FwjJlQqbbnTCQPXpz0Y7lH6reseJUXQNEUHRv2UTM2OkFOGPrBYETkAmpwfYx5K+BdinRhrtbLb0OufatUtVjLvC0WIH0zKGYiUTbdZ23LDufQyOQjSywmc+B8hQxQQuxc9LPGSohkEFybDvZb+5mTK0rmDzwmHEH0vGunE3o7JgEbs5rNpY2qe53urWHuXLScDj-kqcXUeOUTNcqIlbWd13DOPTegqR+pWxqy+eqTuLSfd221vUR7dGxww8ewWntdNKrsmT-8Jta+bXt6xvQYG-ry54hLugcSHMIAEIWCJvDbNUbjRjikhScSMn6w0RtYlnQy8AAjtELWX0dCkU2sHaEWc9rzX-oA5aw1LrRizm7ZeKgrB33rA-DIKhgFrVHlSIotJ7BIMwbUeBCCsSczGIscgxgL492FszUA89F661WoeD42xDhUNNsYTgHDmr52LOuYCW4ib8MrjBQ8X5LLsgvA+COcVbyJHvAKMQ4jh4gPWmPIKE9966ELq7Ge9tmESL0claett7aOyPHLDR+8WIn10WY9W5hNZmw+rvdeZj-DON-LJBxq4nE6HPtUK+N9uE0JsY-LEz8fQEjfhjeS5DhIRJzFeXkODQFbWhKk4wUDlTwK-ik6hOY+HoLELkkqrgsFZAnqRakxRygVJKbwkhLQnx+yUsBawbBELmE5FteQwhQ4iVMJwHpmStHYkrAkGw4IhkUHUAAMiWfgmkCzpyvFGTEHphtRrCUIsdSZeCwHNWhDhKBRyIxFPoMBIG01NK7lWqRbpC8+kDODlxc5-B37+BuWtXCh0nKEWbM8qZDTCFEWufs+gHZazNXhsct8pztpwrrFAxF0L-a3MrGi+sRNQV1Kma83pPwPnNS+Xi35yTYW9nhU5eGj4wV4Ihc7bKn8YWKPsEc5lyLsnKkueKQpnKRF2keUix4JL3koq+QK4V2KuVOUvIS8k9SCFstHGQ-5nM2A0HGTQOhoNw6MNYRPdh6CEI0AoHq-hIcMaF1FQKbc6jT7J3vmkPyHorIckvAo0RyjLzqK8ZovBeVZzQOzrLOi1ivyJOPgBYRlZ7lArEeg0xQZDw4QBvWZNaEjVzVzTNAi-A1FprsWLIKFj3ZWLIDMQxljPY4RhoueNrrgTcFBOCUJTpr7ul1fqqJNTbnejxPEgM-iGg0tAP2616TbAStaNkmdNB8l2nlUpXV1qynB03Xqtp2DeWPFZU03dVSajtK1ZyhILkaxkA6Au+a1g73bWvQkal-yEhECYLQ29HQlaRGiA+39L6v15NUMTAD51J3asbkwWq4hu35pmL+hOODM38GzchYG6EdK90fTpDoZ6IbHTtaLKZYa5xBK7p+79Qwn1-unUhIxjb+DNr0VvdxFs7HJUPn8zlnNBLWr4Ia3DekUOgFNVKcyWbDiu0LThxmyH6NEZwpDdGZHQ3j1ap3KtUbJosJvfRtj+8OPa08UxexeyFVwdTPph9KLoQ2d4FAptWKlKCbBOIJth7F3gI83wFzrG3PRl-Sp-gkNQv7tqaq8F6qmmRbSNEjwl6FUuR5USk52S5iCtEOup+lYCbip89M3ocymUrJKz06VW0IXNhhNlvLWJCvpSSM10cxXj2lAhW13cHSp09abtQ8wdEesPudqNqzV1G7XAIGCQYiHRPGuvEZQechUNsPMjpaMhwZtzc4Ft1Bgj1gOoKyXFujYDvJbbV5IIddSDdk5j1iQQQw5RW074jeCiCZalahW8NGgLMfcu1wVejFTM711l4QH3j-GtqoyE+6Pab67e4MIQdXSR2v3fsxDlCqUeDGB-Z7J+OoGE+C1ifH+2gh2o63F0o6mofQf443eIvAyBEBXjCuhCikPQ4+zBaxzClMEZZoWDLb4IXo0NE6XaZNgoxFugtxTXKXoJEMrrdmazLBS9eIcCB6DoRy8DuUpXeGvtq5mELiTn1NeS7SJsvXuTDcwXJo3XJInlcKKtxrmClI7fQ2l9CZdzu2yu5Csuj3ZuTU2991rmnuunROZD0GMPMQnOR7E-R1DtuCE662d8+Qnnk--FTyBQvwnTeZ5F9bwMbY-e5-t4HknRvpsLFm6jjPS3NSi+z7HhH8gYQ8SRKidHiCxIAUx2O6lU7OZRYmuBOIiziuzKoOCBfIySBEFsPO8nwk5-jPiAIxv4uj0N+hrv4d1Tbus-Z7XAaNOT-0GdoIvj1mkL75vxzjS9-u0DRwdbZ-RHP-RnTpaMbocwJYGIL8EOQyHnRbFaM1cyD6TDeTXnaED6bHb6cyZhFAg6PNeAmEZhTAt1TsX9B7eA7aX9YgzGTsOYT1fNbab7agw8a2KgXgRGCNM9JLGmNnL-RyAaTycyTmdg8gkKT-TnbFHKKZAKcsStd-dg8sDufnf4YQpIffdfcsBKd7ZQ3QCObQnQ+hLCfQnQx2Yw5QoXMw-nFDSwj7OgzwJQ7uWNSbaMTmUROsbgYYOdWaGYWNZfMrLcY6Hwj1FLJSQ-RYSgFRTUNBRffaZaXmBA8kf5UwWwa4GAvuMXPnLAmUM0RfM9bsVlQ-ctYlSsVwSqMQHIjBe3fQoEPgOI2zL8d6MrVwsVD2Dw8ow-M9II48PqEWWvNqSkWo3geIh2JoxuOfdo3I9GLo2xdIxJGLPBdfaXMqU0H4UAAAHzWJK03232iMWTl0GOGO2MuCOL6IpGBEX3CPrGekhXXz6mSOuBCONjiT9HEGolBG3wgnX1e0lFIjCK20iMFDEDeMmEJBmi+JsKDDSJVy0wMPAMgLPTogaJV2+ODTMReQ9VRMnl8EeIoVg3ozygnkJFIPo27CONkg-VAzEDiFWEyJ0DIJ2zKziGFzvT3nHCmWhHMDoGcwnXWA-RchwWO0TUEC33sF-XTWSnPmhAAFFhAmphh8M71KRYAAB5WAag5iOHfQn6OYfIghMUzE3QekkSeLIzA0kNN8a1BIVEnxRcRIkVEgHmSIKgAAL3EAFMNJJMODJN+3ZM5LNGhB5N0H+TTiYFmQoDSVEBYAXgSJglIkjLg0Qib1A2Lxdwk1A30I5jvgTNXAT3QOy2qIk35IzJjCzOjMD1kEdM2ldJTNDy9ErJdLdOLMlKHz4jWgAQtRxF-RJCzFLMQjmJ1DwRDLDJzGcNxJCnk3S3JCJNgijW7GhAACpSBxofh5yAy7SFUhylgIzeyYy2S8F4yyzczKIayU8ZzZ5iyDzEzcypYTzaz4YdEzzaJux4YocbSu5KRz5Ly5oIT-hnReIR8+B2z3V5csNppx0P4By3xNzwzjBRzhIFRTh4xhhYiwRhsH1gIjjJpNhuA0LtCgRli3RtCPyAFIgxAkKZgIUIVajUKhpTjkogQqK2caK6LY8EKyLeBkLjTShqKcKho4L6B61q0WNAUFgH15Mg9dR31OVdNZ59NgZ-0ohdzzTHhxKbzwNMUmcFVOYzRkROAGC0MkCyBRCYhxKMCMZDwcCG5xy8DwRoQiDzLzIjTOZgMMZpyKAxl988R2ytZSSRTZI3Kxk6DTwtoHMKzqAnTXTOAqCZgfy2oKMFSOhtowqqAIrnM6h-LdQAVgZxluRCRgrg4HMMDUNhRskiDLc44nx1ylJIg2gyB4SJyhU21C42LAisqHlrAXiHdQACKzRzB3SSIbKcqXjuwV9wQUVWqBMbLyihUtCDDkpC0hrCQ7EAk211hz5WroQABZLfagQqeUk0N0Nqw6SkdU202M9khamqk4SA8wNcnHXkzlM8DkBq3La7cyA0JGBaU4Vqhajqpa1E0iD6rZHq80LuK0DtG0DalsgCmygMYszrMMSIYzN8phTlcQt0t6mUaRWTJjBtaNT6VEk7YUnY2Nfq-4UiDkrku6tsFaqjWGJA0EIyw4D-OIXgu-RmsQf3WxVktqe-Hm+aqZdGqca0iCoMzlaC7cqMvsttOMncwPGsbgCgW8y0Mif7Tg5jfGp2DyxLIdKKmBO2OBM0zuX41m2-N018i8uW3M6oGqrg3Wry2BZzAsryh89yqAnW27B2g2nM6BP+C298ksqWnM-PK6uq8CUCw6ZW3QIEUO+qmyy2oOwPOTGyqOwEL1WRCOhYBO7M8stIW2pggsoKtWt24uT1AqO2YoQKi3K4LUOSbOw8-PKg52+jeuq8-PAusG7ZUupsiGkGHcwfBEYfegQC6IYC-NcC+6keKCisYc2CzSqbEKBgha46VXQyYEj4sEwojbGUfNYywQXgXS-S8ksEWIXDOSh5Y6IKSwhgnabfa68OwtUkc+oFI5GK7uZe8UH7dYG+m27fQbamJgJ+uw2SH+vOv+zy-WrWUkbQ5IV+IEmWd40Eg-GIwwiUDTN8fNfi-DRWhTR6B9G+hWpW8DRrYSZOkSmaDW3BvSD+16x-RjSNWSsh7DXnGhtBi-Tghayhlhwa1qxFK2XGoSuiJh6aKh2KVhvqDSyCx4Sm-0rB4Rw6URgtcLScqR+gG++RhYJ+1TK5SdQ8NgMgfpXe-YckTmBg1qBzBgKBHJKxohhw-4FFBzPgYQKBCQGYMYcWBgUAAAUlAHcbseSgc32BcYYDcY8el3cdmrbBRXe313kE4DGD2n0J-hRRcmhCCb6kImsb6jxTEAAAY6h-G2x3dLwg8DG+Eqb7D9DboIF8ktpUmnHSR9o2BtpLGMmS0snKmu5qnLGmntoEnOnO5qmEnemamBm2oI8SmkF+nImYJSn+k-S0r6hrZOG8aXYym0CenQAMBcmAA2JZwGQayh-Rwxggp0YZ0AAAFnyZ8EIbWZOcZnqA0YodWeOb0tOZ2hkiAA')">function get_register(machine, reg_name) {
+    return machine("get_register")(reg_name);
+}
+</pre></div></div>
+  </p></div>
+
+</SUBSECTION></div></div>
+
+    <div class='nav'>
+  
+        <a class='btn btn-secondary btn-nav' href='./5.2.html'>&lt; Previous</a>
+    
+    <div style='flex-grow: 1;'></div>
+  
+        <a class='btn btn-secondary btn-nav' id='106' href='./5.2.2.html'>Next &gt;</a>
+      </div>
+    <div class='chapter_sign'>
+      5.2.1  The Machine Model
+    </div>
+    <script> var chapter_id = 105; </script>
+    <script> var chapter_path = "chapters/5.2.1.html"; </script>
+    <div class='next-page'></div>
+    </div>
+    </div> <!-- /.container -->
+    </body></html>
