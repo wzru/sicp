@@ -1875,7 +1875,7 @@
 	
 	  
 	  
-	    <kbd>put(</kbd>$\textit{op}<kbd>,</kbd> \textit{type}<kbd>,</kbd> \textit{item}$<kbd>)</kbd>
+	    <kbd>put(</kbd>$\textit{op}$<kbd>,</kbd> $\textit{type}$<kbd>,</kbd> $\textit{item}$<kbd>)</kbd>
 	  
 	
 	<br>
@@ -1917,7 +1917,9 @@
 	<kbd>get</kbd> returns
 	
 	  
-	  <kbd>undefined</kbd>.
+	  
+	    a unique primitive value that is referred to by the name
+	    <kbd>undefined</kbd>.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
 	  
 	
       </LI>
@@ -2029,8 +2031,8 @@ install_rectangular_package();
       <kbd>list("rectangular")</kbd>,
       
     
-    and similarly for the other selectors.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>  The interface also defines the
-    constructors to be used by the external system.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a> These are identical to Ben's internally defined
+    and similarly for the other selectors.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>  The interface also defines the
+    constructors to be used by the external system.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a> These are identical to Ben's internally defined
     constructors, except that they attach the tag.
     
     
@@ -2117,7 +2119,7 @@ install_rectangular_package();
       
       function
     
-    if one is present:<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+    if one is present:<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
     
     <div class='snippet' id='javascript_44_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function apply_generic(op, args) {
@@ -2732,7 +2734,7 @@ function find_employee_record(employee_name,
     
     which applies a generic operation to an argument, now simply feeds the
     operation's name to the data object and lets the object do the
-    work:<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
+    work:<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
     <div class='snippet' id='javascript_44_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0GYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUAFtWAa04B9Auxp6TXVgBsTVAwHM+AGlABPQSPGgtlWnoAEyoGAAdWCjIAC24aMO9RX3FJaXp40ABebNAAIht7CPYKXKTk5IB+JTLy8QAuUAzszLzHVicTIpKa2vEqjx7e0AamnNznEiopIM5Sodqqgwpok2Zi7mY2Lj5BAGpGFg4eL35B+ZGwrLHWEidbWbP50EXIlcib7g93AUfz0E52BZ2HEwq5fk9yrkAKokQwkGgAd3SlwAtCj9EZTOZLNZOHYHM5cvxVL4NL5UjJQCFwpEYqoyeJCKQAroDMYzBYrM4TDcXOx3KxEr5-DpgqEIlFYvEhbUKciri18njChxuhCquwFBjliYyDQGNxBeCxBcFa1uV05hDnhItUsVgwqCRDadrcNGpdmnkJlMiDMrW6NcbkqavblefcA26baxg+UGgCgSCwdGntDYfCkR7QGiMezsVYCgT2kSSeIGWI5VTxbTovSakztIFQKwwmFbB4TE5OCQAVQyMmW+wnDLK5wpJTonigobh-wQcT1I2WfQi11uAAvUdV1vtzvd3vsfvcJX4y3uWyhCib-iLjQi5ttDrrrfCMo7tsdrs9vsD3JPzpVVyC8rxvO9l1FDEnEmaYeFfHwxwnehdy-A9fxPH1YOA0BLwYa8t3Ah9dAjODt3HNIW0-fcfyPP8SOw3D8NvesiOQoIgl1Sx204XhNwARncDcUFHCRyMpNksU5XF8Sfbg4zHM9VX4vZRMU9YhP4FM3QAl8+JUnSlI0wjmUghgiAAI04vRuN4jcBNADS33JMT6AkjkcSLWT5NUlV1L0nMfMA9ThK060DL8wR0XC-DhOMptWSIew9Ws+5bPsxyEMQii3ILExuV5OTo0wv04P8xRipmTcQu8kjlNAfZaqMliTObEIADcrJs-jBOEpyUhcvNJJxfLbkKt0KtKwQwAmqrNJq257jq9FGti+sQA9AFIkCEwKFYcz7ncMIiAoFsSCCUBuwoXB1oLUAYlbCgAVAbBQA2TgV2enAcFOViWwYBgaAHYwvlEvV2CCBgRKrUITBIRLbG4LgwYh115iqUgZgIJ1OCCY0E0OBHgfcKdWBnEmZyRmhwch284yqcnEfeqmUbjBpWH+wHuCJ0BdqoBHKep5il1+tzdv2ngRL1Eg8JwwH8TF+4shw0DcnkBXOHkUsal+2waBoQwiDCLnOE7ezgZMXrMuSKWZbM8z1aV9mAaBk2THs3mEd1sh5b2+4hd6KgCFeu2Ha9DHOCx3sghE3oq3DyOcbLco1H+WwGE4Pr5htk6BfOlonc582UHcD2Ngs9X-aeQPXtzs14+x6PM+tOOzojhuk6GFPODTjOrYhKtS9zxcIQrZJR9H36nXT9ZzbN13i9ANq7CITgY-EbPGHL32M-zjmXdNkvWD57gvZ98XK-Kauy-t7e69bhPG772p04oHaj89uX7HV0LUzECIqGBIxY2B9QD-2BEXdwS9bAr1vD-X+yRS6ny-tvW8w9ahdx7k3XoG9a672dsAi2h9j4hxQWg+YV9cE5HrlHNeABIXoL837EK3uLME9D4G+DAdwLhEDF7L1XnAjh5RS4kPPkLdhYgMHpywU8Rhg8mbg0gfwshndHjj21i1XQ1IJQxG4HoNeWVxJmlyLrfWhsoxPCqKYg2YRvIND0MYqeAI1SpiqE44o3kTR5GoTjDa7Atq6FzOrXIHdR5Vm0bWesG94ibVFG-cWStRbb24IuDel0lYxP8XE9WJ5rHmNSXQGWR0TotEyQEkg8TFr-mls4rWv1Ii7RiG-FwFAPBhFMLtJw7gpaPRIBQSGTcqxcNae05p3S6C9P6XFD6IyOntG4EESIRB9GDIGjDLhiypD6ONPTacCylnbKeAmQEVN9lbPcLkcypMebtG7OdTZyyczolmc0rW95NH0B6T2fpZzllQzWQwQCADfmHLRjc4+DzQVDGOUmSFFyrnnU6XcqkBynl3Qmd8hgbyIKPmlrtWw9gka7VuIlDggEyCGHaBLJuv01yGW8KJJCoAGZbmUKACeHzQDRRvMIRlFFS6svZRo+KrlMTuULMqYsLheDuC8LyoZR9gQys8MSIVwpOUzXgo8Ks9pVhMHWJsI4jM1JMT2J48QhrtjcoIiojlIrTp3FIjIwxoqdTvGdNazSgUXwXzVeIEWYrcojT5AKAxfLKRcM1OVV4nEDSCncFG7UDonQultTUdaTpHrsAIKwMgGcKA0B5lOUSMsaBB2WBnBgHg8KcD0MKmZ8yBDOvDchCgjSVidJPES3kpL2DYQEKEmoxSu2SvPMrPCI7KA9tsBwIkCbR2qhUcO-8FogIgQnUqKdJKZ19q9dFJdx0MLtBgiVBiKtu3btnV6iaB7rzhgWrMddd6L1OF7XOh1fsO7LpylJTyhILkvrfYIsQbgVVZAAHw3JcD+jykrZLKpOLeo9+YpLBuwpu4lr6d3AUeIjUNEGoN6MDah9oPJRr8hbKgjuVZchBDoLMesuAp74sJe9TDvbyWUu7Ck1Qk88V2EKDQHdnGqUpKbhmvpAISB2D8B8hg9bIKaoZVWFlqq7UfUaspgaAq1MKebDBrkpGCoUcFPKgakbQ1svU5BOl6kDE6uPb6Sqr5o06j1HGh9YFB3qvtZ651DnoJOada55NzpNNpp8x9Az0l7DwdlfZ8ziqiM6jWNeS1PAm37HS58WB5qxC6vdZ8b4vqNDprAJmgEOa8080LRWktJ0y1FsrdWx6dbIuQU7U2oQLaWxttzR2+ZuQwhCdncVqzQ7D2nl8iUJ9J5hvYa9bZigSGV2kbHUAobI3d3uH3V+ybE0z0bvm1e9wN69t3vorNzbC2BQPpW9Fv9JYLnHb7e4XDCHBCZEg52h7cHnCgcQ+d5DQ1DMdF5Ohl7OHeh4cowRn7xHhpGfI6G31NG6O9hCUuJj-GCWdC2yJ7ji58C4A3noTsyUbKw2WeZJ6LQai-Zkv9viaAAAM7gsAAFYic4M4GZWwJTQA1FJhxCnqU9Hk64qlKnegaf8k8WTzqUu4Yy4BET7lXA+fLeUEAA')">function apply_generic(op, arg) {
     return head(arg)(op);
 }
@@ -2906,6 +2908,17 @@ function find_employee_record(employee_name,
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
     <FOOTNOTE>
+    
+	    The name <kbd>undefined</kbd>
+	    is predeclared in any JavaScript implementation and should
+	    not be used other than to refer to that primitive value.
+	  
+    </FOOTNOTE></div>
+
+    
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
+    <FOOTNOTE>
     We use the list
     
       
@@ -2924,7 +2937,7 @@ function find_employee_record(employee_name,
 
     
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
+      <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
     <FOOTNOTE>
     The type the
     constructors are installed under needn't be a list because a
@@ -2934,7 +2947,7 @@ function find_employee_record(employee_name,
 
     
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-3' href='#footnote-link-3'>[3] </a>
+      <a class='footnote-number' id='footnote-4' href='#footnote-link-4'>[4] </a>
     <FOOTNOTE>
     
     
@@ -2999,7 +3012,7 @@ apply(sum_of_squares, list(1, 3))</pre></div></div>
 
     
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-4' href='#footnote-link-4'>[4] </a>
+      <a class='footnote-number' id='footnote-5' href='#footnote-link-5'>[5] </a>
     <FOOTNOTE>
     One limitation of this organization is it permits only
     generic

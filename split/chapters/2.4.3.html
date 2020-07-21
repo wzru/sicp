@@ -1897,7 +1897,7 @@
 	    <kbd>)</kbd>
 	  </span>
 	  <span style="color:blue">
-	    <kbd>put(</kbd>$\textit{op}<kbd>,</kbd> \textit{type}<kbd>,</kbd> \textit{item}$<kbd>)</kbd>
+	    <kbd>put(</kbd>$\textit{op}$<kbd>,</kbd> $\textit{type}$<kbd>,</kbd> $\textit{item}$<kbd>)</kbd>
 	  </span>
 	
 	<br>
@@ -1952,7 +1952,9 @@
 	<kbd>get</kbd> returns
 	
 	  <span style="color:green">false.</span>
-	  <span style="color:blue"><kbd>undefined</kbd>.
+	  <span style="color:blue">
+	    a unique primitive value that is referred to by the name
+	    <kbd>undefined</kbd>.<a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:blue">[1]</a>
 	  </span>
 	
       </LI>
@@ -2094,8 +2096,8 @@ install_rectangular_package();
       <span style="color:blue"><kbd>list("rectangular")</kbd>,
       </span>
     
-    and similarly for the other selectors.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>  The interface also defines the
-    constructors to be used by the external system.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a> These are identical to Ben's internally defined
+    and similarly for the other selectors.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>  The interface also defines the
+    constructors to be used by the external system.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a> These are identical to Ben's internally defined
     constructors, except that they attach the tag.
     
     
@@ -2211,7 +2213,7 @@ install_rectangular_package();
       <span style="color:green">procedure</span>
       <span style="color:blue">function</span>
     
-    if one is present:<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+    if one is present:<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
     
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
@@ -2978,7 +2980,7 @@ function find_employee_record(employee_name,
     
     which applies a generic operation to an argument, now simply feeds the
     operation's name to the data object and lets the object do the
-    work:<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
+    work:<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -3161,8 +3163,19 @@ function find_employee_record(employee_name,
 
 <hr>
 
+    <div class='footnote'><span style="color:blue">
+      <a class='footnote-number' id='footnote-1' href='#footnote-link-1' style="color:blue">[1] </a>
+    <FOOTNOTE>
+    
+	    The name <kbd>undefined</kbd>
+	    is predeclared in any JavaScript implementation and should
+	    not be used other than to refer to that primitive value.
+	  
+    </FOOTNOTE></span></div>
+    
+    
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-1' href='#footnote-link-1' >[1] </a>
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' >[2] </a>
     <FOOTNOTE>
     We use the list
     
@@ -3182,7 +3195,7 @@ function find_employee_record(employee_name,
     
     
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' >[2] </a>
+      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' >[3] </a>
     <FOOTNOTE>
     The type the
     constructors are installed under needn't be a list because a
@@ -3192,7 +3205,7 @@ function find_employee_record(employee_name,
     
     
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-3' href='#footnote-link-3' >[3] </a>
+      <a class='footnote-number' id='footnote-4' href='#footnote-link-4' >[4] </a>
     <FOOTNOTE>
     
     <table width="100%">
@@ -3282,7 +3295,7 @@ apply(sum_of_squares, list(1, 3))</pre></div></div></td></tr></table>
     
     
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-4' href='#footnote-link-4' >[4] </a>
+      <a class='footnote-number' id='footnote-5' href='#footnote-link-5' >[5] </a>
     <FOOTNOTE>
     One limitation of this organization is it permits only
     generic

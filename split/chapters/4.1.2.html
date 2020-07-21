@@ -1918,11 +1918,12 @@
 	    The self-evaluating items are numbers, strings, boolean values, and
 	    <kbd>null</kbd>.
 	    
-	    <div class='snippet' id='javascript_77_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH1GBTAGwObYDcBDDkX7USAcwAUjCgFsKASlABvXKDWgATmwpEN9JsxJEZAIzYapshWoA+N1esfqD0jVXGW5i0HYdPHBiY0NBxs-CSe1r7+TgZGHByR8gDcuAC++GR00qAyAJ7MAA4aNGIa-DKgALyghfwa7BIARBQaRGzJoBjJTSm4WSQ5+cyt7awUImwybCQU1aAcTBTMWgQSw8Wl5TIANKAADH0unNx8gsKiksOjbOOT07MpQA')">function is_self_evaluating(stmt) {
+	    <div class='snippet' id='javascript_77_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH1GBTAGwObYDcBDDkX7USAcwAUjCgFsKASlABvXKDWgATmwpEN9JsxJEZAIzYapshWoA+N1esfqD0jVXGW5i0HYdPHBiY0NBxs-CSe1r7+TgZGHByR3rb2MQEspAAmbATubJlJANy4AL74ZHTSoDIAnswADho0Yhr8MqAAvKD1-BrsEgBEFBpEbIWgGIUD8sUVJFW1zMOjrBQibDJsJBSdoBxMFMxaBBKLjc2tMgA0oAAMM7gunNx8gsKikovLbKvrm9szIA')">function is_self_evaluating(stmt) {
     return is_number(stmt)  ||
            is_string(stmt)  ||
            is_boolean(stmt) ||
-           is_null(stmt);
+           is_null(stmt)    ||
+           is_undefined(stmt);
 }
 </pre></div></div>
 	    
@@ -2864,6 +2865,17 @@ display(1);
 	    installing <kbd>while</kbd> loops for the
 	    evaluator, using a function
 	    <kbd>eval_while</kbd>?
+	  </LI>
+	  <LI>
+	    Following this direct approach, implement a
+	    <kbd>break;</kbd> statement that immediately
+	    terminates the loop in which it is evaluated.
+	  </LI>
+	  <LI>
+	    Implement a 
+	    <kbd>continue;</kbd> statement that terminates
+	    only the loop iteration in which it is evaluated, and continues with
+	    evaluating the while loop predicate.
 	  </LI>
 	</OL>
       </span></td></tr></table>
