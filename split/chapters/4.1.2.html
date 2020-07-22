@@ -2959,6 +2959,37 @@ display(1);
 	    for a particularly elegant way to install
 	    <kbd>for</kbd> loops for the evaluator?
 	  </LI>
+	  <LI>
+	    The designers of JavaScript decided to provide particular support to
+	    the variable declared in the initialization part of
+	    <kbd>for</kbd> loops. Consider the
+	    following example.
+	    <div class='snippet' id='javascript_77_46_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDiANkwqMmHIhJkBeUCQUSA3GPEEaDUNykyyRBsxLLQ-DaACEoKhwD6aiRO4mzTCwJufzlhQAhlTu-t4UAkKi4rGy8oqgKgAOIQzc3EJKAHygABZMQQAmHqYBAgA08QqRWrEAvtqyFKb0zAkUWvVAA')">function reverse(xs) {
+   let result = null;
+   for (let current = xs; ! is_null(current); current = tail(current)) {
+      result = pair(() => head(current), result);
+   }
+   return result;
+}
+</pre></div></div>
+	    In most programming languages, the functions in the result list of
+	    <kbd>reverse</kbd> are useless: They apply
+	    <kbd>head</kbd> to
+	    <kbd>null</kbd> because after execution
+	    of the
+	    <kbd>for</kbd> loop, the value of the variable
+	    <kbd>current</kbd> is
+	    <kbd>null</kbd>. The designers of JavaScript
+	    decided to support programmers who expect the functions to return
+	    their respective list element.
+	    Modify your solutions to exercise&nbsp;<REF NAME="ex:for_loops"><a class="superscript" id="4.1.2-ex-link-4.12" href="./4.1.2.html#ex_4.12">4.12</a></REF>
+	    such that each iteration of the loop has its own
+	    <QUOTE>instance</QUOTE> of the <EM>loop control variable</EM>
+	    declared in the initialization statement.
+	  </LI>
+	  <LI>
+	    Discuss whether this decision was a good one.
+	  </LI>
 	</OL>
       </span></td></tr></table>
   
@@ -2998,37 +3029,60 @@ display(1);
       </span>    </td>
           <td></td>
           <td><span style="color:blue">
-	The designers of JavaScript decided to devote particular support to
-	the variable declared in the initialization part of
-	<kbd>for</kbd> loops. Consider the following
-	example.
-	<div class='snippet' id='javascript_77_46_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDiANkwqMmHIhJkBeUCQUSA3GPEEaDUNykyyRBsxLLQ-DaACEoKhwD6aiRO4mzTCwJufzlhQAhlTu-t4UAkKi4rGy8oqgKgAOIQzc3EJKAHygABZMQQAmHqYBAgA08QqRWrEAvtqyFKb0zAkUWvVAA')">function reverse(xs) {
-   let result = null;
-   for (let current = xs; ! is_null(current); current = tail(current)) {
-      result = pair(() => head(current), result);
-   }
-   return result;
-}
-</pre></div></div>
-	In most programming languages, the functions in the result list of
-	<kbd>reverse</kbd> are useless: They apply
-	<kbd>head</kbd> to
-	<kbd>null</kbd> because after execution
-	of the
-	<kbd>for</kbd> loop, the value of the variable
-	<kbd>current</kbd> is
-	<kbd>null</kbd>. The designers of JavaScript
-	decided to support programmers who expect the functions to return
-	their respective list element.
+	Following up on footnote&nbsp;<REF NAME="foot:value_producing"><a class="superscript" id="4.1.2-foot-link-2" href="./4.1.1.html#footnote-2">2</a></REF>,
+	this exercise addresses the question what should be the result of
+	evaluating a JavaScript program that consists of a sequence containing
+	declarations, blocks, expression statements, conditional
+	statements and assignments <EM>outside of</EM> any function
+	body. For this, JavaScript
+	statically<a class='superscript' id='footnote-link-8' href='#footnote-8'style="color:blue">[8]</a>
+        distinguishes between <EM>value-producing</EM> and
+	<EM>non-value-producing statements</EM>. All declarations are
+	<EM>non-value-producing</EM>, and all 
+	expression statements, conditional statements and assignments are
+	<EM>value-producing</EM>.
+	A block is value-producing if its body statement
+	is value-producing, and then its value is the value of its body
+	statement. A sequence is value-producing if any of
+	its component statements is value-producing, and then its value is
+	the value of its <EM>last</EM> value-producing component statement.
+	The value of an expression statement is the value of the expression.
+	The value of a conditional statement is the value of the branch that
+	gets executed, or the value
+	<kbd>undefined</kbd> if that branch is
+	not value-producing.
+	The value of an assignment is the value of the expression
+	to the right of its <kbd>=</kbd> sign.
+	Finally, if the whole
+	program	is not value-producing, its value is the value
+	<kbd>undefined</kbd>.
 	<OL type="a">
 	  <LI>
-	    Modify your solutions to exercise&nbsp;<REF NAME="ex:for_loops"><a class="superscript" id="4.1.2-ex-link-4.12" href="./4.1.2.html#ex_4.12">4.12</a></REF>
-	    such that each iteration of the loop has its own
-	    <QUOTE>instance</QUOTE> of the <EM>loop control variable</EM>
-	    declared in the initialization statement.
+	    According to this specification, what are the values of the
+	    following programs?
+	    <UL>
+	      <LI>
+		<div class='snippet' id='javascript_77_47_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuMBuUbYgZkKA')">1; 2; 3;
+</pre></div></div>
+	      </LI>
+	      <LI>
+		<div class='snippet' id='javascript_77_48_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuMBuUAb1AEsAzUACgBcAnAVwFMBKU0AX1BYBsAzi07ZiPLkA')">1; { if (true) { } else { 2; } }
+</pre></div></div>
+	      </LI>
+	      <LI>
+		<div class='snippet' id='javascript_77_49_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuMBuUAYwHsA7AZwBdQAPUAXlG0KA')">1; const x = 2;
+</pre></div></div>
+	      </LI>
+	      <LI>
+		<div class='snippet' id='javascript_77_50_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuMBuUAb1ABsBTAF1AA9QBeUbYsh5hgalAGZiAvqAFA')">1; { let x = 2; { x = x + 3; } }
+</pre></div></div>
+	      </LI>
+	    </UL>
 	  </LI>
 	  <LI>
-	    Discuss whether this decision was a good one.
+	    Modify the <kbd>evaluate</kbd>
+	    function of the previous section to adhere to this
+	    specification.
 	  </LI>
 	</OL>
       </span></td></tr></table>
@@ -3144,6 +3198,15 @@ display(1);
 	for example, <CITATION>Kohlbecker 1986</CITATION>, 
 	<CITATION>Clinger and Rees 1991</CITATION>, and 
 	<CITATION>Hanson 1991</CITATION>.
+    </FOOTNOTE></span></div>
+    
+    
+    <div class='footnote'><span style="color:blue">
+      <a class='footnote-number' id='footnote-8' href='#footnote-link-8' style="color:blue">[8] </a>
+    <FOOTNOTE>
+    Here <QUOTE>statically</QUOTE> means that
+	we can make the distinction by <EM>inspecting</EM> the program
+	rather than by running it.
     </FOOTNOTE></span></div>
     
     

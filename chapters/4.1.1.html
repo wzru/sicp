@@ -2592,16 +2592,13 @@ function eval_constant_declaration(stmt, env) {
     <FOOTNOTE>
     The treatment of
 	<kbd>return</kbd> statements in
-	<kbd>eval_sequence</kbd> determines
-	the result of evaluating function applications in JavaScript, but our
-	evaluator fails to correctly specify the result of programs consisting
-	of sequences, blocks, declarations and conditional statements
-	that occur outside of any function body. We ignore this subtle aspect of
-	JavaScript, hinted at in footnote&nbsp;<REF NAME="foot:toplevel_value"><a class="superscript" id="4.1.1-foot-link-1" href="./1.1.2.html#footnote-1">1</a></REF>
-	in chapter 1.
-	This chapter does not attempt to explain why the JavaScript program
-	<kbd>1; const x = 2;</kbd> evaluates to 1,
-	according to the ECMAScript specification.
+	<kbd>eval_sequence</kbd> reflects the proper
+	result of evaluating function applications in JavaScript, but the
+	evaluator presented here does not comply with the ECMAScript
+	specification for the value of programs that consist
+	of sequences of statements outside of any function body. 
+	Exercise&nbsp;<REF NAME="ex:value_producing"><a class="superscript" id="4.1.1-ex-link-4.9" href="./4.1.2.html#ex_4.9">4.9</a></REF> addresses this gap.
+	
       
     </FOOTNOTE></div>
 
