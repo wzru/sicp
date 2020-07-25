@@ -1213,7 +1213,7 @@
           <div class="card-header" role="tab" id="sidebar-89">
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-89" aria-expanded="false" aria-controls="sidebar-collapse-89">
-                <a href="./4.3.1.html"> 4.3.1  Amb and Search</a>
+                <a href="./4.3.1.html"> 4.3.1  <span style="color:green"> Amb and Search </span> <span style="color:blue"> Search and amb </span></a>
               </span>
             </h5>
           </div>
@@ -1583,7 +1583,7 @@
           <div class="card-header" role="tab" id="sidebar-119">
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-119" aria-expanded="false" aria-controls="sidebar-collapse-119">
-                <a href="./5.5.2.html"> 5.5.2  Compiling Expressions</a>
+                <a href="./5.5.2.html"> 5.5.2  Compiling <span style="color:blue"> Statements and </span> Expressions</a>
               </span>
             </h5>
           </div>
@@ -1593,7 +1593,7 @@
           <div class="card-header" role="tab" id="sidebar-120">
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-120" aria-expanded="false" aria-controls="sidebar-collapse-120">
-                <a href="./5.5.3.html"> 5.5.3  Compiling Combinations</a>
+                <a href="./5.5.3.html"> 5.5.3  Compiling <span style="color:green"> Combinations </span> <span style="color:blue"> Applications </span></a>
               </span>
             </h5>
           </div>
@@ -1797,10 +1797,10 @@ function compile(stmt, target, linkage) {
         ? compile_lambda_expression(stmt, target, linkage)
         : is_sequence(stmt)
         ? compile_sequence(sequence_statements(stmt), target, linkage)
-/*        : is_block(stmt)
+        : is_block(stmt)
         ? compile_block(stmt, target, linkage)
         : is_return_statement(stmt)
-        ? compile_return_statement(stmt, target, linkage) */
+        ? compile_return_statement(stmt, target, linkage) 
         : is_application(stmt)
         ? compile_application(stmt, target, linkage)
         : error(stmt, "Unknown statement type -- compile");
@@ -1973,16 +1973,16 @@ go_to(reg("continue"));</pre></div></div></td></tr></table>
 	<kbd>append_instruction_sequences</kbd>.
       </span>
     
-    It takes as
+    It takes 
     
       <span style="color:green">
-	arguments any number
+	as arguments any number of instruction sequences
       </span>
       <span style="color:blue">
-	argument a list
+	as arguments two instruction sequences 
       </span>
     
-    of instruction sequences that are to be
+    that are to be
     executed sequentially; it appends them and returns the combined sequence.
     That is, if $seq_1$ and
     $seq_2$ are sequences of instructions, then
@@ -2153,8 +2153,13 @@ $seq_2$</kbd>
       <LI>the set of registers whose values are modified by the
       instructions in the sequence, and
       </LI>
-      <LI>the actual instructions (also called <EM>statements</EM>) in
-      the sequence.
+      <LI>the actual instructions
+      
+	<span style="color:green">
+	  (also called <EM>statements</EM>)
+	</span>
+      
+      in the sequence.
       </LI>
     </UL>
   </p></div>
@@ -2172,8 +2177,8 @@ $seq_2$</kbd>
 (define (make-instruction-sequence needs modifies statements)
       (list needs modifies statements))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_117_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function make_instruction_sequence(needs, modifies, statements) {
-    return list(needs, modifies, statements);
+function make_instruction_sequence(needs, modifies, instructions) {
+    return list(needs, modifies, instructions);
 }</pre></div></div></td></tr></table>
   </p></div>
 
@@ -2206,7 +2211,15 @@ make_instruction_sequence(
 
   <div class='permalink'>
 <a name='p15' class='permalink'></a><p>
-    We sometimes need to construct an instruction sequence with no statements:
+    We sometimes need to construct an instruction sequence with no
+    
+      <span style="color:green">
+	statements:
+      </span>
+      <span style="color:blue">
+	instructions:
+      </span>
+    
     
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
@@ -2217,7 +2230,7 @@ make_instruction_sequence(
       (make-instruction-sequence '() '() '()))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_117_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function empty_instruction_sequence() {
-    return make_instruction_sequence(list(), list(), list());
+    return make_instruction_sequence(null, null, null);
 }</pre></div></div></td></tr></table>
   </p></div>
 
@@ -2294,16 +2307,59 @@ f(g("x"), "y")</pre></div></div></td></tr></table>
     
     Using the <kbd>preserving</kbd> mechanism, the compiler
     will avoid saving and restoring <kbd>env</kbd> around the
-    evaluation of the operator of a combination in the case where the operator
-    is a symbol.  We could also build such optimizations into the evaluator.
+    evaluation of the
+    
+      <span style="color:green">
+	operator of a combination
+      </span>
+      <span style="color:blue">
+	function expression of an application
+      </span>
+    
+    in the case where the
+    
+      <span style="color:green">
+	operator is a symbol.
+      </span>
+      <span style="color:blue">
+	function expression is a name.
+      </span>
+    
+    We could also build such optimizations into the evaluator.
     Indeed, the explicit-control evaluator of
     section&nbsp;<REF NAME="sec:eceval"><a class="superscript" id="5.5.1-sec-link-5.4" href="./5.4.html">5.4</a></REF> already performs a similar
-    optimization, by treating combinations with no operands as a special case.
+    optimization, by treating
+    
+      <span style="color:green">
+	combinations with no operands
+      </span>
+      <span style="color:blue">
+	applications with no arguments
+      </span>
+    
+    as a special case.
     <OL type="a">
       <LI>
 	Extend the explicit-control evaluator to recognize as a separate class
-	of expressions combinations whose operator is a symbol, and to take
-	advantage of this fact in evaluating such expressions.
+	of
+	
+	  <span style="color:green">
+	expressions combinations whose operator is a symbol,
+	  </span>
+	  <span style="color:blue">
+	    statements applications whose function expression is a name,
+	  </span>
+	
+	and to take
+	advantage of this fact in evaluating such
+	
+	  <span style="color:green">
+	expressions.
+	  </span>
+	  <span style="color:blue">
+	    statements.
+	  </span>
+	
       </LI>
       <LI>
 	Alyssa P. Hacker suggests that by extending the evaluator to recognize

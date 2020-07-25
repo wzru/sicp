@@ -1213,7 +1213,7 @@
           <div class="card-header" role="tab" id="sidebar-89">
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-89" aria-expanded="false" aria-controls="sidebar-collapse-89">
-                <a href="./4.3.1.html"> 4.3.1  Amb and Search</a>
+                <a href="./4.3.1.html"> 4.3.1  <span style="color:green"> Amb and Search </span> <span style="color:blue"> Search and amb </span></a>
               </span>
             </h5>
           </div>
@@ -1583,7 +1583,7 @@
           <div class="card-header" role="tab" id="sidebar-119">
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-119" aria-expanded="false" aria-controls="sidebar-collapse-119">
-                <a href="./5.5.2.html"> 5.5.2  Compiling Expressions</a>
+                <a href="./5.5.2.html"> 5.5.2  Compiling <span style="color:blue"> Statements and </span> Expressions</a>
               </span>
             </h5>
           </div>
@@ -1593,7 +1593,7 @@
           <div class="card-header" role="tab" id="sidebar-120">
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-120" aria-expanded="false" aria-controls="sidebar-collapse-120">
-                <a href="./5.5.3.html"> 5.5.3  Compiling Combinations</a>
+                <a href="./5.5.3.html"> 5.5.3  Compiling <span style="color:green"> Combinations </span> <span style="color:blue"> Applications </span></a>
               </span>
             </h5>
           </div>
@@ -1920,13 +1920,30 @@
       <span style="color:green">procedure</span>
       <span style="color:blue">function</span>
     
-    application) and testing for the end of the operand list
-    (discovering that there are two operands).  With a
+    application) and testing for the end of the
+    
+      <span style="color:green">
+	operand list (discovering that there are two operands).
+      </span>
+      <span style="color:blue">
+	list of argument expressions
+	(discovering that there are two argument expressions).
+      </span>
+    
+    With a
     compiler, the expression is analyzed only once, when the
     instruction sequence is generated at compile time.  The object code
     produced by the compiler contains only the instructions that evaluate
-    the operator and the two operands, assemble the argument list,
-    and apply the
+    the
+    
+      <span style="color:green">
+	operator and the two operands,
+      </span>
+      <span style="color:blue">
+	function expression and the two argument expressions,
+      </span>
+    
+    assemble the argument list, and apply the
     
       <span style="color:green">procedure (in <kbd>proc</kbd>)</span>
       <span style="color:blue">function (in <kbd>fun</kbd>)</span>
@@ -1960,10 +1977,36 @@
     <span style="color:green"><kbd>(f 84 96)</kbd>.</span>
     <span style="color:blue"><kbd>f(84, 96)</kbd>.</span>
     
-    Before the interpreter evaluates the operator of the combination, it prepares
-    for this evaluation by saving the registers containing the operands and the
-    environment, whose values will be needed later.  The interpreter then
-    evaluates the operator to obtain the result in
+    Before the interpreter evaluates the
+    
+      <span style="color:green">
+	operator of the combination,
+      </span>
+      <span style="color:blue">
+	function expression of the application
+      </span>
+    
+    it prepares
+    for this evaluation by saving the registers containing the
+    
+      <span style="color:green">
+	operands
+      </span>
+      <span style="color:blue">
+	argument expressions
+      </span>
+    
+    and the environment, whose values will be needed later.  The interpreter then
+    evaluates the
+    
+      <span style="color:green">
+	operator
+      </span>
+      <span style="color:blue">
+	function expression
+      </span>
+    
+    to obtain the result in
     <kbd>val</kbd>, restores the saved registers, and finally
     moves the result from <kbd>val</kbd> to
     
@@ -1971,7 +2014,16 @@
       <span style="color:blue"><kbd>fun</kbd>.</span>
     
     However, in the particular expression we
-    are dealing with, the operator is the symbol
+    are dealing with, the
+    
+      <span style="color:green">
+	operator
+      </span>
+      <span style="color:blue">
+	function expression
+      </span>
+    
+    is the symbol
     <kbd>f</kbd>, whose evaluation is
     accomplished by the machine operation
     
@@ -1981,7 +2033,16 @@
     
     which does not alter any registers.  The compiler that we implement in
     this section will take advantage of this fact and generate code that
-    evaluates the operator using the instruction
+    evaluates the
+    
+      <span style="color:green">
+	operator
+      </span>
+      <span style="color:blue">
+	function expression
+      </span>
+    
+      using the instruction
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           

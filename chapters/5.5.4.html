@@ -1213,7 +1213,7 @@
           <div class="card-header" role="tab" id="sidebar-89">
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-89" aria-expanded="false" aria-controls="sidebar-collapse-89">
-                <a href="./4.3.1.html"> 4.3.1  Amb and Search</a>
+                <a href="./4.3.1.html"> 4.3.1  Search and amb</a>
               </span>
             </h5>
           </div>
@@ -1583,7 +1583,7 @@
           <div class="card-header" role="tab" id="sidebar-119">
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-119" aria-expanded="false" aria-controls="sidebar-collapse-119">
-                <a href="./5.5.2.html"> 5.5.2  Compiling Expressions</a>
+                <a href="./5.5.2.html"> 5.5.2  Compiling Statements and Expressions</a>
               </span>
             </h5>
           </div>
@@ -1593,7 +1593,7 @@
           <div class="card-header" role="tab" id="sidebar-120">
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-120" aria-expanded="false" aria-controls="sidebar-collapse-120">
-                <a href="./5.5.3.html"> 5.5.3  Compiling Combinations</a>
+                <a href="./5.5.3.html"> 5.5.3  Compiling Applications</a>
               </span>
             </h5>
           </div>
@@ -1712,7 +1712,7 @@ function registers_modified(s) {
      return is_string(s) ? null : head(tail(s));
 }
 
-function statements(s) {
+function instructions(s) {
      return is_string(s) ? list(s) : head(tail(tail(s)));
 }</pre></div></div>
     and to determine whether a given
@@ -1721,11 +1721,11 @@ function statements(s) {
     
     <div class='snippet' id='javascript_120_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function needs_register(seq, reg) {
-    return is_null(member(reg, registers_needed(seq)));
+    return ! is_null(member(reg, registers_needed(seq)));
 }
 
 function modifies_register(seq, reg) {
-    return is_null(member(reg, registers_modified(seq)));
+    return ! is_null(member(reg, registers_modified(seq)));
 }</pre></div></div>
   </p></div>
 
@@ -1794,7 +1794,7 @@ function append_instruction_sequences(seq1, seq2) {
                       registers_modified(seq1))),
               list_union(registers_modified(seq1),
                       registers_modified(seq2)),
-              append(statements(seq1), statements(seq2)));
+              append(instructions(seq1), instructions(seq2)));
 }</pre></div></div>
   </p></div>
 
@@ -1815,16 +1815,16 @@ function list_union(s1, s2) {
     return is_null(s1)
         ? s2
         : is_null(member(head(s1), s2))
-        ? list_union(tail(s1), s2)
-        : pair(head(s1), list_union(tail(s1), s2));
+          ? pair(head(s1), list_union(tail(s1), s2))
+          : list_union(tail(s1), s2);
 }
 
 function list_difference(s1, s2) {
     return is_null(s1)
         ? null
         : is_null(member(head(s1), s2))
-        ? list_difference(tail(s1), s2)
-        : pair(head(s1), list_difference(tail(s1), s2));
+          ? pair(head(s1), list_difference(tail(s1), s2))
+          : list_difference(tail(s1), s2);
 }</pre></div></div>
   </p></div>
 
@@ -1857,6 +1857,7 @@ function list_difference(s1, s2) {
     
     implements this strategy recursively, walking down the list of registers to
     be preserved:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+    
     <div class='snippet' id='javascript_120_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function preserving(regs, seq1, seq2) {
     if (is_null(regs)) {
@@ -1864,7 +1865,7 @@ function preserving(regs, seq1, seq2) {
     } else {
         const first_reg = head(regs);
         if (needs_register(seq2, first_reg) &&
-	    modifies_register(seq1, first_reg)) {
+            modifies_register(seq1, first_reg)) {
             return preserving(
                 tail(regs),
                 make_instruction_sequence(
@@ -1873,7 +1874,7 @@ function preserving(regs, seq1, seq2) {
                     list_difference(registers_modified(seq1),
                                     list(first_reg)),
                     append(list(save(first_reg)),
-                           append(statements(seq1),
+                           append(instructions(seq1),
                                   list(restore(first_reg))))),
                 seq2);
         } else {
@@ -1924,7 +1925,7 @@ function tack_on_instruction_sequence(seq, body_seq) {
     return make_instruction_sequence(
         registers_needed(seq),
         registers_modified(seq),
-        append(statements(seq), statements(body_seq)));
+        append(instructions(seq), instructions(body_seq)));
 }</pre></div></div>
   </p></div>
 
@@ -1965,8 +1966,8 @@ function parallel_instruction_sequences(seq1, seq2) {
             registers_modified(seq1),
             registers_modified(seq2)),
         append(
-            statements(seq1),
-            statements(seq2)));
+            instructions(seq1),
+            instructions(seq2)));
 }</pre></div></div>
     
   </p></div>

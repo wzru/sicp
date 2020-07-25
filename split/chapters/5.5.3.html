@@ -14,9 +14,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <meta name="description" content="5.5.3  Compiling Combinations" />
+  <meta name="description" content="5.5.3  Compiling <span style="color:green"> Combinations </span> <span style="color:blue"> Applications </span>" />
     <title>
-      5.5.3  Compiling Combinations
+      5.5.3  Compiling <span style="color:green"> Combinations </span> <span style="color:blue"> Applications </span>
     </title>
     
   <meta name="csrf-param" content="authenticity_token" />
@@ -1213,7 +1213,7 @@
           <div class="card-header" role="tab" id="sidebar-89">
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-89" aria-expanded="false" aria-controls="sidebar-collapse-89">
-                <a href="./4.3.1.html"> 4.3.1  Amb and Search</a>
+                <a href="./4.3.1.html"> 4.3.1  <span style="color:green"> Amb and Search </span> <span style="color:blue"> Search and amb </span></a>
               </span>
             </h5>
           </div>
@@ -1583,7 +1583,7 @@
           <div class="card-header" role="tab" id="sidebar-119">
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-119" aria-expanded="false" aria-controls="sidebar-collapse-119">
-                <a href="./5.5.2.html"> 5.5.2  Compiling Expressions</a>
+                <a href="./5.5.2.html"> 5.5.2  Compiling <span style="color:blue"> Statements and </span> Expressions</a>
               </span>
             </h5>
           </div>
@@ -1593,7 +1593,7 @@
           <div class="card-header" role="tab" id="sidebar-120">
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-120" aria-expanded="false" aria-controls="sidebar-collapse-120">
-                <a href="./5.5.3.html"> 5.5.3  Compiling Combinations</a>
+                <a href="./5.5.3.html"> 5.5.3  Compiling <span style="color:green"> Combinations </span> <span style="color:blue"> Applications </span></a>
               </span>
             </h5>
           </div>
@@ -1679,7 +1679,7 @@
       <div class='chapter-title'>
         <div class='permalink'>
         <a name='top' class='permalink'> 
-    5.5.3  Compiling Combinations
+    5.5.3  Compiling <span style="color:green"> Combinations </span> <span style="color:blue"> Applications </span>
         </a>
         </div>
       </div>
@@ -1697,10 +1697,15 @@
       <span style="color:green">procedure</span>
       <span style="color:blue">function</span>
     
-    applications. The code for a combination compiled with a given target and
+    applications. The code for
+    
+      <span style="color:green">a combination</span>
+      <span style="color:blue">an application</span>
+    
+    compiled with a given target and
     linkage has the form
-    <kbd class='snippet'>$\langle compilation$ $of$ $operator,$ $target$ fun, $linkage$ next$\rangle$
-$\langle evaluate$ $arg$ $exps$ $and$ $construct$ $arg$ $list$ $in$ argl$\rangle$
+    <kbd class='snippet'>$\langle compilation$ $of$ $function$ $expression,$ $target$ fun, $linkage$ next$\rangle$
+$\langle evaluate$ $arg$ $expressions$ $and$ $construct$ $arg$ $list$ $in$ argl$\rangle$
 $\langle compilation$ $of$ $function$ $call$ $with$ $given$ $target$ $and$ $linkage\rangle$</kbd>
   </p></div>
 
@@ -1834,9 +1839,10 @@ function compile_application(exp, target, linkage) {
               map(arg => compile(arg, "val", "next"),
                   args(exp));
     return preserving(list("env", "continue"), 
-              preserving(list("fun", "continue"), 
-                  construct_arglist(arguments_codes),
-                      compile_function_call(target, linkage)));
+               fun_code,
+               preserving(list("fun", "continue"), 
+                   construct_arglist(arguments_codes),
+                       compile_function_call(target, linkage)));
 }</pre></div></div></td></tr></table>
   </p></div>
 
@@ -1931,7 +1937,7 @@ assign("argl", list(op("pair"), reg("val"), reg("argl")));</kbd>
             <td><div class='snippet' id='javascript_119_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (assign argl (const ()))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_119_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assign(argl, list(constant("null")));</pre></div></div></td></tr></table>
+assign(argl, constant(null));</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -1995,7 +2001,7 @@ function construct_arglist(arg_codes) {
         return make_instruction_sequence(
             null, 
             list("argl"),
-            list(assign("argl", list(constant("null")))));
+            list(assign("argl", constant(null))));
     } else {
         const code_to_get_last_arg =
               append_instruction_sequences(
@@ -2184,30 +2190,28 @@ function compile_function_call(target, linkage) {
     const primitive_branch = make_label("primitive_branch");
     const compiled_branch = make_label("compiled_branch");
     const after_call = make_label("after_call");
-
     const compiled_linkage = linkage === "next" ? after_call : linkage;
-    
     return append_instruction_sequences(
         make_instruction_sequence(
             list("fun"),
             list(),
             list(test(list(op("primitive_function"), reg("fun"))),
                  branch(label(primitive_branch)))), 
-        parallel_instruction_sequences(
-            append_instruction_sequences(
-                compiled_branch,
-                compile_fun_appl(target, compiled_linkage)),
-            append_instruction_sequences(
-                primitive_branch,
-                end_with_linkage(
-                    linkage,
-                    make_instruction_sequence(
-                        list("fun", "argl"),
-                        list(target),
-                        list(assign(target,
-                                list(op("apply_primitive_function"),
-                                     reg("fun"), reg("argl"))),
-                             after_call))))));
+        append_instruction_sequences(
+            parallel_instruction_sequences(
+                append_instruction_sequences(
+                    compiled_branch,
+                    compile_fun_appl(target, compiled_linkage)),
+                append_instruction_sequences(
+                    primitive_branch,
+                    end_with_linkage(target, linkage,
+                        make_instruction_sequence(
+                            list("fun", "argl"),
+                            list(target),
+                            list(assign(target,
+                                    list(op("apply_primitive_function"),
+                                         reg("fun"), reg("argl")))))))),
+            after_call));
 }</pre></div></div></td></tr></table>
   </p></div>
 
@@ -2315,7 +2319,7 @@ function compile_function_call(target, linkage) {
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "fun_return",
-  assign($target$, list(reg("val"))), // included if target is not val
+  assign($target$, reg("val")),       // included if target is not val
   restore("continue"),
   go_to(reg("continue")),             // linkage code</kbd>
   </p></div>
@@ -2670,7 +2674,7 @@ function compile_fun_appl(target, linkage) {
             list("fun"),
             all_regs,
             list(
-                assign("continue", list(label(linkage))),
+                assign("continue", label(linkage)),
                 assign("val", list(op("compiled_function_entry"), 
                                    reg("fun"))),
                 go_to(reg("val"))));
@@ -2681,12 +2685,12 @@ function compile_fun_appl(target, linkage) {
             list("fun"),
             all_regs,
             list(
-                assign("continue", list(label(fun_return))),
+                assign("continue", label(fun_return)),
                 assign("val", list(op("compiled_function_entry"), 
                                    reg("fun"))),
                 go_to(reg("val")),
                 fun_return,
-                assign(target, list(reg("val"))),
+                assign(target, reg("val")),
                 go_to(label(linkage))));
     } else if (target === "val" && linkage === "return") {
         return make_instruction_sequence(
@@ -2830,7 +2834,7 @@ const all_regs = list("env", "fun", "val", "argl", "continue");</pre></div></div
         <a class='btn btn-secondary btn-nav' id='121' href='./5.5.4.html'>Next &gt;</a>
       </div>
     <div class='chapter_sign'>
-      5.5.3  Compiling Combinations
+      5.5.3  Compiling <span style="color:green"> Combinations </span> <span style="color:blue"> Applications </span>
     </div>
     <script> var chapter_id = 120; </script>
     <script> var chapter_path = "chapters/5.5.3.html"; </script>

@@ -1213,7 +1213,7 @@
           <div class="card-header" role="tab" id="sidebar-89">
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-89" aria-expanded="false" aria-controls="sidebar-collapse-89">
-                <a href="./4.3.1.html"> 4.3.1  Amb and Search</a>
+                <a href="./4.3.1.html"> 4.3.1  Search and amb</a>
               </span>
             </h5>
           </div>
@@ -1583,7 +1583,7 @@
           <div class="card-header" role="tab" id="sidebar-119">
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-119" aria-expanded="false" aria-controls="sidebar-collapse-119">
-                <a href="./5.5.2.html"> 5.5.2  Compiling Expressions</a>
+                <a href="./5.5.2.html"> 5.5.2  Compiling Statements and Expressions</a>
               </span>
             </h5>
           </div>
@@ -1593,7 +1593,7 @@
           <div class="card-header" role="tab" id="sidebar-120">
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-120" aria-expanded="false" aria-controls="sidebar-collapse-120">
-                <a href="./5.5.3.html"> 5.5.3  Compiling Combinations</a>
+                <a href="./5.5.3.html"> 5.5.3  Compiling Applications</a>
               </span>
             </h5>
           </div>
@@ -1771,10 +1771,10 @@ function compile(stmt, target, linkage) {
         ? compile_lambda_expression(stmt, target, linkage)
         : is_sequence(stmt)
         ? compile_sequence(sequence_statements(stmt), target, linkage)
-/*        : is_block(stmt)
+        : is_block(stmt)
         ? compile_block(stmt, target, linkage)
         : is_return_statement(stmt)
-        ? compile_return_statement(stmt, target, linkage) */
+        ? compile_return_statement(stmt, target, linkage) 
         : is_application(stmt)
         ? compile_application(stmt, target, linkage)
         : error(stmt, "Unknown statement type -- compile");
@@ -1924,14 +1924,14 @@ go_to(reg("continue"));</pre></div></div>
 	<kbd>append_instruction_sequences</kbd>.
       
     
-    It takes as
+    It takes 
     
       
       
-	argument a list
+	as arguments two instruction sequences 
       
     
-    of instruction sequences that are to be
+    that are to be
     executed sequentially; it appends them and returns the combined sequence.
     That is, if $seq_1$ and
     $seq_2$ are sequences of instructions, then
@@ -2089,8 +2089,11 @@ $seq_2$</kbd>
       <LI>the set of registers whose values are modified by the
       instructions in the sequence, and
       </LI>
-      <LI>the actual instructions (also called <EM>statements</EM>) in
-      the sequence.
+      <LI>the actual instructions
+      
+	
+      
+      in the sequence.
       </LI>
     </UL>
   </p></div>
@@ -2101,8 +2104,8 @@ $seq_2$</kbd>
     parts.  The constructor for instruction sequences is thus
     
     <div class='snippet' id='javascript_117_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function make_instruction_sequence(needs, modifies, statements) {
-    return list(needs, modifies, statements);
+function make_instruction_sequence(needs, modifies, instructions) {
+    return list(needs, modifies, instructions);
 }</pre></div></div>
   </p></div>
 
@@ -2126,11 +2129,17 @@ make_instruction_sequence(
 
   <div class='permalink'>
 <a name='p15' class='permalink'></a><p>
-    We sometimes need to construct an instruction sequence with no statements:
+    We sometimes need to construct an instruction sequence with no
+    
+      
+      
+	instructions:
+      
+    
     
     <div class='snippet' id='javascript_117_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function empty_instruction_sequence() {
-    return make_instruction_sequence(list(), list(), list());
+    return make_instruction_sequence(null, null, null);
 }</pre></div></div>
   </p></div>
 
@@ -2195,16 +2204,49 @@ f(g("x"), "y")</pre></div></div>
     
     Using the <kbd>preserving</kbd> mechanism, the compiler
     will avoid saving and restoring <kbd>env</kbd> around the
-    evaluation of the operator of a combination in the case where the operator
-    is a symbol.  We could also build such optimizations into the evaluator.
+    evaluation of the
+    
+      
+      
+	function expression of an application
+      
+    
+    in the case where the
+    
+      
+      
+	function expression is a name.
+      
+    
+    We could also build such optimizations into the evaluator.
     Indeed, the explicit-control evaluator of
     section&nbsp;<REF NAME="sec:eceval"><a class="superscript" id="5.5.1-sec-link-5.4" href="./5.4.html">5.4</a></REF> already performs a similar
-    optimization, by treating combinations with no operands as a special case.
+    optimization, by treating
+    
+      
+      
+	applications with no arguments
+      
+    
+    as a special case.
     <OL type="a">
       <LI>
 	Extend the explicit-control evaluator to recognize as a separate class
-	of expressions combinations whose operator is a symbol, and to take
-	advantage of this fact in evaluating such expressions.
+	of
+	
+	  
+	  
+	    statements applications whose function expression is a name,
+	  
+	
+	and to take
+	advantage of this fact in evaluating such
+	
+	  
+	  
+	    statements.
+	  
+	
       </LI>
       <LI>
 	Alyssa P. Hacker suggests that by extending the evaluator to recognize
