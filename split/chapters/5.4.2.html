@@ -1808,6 +1808,27 @@ ev-begin
       <span style="color:blue"><kbd>ev_sequence_continue</kbd>.
       </span>
     
+
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td>    </td>
+          <td></td>
+          <td><span style="color:blue">
+        As returns immediately end the function, skipping any trailing
+        statements, we inspect each statement to see whether it is a return or
+        not. If it is, we jump to the entry point
+        <kbd>ev_return_from_seq</kbd> and abort the
+        loop. Sequences that do not contain an explicit return will eventually
+        dispatch to the aforementioned entry point
+        <kbd>end_without_return</kbd>, which will
+        ensure that the sequence ends with <kbd>val</kbd>
+        holding the value <kbd>undefined</kbd>. 
+      </span></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -1886,6 +1907,8 @@ ev-sequence-last-exp
             <td><div class='snippet' id='javascript_113_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_sequence",
       assign("exp", list(op("first_statement"), reg("unev"))),
+      test(list(op("is_return_statement"), reg("exp"), constant(true))),
+      branch(label("ev_return_from_seq")),
       test(list(op("is_last_statement"), reg("unev"), constant(true))),
       branch(label("ev_sequence_last_exp")),
       save("unev"),
@@ -1900,8 +1923,13 @@ ev-sequence-last-exp
       go_to(label("ev_sequence")),
       
 "ev_sequence_last_exp",
+      assign("continue", label("end_without_return")),
+      go_to(label("eval_dispatch")),
+
+"end_without_return",
+      assign("val", constant(undefined)),
       restore("continue"),
-      go_to(label("eval_dispatch")),</pre></div></div></td></tr></table>
+      go_to(reg("continue")),</pre></div></div></td></tr></table>
   </p></div>
 
   
@@ -1983,8 +2011,10 @@ function sqrt_iter(guess, x) {
 
   <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
-    Our evaluator is tail-recursive, because in order to evaluate the final
-    expression of a sequence we transfer directly to
+    <span style="color:green">Our</span><span style="color:blue">With one exception, discussed
+    at the end of this section,</span> evaluator is
+    tail-recursive, because in order to evaluate the final expression of a
+    sequence we transfer directly to
     
       <span style="color:green"><kbd>eval-dispatch</kbd></span>
       <span style="color:blue"><kbd>eval_dispatch</kbd>
@@ -2018,8 +2048,7 @@ function sqrt_iter(guess, x) {
 	<kbd>sqrt_iter</kbd>)—will
       </span>
     
-    not cause any information to be accumulated on the stack.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-  </p></div>
+    not cause any information to be accumulated on the stack.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a> 
 
   <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
@@ -2033,7 +2062,7 @@ function sqrt_iter(guess, x) {
     by treating all the expressions in a sequence in the same way—saving
     the registers, evaluating the expression, returning to restore the registers,
     and repeating this until all the expressions have been
-    evaluated:<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+    evaluated <span style="color:blue">(for simplicity, ignoring the handling of returns which are not needed to illustrate this point)</span>:<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2114,7 +2143,7 @@ ev-sequence
             <td><div class='snippet' id='javascript_113_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function count(n) {
     display(n, "\n");
-    count(n + 1);
+    return count(n + 1); // Note: return necessary for tail recursion, see below
 }</pre></div></div></td></tr></table>
     Without tail recursion, such a
     
@@ -2128,6 +2157,32 @@ function count(n) {
       <span style="color:blue">function</span>
     
     call.
+  </p></div>
+
+  <div class='permalink'>
+<a name='p10' class='permalink'></a><p>
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td>    </td>
+          <td></td>
+          <td><span style="color:blue">The exception to tail recursion in our evaluator is due to the
+      implicit returning of <kbd>undefined</kbd>.
+      Function bodies that do not end in an explicit return dispatch to the
+      <kbd>end_without_return</kbd> entry point which
+      destroys tail-recursion as every function call must have its return value
+      changed to <kbd>undefined</kbd>. Removing the
+      <kbd>return</kbd> from the
+      <kbd>count</kbd> function above will thus lead to
+      exhausting the stack space. (Note that it is only when a function actually
+      reaches the end of its body that this extra stack space is consumed.) 
+      </span></td></tr></table>
+  </p></div>
+
     
     
     

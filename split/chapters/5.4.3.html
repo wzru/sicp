@@ -1984,7 +1984,6 @@ ev-definition-1
       
     <div class='snippet' id='javascript_114_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_block",
-      save("continue"),
       assign("exp", list(op("block_body"), reg("exp"))),
       assign("val", list(op("local_names"), reg("exp"))),
       
@@ -2040,13 +2039,17 @@ ev-definition-1
     predicates of successive <kbd>cond</kbd>
     clauses</span><span style="color:blue">handle nested <kbd>conditional_statements</kbd></span>
     until you find one that is true,
-    
     and then use
     
       <span style="color:green"><kbd>ev-sequence</kbd></span>
       <span style="color:blue"><kbd>ev_sequence</kbd></span>
     
     to evaluate the actions of <span style="color:green">the clause</span><span style="color:blue">its body</span>.
+    
+      <span style="color:blue">
+        Note that proper handling of returns inside the consequent and alternative blocks poses a hard challenge as the current implementation of sequence only supports returning from the outermost block in a function. One way to implement this is to add a new register <kbd>returning</kbd> that keeps track of whether the current function is returning. Instead of checking if the next statement is a return statement, the sequence loop checks inspects <kbd>returning</kbd> to determine whether to continue or return.
+      </span>
+    
     
   
       <div class="Solution">

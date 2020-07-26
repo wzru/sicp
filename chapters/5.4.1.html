@@ -1754,6 +1754,8 @@
       branch(label("ev_constant_declaration")),
       test(list(op("is_assignment"), reg("exp"), constant(true))),
       branch(label("ev_assignment")),
+      test(list(op("is_return_statement"), reg("exp"), constant(true))),
+      branch(label("ev_return")),
       test(list(op("is_conditional_expression"), reg("exp"), constant(true))),
       branch(label("ev_if")),
       test(list(op("is_lambda_expression"), reg("exp"), constant(true))),
@@ -2377,22 +2379,40 @@
     
       
       
-	The function
-	<kbd>ev_sequence</kbd>,
+        A little extra work is needed to handle function bodies
+        with a single non-return statement as these should return
+        <kbd>undefined</kbd>. In this
+        case, we set as continuation the label
+        <kbd>end_without_return</kbd>,
+        which will overwrite the contents of
+        <kbd>val</kbd> by
+        <kbd>undefined</kbd> before
+        jumping back into the dispatch loop. This has implications
+        for tail-recursion, which is discussed in
+        section&nbsp;<REF NAME="sec:sequence-evaluation"><a class="superscript" id="5.4.1-sec-link-5.4.2" href="./5.4.2.html">5.4.2</a></REF>.
+        
+        All other cases handle returns by themselves as part of
+        the normal dispatch loop.
       
     
-    described below in section&nbsp;<REF NAME="sec:sequence-evaluation"><a class="superscript" id="5.4.1-sec-link-5.4.2" href="./5.4.2.html">5.4.2</a></REF>,
-    handles the evaluation of the sequence.
     <div class='snippet' id='javascript_112_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "compound_apply",
+      "compound_apply",
       assign("unev", list(op("function_parameters"), reg("fun"))), // params
       assign("env", list(op("function_environment"), reg("fun"))),
       assign("env", list(op("extend_environment"), 
-                    reg("unev"), 
-                    reg("argl"), 
-                    reg("env"))),
-      assign("unev", list(op("function_body"), reg("fun"))),
-      go_to(label("ev_sequence")),</pre></div></div>
+                         reg("unev"), 
+                         reg("argl"), 
+                         reg("env"))),
+      assign("exp", list(op("function_body"), reg("fun"))),
+      test(list(op("handles_return_by_itself"), reg("exp"), constant(false))),
+      branch(label("handle_missing_return")),
+      restore("continue"),
+      go_to(label("eval_dispatch")),
+
+"handle_missing_return",
+      assign("continue", label("end_without_return")),
+      go_to(label("eval_dispatch")),</pre></div></div>
   </p></div>
 
   <div class='permalink'>

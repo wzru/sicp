@@ -1798,6 +1798,20 @@
       <kbd>ev_sequence_continue</kbd>.
       
     
+
+    
+      
+        As returns immediately end the function, skipping any trailing
+        statements, we inspect each statement to see whether it is a return or
+        not. If it is, we jump to the entry point
+        <kbd>ev_return_from_seq</kbd> and abort the
+        loop. Sequences that do not contain an explicit return will eventually
+        dispatch to the aforementioned entry point
+        <kbd>end_without_return</kbd>, which will
+        ensure that the sequence ends with <kbd>val</kbd>
+        holding the value <kbd>undefined</kbd>. 
+      
+    
   </p></div>
 
   <div class='permalink'>
@@ -1855,6 +1869,8 @@
     <div class='snippet' id='javascript_113_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_sequence",
       assign("exp", list(op("first_statement"), reg("unev"))),
+      test(list(op("is_return_statement"), reg("exp"), constant(true))),
+      branch(label("ev_return_from_seq")),
       test(list(op("is_last_statement"), reg("unev"), constant(true))),
       branch(label("ev_sequence_last_exp")),
       save("unev"),
@@ -1869,8 +1885,13 @@
       go_to(label("ev_sequence")),
       
 "ev_sequence_last_exp",
+      assign("continue", label("end_without_return")),
+      go_to(label("eval_dispatch")),
+
+"end_without_return",
+      assign("val", constant(undefined)),
       restore("continue"),
-      go_to(label("eval_dispatch")),</pre></div></div>
+      go_to(reg("continue")),</pre></div></div>
   </p></div>
 
   
@@ -1942,8 +1963,10 @@ function sqrt_iter(guess, x) {
 
   <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
-    Our evaluator is tail-recursive, because in order to evaluate the final
-    expression of a sequence we transfer directly to
+    With one exception, discussed
+    at the end of this section, evaluator is
+    tail-recursive, because in order to evaluate the final expression of a
+    sequence we transfer directly to
     
       
       <kbd>eval_dispatch</kbd>
@@ -1977,8 +2000,7 @@ function sqrt_iter(guess, x) {
 	<kbd>sqrt_iter</kbd>)—will
       
     
-    not cause any information to be accumulated on the stack.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-  </p></div>
+    not cause any information to be accumulated on the stack.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a> 
 
   <div class='permalink'>
 <a name='p8' class='permalink'></a><p>
@@ -1992,7 +2014,7 @@ function sqrt_iter(guess, x) {
     by treating all the expressions in a sequence in the same way—saving
     the registers, evaluating the expression, returning to restore the registers,
     and repeating this until all the expressions have been
-    evaluated:<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+    evaluated (for simplicity, ignoring the handling of returns which are not needed to illustrate this point):<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
     <div class='snippet' id='javascript_113_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_sequence",
      test(list(op("has_no_more_exps"), reg("unev"))),
@@ -2043,7 +2065,7 @@ function sqrt_iter(guess, x) {
     <div class='snippet' id='javascript_113_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function count(n) {
     display(n, "\n");
-    count(n + 1);
+    return count(n + 1); // Note: return necessary for tail recursion, see below
 }</pre></div></div>
     Without tail recursion, such a
     
@@ -2057,6 +2079,25 @@ function count(n) {
       function
     
     call.
+  </p></div>
+
+  <div class='permalink'>
+<a name='p10' class='permalink'></a><p>
+    
+      The exception to tail recursion in our evaluator is due to the
+      implicit returning of <kbd>undefined</kbd>.
+      Function bodies that do not end in an explicit return dispatch to the
+      <kbd>end_without_return</kbd> entry point which
+      destroys tail-recursion as every function call must have its return value
+      changed to <kbd>undefined</kbd>. Removing the
+      <kbd>return</kbd> from the
+      <kbd>count</kbd> function above will thus lead to
+      exhausting the stack space. (Note that it is only when a function actually
+      reaches the end of its body that this extra stack space is consumed.) 
+      
+    
+  </p></div>
+
     
     
     
