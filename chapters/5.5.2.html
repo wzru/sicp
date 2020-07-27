@@ -2322,7 +2322,7 @@ function compile_lambda_expression(exp, target, linkage) {
 	The target is <kbd>val</kbd>
 	so that the return value (or
 	<kbd>undefined</kbd>)
-	it will be in <kbd>val</kbd>.
+	will be in <kbd>val</kbd>.
       
     
     <div class='snippet' id='javascript_118_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
@@ -2361,9 +2361,9 @@ function compile_lambda_body(exp, fun_entry) {
 	
 
 	JavaScript's <kbd>return</kbd> statements are compiled
-	such that the compiled code returns the result of running the code of the
-	<kbd>return</kbd> expression to the caller of the
-	current function, ignoring the current linkage. 
+	such that the compiled code returns  to the caller of the current function the result
+	of running the code of the
+	<kbd>return</kbd> expression, ignoring the current linkage. 
 	<div class='snippet' id='javascript_118_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_return_statement(stmt, target, linkage) {
     return compile(return_expression(stmt), target, "return");
@@ -2384,7 +2384,7 @@ function compile_return_statement(stmt, target, linkage) {
 	
 
 	A block is compiled by prepending an assignment instruction to the compiled
-	body of the block. The assignment expends the current environment with bindings
+	body of the block. The assignment extends the current environment with bindings
 	of the declared names of the block to the value 
 	<kbd>"*unassigned*"</kbd>. This affects neither
 	target nor linkage.
