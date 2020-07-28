@@ -2401,11 +2401,10 @@ display(1);
 	    <kbd>for</kbd> loops for the evaluator?
 	  </LI>
 	  <LI>
-	    The designers of JavaScript decided to provide particular support to
-	    the variable declared in the initialization part of
-	    <kbd>for</kbd> loops. Consider the
-	    following example.
-	    <div class='snippet' id='javascript_77_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDiANkwqMmHIhJkBeUCQUSA3GPEEaDUNykyyRBsxLLQ-DaACEoKhwD6aiRO4mzTCwJufzlhQAhlTu-t4UAkKi4rGy8oqgKgAOIQzc3EJKAHygABZMQQAmHqYBAgA08QqRWrEAvtqyFKb0zAkUWvVAA')">function reverse(xs) {
+	    Eva Lu Ator tries to combine 
+	    <kbd>for</kbd> loops 
+	    with lambda expressions in the following program.
+	    <div class='snippet' id='javascript_77_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYH1jzq6HABQAPDgEpQAb1yg5AGyYVGTDkXnKAvKBLr5AbllyCNBqCGLlZIg2YktoMftABCUFQ7dd8+UOu2me3FnfzsHCgBDKl9QwIpxSRk5ZJU1DVBtAAcohiEhSU0APlAACyYIgBM-GzDxABpU9XjDZIBfIxUKG3pmNIpDVqA')">function reverse_functions(xs) {
    let result = null;
    for (let current = xs; ! is_null(current); current = tail(current)) {
       result = pair(() => head(current), result);
@@ -2413,23 +2412,25 @@ display(1);
    return result;
 }
 </pre></div></div>
-	    In most programming languages, the functions in the result list of
-	    <kbd>reverse</kbd> are useless: They apply
+	    To her surprise, all functions in the list returned by
+	    <kbd>reverse_functions</kbd> are useless: They apply
 	    <kbd>head</kbd> to
-	    <kbd>null</kbd> because after execution
-	    of the
+	    <kbd>null</kbd> and thus give an error
+	    because after execution of the
 	    <kbd>for</kbd> loop, the value of the variable
 	    <kbd>current</kbd> is
-	    <kbd>null</kbd>. The designers of JavaScript
-	    decided to support programmers who expect the functions to return
-	    their respective list element.
-	    Modify your solutions to exercise&nbsp;<REF NAME="ex:for_loops"><a class="superscript" id="4.1.2-ex-link-4.8" href="./4.1.2.html#ex_4.8">4.8</a></REF>
-	    such that each iteration of the loop has its own
-	    <QUOTE>instance</QUOTE> of the <EM>loop control variable</EM>
-	    declared in the initialization statement.
+	    <kbd>null</kbd>.
+	    Alyssa P. Hacker proposes to give each iteration 
+	    of any 
+	    <kbd>for</kbd> loop with a declaration
+	    of a  <EM>loop control variable</EM> its own
+	    <QUOTE>instance</QUOTE> of the variable.
+	    Modify your solution to part (b) to follow Alyssa's approach, and
+	    verify that Eva's program works as expected.
 	  </LI>
 	  <LI>
-	    Discuss whether this decision was a good one.
+	    The designers of JavaScript decided to follow Alyssa's approach. Discuss 
+	    this decision.
 	  </LI>
 	</OL>
       
