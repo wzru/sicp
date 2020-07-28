@@ -1734,7 +1734,7 @@
       <kbd>go_to(reg("continue"))</kbd>.
       
     
-    This needs the $\texttt{continue}$ register and does not
+    This needs the <kbd>continue</kbd> register and does not
     modify any registers.
     
       
@@ -1786,7 +1786,7 @@ function compile_linkage(target, linkage) {
 <a name='p3' class='permalink'></a><p>
     The linkage code is appended to an instruction sequence by
     <kbd>preserving</kbd> the
-    $\texttt{continue}$ register, since a
+    <kbd>continue</kbd> register, since a
     
       
       
@@ -1794,10 +1794,10 @@ function compile_linkage(target, linkage) {
       
     
     linkage will
-    require the $\texttt{continue}$ register:
+    require the <kbd>continue</kbd> register:
     If the given instruction sequence modifies
-    $\texttt{continue}$ and the linkage code needs it,
-    $\texttt{continue}$ will be saved and restored.
+    <kbd>continue</kbd> and the linkage code needs it,
+    <kbd>continue</kbd> will be saved and restored.
     
     <div class='snippet' id='javascript_118_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function end_with_linkage(target, linkage, instruction_sequence) {
@@ -2052,7 +2052,7 @@ function compile_conditional_expression(stmt, target, linkage) {
     
     is preserved around the predicate code
     because it could be needed by the true and false branches, and
-    $\texttt{continue}$ is preserved because it could
+    <kbd>continue</kbd> is preserved because it could
     be needed by the linkage code in those branches.  The code for the true and
     false branches (which are not executed sequentially) is appended using a
     special combiner
@@ -2100,7 +2100,7 @@ function compile_conditional_expression(stmt, target, linkage) {
     sequence). The instruction sequences for the individual expressions are
     appended to form a single instruction sequence, such that
     <kbd>env</kbd> (needed for the rest of the sequence) and
-    $\texttt{continue}$ (possibly needed for the linkage at
+    <kbd>continue</kbd> (possibly needed for the linkage at
     the end of the sequence) are preserved.
     
     <div class='snippet' id='javascript_118_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>

@@ -1866,14 +1866,14 @@
     mechanism described in section&nbsp;<REF NAME="sec:subroutines"><a class="superscript" id="5.1.4-sec-link-5.1.3" href="./5.1.3.html">5.1.3</a></REF>, which
     has the controller use a
     
-    $\texttt{continue}$ register to transfer to the part of
+    <kbd>continue</kbd> register to transfer to the part of
     the sequence that solves a subproblem and then continue where it left off
     on the main problem.  We can thus make a factorial subroutine that returns
-    to the entry point stored in the $\texttt{continue}$
+    to the entry point stored in the <kbd>continue</kbd>
     register.  Around each subroutine call, register, since each
     <QUOTE>level</QUOTE> of the factorial computation will use the same
-    $\texttt{continue}$ register.  That is, the factorial
-    subroutine must put a new value in $\texttt{continue}$
+    <kbd>continue</kbd> register.  That is, the factorial
+    subroutine must put a new value in <kbd>continue</kbd>
     when it calls itself for a subproblem, but it will need the old value in
     order to return to the place that called it to solve a subproblem.
   </p></div>
@@ -1897,7 +1897,7 @@
     
     The machine has a stack and three registers, called
     <kbd>n</kbd>, <kbd>val</kbd>, and
-    $\texttt{continue}$.  To simplify the data-path diagram,
+    <kbd>continue</kbd>.  To simplify the data-path diagram,
     we have not named the register-assignment buttons, only the stack-operation
     buttons (<kbd>sc</kbd> and <kbd>sn</kbd>
     to save registers, <kbd>rc</kbd> and
@@ -1907,15 +1907,15 @@
     reaches <span style="color:green"><kbd>fact-done</kbd></span><span style="color:blue"><kbd>fact_done</kbd></span>, the computation is finished
     and the answer will be found in the <kbd>val</kbd>
     register.  In the controller sequence, <kbd>n</kbd> and
-    $\texttt{continue}$ are saved before each recursive call
+    <kbd>continue</kbd> are saved before each recursive call
     and restored upon return from the call.  Returning from a call is
     accomplished by branching to the location stored in
-    $\texttt{continue}$. 
+    <kbd>continue</kbd>. 
     
       <span style="color:green"><kbd>Continue</kbd></span>
       <span style="color:blue">
 	The register
-	$\texttt{continue}$
+	<kbd>continue</kbd>
       </span>
     
     is initialized when the machine starts so that the last return will go to
@@ -1950,7 +1950,7 @@
     the stack the registers whose current values will be required after the
     subproblem is solved, solve the recursive subproblem, then restore the saved
     registers and continue execution on the main problem.  The
-    $\texttt{continue}$ register must always be saved.
+    <kbd>continue</kbd> register must always be saved.
     Whether there are other registers that need to be saved depends on the
     particular machine, since not all recursive computations need the original
     values of registers that are modified during solution of the subproblem
@@ -1995,7 +1995,7 @@
     Just as with factorial, we can implement the recursive Fibonacci
     computation as a register machine with registers
     <kbd>n</kbd>, <kbd>val</kbd>,
-    and $\texttt{continue}$.  The machine is more complex than
+    and <kbd>continue</kbd>.  The machine is more complex than
     the one for factorial, because there are two places in the controller
     sequence where we need to perform recursive calls—once to compute
     Fib$(n-1)$ and once to compute
@@ -2004,7 +2004,7 @@
     <kbd>n</kbd>
     register to the number whose Fib we need to compute recursively
     ($n-1$ or $n-2$), and
-    assign to $\texttt{continue}$ the entry point in the main
+    assign to <kbd>continue</kbd> the entry point in the main
     sequence to which to return (<span style="color:green"><kbd>afterfib-n-1</kbd></span><span style="color:blue"><kbd>afterfib_n_1</kbd></span> or
     <span style="color:green"><kbd>afterfib-n-2</kbd></span><span style="color:blue"><kbd>afterfib_n_2</kbd></span>, respectively).  We then go to
     <span style="color:green"><kbd>fib-loop</kbd></span><span style="color:blue"><kbd>fib_loop</kbd></span>.  When we return from the

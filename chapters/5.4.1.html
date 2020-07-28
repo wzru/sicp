@@ -1725,7 +1725,7 @@
     
     in the environment specified by <kbd>env</kbd>.  When
     evaluation is complete, the controller will go to the entry point stored in
-    $\texttt{continue}$, and the
+    <kbd>continue</kbd>, and the
     <kbd>val</kbd> register will hold the value of the
     expression.  As with the metacircular
     
@@ -1790,7 +1790,7 @@
     places the correct value in the
     <kbd>val</kbd> register and continues
     execution at the entry point specified by
-    $\texttt{continue}$.  Evaluation
+    <kbd>continue</kbd>.  Evaluation
     of simple expressions is performed by the following controller code:
     <div class='snippet' id='javascript_112_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_self_eval",
@@ -1949,7 +1949,7 @@
       
     
     into <kbd>unev</kbd> and save this on the stack.  We set
-    up $\texttt{continue}$ so that
+    up <kbd>continue</kbd> so that
     
       
       
@@ -1971,7 +1971,7 @@
       
     
     has been evaluated.  First, however, we save the old value of
-    $\texttt{continue}$, which tells the controller where to
+    <kbd>continue</kbd>, which tells the controller where to
     continue after the application.
     <div class='snippet' id='javascript_112_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_application",
@@ -2077,7 +2077,7 @@
       <kbd>eval_dispatch</kbd>,
       
     
-    after setting $\texttt{continue}$ so that execution will
+    after setting <kbd>continue</kbd> so that execution will
     resume with the argument-accumulation phase.  But first we save the
     arguments accumulated so far (held in <kbd>argl</kbd>), the
     environment (held in <kbd>env</kbd>), and the remaining
@@ -2255,7 +2255,7 @@
     
     to apply and <kbd>argl</kbd> contains the list of
     evaluated arguments to which it must be applied.  The saved value of
-    $\texttt{continue}$ (originally passed to
+    <kbd>continue</kbd> (originally passed to
     
       
       <kbd>eval_dispatch</kbd>
@@ -2274,7 +2274,7 @@
     
     application, is on the stack.  When the application is complete, the
     controller transfers to the entry point specified by the saved
-    $\texttt{continue}$, with the result of the application in
+    <kbd>continue</kbd>, with the result of the application in
     <kbd>val</kbd>.  As with the metacircular
     <kbd>apply</kbd>, there are two cases to consider.  Either
     the
@@ -2339,7 +2339,7 @@
     system to perform the application, just as we did for the metacircular
     evaluator in section&nbsp;<REF NAME="sec:running-eval"><a class="superscript" id="5.4.1-sec-link-4.1.4" href="./4.1.4.html">4.1.4</a></REF>.  After computing
     the value of the primitive application, we restore
-    $\texttt{continue}$ and go
+    <kbd>continue</kbd> and go
     to the designated entry point.
     <div class='snippet' id='javascript_112_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "primitive_apply",

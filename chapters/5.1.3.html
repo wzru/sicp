@@ -1800,10 +1800,10 @@
     follows: Before branching to <kbd>gcd</kbd>, we place a
     distinguishing value (such as 0 or&nbsp;1) into a special register, 
     
-    $\texttt{continue}$.  At the end of the
+    <kbd>continue</kbd>.  At the end of the
     <kbd>gcd</kbd> subroutine we return either to
     <kbd>after_gcd_1</kbd> or to <kbd>after_gcd_2</kbd>, depending
-    on the value of the $\texttt{continue}$ register.
+    on the value of the <kbd>continue</kbd> register.
     Figure&nbsp;<REF NAME="fig:gcd-machine-2cont"><a class="superscript" id="5.1.3-fig-link-5.9" href="./5.1.3.html#fig_5.9">5.9</a></REF> shows the relevant portion
     of the resulting controller sequence, which includes only a single copy of
     the <kbd>gcd</kbd> instructions.
@@ -1857,7 +1857,7 @@
   "after_gcd_2"</pre></div></div>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.1.3.html#fig_5.9">Figure 5.9 </a></b>
-	Using a $\texttt{continue}$ register to avoid
+	Using a <kbd>continue</kbd> register to avoid
 	the duplicate controller sequence in
 	figure&nbsp;<REF NAME="fig:gcd-machine-2"><a class="superscript" id="5.1.3-fig-link-5.8" href="./5.1.3.html#fig_5.8">5.8</a></REF>.
       </div>
@@ -1885,7 +1885,7 @@
   "after_gcd_2"</kbd>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.1.3.html#fig_5.10">Figure 5.10 </a></b>
-	Assigning labels to the $\texttt{continue}$ register
+	Assigning labels to the <kbd>continue</kbd> register
 	simplifies  and generalizes the strategy shown in
 	figure&nbsp;<REF NAME="fig:gcd-machine-2cont"><a class="superscript" id="5.1.3-fig-link-5.9" href="./5.1.3.html#fig_5.9">5.9</a></REF>.
       </div>
@@ -1901,7 +1901,7 @@
     <kbd>gcd</kbd> subroutine, we would need tests in the data
     paths and branch instructions in the controller for all the places that use
     <kbd>gcd</kbd>. A more powerful method for implementing
-    subroutines is to have the $\texttt{continue}$ register
+    subroutines is to have the <kbd>continue</kbd> register
     hold the label of the entry point in the controller sequence at which
     execution should continue when the subroutine is finished. Implementing this
     strategy requires a new kind of connection between the data paths and the
@@ -1928,7 +1928,7 @@
     the contents of a register rather than only at an entry point described by
     a constant label.  Using these new constructs we can terminate the
     <kbd>gcd</kbd> subroutine with a branch to the location
-    stored in the $\texttt{continue}$ register.  This leads
+    stored in the <kbd>continue</kbd> register.  This leads
     to the controller sequence shown in
     figure&nbsp;<REF NAME="fig:gcd-mach-2labels"><a class="superscript" id="5.1.3-fig-link-5.10" href="./5.1.3.html#fig_5.10">5.10</a></REF>.
   </p></div>
@@ -1939,13 +1939,13 @@
     continuation registers (e.g., <kbd>gcd_continue</kbd>,
     <kbd>factorial_continue</kbd>) or we could have all
     subroutines share a single
-    $\texttt{continue}$ register.  Sharing is more economical,
+    <kbd>continue</kbd> register.  Sharing is more economical,
     but we must be careful if we have a subroutine
     (<kbd>sub1</kbd>) that calls another subroutine
     (<kbd>sub2</kbd>).  Unless
     <kbd>sub1</kbd> saves the contents of
-    $\texttt{continue}$ in some other register before setting
-    up $\texttt{continue}$ for the call to
+    <kbd>continue</kbd> in some other register before setting
+    up <kbd>continue</kbd> for the call to
     <kbd>sub2</kbd>, <kbd>sub1</kbd> will
     not know where to go when it is finished.  The mechanism developed in the
     next section to handle recursion also provides a better solution to this
