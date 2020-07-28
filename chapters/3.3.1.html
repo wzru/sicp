@@ -1915,7 +1915,14 @@
         figure&nbsp;<REF NAME="fig:two-lists"><a class="superscript" id="3.3.1-fig-link-3.12" href="./3.3.1.html#fig_3.12">3.12</a></REF>.
       
     
-    The variable <kbd>z</kbd> is now bound to a
+    The
+    
+      
+      
+	name
+      
+    
+      <kbd>z</kbd> is now bound to a
     new pair created by the
     
     <kbd>pair</kbd>
@@ -2230,12 +2237,12 @@
     is quite useful, although obscure:
     
     
-    <div class='snippet' id='javascript_60_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAN1AF5QAbAS3IAoAiAQzYBpQ2AjHnzxsAlAG5cAMwCuRPGUbFQAWwCe5AKYAnNSwAeo0AG9soc6FnzFy+gQIAHA7zVHTFj6EZTQLZgH0iGXp6A1E3M08o7U0yGW0iUDVJKPMAX1BNehJNE0jUi3pY0DJNFQdaEo5GUMMUgoscsn8yatqXCXyGmLiEhnsnUvLeOq6PNK6Jjx74xLtHZ1AgkM6J-GJyUAB3SvUtXRZKCSA')">function mystery(x) {
+    <div class='snippet' id='javascript_60_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAN1AF5QAbAS3IAoAiAQzYBpQ2AjHnzxsAlAG5cAMwCuRPGUbFQAWwCe5AKYAnNSwAeo0AG9soc6FnzFy+gQIAHA7zVHTFj6EZTQLZgH0iGXp6A1E3M08o7U0yGW0iUDVJKPMAX1BNehJNE0jUi0JSCjJNFQdaUDIORlDDFIKLHLJ-atrnJIl8xpi4hIZ7J1Ly3nrujzTuyY9e+MS7Rw6gkK7J-GJyUAB3SvUtXRZKCSA')">function mystery(x) {
     function loop(x, y) {
         if (is_null(x)) {
             return y;
         } else {
-            let temp = tail(x);
+            const temp = tail(x);
             set_tail(x, y);
             return loop(temp, x);
         }
@@ -2248,7 +2255,14 @@
       The function <kbd>loop</kbd>
       
     
-    uses the <QUOTE>temporary</QUOTE> variable <kbd>temp</kbd>
+    uses the <QUOTE>temporary</QUOTE>
+    
+      
+      
+	name
+      
+    
+    <kbd>temp</kbd>
     to hold the old value of the
     
       
@@ -2270,7 +2284,7 @@
 </pre></div></div>
     Draw the box-and-pointer diagram that represents the list to which
     <kbd>v</kbd> is bound.  Suppose that we now evaluate
-    <div class='snippet' id='javascript_60_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAN1AF5QAbAS3IAoAiAQzYBpQ2AjHnzxsAlAG5cAMwCuRPGUbFQAWwCe5AKYAnNSwAeo0AG9soc6FnzFy+gQIAHA7zVHTFj6EZTQLZgH0iGXp6A1E3M08o7U0yGW0iUDVJKPMAX1BNehJNE0jUi3pY0DJNFQdaEo5GUMMUgoscsn8yatqXCXyGmLiEhnsnUvLeOq6PNK6Jjx74xLtHZ1AgkM6J-GJyUAB3SvUtXRZKCSA')">const w = mystery(v);
+    <div class='snippet' id='javascript_60_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAN1AF5QAbAS3IAoAiAQzYBpQ2AjHnzxsAlAG5cAMwCuRPGUbFQAWwCe5AKYAnNSwAeo0AG9soc6FnzFy+gQIAHA7zVHTFj6EZTQLZgH0iGXp6A1E3M08o7U0yGW0iUDVJKPMAX1BNehJNE0jUi0JSCjJNFQdaUDIORlDDFIKLHLJ-atrnJIl8xpi4hIZ7J1Ly3nrujzTuyY9e+MS7Rw6gkK7J-GJyUAB3SvUtXRZKCSA')">const w = mystery(v);
 </pre></div></div>
     Draw box-and-pointer diagrams that show the structures
     <kbd>v</kbd> and <kbd>w</kbd> after

@@ -2266,7 +2266,12 @@ function amb_choices(stmt) {
     
     it signals an
     error, as usual.  Such a <QUOTE>failure</QUOTE> indicates a program
-    bug—a reference to an unbound variable; it is not an indication
+    bug—a reference to an unbound
+    
+      <span style="color:green">variable;</span>
+      <span style="color:blue">name;</span>
+    
+    it is not an indication
     that we should try another nondeterministic choice instead of the one that
     is currently being tried.
   </p></div>
@@ -2446,7 +2451,14 @@ function amb_choices(stmt) {
     
     are another case where we must go to some trouble to
     manage the continuations, because it is necessary to evaluate the
-    definition-value expression before actually defining the new variable.
+    
+      <span style="color:green">
+	definition-value expression before actually defining the new variable.
+      </span>
+      <span style="color:blue">
+	declaration-value expression before actually declaring the new name.
+      </span>
+    
     To accomplish this, the
     
       <span style="color:green">definition-value</span>
@@ -2530,8 +2542,18 @@ function analyze_constant_declaration(stmt) {
       <span style="color:green">procedure</span>
       <span style="color:blue">function</span>
     
-    for assignments starts out like the one for definitions.  It first attempts
-    to obtain the new value to be assigned to the variable. If this evaluation of
+    for assignments starts out like the one for
+    
+      <span style="color:green">definitions.</span>
+      <span style="color:blue">declarations.</span>
+    
+    It first attempts
+    to obtain the new value to be assigned to the
+    
+      <span style="color:green">variable.</span>
+      <span style="color:blue">name.</span>
+    
+    If this evaluation of
     
       <span style="color:green"><kbd>vproc</kbd></span>
       <span style="color:blue"><kbd>vfun</kbd></span>

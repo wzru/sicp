@@ -2963,21 +2963,21 @@ display(1);
 	    Eva Lu Ator tries to combine 
 	    <kbd>for</kbd> loops 
 	    with lambda expressions in the following program.
-	    <div class='snippet' id='javascript_77_46_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYH1jzq6HABQAPDgEpQAb1yg5AGyYVGTDkXnKAvKBLr5AbllyCNBqCGLlZIg2YktoMftABCUFQ7dd8+UOu2me3FnfzsHCgBDKl9QwIpxSRk5ZJU1DVBtAAcohiEhSU0APlAACyYIgBM-GzDxABpU9XjDZIBfIxUKG3pmNIpDVqA')">function reverse_functions(xs) {
+	    <div class='snippet' id='javascript_77_46_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYH1jzq6HABQAPDgEpQAb1yg5AGyYVGTDkXnKAvKBLr5AbllyCNBqCGLlZIgzPax+0AEJQVDt13z5Q67fGPfO1AKAEMqb0DxSRk5WJU1DVBtAAcwhiEhSU0APlAACyYQgBMfGwZxABp49Qp-I1AAX3rmCht6ZgSKQwagA')">function reverse_functions(xs) {
    let result = null;
-   for (let current = xs; ! is_null(current); current = tail(current)) {
-      result = pair(() => head(current), result);
+   for (let curr = xs; ! is_null(curr); curr = tail(curr)) {
+      result = pair(() => head(curr), result);
    }
    return result;
 }
 </pre></div></div>
 	    To her surprise, all functions in the list returned by
-	    <kbd>reverse_functions</kbd> are useless: They apply
-	    <kbd>head</kbd> to
+	    <kbd>reverse_functions</kbd> are useless:
+	    They apply <kbd>head</kbd> to
 	    <kbd>null</kbd> and thus give an error
 	    because after execution of the
 	    <kbd>for</kbd> loop, the value of the variable
-	    <kbd>current</kbd> is
+	    <kbd>curr</kbd> is
 	    <kbd>null</kbd>.
 	    Alyssa P. Hacker proposes to give each iteration 
 	    of any 

@@ -2142,7 +2142,12 @@ function frame_values(frame) {
       JavaScript
     
     system, the speed of the evaluator's environment
-    operations—especially that of variable lookup—has a major
+    operations—especially that of
+    
+      
+      symbol
+    
+    lookup—has a major
     impact on the performance of the system.  The representation described here,
     although conceptually simple, is not efficient and would not ordinarily be
     used in a production system.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
@@ -2260,11 +2265,12 @@ function frame_values(frame) {
   
 	  
 	  Prior to ECMAScript 2015's strict mode that we are using in this book,
-	variables worked quite differently from Scheme, which would have made
+	  variables in JavaScript
+	  worked quite differently from Scheme, which would have made
 	this adaptation considerably less compelling.
 	<OL type="a">
 	  <LI>
-	    Before ECMAScript 2015, the only way to declare a variable in
+	    Before ECMAScript 2015, the only way to declare a local variable in
 	    JavaScript was using the keyword
 	    <kbd>var</kbd>
 	    instead of the keyword <kbd>let</kbd>.
@@ -2313,16 +2319,12 @@ function frame_values(frame) {
     code:
     
       
-      <kbd>assign_symbol_value</kbd>
+      
+	The function
+	<kbd>assign_symbol_value</kbd>
+	uses
       
     
-    and 
-    
-      
-      <kbd>define_variable</kbd>
-      
-    
-    use 
     
     <kbd>set_head</kbd>
     

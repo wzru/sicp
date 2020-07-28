@@ -2358,7 +2358,12 @@ function frame_values(frame) {
       <span style="color:blue">JavaScript</span>
     
     system, the speed of the evaluator's environment
-    operations—especially that of variable lookup—has a major
+    operations—especially that of
+    
+      <span style="color:green">variable</span>
+      <span style="color:blue">symbol</span>
+    
+    lookup—has a major
     impact on the performance of the system.  The representation described here,
     although conceptually simple, is not efficient and would not ordinarily be
     used in a production system.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
@@ -2508,11 +2513,12 @@ function frame_values(frame) {
   
 	  
 	  Prior to ECMAScript 2015's strict mode that we are using in this book,
-	variables worked quite differently from Scheme, which would have made
+	  variables in JavaScript
+	  worked quite differently from Scheme, which would have made
 	this adaptation considerably less compelling.
 	<OL type="a">
 	  <LI>
-	    Before ECMAScript 2015, the only way to declare a variable in
+	    Before ECMAScript 2015, the only way to declare a local variable in
 	    JavaScript was using the keyword
 	    <kbd>var</kbd>
 	    instead of the keyword <kbd>let</kbd>.
@@ -2559,17 +2565,18 @@ function frame_values(frame) {
     Frames are not really a data abstraction in the following
     code:
     
-      <span style="color:green"><kbd>set-variable-value!</kbd></span>
-      <span style="color:blue"><kbd>assign_symbol_value</kbd>
+      <span style="color:green">
+	<kbd>set-variable-value!</kbd>
+	and 
+	<kbd>define-variable!</kbd>
+	use 
+      </span>
+      <span style="color:blue">
+	The function
+	<kbd>assign_symbol_value</kbd>
+	uses
       </span>
     
-    and 
-    
-      <span style="color:green"><kbd>define-variable!</kbd></span>
-      <span style="color:blue"><kbd>define_variable</kbd>
-      </span>
-    
-    use 
     <span style="color:green"><kbd>set-car!</kbd></span>
     <span style="color:blue"><kbd>set_head</kbd></span>
     

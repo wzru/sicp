@@ -2003,7 +2003,16 @@
         figure&nbsp;<REF NAME="fig:two-lists"><a class="superscript" id="3.3.1-fig-link-3.24" href="./3.3.1.html#fig_3.24">3.24</a></REF>.
       </span>
     
-    The variable <kbd>z</kbd> is now bound to a
+    The
+    
+      <span style="color:green">
+	variable
+      </span>
+      <span style="color:blue">
+	name
+      </span>
+    
+      <kbd>z</kbd> is now bound to a
     new pair created by the
     <span style="color:green"><kbd>cons</kbd></span>
     <span style="color:blue"><kbd>pair</kbd></span>
@@ -2439,12 +2448,12 @@ w</pre><pre class='prettyprintoutput'>
           (set-cdr! x y)
           (loop temp x))))
   (loop x '()))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_60_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAN1AF5QAbAS3IAoAiAQzYBpQ2AjHnzxsAlAG5cAMwCuRPGUbFQAWwCe5AKYAnNSwAeo0AG9soc6FnzFy+gQIAHA7zVHTFj6EZTQLZgH0iGXp6A1E3M08o7U0yGW0iUDVJKPMAX1BNehJNE0jUi3pY0DJNFQdaEo5GUMMUgoscsn8yatqXCXyGmLiEhnsnUvLeOq6PNK6Jjx74xLtHZ1AgkM6J-GJyUAB3SvUtXRZKCSA')">function mystery(x) {
+            <td><div class='snippet' id='javascript_60_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAN1AF5QAbAS3IAoAiAQzYBpQ2AjHnzxsAlAG5cAMwCuRPGUbFQAWwCe5AKYAnNSwAeo0AG9soc6FnzFy+gQIAHA7zVHTFj6EZTQLZgH0iGXp6A1E3M08o7U0yGW0iUDVJKPMAX1BNehJNE0jUi0JSCjJNFQdaUDIORlDDFIKLHLJ-atrnJIl8xpi4hIZ7J1Ly3nrujzTuyY9e+MS7Rw6gkK7J-GJyUAB3SvUtXRZKCSA')">function mystery(x) {
     function loop(x, y) {
         if (is_null(x)) {
             return y;
         } else {
-            let temp = tail(x);
+            const temp = tail(x);
             set_tail(x, y);
             return loop(temp, x);
         }
@@ -2457,7 +2466,16 @@ w</pre><pre class='prettyprintoutput'>
       <span style="color:blue">The function <kbd>loop</kbd>
       </span>
     
-    uses the <QUOTE>temporary</QUOTE> variable <kbd>temp</kbd>
+    uses the <QUOTE>temporary</QUOTE>
+    
+      <span style="color:green">
+	variable
+      </span>
+      <span style="color:blue">
+	name
+      </span>
+    
+    <kbd>temp</kbd>
     to hold the old value of the
     
       <span style="color:green"><kbd>cdr</kbd></span>
@@ -2491,7 +2509,7 @@ w</pre><pre class='prettyprintoutput'>
           <tr>
             <td><div class='snippet' id='javascript_60_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define w (mystery v))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_60_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAN1AF5QAbAS3IAoAiAQzYBpQ2AjHnzxsAlAG5cAMwCuRPGUbFQAWwCe5AKYAnNSwAeo0AG9soc6FnzFy+gQIAHA7zVHTFj6EZTQLZgH0iGXp6A1E3M08o7U0yGW0iUDVJKPMAX1BNehJNE0jUi3pY0DJNFQdaEo5GUMMUgoscsn8yatqXCXyGmLiEhnsnUvLeOq6PNK6Jjx74xLtHZ1AgkM6J-GJyUAB3SvUtXRZKCSA')">const w = mystery(v);
+            <td><div class='snippet' id='javascript_60_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsGMB7AOwGcAXUAN1AF5QAbAS3IAoAiAQzYBpQ2AjHnzxsAlAG5cAMwCuRPGUbFQAWwCe5AKYAnNSwAeo0AG9soc6FnzFy+gQIAHA7zVHTFj6EZTQLZgH0iGXp6A1E3M08o7U0yGW0iUDVJKPMAX1BNehJNE0jUi0JSCjJNFQdaUDIORlDDFIKLHLJ-atrnJIl8xpi4hIZ7J1Ly3nrujzTuyY9e+MS7Rw6gkK7J-GJyUAB3SvUtXRZKCSA')">const w = mystery(v);
 </pre></div></div></td></tr></table>
     Draw box-and-pointer diagrams that show the structures
     <kbd>v</kbd> and <kbd>w</kbd> after
