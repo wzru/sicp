@@ -2019,7 +2019,8 @@ begin-garbage-collection
 reassign-root
   (assign root (reg new))
   (goto (label gc-loop))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_110_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0CYBQuAiAIwFMBzASwDsB9MgQwCcj6ySaBjAewBseSOAFwpcqBADS5QoegGdZFMlQAUBAGaMSJCaG5VZg+lUHKADAEpzk6XIVLVsjkZ16DRkxatSZ8xSoK8ACY6mmSqjFxcggSW1j52-po8XE6C7HrCVACu2uKgPPSkPOEktn40EVExXtJkXDSCXMoFRSXJqexBFSSyWTyCNNQ0VCQA7tWSBJplShWR0XEzifMh5Koj47HedQ1NLSTFBGQcNMlcAA4TQA')">"begin_garbage_collection",
+            <td><div class='snippet' id='javascript_110_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"begin_garbage_collection",
   assign("free", constant(0)),
   assign("scan", constant(0)),
   assign("old", reg("root")),
@@ -2027,8 +2028,7 @@ reassign-root
   go_to(label("relocate_old_result_in_new")),
 "reassign_root",
   assign("root", reg("new")),
-  go_to(label("gc_loop")),
-</pre></div></div></td></tr></table>
+  go_to(label("gc_loop")),</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -2077,13 +2077,13 @@ gc-loop
   (assign old (op vector-ref) (reg new-cars) (reg scan))
   (assign relocate-continue (label update-car))
   (goto (label relocate-old-result-in-new))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_110_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0CYBQuAiAcwGMB9AGwHsqAHAgGl1FABcBTAZ1YAoKBLbjzo8CAXgkEAlA1AAndkVGcSAQwB202QqUEAZgvbSpM5qABGcjSQAWfVefYVRpMnoH0TTFqs6d+ROqiVBQAJoygAkIiBABu7CSsVHJkCnpa8oqi6uwA7mQ27KqhnBk6ymqaJqY+fgFBBArUahxkJFTqrPzqAK5GshQOTqI9tKGqrYXFxt6gRFRkSfaOzo1OVC3sZCGhqVw9FKxk3WQ5uTNAA')">"gc_loop",
+            <td><div class='snippet' id='javascript_110_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"gc_loop",
   test(list(op("==="), reg("scan"), reg("free"))),
   branch(label("gc_flip")),
   assign("old", list(op("vector_ref"), reg("new_heads"), reg("scan"))),
   assign("relocate_continue", label("update_head")),
-  go_to(label("relocate_old_result_in_new")),
-</pre></div></div></td></tr></table>
+  go_to(label("relocate_old_result_in_new")),</pre></div></div></td></tr></table>
   </p></div>
   
   <div class='permalink'>
@@ -2132,7 +2132,8 @@ update-cdr
   (op vector-set!) (reg new-cdrs) (reg scan) (reg new))
   (assign scan (op +) (reg scan) (const 1))
   (goto (label gc-loop))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_110_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0CYBQuAiAVwAcATAQwBcBTAfQAsaKyCAaXUUEmgJwDMA9rwC2ACgA2ASwDOVMYJJiCANxoBjKsLoyaVAgEo2oTlzPmLvGgHNlAOxoB3RszIzDxq7YIz1FOx6gXvZOhgZGphQyMlLWdsqCEqzG0nIKSqoaWrx0VvyBphZFxUE2Ic5UFFIS7kal3r7+YRFcUTFxylYSgn60dOqCdlRSdkQ07KASFABGNBLKpJR9ldVhHFzWgnRakjNznXM91PSJZLk0MkQSVHQjdA6Oa-jE5MfbVRLspjwCwuKp8kUyjUmm0un0dUKJXMwQID3e1VqnjKPj8ATqsIezXWoDasXiqKaKVkgIyAGpArDGujjAM7HJ-PIAIzhFqgTbbQS7WbzAjWdR0bqKNZAA')">"update_head",
+            <td><div class='snippet' id='javascript_110_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"update_head",
   perform(list(op("vector_set"), 
                reg("new_heads"), reg("scan"), reg("new"))),
   assign("old", list(op("vector_ref"), 
@@ -2144,8 +2145,7 @@ update-cdr
   perform(list(op("vector_set"), 
                reg("new_tails"), reg("scan"), reg("new"))),
   assign("scan", list(op("+"), reg("scan"), constant(1))),
-  go_to(label("gc_loop")),
-</pre></div></div></td></tr></table>
+  go_to(label("gc_loop")),</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -2266,7 +2266,8 @@ pair
 already-moved
   (assign new (op vector-ref) (reg the-cdrs) (reg old))
   (goto (reg relocate-continue))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_110_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=5&prgrm=PTAEGUEkGEAVQFLlAVgHQGY0CYBQuAiAJwFMAbAewGMBDAFxIH0KyATR0gZwFcy7GAlgDtGQkgHcCAGlyhQDTnQAUZAYqUUADkoJrGmisIZFGdCvpoCiBAJRTQpAOY6WrWzbuzQAIyI0hVAAWKjTe5DqaltYeMnI0nJwCjkI6YpL2Ti5s7rGgjuZmSpnE5NT0TFQUQnTC3CQ5hJFW0l7xiclZrIF00qCq6lo6AG4kVGYmpABmtvZecvMLi0sOJM4EdIFMmzSsnDMra67unnIKyv3Kg7qcjL4UANYkIttEPXYHnd3Hub7+QSFhMg6GhkUg7ACejAAthQRm4Yq0EkkUgQ0r1ipNSPUYosQKA0n0yjUqqBJhQiKAmkQvHiAKqaVjlUAETEkeqUwzVEhENCI9oo1n1ewXJQabQEADU+wxWP2lSEin8ygAjB4TqA8dAtOD5JtQNtWKB-Ia6JYyPIKPiJKAoSQYURwV5NNyyUQoSo1JdxSMxuTGJwSG9ZnJimlGAa9u9QxJpatPm8EXEkR0CK4vsLPWLhqNxhwSNN3nNlsXFsUNkxTQIyJGMnHU9k1blnURXe6RVcfbmA0HQF5o+JTGaax9UTGo3W0wn1ZqqooiNwxrqSD4iA8nvqSDRXk6XeS25mOzm-d2ZkWSyG6+Xw5vdrHDg3g+eFvLFdUdHdHs9N69vjuW3uPQGb0jxME91TLTZByrYdiiOcc1jRRsvHyUwKCKOtSEoWgGEYeUaiEOoGgIEEwVYSEYThFok35VIYwzIDs19CZ832M8n1LS9IMras706X85BQwpikwokKiqfDCJiIA')">"relocate_old_result_in_new",
+            <td><div class='snippet' id='javascript_110_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"relocate_old_result_in_new",
   test(list(op("is_pointer_to_pair"), reg("old"))),
   branch(label("pair")),
   assign("new", reg("old")),
@@ -2296,8 +2297,7 @@ already-moved
 "already_moved",
   assign("new", list(op("vector_ref"), 
                      reg("the_tails"), reg("old"))),
-  go_to(reg("relocate_continue")),
-</pre></div></div></td></tr></table>
+  go_to(reg("relocate_continue")),</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
