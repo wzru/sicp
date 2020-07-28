@@ -1716,9 +1716,18 @@
     for each instruction is just what we used in
     section&nbsp;<REF NAME="sec:separating-analysis"><a class="superscript" id="5.2.2-sec-link-4.1.7" href="./4.1.7.html">4.1.7</a></REF> to speed
     up the evaluator by separating analysis from runtime execution.  As we
-    saw in chapter&nbsp;4, much useful analysis of Scheme expressions could
-    be performed without knowing the actual values of variables.  Here,
-    analogously, much useful analysis of register-machine-language
+    saw in chapter&nbsp;4, much useful analysis of
+    
+      <span style="color:green">Scheme</span>
+      <span style="color:blue">JavaScript</span>
+    
+    expressions could
+    be performed without knowing the actual values of
+    
+      <span style="color:green">variables.</span>
+      <span style="color:blue">names.</span>
+    
+    Here, analogously, much useful analysis of register-machine-language
     expressions can be performed without knowing the actual contents of
     machine registers.  For example, we can replace references to
     registers by pointers to the register objects, and we can
