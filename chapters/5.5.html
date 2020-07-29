@@ -2013,7 +2013,7 @@
     accomplished by the machine operation
     
       
-      <kbd>lookup_variable_value</kbd>,
+      <kbd>lookup_symbol_value</kbd>,
       
     
     which does not alter any registers.  The compiler that we implement in
@@ -2027,7 +2027,7 @@
     
       using the instruction
     <div class='snippet' id='javascript_116_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assign("fun", op("lookup_variable_value"), constant("f"), reg("env"));</pre></div></div>
+assign("fun", op("lookup_symbol_value"), constant("f"), reg("env"));</pre></div></div>
     This code not only avoids the unnecessary saves and
     restores but also assigns the value of the lookup directly to
     
@@ -2046,14 +2046,24 @@ assign("fun", op("lookup_variable_value"), constant("f"), reg("env"));</pre></di
 <a name='p12' class='permalink'></a><p>
     A compiler can also optimize access to the environment.  Having
     analyzed the code, the compiler can in many cases know in which frame
-    a particular variable will be located and access that frame directly,
+    a particular
+    
+      
+      name
+    
+    will be located and access that frame directly,
     rather than performing the
     
       
-      <kbd>lookup_variable_value</kbd>
+      <kbd>lookup_symbol_value</kbd>
       
     
-    search.  We will discuss how to implement such variable access in
+    search.  We will discuss how to implement such
+    
+      
+      name
+    
+    access in
     section&nbsp;<REF NAME="sec:lexical-addressing"><a class="superscript" id="5.5-sec-link-5.5.6" href="./5.5.6.html">5.5.6</a></REF>.  Until then, however,
     we will focus on the kind of register and stack optimizations described
     above. There are many other optimizations that can be performed by a

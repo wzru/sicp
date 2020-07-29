@@ -1855,8 +1855,12 @@ function end_with_linkage(target, linkage, instruction_sequence) {
     
     
     
-    The code generators for self-evaluating expressions,
-    quotations, and variables construct instruction
+    The code generators for self-evaluating 
+    
+      <span style="color:green">expressions, quotations, and variables</span>
+      <span style="color:blue">expressions and names</span>
+    
+    construct instruction
     sequences that assign the required value to the target register
     and then proceed as specified by the linkage descriptor.
     
@@ -1921,17 +1925,52 @@ function compile_name(exp, target, linkage) {
 <a name='p6' class='permalink'></a><p>
     
     
-    Assignments and definitions are handled much as they are in the
-    interpreter.  We recursively generate code that computes the value to
+    Assignments and
+    
+      <span style="color:green">definitions</span>
+      <span style="color:blue">the two kinds of declaration</span>
+    
+    are handled much as they are in the
+    interpreter.
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td>    </td>
+          <td></td>
+          <td><span style="color:blue">
+	The three functions use the function
+	<kbd>compile_assignment_returning</kbd>,
+	whose parameter
+	<kbd>return_val</kbd> lets declarations
+	return <kbd>undefined</kbd> and assignments
+	return the assigned value.
+      </span></td></tr></table>
+    
+      <span style="color:green">We</span>
+      <span style="color:blue">
+	In <kbd>compile_assignment_returning</kbd>,
+	we
+      </span>
+    
+    recursively generate code that computes the value to
     be assigned to the variable, and append to it a two-instruction
-    sequence that actually sets or defines the variable and assigns the
-    value of the whole expression
+    sequence that actually sets
+    
+      <span style="color:green">or defines</span>
+    
+    the variable and assigns the
+    value of the whole
+    
+      <span style="color:green">expression</span>
+      <span style="color:blue">statement</span>
+    
     
       <span style="color:green">
 	(the symbol <kbd>ok</kbd>)
-      </span>
-      <span style="color:blue">
-	(the string <kbd>"ok"</kbd>)
       </span>
     
     to the target register.  The recursive compilation has target
@@ -1993,6 +2032,22 @@ function compile_assignment(stmt, target, linkage) {
                value_code, target, linkage, reg("val"));
 }
 
+function compile_constant_declaration(stmt, target, linkage) {
+    const symbol = constant_declaration_symbol(stmt);
+    const value_code =
+              compile(constant_declaration_value(stmt), "val", "next");
+    return compile_assignment_returning(symbol,
+               value_code, target, linkage, constant(undefined));
+}
+
+function compile_variable_declaration(stmt, target, linkage) {
+    const variable = variable_declaration_symbol(stmt);
+    const value_code =
+              compile(variable_declaration_value(stmt), "val", "next");
+    return compile_assignment_returning(variable,
+               value_code, target, linkage, constant(undefined));
+}
+
 function compile_assignment_returning(
              symbol, value_code, target, linkage, return_val) {
     return end_with_linkage(target, linkage,
@@ -2008,22 +2063,6 @@ function compile_assignment_returning(
                                      reg("val"),
                                      reg("env"))),
                             assign(target, return_val)))));
-}
-
-function compile_constant_declaration(stmt, target, linkage) {
-    const symbol = constant_declaration_symbol(stmt);
-    const value_code =
-              compile(constant_declaration_value(stmt), "val", "next");
-    return compile_assignment_returning(symbol,
-               value_code, target, linkage, constant(undefined));
-}
-
-function compile_variable_declaration(stmt, target, linkage) {
-    const variable = variable_declaration_symbol(stmt);
-    const value_code =
-              compile(variable_declaration_value(stmt), "val", "next");
-    return compile_assignment_returning(variable,
-               value_code, target, linkage, constant(undefined));
 }</pre></div></div></td></tr></table>
   </p></div>
 
@@ -2361,7 +2400,8 @@ $\langle \textit{compilation of function body} \rangle$
 	<kbd>Compile-lambda</kbd>
       </span>
       <span style="color:blue">
-      <kbd>Compile_lambda</kbd></span>
+	The function
+      <kbd>compile_lambda</kbd></span>
     
     generates the code for constructing the
     

@@ -1819,8 +1819,12 @@ function end_with_linkage(target, linkage, instruction_sequence) {
     
     
     
-    The code generators for self-evaluating expressions,
-    quotations, and variables construct instruction
+    The code generators for self-evaluating 
+    
+      
+      expressions and names
+    
+    construct instruction
     sequences that assign the required value to the target register
     and then proceed as specified by the linkage descriptor.
     
@@ -1861,15 +1865,43 @@ function compile_name(exp, target, linkage) {
 <a name='p6' class='permalink'></a><p>
     
     
-    Assignments and definitions are handled much as they are in the
-    interpreter.  We recursively generate code that computes the value to
-    be assigned to the variable, and append to it a two-instruction
-    sequence that actually sets or defines the variable and assigns the
-    value of the whole expression
+    Assignments and
+    
+      
+      the two kinds of declaration
+    
+    are handled much as they are in the
+    interpreter.
+    
+      
+	The three functions use the function
+	<kbd>compile_assignment_returning</kbd>,
+	whose parameter
+	<kbd>return_val</kbd> lets declarations
+	return <kbd>undefined</kbd> and assignments
+	return the assigned value.
+      
+    
     
       
       
-	(the string <kbd>"ok"</kbd>)
+	In <kbd>compile_assignment_returning</kbd>,
+	we
+      
+    
+    recursively generate code that computes the value to
+    be assigned to the variable, and append to it a two-instruction
+    sequence that actually sets
+    
+      
+    
+    the variable and assigns the
+    value of the whole
+    
+      
+      statement
+    
+    
       
     
     to the target register.  The recursive compilation has target
@@ -1897,6 +1929,22 @@ function compile_assignment(stmt, target, linkage) {
                value_code, target, linkage, reg("val"));
 }
 
+function compile_constant_declaration(stmt, target, linkage) {
+    const symbol = constant_declaration_symbol(stmt);
+    const value_code =
+              compile(constant_declaration_value(stmt), "val", "next");
+    return compile_assignment_returning(symbol,
+               value_code, target, linkage, constant(undefined));
+}
+
+function compile_variable_declaration(stmt, target, linkage) {
+    const variable = variable_declaration_symbol(stmt);
+    const value_code =
+              compile(variable_declaration_value(stmt), "val", "next");
+    return compile_assignment_returning(variable,
+               value_code, target, linkage, constant(undefined));
+}
+
 function compile_assignment_returning(
              symbol, value_code, target, linkage, return_val) {
     return end_with_linkage(target, linkage,
@@ -1912,22 +1960,6 @@ function compile_assignment_returning(
                                      reg("val"),
                                      reg("env"))),
                             assign(target, return_val)))));
-}
-
-function compile_constant_declaration(stmt, target, linkage) {
-    const symbol = constant_declaration_symbol(stmt);
-    const value_code =
-              compile(constant_declaration_value(stmt), "val", "next");
-    return compile_assignment_returning(symbol,
-               value_code, target, linkage, constant(undefined));
-}
-
-function compile_variable_declaration(stmt, target, linkage) {
-    const variable = variable_declaration_symbol(stmt);
-    const value_code =
-              compile(variable_declaration_value(stmt), "val", "next");
-    return compile_assignment_returning(variable,
-               value_code, target, linkage, constant(undefined));
 }</pre></div></div>
   </p></div>
 
@@ -2192,7 +2224,8 @@ $\langle \textit{compilation of function body} \rangle$
     
       
       
-      <kbd>Compile_lambda</kbd>
+	The function
+      <kbd>compile_lambda</kbd>
     
     generates the code for constructing the
     

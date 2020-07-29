@@ -2028,7 +2028,7 @@
     accomplished by the machine operation
     
       <span style="color:green"><kbd>lookup-variable-value</kbd>,</span>
-      <span style="color:blue"><kbd>lookup_variable_value</kbd>,
+      <span style="color:blue"><kbd>lookup_symbol_value</kbd>,
       </span>
     
     which does not alter any registers.  The compiler that we implement in
@@ -2050,7 +2050,7 @@
             <td><div class='snippet' id='javascript_116_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (assign proc (op lookup-variable-value) (const f) (reg env))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_116_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assign("fun", op("lookup_variable_value"), constant("f"), reg("env"));</pre></div></div></td></tr></table>
+assign("fun", op("lookup_symbol_value"), constant("f"), reg("env"));</pre></div></div></td></tr></table>
     This code not only avoids the unnecessary saves and
     restores but also assigns the value of the lookup directly to
     
@@ -2069,14 +2069,24 @@ assign("fun", op("lookup_variable_value"), constant("f"), reg("env"));</pre></di
 <a name='p12' class='permalink'></a><p>
     A compiler can also optimize access to the environment.  Having
     analyzed the code, the compiler can in many cases know in which frame
-    a particular variable will be located and access that frame directly,
+    a particular
+    
+      <span style="color:green">variable</span>
+      <span style="color:blue">name</span>
+    
+    will be located and access that frame directly,
     rather than performing the
     
       <span style="color:green"><kbd>lookup-variable-value</kbd></span>
-      <span style="color:blue"><kbd>lookup_variable_value</kbd>
+      <span style="color:blue"><kbd>lookup_symbol_value</kbd>
       </span>
     
-    search.  We will discuss how to implement such variable access in
+    search.  We will discuss how to implement such
+    
+      <span style="color:green">variable</span>
+      <span style="color:blue">name</span>
+    
+    access in
     section&nbsp;<REF NAME="sec:lexical-addressing"><a class="superscript" id="5.5-sec-link-5.5.6" href="./5.5.6.html">5.5.6</a></REF>.  Until then, however,
     we will focus on the kind of register and stack optimizations described
     above. There are many other optimizations that can be performed by a

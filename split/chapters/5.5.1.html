@@ -2185,7 +2185,12 @@ function make_instruction_sequence(needs, modifies, instructions) {
   <div class='permalink'>
 <a name='p14' class='permalink'></a><p>
     For example, the two-instruction sequence that looks up the value of
-    the variable <kbd>x</kbd> in the current environment,
+    the
+    
+      <span style="color:green">variable</span>
+      <span style="color:blue">name</span>
+    
+    <kbd>x</kbd> in the current environment,
     assigns the result to <kbd>val</kbd>, and then returns,
     requires registers <kbd>env</kbd> and
     <kbd>continue</kbd> to have been initialized, and
@@ -2204,7 +2209,7 @@ function make_instruction_sequence(needs, modifies, instructions) {
 make_instruction_sequence(
     list("env", "continue"),
     list("val"),
-    list(assign("val", list(op("lookup_variable_value"),
+    list(assign("val", list(op("lookup_symbol_value"),
                             constant("x"), reg("env"))),
          go_to(reg("continue"))));</pre></div></div></td></tr></table>
   </p></div>

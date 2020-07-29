@@ -1694,7 +1694,12 @@
 <a name='p1' class='permalink'></a><p>
     Now that we have seen all the elements of the compiler, let us examine
     an example of compiled code to see how things fit together.  We will
-    compile the definition of a recursive
+    compile the
+    
+      
+      declaration
+    
+    of a recursive
     
       
       <kbd>factorial</kbd>
@@ -1718,15 +1723,22 @@ function factorial(n) {        \
   <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
     We have specified that the value of the
-    <kbd>define</kbd> expression should
-    be placed in the <kbd>val</kbd> register.
+    
+      
+      declaration
+    
+    should be placed in the <kbd>val</kbd> register.
     We don't care what the compiled
-    code does after executing the <kbd>define</kbd>,
+    code does after executing the
+    
+      
+      declaration
+    
     so our choice of
     
       
       
-	<kbd>"next"</kbd>
+	<kbd>next</kbd>
       
     
     as the linkage
@@ -1735,48 +1747,102 @@ function factorial(n) {        \
 
   <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-    <kbd>Compile</kbd> determines that the expression is a
-    definition, so it calls
     
       
-      <kbd>compile_definition</kbd>
+      
+	The function <kbd>compile</kbd>
+      
+    
+    determines that the
+    
+      
+      
+	statement is a constant declaration
+      
+    
+    so it calls
+    
+      
+      
+	<kbd>compile_constant_declaration</kbd>
       
     
     to compile code to compute the value to be assigned (targeted to
     <kbd>val</kbd>), followed by code to install the
-    definition, followed by code to put the value of the
-    <kbd>define</kbd> (which is the symbol
-    <kbd>ok</kbd>)
+    
+      
+      declaration,
+    
+    followed by code to put the value of the
+    
+      
+      
+	declaration (which is the value
+	<kbd>undefined</kbd>)
+      
+        
     into the target register, followed finally by the linkage code.
-    <kbd>Env</kbd> is preserved around the computation of the
-    value, because it is needed in order to install the definition.  Because
+    
+      
+      
+	Register <kbd>env</kbd>	
+      
+        
+    is preserved around the computation of the
+    value, because it is needed in order to install the
+    
+      
+      
+	declaration.
+      
+        
+    Because
     the linkage is
     
       
       
-	<kbd>"next"</kbd>,
+	<kbd>next</kbd>,
       
     
     there is no linkage code
     in this case.  The skeleton of the compiled code is thus
-    <kbd class='snippet'>$\langle \textit{save}$ env $\textit{if modified by code to compute value}\rangle$
-$\langle \textit{compilation of definition value, target}$ val$, \textit{linkage}$ next$\rangle$
-$\langle \textit{restore}$ env $\textit{if saved above}\rangle$
-perform(list(op("define_variable"),
-             constant("factorial"), reg("val"), reg("env"));
-assign("val", constant(ok));</kbd>
+    <kbd class='snippet'>$\langle save$ env $if$ $modified$ $by$ $code$ $to$ $compute$ $value\rangle$
+$\langle compilation$ $of$ $declaration$ $value,$ $target$ val$,$ $linkage$ next$\rangle$
+$\langle restore$ env $if$ $saved$ $above\rangle$
+perform(list(op("assign_symbol_value"),
+             constant("factorial"),
+             reg("val"),
+             reg("env")),
+assign("val", constant(undefined))</kbd>
   </p></div>
 
   <div class='permalink'>
 <a name='p4' class='permalink'></a><p>
     The expression that is to be compiled to produce the value for the
-    variable <kbd>factorial</kbd> is a
-    <kbd>lambda</kbd> expression whose value is the
+    
+      
+      constant
+    
+    <kbd>factorial</kbd>
+    is a
+    
+      
+      lambda
+    
+    expression whose value is the
     
       
       function
     
-    that computes factorials. <kbd>Compile</kbd> handles this
+    that computes factorials.
+    
+      
+      
+	The function
+	<kbd>compile</kbd>
+      
+    
+    handles this
     by calling
     
       
@@ -1809,9 +1875,9 @@ assign("val", constant(ok));</kbd>
     code itself begins by extending the
     
       
-      function's
+      function's declaration
     
-    definition environment by a frame that binds
+    environment by a frame that binds
     the formal parameter <kbd>n</kbd> to the
     
       
@@ -1822,7 +1888,11 @@ assign("val", constant(ok));</kbd>
       
       function
     
-    body.  Since this code for the value of the variable
+    body.  Since this code for the value of the
+    
+      
+      constant
+    
     doesn't modify the <kbd>env</kbd> register, the
     optional <kbd>save</kbd>
     and <kbd>restore</kbd> shown above aren't
@@ -1845,11 +1915,13 @@ assign("val", constant(ok));</kbd>
                      constant(n), 
                      reg("argl"), 
                      reg("env"))),
-  $\langle \textit{compilation of function body} \rangle$
+  $\langle compilation$ $of$ $function$ $body\rangle$
 "after_lambda1",
-  perform(list(op("define_variable"), 
-               constant("factorial"), reg("val"), reg("env"))),
-  assign("val", constant("ok")),</kbd>
+  perform(list(op("assign_symbol_value"), 
+               constant("factorial"), 
+               reg("val"), 
+               reg("env"))),
+  assign("val", constant(undefined))</kbd>
   </p></div>
 
   <div class='permalink'>
@@ -1865,52 +1937,83 @@ assign("val", constant(ok));</kbd>
       
       <kbd>compile_lambda_body</kbd>)
     
-    as a sequence with target <kbd>val</kbd> and linkage
+    
+      
+    
+    with target <kbd>val</kbd> and linkage
     
       
       
-	<kbd>"return"</kbd>.
+	<kbd>return_undefined</kbd>.
       
     
-    The sequence in this case consists of
-    a single <kbd>if</kbd> expression:
+    The
+    
+      
+      
+	body
+      
+    
+    in this case consists of
+    a single
+    
+      
+      
+	<kbd>return</kbd> statement:
+      
+    
     <div class='snippet' id='javascript_121_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-n === 1 
+return n === 1 
     ? 1 
-    : n * factorial(n - 1)</pre></div></div>
+    : factorial(n - 1) * n;</pre></div></div>
   </p></div>
 
   <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
     
       
-      <kbd>Compile_if</kbd>
+	The function
+	<kbd>compile_return_statement</kbd>
+	compiles the return expression with the same target
+	<kbd>val</kbd> but with linkage
+	<kbd>return</kbd>, because the return
+	expression is the last expression to be evaluated in the
+	body, and its value is to be returned from the function.
+      
+    
+    
+      
+      The return expression is a conditional expression and thus
+      <kbd>compile_conditional_expression</kbd>
+      
     
     generates code that first computes the predicate (targeted to
     <kbd>val</kbd>), then checks the result and branches
     around the true branch if the predicate is false.
-    <kbd>Env</kbd> and <kbd>continue</kbd>
+    
+      
+      Registers <kbd>env</kbd>
+    
+    and <kbd>continue</kbd>
     are preserved around the predicate code, since they may be needed for the
-    rest of the <kbd>if</kbd> expression.  Since the
-    <kbd>if</kbd> expression is the final expression (and
-    only expression) in the sequence making up the
+    rest of the
     
       
-      function
+      conditional
     
-    body, its target is <kbd>val</kbd> and its linkage is
+    expression.
     
       
       
-	<kbd>"return"</kbd>,
+	The
       
     
-    so the true and false branches are both
+    true and false branches are both
     compiled with target <kbd>val</kbd> and linkage
     
       
       
-	<kbd>"return"</kbd>.
+	<kbd>return</kbd>.
       
     
     (That is, the value of the conditional,
@@ -1928,7 +2031,7 @@ n === 1
   $\langle compilation$ $of$ $true$ $branch,$ $target$ val$,$ $linkage$ $\texttt{return}\rangle$
 "false_branch4",
   $\langle compilation$ $of$ $false$ $branch,$ $target$ val$,$ $linkage$ $\texttt{return}\rangle$
-"after_if3",</kbd>
+"after_cond3",</kbd>
   </p></div>
 
   <div class='permalink'>
@@ -1947,8 +2050,8 @@ n === 1
     
       
       
-	operator
-	(the name <kbd>"==="</kbd>)
+	function expression
+	(the symbol <kbd>"==="</kbd>)
       
     
     and places this value in
@@ -1975,7 +2078,14 @@ n === 1
       <kbd>after_call</kbd>
     
     label.  The requirements to preserve registers
-    around the evaluation of the operator and operands don't result in
+    around the evaluation of the
+    
+      
+      
+	function and argument expressions
+      
+    
+    don't result in
     any saving of registers, because in this case those evaluations don't
     modify the registers in question.
 
@@ -1996,7 +2106,7 @@ assign("fun", list(op("lookup_symbol_value"), constant("==="),
 "primitive_branch17",
   assign("val", list(op("apply_primitive_function"), reg("fun"), 
                      reg("argl"))),
-"after_call15",</pre></div></div>
+"after_call15"</pre></div></div>
   </p></div>
 
   <div class='permalink'>
@@ -2006,13 +2116,13 @@ assign("fun", list(op("lookup_symbol_value"), constant("==="),
     
       
       
-	<kbd>"return"</kbd>)
+	<kbd>return</kbd>)
       
     
     to
     <div class='snippet' id='javascript_121_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assign("val", constant(1)),
-go_to(reg("continue")),</pre></div></div>
+go_to(reg("continue"))</pre></div></div>
   </p></div>
 
   <div class='permalink'>
@@ -2027,7 +2137,12 @@ go_to(reg("continue")),</pre></div></div>
       
       function
     
-    is the value of the symbol <kbd>*</kbd>, and the arguments
+    is the value of the symbol
+    
+      
+      <kbd>"*"</kbd>,
+    
+    and the arguments
     are <kbd>n</kbd> and the result of another
     
       
@@ -2065,10 +2180,15 @@ go_to(reg("continue")),</pre></div></div>
     
       
       
-	<kbd>"return"</kbd>
+	<kbd>return</kbd>
       
     
     linkage in the branches.
+    
+      
+      
+	
+      
     
   </p></div>
 
@@ -2086,7 +2206,7 @@ go_to(reg("continue")),</pre></div></div>
 function factorial_alt(n) {
     return  n === 1  
         ? 1
-        : factorial_alt(n - 1) * n;
+        : n * factorial_alt(n - 1);
 }</pre></div></div>
     Compile this
     
@@ -2149,7 +2269,7 @@ function factorial(n) {
 "entry2",     // calls to factorial will enter here
   assign("env", list(op("compiled_function_env"), reg("fun"))),
   assign("env",
-    list(op("extend-environment"), constant(list("n")),
+    list(op("extend_environment"), constant(list("n")),
          reg("argl"), reg("env"))),
 // begin actual procedure body
   save("continue"),
@@ -2184,11 +2304,9 @@ function factorial(n) {
   go_to(reg("continue")),
 
 "false-branch4",
-                           // compute & return factorial(n - 1) * n
+// compute & return factorial(n - 1) * n
   assign("fun", list(op("lookup_symbol_value"),
-                     constant("*"), reg("env"))),
-  save("continue"),
-  save("fun"),            // save * function</pre></div></div>
+                     constant("*"), reg("env"))),</pre></div></div>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.5.5.html#fig_5.17">Figure 5.17 </a></b>
     Compilation of the definition of the <kbd>factorial</kbd>
@@ -2203,7 +2321,9 @@ function factorial(n) {
 
 
     <FIGURE><div class='snippet' id='javascript_121_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assign("val", list(op("lookup_symbol_value"), 
+save("continue"),
+  save("fun"),            // save * function
+  assign("val", list(op("lookup_symbol_value"), 
                      constant(n), reg("env"))),
   assign("argl", list(op("list"), reg("val"))),
   save("argl"),            // save partial argument list for *
@@ -2243,23 +2363,24 @@ assign("val", list(op("lookup_symbol_value"),
   go_to(reg("val")),
 "primitive_branch11",
   assign("val", list(op("apply_primitive_function"), 
-                     reg("fun"), reg("argl"))),</pre></div></div>
+                     reg("fun"), reg("argl"))),
+
+"after_call9",            // val now has result of factorial(n - 1)
+  restore("argl"),        // restore partial argument list for *
+  assign("argl", list(op("pair"), reg("val"), reg("argl"))),
+  restore("fun"),         // restore *
+  restore("continue"),</pre></div></div>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.5.5.html#fig_5.18">Figure 5.18 </a></b>(continued)</div>
     </FIGURE>
   
 
     <FIGURE><div class='snippet' id='javascript_121_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"after_call9",            // val now has result of factorial(n - 1)
-  restore("argl"),        // restore partial argument list for *
-  assign("argl", list(op("pair"), reg("val"), reg("argl"))),
-  restore("fun"),         // restore *
-  restore("continue"),    // apply * and return its value
+// apply * and return its value
   test(list(op("is_primitive_function"), reg("fun"))),
   branch(label("primitive_branch14")),
 "compiled_branch13",
-                          // note that compound function here
-                          // is called tail-recursively
+// note that compound function here is called tail-recursively
   assign("val", list(op("compiled_function_entry"), reg("fun"))),
   go_to(reg("val")),
 "primitive_branch14",
@@ -2267,19 +2388,16 @@ assign("val", list(op("lookup_symbol_value"),
                      reg("fun"), reg("argl"))),
   go_to(reg("continue")),
 "after_call12",
-"after_if3",
+"after_cond3",
 "after_lambda1",
 // assign the function to the name factorial
   perform(list(op("assign_symbol_value"), 
-               constant(factorial), reg("val"), reg("env"))),
-  assign("val", constant(undefined)),</pre></div></div>
+               constant("factorial"), reg("val"), reg("env"))),
+  assign("val", constant(undefined))</pre></div></div>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.5.5.html#fig_5.19">Figure 5.19 </a></b>(continued)</div>
     </FIGURE>
   
-
-    
-    
 
       
     <div class="permalink">
@@ -2303,9 +2421,9 @@ assign("val", list(op("make_compiled_function"),
         reg env)),
   go_to(label("after_lambda15")),
 "entry16",
-  assign(env, list(op("compiled_procedure-env"), 
+  assign(env, list(op("compiled_function_env"), 
                    reg("fun"))),
-  assign("env", list(op("extend-environment","), 
+  assign("env", list(op("extend_environment","), 
                      constant("x"), reg("argl"), reg("env"))),
   assign("fun", list(op("lookup_symbol_value"), 
                      constant("+"), reg("env"))),
@@ -2313,7 +2431,7 @@ assign("val", list(op("make_compiled_function"),
   save("fun"),
   save("env"),
   assign("fun", list(op("lookup_symbol_value"),
-                     constant("f"g), reg("env"))),
+                     constant("g"), reg("env"))),
   save("fun"),
   assign("fun", list(op("lookup_symbol_value"),
                      constant("+"), reg("env"))),
@@ -2335,7 +2453,7 @@ assign("val", list(op("make_compiled_function"),
 "after_call17",
   assign("argl", list(op("list"), reg("val"))),
   restore("fun"),
-  test(list(op("primitive_procedure?"), reg("fun"))),
+  test(list(op("is_primitive_function"), reg("fun"))),
   branch(label("primitive_branch22")),
 "compiled_branch21",
   assign("continue", label("after_call20")),
@@ -2382,19 +2500,33 @@ assign("val", list(op("make_compiled_function"),
     </FIGURE>
   
 
-      
+  
     <div class="permalink">
     <a name="ex_5.36" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.36">Exercise 5.36 </a></b> 
    
     
     
-    What order of evaluation does our compiler produce for operands of a
-    combination?  Is it left-to-right, right-to-left, or some other order?
+      
+      
+	
+      
+    
+    What order of evaluation does our compiler produce for
+    
+      
+      arguments of an application?
+    
+    Is it left-to-right, right-to-left, or some other order?
     Where in the compiler is this order determined?  Modify the compiler
     so that it produces some other order of evaluation.  (See the
     discussion of order of evaluation for the explicit-control evaluator
     in section&nbsp;<REF NAME="sec:eceval-core"><a class="superscript" id="5.5.5-sec-link-5.4.1" href="./5.4.1.html">5.4.1</a></REF>.)  How does changing the
-    order of operand evaluation affect the efficiency of the code that
+    order of
+    
+      
+      argument
+    
+    evaluation affect the efficiency of the code that
     constructs the argument list?
   
       <div class="Solution">
@@ -2437,6 +2569,7 @@ assign("val", list(op("make_compiled_function"),
   
     
     
+    
     Our compiler is clever about avoiding unnecessary stack operations,
     but it is not clever at all when it comes to compiling calls to the primitive
     
@@ -2456,8 +2589,12 @@ assign("val", list(op("make_compiled_function"),
       
       function
     
-    (which it finds by looking up the symbol <kbd>+</kbd> in
-    the environment) into
+    (which it finds by looking up the symbol
+    
+      
+      <kbd>"+"</kbd>
+    
+    in the environment) into
     
       
       <kbd>fun</kbd>,
@@ -2482,8 +2619,9 @@ assign("val", list(op("make_compiled_function"),
     
     might be compiled into something as simple as<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
     <div class='snippet' id='javascript_121_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-assign("val", op("lookup_symbol_value"), constant("a"), reg("env")),
-assign("val", op("+"), reg("val"), constant(1)),</pre></div></div>
+assign("val", list(op("lookup_symbol_value"), 
+                   constant("a"), reg("env")),
+assign("val", list(op("+"), reg("val"), constant(1))</pre></div></div>
     In this exercise we will extend our compiler to support open coding of
     selected primitives.  Special-purpose code will be generated for calls to these primitive
     
@@ -2511,15 +2649,34 @@ assign("val", op("+"), reg("val"), constant(1)),</pre></div></div>
       
       function
     
-    to recognize the names of these primitives in addition to the 
+    to recognize the names of these primitives in addition to the
     
-    reserved words (the special forms) it currently recognizes.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a> For each special form our compiler has a code
+      
+      
+	syntactic forms it currently recognizes.
+      
+    
+    For each
+    
+      
+      syntactic
+    
+    form our compiler has a code
     generator.  In this exercise we will construct a family of code generators
     for the open-coded primitives.
     <OL type="a">
       <LI>
-	The open-coded primitives, unlike the special forms, all need their
-	operands evaluated.  Write a code generator
+	The open-coded primitives, unlike the
+	
+	  
+	  syntactic
+	
+	forms, all need their
+	
+	  
+	  arguments
+	
+	evaluated.  Write a code generator
 	
 	  
 	  <kbd>spread_arguments</kbd>
@@ -2528,42 +2685,91 @@ assign("val", op("+"), reg("val"), constant(1)),</pre></div></div>
 	for use by all the open-coding code generators.
 	
 	  
-	  <kbd>Spread_arguments</kbd>
+	  
+	    The function
+	    <kbd>spread_arguments</kbd>
 	  
 	
-	should take an operand list and compile the given operands targeted to
-	successive argument registers.  Note that an operand may contain a call
+	should take an
+	
+	  
+	  argument
+	
+	list and compile the given
+	
+	  
+	  arguments
+	
+	targeted to
+	successive argument registers.  Note that an
+	
+	  
+	  argument
+	
+	may contain a call
 	to an open-coded primitive, so argument registers will have to be
-	preserved during operand evaluation.
+	preserved during
+	
+	  
+	  argument
+	
+	evaluation.
       </LI>
       <LI>
+	
+	  
+	    The JavaScript operators 
+	    <kbd>===</kbd>,
+	    <kbd>*</kbd>,
+	    <kbd>-</kbd>, and <kbd>+</kbd>,
+	    among others, are implemented in the register machine as
+	    primitive functions, and referred to in the global environment
+	    with the symbols
+	    <kbd>"==="</kbd>,
+	    <kbd>"*"</kbd>,
+	    <kbd>"-"</kbd>, and
+	    <kbd>"+"</kbd>. In JavaScript, it is 
+	    not possible to re-declare these names, because they do not
+	    meet the syntactic restrictions for names. This means it is safe
+	    to open-code them.
+	  
+	
 	For each of the primitive
 	
 	  
 	  functions
 	
-	<kbd>=</kbd>, <kbd>*</kbd>,
+	
+	  
+	  <kbd>===</kbd>,
+	
+	<kbd>*</kbd>,
 	<kbd>-</kbd>, and <kbd>+</kbd>,
-	write a code generator that takes a combination with that
-	operator, together with a target and a linkage descriptor, and
+	write a code generator that takes 
+	
+	  
+	  an application with a function expression that
+	  names that function,
+	  
+	
+	together with a target and a linkage descriptor, and
 	produces code to spread the arguments into the registers and then
 	perform the operation targeted to the given target with the given
-	linkage.  You need only handle expressions with two operands.  Make
-	<kbd>compile</kbd> dispatch to these code generators.
+	linkage.
+	
+	  
+	
+	Make <kbd>compile</kbd> dispatch to these code
+	generators.
       </LI>
       <LI>
 	Try your new compiler on the <kbd>factorial</kbd>
 	example.  Compare the resulting code with the result produced without
 	open coding.
       </LI>
-      <LI>
-	Extend your code generators for <kbd>+</kbd> and
-	<kbd>*</kbd> so that they
-	can handle expressions with arbitrary numbers of operands.  An
-	expression with more than two operands will have to be compiled into a
-	sequence of operations, each with only two inputs.
+      
 	
-      </LI>
+      
     </OL>
   
       <div class="Solution">
@@ -2588,28 +2794,6 @@ assign("val", op("+"), reg("val"), constant(1)),</pre></div></div>
     and the machine operation.  In general there will not be a
     one-to-one correspondence between primitives of the source language
     and primitives of the machine.
-    </FOOTNOTE></div>
-
-    
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
-    <FOOTNOTE>
-    Making
-    the primitives into reserved words is in general a bad idea, since a user
-    cannot then rebind these names to different
-    
-      
-      functions.
-    
-    Moreover, if we add reserved words to
-    a compiler that is in use, existing programs that define
-    
-      
-      functions
-    
-    with these names will stop working.  See
-    exercise&nbsp;<REF NAME="ex:cte-open-code"><a class="superscript" id="5.5.5-ex-link-5.44" href="./5.5.6.html#ex_5.44">5.44</a></REF> for ideas on how to avoid
-    this problem.
     </FOOTNOTE></div>
 
     
