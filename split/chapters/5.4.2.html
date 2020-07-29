@@ -1743,9 +1743,9 @@ ev-begin
 (goto (label ev-sequence))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_113_1_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_seq",
-  assign("unev", list(op("sequence_statements"), reg("stmt"))),
-  save("continue"),
-  go_to(label("ev_sequence")),</pre></div></div></td></tr></table>
+      save("continue"),
+      assign("unev", list(op("sequence_statements"), reg("stmt"))),
+      go_to(label("ev_sequence")), // Not needed if ev_sequence starts just below</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -1838,7 +1838,7 @@ ev-begin
     
       <span style="color:green"><kbd>ev-sequence-last-exp</kbd>.</span>
       <span style="color:blue">
-	<kbd>ev_sequence_last_exp</kbd>.
+	<kbd>ev_sequence_last_stmt</kbd>.
       </span>
     
     Since there are no more expressions to be evaluated after this one, we need
@@ -1906,30 +1906,30 @@ ev-sequence-last-exp
 (goto (label eval-dispatch))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_113_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_sequence",
-  assign("exp", list(op("first_statement"), reg("unev"))),
-  test(list(op("is_return_statement"), reg("exp"))),
-  branch(label("ev_return_from_seq")),
-  test(list(op("is_last_statement"), reg("unev"))),
-  branch(label("ev_sequence_last_exp")),
-  save("unev"),
-  save("env"),
-  assign("continue", label("ev_sequence_continue")),
-  go_to(label("eval_dispatch")),
-  
+      assign("stmt", list(op("first_statement"), reg("unev"))),
+      test(list(op("is_return_statement"), reg("stmt"))),
+      branch(label("ev_return_from_seq")),
+      test(list(op("is_last_statement"), reg("unev"))),
+      branch(label("ev_sequence_last_exp")),
+      save("unev"),
+      save("env"),
+      assign("continue", label("ev_sequence_continue")),
+      go_to(label("eval_dispatch")),
+      
 "ev_sequence_continue",
-  restore("env"),
-  restore("unev"),
-  assign("unev", list(op("rest_statements"), reg("unev"))),
-  go_to(label("ev_sequence")),
-  
+      restore("env"),
+      restore("unev"),
+      assign("unev", list(op("rest_statements"), reg("unev"))),
+      go_to(label("ev_sequence")),
+      
 "ev_sequence_last_exp",
-  assign("continue", label("end_without_return")),
-  go_to(label("eval_dispatch")),
+      assign("continue", label("end_without_return")),
+      go_to(label("eval_dispatch")),
 
 "end_without_return",
-  assign("val", constant(undefined)),
-  restore("continue"),
-  go_to(reg("continue")),</pre></div></div></td></tr></table>
+      assign("val", constant(undefined)),
+      restore("continue"),
+      go_to(reg("continue")),</pre></div></div></td></tr></table>
   </p></div>
 
   
@@ -2086,9 +2086,9 @@ ev-sequence
       (goto (reg continue))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_113_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 "ev_sequence",
-     test(list(op("has_no_more_exps"), reg("unev"))),
+     test(list(op("has_no_more_stmts"), reg("unev"))),
      branch(label("ev_sequence_end")),
-     assign(exp(op("first_exp"), reg("unev")),
+     assign(exp(op("first_stmt"), reg("unev")),
      save("unev"),
      save("env"),
      assign(continue(label("ev_sequence_continue"))),
@@ -2096,7 +2096,7 @@ ev-sequence
 "ev_sequence_continue",
      restore("env"),
      restore("unev"),
-     assign("unev", op("rest_exps"), reg("unev")),
+     assign("unev", op("rest_stmts"), reg("unev")),
      go_to(label("ev_sequence")),
 "ev_sequence_end",
      restore("continue"),
@@ -2237,7 +2237,7 @@ function count(n) {
     We can define
     
       <span style="color:green"><kbd>no-more-exps?</kbd></span>
-      <span style="color:blue"><kbd>has_no_more_exps</kbd>
+      <span style="color:blue"><kbd>has_no_more_stmts</kbd>
       </span>
     
     as follows:
