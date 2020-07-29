@@ -2600,19 +2600,19 @@ save("continue"),
   go_to(reg("val")),
 "primitive_branch11",
   assign("val", list(op("apply_primitive_function"), 
-                     reg("fun"), reg("argl"))),
-
-"after_call9",            // val now has result of factorial(n - 1)
-  restore("argl"),        // restore partial argument list for *
-  assign("argl", list(op("pair"), reg("val"), reg("argl"))),
-  restore("fun"),         // restore *
-  restore("continue"),</pre></div></div></td></tr></table>
+                     reg("fun"), reg("argl"))),</pre></div></div></td></tr></table>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.5.5.html#fig_5.22">Figure 5.22 </a></b>(continued)</div>
     </FIGURE>
   
 
     <FIGURE><div class='snippet' id='javascript_121_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"after_call9",            // val now has result of factorial(n - 1)
+  restore("argl"),        // restore partial argument list for *
+  assign("argl", list(op("pair"), reg("val"), reg("argl"))),
+  restore("fun"),         // restore *
+  restore("continue"),    
+
 // apply * and return its value
   test(list(op("is_primitive_function"), reg("fun"))),
   branch(label("primitive_branch14")),
@@ -2738,10 +2738,7 @@ assign("val", list(op("make_compiled_function"),
   assign("continue", label("after_call20")),
   assign(val, list(op("compiled_function_entry"), 
                    reg("fun"))),
-  go_to(reg("val")),
-"primitive_branch22",
-  assign("val", list(op("apply_primitive_function"),
-                     reg("fun"), reg("argl"))),</pre></div></div></td></tr></table>
+  go_to(reg("val")),</pre></div></div></td></tr></table>
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./5.5.5.html#fig_5.24">Figure 5.24 </a></b>An example of compiler output (continued on next page).
   See exercise&nbsp;<REF NAME="ex:compiled-code"><a class="superscript" id="5.5.5-ex-link-5.35" href="./5.5.5.html#ex_5.35">5.35</a></REF>.
@@ -2775,6 +2772,9 @@ after-call20
       (perform (op define-variable!) (const f) (reg val) (reg env))
       (assign val (const ok))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_121_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+"primitive_branch22",
+  assign("val", list(op("apply_primitive_function"),
+                     reg("fun"), reg("argl"))),
 "after_call20",
   assign("argl", list(op("list"), reg("val"))),
   restore("env"),
