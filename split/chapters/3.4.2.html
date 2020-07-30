@@ -2180,7 +2180,7 @@ concurrent_execute( s(_ => { x = x * x; }),
     <span style="color:blue">threads</span> 
     cannot be withdrawing from or
     depositing into a single account concurrently.  This eliminates the source
-    of the error illustrated in figure&nbsp;<REF NAME="fig:bank-access"><a class="superscript" id="3.4.2-fig-link-3.52" href="./3.4.1.html#fig_3.52">3.52</a></REF>,
+    of the error illustrated in figure&nbsp;<REF NAME="fig:bank-access"><a class="superscript" id="3.4.2-fig-link-3.53" href="./3.4.1.html#fig_3.53">3.53</a></REF>,
     where Peter changes the account balance between the times when Paul accesses
     the balance to compute the new value and when Paul actually performs the
     assignment.  On the other hand, each account has its own serializer,
@@ -2683,7 +2683,7 @@ concurrent_execute( s(_ => { x = x * x;     }),
     after any number of concurrent exchanges, the account balances should be 
     \$10, \$20, and \$30 in some order.
     Draw a timing diagram like the one in
-    figure&nbsp;<REF NAME="fig:bank-access"><a class="superscript" id="3.4.2-fig-link-3.52" href="./3.4.1.html#fig_3.52">3.52</a></REF> to
+    figure&nbsp;<REF NAME="fig:bank-access"><a class="superscript" id="3.4.2-fig-link-3.53" href="./3.4.1.html#fig_3.53">3.53</a></REF> to
     show how this condition can be violated if the exchanges are
     implemented using the first version of the account-exchange program in
     this section.  On the other hand, argue that even with this
@@ -3069,7 +3069,7 @@ function clear(cell) {
      
     can test the cell.  If we do not make this guarantee, then the mutex can
     fail in a way similar to the bank-account failure in
-    figure&nbsp;<REF NAME="fig:bank-access"><a class="superscript" id="3.4.2-fig-link-3.52" href="./3.4.1.html#fig_3.52">3.52</a></REF>. (See
+    figure&nbsp;<REF NAME="fig:bank-access"><a class="superscript" id="3.4.2-fig-link-3.53" href="./3.4.1.html#fig_3.53">3.53</a></REF>. (See
     exercise&nbsp;<REF NAME="ex:atomic-test-and-set"><a class="superscript" id="3.4.2-ex-link-3.46" href="./3.4.2.html#ex_3.46">3.46</a></REF>.)
   </p></div>
 
@@ -3136,7 +3136,7 @@ function clear(cell) {
     
     as shown in the text, without attempting to make the operation atomic.
     Draw a timing diagram like the one in
-    figure&nbsp;<REF NAME="fig:bank-access"><a class="superscript" id="3.4.2-fig-link-3.52" href="./3.4.1.html#fig_3.52">3.52</a></REF> to demonstrate how the mutex
+    figure&nbsp;<REF NAME="fig:bank-access"><a class="superscript" id="3.4.2-fig-link-3.53" href="./3.4.1.html#fig_3.53">3.53</a></REF> to demonstrate how the mutex
     implementation can fail by allowing two 
     
       <span style="color:green">processes</span>

@@ -1702,7 +1702,7 @@
     signal-processing systems that contain
     
     feedback loops.  The feedback loop for the adder shown in
-    figure&nbsp;<REF NAME="fig:integral"><a class="superscript" id="3.5.4-fig-link-3.55" href="./3.5.3.html#fig_3.55">3.55</a></REF> is modeled by the fact that
+    figure&nbsp;<REF NAME="fig:integral"><a class="superscript" id="3.5.4-fig-link-3.58" href="./3.5.3.html#fig_3.58">3.58</a></REF> is modeled by the fact that
     <kbd>integral</kbd>'s
     
     internal stream
@@ -1787,7 +1787,7 @@ const integ = pair(initial_value,
 	<kbd>delay</kbd> beyond the <QUOTE>hidden</QUOTE>
 	<kbd>delay</kbd> supplied by
 	<kbd>cons-stream</kbd>.  For instance,
-	figure&nbsp;<REF NAME="fig:analog-computer_scheme"><a class="superscript" id="3.5.4-fig-link-3.57" href="./3.5.4.html#fig_3.57">3.57</a></REF> shows a
+	figure&nbsp;<REF NAME="fig:analog-computer_scheme"><a class="superscript" id="3.5.4-fig-link-3.60" href="./3.5.4.html#fig_3.60">3.60</a></REF> shows a
 	signal-processing system for solving the 
 	
 	differential equation $dy/dt=f(y)$ where
@@ -1798,9 +1798,9 @@ const integ = pair(initial_value,
 	used to solve such equations.
 	
     <FIGURE>
-      <img class="scale_factor_" id="fig_3.57" src="../img_original/ch3-Z-G-52.svg">
+      <img class="scale_factor_" id="fig_3.60" src="../img_original/ch3-Z-G-52.svg">
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./3.5.4.html#fig_3.57">Figure 3.57 </a></b>
+      <b><a class="caption" href="./3.5.4.html#fig_3.60">Figure 3.60 </a></b>
 	    An <QUOTE>analog computer circuit</QUOTE> that solves the equation
 	  </div>
     </FIGURE>
@@ -1813,7 +1813,7 @@ const integ = pair(initial_value,
 <a name='p4' class='permalink'></a><p>
 	Unfortunately, stream models of systems with loops may require uses of a
 	delay beyond the stream programming pattern seen so far. For instance,
-	figure&nbsp;<REF NAME="fig:analog-computer"><a class="superscript" id="3.5.4-fig-link-3.58" href="./3.5.4.html#fig_3.58">3.58</a></REF> shows a
+	figure&nbsp;<REF NAME="fig:analog-computer"><a class="superscript" id="3.5.4-fig-link-3.61" href="./3.5.4.html#fig_3.61">3.61</a></REF> shows a
 	signal-processing system for solving the 
 	
 	differential equation $dy/dt=f(y)$ where
@@ -1824,9 +1824,9 @@ const integ = pair(initial_value,
 	used to solve such equations.
 	
     <FIGURE>
-      <img class="scale_factor_" id="fig_3.58" src="../img_original/ch3-Z-G-52.svg">
+      <img class="scale_factor_" id="fig_3.61" src="../img_original/ch3-Z-G-52.svg">
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./3.5.4.html#fig_3.58">Figure 3.58 </a></b>
+      <b><a class="caption" href="./3.5.4.html#fig_3.61">Figure 3.61 </a></b>
 	    An <QUOTE>analog computer circuit</QUOTE> that solves the equation
 	  </div>
     </FIGURE>
@@ -2086,9 +2086,9 @@ function solve(f, y0, dt) {
     
     
     <FIGURE>
-      <img class="scale_factor_" id="fig_3.59" src="../img_original/ch3-Z-G-53.svg">
+      <img class="scale_factor_" id="fig_3.62" src="../img_original/ch3-Z-G-53.svg">
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./3.5.4.html#fig_3.59">Figure 3.59 </a></b>Signal-flow diagram for the solution to a second-order linear
+      <b><a class="caption" href="./3.5.4.html#fig_3.62">Figure 3.62 </a></b>Signal-flow diagram for the solution to a second-order linear
       differential equation.
       </div>
     </FIGURE>
@@ -2105,7 +2105,7 @@ function solve(f, y0, dt) {
     $y$ and $dy/dt$ and
     both of these are determined by integrating
     $d^{2}y/dt^{2}$.  The diagram we would like to
-    encode is shown in figure&nbsp;<REF NAME="fig:2nd-order"><a class="superscript" id="3.5.4-fig-link-3.59" href="./3.5.4.html#fig_3.59">3.59</a></REF>.  Write a
+    encode is shown in figure&nbsp;<REF NAME="fig:2nd-order"><a class="superscript" id="3.5.4-fig-link-3.62" href="./3.5.4.html#fig_3.62">3.62</a></REF>.  Write a
     
       <span style="color:green">procedure <kbd>solve-2nd</kbd></span>
       <span style="color:blue">function <kbd>solve_2nd</kbd>
@@ -2159,7 +2159,7 @@ function solve(f, y0, dt) {
     
     A <EM>series RLC circuit</EM> consists of a resistor, a capacitor, and an
     inductor connected in series, as shown in
-    figure&nbsp;<REF NAME="fig:series-rlc"><a class="superscript" id="3.5.4-fig-link-3.60" href="./3.5.4.html#fig_3.60">3.60</a></REF>. If
+    figure&nbsp;<REF NAME="fig:series-rlc"><a class="superscript" id="3.5.4-fig-link-3.63" href="./3.5.4.html#fig_3.63">3.63</a></REF>. If
     $R$, $L$, and
     $C$ are the resistance, inductance, and
     capacitance, then the relations between voltage
@@ -2189,20 +2189,20 @@ function solve(f, y0, dt) {
     \end{eqnarray*}
     
     The signal-flow diagram representing this system of differential equations
-    is shown in figure&nbsp;<REF NAME="fig:rlc-signal-flow"><a class="superscript" id="3.5.4-fig-link-3.61" href="./3.5.4.html#fig_3.61">3.61</a></REF>.
+    is shown in figure&nbsp;<REF NAME="fig:rlc-signal-flow"><a class="superscript" id="3.5.4-fig-link-3.64" href="./3.5.4.html#fig_3.64">3.64</a></REF>.
     
     <FIGURE>
-      <img class="scale_factor_" id="fig_3.60" src="../img_original/ch3-Z-G-58.svg">
+      <img class="scale_factor_" id="fig_3.63" src="../img_original/ch3-Z-G-58.svg">
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./3.5.4.html#fig_3.60">Figure 3.60 </a></b>A series RLC circuit.
+      <b><a class="caption" href="./3.5.4.html#fig_3.63">Figure 3.63 </a></b>A series RLC circuit.
       </div>
     </FIGURE>
   
     
     <FIGURE>
-      <img class="scale_factor_" id="fig_3.61" src="../img_original/ch3-Z-G-59.svg">
+      <img class="scale_factor_" id="fig_3.64" src="../img_original/ch3-Z-G-59.svg">
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./3.5.4.html#fig_3.61">Figure 3.61 </a></b>A signal-flow diagram for the solution to a series RLC circuit.
+      <b><a class="caption" href="./3.5.4.html#fig_3.64">Figure 3.64 </a></b>A signal-flow diagram for the solution to a series RLC circuit.
       </div>
     </FIGURE>
   

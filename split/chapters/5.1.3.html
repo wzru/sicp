@@ -1703,7 +1703,15 @@
     <kbd>d</kbd>.  We might start
     by assuming we have a primitive <kbd>gcd</kbd> operation,
     then expand the two instances of <kbd>gcd</kbd> in terms
-    of more primitive operations. Figure&nbsp;<REF NAME="fig:gcd-machine-1"><a class="superscript" id="5.1.3-fig-link-5.8" href="./5.1.3.html#fig_5.8">5.8</a></REF>
+    of more primitive operations.
+    
+      <span style="color:green">
+	Figure&nbsp;<REF NAME="fig:gcd-machine-1_scheme"><a class="superscript" id="5.1.3-fig-link-5.8" href="./5.1.3.html#fig_5.8">5.8</a></REF>
+      </span>
+      <span style="color:blue">
+	Figure&nbsp;<REF NAME="fig:gcd-machine-1"><a class="superscript" id="5.1.3-fig-link-5.9" href="./5.1.3.html#fig_5.9">5.9</a></REF>
+      </span>
+    
     shows just the GCD portions of the resulting machine's data paths,
     without showing how they connect to the rest of the machine.  The figure
     also shows the corresponding portions of the machine's controller
@@ -1729,9 +1737,9 @@
           <td><span style="color:blue">
         
     <FIGURE>
-      <img class="scale_factor_" id="fig_5.8" src="../img_javascript/Fig5.7b.std.svg">
+      <img class="scale_factor_" id="fig_5.9" src="../img_javascript/Fig5.7b.std.svg">
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./5.1.3.html#fig_5.8">Figure 5.8 </a></b>Portions of the data paths and controller sequence for
+      <b><a class="caption" href="./5.1.3.html#fig_5.9">Figure 5.9 </a></b>Portions of the data paths and controller sequence for
           a machine with two GCD computations.</div>
     </FIGURE>
   
@@ -1800,7 +1808,7 @@
     <kbd>c</kbd> and <kbd>d</kbd>, in
     computing the second GCD as well as the first.  If we do this, we obtain the
     controller sequence shown in
-    figure&nbsp;<REF NAME="fig:gcd-machine-2"><a class="superscript" id="5.1.3-fig-link-5.9" href="./5.1.3.html#fig_5.9">5.9</a></REF>.
+    figure&nbsp;<REF NAME="fig:gcd-machine-2"><a class="superscript" id="5.1.3-fig-link-5.10" href="./5.1.3.html#fig_5.10">5.10</a></REF>.
   </p></div>
 
   <div class='permalink'>
@@ -1819,7 +1827,7 @@
     <kbd>gcd</kbd> subroutine we return either to
     <span style="color:green"><kbd>after-gcd-1</kbd></span><span style="color:blue"><kbd>after_gcd_1</kbd></span> or to <span style="color:green"><kbd>after-gcd-2</kbd></span><span style="color:blue"><kbd>after_gcd_2</kbd></span>, depending
     on the value of the <kbd>continue</kbd> register.
-    Figure&nbsp;<REF NAME="fig:gcd-machine-2cont"><a class="superscript" id="5.1.3-fig-link-5.10" href="./5.1.3.html#fig_5.10">5.10</a></REF> shows the relevant portion
+    Figure&nbsp;<REF NAME="fig:gcd-machine-2cont"><a class="superscript" id="5.1.3-fig-link-5.11" href="./5.1.3.html#fig_5.11">5.11</a></REF> shows the relevant portion
     of the resulting controller sequence, which includes only a single copy of
     the <kbd>gcd</kbd> instructions.
     <FIGURE><table width="100%">
@@ -1863,7 +1871,7 @@ after-gcd-2</pre></div></div>    </td>
     go_to(label("gcd_2")),
   "after_gcd_2"</pre></div></div></td></tr></table>
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./5.1.3.html#fig_5.9">Figure 5.9 </a></b>Portions of the controller sequence for a machine that
+      <b><a class="caption" href="./5.1.3.html#fig_5.10">Figure 5.10 </a></b>Portions of the controller sequence for a machine that
       uses the same data-path components for two different GCD
       computations.</div>
     </FIGURE>
@@ -1920,10 +1928,10 @@ after-gcd-2</pre></div></div>    </td>
     go_to(label("gcd")),
   "after_gcd_2"</pre></div></div></td></tr></table>
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./5.1.3.html#fig_5.10">Figure 5.10 </a></b>
+      <b><a class="caption" href="./5.1.3.html#fig_5.11">Figure 5.11 </a></b>
 	Using a <kbd>continue</kbd> register to avoid
 	the duplicate controller sequence in
-	figure&nbsp;<REF NAME="fig:gcd-machine-2"><a class="superscript" id="5.1.3-fig-link-5.9" href="./5.1.3.html#fig_5.9">5.9</a></REF>.
+	figure&nbsp;<REF NAME="fig:gcd-machine-2"><a class="superscript" id="5.1.3-fig-link-5.10" href="./5.1.3.html#fig_5.10">5.10</a></REF>.
       </div>
     </FIGURE>
   
@@ -1948,10 +1956,10 @@ after-gcd-2</pre></div></div>    </td>
     go_to(label("gcd")),
   "after_gcd_2"</kbd>
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./5.1.3.html#fig_5.11">Figure 5.11 </a></b>
+      <b><a class="caption" href="./5.1.3.html#fig_5.12">Figure 5.12 </a></b>
 	Assigning labels to the <kbd>continue</kbd> register
 	simplifies  and generalizes the strategy shown in
-	figure&nbsp;<REF NAME="fig:gcd-machine-2cont"><a class="superscript" id="5.1.3-fig-link-5.10" href="./5.1.3.html#fig_5.10">5.10</a></REF>.
+	figure&nbsp;<REF NAME="fig:gcd-machine-2cont"><a class="superscript" id="5.1.3-fig-link-5.11" href="./5.1.3.html#fig_5.11">5.11</a></REF>.
       </div>
     </FIGURE>
   
@@ -1994,7 +2002,7 @@ after-gcd-2</pre></div></div>    </td>
     <kbd>gcd</kbd> subroutine with a branch to the location
     stored in the <kbd>continue</kbd> register.  This leads
     to the controller sequence shown in
-    figure&nbsp;<REF NAME="fig:gcd-mach-2labels"><a class="superscript" id="5.1.3-fig-link-5.11" href="./5.1.3.html#fig_5.11">5.11</a></REF>.
+    figure&nbsp;<REF NAME="fig:gcd-mach-2labels"><a class="superscript" id="5.1.3-fig-link-5.12" href="./5.1.3.html#fig_5.12">5.12</a></REF>.
   </p></div>
 
   <div class='permalink'>

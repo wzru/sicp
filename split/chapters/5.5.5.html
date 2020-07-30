@@ -2257,7 +2257,7 @@ go_to(reg("continue"))</pre></div></div></td></tr></table>
       <span style="color:blue"><kbd>fun</kbd></span>
     
     and <kbd>argl</kbd> and its own primitive
-    and compound branches.  Figure&nbsp;<REF NAME="fig:comp-factorial1"><a class="superscript" id="5.5.5-fig-link-5.21" href="./5.5.5.html#fig_5.21">5.21</a></REF>
+    and compound branches.  Figure&nbsp;<REF NAME="fig:comp-factorial1"><a class="superscript" id="5.5.5-fig-link-5.22" href="./5.5.5.html#fig_5.22">5.22</a></REF>
     shows the complete compilation of the
     definition of the <kbd>factorial</kbd>
     
@@ -2490,7 +2490,7 @@ function factorial(n) {
   assign("fun", list(op("lookup_symbol_value"),
                      constant("*"), reg("env"))),</pre></div></div></td></tr></table>
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./5.5.5.html#fig_5.21">Figure 5.21 </a></b>
+      <b><a class="caption" href="./5.5.5.html#fig_5.22">Figure 5.22 </a></b>
     Compilation of the definition of the <kbd>factorial</kbd>
     
       <span style="color:green">procedure</span>
@@ -2602,7 +2602,7 @@ save("continue"),
   assign("val", list(op("apply_primitive_function"), 
                      reg("fun"), reg("argl"))),</pre></div></div></td></tr></table>
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./5.5.5.html#fig_5.22">Figure 5.22 </a></b>(continued)</div>
+      <b><a class="caption" href="./5.5.5.html#fig_5.23">Figure 5.23 </a></b>(continued)</div>
     </FIGURE>
   
 
@@ -2632,7 +2632,7 @@ save("continue"),
                constant("factorial"), reg("val"), reg("env"))),
   assign("val", constant(undefined))</pre></div></div>
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./5.5.5.html#fig_5.23">Figure 5.23 </a></b>(continued)</div>
+      <b><a class="caption" href="./5.5.5.html#fig_5.24">Figure 5.24 </a></b>(continued)</div>
     </FIGURE>
   
 
@@ -2642,7 +2642,7 @@ save("continue"),
   
 	
   What expression was compiled to produce the code shown in
-  figure&nbsp;<REF NAME="fig:compilation-example1"><a class="superscript" id="5.5.5-fig-link-5.24" href="./5.5.5.html#fig_5.24">5.24</a></REF>?
+  figure&nbsp;<REF NAME="fig:compilation-example1"><a class="superscript" id="5.5.5-fig-link-5.25" href="./5.5.5.html#fig_5.25">5.25</a></REF>?
       
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_121_3_div" data-toggle="collapse">Add solution</button></div>
@@ -2740,7 +2740,7 @@ assign("val", list(op("make_compiled_function"),
                    reg("fun"))),
   go_to(reg("val")),</pre></div></div></td></tr></table>
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./5.5.5.html#fig_5.24">Figure 5.24 </a></b>An example of compiler output (continued on next page).
+      <b><a class="caption" href="./5.5.5.html#fig_5.25">Figure 5.25 </a></b>An example of compiler output (continued on next page).
   See exercise&nbsp;<REF NAME="ex:compiled-code"><a class="superscript" id="5.5.5-ex-link-5.35" href="./5.5.5.html#ex_5.35">5.35</a></REF>.
   </div>
     </FIGURE>
@@ -2795,11 +2795,11 @@ after-call20
   go_to(reg("continue")),
 "after_call23",
 "after_lambda15",
-  perform(list(op("define-variable"), 
+  perform(list(op("assign_symbol_value"), 
                constant("f"), reg("val"), reg("env"))),
   assign("val", constant(undefined))</pre></div></div></td></tr></table>
       <div class="chapter-text-CAPTION">
-      <b><a class="caption" href="./5.5.5.html#fig_5.25">Figure 5.25 </a></b>(continued)</div>
+      <b><a class="caption" href="./5.5.5.html#fig_5.26">Figure 5.26 </a></b>(continued)</div>
     </FIGURE>
   
 
@@ -3153,7 +3153,7 @@ assign("val", list(op("+"), reg("val"), constant(1))</pre></div></div></td></tr>
 	  <span style="color:blue">functions</span>
 	
 	with these names will stop working.  See
-	exercise&nbsp;<REF NAME="ex:cte-open-code"><a class="superscript" id="5.5.5-ex-link-5.44" href="./5.5.6.html#ex_5.44">5.44</a></REF> for ideas on how to avoid
+	exercise&nbsp;<REF NAME="ex:cte-open-code"><a class="superscript" id="5.5.5-ex-link-5.45" href="./5.5.6.html#ex_5.45">5.45</a></REF> for ideas on how to avoid
 	this problem.
     </FOOTNOTE></span></div>
     
