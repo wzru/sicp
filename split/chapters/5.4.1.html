@@ -2722,7 +2722,6 @@ primitive-apply
         the normal dispatch loop.
       </span></td></tr></table>
     
-    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2748,7 +2747,7 @@ compound-apply
       restore("continue"),
       go_to(label("eval_dispatch")),
 
-"handle_missing_return",
+"no_return_wrapping",
       assign("continue", label("end_without_return")),
       go_to(label("eval_dispatch")),</pre></div></div></td></tr></table>
   </p></div>
@@ -2868,7 +2867,7 @@ compound-apply
 
 
 (define (adjoin-arg arg arglist)
-(append arglist (list arg)))</pre></div></div>    </td>
+  (append arglist (list arg)))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_112_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 const empty_arglist = list();
 
