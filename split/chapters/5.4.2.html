@@ -1732,6 +1732,7 @@
       <span style="color:green"><kbd>ev-sequence</kbd>.</span>
       <span style="color:blue"><kbd>ev_sequence</kbd>.</span>
     
+    
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -1745,7 +1746,7 @@ ev-begin
 "ev_seq",
       save("continue"),
       assign("unev", list(op("sequence_statements"), reg("stmt"))),
-      go_to(label("ev_sequence")), // Not needed if ev_sequence starts just below</pre></div></div></td></tr></table>
+      go_to(label("ev_sequence"))</pre></div></div></td></tr></table>
   </p></div>
 
   <div class='permalink'>
@@ -2143,7 +2144,7 @@ ev-sequence
             <td><div class='snippet' id='javascript_113_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function count(n) {
     display(n, "\n");
-    return count(n + 1); // Note: return necessary for tail recursion, see below
+    return count(n + 1);
 }</pre></div></div></td></tr></table>
     Without tail recursion, such a
     
