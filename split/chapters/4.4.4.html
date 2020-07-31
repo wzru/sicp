@@ -2290,7 +2290,9 @@ put("or", "evaluate_query", disjoin);
 	</span>
 	<span style="color:blue">
 	  Queries formed with <kbd>not</kbd> are
-	handled by the method outlined in
+	</span>
+      
+      handled by the method outlined in
       section&nbsp;<REF NAME="sec:how-query-works"><a class="superscript" id="4.4.4-sec-link-4.4.2" href="./4.4.2.html">4.4.2</a></REF>.  We attempt to extend
       each frame in the input stream to satisfy the query being negated, and we
       include a given frame in the output stream only if it cannot be extended.
@@ -2322,7 +2324,7 @@ put("or", "evaluate_query", disjoin);
 }
 put("not", "evaluate_query", negate);
 </pre></div></div></td></tr></table>
-    
+    </p></div>
 
     <div class='permalink'>
 <a name='p15' class='permalink'></a><p>
@@ -3322,7 +3324,7 @@ put("always_true", "evaluate_query", always_true);
       
       There is no general method for solving such equations, so we reject such
       bindings; these cases are recognized by the predicate 
-      <span style="color:green"><kbd>depends-on?</kbd></span><span style="color:blue"><kbd>depends_on</kbd></span>.<a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:blue">[1]</a>
+      <span style="color:green"><kbd>depends-on?</kbd></span><span style="color:blue"><kbd>depends_on</kbd></span>.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
       On the other hand, we do not want to reject attempts
       to bind a variable to itself.  For example, consider unifying
       
@@ -5254,10 +5256,10 @@ sum_of_squares(3, 4);
 </EXERCISE></div>
 
   
-</span></p></div><hr>
+<hr>
 
-    <div class='footnote'><span style="color:blue">
-      <a class='footnote-number' id='footnote-1' href='#footnote-link-1' style="color:blue">[1] </a>
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-1' href='#footnote-link-1' >[1] </a>
     <FOOTNOTE>
     In general,
       unifying
@@ -5351,7 +5353,7 @@ sum_of_squares(3, 4);
       series but the second is not.  Similarly, for our unification results,
       reasoning with an arbitrary syntactically constructed expression may
       lead to errors.
-    </FOOTNOTE></span></div>
+    </FOOTNOTE></div>
     
     
     <div class='footnote'><span style="color:green">
