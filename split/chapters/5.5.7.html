@@ -2672,11 +2672,11 @@ EC-Eval value:
 function user_print(string, object) {
     function prepare(object) {
         return is_compound_function(object)
-            ? "<compound-function>"
+            ? "< compound-function >"
             : is_primitive_function(object)
-            ? "<primitive-function>"
+            ? "< primitive-function >"
             : is_compiled_function(object)
-            ? "<compiled-function>"
+            ? "< compiled-function >"
             : is_pair(object)
             ? pair(prepare(head(object)),
                    prepare(tail(object)))
