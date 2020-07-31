@@ -2009,15 +2009,39 @@ ev-definition-1
   
     
     
-    
-    Extend the evaluator to handle derived expressions such as
-    <span style="color:green"><kbd>cond</kbd></span><span style="color:blue"><kbd>conditional_statements</kbd></span>,
-    <kbd>let</kbd>, and so on
-    (section&nbsp;<REF NAME="sec:representing-expressions"><a class="superscript" id="5.4.3-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>).
-    You may <QUOTE>cheat</QUOTE> and assume that the syntax
-    transformers such as <kbd>cond->if</kbd> are available
-    as machine operations.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-    
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td><span style="color:green">
+	
+	
+	Extend the evaluator to handle derived expressions such as
+	<kbd>cond</kbd>,
+	<kbd>let</kbd>, and so on
+	(section&nbsp;<REF NAME="sec:representing-expressions"><a class="superscript" id="5.4.3-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>).
+	You may <QUOTE>cheat</QUOTE> and assume that the syntax
+	transformers such as <kbd>cond->if</kbd> are available
+	as machine operations.<a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:green">[1]</a>
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+	Extend the evaluator to handle <kbd>while</kbd>
+	loops, by translating them to applications of a function
+	<kbd>while_loop</kbd>, as shown in
+	exercise&nbsp;<REF NAME="ex:while_loop"><a class="superscript" id="5.4.3-ex-link-4.11" href="./4.1.2.html#ex_4.11">4.11</a></REF>.
+	You can then paste the declaration of the function
+	<kbd>while_loop</kbd> in front of user programs.
+	You may <QUOTE>cheat</QUOTE> and assume that the syntax transformer
+	<kbd>while_to_application</kbd> is available
+	as machine operation.<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:blue">[2]</a> Refer to
+	exercise&nbsp;<REF NAME="ex:while_loop"><a class="superscript" id="5.4.3-ex-link-4.11" href="./4.1.2.html#ex_4.11">4.11</a></REF> to discuss whether
+	this approach works if return, break and continue statements are allowed
+	inside the <kbd>while</kbd> loop.
+      </span></td></tr></table>
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_114_1_div" data-toggle="collapse">Add solution</button></div>
@@ -2033,24 +2057,54 @@ ev-definition-1
   
     
     Implement
-    <span style="color:green"><kbd>cond</kbd></span><span style="color:blue"><kbd>conditional_statements</kbd></span>
+    
+      <span style="color:green"><kbd>cond</kbd></span>
+      <span style="color:blue"><kbd>conditional_statements</kbd>
+      </span>
+    
     as a new basic special form without reducing it to
     <kbd>if</kbd>. You will have to
-    <span style="color:green">construct a loop that tests the
-    predicates of successive <kbd>cond</kbd>
-    clauses</span><span style="color:blue">handle nested <kbd>conditional_statements</kbd></span>
+    
+      <span style="color:green">
+	construct a loop that tests the predicates of successive
+	<kbd>cond</kbd> clauses
+      </span>
+      <span style="color:blue">
+	handle nested
+	<kbd>conditional_statements</kbd>
+      </span>
+    
     until you find one that is true,
     and then use
     
       <span style="color:green"><kbd>ev-sequence</kbd></span>
-      <span style="color:blue"><kbd>ev_sequence</kbd></span>
-    
-    to evaluate the actions of <span style="color:green">the clause</span><span style="color:blue">its body</span>.
-    
-      <span style="color:blue">
-        Note that proper handling of returns inside the consequent and alternative blocks poses a hard challenge as the current implementation of sequence only supports returning from the outermost block in a function. One way to implement this is to add a new register <kbd>returning</kbd> that keeps track of whether the current function is returning. Instead of checking if the next statement is a return statement, the sequence loop checks inspects <kbd>returning</kbd> to determine whether to continue or return.
+      <span style="color:blue"><kbd>ev_sequence</kbd>
       </span>
     
+    to evaluate the actions of
+    
+      <span style="color:green">the clause</span>
+      <span style="color:blue">its body</span>.
+      <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td>    </td>
+          <td></td>
+          <td><span style="color:blue">
+        Note that proper handling of returns inside the consequent and alternative
+	blocks poses a hard challenge as the current implementation of sequence only
+	supports returning from the outermost block in a function. One way to
+	implement this is to add a new register
+	<kbd>returning</kbd> that keeps track of whether
+	the current function is returning. Instead of checking if the next statement
+	is a return statement, the sequence loop checks inspects
+	<kbd>returning</kbd> to determine whether to
+	continue or return.
+      </span></td></tr></table>
     
   
       <div class="Solution">
@@ -2080,18 +2134,30 @@ ev-definition-1
 
 <hr>
 
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-1' href='#footnote-link-1' >[1] </a>
+    <div class='footnote'><span style="color:green">
+      <a class='footnote-number' id='footnote-1' href='#footnote-link-1' style="color:green">[1] </a>
     <FOOTNOTE>
     This isn't really cheating.  In an
-    actual implementation built from scratch, we would use our explicit-control
-    evaluator to interpret a <span style="color:green">Scheme</span><span style="color:blue">JavaScript</span> program that performs source-level
-    transformations
+	actual implementation built from scratch, we would use our explicit-control
+	evaluator to interpret a Scheme program that performs source-level
+	transformations
+	
+	  <span style="color:green"><kbd>like cond->if</kbd></span>
+	  <span style="color:blue"><kbd></kbd></span>
+	   in a syntax phase that runs before execution.
+    </FOOTNOTE></span></div>
     
-      <span style="color:green"><kbd>like cond->if</kbd></span>
-      <span style="color:blue"><kbd></kbd></span>
-       in a syntax phase that runs before execution.
-    </FOOTNOTE></div>
+    
+    <div class='footnote'><span style="color:blue">
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' style="color:blue">[2] </a>
+    <FOOTNOTE>
+    This isn't really cheating.  In an
+	actual implementation built from scratch, we would use our explicit-control
+	evaluator to interpret a JavaScript program that performs source-level
+	transformations like
+	<kbd>while_to_application</kbd>
+	in a syntax phase that runs before execution.
+    </FOOTNOTE></span></div>
     
     
 </SUBSECTION></div></div>

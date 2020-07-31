@@ -1923,13 +1923,21 @@
     
     
     
-    Extend the evaluator to handle derived expressions such as
-    <kbd>conditional_statements</kbd>,
-    <kbd>let</kbd>, and so on
-    (section&nbsp;<REF NAME="sec:representing-expressions"><a class="superscript" id="5.4.3-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>).
-    You may <QUOTE>cheat</QUOTE> and assume that the syntax
-    transformers such as <kbd>cond->if</kbd> are available
-    as machine operations.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+      
+      
+	Extend the evaluator to handle <kbd>while</kbd>
+	loops, by translating them to applications of a function
+	<kbd>while_loop</kbd>, as shown in
+	exercise&nbsp;<REF NAME="ex:while_loop"><a class="superscript" id="5.4.3-ex-link-4.7" href="./4.1.2.html#ex_4.7">4.7</a></REF>.
+	You can then paste the declaration of the function
+	<kbd>while_loop</kbd> in front of user programs.
+	You may <QUOTE>cheat</QUOTE> and assume that the syntax transformer
+	<kbd>while_to_application</kbd> is available
+	as machine operation.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a> Refer to
+	exercise&nbsp;<REF NAME="ex:while_loop"><a class="superscript" id="5.4.3-ex-link-4.7" href="./4.1.2.html#ex_4.7">4.7</a></REF> to discuss whether
+	this approach works if return, break and continue statements are allowed
+	inside the <kbd>while</kbd> loop.
+      
     
   
       <div class="Solution">
@@ -1946,22 +1954,44 @@
   
     
     Implement
-    <kbd>conditional_statements</kbd>
+    
+      
+      <kbd>conditional_statements</kbd>
+      
+    
     as a new basic special form without reducing it to
     <kbd>if</kbd>. You will have to
-    handle nested <kbd>conditional_statements</kbd>
+    
+      
+      
+	handle nested
+	<kbd>conditional_statements</kbd>
+      
+    
     until you find one that is true,
     and then use
     
       
       <kbd>ev_sequence</kbd>
-    
-    to evaluate the actions of its body.
-    
-      
-        Note that proper handling of returns inside the consequent and alternative blocks poses a hard challenge as the current implementation of sequence only supports returning from the outermost block in a function. One way to implement this is to add a new register <kbd>returning</kbd> that keeps track of whether the current function is returning. Instead of checking if the next statement is a return statement, the sequence loop checks inspects <kbd>returning</kbd> to determine whether to continue or return.
       
     
+    to evaluate the actions of
+    
+      
+      its body.
+      
+	
+        Note that proper handling of returns inside the consequent and alternative
+	blocks poses a hard challenge as the current implementation of sequence only
+	supports returning from the outermost block in a function. One way to
+	implement this is to add a new register
+	<kbd>returning</kbd> that keeps track of whether
+	the current function is returning. Instead of checking if the next statement
+	is a return statement, the sequence loop checks inspects
+	<kbd>returning</kbd> to determine whether to
+	continue or return.
+      
+	
     
   
       <div class="Solution">
@@ -1995,13 +2025,11 @@
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
     <FOOTNOTE>
     This isn't really cheating.  In an
-    actual implementation built from scratch, we would use our explicit-control
-    evaluator to interpret a JavaScript program that performs source-level
-    transformations
-    
-      
-      <kbd></kbd>
-       in a syntax phase that runs before execution.
+	actual implementation built from scratch, we would use our explicit-control
+	evaluator to interpret a JavaScript program that performs source-level
+	transformations like
+	<kbd>while_to_application</kbd>
+	in a syntax phase that runs before execution.
     </FOOTNOTE></div>
 
     
