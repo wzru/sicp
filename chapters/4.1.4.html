@@ -1984,7 +1984,7 @@ function driver_loop(env) {
            : is_pair(object)
            ? pair(prepare(head(object)),
                   prepare(tail(object)))
-           : stringify(object);
+           : object;
     }
     display(prepare(object), string);
 }
