@@ -1962,39 +1962,34 @@
       <kbd>conditional_statements</kbd>
       
     
-    as a new basic special form without reducing it to
-    <kbd>if</kbd>. You will have to
+    as a new basic 
+    
+      
+      <kbd>syntactic form</kbd>
+      
+    
+    without reducing it to
+    <kbd>if</kbd>. 
     
       
       
-	handle nested
-	<kbd>conditional_statements</kbd>
+        Note that proper handling of returns inside the consequent
+        and alternative blocks poses a hard challenge as the
+        current implementation only supports returning from the
+        outermost block in a function. One way to implement this
+        is to add a new register
+        <kbd>returning</kbd> that keeps
+        track of whether the current function is returning. Change
+        <kbd>ev_sequence</kbd> so that
+        instead of checking if the next statement is a return
+        statement, the sequence loop checks inspects
+        <kbd>returning</kbd> to
+        determine whether to continue or return. Also note that it
+        is possible to nest several conditional statements, so a
+        <kbd>return</kbd> can appear at
+        any depth.
       
-    
-    until you find one that is true,
-    and then use
-    
-      
-      <kbd>ev_sequence</kbd>
-      
-    
-    to evaluate the actions of
-    
-      
-      its body.
-      
-	
-        Note that proper handling of returns inside the consequent and alternative
-	blocks poses a hard challenge as the current implementation of sequence only
-	supports returning from the outermost block in a function. One way to
-	implement this is to add a new register
-	<kbd>returning</kbd> that keeps track of whether
-	the current function is returning. Instead of checking if the next statement
-	is a return statement, the sequence loop checks inspects
-	<kbd>returning</kbd> to determine whether to
-	continue or return.
-      
-	
+	  
     
   
       <div class="Solution">
