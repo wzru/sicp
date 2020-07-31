@@ -2352,6 +2352,40 @@ list("constant_declaration", list("name", "x"), 1)</pre></div></div>
 	  appropriate syntax functions and the evaluation function
 	  <kbd>eval_conditional_statement</kbd>.
 	</LI>
+	<LI>
+	  The inverse of the function <kbd>parse</kbd>
+	  is called <kbd>unparse</kbd>. It takes a
+	  tagged list as produced by <kbd>parse</kbd>
+	  as argument and returns a string that adheres to JavaScript notation.
+	  Write a function <kbd>unparse</kbd> by 
+	  following the structure of <kbd>evaluate</kbd>
+	  (without the environment parameter), but producing a string that represents
+	  the given statement, rather than evaluating it. Recall
+	  from section&nbsp;<REF NAME="sec:circuit-simulator"><a class="superscript" id="4.1.2-sec-link-3.3.4" href="./3.3.4.html">3.3.4</a></REF> that the
+	  the operator <kbd>+</kbd> can be applied
+	  to two strings to concatenate them and that the primitive function
+	  <kbd>stringify</kbd> turns values such
+	  as 1.5, true, <kbd>null</kbd> and
+	  <kbd>undefined</kbd> into strings.
+	  Unparsing application expressions needs to check whether the function
+	  expression is an operator name, and in that case use infix or prefix
+	  notation.  Take care to respect operator precedences by surrounding
+	  resulting strings with parentheses (always or whenever necessary).
+	</LI>
+	<LI>
+	  Your <kbd>unparse</kbd> function will come
+	  in handy when solving later exercises in this section. Improve
+	  <kbd>unparse</kbd> by adding
+	  blank <kbd>" "</kbd> 
+	  and newline <kbd>"\n"</kbd>  characters
+	  to the result string, to follow the indentation style used in the JavaScript
+	  programs of this book. The activity of adding/removing such characters
+	  to and from a program text is called <EM>pretty-printing</EM>.
+	  Hint: Passing a string as <EM>second</EM> argument
+	  of the <kbd>display</kbd> function will
+	  cause the output to include an actual new line for each newline
+	  character.
+	</LI>
        </OL>
       
       
