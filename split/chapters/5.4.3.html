@@ -2059,20 +2059,24 @@ ev-definition-1
     <a name="ex_5.24" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_5.24">Exercise 5.24 </a></b> 
   
     
-    Implement
-    
-      <span style="color:green"><kbd>cond</kbd></span>
-      <span style="color:blue"><kbd>conditional_statements</kbd>
-      </span>
-    
-    as a new basic 
-    
-      <span style="color:green"><kbd>special form</kbd></span>
-      <span style="color:blue"><kbd>syntactic form</kbd>
-      </span>
-    
-    without reducing it to
-    <kbd>if</kbd>. 
+    <table width="100%">
+        <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
+        <tr>
+          <td class="meta" style = "color:grey; text-align: center">Original</td>
+          <td></td>
+          <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
+        </tr>
+        <tr><td><span style="color:green">
+	Implement
+	<kbd>cond</kbd>
+	as a new basic special form
+	without reducing it to
+	<kbd>if</kbd>. 
+      </span>    </td>
+          <td></td>
+          <td><span style="color:blue">
+	Implement conditional statements in the explicit control evaluator.
+      </span></td></tr></table>
     
       <span style="color:green">
         You will have to construct a loop that tests the
@@ -2083,7 +2087,7 @@ ev-definition-1
       </span>
       <span style="color:blue">
         Note that proper handling of returns inside the consequent
-        and alternative blocks poses a hard challenge as the
+        and alternative blocks poses a challenge as the
         current implementation only supports returning from the
         outermost block in a function. One way to implement this
         is to add a new register
@@ -2091,7 +2095,7 @@ ev-definition-1
         track of whether the current function is returning. Change
         <kbd>ev_sequence</kbd> so that
         instead of checking if the next statement is a return
-        statement, the sequence loop checks inspects
+        statement, the sequence loop inspects
         <kbd>returning</kbd> to
         determine whether to continue or return. Also note that it
         is possible to nest several conditional statements, so a
