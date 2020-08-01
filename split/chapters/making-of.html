@@ -14,9 +14,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <meta name="description" content=" Making of the JavaScript Adaptation" />
+  <meta name="description" content=" About the SICP JS Project" />
     <title>
-       Making of the JavaScript Adaptation
+       About the SICP JS Project
     </title>
     
   <meta name="csrf-param" content="authenticity_token" />
@@ -1661,7 +1661,7 @@
           <div class="card-header" role="tab" id="sidebar-126">
             <h5 class="mb-0">
               <span class="collapsed" data-toggle="collapse" href="#sidebar-collapse-126" aria-expanded="false" aria-controls="sidebar-collapse-126">
-                <a href="./making-of.html">  Making of the JavaScript Adaptation</a>
+                <a href="./making-of.html">  About the SICP JS Project</a>
               </span>
             </h5>
           </div>
@@ -1679,7 +1679,7 @@
       <div class='chapter-title'>
         <div class='permalink'>
         <a name='top' class='permalink'> 
-     Making of the JavaScript Adaptation
+     About the SICP JS Project
         </a>
         </div>
       </div>
@@ -1687,39 +1687,44 @@
         <div class='MATTER'><MATTER>
     
 
-  
+ 
       <div class='permalink'>
-        <a name='secmaking-of.1' class='permalink'></a><h1>
-    making-of.1 Background</h1></div>
-  
+        <a name='h1' class='permalink'></a><h2>
+    
+    Background
+  </h2></div>
   
     <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
       Like the Source Academy, the JavaScript adaptation of SICP is an open-source community effort.
       The software and data required for making these web pages and the PDF edition are contained
-      in the repository <a address='https://github.com/source-academy/sicp' href='https://github.com/source-academy/sicp'>Source Academy / sicp</a>,
-      and improvements, extensions and discussions are handled in this repository as with many other
-      open-source software projects.
+      in the github repository
+      <a address='https://github.com/source-academy/sicp' href='https://github.com/source-academy/sicp'>Source Academy / sicp</a>,
+      and improvements, extensions and discussions are handled in this repository using <TT>git</TT>.
     </p></div>
     <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
       Martin Henz started translating SICP to JavaScript in 2008. He obtained the original
-      \LaTeX&nbsp;sources of the book from Gerald Jay Sussman, and converted it to an XML
-      format that allowed
-      him to retain the original sources along with the JavaScript adaptation in a single file.
-      He developed a processing system to generate HTML from XML, using XSLT, resulting in the
-      first version of the JavaScript adaptation.
+      <span class="texhtml" style="font-family: 'CMU Serif', cmr10, LMRoman10-Regular, 'Latin Modern Math', 'Nimbus Roman No9 L', 'Times New Roman', Times, serif;">L<span style="text-transform: uppercase; font-size: 0.75em; vertical-align: 0.25em; margin-left: -0.36em; margin-right: -0.15em; line-height: 1ex;">a</span>T<span style="text-transform: uppercase; vertical-align: -0.5ex; margin-left: -0.1667em; margin-right: -0.125em; line-height: 1ex;">e</span>X</span>&nbsp;sources of the second edition from Gerald Jay Sussman, and converted them to
+      a custom-built XML format. The original sources are retained in the XML format, which
+      allows for a 
+      <a address='https://source-academy.github.io/sicp/split' href='https://source-academy.github.io/sicp/split'>comparison edition</a>.
+      A processing system written in XSLT resulted in the
+      first version of the JavaScript adaptation around 2009, covering the first few sections of SICP.
+      The content of SICP JS contained in the
+      XML files are undergoing continuous improvement by the adapters Martin Henz and Tobias
+      Wrigstad, and by the community of SICP JS readers, using the github repository.
     </p></div>
-
     
       <div class='permalink'>
-        <a name='secmaking-of.2' class='permalink'></a><h1>
-    making-of.2 Mobile-friendly Web Edition</h1></div>
+        <a name='h2' class='permalink'></a><h2>
     
+    Mobile-friendly Web Edition
+    </h2></div>
     
     <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-      The <a address='https://sicp.comp.nus.edu.sg' href='https://sicp.comp.nus.edu.sg'>mobile-friendly web edition</a>
+      The <a address='https://source-academy.github.io/sicp' href='https://source-academy.github.io/sicp'>mobile-friendly web edition</a>
       of SICP JS was designed and implemented by Liu Hang
       in 2017 and then further developed by Feng Piaopiao in 2018, and by He Xinyue and Wang Qian in 2020.
       Formulas are retained in the resulting HTML files
@@ -1732,47 +1737,58 @@
 <a name='p4' class='permalink'></a><p>
       In the book, program fragments often require other program fragments.
       In order to collect and execute the necessary programs, the corresponding
-      <TT>SNIPPET</TT> tags in the xml files include <TT>REQUIRES</TT> tags. The Rails
-      server uses these tags in order to assemble the executable programs. 
+      <TT>SNIPPET</TT> tags in the xml files include <TT>REQUIRES</TT> tags. The 
+      XML processors use these tags in order to assemble the executable programs. 
     </p></div>
 
     
       <div class='permalink'>
-        <a name='secmaking-of.3' class='permalink'></a><h1>
-    making-of.3 PDF Edition</h1></div>
+        <a name='h3' class='permalink'></a><h2>
     
+    PDF Edition
+    </h2></div>
     
     <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-      The <a address='https://sicp.comp.nus.edu.sg/sicpjs.pdf' href='https://sicp.comp.nus.edu.sg/sicpjs.pdf'>PDF edition</a>
-      of SICP JS was designed and implemented by Chan Ger Hean in 2019.
-      Ger Hean decided to use Node.js for generating  files from the XML sources.
-      The  files are then typeset using the PdfLaTeX system.
+      The <a address='https://source-academy.github.io/sicp/sicpjs.pdf' href='https://source-academy.github.io/sicp/sicpjs.pdf'>PDF edition</a>
+      of SICP JS was designed and implemented by Chan Ger Hean in 2019, using Node.js for
+      generating <span class="texhtml" style="font-family: 'CMU Serif', cmr10, LMRoman10-Regular, 'Latin Modern Math', 'Nimbus Roman No9 L', 'Times New Roman', Times, serif;">L<span style="text-transform: uppercase; font-size: 0.75em; vertical-align: 0.25em; margin-left: -0.36em; margin-right: -0.15em; line-height: 1ex;">a</span>T<span style="text-transform: uppercase; vertical-align: -0.5ex; margin-left: -0.1667em; margin-right: -0.125em; line-height: 1ex;">e</span>X</span> files from the XML sources.
+      The <span class="texhtml" style="font-family: 'CMU Serif', cmr10, LMRoman10-Regular, 'Latin Modern Math', 'Nimbus Roman No9 L', 'Times New Roman', Times, serif;">L<span style="text-transform: uppercase; font-size: 0.75em; vertical-align: 0.25em; margin-left: -0.36em; margin-right: -0.15em; line-height: 1ex;">a</span>T<span style="text-transform: uppercase; vertical-align: -0.5ex; margin-left: -0.1667em; margin-right: -0.125em; line-height: 1ex;">e</span>X</span> files are then typeset using <span class="texhtml" style="font-family: 'CMU Serif', cmr10, LMRoman10-Regular, 'Latin Modern Math', 'Nimbus Roman No9 L', 'Times New Roman', Times, serif;">L<span style="text-transform: uppercase; font-size: 0.75em; vertical-align: 0.25em; margin-left: -0.36em; margin-right: -0.15em; line-height: 1ex;">a</span>T<span style="text-transform: uppercase; vertical-align: -0.5ex; margin-left: -0.1667em; margin-right: -0.125em; line-height: 1ex;">e</span>X</span> and pdfTeX.
     </p></div>
 
     
       <div class='permalink'>
-        <a name='secmaking-of.4' class='permalink'></a><h1>
-    making-of.4 E-book Edition</h1></div>
+        <a name='h4' class='permalink'></a><h2>
     
+    E-book Edition
+    </h2></div>
     
     <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
-      The <a address='https://sicp.comp.nus.edu.sg/sicpjs.epub' href='https://sicp.comp.nus.edu.sg/sicpjs.epub'>e-book edition</a>
-      of SICP JS was designed and implemented by Jolyn Tan in 2019.
-      Jolyn decided to use Node.js for generating  files from the XML sources.
-      The  files are then processed into the EPUB 3 format using the
+      The <a address='https://source-academy.github.io/sicp/sicpjs.epub' href='https://source-academy.github.io/sicp/sicpjs.epub'>e-book edition</a>
+      of SICP JS was designed and implemented by Jolyn Tan in 2019, 
+      using Node.js for generating <span class="texhtml" style="font-family: 'CMU Serif', cmr10, LMRoman10-Regular, 'Latin Modern Math', 'Nimbus Roman No9 L', 'Times New Roman', Times, serif;">L<span style="text-transform: uppercase; font-size: 0.75em; vertical-align: 0.25em; margin-left: -0.36em; margin-right: -0.15em; line-height: 1ex;">a</span>T<span style="text-transform: uppercase; vertical-align: -0.5ex; margin-left: -0.1667em; margin-right: -0.125em; line-height: 1ex;">e</span>X</span> files from the XML sources.
+      The <span class="texhtml" style="font-family: 'CMU Serif', cmr10, LMRoman10-Regular, 'Latin Modern Math', 'Nimbus Roman No9 L', 'Times New Roman', Times, serif;">L<span style="text-transform: uppercase; font-size: 0.75em; vertical-align: 0.25em; margin-left: -0.36em; margin-right: -0.15em; line-height: 1ex;">a</span>T<span style="text-transform: uppercase; vertical-align: -0.5ex; margin-left: -0.1667em; margin-right: -0.125em; line-height: 1ex;">e</span>X</span> files are then processed into the EPUB 3 format using the
       pandoc system.
     </p></div>
 
+    
+      <div class='permalink'>
+        <a name='h5' class='permalink'></a><h2>
+    
     Figures
+    </h2></div>
 
     <div class='permalink'>
 <a name='p7' class='permalink'></a><p>
-      The figures are adapted from <a address='https://github.com/sarabander/sicp' href='https://github.com/sarabander/sicp'>HTML5/EPUB3 version of SICP</a>
-      by Andres Raba. The figures are licensed under Creative Commons Attribution-ShareAlike 4.0 International
-      License <a address='https://creativecommons.org/licenses/by-sa/4.0' href='https://creativecommons.org/licenses/by-sa/4.0'>(cc by-sa)</a>. JavaScript adaptations
-      of figures were done by manually by Tobias Wrigstad using Inkscape and gratuitous use of sed. 
+      The figures are adapted from
+      <a address='https://github.com/sarabander/sicp' href='https://github.com/sarabander/sicp'>HTML5/EPUB3 version of SICP</a>
+      by Andres Raba. The figures are licensed under Creative Commons
+      Attribution-ShareAlike 4.0 International
+      License <a address='https://creativecommons.org/licenses/by-sa/4.0' href='https://creativecommons.org/licenses/by-sa/4.0'>(cc by-sa)</a>.
+      JavaScript adaptations
+      of figures were done by manually by Tobias Wrigstad using Inkscape and gratuitous use of
+      <TT>sed</TT>. 
     </p></div>
 
 
@@ -1785,7 +1801,7 @@
     <div style='flex-grow: 1;'></div>
   </div>
     <div class='chapter_sign'>
-       Making of the JavaScript Adaptation
+       About the SICP JS Project
     </div>
     <script> var chapter_id = 126; </script>
     <script> var chapter_path = "chapters/making-of.html"; </script>
