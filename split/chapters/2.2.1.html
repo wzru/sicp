@@ -1889,6 +1889,8 @@
     </span>    </td>
           <td></td>
           <td><span style="color:blue">
+      <div class='permalink'>
+<a name='p8' class='permalink'></a><p>
       Box notation is sometimes difficult to read. When we want to
       indicate the list nature of a data structure, we shall often employ the
       alternative <EM>list notation</EM>, using the
@@ -1898,9 +1900,10 @@
       <kbd>[1, [2, [[3, [4, null]], [5, null]]]]</kbd>
       we can write <kbd>list(1, 2, list(3, 4), 5)</kbd>
       in list notation.
+      </p></div>
     </span></td></tr></table>
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
     We can think of 
     
     
@@ -2014,7 +2017,7 @@ list(5, 1, 2, 3, 4)
         </tr>
         <tr><td><span style="color:green">
       <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
         The value of <kbd>nil</kbd>, used to terminate the
 	chain of pairs, can be thought of as a sequence of no elements, the 
         
@@ -2027,7 +2030,7 @@ list(5, 1, 2, 3, 4)
           <td></td>
           <td><span style="color:blue">
       <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p11' class='permalink'></a><p>
         The value <kbd>null</kbd>, used to terminate
 	the chain of pairs, can be thought of as a sequence of no elements, the 
         
@@ -2046,7 +2049,7 @@ list(5, 1, 2, 3, 4)
   
   
   <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
     The use of pairs to represent sequences of elements as lists is accompanied
     by conventional programming techniques for manipulating lists by
     successively 
@@ -2141,7 +2144,7 @@ list_ref(squares, 3);
     
   </p></div>
   <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
+<a name='p13' class='permalink'></a><p>
     Often we
     
       <span style="color:green"><kbd>cdr</kbd></span>
@@ -2191,7 +2194,7 @@ list_ref(squares, 3);
     
   </p></div>
   <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p14' class='permalink'></a><p>
     The <kbd>length</kbd>
     <span style="color:green">procedure</span>
     <span style="color:blue">function</span>
@@ -2211,7 +2214,7 @@ list_ref(squares, 3);
   </p></div>
 
   <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
+<a name='p15' class='permalink'></a><p>
     This is applied successively until we reach the base case:
     <UL>
       <LI>
@@ -2221,7 +2224,7 @@ list_ref(squares, 3);
   </p></div>
 
   <div class='permalink'>
-<a name='p15' class='permalink'></a><p>
+<a name='p16' class='permalink'></a><p>
     We could also compute <kbd>length</kbd> in an iterative
     style:
     <table width="100%">
@@ -2246,7 +2249,7 @@ list_ref(squares, 3);
 </pre></div></div></td></tr></table>
   </p></div>
   <div class='permalink'>
-<a name='p16' class='permalink'></a><p>
+<a name='p17' class='permalink'></a><p>
     Another conventional programming technique is to 
     
     
@@ -2293,7 +2296,7 @@ list(1, 4, 9, 16, 25, 1, 3, 5, 7)
 (box notation)</pre></div></div></td></tr></table>
   </p></div>
   <div class='permalink'>
-<a name='p17' class='permalink'></a><p>
+<a name='p18' class='permalink'></a><p>
     
       <span style="color:green"><kbd>Append</kbd></span>
       <span style="color:blue">The function <kbd>append</kbd>
@@ -2779,7 +2782,7 @@ function no_more(coin_values) {
   
   
   <div class='permalink'>
-<a name='p18' class='permalink'></a><p>
+<a name='p19' class='permalink'></a><p>
     One extremely useful operation is to apply some transformation to each
     element in a list and generate the list of results. For instance, the
     following
@@ -2808,7 +2811,7 @@ function no_more(coin_values) {
     
   </p></div>
   <div class='permalink'>
-<a name='p19' class='permalink'></a><p>
+<a name='p20' class='permalink'></a><p>
     We can abstract this general idea and capture it as a common pattern
     expressed as a higher-order
     
@@ -2879,7 +2882,7 @@ function no_more(coin_values) {
 [1, [4, [9, [16, null]]]]</pre></div></div></td></tr></table>
   </p></div>
   <div class='permalink'>
-<a name='p20' class='permalink'></a><p>
+<a name='p21' class='permalink'></a><p>
     Now we can give a new definition of
     
       <span style="color:green"><kbd>scale-list</kbd></span>
@@ -2901,7 +2904,7 @@ function no_more(coin_values) {
   </p></div>
 
   <div class='permalink'>
-<a name='p21' class='permalink'></a><p>
+<a name='p22' class='permalink'></a><p>
     
       <span style="color:green"><kbd>Map</kbd></span>
       <span style="color:blue">The function <kbd>map</kbd>
