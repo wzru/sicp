@@ -2698,34 +2698,18 @@ list(0, 1, 1, 4, 9, 25, 64, 169, 441, 1156, 3025)</pre></div></div></td></tr></t
     Fill in the missing expressions to complete the following definitions of
     some basic list-manipulation operations as accumulations:
     
-    <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_34_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (map p sequence)
-  (accumulate (lambda (x y) ^??^) nil sequence))
-
-            
-(define (append seq1 seq2)
-  (accumulate cons ^??^ ^??^))
-
-            
-(define (length sequence)
-  (accumulate ^??^ 0 sequence))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBbAQwAcAKPAGlAGcBTARwI9SPAJSgA3tlDTQAJx5kCs2gxIkCdAgBsGZHixYAPTgE8xAXgB8oAPw3QnKTOcvXMotq2deAoSVEA3NgAvriEpJQ0oMxMQgAmLD4AjN78KGKSzvKKytFqGtq6+kwMFLKcdhU2IkGh+MTk1LRaQgDmZAAWifyCwhlO0tlKKvmaOnoslaAADKm+fbW4jKyMnQD6XHyyZJxaFFxkLCmonJicACwiNdgg0UyxRAl7B0ecKKciu-uH55wArJwAGxXIK3FpEdpdZ6HY7vUBnUCXGpAA')">function map(f, sequence) {
-    return accumulate((x, y) => ?? , 
+    <kbd class='snippet'>function map(f, sequence) {
+    return accumulate((x, y) => $\langle ??\rangle$, 
                       null, sequence);
 }
 
 function append(seq1, seq2) {
-    return accumulate(pair, ??, ??);
+    return accumulate(pair, $\langle ??\rangle$, $\langle ??\rangle$);
 }
 
 function length(sequence) {
-    return accumulate(??, 0, sequence);
-}
-</pre></div></div></td></tr></table>
+    return accumulate($\langle ??\rangle$, 0, sequence);
+}</kbd>
     
   
       <div class="Solution">
@@ -2736,9 +2720,9 @@ function length(sequence) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBbAQwAcAKPAGlAGcBTARwI9SPAJSgA3tlDTQAJx5kCs2gxIkCdAgBsGZHixYAPTgE8xAXgB8oJgwqy2RkaedSZ7j55lFtWzm69Aj14BIRJRAG5sAF9cQlJKGlBmJiEAExYQgEZOEJQxSXd5RWVktQ1tXX1be1z+FDq+LJEo2PxicmpaLSEAczIAC0z+QWECgLkFJRVyzR09A2NQM1ArZdAAalAciaCggAZ-PePuEbDImNxGVkZBgH0uPlkyTi0KLjIWHNROTE4AFhELWwIGSTFSRAybw+X04DVAmGcoGhn3+nAArJwAGxAqKgnpEfpDFGwn4IgG4oA')">function map(f, sequence) {
+            <td><div class='snippet' id='javascript_34_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBbAQwAcAKPAGlAGcBTARwI9SPAJSgA3tlDTQAJx5kCs2gxIkCdAgBsGZHixYAPTgE8xAXgB8oJgwqy2RkaedSZ7j55lFtWzm69Aj14BIRJRAG5sAF9cQlJKGlBmJiEAExYQgEZOEJQxSXd5RWVktQ1tXX1be1z+FDq+LJEo2PxicmpaLSEAczIAC0z+QWECgLkFJRVyzR09A2NQM1ArZdAAalAciaCggAZ-PePuEbDImNxGVkZBgH0uPlkyTi0KLjIWHNROTE4AFhELWwIGSTFSRAybw+X04DVAmGcoGhn3+nAArJwAGxAqKgnpEfpDFGwn4IgG4oA')">function map(f, sequence) {
     return accumulate((x, y) => pair(f(x), y),
                       null, 
                       sequence);
@@ -2789,30 +2773,20 @@ function length(sequence) {
     coefficients of the polynomial are arranged in a sequence, from
     $a_{0}$ through
     $a_{n}$.
-    <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_34_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (horner-eval x coefficient-sequence)
-   (accumulate (lambda (this-coeff higher-terms) ^??^)
-               0
-               coefficient-sequence))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQALKgJyIFNGB9FgNwEMAbABQAPADSgSVFnjwUSFFkTLsAziwCOBBSRYBKUAG9soY6EYsyBZqB4kSBALYE+PMiwECydCsvYSpeMS8Aczo2dldGe2U9AF4APlAAfkSRIxN0jMyTAAYxNKyCjL9pWXlFFXVNUl0AbmwAX1wGZjDufgEUMT5vMgEARjFMMVzQAFZhsT6dHRqgA')">function horner_eval(x, coefficient_sequence) {
-    return accumulate((this_coeff, higher_terms) => ??,
+    <kbd class='snippet'>function horner_eval(x, coefficient_sequence) {
+    return accumulate((this_coeff, higher_terms) => $\langle ??\rangle$,
                       0, 
                       coefficient_sequence);
-}
-</pre></div></div></td></tr></table>
+}</kbd>
     For example, to compute $1+3x+5x^3+x^5$ at
     $x=2$ you would evaluate
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (horner-eval 2 (list 1 3 0 5 0 1))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQALKgJyIFNGB9FgNwEMAbABQAPADSgSVFnjwUSFFkTLsAziwCOBBSRYBKUAG9soY6EYsyBZqB4kSBALYE+PMiwECydCsvYSpeMS8Aczo2dldGe2U9AF4APlAAfkSRIxN0jMyTAAYxNKyCjL9pWXlFFXVNUl0AbmwAX1wGZjDufgEUMT5vMgEARjFMMVzQAFZhsT6dHRqgA')">horner_eval(2, list(1, 3, 0, 5, 0, 1));
+            <td><div class='snippet' id='javascript_34_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQALKgJyIFNGB9FgNwEMAbABQAPADSgSVFnjwUSFFkTLsAziwCOBBSRYBKUAG9soY6EYsyBZqB4kSBALYE+PMiwECydCsvYSpeMS8Aczo2dldGe2U9AF4APlAAEgAdZyIgvhZQAH5s5MYedMzEkSMTcorKkwAGMTKqhoq-aVl5RRV1TVJdAG5sAF9cBmYw7n4BFDE+bzIBAEYxTDFa0ABWZbE5nR0eoA')">horner_eval(2, list(1, 3, 0, 5, 0, 1));
 </pre></div></div></td></tr></table>
     
   
@@ -2824,9 +2798,9 @@ function length(sequence) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_25_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_25_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQALKgJyIFNGB9FgNwEMAbABQAPADSgSVFnjwUSFFkTLsAziwCOBBSRYBKUAG9soY6EYsyBZqB4kSBALYE+PMiwECydCsvYSpeMS8Aczo2dldGe2U9AF4APlAjE2SU1JMhUAAqegoQsIio0ABqUE9vX0lpESS02pSABjEaupa-aVl5RRV1TVJdAG5sAF9cBmYw7n4BFDE+bzIBAEYxTDFG0ABWNbFFnR1+oA')">function horner_eval(x, coefficient_sequence) {
+            <td><div class='snippet' id='javascript_34_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQALKgJyIFNGB9FgNwEMAbABQAPADSgSVFnjwUSFFkTLsAziwCOBBSRYBKUAG9soY6EYsyBZqB4kSBALYE+PMiwECydCsvYSpeMS8Aczo2dldGe2U9AF4APlAjE2SU1JMhUAAqegoQsIio0ABqUE9vX0lpESS02pSABjEaupa-aVl5RRV1TVJdAG5sAF9cBmYw7n4BFDE+bzIBAEYxTDFG0ABWNbFFnR1+oA')">function horner_eval(x, coefficient_sequence) {
     return accumulate((this_coeff, higher_terms) => 
                       x * higher_terms + this_coeff,
                       0, 
@@ -2850,17 +2824,9 @@ function length(sequence) {
       </span>
     
     from section&nbsp;<REF NAME="sec:trees"><a class="superscript" id="2.2.3-sec-link-2.2.2" href="./2.2.2.html">2.2.2</a></REF> as an accumulation:
-    <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_34_26_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (count-leaves t)
-   (accumulate ^??^ ^??^ (map ^??^ ^??^)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_26_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQSriyB9AGwFMBDANzYGcAKMgEpQAb2yhJoAE5syBabQ4kSBALYEWHMm34B+PQBpQB42o4AHfUZN6hQgNzYAvrnqNWnHgIscK0-hYKXjJ+AEZjFCFjIJD+TGMAFntHIA')">function count_leaves(t) {
-    return accumulate(??, ??, map(??, ??));
-}
-</pre></div></div></td></tr></table>
+    <kbd class='snippet'>function count_leaves(t) {
+    return accumulate($\langle ??\rangle$, $\langle ??\rangle$, map($\langle ??\rangle$, $\langle ??\rangle$));
+}</kbd>
     
   
       <div class="Solution">
@@ -2871,9 +2837,9 @@ function length(sequence) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_27_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_27_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQSriyB9AGwFMBDANzYGcAKMgEpQAb2yhJoAE5syBabQ4kSBALYEWHMm37923PgBpQZKmQ4sRAXgB8oAz16gA1KfOWjEqT99+pAAwm2ACQIX5qHAAO-LwEAEZMZLJsoHagFLxMURwU0rEJSSlCoeH+vgD8dAxEzI58BYnJbGwl5e0dkgBcoACMXmFlwkIA3NgAvrj0jKycTvw5efqZZPz9qEImLCv8mCYALEJHI0A')">function count_leaves(t) {
+            <td><div class='snippet' id='javascript_34_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQSriyB9AGwFMBDANzYGcAKMgEpQAb2yhJoAE5syBabQ4kSBALYEWHMm37923PgBpQZKmQ4sRAXgB8oAz16gA1KfOWjEqT99+pAAwm2ACQIX5qHAAO-LwEAEZMZLJsoHagFLxMURwU0rEJSSlCoeH+vgD8dAxEzI58BYnJbGwl5e0dkgBcoACMXmFlwkIA3NgAvrj0jKycTvw5efqZZPz9qEImLCv8mCYALEJHI0A')">function count_leaves(t) {
     return accumulate((leaves, total) => leaves + total,
                       0, 
 		      map(sub_tree => is_pair(sub_tree)
@@ -2921,9 +2887,9 @@ function length(sequence) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_28_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_25_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ((1 2 3) (4 5 6) (7 8 9) (10 11 12))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_28_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_25_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 list(list( 1,  2,  3),
      list( 4,  5,  6),
      list( 7,  8,  9),
@@ -2949,23 +2915,12 @@ list(list( 1,  2,  3),
       <span style="color:blue"><kbd>accumulate_n</kbd>:
       </span>
     
-    <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_34_29_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (accumulate-n op init seqs)
-  (if (null? (car seqs))
-     nil
-     (cons (accumulate op init ^??^)
-           (accumulate-n op init ^??^))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBDEkggWwIBs6yBTAfSIAoqABwA0oCkQpkxAZy4BHGQEpQAb2yhNoAE5cyBbbQoy+7NvwAWXOgBN+cxUqUatrrQH5QRMy7euAXKBCdBTa-AxMrBzcgqLiktKg7u5KYr5+GZoRLOycvALCYhJSYslOANzYAL64JDQyZKAOPA6gALygbMZk-F0N-ACMYihimKmd3fwALGIArGIAbOPpmat9PQDsYgAcYgCc4+uDAAxiA0OgAygV2NlReXz8QmwEMmKnTQotCkrlQA')">function accumulate_n(op, init, seqs) {
+    <kbd class='snippet'>function accumulate_n(op, init, seqs) {
     return is_null(head(seqs))
            ? null
-           : pair(accumulate(op, init, ??), 
-                  accumulate_n(op, init, ??));
-}
-</pre></div></div></td></tr></table>
+           : pair(accumulate(op, init, $\langle ??\rangle$), 
+                  accumulate_n(op, init, $\langle ??\rangle$));
+}</kbd>
     
     
   
@@ -2977,9 +2932,9 @@ list(list( 1,  2,  3),
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_30_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_26_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_30_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQAHAGwIGcAKADwBpQBPASlABvbKFGgATgFMyBcbXagA1LwDc2AL65CpSjVABDEiQIBbAg31lJAfSKsqdbhSIUy3ZpICOzAcLETpWVoKZltzBlYAC0l9ABNWD28+PhF-NNAAflAicNT0sQAuen0KcVZDYzMLK3tHUGdXbhN9Og5QAF4APlBouI4+dy8fAbz8sYrTc0sbOwcnFzdQZtaFLtAyEoj2AdBE4b41TWwSGmYyXa9rRI7QBhCyVjuz1gBGbhRuTB2nh4AWbgArNwAGw7UZjCE-VgAdm4AA5uABOb73V4ABm4LzeoBeKGSagmVWmtlYjBY3AxF08Vy8ByAA')">function accumulate_n(op, init, seqs) {
+            <td><div class='snippet' id='javascript_34_26_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQAHAGwIGcAKADwBpQBPASlABvbKFGgATgFMyBcbXagA1LwDc2AL65CpSjVABDEiQIBbAg31lJAfSKsqdbhSIUy3ZpICOzAcLETpWVoKZltzBlYAC0l9ABNWD28+PhF-NNAAflAicNT0sQAuen0KcVZDYzMLK3tHUGdXbhN9Og5QAF4APlBouI4+dy8fAbz8sYrTc0sbOwcnFzdQZtaFLtAyEoj2AdBE4b41TWwSGmYyXa9rRI7QBhCyVjuz1gBGbhRuTB2nh4AWbgArNwAGw7UZjCE-VgAdm4AA5uABOb73V4ABm4LzeoBeKGSagmVWmtlYjBY3AxF08Vy8ByAA')">function accumulate_n(op, init, seqs) {
     return is_null(head(seqs))
            ? null
            : pair(accumulate(op, init, map(x => head(x), seqs)),
@@ -3023,7 +2978,7 @@ list(list( 1,  2,  3),
           <td></td>
           <td><span style="color:blue">
 	is represented as the following sequence:
-	<div class='snippet' id='javascript_34_31_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_34_27_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 list(list(1, 2, 3, 4),
      list(4, 5, 6, 6),
      list(6, 7, 8, 9))</pre></div></div>
@@ -3078,10 +3033,10 @@ list(list(1, 2, 3, 4),
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_32_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_28_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (dot-product v w)
   (accumulate + 0 (map * v w)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_32_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQAHAGwIGcAKADwBpQBPASlABvbKFGgATgFMyBcbXagA1LwDc2AL65CpSjVCUAtpLZdeA4WInTZ80ACpVGrcXLVaAQxIkCBgg3dkkgD6RKxUdNwURBRk3MySAI7M5iJiUjJyoBTMIX4MrAAWku4AJqzxSXx8qZa1APygRHk1tWIAXPTuFOKsnt6+-oFhEVnRsaAG7nQcoAC8AHygRaUcfHGJyWstrTugfT5+AcGh4ZFj3JPTCgv6Xfnsa6AVm3xqmvguurQlVGRBdOIqCUCORWAA3bgAdxSlnSNj2XgOg0krEYLG4AAZuNtdrj9gMjiFWIZjNwAIzcBjZMjgqFVV5ObA-P4AoEgmlU5g0imoR6cmmYbgAFiqKiAA')">function dot_product(v, w) {
+            <td><div class='snippet' id='javascript_34_28_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQAHAGwIGcAKADwBpQBPASlABvbKFGgATgFMyBcbXagA1LwDc2AL65CpSjVCUAtpLZdeA4WInTZ80ACpVGrcXLVaAQxIkCBgg3dkkgD6RKxUdNwURBRk3MySAI7M5iJiUjJyoBTMIX4MrAAWku4AJqzxSXx8qZa1APygRHk1tWIAXPTuFOKsnt6+-oFhEVnRsaAG7nQcoAC8AHygRaUcfHGJyWstrTugfT5+AcGh4ZFj3JPTCgv6Xfnsa6AVm3xqmvguurQlVGRBdOIqCUCORWAA3bgAdxSlnSNj2XgOg0krEYLG4AAZuNtdrj9gMjiFWIZjNwAIzcBjZMjgqFVV5ObA-P4AoEgmlU5g0imoR6cmmYbgAFiqKiAA')">function dot_product(v, w) {
     return accumulate(plus, 0, 
                       accumulate_n(times, 1, list(v, w)));
 }
@@ -3108,35 +3063,18 @@ list(list(1, 2, 3, 4),
       </span>
     
     exercise&nbsp;<REF NAME="ex:accumulate-n"><a class="superscript" id="2.2.3-ex-link-2.37" href="./2.2.3.html#ex_2.37">2.37</a></REF>.)
-    <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_34_33_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (matrix-*-vector m v)
-  (map ^??^ m))
-
-            
-(define (transpose mat)
-  (accumulate-n ^??^ ^??^ mat))
-
-            
-(define (matrix-*-matrix m n)
-  (let ((cols (transpose n)))
-    (map ^??^ m)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_33_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBbAQzICcKAPAfUroFMBnDgDce5KswAUdADShBASlABvbKFWhmPMgWa1GAB3EB+QzLpyA3NgC+uQqUo1QLBkT56qfHpKYLla9ZratAwkJAR0BAA2TDwcREYmoMamPpY2+MTk1LpMrJzc-ByMLOziRKa+KmokNHxkoDWRfKAAvE7MLm4eXkQWVaoaWjr0DAbJ9H1WQA')">function matrix_times_vector(m, v) {
-    return map(??, m);
+    <kbd class='snippet'>function matrix_times_vector(m, v) {
+    return map($\langle ??\rangle$, m);
 }
 
 function transpose(mat) {
-    return accumulate_n(??, ??, mat);
+    return accumulate_n($\langle ??\rangle$, $\langle ??\rangle$, mat);
 }
 
 function matrix_times_matrix(n, m) {
     const cols = transpose(n);
-    return map(??, m);
-}
-</pre></div></div></td></tr></table>
+    return map($\langle ??\rangle$, m);
+}</kbd>
     
     
   
@@ -3148,9 +3086,9 @@ function matrix_times_matrix(n, m) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_34_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_29_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_34_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBDEkggWwIBs6yBTAfSIAoqABwA0oCkQpkxAZy4BHGQEpQAb2yhNoAE5cyBbbQoy+7NvwAWXOgBN+cxUqUatrrQH5QRMy7euAXKBCdBTa-AxMrBzcgqLiktKgzHRC-AAeoAC8AHygVrbpSrIKykW+fhWaESzsnLwCwmISUmLJqRk5oGQh5mlFoA6lSgDc2AC+uISklDRBbAQy6WIAnirqrrr6hqAZANSgy6MT+MTk1LSUzFyLaStr5ZsGtBkAVAdHk6cztDZUZDxCbRUGwEcj8ABuYgA7vcNnonvRGDVolx+EJ5jIxAAGMTlSr4xGRWrcPj8S7XMQARjEbGMZAh0KcI3Gn2m5ySnG0FDSPHJJnBXHIVDCzDE4NhWke2za-CBUKyuV+-0BwNB9LlYv6zGZxymZ1mZG0dCIMiEVDk-GSZAlmiltGqUTqpOCoTE3jYbFanB1rP1tCtXJ5fJ4Ae5-CIrRtoBINBkZGjVDYMiyXSNJrNFu1ozhW39KXSCo5qWWhaVAKBILBtwO-RjSf6RB92BjJvj4JTtLj-EpONQvcwWOZLbjSUpHbp-E79OpqDEmH6U-4mDEAFYqQuJzOt05RsP48wUOOu4uZyg5xuuwAWVdiABsF-pAHYxAAOMQATh3uFDQYoV35gpkMKlozuKowgKmxqmuaqLMJSzIQT+vJ-tcIacmGcGtCgIxAA')">function matrix_times_vector(m, v) {
+            <td><div class='snippet' id='javascript_34_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBDEkggWwIBs6yBTAfSIAoqABwA0oCkQpkxAZy4BHGQEpQAb2yhNoAE5cyBbbQoy+7NvwAWXOgBN+cxUqUatrrQH5QRMy7euAXKBCdBTa-AxMrBzcgqLiktKgzHRC-AAeoAC8AHygVrbpSrIKykW+fhWaESzsnLwCwmISUmLJqRk5oGQh5mlFoA6lSgDc2AC+uISklDRBbAQy6WIAnirqrrr6hqAZANSgy6MT+MTk1LSUzFyLaStr5ZsGtBkAVAdHk6cztDZUZDxCbRUGwEcj8ABuYgA7vcNnonvRGDVolx+EJ5jIxAAGMTlSr4xGRWrcPj8S7XMQARjEbGMZAh0KcI3Gn2m5ySnG0FDSPHJJnBXHIVDCzDE4NhWke2za-CBUKyuV+-0BwNB9LlYv6zGZxymZ1mZG0dCIMiEVDk-GSZAlmiltGqUTqpOCoTE3jYbFanB1rP1tCtXJ5fJ4Ae5-CIrRtoBINBkZGjVDYMiyXSNJrNFu1ozhW39KXSCo5qWWhaVAKBILBtwO-RjSf6RB92BjJvj4JTtLj-EpONQvcwWOZLbjSUpHbp-E79OpqDEmH6U-4mDEAFYqQuJzOt05RsP48wUOOu4uZyg5xuuwAWVdiABsF-pAHYxAAOMQATh3uFDQYoV35gpkMKlozuKowgKmxqmuaqLMJSzIQT+vJ-tcIacmGcGtCgIxAA')">function matrix_times_vector(m, v) {
     return map(row => dot_product(row, v), m);
 }
 
@@ -3205,7 +3143,7 @@ function matrix_times_matrix(n, m) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_35_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_30_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (fold-left op initial sequence)
   (define (iter result rest)
     (if (null? rest)
@@ -3213,7 +3151,7 @@ function matrix_times_matrix(n, m) {
       (iter (op result (car rest))
             (cdr rest))))
   (iter initial sequence))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_35_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8qAbAEwH0GBTPMgCioAcANKApEKlAIYMhAZ3YBHAu1LsAlKADe2UNrrFy1WmPYAnbsfbSCDMkPPSyazTuehzZAscPSWRKwzMWDlouIToA-K4WVmTBoSEAXMJkJrx8AZbWQgAW7OJM6Q4qQrFxpdpk4hT+doUA3CUAviVuHobJpiJiFJIy8orKKvVN+IysHFzcDBT2Qr4MUqBT9twAjEIoQpgqg0A')">function fold_left(op, initial, sequence) {
+            <td><div class='snippet' id='javascript_34_30_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8qAbAEwH0GBTPMgCioAcANKApEKlAIYMhAZ3YBHAu1LsAlKADe2UNrrFy1WmPYAnbsfbSCDMkPPSyazTuehzZAscPSWRKwzMWDlouIToA-K4WVmTBoSEAXMJkJrx8AZbWQgAW7OJM6Q4qQrFxpdpk4hT+doUA3CUAviVuHobJpiJiFJIy8orKKvVN+IysHFzcDBT2Qr4MUqBT9twAjEIoQpgqg0A')">function fold_left(op, initial, sequence) {
     function iter(result, rest) {
         return is_null(rest)
                ? result
@@ -3230,33 +3168,33 @@ function matrix_times_matrix(n, m) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_36_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_31_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (fold-right / 1 (list 1 2 3))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_36_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChslAM4CGAtgKahEGUDGNArifQDZEAuZ2NA9gHYFtQAM27MAJgH0ATgEsA5gAtBAXloMmrDgG5cQ+rxpsZfUGJkA3GWLIAKAB4AaUAE8AlKADe2UD9BSybPRSvKB2oGDOOgC+uqKSsopsNmaW1k4AjE7MMgI2mahOmK6uWkA')">fold_right(divide, 1, list(1, 2, 3));
+            <td><div class='snippet' id='javascript_34_31_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChslAM4CGAtgKahEGUDGNArifQDZEAuZ2NA9gHYFtQAM27MAJgH0ATgEsA5gAtBAXloMmrDgG5cQ+rxpsZfUGJkA3GWLIAKAB4AaUAE8AlKADe2UD9BSybPRSvKB2oGDOOgC+uqKSsopsNmaW1k4AjE7MMgI2mahOmK6uWkA')">fold_right(divide, 1, list(1, 2, 3));
 </pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_37_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_32_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (fold-left / 1 (list 1 2 3))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_37_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8qAbAEwH0GBTPMgCioAcANKApEKlAIYMhAZ3YBHAu1LsAlKADe2UNrrFy1WmPYAnbsfbSCDMkPPSyazTuehzZAscPSWRKwzMWDlouIToA-K4WVmTBoSEAXMJkJrx8AZbWQgAW7OJM6Q4qQrFxpdpk4hT+doUA3CUAviVuHobJpiJiFJIy8orKKvVN+HqUNKBMFABuFEzs3AAeQgCejs3s7p6gC6Bgy0O49MxsnDyTM3NCAIxCDBT23DeoQpgqg0A')">fold_left(divide, 1, list(1, 2, 3));
+            <td><div class='snippet' id='javascript_34_32_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8qAbAEwH0GBTPMgCioAcANKApEKlAIYMhAZ3YBHAu1LsAlKADe2UNrrFy1WmPYAnbsfbSCDMkPPSyazTuehzZAscPSWRKwzMWDlouIToA-K4WVmTBoSEAXMJkJrx8AZbWQgAW7OJM6Q4qQrFxpdpk4hT+doUA3CUAviVuHobJpiJiFJIy8orKKvVN+HqUNKBMFABuFEzs3AAeQgCejs3s7p6gC6Bgy0O49MxsnDyTM3NCAIxCDBT23DeoQpgqg0A')">fold_left(divide, 1, list(1, 2, 3));
 </pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_38_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_33_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (fold-right list nil (list 1 2 3))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_38_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChslAM4CGAtgKahEGUDGNArifQDZEAuZ2NA9gHYFtQAM27MAJgH0ATgEsA5gAtBAXloMmrDgG5cI8dPlKAFMxkCANKF4tml0wKMBGSykuYAlO61A')">fold_right(list, null, list(1, 2, 3));
+            <td><div class='snippet' id='javascript_34_33_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChslAM4CGAtgKahEGUDGNArifQDZEAuZ2NA9gHYFtQAM27MAJgH0ATgEsA5gAtBAXloMmrDgG5cI8dPlKAFMxkCANKF4tml0wKMBGSykuYAlO61A')">fold_right(list, null, list(1, 2, 3));
 </pre></div></div></td></tr></table>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_39_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_34_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (fold-left list nil (list 1 2 3))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_39_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8qAbAEwH0GBTPMgCioAcANKApEKlAIYMhAZ3YBHAu1LsAlKADe2UNrrFy1WmPYAnbsfbSCDMkPPSyazTuehzZAscPSWRKwzMWDlouIToA-K4WVmTBoSEAXMJkJrx8AZbWQgAW7OJM6Q4qQrFxpdpk4hT+doUA3CUAviVuHobJpiJiFJIy8orKKvVN+IysHFzcDBT2Qr4MUqBT9twAjEIoQpgqg0A')">fold_left(list, null, list(1, 2, 3));
+            <td><div class='snippet' id='javascript_34_34_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8qAbAEwH0GBTPMgCioAcANKApEKlAIYMhAZ3YBHAu1LsAlKADe2UNrrFy1WmPYAnbsfbSCDMkPPSyazTuehzZAscPSWRKwzMWDlouIToA-K4WVmTBoSEAXMJkJrx8AZbWQgAW7OJM6Q4qQrFxpdpk4hT+doUA3CUAviVuHobJpiJiFJIy8orKKvVN+IysHFzcDBT2Qr4MUqBT9twAjEIoQpgqg0A')">fold_left(list, null, list(1, 2, 3));
 </pre></div></div></td></tr></table>
     Give a property that
     
@@ -3286,9 +3224,9 @@ function matrix_times_matrix(n, m) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_40_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_35_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_40_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChslAM4CGAtgKahEGUDGNArifQDZEAuZ2NA9gHYFtQAM27MAJgH0ATgEsA5gAtBAXloMmrDgG5cQ+rxpsZfUGJkA3GWLIAKAB4AaUAE8AlKADe2UD9BSybPRSvKB2oGDOOgC+uqKSsopsNmaW1k4AjE7MMgI2mahOmK6uOnhg-gQsbABcoOloAKxAA')">1.5
+            <td><div class='snippet' id='javascript_34_35_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChslAM4CGAtgKahEGUDGNArifQDZEAuZ2NA9gHYFtQAM27MAJgH0ATgEsA5gAtBAXloMmrDgG5cQ+rxpsZfUGJkA3GWLIAKAB4AaUAE8AlKADe2UD9BSybPRSvKB2oGDOOgC+uqKSsopsNmaW1k4AjE7MMgI2mahOmK6uOnhg-gQsbABcoOloAKxAA')">1.5
 </pre></div></div></td></tr></table>
 	</LI>
 	<LI>
@@ -3296,9 +3234,9 @@ function matrix_times_matrix(n, m) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_41_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_36_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_41_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8qAbAEwH0GBTPMgCioAcANKApEKlAIYMhAZ3YBHAu1LsAlKADe2UNrrFy1WmPYAnbsfbSCDMkPPSyazTuehzZAscPSWRKwzMWDlouIToA-K4WVmTBoSEAXMJkJrx8AZbWQgAW7OJM6Q4qQrFxpdpk4hT+doUA3CUAviVuHobJpiJiFJIy8orKKvVN+HqUNKBMFABuFEzs3AAeQgCejs3s7p6gC6Bgy0O49MxsnDyTM3NCAIxCDBT23DeoQpgqg7ggkRlkiQAMaFcAGzAkGgsGAoA')">0.16666666666666666
+            <td><div class='snippet' id='javascript_34_36_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8qAbAEwH0GBTPMgCioAcANKApEKlAIYMhAZ3YBHAu1LsAlKADe2UNrrFy1WmPYAnbsfbSCDMkPPSyazTuehzZAscPSWRKwzMWDlouIToA-K4WVmTBoSEAXMJkJrx8AZbWQgAW7OJM6Q4qQrFxpdpk4hT+doUA3CUAviVuHobJpiJiFJIy8orKKvVN+HqUNKBMFABuFEzs3AAeQgCejs3s7p6gC6Bgy0O49MxsnDyTM3NCAIxCDBT23DeoQpgqg7ggkRlkiQAMaFcAGzAkGgsGAoA')">0.16666666666666666
 </pre></div></div></td></tr></table>
 	</LI>
 	<LI>
@@ -3306,9 +3244,9 @@ function matrix_times_matrix(n, m) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_42_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_37_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_42_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChslAM4CGAtgKahEGUDGNArifQDZEAuZ2NA9gHYFtQAM27MAJgH0ATgEsA5gAtBAXloMmrDgG5cI8dPlKAFMxkCANKF4tml0wKMBGSykuYAlO514wUsgRY2AC5QAG1nMNDXSMxLUOtmWysbAF0UywTmNIzUlKA')">[1, [[2, [[3, [null, null]], null]], null]]
+            <td><div class='snippet' id='javascript_34_37_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChslAM4CGAtgKahEGUDGNArifQDZEAuZ2NA9gHYFtQAM27MAJgH0ATgEsA5gAtBAXloMmrDgG5cI8dPlKAFMxkCANKF4tml0wKMBGSykuYAlO514wUsgRY2AC5QAG1nMNDXSMxLUOtmWysbAF0UywTmNIzUlKA')">[1, [[2, [[3, [null, null]], null]], null]]
 </pre></div></div></td></tr></table>
 	</LI>
 	<LI>
@@ -3316,9 +3254,9 @@ function matrix_times_matrix(n, m) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_43_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_38_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_43_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8qAbAEwH0GBTPMgCioAcANKApEKlAIYMhAZ3YBHAu1LsAlKADe2UNrrFy1WmPYAnbsfbSCDMkPPSyazTuehzZAscPSWRKwzMWDlouIToA-K4WVmTBoSEAXMJkJrx8AZbWQgAW7OJM6Q4qQrFxpdpk4hT+doUA3CUAviVuHobJpiJiFJIy8orKKvVN+IysHFzcDBT2Qr4MUqBT9twAjEIoQpgqg7ggkRlkiQDaJ3MLR2ugZwC610JHG1d+t-eYs8-XQA')">[[[null, [1, null]], [2, null]], [3, null]]
+            <td><div class='snippet' id='javascript_34_38_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8qAbAEwH0GBTPMgCioAcANKApEKlAIYMhAZ3YBHAu1LsAlKADe2UNrrFy1WmPYAnbsfbSCDMkPPSyazTuehzZAscPSWRKwzMWDlouIToA-K4WVmTBoSEAXMJkJrx8AZbWQgAW7OJM6Q4qQrFxpdpk4hT+doUA3CUAviVuHobJpiJiFJIy8orKKvVN+IysHFzcDBT2Qr4MUqBT9twAjEIoQpgqg7ggkRlkiQDaJ3MLR2ugZwC610JHG1d+t-eYs8-XQA')">[[[null, [1, null]], [2, null]], [3, null]]
 </pre></div></div></td></tr></table>
 	</LI>
       </OL>
@@ -3330,9 +3268,9 @@ function matrix_times_matrix(n, m) {
       <kbd>op</kbd> is just associative and the
       argument <kbd>initial</kbd> is a left and right
       neutral element with respect to <kbd>op</kbd>.
-      <div class='snippet' id='javascript_34_44_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQAHAGwIGcAKADwBpQBPASlABvbKFGgATgFMyBcbXagA1LwDc2AL64QoZgEMAtpNC7mxkiQL6CDXWUnYSNZmVB4qDACYB9cRQDmABYuALxmFlY2dmr47t6+gWSsjCzcAAzcDBTOrACM3CjcmHx8KkA')">fold_right(plus, 0, list(1, 2, 3));
+      <div class='snippet' id='javascript_34_39_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQAHAGwIGcAKADwBpQBPASlABvbKFGgATgFMyBcbXagA1LwDc2AL64QoZgEMAtpNC7mxkiQL6CDXWUnYSNZmVB4qDACYB9cRQDmABYuALxmFlY2dmr47t6+gWSsjCzcAAzcDBTOrACM3CjcmHx8KkA')">fold_right(plus, 0, list(1, 2, 3));
 </pre></div></div>
-      <div class='snippet' id='javascript_34_45_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQAHAGwIGcAKADwBpQBPASlABvbKFGgATgFMyBcbXagA1LwDc2AL65CpSjVB4qDACYB9BpLxlWVOtwpEKlAIYNuzSQEcCk0pIHCxfWJyalpHSXFWKWYCBjJuaLJ-EUCxKRk5UApmEyJYhijJZiSU1LLRAH4JItiyUvLUgC4ssgjrOkKYuO4AC0knI06kvm56hvHQMicKAsS+PjVAzUD02TDWyPtHChc3T29fBY0tQ1NzS1ZGFm4ABm4GbKsARm4Ubkx5lSA')">fold_left(plus, 0, list(1, 2, 3));
+      <div class='snippet' id='javascript_34_40_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQAHAGwIGcAKADwBpQBPASlABvbKFGgATgFMyBcbXagA1LwDc2AL65CpSjVB4qDACYB9BpLxlWVOtwpEKlAIYNuzSQEcCk0pIHCxfWJyalpHSXFWKWYCBjJuaLJ-EUCxKRk5UApmEyJYhijJZiSU1LLRAH4JItiyUvLUgC4ssgjrOkKYuO4AC0knI06kvm56hvHQMicKAsS+PjVAzUD02TDWyPtHChc3T29fBY0tQ1NzS1ZGFm4ABm4GbKsARm4Ubkx5lSA')">fold_left(plus, 0, list(1, 2, 3));
 </pre></div></div>
     </SOLUTION></div></div>
 </EXERCISE></div>
@@ -3355,42 +3293,26 @@ function matrix_times_matrix(n, m) {
       <span style="color:blue"><kbd>fold_left</kbd></span>
     
     from exercise&nbsp;<REF NAME="ex:fold-right-left"><a class="superscript" id="2.2.3-ex-link-2.39" href="./2.2.3.html#ex_2.39">2.39</a></REF>:
-    <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_34_46_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (reverse sequence)
-  (fold-right (lambda (x y) ^??^) nil sequence))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_46_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQAnAUwDcG6BnBgCg4EcCHSDAJSgA3tlCT6DMgTq08VADYATAPp0KAcwAWZTpwAeAGlABPEQF4AfKAD8d00QJKlp3v0FCA3NgC+uIws7FxKFGz6AIymACymAJymkQBspigArEI+QA')">function reverse(sequence) {
-    return fold_right((x, y) => ??, null, sequence);
-}
-</pre></div></div></td></tr></table>
-    <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_34_47_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (reverse sequence)
-  (fold-left (lambda (x y) ^??^) nil sequence))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_47_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQAnAUwDcG6BnBgCg4EcCHSDAJSgA3tlCT6DMgTq08VADYATAPpKGeMp04APADSgAniIC8APlAB+a0aIElSo736ChAbmwBfXIxbsXEoUbDoAjEYALEYAnEZhAGxGKACsQp5AA')">function reverse(sequence) {
-    return fold_left((x, y) => ??, null, sequence);
-}
-</pre></div></div></td></tr></table>
+    <kbd class='snippet'>function reverse(sequence) {
+    return fold_right((x, y) => $\langle ??\rangle$, null, sequence);
+}</kbd>
+    <kbd class='snippet'>function reverse(sequence) {
+    return fold_left((x, y) => $\langle ??\rangle$, null, sequence);
+}</kbd>
     
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_34_7_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_34_7_div"><SOLUTION>
     
-      <div class='snippet' id='javascript_34_48_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsCcBTANwLwGcCAKAGwEsyAXSgRgBpQAWdgVnYE52zAGzsU3AJTiA3EA')">reverse(list(1, 4, 5, 9, 16, 25));
+      <div class='snippet' id='javascript_34_41_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsCcBTANwLwGcCAKAGwEsyAXSgRgBpQAWdgVnYE52zAGzsU3AJTiA3EA')">reverse(list(1, 4, 5, 9, 16, 25));
 </pre></div></div>
-      <div class='snippet' id='javascript_34_49_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChslAM4CGAtgKahEGUDGNArifQDZEAuZ2NA9gHYFtQAM27MAJgH0ATgEsA5gAtBAXloMmrDgG5cQ+rxpsZfUFLIA3MlIJkAFDYCO9MgbIBKUAG9soX6bJs9FK8wqKSsopstrYAHgA0oACeHsoAfJQADhkuYraJCcwyArFubgk+fpVV1X68LMwJjs6ubjoAvrhmltZ2hcUAjAkALAkArAkAnAn9AGwJKKOlWkA')">function reverse(sequence) {
+      <div class='snippet' id='javascript_34_42_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChslAM4CGAtgKahEGUDGNArifQDZEAuZ2NA9gHYFtQAM27MAJgH0ATgEsA5gAtBAXloMmrDgG5cQ+rxpsZfUFLIA3MlIJkAFDYCO9MgbIBKUAG9soX6bJs9FK8wqKSsopstrYAHgA0oACeHsoAfJQADhkuYraJCcwyArFubgk+fpVV1X68LMwJjs6ubjoAvrhmltZ2hcUAjAkALAkArAkAnAn9AGwJKKOlWkA')">function reverse(sequence) {
     return fold_right((x, y) => append(y, list(x)), 
                       null, sequence);
 }
 </pre></div></div>
-      <div class='snippet' id='javascript_34_50_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8qAbAEwH0GBTPMgCioAcANKApEKlAIYMhAZ3YBHAu1LsAlKADe2UNrrFy1WmPYAnbsfbSCDMkPPSyazTuehzZAscPSWRKwzMWDlouIToA-K4WVmTBoSEAXMJkJrx8AZbWQgAW7OJM6Q4qQrFxpdpk4hT+doUA3CUAviVuHobJpiJiFJIy8orKKvVN+HqUNJEAbiay3LIKSiSqGs3s7p50jKwcXNzcAB5CAJ5qALwAfKB8laaHQntFoL4MUqBz-YuD2MPmU8YzDBR7NwAIxCAAsQgArEIAJxCYEANiEKEhKkGQA')">function reverse(sequence) {
+      <div class='snippet' id='javascript_34_43_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8qAbAEwH0GBTPMgCioAcANKApEKlAIYMhAZ3YBHAu1LsAlKADe2UNrrFy1WmPYAnbsfbSCDMkPPSyazTuehzZAscPSWRKwzMWDlouIToA-K4WVmTBoSEAXMJkJrx8AZbWQgAW7OJM6Q4qQrFxpdpk4hT+doUA3CUAviVuHobJpiJiFJIy8orKKvVN+HqUNJEAbiay3LIKSiSqGs3s7p50jKwcXNzcAB5CAJ5qALwAfKB8laaHQntFoL4MUqBz-YuD2MPmU8YzDBR7NwAIxCAAsQgArEIAJxCYEANiEKEhKkGQA')">function reverse(sequence) {
     return fold_left((x, y) => pair(y, x), null, sequence);
 }
 </pre></div></div>
@@ -3483,7 +3405,7 @@ function matrix_times_matrix(n, m) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_51_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_44_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ;; replace n below by the desired number
 (accumulate append
   nil
@@ -3491,7 +3413,7 @@ function matrix_times_matrix(n, m) {
          (map (lambda (j) (list i j))
               (enumerate-interval 1 (- i 1))))
        (enumerate-interval 1 n)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_51_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBTIggWzoCcBDMugfQqK9YA3dgBsAFCKoB3ADSgAFhQDm8gJSgA3tlA7QrOmQKtakqaAB8C5fO267ugPyhGIkbft2AXKAAO7CqwS0jLuHmE6DMxsnDx8AsLipqAA1KAAjHKKKqqqANzYAL64JDQAzmTOoAC8oABs+djsJCTMBCIxYuw+PgwAJnKhYS4iA+G6TF1iFNWWEz5iAFYzoCIU5VNyC6ohY7v2kSwcXLz8bAliGaDTALTpOTt7ugfRx3FnohdyRDl5QA')">accumulate(append, 
+            <td><div class='snippet' id='javascript_34_44_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBTIggWzoCcBDMugfQqK9YA3dgBsAFCKoB3ADSgAFhQDm8gJSgA3tlA7QrOmQKtakqaAB8C5fO267ugPyhGIkbft2AXKAAO7CqwS0jLuHmE6DMxsnDx8AsLipqAA1KAAjHKKKqqqANzYAL64JDQAzmTOoAC8oABs+djsJCTMBCIxYuw+PgwAJnKhYS4iA+G6TF1iFNWWEz5iAFYzoCIU5VNyC6ohY7v2kSwcXLz8bAliGaDTALTpOTt7ugfRx3FnohdyRDl5QA')">accumulate(append, 
            null, 
            map(i => map(j => list(i, j),
                         enumerate_interval(1, i - 1)),
@@ -3513,10 +3435,10 @@ function matrix_times_matrix(n, m) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_52_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_45_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (flatmap proc seq)
   (accumulate append nil (map proc seq)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_52_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8AbAQzIFtGAHACjwBpQBnAKYBHAJSgA3tlAzQAJ0FkCc2oxIkCLAkzKDOHdoKIATPkW30+bLrwEjRogNzYAvrgbNrnAB6gAvAB8oPQU-GQ+fN6ifCFhnACMfCh8mHwALA6OQA')">function flatmap(f, seq) {
+            <td><div class='snippet' id='javascript_34_45_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8AbAQzIFtGAHACjwBpQBnAKYBHAJSgA3tlAzQAJ0FkCc2oxIkCLAkzKDOHdoKIATPkW30+bLrwEjRogNzYAvrgbNrnAB6gAvAB8oPQU-GQ+fN6ifCFhnACMfCh8mHwALA6OQA')">function flatmap(f, seq) {
     return accumulate(append, null, map(f, seq));
 }
 </pre></div></div></td></tr></table>
@@ -3533,10 +3455,10 @@ function matrix_times_matrix(n, m) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_53_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_46_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (prime-sum? pair)
   (prime? (+ (car pair) (cadr pair))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_53_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBnARwIEMAnAUwAoAPASlADe2UCNAcyBVrW6gAVKG4BubAF9chUpRr0AtswA2+9nTIB9ACYUAbhTpVWnIvyGix7CVNB4KRcxeu29o4ANKi8ymoa5NS03r7+NnYORKFkxmaWifbOwq7ikrSMLBycaSYJgaz8AHygRLmujaAA-HUNTaIAXKCZFObGpekVSaFO7R2irWUZAUnjE6DdcX69SSGg08P2oADUoACM4ar4xNHavf10nMyhAEY5ee4FoLegAKSgzKAAvL+gAAwRdSnLS0WymAAOrAoOi4TkE7Xynlov2+ugMRnKqyCTiBJ00MVA4KhMPYpjoBB0nAhzAoVQRjw8YLokOhsM4AAt2MxzNTafS9lyeaVafo+XTeJK8cS2WSKVT9LYyJwAByhACcUqAA')">function is_prime_sum(pair) {
+            <td><div class='snippet' id='javascript_34_46_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBnARwIEMAnAUwAoAPASlADe2UCNAcyBVrW6gAVKG4BubAF9chUpRr0AtswA2+9nTIB9ACYUAbhTpVWnIvyGix7CVNB4KRcxeu29o4ANKi8ymoa5NS03r7+NnYORKFkxmaWifbOwq7ikrSMLBycaSYJgaz8AHygRLmujaAA-HUNTaIAXKCZFObGpekVSaFO7R2irWUZAUnjE6DdcX69SSGg08P2oADUoACM4ar4xNHavf10nMyhAEY5ee4FoLegAKSgzKAAvL+gAAwRdSnLS0WymAAOrAoOi4TkE7Xynlov2+ugMRnKqyCTiBJ00MVA4KhMPYpjoBB0nAhzAoVQRjw8YLokOhsM4AAt2MxzNTafS9lyeaVafo+XTeJK8cS2WSKVT9LYyJwAByhACcUqAA')">function is_prime_sum(pair) {
     return is_prime(head(pair) + head(tail(pair)));
 }
 </pre></div></div></td></tr></table>
@@ -3557,10 +3479,10 @@ function matrix_times_matrix(n, m) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_54_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_47_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (make-pair-sum pair)
   (list (car pair) (cadr pair) (+ (car pair) (cadr pair))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_54_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQAcGKAnNgZwJ0AFF14BKUAG9soOaB4syBHrQA2FfmWEALFgwAmo7j3EAaUHsPCy3NcYnnQs+a7fyrRsadABqS-pGthT23uLhANzYAL64jKycJgJCwhpawgAcFgCckUA')">function make_pair_sum(pair) {
+            <td><div class='snippet' id='javascript_34_47_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQAcGKAnNgZwJ0AFF14BKUAG9soOaB4syBHrQA2FfmWEALFgwAmo7j3EAaUHsPCy3NcYnnQs+a7fyrRsadABqS-pGthT23uLhANzYAL64jKycJgJCwhpawgAcFgCckUA')">function make_pair_sum(pair) {
     return list(head(pair), head(tail(pair)), 
                 head(pair) + head(tail(pair)));
 }
@@ -3579,7 +3501,7 @@ function matrix_times_matrix(n, m) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_55_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_48_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (prime-sum-pairs n)
   (map make-pair-sum
        (filter prime-sum?
@@ -3588,7 +3510,7 @@ function matrix_times_matrix(n, m) {
                    (map (lambda (j) (list i j))
                         (enumerate-interval 1 (- i 1))))
                  (enumerate-interval 1 n)))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_55_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQAcGKAnNgZwJ0AFF14BKUAG9soOaB4syBHrQA2FfmWEALFgwAmo7j3EAaUHsPCy3NcYnnQs+a7fyrRsadABqS-pGthT23uLhANzYAL64hKSUNKD8AI4EDIrCAB6SMq6KyqqgWaAAVMVRsfjE5NS0-IxqaixabAYUAG6aVDzCRLkucgUqtHgURAZtnd29RBYo4pXVCXWgYxNTXfw9fRZkLWSbMwNuw0Wp6Zn7re1bPZIAfKBEg+7yAPzPr2+gAFygtwoBhaNgOR22PAs-W+P1An2uh0BEJhP3+60mSJ2c1ACPBPT8oAAjIsYstaklAcD+MIGBYAEYneRnWh00AAUlADFAAF5eaAAAxLMmJWiaTg8Ch0Fh9RlDJQjZ48vkNBhNMGY2Ykqrxcmi-jiyXsQQiMLSV7M0BijgSqW6QIOHz+Tw2OwO8JauI1EVrNQMMiMDjCPAWfgsFKyhTyooMEgkIQEX37GkcDgsCZQhNqCwBoMhsORUnC1ZpoQsHh+9jjfY8Dqq4RqKgAdwsOgoAHMdBGLQ3G6Anq2OyjXJ8iJmh-J-t5602zOPYSWpeX9mwq2Xa-YewTCS3252PUWktbDQIhJwTNT+mb8lHaDnGKwz7wT3QLHP5GM1NXhFabUahK-YXcPBExzCgeSeHMACtwNADQtG-CxIKcN9ANQhcywrFciGrddhG3S1QAAWiJcJZ1Q8j0KXStsLXOt8P6d0hSPKVn0fHhqQANkWIA')">function prime_sum_pairs(n) {
+            <td><div class='snippet' id='javascript_34_48_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBbAQwGsBTAfQAcGKAnNgZwJ0AFF14BKUAG9soOaB4syBHrQA2FfmWEALFgwAmo7j3EAaUHsPCy3NcYnnQs+a7fyrRsadABqS-pGthT23uLhANzYAL64hKSUNKD8AI4EDIrCAB6SMq6KyqqgWaAAVMVRsfjE5NS0-IxqaixabAYUAG6aVDzCRLkucgUqtHgURAZtnd29RBYo4pXVCXWgYxNTXfw9fRZkLWSbMwNuw0Wp6Zn7re1bPZIAfKBEg+7yAPzPr2+gAFygtwoBhaNgOR22PAs-W+P1An2uh0BEJhP3+60mSJ2c1ACPBPT8oAAjIsYstaklAcD+MIGBYAEYneRnWh00AAUlADFAAF5eaAAAxLMmJWiaTg8Ch0Fh9RlDJQjZ48vkNBhNMGY2Ykqrxcmi-jiyXsQQiMLSV7M0BijgSqW6QIOHz+Tw2OwO8JauI1EVrNQMMiMDjCPAWfgsFKyhTyooMEgkIQEX37GkcDgsCZQhNqCwBoMhsORUnC1ZpoQsHh+9jjfY8Dqq4RqKgAdwsOgoAHMdBGLQ3G6Anq2OyjXJ8iJmh-J-t5602zOPYSWpeX9mwq2Xa-YewTCS3252PUWktbDQIhJwTNT+mb8lHaDnGKwz7wT3QLHP5GM1NXhFabUahK-YXcPBExzCgeSeHMACtwNADQtG-CxIKcN9ANQhcywrFciGrddhG3S1QAAWiJcJZ1Q8j0KXStsLXOt8P6d0hSPKVn0fHhqQANkWIA')">function prime_sum_pairs(n) {
     return map(make_pair_sum, 
              filter(is_prime_sum, 
                flatmap(i => map(j => list(i, j), 
@@ -3629,7 +3551,7 @@ function matrix_times_matrix(n, m) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_56_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_49_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (permutations s)
   (if (null? s)             ; empty set?
     (list nil)              ; sequence containing empty set
@@ -3637,7 +3559,7 @@ function matrix_times_matrix(n, m) {
                (map (lambda (p) (cons x p))
                     (permutations (remove x s))))
              s)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_56_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8AbAQzIFtGAHACjwBpQBnAKYBHAJSgA3tlAzQAJ0FkCc2oxIkCLAkzKDOHdoKIATPkW30+bLrwEjRogNzYAvrkKlKNUIblayzNRE-Jz84lKy8orKtBT8APrm9PSh4pHpsiCggizsZACedmQA-NIZkcWg9HFknEn0aeUyWULCBEYkgqAkNAEURP0A5tm5BUVlTaAAXHQ61pwAHqAAvAB8oPPsK+vsjBRyi3zsojwTk+dNvv6BNCEKLFQAbnoLfGEOpxfnYc5u2FcEAJeYKcar8WoARj4KD4mAcjiAA')">function permutations(s) {
+            <td><div class='snippet' id='javascript_34_49_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8AbAQzIFtGAHACjwBpQBnAKYBHAJSgA3tlAzQAJ0FkCc2oxIkCLAkzKDOHdoKIATPkW30+bLrwEjRogNzYAvrkKlKNUIblayzNRE-Jz84lKy8orKtBT8APrm9PSh4pHpsiCggizsZACedmQA-NIZkcWg9HFknEn0aeUyWULCBEYkgqAkNAEURP0A5tm5BUVlTaAAXHQ61pwAHqAAvAB8oPPsK+vsjBRyi3zsojwTk+dNvv6BNCEKLFQAbnoLfGEOpxfnYc5u2FcEAJeYKcar8WoARj4KD4mAcjiAA')">function permutations(s) {
     return is_null(s)             // empty set?
            ? list(null)           // sequence containing empty set
            : flatmap(x => map(p => pair(x, p),
@@ -3676,11 +3598,11 @@ function matrix_times_matrix(n, m) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_57_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_50_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (remove item sequence)
   (filter (lambda (x) (not (= x item)))
           sequence))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_57_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQAnAUwFsqA3BgCgrOYBpQAzgwCOBBqQYBKUAG9soBfQZkCdWngoAbHnQ4APUAF4AfKACE+o4cOhuzSb3mLnLl0NHiSUgNzYAvria4gDmZAAWHIws7ByY-JoUAmQcAIz8KPxxoAAs-ACskoXeQA')">function remove(item, sequence) {
+            <td><div class='snippet' id='javascript_34_50_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQAnAUwFsqA3BgCgrOYBpQAzgwCOBBqQYBKUAG9soBfQZkCdWngoAbHnQ4APUAF4AfKACE+o4cOhuzSb3mLnLl0NHiSUgNzYAvria4gDmZAAWHIws7ByY-JoUAmQcAIz8KPxxoAAs-ACskoXeQA')">function remove(item, sequence) {
     return filter(x => !(x === item),
                   sequence);
 }
@@ -3728,9 +3650,9 @@ function matrix_times_matrix(n, m) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_58_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_51_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_58_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBTIggWzoCcBDMugfQqK9YA3dgBsAFCKoB3ADSgAFhQDm8gJSgA3tlA7QrOmQKtakqaAB8C5fO267ugPyhGIkbft2AXKAAO7CqwS0jLuHmE6DMxsnDx8AsLipqAA1KAAjHKKKqqqANzYAL64hKSUNKBM7ADWPH4B3ADOzGJ1rOpadvqGxqAiFA1kYvJ07AAmLf5tmSPjZP7irTlyoeF2w2MTAeqp67Pzm205+UX4xOTUtA0AjgTs+mIAHu2hXUa0D6AAVKAPx8VnZUulVcdAG3FGFEE-SogSIz06BjeoDwfFG4Mh0NhchQeUKp1KF2RqPRUIaMLERDkXDBENJMPhCO6lxudzoYmpZBJmPUliIKzCTj5q103lpFFGoPZoM5YrJrDkcP54ScHK5cqVYW8KKIaNl5MpoFVetYKXSuKKJXO5TFEoaYnYcgARgydK8eo7QABSUDsUAAXgDoAADH98VbaP1uD5WBQWBSXXpET1aAG-aAGsCRNK1frzf8CeVI9HYzwmkwDgm3RGGlGY3HdhXTQ25hQFpMcnmw4DkSJOJUfGI8HIGnQrpWk7R2CQSMwCL2uPafD4GKMFXORHJ+4Ph6Ojniu4TiBQbrVJna4ZoXhOe332AOKP7LFuAFaP3r9QYUOTP1TLYX-sJIhYDguF4fg2ASMQMlAB8AFozV-UANX-IDolAuIINEKCFT3C0AUJYsWEaZgozPeNL0ZJEt0qGpSPqMs-wAnQUREAQxCLOtS2YRimLCI8Tzo1hzw7UNCK4phBLtAA2PIgA')">function unique_pairs(n) {
+            <td><div class='snippet' id='javascript_34_51_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBTIggWzoCcBDMugfQqK9YA3dgBsAFCKoB3ADSgAFhQDm8gJSgA3tlA7QrOmQKtakqaAB8C5fO267ugPyhGIkbft2AXKAAO7CqwS0jLuHmE6DMxsnDx8AsLipqAA1KAAjHKKKqqqANzYAL64hKSUNKBM7ADWPH4B3ADOzGJ1rOpadvqGxqAiFA1kYvJ07AAmLf5tmSPjZP7irTlyoeF2w2MTAeqp67Pzm205+UX4xOTUtA0AjgTs+mIAHu2hXUa0D6AAVKAPx8VnZUulVcdAG3FGFEE-SogSIz06BjeoDwfFG4Mh0NhchQeUKp1KF2RqPRUIaMLERDkXDBENJMPhCO6lxudzoYmpZBJmPUliIKzCTj5q103lpFFGoPZoM5YrJrDkcP54ScHK5cqVYW8KKIaNl5MpoFVetYKXSuKKJXO5TFEoaYnYcgARgydK8eo7QABSUDsUAAXgDoAADH98VbaP1uD5WBQWBSXXpET1aAG-aAGsCRNK1frzf8CeVI9HYzwmkwDgm3RGGlGY3HdhXTQ25hQFpMcnmw4DkSJOJUfGI8HIGnQrpWk7R2CQSMwCL2uPafD4GKMFXORHJ+4Ph6Ojniu4TiBQbrVJna4ZoXhOe332AOKP7LFuAFaP3r9QYUOTP1TLYX-sJIhYDguF4fg2ASMQMlAB8AFozV-UANX-IDolAuIINEKCFT3C0AUJYsWEaZgozPeNL0ZJEt0qGpSPqMs-wAnQUREAQxCLOtS2YRimLCI8Tzo1hzw7UNCK4phBLtAA2PIgA')">function unique_pairs(n) {
     return flatmap(i => map(j => list(i, j), 
                             enumerate_interval(1, i - 1)), 
                    enumerate_interval(1, n));
@@ -3770,9 +3692,9 @@ function prime_sum_pairs(n) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_59_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_52_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_59_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBTIggWzoCcBDMugfQqK9YA3dgBsAFCKoB3ADSgAFhQDm8gJSgA3tlA7QrOmQKtakqaAB8C5fO267ugPyhGIkbft2AXKAAO7CqwS0jLuHmE6DMxsnDx8AsLipqAA1KAAjHKKKqqqANzYAL64hKSUNKB4IpxM7D5ieHIAznQAjupadvqGxqDsJCTMBFVcYrU+DAAmci4icjV1DaDNbXmFxcTk1LTEFC0EPGSsFD4idI1iRO2hXUa0ldW1YhSgALyW92TzYgBWr5ZfAGs-qARBRGmQnnJvnIAaoQuEEYikbpIiwOFxePw2AkxBlQL8ALTpHLw5Fkjyo6IYuLY0S4uTPIlpEmhcn0RhomKY+J0vGXVZFEqbconAjnAAecgAnldOgZbqBxSlQFL8oKNmVaIdjqdGtwyPJONxGsx9VQxI1prLdDcengKCIBE8uExGsC+gMmEMYmJRZbQAAGBkuxrqF7hpaktmgHZ7A5HE5nC45NW4bWJvUGo0mphm3FB0AANjyQA')">function unique_triples(n) {
+            <td><div class='snippet' id='javascript_34_52_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBTIggWzoCcBDMugfQqK9YA3dgBsAFCKoB3ADSgAFhQDm8gJSgA3tlA7QrOmQKtakqaAB8C5fO267ugPyhGIkbft2AXKAAO7CqwS0jLuHmE6DMxsnDx8AsLipqAA1KAAjHKKKqqqANzYAL64hKSUNKB4IpxM7D5ieHIAznQAjupadvqGxqDsJCTMBFVcYrU+DAAmci4icjV1DaDNbXmFxcTk1LTEFC0EPGSsFD4idI1iRO2hXUa0ldW1YhSgALyW92TzYgBWr5ZfAGs-qARBRGmQnnJvnIAaoQuEEYikbpIiwOFxePw2AkxBlQL8ALTpHLw5Fkjyo6IYuLY0S4uTPIlpEmhcn0RhomKY+J0vGXVZFEqbconAjnAAecgAnldOgZbqBxSlQFL8oKNmVaIdjqdGtwyPJONxGsx9VQxI1prLdDcengKCIBE8uExGsC+gMmEMYmJRZbQAAGBkuxrqF7hpaktmgHZ7A5HE5nC45NW4bWJvUGo0mphm3FB0AANjyQA')">function unique_triples(n) {
     return flatmap(i => flatmap(j => map(k => list(i, j, k),
                                          enumerate_interval(1, j - 1)),
                                 enumerate_interval(1, i - 1)),
@@ -3864,7 +3786,7 @@ function triples_that_sum_to(s, n) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_60_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_53_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (queens board-size)
   (define (queen-cols k)
     (if (= k 0)
@@ -3878,7 +3800,7 @@ function triples_that_sum_to(s, n) {
                  (enumerate-interval 1 board-size)))
           (queen-cols (- k 1))))))
   (queen-cols board-size))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_60_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8AbAQzIFtGAHACjwBpQBnAKYBHAJSgA3tlAzQAJ0FkCc2oxIkCLAkzKDOHdoKIATPkW30+bLrwEjRogNzYAvrkKlKNUEc2C5zIIA+hREunIAboz0nPRUAO58ABYUAOZJ4lKy8orKtHHxoAB8oCnp0tmVoAD8oOb09BVVsgBcoOyMFHKxCTxNzQO+LP6BIWH+UTEFoADUoACMyWkZTq7uxOTUtMIEgkb8nABGVIxyxkH8FABegpn9HpveO3tEQSRU9AcA1ncDCkoqUBfUAAXjBoAADP0BrJavQKPwyJxBCx2GQAJ5BY6nYyiaEw0BtPAUejhTj4gmVdhUS5eIj8UElBEXRh4PRfPjU2lbfiiPgUymyBjMaycBSIoJUPBBZ77RmgbAASGVlVFREE8SCcgS8sYxgAVlRQkEuRQ6eTBZarVV1ZrtYkgX1rc6reKyJLpbL6XyFS7nUMRroxuFJpxFr6-X7sWcLtdbnylSrsl63h9vqAALQLByrWRuWT-PKgFPvT5HE4xy43VZubBeg4ADicQA')">function queens(board_size) {
+            <td><div class='snippet' id='javascript_34_53_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQ8AbAQzIFtGAHACjwBpQBnAKYBHAJSgA3tlAzQAJ0FkCc2oxIkCLAkzKDOHdoKIATPkW30+bLrwEjRogNzYAvrkKlKNUEc2C5zIIA+hREunIAboz0nPRUAO58ABYUAOZJ4lKy8orKtHHxoAB8oCnp0tmVoAD8oOb09BVVsgBcoOyMFHKxCTxNzQO+LP6BIWH+UTEFoADUoACMyWkZTq7uxOTUtMIEgkb8nABGVIxyxkH8FABegpn9HpveO3tEQSRU9AcA1ncDCkoqUBfUAAXjBoAADP0BrJavQKPwyJxBCx2GQAJ5BY6nYyiaEw0BtPAUejhTj4gmVdhUS5eIj8UElBEXRh4PRfPjU2lbfiiPgUymyBjMaycBSIoJUPBBZ77RmgbAASGVlVFREE8SCcgS8sYxgAVlRQkEuRQ6eTBZarVV1ZrtYkgX1rc6reKyJLpbL6XyFS7nUMRroxuFJpxFr6-X7sWcLtdbnylSrsl63h9vqAALQLByrWRuWT-PKgFPvT5HE4xy43VZubBeg4ADicQA')">function queens(board_size) {
     function queen_cols(k) {
         return k === 0
                ? list(empty_board)
@@ -3952,9 +3874,9 @@ function triples_that_sum_to(s, n) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_61_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_54_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_61_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBDAEwCsqKiB9AByoGcLKaACgBOVAO4AaUCSoAbKcICmPMgEpQAb2ygdoJWQLDanOhWGCTZkeKkzZqhcrUBubAF8gA')">function adjoin_position(row, col, rest) {
+            <td><div class='snippet' id='javascript_34_54_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBDAEwCsqKiB9AByoGcLKaACgBOVAO4AaUCSoAbKcICmPMgEpQAb2ygdoJWQLDanOhWGCTZkeKkzZqhcrUBubAF8gA')">function adjoin_position(row, col, rest) {
     return pair(pair(row, col), rest);
 }
 </pre></div></div></td></tr></table>
@@ -3962,17 +3884,17 @@ function triples_that_sum_to(s, n) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_62_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_55_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_62_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsGMB7AOwGcAXUAUwFsAHMgTwH0AjAgQwCcATUAXlBEArgBsRAbiA')">const empty_board = null;
+            <td><div class='snippet' id='javascript_34_55_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsGMB7AOwGcAXUAUwFsAHMgTwH0AjAgQwCcATUAXlBEArgBsRAbiA')">const empty_board = null;
 </pre></div></div></td></tr></table>
       <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_63_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_56_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_63_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQKBnAfXoEM8BTACgGsAaUAA5V6FSjXoBKUAG9soeaBLiyoPBQBO9Mo3VUA7qAC8oABbsWAE05nLnISLFFJEgNxyFSpyrWbtSgDZGoGQsFP7W5lb2otROEq7u8ursZATqtCwkJAQAtgT+LGRcdsL89FSMeCzqUoYAfDKJCs0trc2eWqC6BsY2UcIJbUPDisqjgcYhYSWSbiPzzcmp6aDlldWgAGSbTQt7Cj5aOvqgALSqGkcBoACEhoa7+3vdZ+NbO0+fF77HBgDU3yuVECdweXyeLwB122j3BQ0O2heoK6+jmcPkAF9eLCnmR1AR2PwcfspuFoo5nG4MUA')">function is_safe(k, positions) {
+            <td><div class='snippet' id='javascript_34_56_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQKBnAfXoEM8BTACgGsAaUAA5V6FSjXoBKUAG9soeaBLiyoPBQBO9Mo3VUA7qAC8oABbsWAE05nLnISLFFJEgNxyFSpyrWbtSgDZGoGQsFP7W5lb2otROEq7u8ursZATqtCwkJAQAtgT+LGRcdsL89FSMeCzqUoYAfDKJCs0trc2eWqC6BsY2UcIJbUPDisqjgcYhYSWSbiPzzcmp6aDlldWgAGSbTQt7Cj5aOvqgALSqGkcBoACEhoa7+3vdZ+NbO0+fF77HBgDU3yuVECdweXyeLwB122j3BQ0O2heoK6+jmcPkAF9eLCnmR1AR2PwcfspuFoo5nG4MUA')">function is_safe(k, positions) {
     const first_row = head(head(positions));
     const first_col = tail(head(positions));
     return accumulate((pos, so_far) => {
@@ -3994,9 +3916,9 @@ function triples_that_sum_to(s, n) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_64_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_57_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_64_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBDAEwCsqKiB9AByoGcLKaACgBOVAO4AaUCSoAbKcICmPMgEpQAb2ygdoJWQLDanOhWGCTZkeKkzZqhcrUBubAF9cMoitCKAtpxkAJ7sAEZUdMIMoAC8oEQEsrKu+MTk1LQUPOw8dHiKggDWUtx8At7qWrrSND54ZirsomKxoAAWioyCHV2l-Bk8qqqu1V51DWTsdq1kprLdnQwWvP21QyO6+oa0dCQkBH6JdGQFyzxSPFTseJHqMQB8mtrVL69vOmNkeuKtPUulw2e72Br0+NVkMzmZ0BINh1S2RlAl2ukVAADI0UC4djqvVhI1mqAALSgPGNaYAQhiMSxOJxhJJ0wxtLpcLJk0JAGpSRMpnJQFSaazWVzwejMcK6eymj9Bd8xBtJTo3BIWayyMICIopGq6bMKPM+uVBoCPKlSOVSbJjn46JxBHgLooAI6VLEInZ7A5HE6CO2cRREBhSBJJKS2+2OpEu9buXCEC0ZXwJPyKYTHRTsNgnYQANzo81kNnaFAA5m03fDFAZEUWWo82mW2rrdAB+eKJWQtnQALlAlnMddVksDBzTGazRBz+cLP25AEYpI3y7GzQn0jRQM6tYGeIJwpEGDkKAAvRSV3Try3bxSBvmyPeFC+vD2gQqxamgAAM3Ze7dkWRkII-iBCEB5RKov7VH29SyDmghQcCRoDLEjxZDkeQFMU-YrMaDigIh7x4NaZARiITjsFQeDsDeu6oQRACQTEvGRRCKGIMotA89DMKwHDIUIhFKnCbEcc0UjFEJwkgkojRUTRO4VDq0lwqOqbpick7TgWgiLgRKl0uBR58GeQyqkxDEvLRHB2I+xKgPOQwwsqQKvtZ957kZx6ma4ZrWXuAAcgLYEAA')">// click here to see all solutions
+            <td><div class='snippet' id='javascript_34_57_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHToMwChsDMBXAOwGMAXASwHsjQBDAEwCsqKiB9AByoGcLKaACgBOVAO4AaUCSoAbKcICmPMgEpQAb2ygdoJWQLDanOhWGCTZkeKkzZqhcrUBubAF9cMoitCKAtpxkAJ7sAEZUdMIMoAC8oEQEsrKu+MTk1LQUPOw8dHiKggDWUtx8At7qWrrSND54ZirsomKxoAAWioyCHV2l-Bk8qqqu1V51DWTsdq1kprLdnQwWvP21QyO6+oa0dCQkBH6JdGQFyzxSPFTseJHqMQB8mtrVL69vOmNkeuKtPUulw2e72Br0+NVkMzmZ0BINh1S2RlAl2ukVAADI0UC4djqvVhI1mqAALSgPGNaYAQhiMSxOJxhJJ0wxtLpcLJk0JAGpSRMpnJQFSaazWVzwejMcK6eymj9Bd8xBtJTo3BIWayyMICIopGq6bMKPM+uVBoCPKlSOVSbJjn46JxBHgLooAI6VLEInZ7A5HE6CO2cRREBhSBJJKS2+2OpEu9buXCEC0ZXwJPyKYTHRTsNgnYQANzo81kNnaFAA5m03fDFAZEUWWo82mW2rrdAB+eKJWQtnQALlAlnMddVksDBzTGazRBz+cLP25AEYpI3y7GzQn0jRQM6tYGeIJwpEGDkKAAvRSV3Try3bxSBvmyPeFC+vD2gQqxamgAAM3Ze7dkWRkII-iBCEB5RKov7VH29SyDmghQcCRoDLEjxZDkeQFMU-YrMaDigIh7x4NaZARiITjsFQeDsDeu6oQRACQTEvGRRCKGIMotA89DMKwHDIUIhFKnCbEcc0UjFEJwkgkojRUTRO4VDq0lwqOqbpick7TgWgiLgRKl0uBR58GeQyqkxDEvLRHB2I+xKgPOQwwsqQKvtZ957kZx6ma4ZrWXuAAcgLYEAA')">// click here to see all solutions
 </pre></div></div></td></tr></table>
     </SOLUTION></div></div>
 </EXERCISE></div>
@@ -4030,14 +3952,14 @@ function triples_that_sum_to(s, n) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_34_65_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_58_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (flatmap
   (lambda (new-row)
     (map (lambda (rest-of-queens)
            (adjoin-position new-row k rest-of-queens))
          (queen-cols (- k 1))))
   (enumerate-interval 1 board-size))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_34_65_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_34_58_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 flatmap(new_row =>
         map(rest_of_queens => adjoin_position(
                                 new_row, k, 

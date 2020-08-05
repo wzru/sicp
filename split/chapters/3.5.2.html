@@ -2620,14 +2620,7 @@ const primes = sieve(integers_starting_from(2));
     $n$th element (counting from 0) is
     $n+1$ factorial:
     
-    <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_70_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define factorials (cons-stream 1 (mul-streams ^??^ ^??^)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuRQBbAVwBsB9AZwBcAnAUwEMirQaB7UAIwdAHc6ASxo0GAOx4BPULRIATCTSr4Axh3G1QAMyarOwpmTYBeUAAcmQugAoAjABpQNgJSgTAPmLlq9ZqxsAfkCnYJcXAG4gA')">const factorials = pair(1, () => mul_streams(??, ??));
-</pre></div></div></td></tr></table>
+    <kbd class='snippet'>const factorials = pair(1, () => mul_streams($\langle ??\rangle$, $\langle ??\rangle$));</kbd>
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_70_2_div" data-toggle="collapse">Add solution</button></div>
@@ -2675,12 +2668,12 @@ const primes = sieve(integers_starting_from(2));
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_70_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (partial-sum s)
   (cons-stream (stream-car s)
                (add-streams (stream-cdr s)
                             (partial-sum s))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_17_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function partial_sums(s) {
     return pair(head(s),
                 () => add_streams(stream_tail(s),
@@ -2751,7 +2744,7 @@ function partial_sums(s) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_70_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_18_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (merge s1 s2)
   (cond ((stream-null? s1) s2)
         ((stream-null? s2) s1)
@@ -2766,7 +2759,7 @@ function partial_sums(s) {
                   (cons-stream s1car
                                (merge (stream-cdr s1)
                                       (stream-cdr s2)))))))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KkigUwHNmAnAZwH0uKAhh2olWPAhxoBbABQkAlKADeuUGtAdmFIh3oAHAVQ5yANKvUXL6mYoC8APgZM2nXvyEixE6XNABqUABGeXMrMPkAblwAX3xicmo6UC4yAQAbZj4KTQFZfhypE1ACAUoaDkUVC01tXWTs5lyeKQE9GQAPUAdQToAqYtKKcrMw0bD8xqlImLjSSlp6KU52GS5Aoq5sStCGAlAZKl4SIjS01eDt0Zqdek2oi2jQZjSuZl39w55j09Wty7DrnU1vd1I9nq9lDsLGQ6PxkoEABaNAAmXVASIEyPO01GMJIcM2GNRtnRKN+OIBWhu8KJoAAPMlsESoWNQAB+UAGIznIkjVn8mxdRxLDgrCZNQRUM5reQbP4ssYALhpKNAjkJKIVrI5XOMGsxfP5ArswuWzHOGwaEsM0r+ISNlmVup5KMNDtGgu6IrFVqkPEl0uCloK-pt5PkFLUsViuDxcL0NC4VGoADdMowWOxuGiMy5uFkPIwvJJZMEonGKKApCdqHoMrwaAR-QjNG8SSl0plxbIE0nU+nnFmuEUUJEAJCx2GV6tpWv1niN8RUNNojsZLIFGS95PLgeZ1xFDDTCugCgt5jMXgCEjIpdprho73mmdzy8Lptn1tFF9UOtvxcELu0zMCm6QbpMMifheV43nel6HgADJEQA')">function merge(s1, s2) {
+            <td><div class='snippet' id='javascript_70_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHQFY0CYBQuAzAVwDsBjAFwEsB7E0KkigUwHNmAnAZwH0uKAhh2olWPAhxoBbABQkAlKADeuUGtAdmFIh3oAHAVQ5yANKvUXL6mYoC8APgZM2nXvyEixE6XNABqUABGeXMrMPkAblwAX3xicmo6UC4yAQAbZj4KTQFZfhypE1ACAUoaDkUVC01tXWTs5lyeKQE9GQAPUAdQToAqYtKKcrMw0bD8xqlImLjSSlp6KU52GS5Aoq5sStCGAlAZKl4SIjS01eDt0Zqdek2oi2jQZjSuZl39w55j09Wty7DrnU1vd1I9nq9lDsLGQ6PxkoEABaNAAmXVASIEyPO01GMJIcM2GNRtnRKN+OIBWhu8KJoAAPMlsESoWNQAB+UAGIznIkjVn8mxdRxLDgrCZNQRUM5reQbP4ssYALhpKNAjkJKIVrI5XOMGsxfP5ArswuWzHOGwaEsM0r+ISNlmVup5KMNDtGgu6IrFVqkPEl0uCloK-pt5PkFLUsViuDxcL0NC4VGoADdMowWOxuGiMy5uFkPIwvJJZMEonGKKApCdqHoMrwaAR-QjNG8SSl0plxbIE0nU+nnFmuEUUJEAJCx2GV6tpWv1niN8RUNNojsZLIFGS95PLgeZ1xFDDTCugCgt5jMXgCEjIpdprho73mmdzy8Lptn1tFF9UOtvxcELu0zMCm6QbpMMifheV43nel6HgADJEQA')">function merge(s1, s2) {
     if (is_null(s1)) {
         return s2;
     } else if (is_null(s2)) {
@@ -2787,16 +2780,9 @@ function partial_sums(s) {
 </pre></div></div></td></tr></table>
     Then the required stream may be constructed with
     <kbd>merge</kbd>, as follows:
-    <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_70_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define S (cons-stream 1 (merge ^??^ ^??^)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-const S = pair(1, () => merge(??, ??));</pre></div></div></td></tr></table>
+    <kbd class='snippet'>const S = pair(1, () => merge($\langle ??\rangle$, $\langle ??\rangle$));</kbd>
     Fill in the missing expressions in the places marked
-    ?? above.
+    $\langle ??\rangle$ above.
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_70_4_div" data-toggle="collapse">Add solution</button></div>
@@ -2867,12 +2853,12 @@ const S = pair(1, () => merge(??, ??));</pre></div></div></td></tr></table>
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_70_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (expand num den radix)
   (cons-stream
    (quotient (* num radix) den)
    (expand (remainder (* num radix) den) den radix)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_19_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function expand(num, den, radix) {
     return pair(quotient(num * radix, den),
                 expand((num * radix) % den, den, radix));
@@ -2992,28 +2978,17 @@ function expand(num, den, radix) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_70_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define exp-series
   (cons-stream 1 (integrate-series exp-series)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_70_20_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 const exp_series = 
     pair(1, () => integrate_series(exp_series));</pre></div></div></td></tr></table>
       Show how to generate the series for sine and cosine, starting from the
       facts that the derivative of sine is cosine and the derivative of cosine
       is the negative of sine:
-      <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_70_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define cosine-series
-  (cons-stream 1 ^??^))
-
-(define sine-series
-  (cons-stream 0 ^??^))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-const cosine_series = pair(1, ??);
-const sine_series = pair(0, ??);</pre></div></div></td></tr></table>
+      <kbd class='snippet'>const cosine_series = pair(1, $\langle ??\rangle$);
+const sine_series = pair(0, $\langle ??\rangle$);</kbd>
     </LI>
   </OL>
   
@@ -3043,17 +3018,9 @@ const sine_series = pair(0, ??);</pre></div></div></td></tr></table>
       <span style="color:blue">function</span>
     
     for multiplying series:
-    <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_70_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (mul-series s1 s2)
-  (cons-stream ^??^ (add-streams ^??^ ^??^)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_70_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function mul_series(s1, s2) {
-    pair(??, add_streams(??, ??));
-}</pre></div></div></td></tr></table>
+    <kbd class='snippet'>function mul_series(s1, s2) {
+    pair($\langle ??\rangle$, add_streams($\langle ??\rangle$, $\langle ??\rangle$));
+}</kbd>
 
     You can test your
     

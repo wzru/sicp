@@ -2436,28 +2436,7 @@ function times(a, b) {
 	
       which runs in a logarithmic number of steps:<a class='superscript' id='footnote-link-5' href='#footnote-5'>[5]</a>
 
-      <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_17_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (fib n)
-   (fib-iter 1 0 0 1 n))
-(define (fib-iter a b p q count)
-   (cond ((= count 0) b)
-         ((even? count)
-            (fib-iter a
-                      b
-                      ??      ; compute p'
-                      ??      ; compute q'
-                      (/ count 2)))
-         (else (fib-iter (+ (* b q) (* a q) (* a p))
-                         (+ (* b p) (* a q))
-                         p
-                         q
-                         (- count 1)))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_17_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function fib(n) {
+      <kbd class='snippet'>function fib(n) {
     return fib_iter(1, 0, 0, 1, n);
 }
 function fib_iter(a, b, p, q, count) {
@@ -2466,15 +2445,15 @@ function fib_iter(a, b, p, q, count) {
            : is_even(count)
              ? fib_iter(a,
                         b,
-                        ??,           // compute p'
-                        ??,           // compute q'
+                        $\langle ??\rangle$,           // compute p'
+                        $\langle ??\rangle$,           // compute q'
                         count / 2)
              : fib_iter(b * q + a * q + a * p,
                         b * p + a * q,
                         p,
                         q,
                         count - 1);
-}</pre></div></div></td></tr></table>
+}</kbd>
       
       
     
@@ -2486,9 +2465,9 @@ function fib_iter(a, b, p, q, count) {
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_17_10_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_17_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_17_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0BYBQuAzAVwDsBjAFwEsB7E0KgZwH0BTAN1ZIAoSBKUAG9coUaABOrCkXH16AUlAZQAXjWgADAG5cAX3zFy1OqAJUARrwHCxEqTPpnzzKhVbjuKADSafGn96g-Dr6hKSUtI4WLm4eAIY+5j4ADj4Ajj5kNKQU1iJiktKyoFk5quoa+bbVAPyg5lXVYgBcDCwcXNylJLmNTWJ1TjHu3AlVAJD9U-VeuJPTTcmgAFSgSwDUoGkrW7PzC7bKq0ur25vbp3sH1d0UoGAYfH1TrUOuI+Y7Z6BxX6Cbv2Os2u10+x3+Py+wJBC1Szxhtgy8IRoluoAAtKg+CEDBZuABWbFAA')">function fib(n) {
+            <td><div class='snippet' id='javascript_17_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0BYBQuAzAVwDsBjAFwEsB7E0KgZwH0BTAN1ZIAoSBKUAG9coUaABOrCkXH16AUlAZQAXjWgADAG5cAX3zFy1OqAJUARrwHCxEqTPpnzzKhVbjuKADSafGn96g-Dr6hKSUtI4WLm4eAIY+5j4ADj4Ajj5kNKQU1iJiktKyoFk5quoa+bbVAPyg5lXVYgBcDCwcXNylJLmNTWJ1TjHu3AlVAJD9U-VeuJPTTcmgAFSgSwDUoGkrW7PzC7bKq0ur25vbp3sH1d0UoGAYfH1TrUOuI+Y7Z6BxX6Cbv2Os2u10+x3+Py+wJBC1Szxhtgy8IRoluoAAtKg+CEDBZuABWbFAA')">function fib(n) {
     return fib_iter(1, 0, 0, 1, n);
 }
 

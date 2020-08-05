@@ -3196,25 +3196,14 @@ list(null, list(3), list(2), list(2, 3),
     
     that generates the set of subsets of a set and give a clear explanation of
     why it works:
-    <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_33_47_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(define (subsets s)
-  (if (null? s)
-    (list nil)
-    (let ((rest (subsets (cdr s))))
-      (append rest (map ^??^ rest)))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_47_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHTpQKCwMwK4B2AxgC4CWA9oaAM74BGtApqbQBS0CUoA3lqEGhyuUO3K0A+oXwAbWZy49+Q1aABOrfOpqyJpdjPlcA3AKEBfUM1ks+5taGLVapDc1egAvHUYs27KQAhuQK3KYOapqk2jRBAA7xzIQAJuyargA0oAC2CewA-AXZGaRKZqoWWBZAA')">function subsets(s) {
+    <kbd class='snippet'>function subsets(s) {
     if (is_null(s)) {
         return list(null);
     } else {
         const rest = subsets(tail(s));
-        return append(rest, map(??, rest));
+        return append(rest, map($\langle ??\rangle$, rest));
     }
-}
-</pre></div></div></td></tr></table>
+}</kbd>
     
   
       <div class="Solution">
@@ -3225,9 +3214,9 @@ list(null, list(3), list(2), list(2, 3),
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
-            <td><div class='snippet' id='javascript_33_48_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+            <td><div class='snippet' id='javascript_33_47_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_33_48_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHTpQKCwMwK4B2AxgC4CWA9oaAM74BGtApqbQBS0CUoA3lqEGhyuUO3K0A+oXwAbWZy49+Q1aABOrfOpqyJpdjPlcA3AKEBfUM1ks+5taGLVapDc1egAvHUYs27KQAhuQK3KYOapqk2jRBAA7xzIQAJuyargA0oAC2CewAHt4AfKDxIersABbMQWnc2QVc2RmkSmaqFlhdWPRMrBx6ruwAjNko2QDM7UA')">function subsets(s) {
+            <td><div class='snippet' id='javascript_33_47_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHTpQKCwMwK4B2AxgC4CWA9oaAM74BGtApqbQBS0CUoA3lqEGhyuUO3K0A+oXwAbWZy49+Q1aABOrfOpqyJpdjPlcA3AKEBfUM1ks+5taGLVapDc1egAvHUYs27KQAhuQK3KYOapqk2jRBAA7xzIQAJuyargA0oAC2CewAHt4AfKDxIersABbMQWnc2QVc2RmkSmaqFlhdWPRMrBx6ruwAjNko2QDM7UA')">function subsets(s) {
     if (is_null(s)) {
         return list(null);
     } else {

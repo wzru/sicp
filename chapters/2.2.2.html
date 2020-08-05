@@ -2898,22 +2898,21 @@ list(null, list(3), list(2), list(2, 3),
     
     that generates the set of subsets of a set and give a clear explanation of
     why it works:
-    <div class='snippet' id='javascript_33_47_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHTpQKCwMwK4B2AxgC4CWA9oaAM74BGtApqbQBS0CUoA3lqEGhyuUO3K0A+oXwAbWZy49+Q1aABOrfOpqyJpdjPlcA3AKEBfUM1ks+5taGLVapDc1egAvHUYs27KQAhuQK3KYOapqk2jRBAA7xzIQAJuyargA0oAC2CewA-AXZGaRKZqoWWBZAA')">function subsets(s) {
+    <kbd class='snippet'>function subsets(s) {
     if (is_null(s)) {
         return list(null);
     } else {
         const rest = subsets(tail(s));
-        return append(rest, map(??, rest));
+        return append(rest, map($\langle ??\rangle$, rest));
     }
-}
-</pre></div></div>
+}</kbd>
     
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#solution_33_9_div" data-toggle="collapse">Solution</button></div>
       <div class="solution_content collapse" id="solution_33_9_div"><SOLUTION>
     
-      <div class='snippet' id='javascript_33_48_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHTpQKCwMwK4B2AxgC4CWA9oaAM74BGtApqbQBS0CUoA3lqEGhyuUO3K0A+oXwAbWZy49+Q1aABOrfOpqyJpdjPlcA3AKEBfUM1ks+5taGLVapDc1egAvHUYs27KQAhuQK3KYOapqk2jRBAA7xzIQAJuyargA0oAC2CewAHt4AfKDxIersABbMQWnc2QVc2RmkSmaqFlhdWPRMrBx6ruwAjNko2QDM7UA')">function subsets(s) {
+      <div class='snippet' id='javascript_33_47_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHTpQKCwMwK4B2AxgC4CWA9oaAM74BGtApqbQBS0CUoA3lqEGhyuUO3K0A+oXwAbWZy49+Q1aABOrfOpqyJpdjPlcA3AKEBfUM1ks+5taGLVapDc1egAvHUYs27KQAhuQK3KYOapqk2jRBAA7xzIQAJuyargA0oAC2CewAHt4AfKDxIersABbMQWnc2QVc2RmkSmaqFlhdWPRMrBx6ruwAjNko2QDM7UA')">function subsets(s) {
     if (is_null(s)) {
         return list(null);
     } else {
