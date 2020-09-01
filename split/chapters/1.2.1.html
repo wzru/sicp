@@ -2079,16 +2079,13 @@ Acknowledgments
     that counts from 1 up to $n$.  We can describe
     the computation by saying that the counter and the product simultaneously
     change from one step to the next according to the rule
-
-    <p>
-      product $\leftarrow$ counter
-      $\cdot$ product 
-    </p>
-    <p>
-      counter $\leftarrow$ counter
-      $+$ 1
-    </p>
-    and stipulating that $n!$ is the value of the
+    
+      \begin{eqnarray*}
+      \textrm{product} & \leftarrow & \textrm{counter} \cdot \textrm{product}\\
+      \textrm{counter} & \leftarrow & \textrm{counter} + 1
+      \end{eqnarray*}
+    
+and stipulating that $n!$ is the value of the
     product when the counter exceeds $n$.
   </p></div>
 
@@ -2324,11 +2321,24 @@ function fact_iter(product, counter, max_count) {
       <span style="color:green">procedure</span>
       <span style="color:blue">function</span>
     
-    may be confusing is that most implementations of common languages (including
+    may be confusing is that most implementations of common languages
     
+      <span style="color:green">
+	(including
+	
+	
+	
+	Ada, Pascal, and C)
+      </span>
+      <span style="color:blue">
+	(including
+	
+	
+	
+	C, Java, and Python)
+      </span>
     
-    
-    Ada, Pascal, and C) are designed in such a way that the interpretation of
+    are designed in such a way that the interpretation of
     any recursive
     
       <span style="color:green">procedure</span>
@@ -2671,14 +2681,14 @@ function k(n) {
         (iter (* counter product)
               (+ counter 1))))
   (iter 1 1))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_14_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0oFA4GYCuAdgMYAuAlgPbGj4CGF1ATpQwDYAUxAlKAG8coEfRIUadSuQCmLLgAcW1ACaEKAGlClqJWS35DRx0CxnlCLOjr1zQAPlB1hJ16ID8oJavXkXb1wAuUGk5LhtifVAAKi9lNU1-AOSRCKiAalReAG5-AF9-MwsrEP0uFC0UHJwCgiZyVnZuAFYcoA')">function factorial(n) {
+            <td><div class='snippet' id='javascript_14_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0oFA4GYCuAdgMYAuAlgPbGj4CGF1ATpQwDYAUxAlKAG8coEfRIUadSuQCmLLgAcW1ACaEKAGlClqJWS35DRx0CxnlCLOjr1zQAPlB1hJ16ID8oJavXkXb1wAuUGk5LhtifVAAKi9lNU1-AOSRCKiAalReAG4kgF8kswsrEP0uFC0UHJwCgiZyVnZuAFYcoA')">function factorial(n) {
     function iter(product, counter) {
         return counter > n 
                ? product
                : iter(counter * product,
                       counter + 1);
-   }
-   return iter(1, 1);
+    }
+    return iter(1, 1);
 }
 </pre></div></div></td></tr></table>
     We avoided doing this here so as to minimize the number of things to
@@ -2723,10 +2733,7 @@ function k(n) {
 	calls (<CITATION>Steele 1977</CITATION>).
 	The IEEE standard for Scheme requires that Scheme implementations
 	
-	be tail-recursive. The ECMA standard for JavaScript eventually followed
-	suit with ECMAScript 2015 (<CITATION>ECMA 2015</CITATION>). Note however,
-	that as of this writing (2020), most implementations of JavaScript do
-	not comply with this standard.
+	be tail-recursive.
     </FOOTNOTE></span></div>
     
     
@@ -2748,7 +2755,7 @@ function k(n) {
 	The IEEE standard for Scheme requires that Scheme implementations
 	
 	be tail-recursive. The ECMA standard for JavaScript eventually followed
-	suit with ECMAScript 2015 (<CITATION>ECMA 2015</CITATION>). Note however,
+	suit with ECMAScript 2015 (<CITATION>ECMA 2015</CITATION>). Note, however,
 	that as of this writing (2020), most implementations of JavaScript do
 	not comply with this standard.
     </FOOTNOTE></span></div>
@@ -2757,21 +2764,11 @@ function k(n) {
     <div class='footnote'><span style="color:blue">
       <a class='footnote-number' id='footnote-5' href='#footnote-link-5' style="color:blue">[5] </a>
     <FOOTNOTE>
-    
-        
-        Syntactic forms that are simply convenient
-        alternative surface structures for things that can be written in more
-        uniform ways are sometimes called <EM>syntactic sugar</EM>, to use a
-        phrase coined by Peter Landin.
-	Exercises&nbsp;<REF NAME="ex:while_loop"><a class="superscript" id="1.2.1-ex-link-4.11" href="./4.1.2.html#ex_4.11">4.11</a></REF> and
+    Exercises&nbsp;<REF NAME="ex:while_loop"><a class="superscript" id="1.2.1-ex-link-4.11" href="./4.1.2.html#ex_4.11">4.11</a></REF> and
 	<REF NAME="ex:for_loops"><a class="superscript" id="1.2.1-ex-link-4.12" href="./4.1.2.html#ex_4.12">4.12</a></REF> 
 	explore JavaScript's <kbd>while</kbd> and
 	<kbd>for</kbd> loops as syntactic
 	sugar for functions that give rise to iterative processes.
-        
-        
-        
-      
     </FOOTNOTE></span></div>
     
     

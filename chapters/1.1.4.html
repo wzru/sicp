@@ -1999,9 +1999,6 @@ Acknowledgments
         limited means of abstraction.
       </LI>
     </UL>
-  </p></div>
-  <div class='permalink'>
-<a name='p2' class='permalink'></a><p>
     Now we will learn about
     
       
@@ -2019,7 +2016,7 @@ Acknowledgments
     operation can be given a name and then referred to as a unit.
   </p></div>
   <div class='permalink'>
-<a name='p3' class='permalink'></a><p>
+<a name='p2' class='permalink'></a><p>
     We begin by examining how to express the idea of
     <QUOTE>squaring.</QUOTE>
     We might say,
@@ -2099,7 +2096,7 @@ function square(    x   ) { return x    *     x; }
     
   </p></div>
   <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
+<a name='p3' class='permalink'></a><p>
     
       
       
@@ -2107,7 +2104,7 @@ function square(    x   ) { return x    *     x; }
       
     
     is
-    <kbd class='snippet'>function $name$( $parameters$ ) { return $expression$; }</kbd>
+    <kbd class='snippet'>function $name$($parameters$) { return $expression$; }</kbd>
     
       
       
@@ -2172,26 +2169,26 @@ function square(    x   ) { return x    *     x; }
         
         
 	<EM>body</EM> of a function declaration is a single
-	<EM>return</EM>
-	statement, which consists of the keyword
+	<EM>return statement</EM>,
+	which consists of the keyword
 	<kbd>return</kbd>
-	followed by the return 
-	$\textit{expression}$
+	followed by the <EM>return expression</EM>
 	that will yield the value of the function application, when the formal
 	parameters are replaced by the actual arguments to which the function
-	is applied.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
+	is applied. Like constant declarations and expression statements,
+	return statements end with a semicolon.<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a>
       
     
     
   </p></div>
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p4' class='permalink'></a><p>
     
       
       
 	Having declared <kbd>square</kbd>,
 	we can now use it in a
-	function application expression, which we turn into a statement
+	<EM>function application</EM> expression, which we turn into a statement
 	using a semicolon:
       
     
@@ -2207,7 +2204,7 @@ function square(    x   ) { return x    *     x; }
 	combinations—the second kind of combination of
 	expressions into larger expressions that we encounter.
 	The general form of a function application is
-        <kbd class='snippet'>$function$-$expression$( $argument$-$expressions$ )</kbd>
+        <kbd class='snippet'>$function$-$expression$($argument$-$expressions$)</kbd>
 	where the $\textit{function-expression}$
 	of the application specifies
 	the function to be applied to the comma-separated
@@ -2246,13 +2243,13 @@ function square(    x   ) { return x    *     x; }
 81</pre></div></div>
     
     
-      Of course application expressions can also serve as argument expressions.
+      Of course applications can also serve as argument expressions.
     
     
   </p></div>
   
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     We can also use <kbd>square</kbd>
     as a building block in defining other
     
@@ -2267,8 +2264,13 @@ square(x) + square(y);</pre></div></div>
   </p></div>
   
   <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
-    We can easily define a
+<a name='p6' class='permalink'></a><p>
+    We can easily
+    
+      
+      declare
+    
+    a
     
       
       
@@ -2308,7 +2310,7 @@ square(x) + square(y);</pre></div></div>
 136</pre></div></div>
   </p></div>
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     
       
       
@@ -2401,7 +2403,8 @@ square(x) + square(y);</pre></div></div>
 	longer names, the JavaScript adaptation stays close to the
 	original book, using underscores instead of hyphens to separate
 	words. This practice differs from the common JavaScript convention
-	of using <QUOTE>camel-case</QUOTE>, which would stipulate the name
+	
+	of using <EM>camel case</EM> which would stipulate the name
 	to be <kbd>sumOfSquares</kbd>.
     </FOOTNOTE></div>
 

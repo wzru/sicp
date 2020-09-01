@@ -2018,15 +2018,15 @@ Acknowledgments
 
 (define (divides? a b)
   (= (remainder b a) 0))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_19_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAx+VQ0tSlp6X39AuwcnEnCKUwtrFMdXUXdJaXpmNi5uTLNk4PZBAD5QEgL3FtAAfkbm1vEALlAcqktTCqzq1PCXLu7xDsrsoNSp6dA+xICB1LDQObHHUABqVCj1QlI43QGhhm5WcIAjfMLPYtA70ABSUFZQAF4-0AADNF8AwDMZRhsQgAWSLKIA')">function smallest_divisor(n) {
+            <td><div class='snippet' id='javascript_19_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAx+VQ0tSlp6X39AuwcnEnCKUwtrFMdXUXFJaXpmNi5uTLNk4PZBAD5QEgL3FoB+RuaW8QAuUByqS1MKrOrU8JdOrvF2yuyg1Mmp0F7EgP7UsNBZ0cdQAGpUKPVCUjjdfsGGblZwgCN89yLvW9AAUlBWUABeH9AABmi+AYBmMI3WIQALJFlEA')">function smallest_divisor(n) {
     return find_divisor(n, 2);
 }
 function find_divisor(n, test_divisor) {
-     return square(test_divisor) > n
-            ? n
-            : divides(test_divisor, n)
-              ? test_divisor
-              : find_divisor(n, test_divisor + 1);
+    return square(test_divisor) > n
+           ? n
+           : divides(test_divisor, n)
+             ? test_divisor
+             : find_divisor(n, test_divisor + 1);
 }
 function divides(a, b) {
     return b % a === 0;
@@ -2053,7 +2053,7 @@ function divides(a, b) {
             <td><div class='snippet' id='javascript_19_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (prime? n)
   (= n (smallest-divisor n)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_19_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAx+VQ0tSlp6X39AuwcnEnCKUwtrFMdXUXdJaXpmNi5uTLNk4PZBAD5QEgL3FtAAfkbm1vEALlAcqktTCqzq1PCXLu7xDsrsoNSp6dA+xICB1LDQObHHUABqVCj1QlI43QGhhm5WcIAjfMLPYtA70ABSUFZQAF4-0AADNFNGcdPR7OYAA7sKh6HguYRdIreeh-H76IwmKobEIuYG4CHQ2E8AAskWUQA')">function is_prime(n) {
+            <td><div class='snippet' id='javascript_19_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAx+VQ0tSlp6X39AuwcnEnCKUwtrFMdXUXFJaXpmNi5uTLNk4PZBAD5QEgL3FoB+RuaW8QAuUByqS1MKrOrU8JdOrvF2yuyg1Mmp0F7EgP7UsNBZ0cdQAGpUKPVCUjjdfsGGblZwgCN89yLvW9AAUlBWUABeH9AABmimlOOno9nMAAd2FQ9DwXMJOk96PQfl99EYTFV1iEXIDcGDIdCeAAWSLKIA')">function is_prime(n) {
     return n === smallest_divisor(n);
 }
 </pre></div></div></td></tr></table>
@@ -2094,14 +2094,15 @@ function divides(a, b) {
     Theorem.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
 
     
-    <p>
+    <blockquote class='blockquote'>
       <B>Fermat's Little Theorem:</B> 
       If $n$ is a prime number and 
       $a$ is any positive integer less than 
       $n$, then $a$ raised
       to the $n$th power is congruent to
       $a$ modulo $n$.
-    </p>
+    </blockquote>
+
     
     (Two numbers are said to be <EM>congruent modulo</EM>
     $n$ if they both have the same remainder when
@@ -2383,7 +2384,7 @@ function divides(a, b) {
           <tr>
             <td><div class='snippet' id='javascript_19_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_19_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAx+VQ0tSlp6X39AuwcnEnCKUwtrFMdXUXdJaXpmNi5uTLNk4PZBAD5QEgL3FtAAfkbm1vEALlAcqktTCqzq1PCXLu7xDsrsoNSp6dA+xICB1LDQObHHUABqVCj1QlI43QGhhm5WcIAjfMLPYtA70ABSUFZQAF4-0AADNF8AwDMZRhsQigAJzQ44gfRGExVSFOGGw+FgUFIiELKGwjHKIA')">smallest_divisor(199);
+            <td><div class='snippet' id='javascript_19_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAx+VQ0tSlp6X39AuwcnEnCKUwtrFMdXUXFJaXpmNi5uTLNk4PZBAD5QEgL3FoB+RuaW8QAuUByqS1MKrOrU8JdOrvF2yuyg1Mmp0F7EgP7UsNBZ0cdQAGpUKPVCUjjdfsGGblZwgCN89yLvW9AAUlBWUABeH9AABmi+AYBmMI3WIRQAE5IUcQPojCYquCnFDobCwMCEWD5hDoWjlEA')">smallest_divisor(199);
 // smallest_divisor(1999);
 // smallest_divisor(19999);
 </pre></div></div></td></tr></table>
@@ -2409,9 +2410,8 @@ function divides(a, b) {
       <span style="color:blue">
         Assume a primitive function
 	<kbd>get_time</kbd> of no arguments
-	that whenever it is called
-	returns the number of milliseconds that passed since 00:00:00 UTC
-	Thursday, 1 January 1970.<a class='superscript' id='footnote-link-6' href='#footnote-6'style="color:blue">[6]</a>
+	that returns the number of milliseconds that have passed since 00:00:00 UTC
+	on Thursday, 1 January, 1970.<a class='superscript' id='footnote-link-6' href='#footnote-6'style="color:blue">[6]</a>
 	The following 
         <kbd>timed_prime_test</kbd>
 	function,
@@ -2446,7 +2446,7 @@ function divides(a, b) {
 (define (report-prime elapsed-time)
   (display " *** ")
   (display elapsed-time))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_19_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAx+VQ0tSlp6X39AuwcnEnCKUwtrFMdXUXdJaXpmNi5uTLNk4PZBAD5QEgL3FtAAfkbm1vEALlAcqktTCqzq1PCXLu7xDsrsoNSp6dA+xICB1LDQObHHUABqVCj1QlI43QGhhm5WcIAjfMLPYtA70ABSUFZQAF4-0AADNFNGcdPR7OYAA7sKh6HguYRdIreeh-H76IwmKobEIuYGnbTxbawzgBaEk8xzZyPcTWBiQwysACe1NUTy8JQoHAs5LhlKyWwA5p5KSTuPxjjFQUSzNyoTC+VT0owuewLNQ4TSxMjwQx5WLJssxB0uJDHDyFTxheqxYIALQquUazj8JYtPoUdhETjA2JgjxmtX6uHcTiMyEMUmizWI9x0hnM7gAIgU8kUSeOcfsCZZYdYEajzsl+GdZMt-LM3AALABmKJAA')">function timed_prime_test(n) {
+            <td><div class='snippet' id='javascript_19_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAx+VQ0tSlp6X39AuwcnEnCKUwtrFMdXUXFJaXpmNi5uTLNk4PZBAD5QEgL3FoB+RuaW8QAuUByqS1MKrOrU8JdOrvF2yuyg1Mmp0F7EgP7UsNBZ0cdQAGpUKPVCUjjdfsGGblZwgCN89yLvW9AAUlBWUABeH9AABmimlOOno9nMAAd2FQ9DwXMJOk96PQfl99EYTFV1iEXICTtp4ltoZwApCieZZs4HuJrAxwYZWABPSmqR6eYqMCgcCykmHkrKbADmnnJRO4-COMWBBLMXIhUN5FPSHNl1BhVLEiNAYJ5sP4izaHnBjm58p4Qosqp4ggAtMr2BaiXqlj0tuwiJxAbEQYbjXLRZx6eCGMSRWr4e4aXTGdwAEQKeSKGNHCP2KNMgOsIMhy0S-CWkmmvlmbgAFgAzFEgA')">function timed_prime_test(n) {
     display(n);
     return start_prime_test(n, get_time());
 }
@@ -2512,7 +2512,7 @@ function report_prime(elapsed_time) {
           <tr>
             <td><div class='snippet' id='javascript_19_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_19_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAx+VQ0tSlp6X39AuwcnEnCKUwtrFMdXUXdJaXpmNi5uTLNk4PZBAD5QEgL3FtAAfkbm1vEALlAcqktTCqzq1PCXLu7xDsrsoNSp6dA+xICB1LDQObHHUABqVCj1QlI43QGhhm5WcIAjfMLPYtA70ABSUFZQAF4-0AADNFNGcdPR7OYAA7sKh6HguYRdIreeh-H76IwmKobEIuYGnbTxbawzgBaEk8xzZyPcTWBiQwysACe1NUTy8JQoHAs5LhlKyWwA5p5KSTuPxjjFQUSzNyoTC+VT0owuewLNQ4TSxMjwQx5WLJssxB0uJDHDyFTxheqxYIALQquUazj8JYtPoUdhETjA2JgjxmtX6uHcTiMyEMUmizWI9x0hnM7gAIgU8kUSeOcfsCZZYdYEajzslIMJukjHDIAAtzARHMHhrK1RkSQwtR4OcS4Qxfv8AW72tsvZx+31GxRQA0MKAAGTTx1qj4RHvovtG42MTgV6u19j165jg6oZtd11r0AgUBUAigADunFA1tApCGiVJoDtDSoFG7315w7PfQQs+nCvpYFQkmSlr8mY3BjhKoD9tMHTluwVY1nWf77qq46HBgx6mO+RyId0o6bqh24YZaWHcoeeGdqYxa4ChaE7nu3AoACnEAuEADMxwXsxFG7ph7FcZxvH8WAgnocJVGiWJ3GgHxyhAA')">function search_for_primes(start, times) {
+            <td><div class='snippet' id='javascript_19_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdRgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAx+VQ0tSlp6X39AuwcnEnCKUwtrFMdXUXFJaXpmNi5uTLNk4PZBAD5QEgL3FoB+RuaW8QAuUByqS1MKrOrU8JdOrvF2yuyg1Mmp0F7EgP7UsNBZ0cdQAGpUKPVCUjjdfsGGblZwgCN89yLvW9AAUlBWUABeH9AABmimlOOno9nMAAd2FQ9DwXMJOk96PQfl99EYTFV1iEXICTtp4ltoZwApCieZZs4HuJrAxwYZWABPSmqR6eYqMCgcCykmHkrKbADmnnJRO4-COMWBBLMXIhUN5FPSHNl1BhVLEiNAYJ5sP4izaHnBjm58p4Qosqp4ggAtMr2BaiXqlj0tuwiJxAbEQYbjXLRZx6eCGMSRWr4e4aXTGdwAEQKeSKGNHCP2KNMgOsIMhy0SoH43TBjhkAAW5gIjj9MKuMvtGSJDHVHi89EtDG+vz++tAMzdnC7vRrFFADQwoAAZGO7UP3qOUf8u+52oX2CWyxWddXOfb9qg61Wnc6xCAtQRQAB3Tigc2gUiDRLE0DWhpUChtz46hcusG3zj3ywVIkSVNPkzG4QdxVAT8uiXTgi1Lct2ErIZBx3DA91MR9DigloB1gld4PXU1Ny5VD0IbXFl1XBCkKuFA-nov5wgAZiOY9KIIxCN24OiGMY0AWNUNi8Kowj6243j6OYqIgA')">function search_for_primes(start, times) {
     return times === 0
         ? true
         : start > 2 && start % 2 === 0
@@ -2625,7 +2625,7 @@ function report_prime(elapsed_time) {
           <tr>
             <td><div class='snippet' id='javascript_19_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_19_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvoVKVa9BgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAx+VQ1icmo6UGs7S1NuVnCAI1dRcUlpegzQAFJQVlAAXkrQAAZozTidUHtzAAd2Kj0eF2EcsTzvekryxgNjUwsk4KcXOtjtBOpOgLaOznMKceds92sGFsNWAE8t1Xd+3QoOCxXO9c2ScIBzT3XV7n4o9Xr5i6vW9tuGzMYUYl3YFkWnG2uU8+SaDH+bxcvXc7gA-B4Wo5rgCeM8IW9BABaUF-SH8FGosQALlAFHYRE4sy08XoXCx4MRnW4nAOLQYnAC5J6O3s+yO3AARAp5IpJZ9RXsDsdeax+YLXp1PjEWY0SJxeBRuH4WkQKNC+rDvCazRUqhhQJTxBiAMyOqk0pokU0UUAAagizIaCV8-kCdgc03CQImQUjFo8Xl0LA4PBj4amggAfKASE6qRi8x7UbTJikGNx05NI+FkcWC3TxhnI-mPbTQwFqyEHrmDUaq3HHB86rhIctcXdgQAWF1RIA')">function next(input) {
+            <td><div class='snippet' id='javascript_19_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCY0DYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvoVKVa9BgFtWAG0OcGFAPoATKgDcqDGu24lBI8RM5SZoAlRKWrW3tHZwAaUAx+VQ1icmo6UGs7S1NuVnCAI1dRcUlpegzQAFJQVlAAXkrQAAZozTidUHtzAAd2Kj0eF2EcsTzvekryxgNjUwsk4KcXOtjtBOpOgLaOznMKceds92sGFsNWAE8t1Xd+3QoOCxXO9c2ScIBzT3XV7n4o9Xr5i6vW9tuGzMYUYl3YFkWnG2uU8+SaDH+bxcvXc7gA-B4Wo5rgCeM8IW9BABaUF-SH8FGosQALlAFHYRE4sy08XoXCx4MRnW4nAOLQYnAC5J6O3s+yO3AARAp5IpJZ9RXsDsdeax+YLXp1PjEWY0SJxeBRuH4WkQKNC+rDvCazRUqhhQJTxBiAMyOqk0pokU0UUAAagizIaCV8-kCdgc03CQImQUjFo8Xl0LA4PBj4amggAfKASE7URi8x73LTJikGNx05NI+FkcWC3TxhnI-mqbTQwFqyEHrmDUaq3HHB86rhIctcXdgQAWF1RIA')">function next(input) {
     return input === 2 
         ? 3 
         : input + 2;
@@ -2633,10 +2633,10 @@ function report_prime(elapsed_time) {
 
 function find_divisor(n, test_divisor) {
     return square(test_divisor) > n
-            ? n
-            : divides(test_divisor, n)
-              ? test_divisor
-              : find_divisor(n, next(test_divisor));
+           ? n
+           : divides(test_divisor, n)
+             ? test_divisor
+             : find_divisor(n, next(test_divisor));
 }
 </pre></div></div></td></tr></table>
       The ratio of the speeds of the two algorithms is not exactly 2, but this might be due to hardware / network issues.
@@ -3135,10 +3135,20 @@ function do_miller_rabin_test(n, times) {
     One of the most
     striking applications of
     
-    probabilistic prime testing has been to the field of cryptography. Although
-    it is now computationally infeasible to factor an arbitrary 200-digit number,
-    the primality of such a number can be checked in a few seconds with the
-    Fermat test.  This fact forms the basis of a technique for constructing
+    probabilistic prime testing has been to the field of cryptography.
+    
+      <span style="color:green">
+	Although it is now computationally infeasible to factor an arbitrary 200-digit
+	number, the primality of such a number can be checked in a few seconds with the
+	Fermat test.
+      </span>
+      <span style="color:blue">
+	Although it is computationally infeasible to factor an arbitrary 300-digit
+	number as of this writing (2020), the primality of such a number can be checked
+	in a few seconds with the Fermat test.
+      </span>
+    
+    This fact forms the basis of a technique for constructing
     <QUOTE>unbreakable codes</QUOTE> suggested by 
     
     Rivest,

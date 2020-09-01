@@ -2088,12 +2088,12 @@ Acknowledgments
 </pre></div></div>
         
         The general form of a conditional expression is
-        <kbd class='snippet'>$predicate$ ? $consequent$-$expression$ : $alternative$-$expression$</kbd>
+        <kbd class='snippet'>$predicate$-$expression$ ? $consequent$-$expression$ : $alternative$-$expression$</kbd>
         Conditional expressions begin with a
-        $\textit{predicate}$—that is, 
+        $\textit{predicate-expression}$—that is, 
         an expression whose value is either
 	<EM>true</EM> or <EM>false</EM>, two distinguished
-	<EM>boolean</EM> values in JavaScript.<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:blue">[2]</a>
+	<EM>boolean</EM> values in JavaScript.
 	Note that the primitive boolean expressions
 	<kbd>true</kbd> and
 	<kbd>false</kbd> trivially evaluate
@@ -2151,7 +2151,7 @@ Acknowledgments
         $\textit{consequent-expression}$.
         If the predicate evaluates to false, it evaluates the
         
-        $\textit{alternative-expression}$.
+        $\textit{alternative-expression}$.<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:blue">[2]</a>
       </p></div>
     </span></td></tr></table>
   <table width="100%">
@@ -2193,7 +2193,7 @@ Acknowledgments
         
         
         primitive predicate <kbd>>=</kbd>,
-	an operator that takes two numbers as operands and tests whether the
+	an operator that takes two numbers as arguments and tests whether the
 	first number is greater than or equal to the second number, returning
 	true or false accordingly.
       </p></div>
@@ -2375,17 +2375,12 @@ Acknowledgments
 	    $ \textit{expression}_1$ <kbd>&&</kbd>
 	    $\textit{expression}_2$<br>
 	    This operation expresses <EM>logical
-	    conjunction</EM>.<a class='superscript' id='footnote-link-6' href='#footnote-6'style="color:blue">[6]</a>
-            The interpreter evaluates
-	    $\textit{expression}_1$.
-            If it evaluates to false, the value of the whole expression
-	    is false, and
-	    $\textit{expression}_2$
-            is not evaluated. If
-	    $\textit{expression}_1$
-	    evaluates to true, the value of the whole expressionis the
-	    value of $\textit{expression}_2$.
-            
+	    conjunction</EM>, meaning roughly 
+	    the same as the English word <QUOTE>and</QUOTE>.
+	    This syntactic form is syntactic sugar<a class='superscript' id='footnote-link-6' href='#footnote-6'style="color:blue">[6]</a> for
+	    $ \textit{expression}_1$ <kbd>?</kbd>
+	    $\textit{expression}_2$ <kbd>:</kbd>
+	    <kbd>false</kbd>.
           </LI>
           <LI>
             
@@ -2393,20 +2388,20 @@ Acknowledgments
             <kbd>||</kbd> 
             $\textit{expression}_2$<br>
 	    This operation expresses <EM>logical
-	    disjunction</EM>.<a class='superscript' id='footnote-link-7' href='#footnote-7'style="color:blue">[7]</a>
-            The interpreter evaluates 
-            $\textit{expression}_1$. If it evaluates
-	    to true, the value of the whole expression is true,
-	    and $\textit{expression}_2$ is not
-	    evaluated. If $\textit{expression}_1$
-	    evaluates to false, the value of the whole expression is the
-	    value of $\textit{expression}_2$.
+	    disjunction</EM>, meaning roughly 
+	    the same as the English word <QUOTE>or</QUOTE>.
+	    This syntactic form is syntactic sugar for
+	    $ \textit{expression}_1$ <kbd>?</kbd>
+	    <kbd>true</kbd> <kbd>:</kbd>
+	    $\textit{expression}_2$.
+
           </LI>
           
           <LI>
             <kbd>!</kbd>
 	    $\textit{expression}$<br>
-	    This operation expresses <EM>logical negation</EM>.<a class='superscript' id='footnote-link-8' href='#footnote-8'style="color:blue">[8]</a>
+	    This operation expresses <EM>logical negation</EM>, meaning
+	    roughly the same as the English word <QUOTE>not</QUOTE>.
             The value of the expression is true when
 	    $\textit{expression}$
 	    evaluates to false, and false otherwise.
@@ -2415,7 +2410,7 @@ Acknowledgments
         
         Notice that <kbd>&&</kbd> and 
         <kbd>||</kbd> are syntactic forms,
-	not operators, because their right-hand
+	not operators; their right-hand
         expression is not always evaluated. The operator
         <kbd>!</kbd>, on the other hand, 
         follows the evaluation rule of section
@@ -2428,8 +2423,8 @@ Acknowledgments
 	we call it a <EM>prefix operator</EM>. Another prefix operator is
 	the unary <QUOTE>minus</QUOTE> operator, an example of
 	which is the expression <kbd>-x</kbd>
-	of the function <kbd>abs</kbd>
-	in the beginning of this section.
+	in the function <kbd>abs</kbd>
+	at the beginning of this section.
       </p></div>
     </span></td></tr></table>
 
@@ -2459,14 +2454,15 @@ Acknowledgments
 	$5 < x < 10$ may be expressed as
         <div class='snippet' id='javascript_10_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 x > 5 && x < 10</pre></div></div>
-        Note that the binary operator
+        Note that the syntactic form
 	<kbd>&&</kbd>
         has lower precedence than the comparison operators
-        <kbd>></kbd> and
-        <kbd><</kbd>, and that
+        <kbd>></kbd>
+	and&nbsp;<kbd><</kbd>, and that
 	the conditional expression operator
 	$\cdots$<kbd>?</kbd>$\cdots$<kbd>:</kbd>$\cdots$
-	has lower precedence than any other operator, a property we used in
+	has lower precedence than any other operator we encountered so far,
+	a property we used in
 	the <kbd>abs</kbd> function above.
       </p></div>
     </span></td></tr></table>
@@ -2636,31 +2632,6 @@ x > 5 && x < 10</pre></div></div>
             <td><div class='snippet' id='javascript_10_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7NRrDQAFlAB+UJlAAuUJ2F1xUmXwDsvbvIBMAVkZA')">a === 4 ? 6 : b === 4 ? 6 + 7 + a : 25;
 </pre></div></div></td></tr></table>
     <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_10_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(+ 2 (if (> b a) b a))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_10_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7ACZeoABScAfNwD8oTgC4qASkZA')">2 + (b > a ? b : a);
-</pre></div></div></td></tr></table>
-    <table width="100%">
-          <colgroup><col width="48%"><col width="52%"></colgroup>
-          
-          <tr>
-            <td><div class='snippet' id='javascript_10_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-(* (cond ((> a b) a)
-         ((< a b) b)
-         (else -1))
-   (+ a 1))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_10_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7AApqAPlDtsoAPxVJALm4AecZNDSVa0AoC0KAJTYAVEOp99jIA')">(a > b
- ? a
- : a < b
-   ? b
-   : -1)
-*
-(a + 1);
-</pre></div></div></td></tr></table>
-    <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
           <td class="meta" style = "color:grey; text-align: center">Original</td>
@@ -2672,12 +2643,12 @@ x > 5 && x < 10</pre></div></div>
           <td></td>
           <td><span style="color:blue">
         Note that the statement
-        <div class='snippet' id='javascript_10_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7NRrDQAFlAB+UJlAAuUJ2F1xUmXwDsvbvIBMAVkZA')">a === 4 ? 6 : b === 4 ? 6 + 7 + a : 25;
+        <div class='snippet' id='javascript_10_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7NRrDQAFlAB+UJlAAuUJ2F1xUmXwDsvbvIBMAVkZA')">a === 4 ? 6 : b === 4 ? 6 + 7 + a : 25;
 </pre></div></div>
         consists of two conditional expressions, where the second one forms the
-	alternative of the first one. To make that clear, we often indent the
+	alternative of the first one. To make that clear, we sometimes indent the
 	lines like this:
-        <div class='snippet' id='javascript_10_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7NRrDQAFmwB+UDgBcoTsLqjQ2UKCmZeoAOxbKq0HIBMAVkZA')">a === 4
+        <div class='snippet' id='javascript_10_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7NRrDQAFmwB+UDgBcoTsLqjQ2UKCmZeoAOxbKq0HIBMAVkZA')">a === 4
 ? 6
 : b === 4 
   ? 6 + 7 + a
@@ -2689,6 +2660,31 @@ x > 5 && x < 10</pre></div></div>
 	  right-associativity of the ternary conditional expression operators.
 	</span>
       </span></td></tr></table>
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_10_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(+ 2 (if (> b a) b a))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_10_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7ACZeoABScAfNwD8oTgC4qASkZA')">2 + (b > a ? b : a);
+</pre></div></div></td></tr></table>
+    <table width="100%">
+          <colgroup><col width="48%"><col width="52%"></colgroup>
+          
+          <tr>
+            <td><div class='snippet' id='javascript_10_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+(* (cond ((> a b) a)
+         ((< a b) b)
+         (else -1))
+   (+ a 1))</pre></div></div>    </td>
+            <td><div class='snippet' id='javascript_10_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsGMB7AOwGcAXUAQ1AF5QBmAbl0NIoCNarQBqVZ7AApqAPlDtsoAPxVJALm4AecZNDSVa0AoC0KAJTYAVEOp99jIA')">(a > b
+ ? a
+ : a < b
+   ? b
+   : -1)
+*
+(a + 1);
+</pre></div></div></td></tr></table>
   
       <div class="Solution">
       <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_10_1_div" data-toggle="collapse">Add solution</button></div>
@@ -2885,9 +2881,7 @@ function a_plus_abs_b(a, b) {
   (if (= x 0)
     0
     y))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_10_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsDMBXAOwGMAXASwHsjQAHACgEpQBvbUT0AJwFMyC3WoyYBubAF9chUpRqgyvAM5kGADwA0oAJ4t2XHv0G01oALwXQABlAB+a6ABcO8RKA')">function p() {
-    return p();
-}
+            <td><div class='snippet' id='javascript_10_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsDMBXAOwGMAXASwHsjQAHACgEpQBvUAJwFMyCPbGTANygAvrkKlKNUGS4BnMgwAeAGlABPFq2yg9nHn1rLQAXnOgADKAD8V0AC5NQ7KKA')">function p() { return p(); }
 
 function test(x, y) {
     return x === 0 ? 0 : y;
@@ -2904,7 +2898,7 @@ function test(x, y) {
           <tr>
             <td><div class='snippet' id='javascript_10_30_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (test 0 (p))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_10_30_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsDMBXAOwGMAXASwHsjQAHACgEpQBvbUT0AJwFMyC3WoyYBubAF9chUpRqgyvAM5kGADwA0oAJ4t2XHv0G01oALwXQABlAB+a6ABcO8VOyKVDK1pFigA')">test(0, p());
+            <td><div class='snippet' id='javascript_10_30_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHToGwChsDMBXAOwGMAXASwHsjQAHACgEpQBvUAJwFMyCPbGTANygAvrkKlKNUGS4BnMgwAeAGlABPFq2yg9nHn1rLQAXnOgADKAD8V0AC5NQ7OOxzFDS+sHCgA')">test(0, p());
 </pre></div></div></td></tr></table>
       What behavior will Ben observe with an interpreter that uses
       applicative-order evaluation?  What behavior will he observe with an
@@ -3064,24 +3058,15 @@ function test(x, y) {
     <div class='footnote'><span style="color:blue">
       <a class='footnote-number' id='footnote-6' href='#footnote-link-6' style="color:blue">[6] </a>
     <FOOTNOTE>
-    meaning roughly 
-	    the same as the English word <QUOTE>and</QUOTE>
-    </FOOTNOTE></span></div>
     
-    
-    <div class='footnote'><span style="color:blue">
-      <a class='footnote-number' id='footnote-7' href='#footnote-link-7' style="color:blue">[7] </a>
-    <FOOTNOTE>
-    meaning roughly 
-	    the same as the English word <QUOTE>or</QUOTE>
-    </FOOTNOTE></span></div>
-    
-    
-    <div class='footnote'><span style="color:blue">
-      <a class='footnote-number' id='footnote-8' href='#footnote-link-8' style="color:blue">[8] </a>
-    <FOOTNOTE>
-    meaning
-	    roughly the same as the English word <QUOTE>not</QUOTE>
+            Syntactic forms that are simply convenient
+            alternative surface structures for things that can be written in more
+            uniform ways are sometimes called <EM>syntactic sugar</EM>, to use a
+            phrase coined by Peter Landin.
+            
+            
+            
+	    
     </FOOTNOTE></span></div>
     
     

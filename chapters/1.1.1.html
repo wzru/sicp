@@ -1978,14 +1978,14 @@ Acknowledgments
     Imagine that you are sitting at a computer terminal.  You type 
     
       
-      <EM>a program</EM>,
+      a <EM>statement</EM>,
     
     and the interpreter responds by displaying the
     result of its <EM>evaluating</EM> that
     
       
       
-	program. JavaScript programs are called <EM>statements</EM>.
+	statement.
       
     
   </p></div>
@@ -2007,30 +2007,30 @@ Acknowledgments
       </p></div>
     
   
-  
-    
-    
-      <div class='permalink'>
+  <div class='permalink'>
 <a name='p3' class='permalink'></a><p>
-        One kind of statement is an 
-        expression statement, which consists of an
-        <EM>expression</EM>, followed by a semicolon.
-	A simple kind of an expression is a number.
-      </p></div>
     
-  
-  (More precisely, the expression that you type consists of the numerals that
-  represent the number in base 10.)
-  
-  
-    If you ask our script to evaluate the expression statement
-    <div class='snippet' id='javascript_5_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwFgBwBsA3EA')">486;
+      
+      
+        One kind of statement you might type is an 
+        expression statement, which consists of an
+        <EM>expression</EM> followed by a semicolon.
+	One kind of primitive expression is a number.
+      
+    
+    (More precisely, the expression that you type consists of the numerals that
+    represent the number in base 10.)
+    
+    
+      If you ask our script to evaluate the expression statement
+      <div class='snippet' id='javascript_5_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwFgBwBsA3EA')">486;
 </pre></div></div>
-    by clicking it, it will respond by creating a separate
-    browser tab where the statement is shown, with the option
-    to evaluate the statement by pressing a <QUOTE>Run</QUOTE> button.
-    Click on the primitive expression statement, and see what happens!
-  
+      by clicking it, it will respond by creating a separate
+      browser tab where the statement is shown, with the option
+      to evaluate the statement by pressing a <QUOTE>Run</QUOTE> button.
+      Click on the primitive expression statement, and see what happens!
+    
+  </p></div>
   
     
     
@@ -2038,7 +2038,8 @@ Acknowledgments
 <a name='p4' class='permalink'></a><p>
         
         
-        Expressions representing numbers may be combined with operators
+        Expressions representing numbers may be combined with
+	operators
         (such as 
         <kbd>+</kbd> or 
         <kbd>*</kbd>) to form a
@@ -2107,8 +2108,8 @@ Acknowledgments
 19</pre></div></div>
         As usual, parentheses are used to group operator combinations in order
 	to avoid ambiguities. JavaScript also follows the usual conventions
-	when parentheses are omitted; multiplication and division bind stronger
-	than addition and subtraction. For example,
+	when parentheses are omitted; multiplication and division bind more
+	strongly than addition and subtraction. For example,
         <div class='snippet' id='javascript_5_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwZlAFSgCsoA1KgAyhgBMA3EA')">3 * 5 + 10 / 2;
 </pre></div></div>
         stands for 
@@ -2143,13 +2144,13 @@ Acknowledgments
 	overall complexity of the expressions that the JavaScript interpreter
 	can evaluate. It is we humans who might get confused by still relatively
         simple expressions such as
-        <div class='snippet' id='javascript_5_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwZlAFSgBMhoAFACygDUF+AtKAKwCUrtqADGecQOygwANlYBuIA')">3 * 2 * (4 + (3 - 5)) + 10 * (27 / 6);
+        <div class='snippet' id='javascript_5_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwZlAFSgBMhoAFPgLSgCsoA1KACwCUjJA7KGAGxkoADAG4gA')">3 * 2 * (3 - 5 + 4) + 27 / 6 * 10;
 </pre></div></div>
         which the interpreter would readily evaluate to be 57.  We can help
         ourselves by writing such an expression in the form
-        <div class='snippet' id='javascript_5_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwZlAFSgBMhoAFACygDUF+AtKAKwCUroWdWKADGeWIB2UGABsrANxA')">3 * 2 * (4 + (3 - 5)) 
+        <div class='snippet' id='javascript_5_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwZlAFSgBMhoAFPgLSgCsoA1KACwCUoWTWxA7KGADYyKAAwBuIA')">3 * 2 * (3 - 5 + 4) 
 + 
-10 * (27 / 6);
+27 / 6 * 10;
 </pre></div></div>
         to visually separate the major components of the expression.
       </p></div>

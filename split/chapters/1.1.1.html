@@ -1983,15 +1983,15 @@ Acknowledgments
     
     Imagine that you are sitting at a computer terminal.  You type 
     
-      <span style="color:green"><EM>an expression</EM>,</span>
-      <span style="color:blue"><EM>a program</EM>,</span>
+      <span style="color:green">an <EM>expression</EM>,</span>
+      <span style="color:blue">a <EM>statement</EM>,</span>
     
     and the interpreter responds by displaying the
     result of its <EM>evaluating</EM> that
     
       <span style="color:green">expression.</span>
       <span style="color:blue">
-	program. JavaScript programs are called <EM>statements</EM>.
+	statement.
       </span>
     
   </p></div>
@@ -2020,7 +2020,9 @@ Acknowledgments
 	</div>
       </p></div>
     </span></td></tr></table>
-  <table width="100%">
+  <div class='permalink'>
+<a name='p3' class='permalink'></a><p>
+    <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
           <td class="meta" style = "color:grey; text-align: center">Original</td>
@@ -2028,33 +2030,28 @@ Acknowledgments
           <td class="meta" style = "color:grey; text-align: center">JavaScript</td>
         </tr>
         <tr><td><span style="color:green">
-      <div class='permalink'>
-<a name='p3' class='permalink'></a><p>
         
         
         One kind of primitive expression you might type is a number.  
-      </p></div>
-    </span>    </td>
+      </span>    </td>
           <td></td>
           <td><span style="color:blue">
-      <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
-        One kind of statement is an 
+        One kind of statement you might type is an 
         expression statement, which consists of an
-        <EM>expression</EM>, followed by a semicolon.
-	A simple kind of an expression is a number.
-      </p></div>
-    </span></td></tr></table>
-  (More precisely, the expression that you type consists of the numerals that
-  represent the number in base 10.)
-  <div class='pdfonly'>
-    If you present
-    
-      <span style="color:green">Lisp</span>
-      <span style="color:blue">JavaScript</span>
-    
-    with a number
-    <table width="100%">
+        <EM>expression</EM> followed by a semicolon.
+	One kind of primitive expression is a number.
+      </span></td></tr></table>
+    (More precisely, the expression that you type consists of the numerals that
+    represent the number in base 10.)
+    <div class='pdfonly'>
+      If you present
+      
+	<span style="color:green">Lisp with a number</span>
+	<span style="color:blue">
+	  JavaScript with the program
+	</span>
+      
+      <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
           <tr>
@@ -2062,19 +2059,26 @@ Acknowledgments
 486</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_5_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwFgBwBsA3EA')">486;
 </pre></div></div></td></tr></table>
-    the interpreter will respond by printing<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-    <div class='snippet' id='javascript_5_2_div'><div class='pre-prettyprint'><pre class='prettyprintoutput'>
-486</pre></div></div>
-  </div>
-  <div class='webonly'>
-    If you ask our script to evaluate the expression statement
-    <div class='snippet' id='javascript_5_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwFgBwBsA3EA')">486;
+      the interpreter will respond by printing<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+      
+
+\vspace{3.2mm}
+\noindent	
+{\slshape 486}
+
+\vspace{3.2mm}
+      
+    </div>
+    <div class='webonly'>
+      If you ask our script to evaluate the expression statement
+      <div class='snippet' id='javascript_5_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwFgBwBsA3EA')">486;
 </pre></div></div>
-    by clicking it, it will respond by creating a separate
-    browser tab where the statement is shown, with the option
-    to evaluate the statement by pressing a <QUOTE>Run</QUOTE> button.
-    Click on the primitive expression statement, and see what happens!
-  </div>
+      by clicking it, it will respond by creating a separate
+      browser tab where the statement is shown, with the option
+      to evaluate the statement by pressing a <QUOTE>Run</QUOTE> button.
+      Click on the primitive expression statement, and see what happens!
+    </div>
+  </p></div>
   <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
@@ -2084,7 +2088,7 @@ Acknowledgments
         </tr>
         <tr><td><span style="color:green">
       <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p4' class='permalink'></a><p>
         
         
         Expressions representing numbers may be combined with an 
@@ -2098,24 +2102,24 @@ Acknowledgments
         <kbd>+</kbd> or <kbd>*</kbd>) to
 	form a compound expression that represents the application of the
 	procedure to those numbers.  For example,
-        <div class='snippet' id='javascript_5_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_5_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (+ 137 349)</pre><pre class='prettyprintoutput'>
 486</pre></div></div>
         
         
-        <div class='snippet' id='javascript_5_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_5_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (- 1000 334)</pre><pre class='prettyprintoutput'>
 666</pre></div></div>
 
-        <div class='snippet' id='javascript_5_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_5_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (* 5 99)</pre><pre class='prettyprintoutput'>
 495</pre></div></div>
         
         
-        <div class='snippet' id='javascript_5_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_5_6_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (/ 10 5)</pre><pre class='prettyprintoutput'>
 2</pre></div></div>
-        <div class='snippet' id='javascript_5_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_5_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (+ 2.7 10)</pre><pre class='prettyprintoutput'>
 12.7</pre></div></div>
       </p></div>
@@ -2123,10 +2127,11 @@ Acknowledgments
           <td></td>
           <td><span style="color:blue">
       <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
         
         
-        Expressions representing numbers may be combined with operators
+        Expressions representing numbers may be combined with
+	operators
         (such as 
         <kbd>+</kbd> or 
         <kbd>*</kbd>) to form a
@@ -2138,19 +2143,19 @@ Acknowledgments
           any of the following expression statements
 	  by clicking on it:
 	</div>
-      <div class='snippet' id='javascript_5_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCygzAOygDUoeALAJwDcQA')">137 + 349;
+      <div class='snippet' id='javascript_5_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCygzAOygDUoeALAJwDcQA')">137 + 349;
 </pre><pre class='prettyprintoutput'>
 486</pre></div></div>
-      <div class='snippet' id='javascript_5_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCygDAaALSgDMpALANxA')">1000 - 334;
+      <div class='snippet' id='javascript_5_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCygDAaALSgDMpALANxA')">1000 - 334;
 </pre><pre class='prettyprintoutput'>
 666</pre></div></div>
-      <div class='snippet' id='javascript_5_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwVlAFSgCcxA3EA')">5 * 99;
+      <div class='snippet' id='javascript_5_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwVlAFSgCcxA3EA')">5 * 99;
 </pre><pre class='prettyprintoutput'>
 495</pre></div></div>
-      <div class='snippet' id='javascript_5_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCygDKGAKwDcQA')">10 / 5;
+      <div class='snippet' id='javascript_5_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCygDKGAKwDcQA')">10 / 5;
 </pre><pre class='prettyprintoutput'>
 2</pre></div></div>
-      <div class='snippet' id='javascript_5_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwJjQOygDUqADANxA')">2.7 + 10;
+      <div class='snippet' id='javascript_5_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwJjQOygDUqADANxA')">2.7 + 10;
 </pre><pre class='prettyprintoutput'>
 12.7</pre></div></div>
       </p></div>
@@ -2164,7 +2169,7 @@ Acknowledgments
         </tr>
         <tr><td><span style="color:green">
       <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
         Expressions such as these, formed by 
         
         delimiting a list of expressions
@@ -2188,7 +2193,7 @@ Acknowledgments
           <td></td>
           <td><span style="color:blue">
       <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
         Expressions such as these, which contain other expressions
         as components, are called <EM>combinations</EM>.
         
@@ -2214,7 +2219,7 @@ Acknowledgments
         </tr>
         <tr><td><span style="color:green">
       <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
         The convention of placing the operator to the left of the operands is
         known as 
         
@@ -2226,11 +2231,11 @@ Acknowledgments
         
         procedures that may take an arbitrary
         number of arguments, as in the following examples:
-        <div class='snippet' id='javascript_5_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_5_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (+ 21 35 12 7)</pre><pre class='prettyprintoutput'>
 75</pre></div></div>
 
-        <div class='snippet' id='javascript_5_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_5_14_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (* 25 4 12)</pre><pre class='prettyprintoutput'>
 1200</pre></div></div>
         No ambiguity can arise, because the operator is always the leftmost 
@@ -2238,14 +2243,14 @@ Acknowledgments
         parentheses.
       </p></div>
       <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
         
         A second advantage of prefix notation is that it extends in a
         straightforward way to allow combinations to be <EM>nested</EM>, 
         that is,
         to have combinations whose elements are themselves
         combinations:
-        <div class='snippet' id='javascript_5_16_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_5_15_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (+ (* 3 5) (- 10 6))</pre><pre class='prettyprintoutput'>
 19</pre></div></div>
       </p></div>
@@ -2253,7 +2258,7 @@ Acknowledgments
           <td></td>
           <td><span style="color:blue">
       <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
         The convention of placing the operator between the operands is
         known as 
         
@@ -2261,17 +2266,17 @@ Acknowledgments
 	reader is most likely familiar with from school and everyday life.  
         As in mathematics, operator combinations can be <EM>nested</EM>, that
 	is, they can have operands that themselves are operator combinations:
-        <div class='snippet' id='javascript_5_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwCgMygBUoArAJSgDUouKADKALSgBs5A3EA')">(3 * 5) + (10 - 6);
+        <div class='snippet' id='javascript_5_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwCgMygBUoArAJSgDUouKADKALSgBs5A3EA')">(3 * 5) + (10 - 6);
 </pre><pre class='prettyprintoutput'>
 19</pre></div></div>
         As usual, parentheses are used to group operator combinations in order
 	to avoid ambiguities. JavaScript also follows the usual conventions
-	when parentheses are omitted; multiplication and division bind stronger
-	than addition and subtraction. For example,
-        <div class='snippet' id='javascript_5_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwZlAFSgCsoA1KgAyhgBMA3EA')">3 * 5 + 10 / 2;
+	when parentheses are omitted; multiplication and division bind more
+	strongly than addition and subtraction. For example,
+        <div class='snippet' id='javascript_5_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwZlAFSgCsoA1KgAyhgBMA3EA')">3 * 5 + 10 / 2;
 </pre></div></div>
         stands for 
-        <div class='snippet' id='javascript_5_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwCgMygBUoArAJSgDUouKADKGAEzkDcQA')">(3 * 5) + (10 / 2);
+        <div class='snippet' id='javascript_5_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwCgMygBUoArAJSgDUouKADKGAEzkDcQA')">(3 * 5) + (10 / 2);
 </pre></div></div>
         We say that <kbd>*</kbd> and
 	<kbd>/</kbd> have <EM>higher precedence</EM>
@@ -2279,10 +2284,10 @@ Acknowledgments
 	<kbd>-</kbd>. Sequences of additions and
 	subtractions are read from left to right, as are sequences of
 	multiplications and divisions. Thus,
-        <div class='snippet' id='javascript_5_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCy0BaUAVlDACZQAqUAFlAGpQBmAbiA')">1 - 5 / 2 * 4 + 3;
+        <div class='snippet' id='javascript_5_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCy0BaUAVlDACZQAqUAFlAGpQBmAbiA')">1 - 5 / 2 * 4 + 3;
 </pre></div></div>
         stands for 
-        <div class='snippet' id='javascript_5_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwChaALSi64CsoYATAJSgBUoALDXQNSgDMA3EA')">(1 - ((5 / 2) * 4)) + 3;
+        <div class='snippet' id='javascript_5_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwChaALSi64CsoYATAJSgBUoALDXQNSgDMA3EA')">(1 - ((5 / 2) * 4)) + 3;
 </pre></div></div>
         We say that the operators
         <kbd>+</kbd>,
@@ -2301,16 +2306,16 @@ Acknowledgments
         </tr>
         <tr><td><span style="color:green">
       <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
+<a name='p11' class='permalink'></a><p>
         There is no limit (in principle) to the depth of such nesting and to the
 	overall complexity of the expressions that the Lisp interpreter can
 	evaluate. It is we humans who get confused by still relatively simple
 	expressions such as
-        <div class='snippet' id='javascript_5_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_5_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (+ (* 3 (+ (* 2 4) (+ 3 5))) (+ (- 10 7) 6))</pre></div></div>
         which the interpreter would readily evaluate to be 57.  We can help
         ourselves by writing such an expression in the form
-        <div class='snippet' id='javascript_5_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+        <div class='snippet' id='javascript_5_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (+ (* 3
       (+ (* 2 4)
          (+ 3 5)))
@@ -2328,24 +2333,24 @@ Acknowledgments
           <td></td>
           <td><span style="color:blue">
       <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
         There is no limit (in principle) to the depth of such nesting and to the
 	overall complexity of the expressions that the JavaScript interpreter
 	can evaluate. It is we humans who might get confused by still relatively
         simple expressions such as
-        <div class='snippet' id='javascript_5_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwZlAFSgBMhoAFACygDUF+AtKAKwCUrtqADGecQOygwANlYBuIA')">3 * 2 * (4 + (3 - 5)) + 10 * (27 / 6);
+        <div class='snippet' id='javascript_5_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwZlAFSgBMhoAFPgLSgCsoA1KACwCUjJA7KGAGxkoADAG4gA')">3 * 2 * (3 - 5 + 4) + 27 / 6 * 10;
 </pre></div></div>
         which the interpreter would readily evaluate to be 57.  We can help
         ourselves by writing such an expression in the form
-        <div class='snippet' id='javascript_5_25_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwZlAFSgBMhoAFACygDUF+AtKAKwCUroWdWKADGeWIB2UGABsrANxA')">3 * 2 * (4 + (3 - 5)) 
+        <div class='snippet' id='javascript_5_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHTpQKCwZlAFSgBMhoAFPgLSgCsoA1KACwCUoWTWxA7KGADYyKAAwBuIA')">3 * 2 * (3 - 5 + 4) 
 + 
-10 * (27 / 6);
+27 / 6 * 10;
 </pre></div></div>
         to visually separate the major components of the expression.
       </p></div>
     </span></td></tr></table>
   <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
+<a name='p13' class='permalink'></a><p>
     Even with complex expressions, the interpreter always operates in the
     same basic cycle: It reads
     
@@ -2380,10 +2385,10 @@ Acknowledgments
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1' >[1] </a>
     <FOOTNOTE>
     Throughout this book,
-    
-    when we wish to emphasize the distinction between the input typed by
-    the user and the response printed by the interpreter, we will show the
-    latter in slanted characters.
+      
+      when we wish to emphasize the distinction between the input typed by
+      the user and the response printed by the interpreter, we will show the
+      latter in slanted characters.
     </FOOTNOTE></div>
     
     

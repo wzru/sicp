@@ -1999,7 +1999,7 @@ Acknowledgments
       
       
         To evaluate a function application, the interpreter follows the process
-	described in section <REF NAME="sec:compound-procedures"><a class="superscript" id="1.1.5-sec-link-1.1.4" href="./1.1.4.html">1.1.4</a></REF>.
+	described in section&nbsp;<REF NAME="sec:compound-procedures"><a class="superscript" id="1.1.5-sec-link-1.1.4" href="./1.1.4.html">1.1.4</a></REF>.
       
     
     That is, the interpreter evaluates the elements of the
@@ -2057,14 +2057,18 @@ Acknowledgments
 	    function
 	  
 	
-	to arguments, evaluate the body of the
+	to arguments, 
 	
 	  
 	  
-	    function
+	    evaluate the return expression of the function
 	  
 	
-	with each formal parameter replaced by the corresponding argument.
+	with each
+	
+	  
+	
+	parameter replaced by the corresponding argument.
       </LI>
     </UL>
     To illustrate this process, let's evaluate the
@@ -2131,7 +2135,12 @@ sum_of_squares(5 + 1, 5 * 2)</pre></div></div>
 	application
       
     
-    involves three subproblems.  We must evaluate the operator to get the
+    involves three subproblems.  We must evaluate the
+    
+      
+      function expression
+    
+    to get the
     
       
       
@@ -2420,6 +2429,10 @@ x * x</pre></div></div>
     additional efficiency obtained from avoiding multiple evaluations of
     expressions such as those illustrated with
     
+      
+      
+	<kbd>5 + 1</kbd> 
+	and <kbd>5 * 2</kbd>
       
     
     above and, more significantly, because normal-order evaluation
