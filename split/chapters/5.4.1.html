@@ -2172,10 +2172,6 @@ ev-lambda
       assign("val", list(op("make_function"),
                          reg("unev"), reg("stmt"), reg("env"))),
       go_to(reg("continue")),</pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p3' class='permalink'></a><p>
     Observe how
     
       <span style="color:green"><kbd>ev-lambda</kbd></span>
@@ -2232,7 +2228,7 @@ ev-lambda
   
 
   <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
+<a name='p3' class='permalink'></a><p>
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
@@ -2307,7 +2303,7 @@ ev-lambda
   </p></div>
 
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p4' class='permalink'></a><p>
     We begin the evaluation of an application by evaluating the
     
       <span style="color:green">
@@ -2428,7 +2424,7 @@ ev-application
   </p></div>
 
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     
       <span style="color:green">
 	
@@ -2545,7 +2541,7 @@ ev-appl-did-operator
   </p></div>
 
   <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     Each cycle of the argument-evaluation loop evaluates an 
   
     <span style="color:green">operand</span>
@@ -2618,7 +2614,7 @@ ev-appl-operand-loop
   </p></div>
 
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     When an
   
     <span style="color:green">operand</span>
@@ -2662,7 +2658,7 @@ ev-appl-accumulate-arg
   </p></div>
 
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
     Evaluation of the last argument is handled differently.  There is no
     need to save the environment or the list of unevaluated 
   
@@ -2721,7 +2717,7 @@ ev-appl-accum-last-arg
   </p></div>
 
   <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
     
     The details of the argument-evaluation loop determine the order in
     which the interpreter evaluates the
@@ -2801,7 +2797,7 @@ ev-appl-accum-last-arg
 
   
   <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
     The entry point
     
       <span style="color:green">
@@ -2891,7 +2887,7 @@ apply-dispatch
   </p></div>
 
   <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
+<a name='p11' class='permalink'></a><p>
     
     We assume that each primitive is implemented so as to obtain its
     arguments from <kbd>argl</kbd> and place its result in
@@ -2958,7 +2954,7 @@ primitive-apply
   </p></div>
 
   <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
     
     To apply a compound
     
@@ -3044,7 +3040,7 @@ compound-apply
   </p></div>
 
   <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
+<a name='p13' class='permalink'></a><p>
     
       <span style="color:green">
         <kbd>Compound-apply</kbd> is the only
