@@ -2021,7 +2021,7 @@ Acknowledgments
 	<kbd>true</kbd> and
 	<kbd>false</kbd> trivially evaluate
 	to the boolean values true and false, respectively.
-	The $\textit{predicate}$ 
+	The $\textit{predicate-expression}$ 
         is followed by a question mark, the 
         $\textit{consequent-expression}$, 
         a colon, and finally the
@@ -2037,13 +2037,14 @@ Acknowledgments
         To evaluate a conditional expression,
 	the interpreter starts by evaluating the 
         
-        $\textit{predicate}$ 
+        $\textit{predicate-expression}$ 
         of the expression. If the
-	$\textit{predicate}$ 
+	$\textit{predicate-expression}$ 
         evaluates to true, the interpreter evaluates the
         
         $\textit{consequent-expression}$.
-        If the predicate evaluates to false, it evaluates the
+        If the $\textit{predicate-expression}$
+	evaluates to false, it evaluates the
         
         $\textit{alternative-expression}$.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
       </p></div>
@@ -2103,7 +2104,7 @@ Acknowledgments
 	    $\textit{expression}_2$<br>
 	    This operation expresses <EM>logical
 	    conjunction</EM>, meaning roughly 
-	    the same as the English word <QUOTE>and</QUOTE>.
+	    the same as the English word <QUOTE>and.</QUOTE>
 	    This syntactic form is syntactic sugar<a class='superscript' id='footnote-link-3' href='#footnote-3'>[3]</a> for
 	    $ \textit{expression}_1$ <kbd>?</kbd>
 	    $\textit{expression}_2$ <kbd>:</kbd>
@@ -2116,7 +2117,7 @@ Acknowledgments
             $\textit{expression}_2$<br>
 	    This operation expresses <EM>logical
 	    disjunction</EM>, meaning roughly 
-	    the same as the English word <QUOTE>or</QUOTE>.
+	    the same as the English word <QUOTE>or.</QUOTE>
 	    This syntactic form is syntactic sugar for
 	    $ \textit{expression}_1$ <kbd>?</kbd>
 	    <kbd>true</kbd> <kbd>:</kbd>
@@ -2128,7 +2129,7 @@ Acknowledgments
             <kbd>!</kbd>
 	    $\textit{expression}$<br>
 	    This operation expresses <EM>logical negation</EM>, meaning
-	    roughly the same as the English word <QUOTE>not</QUOTE>.
+	    roughly the same as the English word <QUOTE>not.</QUOTE>
             The value of the expression is true when
 	    $\textit{expression}$
 	    evaluates to false, and false otherwise.
