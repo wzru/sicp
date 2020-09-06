@@ -2002,13 +2002,13 @@ Acknowledgments
         to have a way to directly specify <QUOTE>the function that returns its
         input incremented by 4</QUOTE> and <QUOTE>the function that returns the
         reciprocal of its input times its input plus 2.</QUOTE>  We can do this
-	by introducing <EM>lambda expressions</EM> as a syntactic form for
+	by introducing the <EM>lambda expression</EM> as a syntactic form for
 	creating functions.
 	Using lambda expressions, we can describe what we want as
         <div class='snippet' id='javascript_22_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAPUAXgD5QiBqUAFgG4g')">x => x + 4;
 </pre></div></div>
         and 
-        <div class='snippet' id='javascript_22_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAPUAXgD5U0AGUMACiICpR7QBqUbASk4G4g')">x => 1.0 / (x * (x + 2));
+        <div class='snippet' id='javascript_22_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAPUAXgD5VQwAKIgKlBtAGpRsBKNgbiA')">x => 1 / (x * (x + 2));
 </pre></div></div>
       </p></div>
     
@@ -2031,8 +2031,8 @@ Acknowledgments
       declaring any auxiliary functions
     
     as
-    <div class='snippet' id='javascript_22_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AZyIFsAKCgUwCdmAaUAIb8SHAB4V+AIwCUoAN65QS0Fw4UiXegNAA+UJMXKjygPygADIeNGAXKE49WA2QGpGLdtz6gR4p9OExCX1pAG5cAF98YnJqOlAAByoAfSY2IRD5KxU1DXo01lFQAF49dHNQMELQACpQardsaQDs62MhVrblItLQIrcAFl5OrpDwqNwADlrElIKUfhRzZbCgA')">function pi_sum(a, b) {
-    return sum(x => 1.0 / (x * (x + 2)),
+    <div class='snippet' id='javascript_22_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AZyIFsAKCgUwCdmAaUAIb8SHAB4V+AIwCUoAN65QS0Fw4UiXegNAA+UJMXKjygPygADIeNGAXKE49WA2QGpGLdtz6gR4p9OExCX1pAG5cAF98YnJqOlAAByoAfSY2IRD5KxU1DXo01lFQAF49FFAwQtAAKlAqt2xpAOzrYyEW1uUi0tAitwAWXg7OkPCo3AAOGsSUgpR+FHMlsKA')">function pi_sum(a, b) {
+    return sum(x => 1 / (x * (x + 2)),
                a,
                x => x + 4,
                b);
@@ -2062,9 +2062,9 @@ Acknowledgments
       <kbd>add_dx</kbd>:
     
     
-    <div class='snippet' id='javascript_22_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AZyIFsAKCgUwCdmAaUAIb8SHAB4V+AIwCUoAN65QS0Fw4UiXegNAA+UJMXKjygPygADIeNGAXKE49WA2QGpGLdtz6gR4p9OExCX1pAG5cAF98YnJqOlAyIkkOVlFZBSNVdU1QUVAAKlyC3PCowlJKWnoqEk4Acy4BABtWAn4hfX4AEzT5KxU1DXomNjb+62NtNx7QMGw0c15xieU8gF49POnRJZWJmWXjfMOjHtL8GvrGlsTk-kXUe4WUMKA')">function integral(f, a, b, dx) {
+    <div class='snippet' id='javascript_22_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AZyIFsAKCgUwCdmAaUAIb8SHAB4V+AIwCUoAN65QS0Fw4UiXegNAA+UJMXKjygPygADIeNGAXKE49WA2QGpGLdtz6gR4p9OExCX1pAG5cAF98YnJqOlAyIkkOVlFZBSNVdU1QUVAAKlyC3PCowlJKWnoqEk4Acy4BABtWAn4hfX4AEzT5KxU1DXomNjb+62NtNx7QMGxecYnlPIBePTzp0QWliZlF43z9ox7S-Br6xpbE5P5zfhRbtHMUMKA')">function integral(f, a, b, dx) {
     return sum(f,
-               a + dx / 2.0,
+               a + dx / 2,
                x => x + dx,
                b)
            *
@@ -2083,9 +2083,11 @@ Acknowledgments
         
         no name is specified for the function and the
 	return keyword and braces are
-	omitted.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+	omitted.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a> If there is only one parameter, the
+	parentheses around the parameter list can also be omitted, as in the
+	examples we have seen.
         
-	  \[ \texttt{(} \ \textit{parameters}\ \texttt{) => }
+	  \[ \texttt{(} \textit{parameters} \texttt{) => }
 	  \textit{expression} \]
 	
       </p></div>
@@ -2265,10 +2267,10 @@ x         =>                   x    +   4
       
       function:
     
-    <div class='snippet' id='javascript_22_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUAT4AaAJ6CR4iZykzQ3G6wOgARoIC8APiULGLDj1aCAalBRc1CwsKMvR1AgkPD40NYouPj+bhQYz0UjBwyAWlATVQ1CbgwHABZ+ZSA')">function f(x,y) {
+    <div class='snippet' id='javascript_22_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0AZwEciBDAJwFMAKADwEpQAb1ygxoLhSLt6vUACpQvANy4AvvmLlqdUAT4AaAJ6CR4iZykzQ3G6wOgARoIC8APiULGLDj1aCAalBRc1Cw8KMvR1AgkPD4sNYouPj+bhQYz0UjBwyAWlATVQ1CbgwHABZ+ZSA')">function f(x,y) {
     return ( (a, b) => x * square(a) + 
-                      y * b + 
-                      a * b
+                       y * b + 
+                       a * b
            )(1 + x * y, 1 - y);
 }
 </pre></div></div>
@@ -2302,7 +2304,7 @@ x         =>                   x    +   4
       <div class='permalink'>
 <a name='p11' class='permalink'></a><p>
       Names that are declared with
-      <kbd>const</kbd> inside of a block have the
+      <kbd>const</kbd> inside a block have the
       body of the immediately surrounding block as their scope.<a class='superscript' id='footnote-link-4' href='#footnote-4'>[4]</a>
       Section&nbsp;<REF NAME="sec:internal-definitions"><a class="superscript" id="1.3.2-sec-link-4.1.6" href="./4.1.6.html">4.1.6</a></REF> shows
       that declarations of local names can often be seen as syntactic sugar
@@ -2354,12 +2356,12 @@ x         =>                   x    +   4
       in general. Without using <kbd>square</kbd>,
       we would be tempted to introduce a local name for the expression as
       follows:
-      <div class='snippet' id='javascript_22_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0BTAN1ZIAoSBKUAG9coUaABOrCkXH16AUlDZQAXjWgADAG5cAX3zFy1OqFYAPAA4BbGgBNuAIwCGjVgBpTlj1YHCxoMjpGClAKGmYACycAGwJVT2s7Rxd3BNAwbG8+HX9JaVk0tRVNEX8y0AB+VFLysQAuBhYOLm5zCz4a2rEqsMiYuIAqUPCo2M6usUUrca6G51cZiaG2m3t51LbQAFpULNBFrqmdfVwVpIAWDwwPAFZsoA')">function expmod(base, exp, m) {
-    const to_half = expmod(base, exp / 2, m);
+      <div class='snippet' id='javascript_22_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0BTAN1ZIAoSBKUAG9coUaABOrCkXH16AUlDZQAXjWgADAG5cAX3zFy1OqFYAPAA4BbGgBNuAIwCGjVgBpTlj1YHCxoMjpGClAACycAGwI2S1VPaztHF3d40DBsbz4df0lpWVS1FU0Rf1LQAH5UErKxAC4GFg4ubnMLPmqasUrwqJiLUAAqMMjo1o7OsUUrcc7651cZiaHWm3t5lNbQAFpUTNBFzqmdfVwVxIAWDwwPAFYsoA')">function expmod(base, exp, m) {
+    const half_exp = expmod(base, exp / 2, m);
     return exp === 0
            ? 1
            : is_even(exp)
-             ? to_half * to_half
+             ? half_exp * half_exp
                % m
              : base
                * expmod(base, exp - 1, m) 
@@ -2370,11 +2372,11 @@ x         =>                   x    +   4
       non-terminating! The problem is that the constant declaration appears
       outside the conditional expression, which means that it is executed even
       when the base case <kbd>exp === 0</kbd> is met.
-      To avoid this situation, we shall provide for <EM>conditional
+      To avoid this situation, we provide for <EM>conditional
       statements</EM>, and allow <kbd>return</kbd>
-      statements to appear in several branches of the statement. Using a
-      conditional statement, the function
-      <kbd>expmod</kbd> can be written as follows:
+      statements to appear in the branches of the statement. Using a
+      conditional statement, we can write the function
+      <kbd>expmod</kbd> as follows:
       <div class='snippet' id='javascript_22_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0BTAN1ZIAoSBKUAG9coUaABOrCkXH16AUlDZQAXjWgADAG5cAX3zFy1OqFYAPAA4BbGgBNuAIwCGjVgBpTlj1YHCxDAlBucwtVdQ1fEX8xSWlZVB1-XVMAG1chKOiAoKY2Th4QvkisrLI6RgpQChpmAAsnFMCVT2s7Rxd3FtAwbG8+LX9MktFYmXpquobAgCoqmvrG0EUrRJLk1jTWDOH-UfjndNmQm3sDzpDQAFpUPqXQFaGkod0ASEH9XGO2gBYPDA8AKz9IA')">function expmod(base, exp, m) {
     if (exp === 0) {
         return 1;
@@ -2392,15 +2394,15 @@ x         =>                   x    +   4
       <div class='permalink'>
 <a name='p13' class='permalink'></a><p>
       The general form of a conditional statement is
-      <kbd class='snippet'>if ($predicate$) { $consequent$ } else { $alternative$ }</kbd>
-      and, like conditional expressions, their evaluation first evaluates the
+      <kbd class='snippet'>if ($predicate$) { $consequent$-$statements$ } else { $alternative$-$statements$ }</kbd>
+      and, as for a conditional expression, the interpreter first evaluates the
       $\textit{predicate}$. If it evaluates to true,
       the interpreter evaluates the
-      $\textit{consequent}$ statements and if it
+      $\textit{consequent-statements}$, and if it
       evaluates to false, the interpreter evaluates
-      the $\textit{alternative}$ statements. Note that
+      the $\textit{alternative-statements}$. Note that
       any constant declarations occurring in either part are local to that part,
-      because both are enclosed in braces and thus form their own block.
+      because each part is enclosed in braces and thus forms its own block.
       </p></div>
     
   
@@ -2457,10 +2459,10 @@ f(2)
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
     <FOOTNOTE>
-    If there is only one parameter, the
-	parentheses around the parameter list can also be omitted. In
-	section&nbsp;<REF NAME="sec:graphics"><a class="superscript" id="1.3.2-sec-link-2.2.4" href="./2.2.4.html">2.2.4</a></REF>, we will extend the syntax of
-	lambda expressions to allow blocks as bodies, as in function declaration
+    In section&nbsp;<REF NAME="sec:graphics"><a class="superscript" id="1.3.2-sec-link-2.2.4" href="./2.2.4.html">2.2.4</a></REF>, we will
+	extend the syntax of
+	lambda expressions to allow a block as the body rather than just
+	an expression, as in function declaration
 	statements.
     </FOOTNOTE></div>
 
@@ -2473,10 +2475,10 @@ f(2)
 	Function declaration statements are 
 	<QUOTE>hoisted</QUOTE> (automatically moved) to the beginning
 	of the surrounding block, whereas constant declarations are not, and
-	names declared with function declaration can be re-assigned using
+	names declared with function declaration can be reassigned using
 	assignment (see	chapter&nbsp;<REF NAME="sec:assignment"><a class="superscript" id="1.3.2-sec-link-3.1" href="./3.1.html">3.1</a></REF>). In this
-	book, we are avoiding these features and shall treat
-	function declarations as equivalent to the corresponding constant
+	book, we are avoiding these features and shall treat a
+	function declaration as equivalent to the corresponding constant
 	declaration.
     </FOOTNOTE></div>
 
@@ -2499,7 +2501,7 @@ f(2)
     
       
       
-	lambda expression, such as <EM>function definition</EM>
+	<EM>lambda expression</EM>, such as <EM>function definition</EM>
       
     
     were used. But the convention is
@@ -2532,9 +2534,14 @@ f(2)
       
       Note that a name declared in a block using
       <kbd>const</kbd> cannot be used before the
-      declaration fully is evaluated, not even in the right-hand expression
-      of the declaration itself, and regardless whether the same name is
-      declared outside of the function. Thus the program
+      declaration is fully evaluated; that is, it cannot be used
+      in the right-hand expression
+      of the declaration itself, regardless of whether the same name is
+      declared outside the block. Thus in the program below, the
+      attempt to use the <kbd>x</kbd> declared
+      in <kbd>h</kbd> to provide a value for
+      the <kbd>x</kbd> declared in
+      <kbd>i</kbd> cannot work.
       <div class='snippet' id='javascript_22_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0CYBQuAzAVwDsBjAFwEsB7E0ACwAoBKUAb11G9DLoGcKoAB6gAvKgDcXHsXLU6oKqw4yePPiUEjxOgNRS160ACcAphSIn6w6eoC+R85etLW0x8xaSgA')">function h() {
     const x = 1;
     function i() {
@@ -2545,6 +2552,7 @@ f(2)
 }
 h();
 </pre></div></div>
+      The program
       leads to an error, because the <kbd>x</kbd> in
       <kbd>x + 1</kbd> is used before its declaration
       is fully evaluated. The <kbd>const</kbd> 

@@ -2054,11 +2054,10 @@ Acknowledgments
       0
       (+ (/ 1.0 (* a (+ a 2))) 
          (pi-sum (+ a 4) b))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_21_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGgAOlA+gM6EC2AFAIYA0oAIwCUoAN45Qk0ACcApuULS63UAD5BEqVqkB+UAAZN2rQC5UafaDA9QAKlA2A1KABMQkc6PGtjVhyegACz8wgDcOAC+eAAcdgzMbFwo-Cj6aUKhQA')">function pi_sum(a, b) {
+            <td><div class='snippet' id='javascript_21_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGgAOlA+gM6EC2AFAIYA0oAIwCUoAN45Qk0ACcApuULS63UAD5BEqVqkB+UAAZN2rQC5UoMD1AAqUFYDUoAExCRjxqw4PQAFn7CAbhwAXzwADhsGZjYuFH4UfUShAKA')">function pi_sum(a, b) {
     return a > b
            ? 0
-           : 1.0 / (a * (a + 2)) + 
-             pi_sum(a + 4, b);
+           : 1 / (a * (a + 2)) + pi_sum(a + 4, b);
 }
 </pre></div></div></td></tr></table>
 
@@ -2274,7 +2273,7 @@ function sum_cubes(a, b) {
     We can also 
     
       <span style="color:green">define <kbd>pi-sum</kbd></span>
-      <span style="color:blue">declare <kbd>pi_sum</kbd>
+      <span style="color:blue">define <kbd>pi_sum</kbd>
       </span>
     
     in the same way:<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
@@ -2292,9 +2291,9 @@ function sum_cubes(a, b) {
   (define (pi-next x)
     (+ x 4))
   (sum pi-term a pi-next b))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_21_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGgDOhAtgBTkCmATkwDSgCGfYuwAe5PgCMAlKADeOUItCd25Qpzr9QAPlASFSw0oD8oAAwGjhgFygO3FvxkBqBszZdeoYWMdShouJ6UgDcOAC+eERkVLSgAA6UAPqMrILBcpag0RQ0dIlJ9qwiMvJWiipqGqhoZqBgLCKgAFSgjaCuAExSoVmRhjmx+ck+5I2lWYaV6nRNrgAsYYb9StPVqSwFRXzpBaOSvZE4ABwtCckbKHwoZrehQA')">function pi_sum(a, b) {
+            <td><div class='snippet' id='javascript_21_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGgDOhAtgBTkCmATkwDSgCGfYuwAe5PgCMAlKADeOUItCd25Qpzr9QAPlASFSw0oD8oAAwGjhgFygO3FvxkBqBszZdeoYWMdShouJ6UgDcOAC+eERkVLSgAA6UAPqMrILBcpag0RQ0dIlJ9qwiMvJWiipqGqigYCwioABUoPWgrgBMUqFZkYY5sfnJPuT1pVmGlep0Da4ALGGGvUqT1aksBUV86QXDkt2ROAAcTQnJayh8KGbXoUA')">function pi_sum(a, b) {
     function pi_term(x) {
-        return 1.0 / (x * (x + 2));
+        return 1 / (x * (x + 2));
     }
     function pi_next(x) {
         return x + 4;
@@ -2321,7 +2320,7 @@ function sum_cubes(a, b) {
             <td><div class='snippet' id='javascript_21_11_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (* 8 (pi-sum 1 1000))</pre><pre class='prettyprintoutput'>
 3.139592655589783</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_21_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGgDOhAtgBTkCmATkwDSgCGfYuwAe5PgCMAlKADeOUItCd25Qpzr9QAPlASFSw0oD8oAAwGjhgFygO3FvxkBqBszZdeoYWMdShouJ6UgDcOAC+eERkVLSgAA6UAPqMrILBcpag0RQ0dIlJ9qwiMvJWiipqGqhoZqBgLCKgAFSgjaCuAExSoVmRhjmx+ck+5I2lWYaV6nRNrgAsYYb9StPVqSwFRXzpBaOSvZE4ABwtCckbKHwoZrehQA')">8 * pi_sum(1, 1000);
+            <td><div class='snippet' id='javascript_21_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQGY0oFA4GYCuAdgMYAuAlgPbGgDOhAtgBTkCmATkwDSgCGfYuwAe5PgCMAlKADeOUItCd25Qpzr9QAPlASFSw0oD8oAAwGjhgFygO3FvxkBqBszZdeoYWMdShouJ6UgDcOAC+eERkVLSgAA6UAPqMrILBcpag0RQ0dIlJ9qwiMvJWiipqGqigYCwioABUoPWgrgBMUqFZkYY5sfnJPuT1pVmGlep0Da4ALGGGvUqT1aksBUV86QXDkt2ROAAcTQnJayh8KGbXoUA')">8 * pi_sum(1, 1000);
 </pre><pre class='prettyprintoutput'>
 3.139592655589783</pre></div></div></td></tr></table>
   </p></div>
@@ -2772,7 +2771,7 @@ function product_i(term, a, next, b) {
       <LI>
         the sum of the squares of the prime numbers in the interval 
         $a$ to $b$ 
-        (assuming that you have a 
+        (assuming that you have an 
         
 	  <span style="color:green">
 	  <kbd>prime?</kbd></span>
