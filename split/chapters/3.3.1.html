@@ -3521,7 +3521,7 @@ function tail(z) {
 (define (set-cdr! z new-value)
   ((z 'set-cdr!) new-value)
   z)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_60_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AcLFbQ7UAF5QqgNwixAX1OiJ5arXlKeajZe099hk1otbmCgs1oAW30APhdtUWC9aNAAIgALOQYAE1jwiIB+HXTtAC5QKJjYsiYAGzSIyqyeHIj8woNY+0VElIrKqtkFZVrK+v0i5pKKct6OrOaajun8uWZmKjZA7ljiZLk8CiI5ZNAqOjmGKVoAWhP6JmZYvhNvMXxiG2lW5NYAL2cfPwDQN9YEpKpG7YCwPSS2UDDUrvT5iXxkfy0P7FMrXW64azHLpKF7vbjbADuilUDFKBDksNE73+zRe1z4rEJxNJ5OBXwRPze6LBTzs3SheNATJJZIpQhc1Ka-NRfAZwpZFM8cO+SO5JBoMjIOncjBYrEw3AATMDaYCONwUMDcewbkA')">function pair(x, y) {
+            <td><div class='snippet' id='javascript_60_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AcLFbQ7UAF5QqgNwixAX1OiJ5arXlKeajZe099hk1otbmCgs1oAW30APhdtUWC9aNAAIgALOQYAE1jwiIB+HXTtAC5QKJjYsiYAGzSIyqyeHIj8woNY+0VElIrKqtkFZVrK+v0i5pKKct6OrOaajun8uWZmKjZA7ljiZLk8CiI5ZNAqOjmGKVoAWhP6JmZYvhNvMXxiG2lW5NYAL2cfPwDQN9YEpKpG7YCwPSS2UDDUrvT5iXxkfy0P7FMrXW64azHLpKF7vbjbADuilUDFKBDksNEyOaL2urEJxNJ5OBXwRPze6LBTzs3SheNADJJZIpQhc1N5qL49LkRKFzM8cO+SM5JBoMjIOncjBYrEw3AATMCaYCONwUMDcewbkA')">function pair(x, y) {
     function set_x(v) {
         x = v;
     }
@@ -3549,12 +3549,12 @@ function tail(z) {
 }
 
 function set_head(z, new_value) {
-    (z("set_head"))(new_value);
+    z("set_head")(new_value);
     return z;
 }
 
 function set_tail(z, new_value) {
-    (z("set_tail"))(new_value);
+    z("set_tail")(new_value);
     return z;
 }
 </pre></div></div></td></tr></table>
@@ -3588,7 +3588,7 @@ function set_tail(z, new_value) {
 (set-car! (cdr z) 17)
 
 (car x)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_60_30_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AcLFbQ7UAF5QqgNwixAX1OiJ5arXlKeajZe099hk1otbmCgs1oAW30APhdtUWC9aNAAIgALOQYAE1jwiIB+HXTtAC5QKJjYsiYAGzSIyqyeHIj8woNY+0VElIrKqtkFZVrK+v0i5pKKct6OrOaajun8uWZmKjZA7ljiZLk8CiI5ZNAqOjmGKVoAWhP6JmZYvhNvMXxiG2lW5NYAL2cfPwDQN9YEpKpG7YCwPSS2UDDUrvT5iXxkfy0P7FMrXW64azHLpKF7vbjbADuilUDFKBDksNE73+zRe1z4rEJxNJ5OBXwRPze6LBTzs3SheNATJJZIpQhc1Ka-NRfAZwpZFM8cO+SO5JBoMjIOncjBYrEw3AATMD1URNb8dZcONx2MDaYDWAKPtxMAB2G5AA')">const x = pair(1, 2);
+            <td><div class='snippet' id='javascript_60_30_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AcLFbQ7UAF5QqgNwixAX1OiJ5arXlKeajZe099hk1otbmCgs1oAW30APhdtUWC9aNAAIgALOQYAE1jwiIB+HXTtAC5QKJjYsiYAGzSIyqyeHIj8woNY+0VElIrKqtkFZVrK+v0i5pKKct6OrOaajun8uWZmKjZA7ljiZLk8CiI5ZNAqOjmGKVoAWhP6JmZYvhNvMXxiG2lW5NYAL2cfPwDQN9YEpKpG7YCwPSS2UDDUrvT5iXxkfy0P7FMrXW64azHLpKF7vbjbADuilUDFKBDksNEyOaL2urEJxNJ5OBXwRPze6LBTzs3SheNADJJZIpQhc1N5qL49LkRKFzM8cO+SM5JBoMjIOncjBYrEw3AATMDVUR1b8tZcONx2MCaYDWHyPtxMAB2G5AA')">const x = pair(1, 2);
 const z = pair(x, x);
 set_head(tail(z), 17);
 </pre></div></div></td></tr></table>
@@ -3599,7 +3599,7 @@ set_head(tail(z), 17);
             <td><div class='snippet' id='javascript_60_31_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (car x)</pre><pre class='prettyprintoutput'>
             17</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_60_31_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AcLFbQ7UAF5QqgNwixAX1OiJ5arXlKeajZe099hk1otbmCgs1oAW30APhdtUWC9aNAAIgALOQYAE1jwiIB+HXTtAC5QKJjYsiYAGzSIyqyeHIj8woNY+0VElIrKqtkFZVrK+v0i5pKKct6OrOaajun8uWZmKjZA7ljiZLk8CiI5ZNAqOjmGKVoAWhP6JmZYvhNvMXxiG2lW5NYAL2cfPwDQN9YEpKpG7YCwPSS2UDDUrvT5iXxkfy0P7FMrXW64azHLpKF7vbjbADuilUDFKBDksNE73+zRe1z4rEJxNJ5OBXwRPze6LBTzs3SheNATJJZIpQhc1Ka-NRfAZwpZFM8cO+SO5JBoMjIOncjBYrEw3AATMD1URNb8dZcONx2MDaYDWAKPtxMAB2YHYXG2oxAA')">head(x);
+            <td><div class='snippet' id='javascript_60_31_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHToIwChsDMBXAOwGMAXASwHsjQAHAQwoCcAKADwBpQBPASlABvbKFGhCpSjVABnAKZkA+u1YA3AcLFbQ7UAF5QqgNwixAX1OiJ5arXlKeajZe099hk1otbmCgs1oAW30APhdtUWC9aNAAIgALOQYAE1jwiIB+HXTtAC5QKJjYsiYAGzSIyqyeHIj8woNY+0VElIrKqtkFZVrK+v0i5pKKct6OrOaajun8uWZmKjZA7ljiZLk8CiI5ZNAqOjmGKVoAWhP6JmZYvhNvMXxiG2lW5NYAL2cfPwDQN9YEpKpG7YCwPSS2UDDUrvT5iXxkfy0P7FMrXW64azHLpKF7vbjbADuilUDFKBDksNEyOaL2urEJxNJ5OBXwRPze6LBTzs3SheNADJJZIpQhc1N5qL49LkRKFzM8cO+SM5JBoMjIOncjBYrEw3AATMDVUR1b8tZcONx2MCaYDWHyPtxMAB2YHYXHWoxAA')">head(x);
 </pre><pre class='prettyprintoutput'>
 17</pre></div></div></td></tr></table>
     using the 
