@@ -2213,7 +2213,13 @@ function fib_iter(a, b, count) {
     It takes only a bit of cleverness to come up with the iterative Fibonacci
     algorithm.  In contrast, consider the following problem: How many different
     ways can we make change of $\$ 1.00$, given
-    half-dollars, quarters, dimes, nickels, and pennies?  More generally, can
+    
+      
+    dollars,
+      
+    
+    half-dollars, quarters, dimes, nickels, and pennies?
+    More generally, can
     we write a
     
       
@@ -2291,7 +2297,7 @@ function fib_iter(a, b, count) {
       function:
     
 
-    <div class='snippet' id='javascript_15_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCZMChsDMBXAOwGMAXASwHsjQSriyB9EgCwEMiBzAUwAp2AWwZEyASlABvbKFmgATjzIF5tEiQHDGAGlABWMQG5sAX3zFy1NRqEiyugNYUiAEwDOTKnhZVnbidJyCkoqtLaMoAC80aAADDJBiaAA-KgJSXIAXKDhoqAAPHGgAD7F6RlyTq4eXj5+UTHxFYmpTc1ZdDZaoo7O7p7e9PUAtKhi5e2gANQT7eqadqCjeBTybswuPERUgs7slDR8s5MnslX9tUNE-trHk+c1g77XRqbmpAe0K2sbWzt7nz4DwGdReUnKimUqlAwMuzzcDUiqBSyMyd0qfUeoIR0SRGBRelAaPumJBVxxMQAzCiULEieizqS4fVcaAACwojCE4ntWFPFkxQmpPR07KxYxmbD0RgsDjcfi02JGIA')">function count_change(amount) {
+    <div class='snippet' id='javascript_15_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCZMChsDMBXAOwGMAXASwHsjQSriyB9EgCwEMiBzAUwAp2AWwZEyASlABvbKFmgATjzIF5tEiQHDGAGlABWMQG5sAX3zFy1NRqEiyugNYUiAEwDOTKnhZVnbidJyCkoqtLaMoAC80aAADDJBiaAA-KgJSXIAXKDhoqAAPHGgAD7F6RlyTq4eXj5+UTHxFYmpTc1ZdDZaoo7O7p7e9PUAtKhi5e2gANQT7eqadqCjeBTybswuPERUgs7slDR8s5MnslX9tUNE-trHk+c1g77XRqbmpAe0K2sbWzt7nz4DwGdReUnKimUqlAwMuzzcDUiqBSyMyd0qfUeoIR0SRGBRelAaPumJBVxxMQAzCiULEieizqS4fVcaAACwojCE4ntWFPFkxQmpPR0nnNPnYxGgABsNNiorixjM2HojBYHG4-FpsSMQA')">function count_change(amount) {
     return cc(amount, 5);
 }
 function cc(amount, kinds_of_coins) {
@@ -2311,7 +2317,8 @@ function first_denomination(kinds_of_coins) {
            kinds_of_coins === 2 ? 5 :
            kinds_of_coins === 3 ? 10 :
            kinds_of_coins === 4 ? 25 :
-           kinds_of_coins === 5 ? 50 : 0;
+           kinds_of_coins === 5 ? 50 :
+           kinds_of_coins === 6 ? 100 : 0;
 }
 </pre></div></div>
     
@@ -2331,9 +2338,9 @@ function first_denomination(kinds_of_coins) {
     arranged in order from largest to smallest, but any order would do as well.)
     We can now answer our original question about changing a dollar:
 
-    <div class='snippet' id='javascript_15_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCZMChsDMBXAOwGMAXASwHsjQSriyB9EgCwEMiBzAUwAp2AWwZEyASlABvbKFmgATjzIF5tEiQHDGAGlABWMQG5sAX3zFy1NRqEiyugNYUiAEwDOTKnhZVnbidJyCkoqtLaMoAC80aAADDJBiaAA-KgJSXIAXKDhoqAAPHGgAD7F6RlyTq4eXj5+UTHxFYmpTc1ZdDZaoo7O7p7e9PUAtKhi5e2gANQT7eqadqCjeBTybswuPERUgs7slDR8s5MnslX9tUNE-trHk+c1g77XRqbmpAe0K2sbWzt7nz4DwGdReUnKimUqlAwMuzzcDUiqBSyMyd0qfUeoIR0SRGBRelAaPumJBVxxMQAzCiULEieizqS4fVcaAACwojCE4ntWFPFkxQmpPR07KxYxmbD0RgsDjcfi02JGIA')">count_change(100);
+    <div class='snippet' id='javascript_15_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=1&prgrm=PTAEGUEkGEAVQFLlARgHQCZMChsDMBXAOwGMAXASwHsjQSriyB9EgCwEMiBzAUwAp2AWwZEyASlABvbKFmgATjzIF5tEiQHDGAGlABWMQG5sAX3zFy1NRqEiyugNYUiAEwDOTKnhZVnbidJyCkoqtLaMoAC80aAADDJBiaAA-KgJSXIAXKDhoqAAPHGgAD7F6RlyTq4eXj5+UTHxFYmpTc1ZdDZaoo7O7p7e9PUAtKhi5e2gANQT7eqadqCjeBTybswuPERUgs7slDR8s5MnslX9tUNE-trHk+c1g77XRqbmpAe0K2sbWzt7nz4DwGdReUnKimUqlAwMuzzcDUiqBSyMyd0qfUeoIR0SRGBRelAaPumJBVxxMQAzCiULEieizqS4fVcaAACwojCE4ntWFPFkxQmpPR0nnNPnYxGgABsNNiorixjM2HojBYHG4-FpsSMQA')">count_change(100);
 </pre><pre class='prettyprintoutput'>
-292</pre></div></div>
+293</pre></div></div>
   </p></div>
 
   <div class='permalink'>
@@ -2346,7 +2353,12 @@ function first_denomination(kinds_of_coins) {
     
     generates a tree-recursive process with redundancies similar to those in
     our first implementation of <kbd>fib</kbd>. (It will take
-    quite a while for that 292 to be computed.)  On the other hand, it is not
+    quite a while for that
+    
+      
+      293
+    
+    to be computed.)  On the other hand, it is not
     obvious how to design a better algorithm for computing the result, and we
     leave this problem as a challenge. The observation that a
     

@@ -1998,9 +1998,6 @@ Acknowledgments
       R_{p}=\frac{1}{1/R_{1}+1/R_{2}}
       \]
     
-  </p></div>
-  <div class='permalink'>
-<a name='p3' class='permalink'></a><p>
     Resistance values are usually known only up to some 
     
     tolerance guaranteed by the manufacturer of the resistor.  For example, if
@@ -2014,7 +2011,7 @@ Acknowledgments
     (if the two resistors are at the upper bounds).
   </p></div>
   <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
+<a name='p3' class='permalink'></a><p>
     Alyssa's idea is to implement <QUOTE>interval arithmetic</QUOTE> as a
     set of arithmetic operations for combining <QUOTE>intervals</QUOTE> (objects
     that represent the range of possible values of an inexact quantity). The
@@ -2022,7 +2019,7 @@ Acknowledgments
     itself an interval, representing the range of the result.
   </p></div>
   <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
+<a name='p4' class='permalink'></a><p>
     Alyssa postulates the existence of an abstract object called an
     <QUOTE>interval</QUOTE> that has two endpoints: a lower bound and an upper bound.
     She also presumes that, given the endpoints of an interval, she can
@@ -2046,9 +2043,6 @@ Acknowledgments
                          upper_bound(x) + upper_bound(y));
 }
 </pre></div></div>
-  </p></div>
-  <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
     Alyssa also works out the product of two intervals by finding the
     minimum and the maximum of the products of the bounds and using them
     as the bounds of the resulting interval.
@@ -2077,9 +2071,6 @@ Acknowledgments
                          math_max(p1, p2, p3, p4));
 }
 </pre></div></div>
-  </p></div>
-  <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
     To divide two intervals, Alyssa multiplies the first by the reciprocal of
     the second.  Note that the bounds of the reciprocal interval are
     the reciprocal of the upper bound and the reciprocal of the lower bound, in
@@ -2317,7 +2308,7 @@ function mul_interval(x, y) {
 
   
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     After debugging her program, Alyssa shows it to a potential user, who
     complains that her program solves the wrong problem.  He wants a program
     that can deal with numbers represented as a center value and an additive
@@ -2425,7 +2416,7 @@ function percent(i) {
 
   
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     After considerable work, Alyssa P. Hacker delivers her finished
     system.  Several years later, after she has forgotten all about it, she
     gets a frenzied call from an irate user,  Lem E. Tweakit.

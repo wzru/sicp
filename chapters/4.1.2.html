@@ -2085,7 +2085,7 @@ function assignment_value(stmt) {
 	    <kbd class='snippet'>let $name$ = $value$;</kbd>
 	    or
 	    <kbd class='snippet'>function $name$($parameter_{1}$, $\ldots$, $parameter_{n}$) {
-    $body$
+    $statements$
 }</kbd>
 
 	    
@@ -2093,7 +2093,7 @@ function assignment_value(stmt) {
 	    Here, we treat the latter form (function
 	    declarations) as syntactic sugar<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
 	    for
-	    <kbd class='snippet'>const $name$ = ($parameter_{1}$, $\ldots$, $parameter_{n}$) => { $body$; };</kbd>
+	    <kbd class='snippet'>const $name$ = ($parameter_{1}$, $\ldots$, $parameter_{n}$) => { $statements$; };</kbd>
 	    The corresponding syntax functions are the following:
 	    <div class='snippet' id='javascript_77_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCxkdOJsJBTMvNxkAmy6bJEk7nYaWtr6hsbR-jz8QuK5sgBEsSTxicmp6ZnZNSpBoeGUtPT1jUkpaRlZfcyMAJ4SAEY0ArlqmjpFRvQubuxUCxsiWwviHirHXYSkvVED7E3DrWN0zABubAJE3Iv5KwZrztyue5YFvtFicQmcIn1Ss9dFQ2DMBEpbqNsh9loVviVTOwuHxBMJqqAatDYfDES1kX0OqcetlQMS4QjmiM2uMprN5qiCnoMes-ptASJdsDDnZjp0wTTIfTSUy7tkni83pyvsVef9gcLbGLTrgrqAJJNZRSHvEKNwJNxEqBPKALLpGO8agiKKAAB7W0AYAJU3C8JhmdKTESmaWMpEsugiA1GiMkCbsM0WxKgv2MANsIOhsnM+5xtlzBbR8O5+NZc2W0VBVPpzMZElh8mxhWvd5Fxsl03l5OdIA')">function is_constant_declaration(stmt) {
    return is_tagged_list(stmt, "constant_declaration");
@@ -2402,7 +2402,7 @@ list("constant_declaration", list("name", "x"), 1)</pre></div></div>
       
       <kbd>||</kbd>
     
-    from chapter&nbsp;1:
+    from section&nbsp;<REF NAME="sec:conditionals"><a class="superscript" id="4.1.2-sec-link-1.1.6" href="./1.1.6.html">1.1.6</a></REF>:
     
       
       
@@ -2410,22 +2410,20 @@ list("constant_declaration", list("name", "x"), 1)</pre></div></div>
 	  <LI>
 	    $\textit{expression}_1$
 	    <kbd>&&</kbd>
-	    $\textit{expression}_2$: The expression
-	    $\textit{expression}_1$ is evaluated
-	    first. If it evaluates to false, false is returned; the
-	    expression $\textit{expression}_2$
-	    is not evaluated.  If it evaluates to true, the value of
-	    $\textit{expression}_2$ is returned.  
+	    $\textit{expression}_2$<br>
+	    …This syntactic form is syntactic sugar for
+	    $ \textit{expression}_1$ <kbd>?</kbd>
+	    $\textit{expression}_2$ <kbd>:</kbd>
+	    <kbd>false</kbd>.
 	  </LI>
 	  <LI>
 	    $\textit{expression}_1$
 	    <kbd>||</kbd>
-	    $\textit{expression}_2$: The expression
-	    $\textit{expression}_1$ is evaluated
-	    first. If it evaluates to true, true is returned; the
-	    expression $\textit{expression}_2$ is not
-	    evaluated.  If it evaluates to false, the value of
-	    $\textit{expression}_2$ is returned.  
+	    $\textit{expression}_2$<br>
+	    …This syntactic form is syntactic sugar for
+	    $ \textit{expression}_1$ <kbd>?</kbd>
+	    <kbd>true</kbd> <kbd>:</kbd>
+	    $\textit{expression}_2$.
 	  </LI>
 	</UL>
 	Explore how <kbd>parse</kbd>
@@ -2584,13 +2582,13 @@ display(1);
 	The language JavaScript supports
 	<kbd>while</kbd> loops that execute a given
 	statement repeatedly. More specifically,
-	<kbd class='snippet'>while ( $predicate$ ) { $body$ }</kbd>
+	<kbd class='snippet'>while ($predicate$) { $statements$ }</kbd>
 	evaluates the $\textit{predicate}$, and
-	if it holds, it evaluates the
-	$\textit{body}$, followed by evaluating
+	if the result is true, evaluates the
+	$\textit{statements}$, followed by evaluating
 	the whole <kbd>while</kbd> loop again.
-	Once the result of evaluating the
-	$\textit{condition}$ is false, the
+	Once the $\textit{predicate}$ evaluates
+	to false, the
 	<kbd>while</kbd> loop terminates. Using
 	this syntax, we can for example compute the greatest common divisor
 	of two numbers using the following function:
@@ -2815,20 +2813,20 @@ display(1);
 	    following programs?
 	    <UL>
 	      <LI>
-		<div class='snippet' id='javascript_77_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuMBuUbYgZkKA')">1; 2; 3;
-</pre></div></div>
+		<div class='snippet' id='javascript_77_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+1; 2; 3;</pre></div></div>
 	      </LI>
 	      <LI>
-		<div class='snippet' id='javascript_77_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuMBuUAb1AEsAzUACgBcAnAVwFMBKU0AX1BYBsAzi07ZiPLkA')">1; { if (true) { } else { 2; } }
-</pre></div></div>
+		<div class='snippet' id='javascript_77_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+1; { if (true) { } else { 2; } }</pre></div></div>
 	      </LI>
 	      <LI>
-		<div class='snippet' id='javascript_77_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuMBuUAYwHsA7AZwBdQAPUAXlG0KA')">1; const x = 2;
-</pre></div></div>
+		<div class='snippet' id='javascript_77_23_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+1; const x = 2;</pre></div></div>
 	      </LI>
 	      <LI>
-		<div class='snippet' id='javascript_77_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuMBuUAb1ABsBTAF1AA9QBeUbYsh5hgalAGZiAvqAFA')">1; { let x = 2; { x = x + 3; } }
-</pre></div></div>
+		<div class='snippet' id='javascript_77_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+1; { let x = 2; { x = x + 3; } }</pre></div></div>
 	      </LI>
 	    </UL>
 	  </LI>

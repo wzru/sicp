@@ -2009,9 +2009,9 @@ Acknowledgments
     closure property, allowed us to easily build arbitrarily complicated list
     structure, the operations in this language, which also satisfy the closure
     property, allow us to easily build arbitrarily complicated patterns.
+    
     <FIGURE>
-      <img class="scale_factor_" src="../img_original/Fig2.9.std.svg">
-      
+      <img class="scale_factor_" id="fig_2.16" src="../img_original/Fig2.9.std.svg">
       <div class="chapter-text-CAPTION">
       <b><a class="caption" href="./2.2.4.html#fig_2.16">Figure 2.16 </a></b>Designs generated with the picture language.
       </div>
@@ -2159,10 +2159,6 @@ const wave4 = below(wave2, wave2);
 const wave4 = below(wave2, wave2);
 </pre></div></div></td></tr></table>
     
-  </p></div>
-
-  <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
     
     In building up a complex image in this manner we are exploiting the fact
     that painters are closed under the language's means of combination.
@@ -2179,7 +2175,7 @@ const wave4 = below(wave2, wave2);
   </p></div>
 
   <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     Once we can combine painters, we would like to be able to abstract typical
     patterns of combining painters. We will implement the painter operations as 
     
@@ -2211,7 +2207,12 @@ const wave4 = below(wave2, wave2);
     return below(painter2, painter2);
 }
 </pre></div></div></td></tr></table>
-    and define <kbd>wave4</kbd> as an instance of this
+    and
+    
+      <span style="color:green">define</span>
+      <span style="color:blue">declare</span>
+    
+    <kbd>wave4</kbd> as an instance of this
     pattern:
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
@@ -2224,7 +2225,7 @@ const wave4 = below(wave2, wave2);
   </p></div>
 
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
@@ -2292,13 +2293,10 @@ const wave4 = below(wave2, wave2);
     }
 }
 </pre></div></div></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
     We can produce balanced patterns by branching upwards as well as towards
     the right (see exercise&nbsp;<REF NAME="ex:up-split"><a class="superscript" id="2.2.4-ex-link-2.45" href="./2.2.4.html#ex_2.45">2.45</a></REF> and
-    figure&nbsp;<REF NAME="fig:split-plans"><a class="superscript" id="2.2.4-fig-link-2.21" href="./2.2.4.html#fig_2.21">2.21</a></REF>).
+    figures&nbsp;<REF NAME="fig:split-plans"><a class="superscript" id="2.2.4-fig-link-2.21" href="./2.2.4.html#fig_2.21">2.21</a></REF>
+    and&nbsp;<REF NAME="fig:split-plans-2"><a class="superscript" id="2.2.4-fig-link-2.23" href="./2.2.4.html#fig_2.23">2.23</a></REF>):
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2329,12 +2327,8 @@ const wave4 = below(wave2, wave2);
 }
 </pre></div></div></td></tr></table>
     
-  </p></div>
 
   
-  
-  <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
@@ -2379,10 +2373,6 @@ const wave4 = below(wave2, wave2);
     </FIGURE>
   
       </span></td></tr></table>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
     By placing four copies of a
     <span style="color:green"><kbd>corner-split</kbd></span>
     <span style="color:blue"><kbd>corner_split</kbd></span>
@@ -2405,7 +2395,7 @@ const wave4 = below(wave2, wave2);
   (let ((quarter (corner-split painter n)))
     (let ((half (beside (flip-horiz quarter) quarter)))
       (below (flip-vert half) half))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_35_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&ext=RUNES&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQAnCgcwAsyB9AZwAcAbCsgBRcAhhSJkApnQA0oIgEpQAb2yg1oCnlADaAXn2gADIpXqz9CWQJ1aIsZLoBuVeoC+oCTw4TlL86BIaDjJQDgBbYR4eKVBdeiZWTl5+IVFxKVlaAFpQAEZ5Z381OktrWgAjCQ4KABMJVPsM0LJhEgBrAXDI6JlQiKipeQK-UFdsMfxicmpaAi4kvkE7dN6FXzNNbT0DY3WikqsbUGWHQrcPLx9TIsCiYL7umLi5hZSTpuy84aKLQ9pg1odSrVOqdfo9WRdAZ0eSyd4ws5qMYTQikSg0AJUGxSV5LNIOTImEabHSxHZE-alI7wxGjC7ePbmW73OaxUAvbiLBorTKgHL5WnqZkhBgsEJxUWJTlvfEfPlfQVqYWgMhUebRPDi0DA2r1OayObffzK8pUMiqsJsSVagHtATW2TWo1MoIhQLYuhs91EHHSvGNVbygUjdQHMrNQECHWg1XqiSa2TewbSEM-IrR+rw2Sm81US1O52jca4VHTDEcACOBGEJTYfDCMoDhMZmLuISrNYcXqxProuO5BLkheVcy4OOYkS0cQzAjwfHmzCxFAAXgIO3QHLDQOvN7TlTwqAB3ceTtkzv5sOYgiRsGpHohr6sb5OptNv8xzijzABuUkEO8GQswyOW0OlHE8eDwWQD2PPsJ0g4YJg4RdD06dcb3rFJmAkTtZAAViGRwgA')">function square_limit(painter, n) {
+            <td><div class='snippet' id='javascript_35_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&ext=RUNES&prgrm=PTAEGUEkGEAVQFLlAJgHToCwChsDMBXAOwGMAXASwHsjQAnCgcwAsyB9AZwAcAbCsgBRcAhhSJkApnQA0oIgEpQAb2yg1oCnlADaAXn2gADIpXqz9CWQJ1aIsZLoBuVeoC+oCTw4TlL86BIaDjJQDgBbYR4eKVBdeiZWTl5+IVFxKVlaAFpQAEZ5Z381OktrWgAjCQ4KABMJVPsM0LJhEgBrAXDI6JlQiKipeQK-UFdsMfxicmpaAi4kvkE7dN6FXzNNbT0DY3WikqsbUGWHQrcPLx9TIsCiYL7umLi5hZSTpuy84aKLQ9pg1odSrVOqdfo9WRdAZ0eSyd4ws5qMYTQikSg0AJUGxSV5LNIOTImEabHSxHZE-alI7wxGjC7ePbmW73OaxUAvbiLBorTKgHL5WnqZkhBgsEJxUWJTlvfEfPlfQVqYWgMhUebRPDi0DA2r1OayObffzK8pUMiqsJsSVagHtATW2TWo1MoIhQLYuhs91EHHSvGNVbygUjdQHMrNQECHWg1XqiSa2TewbSEM-IrR+rw2Sm81US1O52jca4VHTDEcACOBGEJTYfDCMoDhMZmLuISrNYcXqxProuO5BLkheVcy4OOYkS0cQzAjwfHmzCxFAAXgIO3QHLDQOvN7TlTwqAB3ceTtkzv5sOYgiRsGpHohr6sb5OptNv8xzijzABuUkEO8GQswyOW0OlHE8eDwWQD2PPsJ0g4YJg4RdD06dcb3rFJmAkTtZEwIZHCAA')">function square_limit(painter, n) {
     const quarter = corner_split(painter, n);
     const half = beside(flip_horiz(quarter), quarter);
     return below(flip_vert(half), half);
@@ -2418,10 +2408,9 @@ const wave4 = below(wave2, wave2);
     <div class="permalink">
     <a name="ex_2.45" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_2.45">Exercise 2.45 </a></b> 
   
-    Define the
     
-      <span style="color:green">procedure</span>
-      <span style="color:blue">function</span>
+      <span style="color:green">Define the procedure</span>
+      <span style="color:blue">Declare the function</span>
     
     
     
@@ -2479,7 +2468,7 @@ const wave4 = below(wave2, wave2);
   
 
   <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
     In addition to abstracting patterns of combining painters, we can work at a
     higher level, abstracting patterns of combining painter operations. That
     is, we can view the painter operations as elements to manipulate and can
@@ -2491,7 +2480,7 @@ const wave4 = below(wave2, wave2);
   </p></div>
 
   <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
     For example,
     
       <span style="color:green"><kbd>flipped-pairs</kbd></span>
@@ -2544,11 +2533,13 @@ const wave4 = below(wave2, wave2);
     
     Then
     
-      <span style="color:green"><kbd>flipped-pairs</kbd></span>
+      <span style="color:green"><kbd>flipped-pairs</kbd>
+      can be defined in terms of
+      </span>
       <span style="color:blue"><kbd>flipped_pairs</kbd>
+      can be defined in terms of
       </span>
     
-    can be defined in terms of
     
       <span style="color:green"><kbd>square-of-four</kbd></span>
       <span style="color:blue"><kbd>square_of_four</kbd>
@@ -2640,10 +2631,13 @@ const up_split = split(below, beside);
     
     and
     
-      <span style="color:green"><kbd>up-split</kbd></span>
-      <span style="color:blue"><kbd>up_split</kbd></span>
+      <span style="color:green"><kbd>up-split</kbd>
+      with the same behaviors as the ones already defined.
+      </span>
+      <span style="color:blue"><kbd>up_split</kbd>
+      with the same behaviors as the ones already declared.
+      </span>
     
-    with the same behaviors as the ones already defined.
     
     
   
@@ -2687,7 +2681,7 @@ right_split(rogers, 4);
 
   
   <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
     Before we can show how to implement painters and their means of
     combination, we must first consider
     
@@ -2700,7 +2694,7 @@ right_split(rogers, 4);
   </p></div>
 
   <div class='permalink'>
-<a name='p15' class='permalink'></a><p>
+<a name='p11' class='permalink'></a><p>
     Figure&nbsp;<REF NAME="fig:frame"><a class="superscript" id="2.2.4-fig-link-2.24" href="./2.2.4.html#fig_2.24">2.24</a></REF> shows a frame and its associated
     vectors.  In accordance with data abstraction, we need not be specific yet
     about how frames are represented, other than to say that there is a
@@ -2745,7 +2739,7 @@ right_split(rogers, 4);
   </p></div>
 
   <div class='permalink'>
-<a name='p16' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
     
     We will use coordinates in the unit square
     ($0\leq x, y\leq 1$) to specify images. With
@@ -2792,7 +2786,7 @@ right_split(rogers, 4);
   </p></div>
 
   <div class='permalink'>
-<a name='p17' class='permalink'></a><p>
+<a name='p13' class='permalink'></a><p>
     Observe that applying
     
       <span style="color:green"><kbd>frame-coord-map</kbd></span>
@@ -3002,7 +2996,7 @@ function edge2_frame(frame) {
   
 
   <div class='permalink'>
-<a name='p18' class='permalink'></a><p>
+<a name='p14' class='permalink'></a><p>
     A painter is represented as a
     
       <span style="color:green">procedure</span>
@@ -3018,7 +3012,7 @@ function edge2_frame(frame) {
   </p></div>
 
   <div class='permalink'>
-<a name='p19' class='permalink'></a><p>
+<a name='p15' class='permalink'></a><p>
     The details of how primitive painters are implemented depend on the
     particular characteristics of the graphics system and the type of image to
     be drawn.  For instance, suppose we have a
@@ -3064,10 +3058,6 @@ function edge2_frame(frame) {
 }
 </pre></div></div></td></tr></table>
     
-  </p></div>
-
-  <div class='permalink'>
-<a name='p20' class='permalink'></a><p>
     The segments are given using coordinates with respect to the unit square.
     For each segment in the list, the painter transforms the segment endpoints
     with the frame coordinate map and draws a line between the transformed
@@ -3075,7 +3065,7 @@ function edge2_frame(frame) {
   </p></div>
 
   <div class='permalink'>
-<a name='p21' class='permalink'></a><p>
+<a name='p16' class='permalink'></a><p>
     Representing painters as
     
       <span style="color:green">procedures</span>
@@ -3176,7 +3166,9 @@ function end_segment(v) {
         The painter that draws a diamond shape by connecting the midpoints of
         the sides of the frame.
       </LI>
-      
+      <LI>
+        The <kbd>wave</kbd> painter.
+      </LI>
     </OL>
     
     
@@ -3272,7 +3264,7 @@ const diamond_painter = segments_to_painter(
   
 
   <div class='permalink'>
-<a name='p22' class='permalink'></a><p>
+<a name='p17' class='permalink'></a><p>
     An operation on painters (such as
     
       <span style="color:green"><kbd>flip-vert</kbd></span>
@@ -3291,7 +3283,7 @@ const diamond_painter = segments_to_painter(
   </p></div>
 
   <div class='permalink'>
-<a name='p23' class='permalink'></a><p>
+<a name='p18' class='permalink'></a><p>
     Painter operations are based on the
     
       <span style="color:green">procedure</span>
@@ -3364,16 +3356,22 @@ const diamond_painter = segments_to_painter(
     
   </p></div>
   <div class='permalink'>
-<a name='p24' class='permalink'></a><p>
+<a name='p19' class='permalink'></a><p>
     Using
     
-      <span style="color:green"><kbd>transform-painter</kbd>,</span>
+      <span style="color:green"><kbd>transform-painter</kbd>,
+      we can easily define new transformations.
+      For example, we can define a
+      painter that shrinks its image to the upper-right quarter of the frame it
+      is given:
+      </span>
       <span style="color:blue"><kbd>transform_painter</kbd>,
+      we can easily declare new transformations.      
+      For example, we can declare a
+      painter that shrinks its image to the upper-right quarter of the frame
+      it is given:
       </span>
     
-    we can easily define new transformations. For example, we can define a
-    painter that shrinks its image to the upper-right quarter of the frame it
-    is given:
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -3394,7 +3392,7 @@ const diamond_painter = segments_to_painter(
     
   </p></div>
   <div class='permalink'>
-<a name='p25' class='permalink'></a><p>
+<a name='p20' class='permalink'></a><p>
     Other transformations rotate images counterclockwise by 90
     degrees<a class='superscript' id='footnote-link-9' href='#footnote-9'>[9]</a>
     <table width="100%">
@@ -3437,7 +3435,7 @@ const diamond_painter = segments_to_painter(
   </p></div>
 
   <div class='permalink'>
-<a name='p26' class='permalink'></a><p>
+<a name='p21' class='permalink'></a><p>
     Frame transformation is also the key to
     defining means of combining two or more painters.
     The <kbd>beside</kbd>
@@ -3491,7 +3489,7 @@ const diamond_painter = segments_to_painter(
   </p></div>
 
   <div class='permalink'>
-<a name='p27' class='permalink'></a><p>
+<a name='p22' class='permalink'></a><p>
     Observe how the painter data abstraction, and in particular the
     representation of painters as
     
@@ -3513,7 +3511,11 @@ const diamond_painter = segments_to_painter(
     <div class="permalink">
     <a name="ex_2.51" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_2.51">Exercise 2.51 </a></b> 
   
-    Define the transformation
+    
+      <span style="color:green">Define</span>
+      <span style="color:blue">Declare</span>
+    
+    the transformation
     
     
       <span style="color:green"><kbd>flip-horiz</kbd>,</span>
@@ -3618,7 +3620,11 @@ const diamond_painter = segments_to_painter(
     <div class="permalink">
     <a name="ex_2.52" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_2.52">Exercise 2.52 </a></b> 
   
-    Define the
+    
+      <span style="color:green">Define</span>
+      <span style="color:blue">Declare</span>
+    
+    the
     
     <kbd>below</kbd> operation for painters.
     
@@ -3723,7 +3729,7 @@ const diamond_painter = segments_to_painter(
   </h2></div>
 
   <div class='permalink'>
-<a name='p28' class='permalink'></a><p>
+<a name='p23' class='permalink'></a><p>
     The picture language exercises some of the critical ideas we've
     introduced about abstraction with
     
@@ -3752,7 +3758,7 @@ const diamond_painter = segments_to_painter(
   </p></div>
 
   <div class='permalink'>
-<a name='p29' class='permalink'></a><p>
+<a name='p24' class='permalink'></a><p>
     We have also obtained a glimpse of another crucial idea about languages and
     program design.  This is the approach of
     
@@ -3767,7 +3773,7 @@ const diamond_painter = segments_to_painter(
   </p></div>
 
   <div class='permalink'>
-<a name='p30' class='permalink'></a><p>
+<a name='p25' class='permalink'></a><p>
     Stratified design pervades the engineering of complex systems.  For
     example, in computer engineering, resistors and transistors are
     combined (and described using a language of analog circuits) to
@@ -3781,7 +3787,7 @@ const diamond_painter = segments_to_painter(
   </p></div>
 
   <div class='permalink'>
-<a name='p31' class='permalink'></a><p>
+<a name='p26' class='permalink'></a><p>
     As a tiny example of stratification, our picture language uses primitive
     elements (primitive painters) that specify points and lines to provide the
     shapes of a painter like <kbd>rogers</kbd>. The bulk of
@@ -3800,7 +3806,7 @@ const diamond_painter = segments_to_painter(
   </p></div>
 
   <div class='permalink'>
-<a name='p32' class='permalink'></a><p>
+<a name='p27' class='permalink'></a><p>
     
     Stratified design helps make programs <EM>robust</EM>, that is, it makes
     it likely that small changes in a specification will require
@@ -3834,7 +3840,12 @@ const diamond_painter = segments_to_painter(
     shown in figure&nbsp;<REF NAME="fig:sqlimit-designs"><a class="superscript" id="2.2.4-fig-link-2.16" href="./2.2.4.html#fig_2.16">2.16</a></REF> by working at
     each of the levels described above.  In particular:
     <OL type="a">
-      
+      <LI>
+        Add some segments to the primitive
+	<kbd>wave</kbd> painter
+        of exercise&nbsp;<REF NAME="ex:making-wave"><a class="superscript" id="2.2.4-ex-link-2.50" href="./2.2.4.html#ex_2.50">2.50</a></REF> (to add a smile, for
+	example).
+      </LI>
       <LI>
         Change the pattern constructed by
 	
@@ -3870,7 +3881,8 @@ const diamond_painter = segments_to_painter(
 	  </span>
 	
         so as to assemble the corners in a different pattern.
-	
+	(For example, you might make the big Mr. Rogers look outward 
+	from each corner of the square.)
       </LI>
     </OL>
     
@@ -3926,15 +3938,14 @@ const diamond_painter = segments_to_painter(
     
     
     
-    <p>
       William Barton Rogers (1804–1882) was the founder and first
       president of MIT.  A geologist and talented teacher, he taught at
       William and Mary College and at the University of Virginia.  In 1859
       he moved to Boston, where he had more time for research, worked on a
       plan for establishing a <QUOTE>polytechnic institute,</QUOTE> and
       served as Massachusetts's first State Inspector of Gas Meters.
-    </p>
-    <p>
+      <div class='permalink'>
+<a name='p28' class='permalink'></a><p>
       When MIT was established in 1861, Rogers was elected its first
       president. Rogers espoused an ideal of <QUOTE>useful learning</QUOTE>
       that was different from the university education of the time, with its
@@ -3949,8 +3960,9 @@ const diamond_painter = segments_to_painter(
         modern times has demonstrated its utter worthlessness.
       </blockquote>
 
-    </p>
-    <p>
+      </p></div>
+      <div class='permalink'>
+<a name='p29' class='permalink'></a><p>
       Rogers served as president of MIT until 1870, when he resigned due to
       ill health.  In 1878 the second president of MIT,
       
@@ -3958,8 +3970,9 @@ const diamond_painter = segments_to_painter(
       brought on by the Panic of 1873 and strain of fighting off attempts
       by Harvard to take over MIT.  Rogers returned to hold the office of
       president until 1881.
-    </p>
-    <p>
+      </p></div>
+      <div class='permalink'>
+<a name='p30' class='permalink'></a><p>
       Rogers collapsed and died while addressing MIT's graduating
       class at the commencement exercises of 1882.  Runkle quoted
       Rogers's last words in a memorial address delivered that same
@@ -3983,8 +3996,6 @@ const diamond_painter = segments_to_painter(
         </p>
       </blockquote>
 
-    </p>
-    <p>
       In the words of  Francis A. Walker
       
       (MIT's third president):
@@ -3994,7 +4005,7 @@ const diamond_painter = segments_to_painter(
 	harness, at his post, and in the very part and act of public duty.
       </blockquote>
 
-    </p>
+      </p></div>
     </FOOTNOTE></div>
     
     
