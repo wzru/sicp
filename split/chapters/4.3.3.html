@@ -3067,42 +3067,34 @@ function analyze_constant_declaration(stmt) {
 
   <div class='permalink'>
 <a name='p26' class='permalink'></a><p>
-    In
     
-      <span style="color:green"><kbd>get-args</kbd>,</span>
-      <span style="color:blue"><kbd>get_args</kbd>,</span>
-      
-    notice how
+      <span style="color:green">
+	In  <kbd>get-args</kbd>, notice how
+	<kbd>cdr</kbd>ing down the list of
+	<kbd>aproc</kbd>
+	execution procedures and
+	<kbd>cons</kbd>ing
+	up the resulting list of
+	<kbd>args</kbd> is accomplished by calling each
+	<kbd>aproc</kbd>
+	in the list with a success continuation that recursively calls
+	<kbd>get-args</kbd>.
+      </span>
+      <span style="color:blue">
+	In <kbd>get_args</kbd>,
+	notice how recursing down the list of
+	<kbd>afun</kbd>
+	execution functions using
+	<kbd>tail</kbd>
+	and constructing the resulting list of
+	<kbd>args</kbd> using
+	<kbd>pair</kbd>
+	is accomplished by calling each
+	<kbd>afun</kbd>
+	in the list with a success continuation that recursively calls
+	<kbd>get_args</kbd>.
+      </span>
     
-      <span style="color:green"><kbd>cdr</kbd>ing</span>
-      <span style="color:blue"><kbd>tail</kbd>ing</span>
-    
-    down the list of
-    
-      <span style="color:green"><kbd>aproc</kbd>,</span>
-      <span style="color:blue"><kbd>afun</kbd>,</span>
-      
-    execution
-    
-      <span style="color:green">procedures</span>
-      <span style="color:blue">functions</span>
-    
-    and
-    
-      <span style="color:green"><kbd>cons</kbd>ing</span>
-      <span style="color:blue"><kbd>pair</kbd>ing</span>
-    
-    up the resulting list of
-    <kbd>args</kbd> is accomplished by calling each
-    
-      <span style="color:green"><kbd>aproc</kbd></span>
-      <span style="color:blue"><kbd>afun</kbd></span>
-      
-    in the list with a success continuation that recursively calls
-    
-      <span style="color:green"><kbd>get-args</kbd>.</span>
-      <span style="color:blue"><kbd>get_args</kbd>.</span>
-      
     Each of these recursive calls to
     
       <span style="color:green"><kbd>get-args</kbd></span>
@@ -3110,10 +3102,16 @@ function analyze_constant_declaration(stmt) {
       
     has a success continuation whose value is the
     
-      <span style="color:green"><kbd>cons</kbd></span>
-      <span style="color:blue"><kbd>pair</kbd></span>
+      <span style="color:green">
+	<kbd>cons</kbd>
+	of the newly obtained argument onto the list of accumulated arguments:
+      </span>
+      <span style="color:blue">
+	result of 
+	<kbd>pair</kbd>ing
+	the newly obtained argument with the list of accumulated arguments:
+      </span>
     
-    of the newly obtained argument onto the list of accumulated arguments:
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           

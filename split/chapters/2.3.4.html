@@ -2522,11 +2522,19 @@ function choose_branch(bit, branch) {
     When it reaches a leaf, it returns the symbol at that leaf as the next
     symbol in the message by
     
-      <span style="color:green"><kbd>cons</kbd>ing</span>
-      <span style="color:blue"><kbd>pair</kbd>ing</span>
+      <span style="color:green">
+	<kbd>cons</kbd>ing
+	it onto the result of decoding the rest of the message,
+	starting at the root of the tree.
+      </span>
+      <span style="color:blue">
+	prepending it using
+	<kbd>pair</kbd>
+	to the result of decoding the rest of the message,
+	starting at the root of the tree.
+      </span>
     
-    it onto the result of decoding the rest of the message, starting at the
-    root of the tree. Note the error check in the final clause of
+    Note the error check in the final clause of
     
       <span style="color:green"><kbd>choose-branch</kbd>,</span>
       <span style="color:blue"><kbd>choose_branch</kbd>,
