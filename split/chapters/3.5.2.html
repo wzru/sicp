@@ -2233,11 +2233,17 @@ const primes = sieve(integers_starting_from(2));
     which the rest is passed, and the output of the filter is fed to
     another sieve box.  Then the original first element is
     
-      <span style="color:green"><kbd>cons</kbd>ed</span>
-      <span style="color:blue"><kbd>pair</kbd>ed</span>
+      <span style="color:green">
+	<kbd>cons</kbd>ed
+	onto the output of the internal sieve to form the output stream.
+      </span>
+      <span style="color:blue">
+	combined with the output of the internal sieve using
+	<kbd>pair</kbd>
+	to form the output stream.
+      </span>
     
-    onto the output of the internal sieve to form the output stream.  Thus,
-    not only is the stream infinite, but the signal processor is also
+    Thus, not only is the stream infinite, but the signal processor is also
     infinite, because the sieve contains a sieve within it.
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>

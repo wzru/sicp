@@ -2175,17 +2175,32 @@ function compile_application(exp, target, linkage) {
     into
     <kbd>val</kbd> and then
     
-      <span style="color:green"><kbd>cons</kbd></span>
-      <span style="color:blue"><kbd>pair</kbd></span>
+      <span style="color:green">
+	<kbd>cons</kbd>
+	that value onto the argument list being accumulated in
+	<kbd>argl</kbd>.
+      </span>
+      <span style="color:blue">
+	combine
+	that value with the argument list being accumulated in
+	<kbd>argl</kbd>
+	using <kbd>pair</kbd>.
+      </span>
     
-    that value onto the argument list being accumulated in
-    <kbd>argl</kbd>. Since we
+    Since we
     
-      <span style="color:green"><kbd>cons</kbd></span>
-      <span style="color:blue"><kbd>pair</kbd></span>
+      <span style="color:green">
+	<kbd>cons</kbd>
+	the arguments onto <kbd>argl</kbd>
+	in sequence,
+      </span>
+      <span style="color:blue">
+	combine the arguments with <kbd>argl</kbd>
+	in sequence using
+	<kbd>pair</kbd>,
+      </span>
     
-    the arguments onto <kbd>argl</kbd> in sequence, we must
-    start with the last argument and end with the first, so that the
+    we must start with the last argument and end with the first, so that the
     arguments will appear in order from first to last in the resulting list.
     Rather than waste an instruction by initializing
     <kbd>argl</kbd> to the empty list
