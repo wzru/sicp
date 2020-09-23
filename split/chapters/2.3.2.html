@@ -2011,12 +2011,29 @@ Acknowledgments
       <span style="color:blue">function</span>
     
     should return $2ax+b$.  Symbolic differentiation
-    is of special historical significance in Lisp.  It was one of the
+    is of special historical significance in
+    
+      <span style="color:green">
+	Lisp.
+      </span>
+      <span style="color:blue">
+	the programming language Lisp.<a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:blue">[1]</a>
+      </span>
+    
+    It was one of the
     motivating examples behind the development of a computer language for
     symbol manipulation.  Furthermore, it marked the beginning of the line of
     research that led to the development of powerful systems for symbolic
-    mathematical work, which are currently being used by a growing number of
+    mathematical work, which are
+    
+      <span style="color:green">
+    currently being used by a growing number of
     applied mathematicians and physicists.
+      </span>
+      <span style="color:blue">
+	today routinely used by applied mathematicians and physicists.
+      </span>
+    
   </p></div>
   <div class='permalink'>
 <a name='p2' class='permalink'></a><p>
@@ -2045,17 +2062,14 @@ Acknowledgments
     arguments.  Differentiation of any such expression can be carried out by
     applying the following reduction rules:
     
-      \[ \frac{dc}{dx} = 0\text{ for $c$ a constant or a variable different from $x$} \]
-    
-    
-      \[ \frac{dx}{dx} = 1 \]
-    
-    
-      \[ \frac{d(u+v)}{dx} = \frac{du}{dx}+\frac{dv}{dx} \]
-    
-    
-      \[ \frac{d(uv)}{dx} = u\left( \frac{dv}{dx}\right)+v\left(
-      \frac{du}{dx}\right)\]
+      \begin{eqnarray*}
+      \frac{dc}{dx}     & = &
+                         0\text{ for $c$ a constant or a variable different from $x$} \\
+      \frac{dx}{dx}     & = & 1  \\
+      \frac{d(u+v)}{dx} & = &\frac{du}{dx}+\frac{dv}{dx} \\
+      \frac{d(uv)}{dx}  & = & u\left( \frac{dv}{dx}\right)+v\left(
+      \frac{du}{dx}\right)
+      \end{eqnarray*}
     
     Observe that the latter two rules are recursive in nature.  That is, to
     obtain the derivative of a sum we first find the derivatives of the terms
@@ -2213,10 +2227,6 @@ Acknowledgments
         </TD>
       </TR>
     </TABLE>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p5' class='permalink'></a><p>
     Using these, and the primitive predicate
     
       <span style="color:green"><kbd>number?</kbd>,</span>
@@ -2250,28 +2260,25 @@ Acknowledgments
                           (multiplicand exp))))
         (else
           (error "unknown expression type -- DERIV" exp))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_38_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISChoQ9UJbPSkE2QUlFWSABzZKDlqsgAsBNgATWvzc0AAiAGpR4tMyizpbNgBrBwZqoTZPUDYM-zlG4NA+RnIhCdGvDYvfadLzCtAF5aYWjmp+wgohW03bHfrApp0I4aU4AKnODx+12MMzulgG-QExEGDD8-32zV6AyE5HafCEqIMMNu5XhhG0SJRaICGLoWMGuMo+MZ+MJRJKZlJlRebw+J3EdRpQWaajaHS6MVA9KGBVG4JunLmD0IfCoLSOAk6qMFe2FdL6DLxBLE7NhXOVqso6sopDYyONOoaeqlBpxRpZxpNCtm90RXBYQgEIhaXjCzkE1N1gOSxGqPE1geDYn+SVAAH5QAAGFNJABcyTDEWEQZaydTSQzQjUNnsKXDxeDoacRZN6dAOXz2fLiXz1bWJbL3cSGceKzWfsoAYRlMTpabqQjHhzQ6HE6n5JnA-n9ZNy-LveYPPenwHe+7I6WY5qo+er2PJ1sKrVGs6W7PK4-a6+T6tR1t9rfD8gKAwsXBNJdgO7G8jz5IQv0fS1rQTQDINQodQMXd80Kgn9rX-QYB13ND801V5X0bLDgNGEhFmIagAHc6BLBQGAYe5yAATxaAR6DoNdRlNHAv2BE45QhESwQhUYRCkjiBK8CSzi8aSIQwcCxhkgwgA')">function deriv(exp, variable) {
+            <td><div class='snippet' id='javascript_38_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISChoQ9UJbPSkE2QUlFWSABzZKDlqsgAsBNgATWvzc0AAiAGpR4tMyizpbNgBrBwZqoTZPUDYM-zlG4NA+RnIhCdGvDYvfadLzCtAF5aYWjmp+wgohW03bHfrApp0I4aU4AKnODx+12MMzulgG-QExEGDD8-32zV6AyE5HafCEqIMMNu5XhhG0SJRaICGLoWMGuMo+MZ+MJRJKZlJlRebw+J3EdRpQWaajaHS6MVA9KGBVG4JunLmD0IfCoLSOAk6qMFe2FdL6DLxBLE7NhXOVqso6sopDYyONOoaeqlBpxRpZxpNCtm90RXBYQgEIhaXjCzkE1N1gOSxGqPE1geDYn+SVAAH5QAAGFNJABcyTDEWEQZaydTAQzQjUNnsKXDxeDoacRYkGZy+czZfLsnz1bWJa73YzjxWaz9lADCMpidLTdSEY8Oe7qfHk-J04Hc-rJqXAV7zB570+A93cmHS1HNRHz1eR5OthVao1nU3p+X78Sq6+j6tR1t9tfD8gOA2RCxcE1FxA1Nr0PPkhC-B9LWtBNAKgtDUzAhc33Q6Cf2tf9BgHHd33zTVXhfRtsPLUYSEWYhqAAdzoEsFAYBh7nIABPFoBHoOhV1GU0cC-YETjlCFRLBCFRhEaTOMErxJLOLwZIhDAILGWSDCAA')">function deriv(exp, variable) {
     return is_number(exp)
            ? 0
            : is_variable(exp)
-             ? (is_same_variable(exp, variable)) ? 1 : 0
-             : is_sum(exp)
-               ? make_sum(deriv(addend(exp), variable),
-                          deriv(augend(exp), variable))
-               : is_product(exp)
-                 ? make_sum(make_product(multiplier(exp),
-                                deriv(multiplicand(exp),
-                                      variable)),
-                       make_product(deriv(multiplier(exp),
-                                          variable),
-                                    multiplicand(exp)))
-                 : error(exp,
-                         "unknown expression type in deriv");
+           ? (is_same_variable(exp, variable) ? 1 : 0)
+           : is_sum(exp)
+           ? make_sum(deriv(addend(exp), variable),
+                      deriv(augend(exp), variable))
+           : is_product(exp)
+           ? make_sum(make_product(multiplier(exp),
+                                   deriv(multiplicand(exp),
+                                         variable)),
+                      make_product(deriv(multiplier(exp),
+                                         variable),
+                                   multiplicand(exp)))
+           : error(exp,
+                   "unknown expression type in deriv");
 }
 </pre></div></div></td></tr></table>
-  </p></div>
-  <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
     This <kbd>deriv</kbd>
     
       <span style="color:green">procedure</span>
@@ -2292,7 +2299,7 @@ Acknowledgments
 
   
   <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p5' class='permalink'></a><p>
     We can imagine many ways to use list structure to represent algebraic
     expressions.  For example, we could use lists of symbols that mirror the
     usual algebraic notation, representing $ax+b$ as
@@ -2307,16 +2314,20 @@ Acknowledgments
 	However, one especially straightforward choice is to use the same
 	parenthesized prefix notation that Lisp uses for combinations; that
 	is, to represent $ax+b$ as
-	<kbd>(+ (* a x) b)</kbd>.
+	<kbd>(+ (* a x) b)</kbd>. Then our 
       </span>
       <span style="color:blue">
-        However, it will be more convenient, if we reflect the mathematical
+        However, it will be more convenient if we reflect the mathematical
 	structure of the expression in the JavaScript value representing it;
 	that is, to represent $ax+b$ as
 	<kbd>list("+", list("*", "a", "x"), "b")</kbd>.
+	Note that our choice to place the operator in front of the operands
+	is called <EM>prefix notation</EM>, in contrast with the infix
+	notation introduced in section&nbsp;<REF NAME="sec:expressions"><a class="superscript" id="2.3.2-sec-link-1.1.1" href="./1.1.1.html">1.1.1</a></REF>.
+	Our
       </span>
     
-    Then our data representation for the differentiation problem is as follows:
+    data representation for the differentiation problem is as follows:
     <UL>
       <LI>
 	The variables are
@@ -2488,14 +2499,10 @@ Acknowledgments
 </pre></div></div></td></tr></table>
       </LI>
     </UL>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
     Thus, we need only combine these with the algorithm as embodied by
     <kbd>deriv</kbd> in order to have a working
     symbolic-differentiation program.  Let us look at some examples of its
-    behavior:<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+    behavior:<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2503,7 +2510,7 @@ Acknowledgments
             <td><div class='snippet' id='javascript_38_12_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (deriv '(+ x 3) 'x)</pre><pre class='prettyprintoutput'>
 (+ 1 0)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_38_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISChoQ9UJbPSkE2QUlFWSABzZKDlqsgAsBNgATWvzc0AAiAGpR4tMyizpbNgBrBwZqoTZPUDYM-zlG4NA+RnIhCdGvDYvfadLzCtAF5aYWjmp+wgohW03bHfrApp0I4aU4AKnODx+12MMzulgG-QExEGDD8-32zV6AyE5HafCEqIMMNu5XhhG0SJRaICGLoWMGuMo+MZ+MJRJKZlJlRebw+J3EdRpQWaajaHS6MVA9KGBVG4JunLmD0IfCoLSOAk6qMFe2FdL6DLxBLE7NhXOVqso6sopDYyONOoaeqlBpxRpZxpNCtm90RXBYQgEIhaXjCzkE1N1gOSxGqPE1geDYn+SVAAH5QAAGFNJABcyTDEWEQZaydTSQzQjUNnsKXDxeDoacRZN6dAOXz2fLiXz1bWJbL3cSGceKzWfsoAYRlMTpabqQjHhzQ6HE6n5JnA-n9ZNy-LveYPPenwHe+7I6WY5qo+er2PJ1sKrVGs6W7PK4-a6+T6tR1t9rfD8gKAwsXBNJdgO7G8jz5IQv0fS1rQTQDINQodQMXd80Kgn9rX-QYB13ND801V5X0bLDgNGEhFmIagAHc6BLBQGAYe5yAATxaAR6DoNdRlNHAv2BE4zi8UYRAhDAxHEySDCAA')">deriv(list("+", "x", 3), "x");
+            <td><div class='snippet' id='javascript_38_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISChoQ9UJbPSkE2QUlFWSABzZKDlqsgAsBNgATWvzc0AAiAGpR4tMyizpbNgBrBwZqoTZPUDYM-zlG4NA+RnIhCdGvDYvfadLzCtAF5aYWjmp+wgohW03bHfrApp0I4aU4AKnODx+12MMzulgG-QExEGDD8-32zV6AyE5HafCEqIMMNu5XhhG0SJRaICGLoWMGuMo+MZ+MJRJKZlJlRebw+J3EdRpQWaajaHS6MVA9KGBVG4JunLmD0IfCoLSOAk6qMFe2FdL6DLxBLE7NhXOVqso6sopDYyONOoaeqlBpxRpZxpNCtm90RXBYQgEIhaXjCzkE1N1gOSxGqPE1geDYn+SVAAH5QAAGFNJABcyTDEWEQZaydTAQzQjUNnsKXDxeDoacRYkGZy+czZfLsnz1bWJa73YzjxWaz9lADCMpidLTdSEY8Oe7qfHk-J04Hc-rJqXAV7zB570+A93cmHS1HNRHz1eR5OthVao1nU3p+X78Sq6+j6tR1t9tfD8gOA2RCxcE1FxA1Nr0PPkhC-B9LWtBNAKgtDUzAhc33Q6Cf2tf9BgHHd33zTVXhfRtsPLUYSEWYhqAAdzoEsFAYBh7nIABPFoBHoOhV1GU0cC-YETjOLxRhECEMDECSpIMIA')">deriv(list("+", "x", 3), "x");
 </pre><pre class='prettyprintoutput'>
 list("+", 1, 0)</pre></div></div></td></tr></table>
     <table width="100%">
@@ -2513,7 +2520,7 @@ list("+", 1, 0)</pre></div></div></td></tr></table>
             <td><div class='snippet' id='javascript_38_13_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (deriv '(* x y) 'x)</pre><pre class='prettyprintoutput'>
 (+ (* x 0) (* 1 y))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_38_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISChoQ9UJbPSkE2QUlFWSABzZKDlqsgAsBNgATWvzc0AAiAGpR4tMyizpbNgBrBwZqoTZPUDYM-zlG4NA+RnIhCdGvDYvfadLzCtAF5aYWjmp+wgohW03bHfrApp0I4aU4AKnODx+12MMzulgG-QExEGDD8-32zV6AyE5HafCEqIMMNu5XhhG0SJRaICGLoWMGuMo+MZ+MJRJKZlJlRebw+J3EdRpQWaajaHS6MVA9KGBVG4JunLmD0IfCoLSOAk6qMFe2FdL6DLxBLE7NhXOVqso6sopDYyONOoaeqlBpxRpZxpNCtm90RXBYQgEIhaXjCzkE1N1gOSxGqPE1geDYn+SVAAH5QAAGFNJABcyTDEWEQZaydTSQzQjUNnsKXDxeDoacRZN6dAOXz2fLiXz1bWJbL3cSGceKzWfsoAYRlMTpabqQjHhzQ6HE6n5JnA-n9ZNy-LveYPPenwHe+7I6WY5qo+er2PJ1sKrVGs6W7PK4-a6+T6tR1t9rfD8gKAwsXBNJdgO7G8jz5IQv0fS1rQTQDINQodQMXd80Kgn9rX-QYB13ND801V5X0bLDgNGEhFmIagAHc6BLBQGAYe5yAATxaAR6DoNdRlNHAv2BE45QhUYRHEjiBK8CSBP0IA')">deriv(list("*", "x", "y"), "x");
+            <td><div class='snippet' id='javascript_38_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISChoQ9UJbPSkE2QUlFWSABzZKDlqsgAsBNgATWvzc0AAiAGpR4tMyizpbNgBrBwZqoTZPUDYM-zlG4NA+RnIhCdGvDYvfadLzCtAF5aYWjmp+wgohW03bHfrApp0I4aU4AKnODx+12MMzulgG-QExEGDD8-32zV6AyE5HafCEqIMMNu5XhhG0SJRaICGLoWMGuMo+MZ+MJRJKZlJlRebw+J3EdRpQWaajaHS6MVA9KGBVG4JunLmD0IfCoLSOAk6qMFe2FdL6DLxBLE7NhXOVqso6sopDYyONOoaeqlBpxRpZxpNCtm90RXBYQgEIhaXjCzkE1N1gOSxGqPE1geDYn+SVAAH5QAAGFNJABcyTDEWEQZaydTAQzQjUNnsKXDxeDoacRYkGZy+czZfLsnz1bWJa73YzjxWaz9lADCMpidLTdSEY8Oe7qfHk-J04Hc-rJqXAV7zB570+A93cmHS1HNRHz1eR5OthVao1nU3p+X78Sq6+j6tR1t9tfD8gOA2RCxcE1FxA1Nr0PPkhC-B9LWtBNAKgtDUzAhc33Q6Cf2tf9BgHHd33zTVXhfRtsPLUYSEWYhqAAdzoEsFAYBh7nIABPFoBHoOhV1GU0cC-YETjlCFRhECTOMErxJME-QgA')">deriv(list("*", "x", "y"), "x");
 </pre><pre class='prettyprintoutput'>
 list("+", list("*", "x", 0),
           list("*", 1, "y"))</pre></div></div></td></tr></table>
@@ -2526,16 +2533,13 @@ list("+", list("*", "x", 0),
 (+ (* (* x y) (+ 1 0))
    (* (+ (* x 0) (* 1 y))
       (+  x 3)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_38_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISChoQ9UJbPSkE2QUlFWSABzZKDlqsgAsBNgATWvzc0AAiAGpR4tMyizpbNgBrBwZqoTZPUDYM-zlG4NA+RnIhCdGvDYvfadLzCtAF5aYWjmp+wgohW03bHfrApp0I4aU4AKnODx+12MMzulgG-QExEGDD8-32zV6AyE5HafCEqIMMNu5XhhG0SJRaICGLoWMGuMo+MZ+MJRJKZlJlRebw+J3EdRpQWaajaHS6MVA9KGBVG4JunLmD0IfCoLSOAk6qMFe2FdL6DLxBLE7NhXOVqso6sopDYyONOoaeqlBpxRpZxpNCtm90RXBYQgEIhaXjCzkE1N1gOSxGqPE1geDYn+SVAAH5QAAGFNJABcyTDEWEQZaydTSQzQjUNnsKXDxeDoacRZN6dAOXz2fLiXz1bWJbL3cSGceKzWfsoAYRlMTpabqQjHhzQ6HE6n5JnA-n9ZNy-LveYPPenwHe+7I6WY5qo+er2PJ1sKrVGs6W7PK4-a6+T6tR1t9rfD8gKAwsXBNJdgO7G8jz5IQv0fS1rQTQDINQodQMXd80Kgn9rX-QYB13ND801V5X0bLDgNGEhFmIagAHc6BLBQGAYe5yAATxaAR6DoNdRlNHAv2BE45QhESwQhUYRCkjiBK8CSzi8aSIQwcCxhkgwgA')">deriv(list("*", list("*", "x", "y"), list("+", "x", 3)), "x");
+            <td><div class='snippet' id='javascript_38_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGY0oFA4GYCuAdgMYAuAlgPbGiUDOA+gG4CGATpWwEYA2AUwAUADwCUoAN45Qs0BwHlCHOoyYNyXYgHNRYgNw4AvniJkqteswZsAtgNadu-YSwCMAGlAsUE6XPlFZVVmdi5eQSF3CQAyGJkAxKtHcJco31A47zdQAF587xRDEwISChoQ9UJbPSkE2QUlFWSABzZKDlqsgAsBNgATWvzc0AAiAGpR4tMyizpbNgBrBwZqoTZPUDYM-zlG4NA+RnIhCdGvDYvfadLzCtAF5aYWjmp+wgohW03bHfrApp0I4aU4AKnODx+12MMzulgG-QExEGDD8-32zV6AyE5HafCEqIMMNu5XhhG0SJRaICGLoWMGuMo+MZ+MJRJKZlJlRebw+J3EdRpQWaajaHS6MVA9KGBVG4JunLmD0IfCoLSOAk6qMFe2FdL6DLxBLE7NhXOVqso6sopDYyONOoaeqlBpxRpZxpNCtm90RXBYQgEIhaXjCzkE1N1gOSxGqPE1geDYn+SVAAH5QAAGFNJABcyTDEWEQZaydTAQzQjUNnsKXDxeDoacRYkGZy+czZfLsnz1bWJa73YzjxWaz9lADCMpidLTdSEY8Oe7qfHk-J04Hc-rJqXAV7zB570+A93cmHS1HNRHz1eR5OthVao1nU3p+X78Sq6+j6tR1t9tfD8gOA2RCxcE1FxA1Nr0PPkhC-B9LWtBNAKgtDUzAhc33Q6Cf2tf9BgHHd33zTVXhfRtsPLUYSEWYhqAAdzoEsFAYBh7nIABPFoBHoOhV1GU0cC-YETjlCFRLBCFRhEaTOMErxJLOLwZIhDAILGWSDCAA')">deriv(list("*", list("*", "x", "y"), list("+", "x", 3)), "x");
 </pre><pre class='prettyprintoutput'>
 list("+", list("*", list("*", "x", "y"),
                     list("+", 1, 0)),
           list("*", list("+", list("*", "x", 0),
                               list("*", 1, "y")),
                     list("+", "x", 3)))</pre></div></div></td></tr></table>
-  </p></div>
-  <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
     The program produces answers that are correct; however, they are
     unsimplified.  It is true that
     
@@ -2550,7 +2554,7 @@ list("+", list("*", list("*", "x", "y"),
     complex.
   </p></div>
   <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p6' class='permalink'></a><p>
     
     
     Our difficulty is much like the one we encountered with the rational-number
@@ -2895,7 +2899,8 @@ list("x", "+",
             which drops unnecessary parentheses and assumes that multiplication is done before addition.
           </span>
           <span style="color:blue">
-	    a notation closer to infix notation, assuming that
+	    a notation closer to ordinary infix notation, which omits unnecessary
+	    parentheses and assumes that
 	    multiplication has higher precedence than addition, as in this
 	    example:
 	    <div class='snippet' id='javascript_38_25_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
@@ -3073,8 +3078,16 @@ function deriv(exp, variable) {
   
 <hr>
 
+    <div class='footnote'><span style="color:blue">
+      <a class='footnote-number' id='footnote-1' href='#footnote-link-1' style="color:blue">[1] </a>
+    <FOOTNOTE>
+    The original version of this
+	book used the programming language Scheme, a dialect of Lisp.
+    </FOOTNOTE></span></div>
+    
+    
     <div class='footnote'>
-      <a class='footnote-number' id='footnote-1' href='#footnote-link-1' >[1] </a>
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2' >[2] </a>
     <FOOTNOTE>
     The box notation introduced in
     section&nbsp;<REF NAME="sec:sequences"><a class="superscript" id="2.3.2-sec-link-2.2.1" href="./2.2.1.html">2.2.1</a></REF> becomes hard to read
