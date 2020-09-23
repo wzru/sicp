@@ -2016,7 +2016,7 @@ Acknowledgments
       save("env"),
       save("continue"),
       assign("continue", label("ev_cond_decide")),
-      assign("stmt", list(op("conditional_pred"), reg("stmt"))),
+      assign("stmt", list(op("conditional_predicate"), reg("stmt"))),
       go_to(label("eval_dispatch")), // evaluate the predicate</pre></div></div>
   </p></div>
 
@@ -2061,11 +2061,11 @@ Acknowledgments
       branch(label("ev_cond_consequent")),
       
 "ev_cond_alternative",
-      assign("stmt", list(op("conditional_alt"), reg("stmt"))),
+      assign("stmt", list(op("conditional_alternative"), reg("stmt"))),
       go_to(label("eval_dispatch")),
       
 "ev_cond_consequent",
-      assign("stmt", list(op("conditional_cons"), reg("stmt"))),
+      assign("stmt", list(op("conditional_consequent"), reg("stmt"))),
       go_to(label("eval_dispatch")),</pre></div></div>
   </p></div>
 
@@ -2134,39 +2134,28 @@ Acknowledgments
 <a name='p5' class='permalink'></a><p>
     
     Declarations of variables and constants are handled in a similar way:
+
+
     <div class='snippet' id='javascript_114_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-"ev_variable_declaration",
-      assign("unev", list(op("variable_declaration_symbol"),
+"ev_declaration",
+      assign("unev", list(op("declaration_symbol"),
                           reg("stmt"))),
       save("unev"), // save variable for later
-      assign("stmt", list(op("variable_declaration_value"),
+      assign("stmt", list(op("declaration_value_expression"),
                           reg("stmt"))),
       save("env"),
       save("continue"),
-      assign("continue", label("ev_declaration")),
+      assign("continue", label("ev_declaration_assign")),
       go_to(label("eval_dispatch")), // evaluate declaration value
       
-
-"ev_declaration",
+"ev_declaration_assign",
       restore("continue"),
       restore("env"),
       restore("unev"),
       perform(list(op("assign_symbol_value"),
                    reg("unev"), reg("val"), reg("env"))),
       assign("val", constant(undefined)),
-      go_to(reg("continue")),
-      
-
-"ev_constant_declaration",
-      assign("unev", list(op("constant_declaration_symbol"),
-                          reg("stmt"))),
-      save("unev"), // save constant for later
-      assign("stmt", list(op("constant_declaration_value"),
-                          reg("stmt"))),
-      save("env"),
-      save("continue"),
-      assign("continue", label("ev_declaration")),
-      go_to(label("eval_dispatch")), // evaluate declaration value</pre></div></div>
+      go_to(reg("continue")),</pre></div></div>
   </p></div>
 
   <div class='permalink'>

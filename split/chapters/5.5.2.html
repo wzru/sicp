@@ -2192,12 +2192,12 @@ function end_with_linkage(target, linkage, instruction_sequence) {
             (const ,exp)
             (reg env))))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_118_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function compile_self_evaluating(exp, target, linkage) {
+function compile_literal(exp, target, linkage) {
     return end_with_linkage(target, linkage,
                make_instruction_sequence(
                    null,
                    list(target),
-                   list(assign(target, constant(exp)))));
+                   list(assign(target, constant(literal_value(exp))))));
 }
 
 function compile_name(exp, target, linkage) {
@@ -2330,24 +2330,15 @@ function compile_name(exp, target, linkage) {
 function compile_assignment(stmt, target, linkage) {
     const symbol = assignment_symbol(stmt);
     const value_code =
-              compile(assignment_value(stmt), "val", "next");
+              compile(assignment_value_expression(stmt), "val", "next");
     return compile_assignment_returning(symbol,
                value_code, target, linkage, reg("val"));
 }
 
-function compile_constant_declaration(stmt, target, linkage) {
-    const symbol = constant_declaration_symbol(stmt);
-    const value_code =
-              compile(constant_declaration_value(stmt), "val", "next");
+function compile_declaration(stmt, target, linkage) {
+    const symbol = declaration_symbol(stmt);
+    const value_code = compile(declaration_value_expression(stmt), "val", "next");
     return compile_assignment_returning(symbol,
-               value_code, target, linkage, constant(undefined));
-}
-
-function compile_variable_declaration(stmt, target, linkage) {
-    const variable = variable_declaration_symbol(stmt);
-    const value_code =
-              compile(variable_declaration_value(stmt), "val", "next");
-    return compile_assignment_returning(variable,
                value_code, target, linkage, constant(undefined));
 }
 
@@ -2484,16 +2475,16 @@ function compile_assignment_returning(
             (append-instruction-sequences f-branch a-code))
             after-if))))))</pre></div></div>    </td>
             <td><div class='snippet' id='javascript_118_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-function compile_conditional_expression(stmt, target, linkage) {
+function compile_conditional(stmt, target, linkage) {
     let t_branch = make_label("true_branch");
     let f_branch = make_label("false_branch");
     let after_cond = make_label("after_cond");
     let consequent_linkage =
             linkage === "next" ? after_cond : linkage;
-    let p_code = compile(cond_expr_pred(stmt), "val", "next");
-    let c_code = compile(cond_expr_cons(stmt),
+    let p_code = compile(conditional_predicate(stmt), "val", "next");
+    let c_code = compile(conditional_consequent(stmt),
                          target, consequent_linkage);
-    let a_code = compile(cond_expr_alt(stmt),
+    let a_code = compile(conditional_alternative(stmt),
                          target, linkage);
     return preserving(
              list("env", "continue"),
@@ -2866,7 +2857,7 @@ function compile_lambda_expression(exp, target, linkage) {
 	so that it will end by returning from the function
 	with the return value <kbd>undefined</kbd>
 	unless the compiled code runs code that stems from compiling
-	a <kbd>return</kbd> statement.
+	a return statement.
 	The target is <kbd>val</kbd>
 	so that the return value (or
 	<kbd>undefined</kbd>)
@@ -2924,9 +2915,7 @@ function compile_lambda_body(exp, fun_entry) {
         <a name='h6' class='permalink'></a><h2>
     
 	
-	  Compiling 
-	  return
-	  statements
+	  Compiling return statements
 	
       </h2></div>
 
@@ -2934,10 +2923,9 @@ function compile_lambda_body(exp, fun_entry) {
 <a name='p18' class='permalink'></a><p>
 	
 
-	JavaScript's <kbd>return</kbd> statements are compiled
-	such that the compiled code returns  to the caller of the current function the result
-	of running the code of the
-	<kbd>return</kbd> expression, ignoring the current linkage. 
+	JavaScript's return statements are compiled such that the compiled code
+	returns  to the caller of the current function the result of running the
+	code of the return expression, ignoring the current linkage. 
 	<div class='snippet' id='javascript_118_9_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_return_statement(stmt, target, linkage) {
     return compile(return_expression(stmt), target, "return");

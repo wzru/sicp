@@ -2125,9 +2125,9 @@ c: 3</pre></div></div></td></tr></table>
   (cond ((null? records) false)
         ((equal? key (caar records)) (car records))
         (else (assoc key (cdr records)))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_62_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHTpQKCwMwK4B2AxgC4CWA9oaAIYDO9lxAFANYCmAngDSgBOHYpX4ATegEpQAbyyh5AjqXz8a5egH1C+ADY6Wg4WMlyFZhQH5QRUR1zlCHUafNmAXKA4BHfLX2deUAALDlpRFhCwgyERcQl4l1czK0jww1iTJNcPBiZWAL5SWnJ9dON4gG4sAF8cAhIKalAAW1pODSKAIx0OFilZM0FlVVAddVIWACIAKi6e6cmJKtq8IjIqNUJ6Dn4JgtAANz98DkLabo5+xOEt0kUjUVAAXjpGZnZuM5KWOculxKGKhoZUeTzB1kItnsjmcWUsoG2pA6xX0vz4AAdivwWJjyNj9kcdCcJDxEnDyRSit9fvEJGTsgilMjviC+ITics6mtGjQdJRKGx8OiPoEaTJrtR6HcQc9XnkRV9UecepUAUogfdYs9wTY7A4nPTzFZddCDRSPFTSjExP8VjcpaA7i9Wu1fn0qg5trsprRJnwAIwABkK-z5AqFPr9jqWQA')">function lookup(key, table) {
+            <td><div class='snippet' id='javascript_62_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHTpQKCwMwK4B2AxgC4CWA9oaAIYDO9lxAFANYCmAngDSgBOHYpX4ATegEpQAbyyh5AjqXz8a5egH1C+ADY6Wg4WMlyFZhQH5QRUR1zlCHUafNmAXKA4BHfLX2deUAALDlpRFhCwgyERcQl4l1czK0jww1iTJNcPBiZWAL5SWnJ9dON4gG4sAF8cAhIKalAAW1pODSKAIx0OFilZM0FlVVAddVIWACIAKi6e6cmJKtq8IjIqNUJ6Dn4JgtAANz98DkLabo5+xOEt0kUjUVAAXjpGZnZuM5KWOculxKGKjUmhsdgcTmiDwkiSSVm2pA6xX0vz4AAdivwWOjyJj9kcdCcJDwYVlSWT5EVvr94tDyR54YjvmVRHx8YTlnU1o0aDpKJQ2PhUR9AtSZNdqPQ7sznq88sKvsjzj1KgClEDQOoNKD7I40jExLSyVZteDnHTQJTSvrRP8VjdJRaZa12r8+lUHNtdlNaJM+ABGAAMhX+vP5gu9votSyAA')">function lookup(key, table) {
     const record = assoc(key, tail(table));
-    return record === undefined
+    return is_undefined(record)
            ? undefined
            : tail(record);
 }
@@ -2174,9 +2174,9 @@ c: 3</pre></div></div></td></tr></table>
         (set-cdr! table
                   (cons (cons key value) (cdr table)))))
   'ok)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_62_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHTpQKCwMwK4B2AxgC4CWA9oaAIYDO9lxAFANYCmAngDSgBOHYpX4ATegEpQAbyyh5AjqXz8a5egH1C+ADY6Wg4WMlyFZhQH5QRUR1zlCHUafNmAXKA4BHfLX2deUAALDlpRFhCwgyERcQl4l1czK0jww1iTJNcPBiZWAL5SWnJ9dON4gG4sAF8cAhIKalAHeg5+UnZuPgA3P3wOQtoAIx0OKVkzYUJ6UkUjUVAAXjpGZk7AopKWIpGxiSqzQWVVOdilxeWbOwcnRKSrVtINTf0d0b4AB2L+Fi-yH4KoF6On6Eh4dyykKh8he22Go3iEgh5g8j2exVKMTEPT6Yyq1SAA')">function insert(key, value, table) {
+            <td><div class='snippet' id='javascript_62_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHTpQKCwMwK4B2AxgC4CWA9oaAIYDO9lxAFANYCmAngDSgBOHYpX4ATegEpQAbyyh5AjqXz8a5egH1C+ADY6Wg4WMlyFZhQH5QRUR1zlCHUafNmAXKA4BHfLX2deUAALDlpRFhCwgyERcQl4l1czK0jww1iTJNcPBiZWAL5SWnJ9dON4gG4sAF8cAhIKalAHeg5+UnZuPgA3P3wOQtoAIx0OKVkzYUJ6UkUjUVAAXjpGZk7AopKWIpGxiSqzQWVVZs0bOwcnaPmJRKSrVtINTf0d0b4AB2L+Fi-yH4KoF6On6Eh4dyykKh8he22Go3it2hHkez2KpRiYh6fTGVWqQA')">function insert(key, value, table) {
     const record = assoc(key, tail(table));
-    return record === undefined
+    return is_undefined(record)
            ? set_tail(table, pair(pair(key, value),
                                   tail(table)))
            : set_tail(record, value);
@@ -2296,17 +2296,15 @@ letters:
               (cdr record)
               false))
         false)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_62_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHTpQKCwMwK4B2AxgC4CWA9oaAIYDO9lxAFANYCmAngDSgBOHYpX4ATegEpQAbyyh5AjqXz8a5egH1C+ADY6Wg4WMlyFZhQH5QRUR1zlCHUafNmAXKA4BHfLX2deUAALDlpRFhCwgyERcQl4l1czK0jww1iTJNcPBiZWAL5SWnJ9dON4gG4sAF8cAhIKalAAW1pODSKAIx0OFilZM2FCelJQHWY-DtpujlAAXjH1UhYAIgAqLp61lYkqs3qyKhpxyjZ8AAd2bg0ARj4AjQAmfsTB6hHQenxOzdmF3OYVy4t0KxX042Ik1+lVeCnIuFALC+P2mPXmcwWNjsDicLyyZkEylU1kItnsjlEeyS1U8OnoswG+PkQw+ZVE8zojEBD0eoJKSO+0N2sNc8MRbPRmNJ2IpeKZ5kJKhoWPJTipTJpHDpDJF+MVxKK-LZwvloFqWXNCkt8gOjTUww4-GWDzuoB5fAAbn58Bw5a4WaNkb8OQD8tdXYbwRMdFMZjCsmKBSiZpKSWScaI-fj6aQpvyIVDURweLrTaBzsV+CwdEsgSDy5W67zQF6dD74iWy2XI9Xo7GevETdTafSZKWFAHFEZ2f8uWHgc2e0Gi-H5YmJRipenZWPXABILI5vP6ZczEsHrtZCvkKvXqvulve32dy9dpeClcwi-yTXa3eXo8ezZT0nyHDVdWtM1EltI5QFEdQK1IYgghYZoswJJQlRaVMVhOM5zhWcdzCsPCLiI9xsM3UAVgceknUI19QCsWjHVIcjzA8R1+BEVC+BWABVQg2EISgAHcaEoc5HVoO1QAAWjk0Bfh2dUoIwokaHg+hEOQqpajwIhDiaFinTrV0H1bH1QTjf9mXeQMPxTWc8jMvl9CFVTE1PNEqJVDN0IUQCwRYX4X0vO9q1rF0+AiizQIkMLGPkHshTAs0Rx1LJJw3TkXIfFLP1Usx1xiMRUz8ndGSZIL+W84t2KvRtYuuZtLOfBrTXfZMB1XVxf1HKrsyUY9omnEC219IqrUSWp9JgppSMuaK3Ra6yB1s0BJzqkM51cpTgo8xIvMcnyMTTGVcQ29SsIqtUZoyq6J3sqdYh2vLVv22qTt9NLioRUbXt86VVUzR7XH1ZVgYzKafwewasghz7SlKzMYbU6b9MnUYFhrEZVg2IttmFEzlhWWgVj4zoKdAG4AAZCmFRbVnJynqdIXYgA')">function lookup(key_1, key_2, table) {
+            <td><div class='snippet' id='javascript_62_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHTpQKCwMwK4B2AxgC4CWA9oaAIYDO9lxAFANYCmAngDSgBOHYpX4ATegEpQAbyyh5AjqXz8a5egH1C+ADY6Wg4WMlyFZhQH5QRUR1zlCHUafNmAXKA4BHfLX2deUAALDlpRFhCwgyERcQl4l1czK0jww1iTJNcPBiZWAL5SWnJ9dON4gG4sAF8cAhIKalAAW1pODSKAIx0OFilZM2FCelJQHWY-DtpujlAAXjH1UhYAIgAqLp61lYkqs3qyKhpxyjZ8AAd2bg0ARj4AjQAmfsTB6hHQenxOzdmF3OYVy4t0KxX042Ik1+lVeCnIuFALHUGhsdgcThYXx+0x68RksNcgmUqmshFs9kcoj2SWqnh09FmAyyCiGHzKonmdEYgIej1BJUx32huwJ5iJKjUmlRFIx7IkouZ8is0vRzkVzI8RQFcuprlqZn1CgOjTUww4-GWDzuoF5fAAbn58BwXllWaMsb9OQD8tdrVrwRMdFMZjCsvDEciVZTBdiQy71QzSFMBRCoTiODwFerQOdivwWDolkCQTm88W+aAHTonfFM9n66B-QXA8HcaGaXSGfjs27FEYOf9uT7gRWmx70+3FeGkVKyWjo3L42YAJBZRPJ-TjmaZ1cNrK58j5g-522Vx3Out7htjoUTmG7+S0jj0xlZ1zrpvs+3nkXZw16xJ-1AY0jlAUR1FzUhiCCFhmiXMUlAlFp5jmBYVhOM5zhWN9kjGShTguHCFA8ZoULQhwGQtbCr1AKwKPNUgiPcTx+H4ERYL4FYAFVCDYQhKAAdxoShznNWgTVAABaSTG3THZdVAIDxRJcD6Eg6CqlqPAiEOJp6ItYtrVPKsnVBENuxZd53VvGYvSHQz+X0YUFOnSM5xlcItzbCz3yUDcWF+S892PAsiytPgQuMn8JCCmj5CbYVfwUJ8Xx88xe3ZOy8nLRyArvBSzFc2dyVVaJ+3gtc-JvWMelimiQsi64KxMi8mOzarEoK5LO1fbMPzBMrYm-atnS6x9AJqOodIkjCLgcm0mrM3E0t7Ly-i5bLwtkgVnMSIqUXc0q1rxJlCUQkkoycBSUq7U70qsvtYiynlFu2zcbLbMbFGJSUDpKhcYjEeU92VQ7KTazUBp1CatN7UYFkLEZVg2dNthFfTlhWWgVk4zocdAG4AAZChFWbLix-GVjxkmKiAA')">function lookup(key_1, key_2, table) {
     const subtable = assoc(key_1, tail(table));
-    if (subtable === undefined) {
+    if (is_undefined(subtable)) {
         return undefined;
     } else {
         const record = assoc(key_2, tail(subtable));
-        if (record === undefined) {
-            return undefined;
-        } else {
-            return tail(record);
-        }
+        return is_undefined(record)
+               ? undefined
+               : tail(record);
     }
 }
 </pre></div></div></td></tr></table>
@@ -2346,15 +2344,15 @@ letters:
                                   (cons key-2 value))
                             (cdr table)))))
   'ok)</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_62_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHTpQKCwMwK4B2AxgC4CWA9oaAIYDO9lxAFANYCmAngDSgBOHYpX4ATegEpQAbyyh5AjqXz8a5egH1C+ADY6Wg4WMlyFZhQH5QRUR1zlCHUafNmAXKA4BHfLX2deUAALDlpRFhCwgyERcQl4l1czK0jww1iTJNcPBiZWAL5SWnJ9dON4gG4sAF8cAhIKalAHeg5+UnZuDQBGPgCNACY+ADc-fA5C2gAjHQ4pWTNhQnpSUHp8KaKZjlAAXjpGZk6uHsmSli3ZysTyXFAWdc3p2b3d-Zs7Byd5xLNW0g0RXOlwmvyyZgADsV+CwdOoOv1eqAoeQYf0hqBRjpxvEeGDwUkgfoQfEJFUzNVPDpWjJ8aAlitFEZRHsDnljoMzsTnnMyXTbvcyiy3u9CLZ7I5RD8CfJ-oDivpHiC8TKCSiYeqORisTiVar9USHhsSdcspSONSdgsZXLDUKRmM5uSkrUKTUgA')">function insert(key_1, key_2, value, table) {
+            <td><div class='snippet' id='javascript_62_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHTpQKCwMwK4B2AxgC4CWA9oaAIYDO9lxAFANYCmAngDSgBOHYpX4ATegEpQAbyyh5AjqXz8a5egH1C+ADY6Wg4WMlyFZhQH5QRUR1zlCHUafNmAXKA4BHfLX2deUAALDlpRFhCwgyERcQl4l1czK0jww1iTJNcPBiZWAL5SWnJ9dON4gG4sAF8cAhIKalAHeg5+UnZuDQBGPgCNACY+ADc-fA5C2gAjHQ4pWTNhQnpSUHp8KaKZjlAAXjpGZk6uHsmSli3ZysTyXFAWdQ0bOwcnFnXN6av5xLNW0g0RXOlwmvyyZgADsV+CwdOoOv1eqAoeQYf0hqBRjpxvEeGDwUkgfoQfEJFUzNVPDpWjJ8aAlitFEZRHsDnljoMzsSvnMyXTbvdHs97I40jExD8CfJ-oDivoPiC8VKCSiYaqORisTilcrdUT3hsSdcspSONSdgspTL9WVRCMxnNyUlahSakA')">function insert(key_1, key_2, value, table) {
     const subtable = assoc(key_1, tail(table));
-    if (subtable === undefined) {
+    if (is_undefined(subtable)) {
         set_tail(table,
                  pair(list(key_1, pair(key_2, value)),
                       tail(table)));
     } else {
         const record = assoc(key_2, tail(table));
-        if (record === undefined) {
+        if (is_undefined(record) {
             set_tail(subtable,
                      pair(pair(key_2, value),
                           tail(subtable)));
@@ -2438,30 +2436,28 @@ letters:
             ((eq? m 'insert-proc!) insert!)
             (else (error "Unknown operation - - TABLE" m))))
   dispatch))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_62_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHTpQKCwMwK4B2AxgC4CWA9oaAIYDO9lxAFANYCmAngDSgBOHYpX4ATegEpQAbyyh5AjqXz8a5egH1C+ADY6Wg4WMlyFZhQH5QRUR1zlCHUafNmAXKA4BHfLX2deUAALDlpRFhCwgyERcQl4l1czK0jww1iTJNcPBiZWAL5SWnJ9dON4gG4sAF8cAhIKalAAW1pODSKAIx0OFilZM2FCelJQHWY-DtpujlAAXjH1UhYAIgAqLp61lYkqs3qyKhpxyjZ8AAd2bg0ARj4AjQAmfsTB6hHQenxOzdmF3OYVy4t0KxX042Ik1+lVeCnIuFALC+P2mPXmcwWNjsDicLyyZkEylU1kItnsjlEeyS1U8OnoswG+PkQw+ZVE8zojEBD0eoJKSO+0N2sNc8MRbPRmNJ2IpeKZ5kJKhoWPJTipTJpHDpDJF+MVxKK-LZwvloFqWXNCkt8gOjTUww4-GWDzuoB5fAAbn58Bw5a4WaNkb8OQD8tdXYbwRMdFMZjCsmKBSiZpKSWScaI-fj6aQpvyIVDURweLrTaBzsV+CwdEsgSDy5W67zQF6dD74iWy2XI9Xo7GevETdTafSZKWFAHFEZ2f8uWHgc2e0Gi-H5YmJRipenZWPXABILI5vP6ZczEsHrtZCvkKvXqvulve32dy9dpeClcwi-yTXa3eXo8ezZT0nyHDVdWtM1EltI5QFEdQK1IYgghYZoswJJQlRaVMVhOM5zhWcdzCsPCLiI9xsM3UAVgceknUI19QCsWjHVIcjzA8R1+BEVC+BWABVQg2EISgAHcaEoc5HVoO1QAAWjk0Bfh2dUoIwokaHg+hEOQqpqiAA')">function make_table() {
+            <td><div class='snippet' id='javascript_62_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHTpQKCwMwK4B2AxgC4CWA9oaAIYDO9lxAFANYCmAngDSgBOHYpX4ATegEpQAbyyh5AjqXz8a5egH1C+ADY6Wg4WMlyFZhQH5QRUR1zlCHUafNmAXKA4BHfLX2deUAALDlpRFhCwgyERcQl4l1czK0jww1iTJNcPBiZWAL5SWnJ9dON4gG4sAF8cAhIKalAAW1pODSKAIx0OFilZM2FCelJQHWY-DtpujlAAXjH1UhYAIgAqLp61lYkqs3qyKhpxyjZ8AAd2bg0ARj4AjQAmfsTB6hHQenxOzdmF3OYVy4t0KxX042Ik1+lVeCnIuFALHUGhsdgcThYXx+0x68RksNcgmUqmshFs9kcoj2SWqnh09FmAyyCiGHzKonmdEYgIej1BJUx32huwJ5iJKjUmlRFIx7IkouZ8is0vRzkVzI8RQFcuprlqZn1CgOjTUww4-GWDzuoF5fAAbn58BwXllWaMsb9OQD8tdrVrwRMdFMZjCsvDEciVZTBdiQy71QzSFMBRCoTiODwFerQOdivwWDolkCQTm88W+aAHTonfFM9n66B-QXA8HcaGaXSGfjs27FEYOf9uT7gRWmx70+3FeGkVKyWjo3L42YAJBZRPJ-TjmaZ1cNrK58j5g-522Vx3Out7htjoUTmG7+S0jj0xlZ1zrpvs+3nkXZw16xJ-1AY0jlAUR1FzUhiCCFhmiXMUlAlFp5jmBYVhOM5zhWN9kjGShTguHCFA8ZoULQhwGQtbCr1AKwKPNUgiPcTx+H4ERYL4FYAFVCDYQhKAAdxoShznNWgTVAABaSTG3THZdVAIDxRJcD6Eg6CqmqIA')">function make_table() {
     const local_table = list("*table*");
     function lookup(key_1, key_2) {
         const subtable = assoc(key_1, tail(local_table));
-        if (subtable === undefined) {
+        if (is_undefined(subtable)) {
             return undefined;
         } else {
             const record = assoc(key_2, tail(subtable));
-            if (record === undefined) {
-                return undefined;
-            } else {
-                return tail(record);
-            }
+            return is_undefined(record)
+                   ? undefined
+                   : tail(record);
         }
     }
     function insert(key_1, key_2, value) {
         const subtable = assoc(key_1, tail(local_table));
-        if (subtable === undefined) {
+        if (is_undefined(subtable)) {
             set_tail(local_table,
                      pair(list(key_1, pair(key_2, value)),
                           tail(local_table)));
         } else {
             const record = assoc(key_2, tail(subtable));
-            if (record === undefined) {
+            if (is_undefined(record)) {
       	        set_tail(subtable,
 	                       pair(pair(key_2, value),
                               tail(subtable)));
@@ -2504,7 +2500,7 @@ letters:
 (define operation-table (make-table))
 (define get (operation-table 'lookup-proc))
 (define put (operation-table 'insert-proc!))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_62_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHTpQKCwMwK4B2AxgC4CWA9oaAIYDO9lxAFANYCmAngDSgBOHYpX4ATegEpQAbyyh5AjqXz8a5egH1C+ADY6Wg4WMlyFZhQH5QRUR1zlCHUafNmAXKA4BHfLX2deUAALDlpRFhCwgyERcQl4l1czK0jww1iTJNcPBiZWAL5SWnJ9dON4gG4sAF8cAhIKalAAW1pODSKAIx0OFilZM2FCelJQHWY-DtpujlAAXjH1UhYAIgAqLp61lYkqs3qyKhpxyjZ8AAd2bg0ARj4AjQAmfsTB6hHQenxOzdmF3OYVy4t0KxX042Ik1+lVeCnIuFALC+P2mPXmcwWNjsDicLyyZkEylU1kItnsjlEeyS1U8OnoswG+PkQw+ZVE8zojEBD0eoJKSO+0N2sNc8MRbPRmNJ2IpeKZ5kJKhoWPJTipTJpHDpDJF+MVxKK-LZwvloFqWXNCkt8gOjTUww4-GWDzuoB5fAAbn58Bw5a4WaNkb8OQD8tdXYbwRMdFMZjCsmKBSiZpKSWScaI-fj6aQpvyIVDURweLrTaBzsV+CwdEsgSDy5W67zQF6dD74iWy2XI9Xo7GevETdTafSZKWFAHFEZ2f8uWHgc2e0Gi-H5YmJRipenZWPXABILI5vP6ZczEsHrtZCvkKvXqvulve32dy9dpeClcwi-yTXa3eXo8ezZT0nyHDVdWtM1EltI5QFEdQK1IYgghYZoswJJQlRaVMVhOM5zhWcdzCsPCLiI9xsM3UAVgceknUI19QCsWjHVIcjzA8R1+BEVC+BWABVQg2EISgAHcaEoc5HVoO1QAAWjk0Bfh2dUoIwokaHg+hEOQqpaiwSdJOku1+z+Fo2g4Uy+iqScAHMlA5Iz+Bko4rNwyhTguFSDPeUZznwUYFiclzqDclj6OFLB-OWFZaBWPjOni0AbgABmFeyYrihKVKAA')">const operation_table = make_table();
+            <td><div class='snippet' id='javascript_62_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHTpQKCwMwK4B2AxgC4CWA9oaAIYDO9lxAFANYCmAngDSgBOHYpX4ATegEpQAbyyh5AjqXz8a5egH1C+ADY6Wg4WMlyFZhQH5QRUR1zlCHUafNmAXKA4BHfLX2deUAALDlpRFhCwgyERcQl4l1czK0jww1iTJNcPBiZWAL5SWnJ9dON4gG4sAF8cAhIKalAAW1pODSKAIx0OFilZM2FCelJQHWY-DtpujlAAXjH1UhYAIgAqLp61lYkqs3qyKhpxyjZ8AAd2bg0ARj4AjQAmfsTB6hHQenxOzdmF3OYVy4t0KxX042Ik1+lVeCnIuFALHUGhsdgcThYXx+0x68RksNcgmUqmshFs9kcoj2SWqnh09FmAyyCiGHzKonmdEYgIej1BJUx32huwJ5iJKjUmlRFIx7IkouZ8is0vRzkVzI8RQFcuprlqZn1CgOjTUww4-GWDzuoF5fAAbn58BwXllWaMsb9OQD8tdrVrwRMdFMZjCsvDEciVZTBdiQy71QzSFMBRCoTiODwFerQOdivwWDolkCQTm88W+aAHTonfFM9n66B-QXA8HcaGaXSGfjs27FEYOf9uT7gRWmx70+3FeGkVKyWjo3L42YAJBZRPJ-TjmaZ1cNrK58j5g-522Vx3Out7htjoUTmG7+S0jj0xlZ1zrpvs+3nkXZw16xJ-1AY0jlAUR1FzUhiCCFhmiXMUlAlFp5jmBYVhOM5zhWN9kjGShTguHCFA8ZoULQhwGQtbCr1AKwKPNUgiPcTx+H4ERYL4FYAFVCDYQhKAAdxoShznNWgTVAABaSTG3THZdVAIDxRJcD6Eg6CqlqLBexEsSTVbP4WjaDgDL6KpewAcyUTldP4cSjlM9D8Mw+TtPeUZznwUYFls+zqEc+iqJFLBPOWFZaBWTjOki0AbgABhFKywoiqL5KAA')">const operation_table = make_table();
 const get = operation_table("lookup");
 const put = operation_table("insert");
 </pre></div></div></td></tr></table>
@@ -2709,7 +2705,7 @@ const put = operation_table("insert");
                    ((= n 1) 1)
                    (else (+ (memo-fib (- n 1))
                             (memo-fib (- n 2))))))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_62_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHTpQKCwMwK4B2AxgC4CWA9oaALYCGA1gKYD6p9ARgDbMAUASlABvLKHGgATs1L5JNbuQDOpPgCIAVBx7MNagQG4sAXxwESFaqHpKllYnxYBPADRTmxSpIAmSoaIl3WXlQZVZCfG5uPmlPHz8xQKTQAH5QIm9mXHJCZm9E5IkALlBmAEd8emjnNwALZnpvPnrGmI8vXwEugsKJNJam2I6E3qSSmzsHGtAOcmih+K6jUzwiMioFSkpGfAAHR2ZXGa5efx7PQhV3OO9QAF5rW3sDo9no7VPDHulgmgXbu6A9KETLZXL5UbiNIZLI5PI9QolN5tG5fFbmdZWHJKZiSVTTABuVXwzDcH2YZ0CFyu-3uj0mLzJ9DmfHJS2+Mjkf3aPnuQJhYPhkNSoBxpHYzPeJ1JoF2zMkfDl5AVhOJFJcCOFWuSyLZ3WFJTFEpZ-zcRO4JLRZjWlhotGYtEo5AAXvxcJSJNTSMcdHSGCwJTpBEZAj8uaAAB73AB8Ik14i9sukBKo+CU3CcrE8tF2+FIeVY0iUkW98aSD24Wx2+wjTJ0X165FwoEVydT6cz2dz+e8heYxe43sBDwFcO8HshiaLJbpuD4EYbwuxuNUtfcA9IddOIeFYZC08HO+SxlK3Bxca1e5ouzblDTGazlBzeYLB9IR6SpkCxmWOET9sdVhsk4P0HSdV0+BoO5YygoEAAYy21UY0gQpC0NAEpYIeABGRD0MKNJcPwtCSgAyggPIThINAABaUBsKEABqPDiOSMiKKomg6IAJgEFjtS+LB2OAvgAFZDCAA')">const memo_fib = memoize(n => n === 0
+            <td><div class='snippet' id='javascript_62_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHTpQKCwMwK4B2AxgC4CWA9oaALYCGA1gKYD6p9ARgDbMAUASlABvLKHGgATs1L5JNbuQDOpPgCIAVBx7MNagQG4sAXxwESFaqHpKllYnxYBPADRTmxSpIAmSoaIl3WXlQZVZCfG5uPmlPHz8xQKTQAH5QIm9mXHJCZm9E5IkALlBmAEd8emjnNwALZnpvPnrGmI8vXwEugsKJNJam2I6E3qSSmzsHGtAOcmih+K6jUzwiMioFSkpGfAAHR2ZXGa5efx7PQhV3OO9QAF5rW3sDo9no7VPDHulgmjCMrI5PJtG4CHqFNIA7K5fKjcQlN4gjpfFbmdZWHJKZiSVTTABuVXwzDcH2YZ0CFyuC1uDwmz2miNJS2+MjkfyUrChQMG7R8YLhqVAWNI7Hocz4pLcuzFkj40vIsvxhLJLnBAvVyUZJzJ3QFJWFovF1LcBO4RJRZjWlhotGYtEo5AAXvxcOSJJTSMcdPc6Ew2KTBEZAj82aAAB73AB8IjV4g9oF20jxVHwSm4TlYnlou3wpDyrGkSkintjSQe3C2O32YZJ2q+vXIuFAfH+hEy0OBieYycoqfTmco2dz+cLxa6MfV8dH3E9D1wfDD9YFmOxqhr7iLM9rOiXcJDIWnpCDhWMpW4WInAv3NC7Pb7GazObz3gLzE3R9LpkCxmWOHjtvtVhsk4H0AIdZ0+BoO5oygu4HgABlLDVRjSRDkPQ0ASlgh4AEYkIwiFQDwgj0JKMCgPIThINAABaIihAAanwkjknI4DqLogAmfkWMCL4sDYyi+AAVkMIA')">const memo_fib = memoize(n => n === 0
                               ? 0
                               : n === 1
                                 ? 1
@@ -2732,12 +2728,12 @@ const put = operation_table("insert");
             (let ((result (f x)))
               (insert! x result table)
               result))))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_62_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHTpQKCwMwK4B2AxgC4CWA9oaALYCGA1gKYD6p9ARgDbMAUASlABvLKHGgATs1L5JNbuQDOpPgCIAVBx7MNagQG4sAXxwESFaqHpKllYnxYBPADRTmxSpIAmSoaIl3WXlQZVZCfG5uPmlPHz8xQKTQAH5QIm9mXHJCZm9E5IkALlBmAEd8emjnNwALZnpvPnrGmI8vXwEugsKJNJam2I6E3qSSmzsHGtAOcmih+K6jUzwiMioFSkpGfAAHR2ZXGa5efx7PQhV3OO9QAF5rW3sDo9no7VPDHulgmgXbu6A9KETLZXL5UbiNIZLI5PI9QolN5tG5fFbmdZWHJKZiSVTTABuVXwzDcH2YZ0CFyu-3uj0mLzJ9DmfHJS2+Mjkf3aPnuQJhYPhkNSoBxpHYzPeJ1JoF2zMkfDl5AVhOJFJcCOFWuSyLZ3WFJTFEpZ-zcRO4JLRZjWlhotGYtEo5AAXvxcJSJNTSMcdHSGCwJTpBEZAj8uaAAB73AB8Ik14i9sukBKo+CU3CcrE8tF2+FIeVY0iUkW98aSD24Wx2+wjTJ0X165FwoEVydT6cz2dz+e8heYxe43sBDwFcO8HshiaLJbpuD4EYbwuxuNUtfcA9IddOIeFYZC08HO+SxlK3Bxca1e5ouzblDTGazlBzeYLB9IR6SpkCxmWQA')">function memoize(f) {
+            <td><div class='snippet' id='javascript_62_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=3&prgrm=PTAEGUEkGEAVQFLlAZgHTpQKCwMwK4B2AxgC4CWA9oaALYCGA1gKYD6p9ARgDbMAUASlABvLKHGgATs1L5JNbuQDOpPgCIAVBx7MNagQG4sAXxwESFaqHpKllYnxYBPADRTmxSpIAmSoaIl3WXlQZVZCfG5uPmlPHz8xQKTQAH5QIm9mXHJCZm9E5IkALlBmAEd8emjnNwALZnpvPnrGmI8vXwEugsKJNJam2I6E3qSSmzsHGtAOcmih+K6jUzwiMioFSkpGfAAHR2ZXGa5efx7PQhV3OO9QAF5rW3sDo9no7VPDHulgmjCMrI5PJtG4CHqFNIA7K5fKjcQlN4gjpfFbmdZWHJKZiSVTTABuVXwzDcH2YZ0CFyuC1uDwmz2miNJS2+MjkfyUrChQMG7R8YLhqVAWNI7Hocz4pLcuzFkj40vIsvxhLJLnBAvVyUZJzJ3QFJWFovF1LcBO4RJRZjWlhotGYtEo5AAXvxcOSJJTSMcdPc6Ew2KTBEZAj82aAAB73AB8IjV4g9oF20jxVHwSm4TlYnlou3wpDyrGkSkintjSQe3C2O32YZJ2q+vXIuFAfH+hEy0OBieYycoqfTmco2dz+cLxa6MfV8dH3E9D1wfDD9YFmOxqhr7iLM9rOiXcJDIWnpCDhWMpW4WInAv3NC7Pb7GazObz3gLzE3R9LpkCxmWQA')">function memoize(f) {
     const table = make_table();
     return x => {
         const previously_computed_result 
             = lookup(x, table);
-        if (previously_computed_result === undefined) {
+        if (is_undefined(previously_computed_result)) {
             const result = f(x);
             insert(x, result, table);
             return result;
