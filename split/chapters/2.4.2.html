@@ -2174,7 +2174,7 @@ function is_polar(z) {
 (define (make-from-mag-ang-rectangular r a) 
   (attach-tag 'rectangular
               (cons (* r (cos a)) (* r (sin a)))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_43_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoAC0fW2Wfg1Oru5kVLTSsvaKhSlhaVp6BkagsfGmtUXKyyVZbaYANgshewfa5ZXVOymNLV3tnd1F-YO2cgqKo85uE55pooAI6Eeh6HgADyWEVW0VAkNAACoEX88ERJl5IvRjlsdOR2HoKPRiFxCMdwTwAF4w7Rw9a5fLUsZuDGAmLBcR4glE5ik8mUmnqfb07wnZlotlTOicrjESgGfyiXkkskU8xC8J0qLrTnkDgg-E8EFgiF6HHcwnCYn89XMi6XUAAan2JRN4OEPEosstKttguUgclHmlDFJx2V1r5aoDwthOpljA4jBJXp9JnxVptMY1ygkrsdGXNuIzPKjqoFuZZANDnIA1qJ8NVglaLd6uX6c1CpPxaSsEwwmCwONweA1O5WGvnC4WEuZIT2g+MpVj643m+wfaqs9HKzwdFJ6H3Ims6IxmGw-GOJ+qpwWZxE5-vkaA9RwZPMj1IdC+3+xFJQxA8EeS7-LYijkKATTyHEMjsMQISgAAvK+9ANuwTbUC2W6kjuFZ2gAkFo94PhEADMaAAAxSJRaAAOxjDg7ZcL65b+uYnxzDw0HELB1DwecThAA')">function real_part_rectangular(z) {
+            <td><div class='snippet' id='javascript_43_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoAC0fW2Wfg1Oru5kVLTSsvaKhSlhaVp6BkagsfGmtUXKyyVZbaYANgshewfa5ZXVOymNLV3tnd1F-YO2cgqKo85uE55pooAI6Eeh6HgADyWEVW0VAkNAACoEX88ERJl5IvRjlsdOR2HoKPRiFxCMdwTwAF4w7Rw9a5fLUsZuDGAmLBcR4glE5ik8mUmnqfb07wnZlotlTOicrjESgGfyiXkkskU8xC8J0qLrTnkDgg-E8EFgiF6HHcwnCYn89XMi6XR2gADU+ydGRN4OEPEosstKttguUwclHmlDFJx2V1r5aqDwthOpljA4jBJPr9JnxVptcY1ygkbvdiYtWZ5MdVAvzLIB4c5AGtRPhqsErRbfVyA3moVJ+LSVkmGEwWBxuDwGl2qw1C8XLglzJDeyHxlKsQ2my32H7VTnY1WeDopPR+5E1nRGMw2H5x5P1dOi7OtPOD8jQHqODJ5sepDpX+-2IolDEDwx7Lv8tiKOQoBNPIcQyOwxAhKAAC8b70I27DNtQrbbqSu6VnaACQWgPo+WgAMxoAADFIVFoAA7GMOAdlw-oVoG5ifHMPAwcQcHUAh5xOEAA')">function real_part_rectangular(z) {
     return head(z);
 }
 function imag_part_rectangular(z) {
@@ -2182,8 +2182,8 @@ function imag_part_rectangular(z) {
 }
 function magnitude_rectangular(z) {
     return math_sqrt(square(real_part_rectangular(z))
-           +
-           square(imag_part_rectangular(z)));
+                     +
+                     square(imag_part_rectangular(z)));
 }
 function angle_rectangular(z) {
     return math_atan(imag_part_rectangular(z),
@@ -2227,7 +2227,7 @@ function make_from_mag_ang_rectangular(r, a) {
           
 (define (make-from-mag-ang-polar r a)
   (attach-tag 'polar (cons r a)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_43_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoAC0fW2Wfg1Oru5kVLTSsvaKhSlhaVp6BkagsfGmtUXKyyVZbaYANgshewfa5ZXVOymNLV3tnd1F-YO2cgqKo85uE55pooAI6Eeh6HgADyWEVW0VAkNAACoEX88ERJl5IvRjlsdOR4tRjuCeAAvGHaOHrYLiYiUAz+USCIkk8nI0A08gcGTzejELjHJks8zksZuDGAmI0rh4gnM4kiikrKLU2n0wiMwkKsmqFGcjiKSjEHh8gVC7WitESqZ0aV0hnm1lKyJrOi5fI6q0eG0MfmCrVO9T7KneE6e8bWrE0gDWonw1WC7D0OPYlGlAfMkKk-GdIYYTBYHG4PAa8vBDQk+0ulwS5n17BB+J4ILBEOhoAA1KAW+DhDwc8pK9Xhxl64w+f2pNDlGKAT6Y3GE+x06aMzwdFJ6LmVXRGMw2H4S2WdBWqyP0rX15uZ2icLZFOQGMd+IpFPQ4jJ2MQQqAALwc+hY3YeNqETFd+TXM9zwOABmNAAAYpHgtAAHYxhwNNxFlNdPjmE1n1fd92E-b9QicIA')">function real_part_polar(z) {
+            <td><div class='snippet' id='javascript_43_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoAC0fW2Wfg1Oru5kVLTSsvaKhSlhaVp6BkagsfGmtUXKyyVZbaYANgshewfa5ZXVOymNLV3tnd1F-YO2cgqKo85uE55pooAI6Eeh6HgADyWEVW0VAkNAACoEX88ERJl5IvRjlsdOR4tRjuCeAAvGHaOHrYLiYiUAz+USCIkk8nI0A08gcGTzejELjHJks8zksZuDGAmI0rh4gnM4kiikrKLU2n0wiMwkKsmqFGcjiKSjEHh8gVC7WitESqZ0aV0hnm1lKyJrOi5fI6q0eG0MfmCrVO9T7KneE6e8bWrE0gDWonw1WC7D0OPYlGlAfMkKk-GdIYYTBYHG4PAa8vBDQk+0ulwS5n17BB+J4ILBEOhoAA1KAW+DhDwc8pK9Xhxl64w+f2pNDlGKAT6Y3GE+x06aMzwdFJ6LmVXRGMw2H4S2WdBXQLX15uZ2icLZFOQGMd+IpFPQ4jJ2MQQqAALwc+ix9h42oRMV35NcqxHasAGY0AABikWC0AAdjGHA03EWU10+OYTUfZ9X3Yd9P1CJwgA')">function real_part_polar(z) {
     return magnitude_polar(z) * math_cos(angle_polar(z));
 }
 function imag_part_polar(z) {
@@ -2245,11 +2245,13 @@ function make_from_real_imag_polar(x, y) {
                            math_atan(y, x)));
 }
 function make_from_mag_ang_polar(r, a) {
-    return attach_tag("polar",
-                      pair(r, a));
+    return attach_tag("polar", pair(r, a));
 }
 </pre></div></div></td></tr></table>
     
+  </p></div>
+  <div class='permalink'>
+<a name='p6' class='permalink'></a><p>
     
     
     Each generic selector is implemented as a
@@ -2322,7 +2324,7 @@ function make_from_mag_ang_polar(r, a) {
         ((polar? z)
          (angle-polar (contents z)))
         (else (error "Unknown type -- ANGLE" z))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_43_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoAC0fW2Wfg1Oru5kVLTSsvaKhSlhaVp6BkagsfGmtUXKyyVZbaYANgshewfa5ZXVOymNLV3tnd1F-YO2cgqKo85uE55pps9BR6MQuIRjvRzAAvJYRVbRIa+bg8OGgAC8WNADRBzHBkOhDT+AKmMTigmoUNh8O0iPWPis4jRqixGJxlOpxPGpK8oEUAEdCNDhDwAB60lZRdZi0AAKlAYpJvOmenoxy2OnI7DxYIh1JZ6n29LouXyLJJREmfMowXEmu1uoJBvR4Tp0u8Jwt4ytgLodq4xEoBn8oid+uhhrdUrW-sYHEFWp4guFeh4ao1Ji1OuEoOdkbhF0uoAA1PsSimRTxbfas47c-iIzTlGM3L6yQxwccww29YSaUaER7QHbyBxGGDqwGHTm802WRJy8WMhmZ+H+yzWyq4wBrUT4arBHPq9g1rizxsbsVSfiSyKxhhMFgcVG43v5nQNRfL5cJczX0Bby3ds+TtPd2APagj2nPULz7A0dCkeg7xNR9mDYPweDfOd+y-JcfwiP903lEd43YGR5mQqQdBI0cE0oYgeGQltlRA1U8kzaFtU5AsUOHAMgxDUQeIHBU6PI6hKK7YSqV44CPA7M8ZxEqNjX48RBMIUN4lk0TSLHdhFAYpjpJ0l0WJ9BTQI04MtJk8zB3dB8zQKOFLSs6Y9W7MzeMcmMkWYShTjcyzrWmMD90PY8NSUlSANvPz7yRRh0JfZkGhEvCCMuIjxMTchkyFKsJVLfkirTIDv2yn9xInRj+CkCULLbDzd0iqD2Bg8EfPMRCGD4h8UufTCMt0rLqoyIi+uY1jWsiE861UocH2Bd95zhfCImyVc6zgj8eE+OZN02q4NgpXSWROrb5s47MVMO75joI64qhqNFGgAVWIHdiGoAB3bxLHeG6HV+UK-Q2adFtdNSVriddzKuw5Yq4vb5wepQnuLcpNhUjaCOyFG7oujH5kLJGtBe253pxL6fv+wGRGBonyDBlqwrjQNbNDJanKRVacMR5dsgE7me0FyNSaxy4cfOoWfxFmyhJ6g7Zke8nnoqV7YU+77foB5FhGB0WhLZ7dOy4btef89YBcveXLmyLzxftyW1cxjXsbOlX8YVi3vPu92yZbCnQCpt6YV1+mDcZYHnbNnBbEUcgGGOfhFEUeg4hkdhiBCTFSPAyDoPtWCVIASC0UPsoAZjQAAGKR67QAB2MYcBZpi04zrOJNz85HCAA')">function real_part(z) {
+            <td><div class='snippet' id='javascript_43_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoAC0fW2Wfg1Oru5kVLTSsvaKhSlhaVp6BkagsfGmtUXKyyVZbaYANgshewfa5ZXVOymNLV3tnd1F-YO2cgqKo85uE55pps9BR6MQuIRjvRzAAvJYRVbRIa+bg8OGgAC8WNADRBzHBkOhDT+AKmMTigmoUNh8O0iPWPis4jRqixGJxlOpxPGpK8oEUAEdCNDhDwAB60lZRdZi0AAKlAYpJvOmenoxy2OnI7DxYIh1JZ6n29LouXyLJJREmfMowXEmu1uoJBvR4Tp0u8Jwt4ytgLodq4xEoBn8oid+uhhrdUrW-sYHEFWp4guFeh4ao1Ji1OuEoOdkbhF0uxdAAGp9iWMimRTxbfas47c-iIzTlGM3L6yQxwccw029YSaUaER7QHbyBxGGDawGHTm8y2WRIK5WR+q5+HByz2yq4wBrUT4arBHPrutcefNrdiqT8SWRWMMJgsDio3H9-M6BrL1eXBLmG9QDvHdOz5O0D3YI9qBPWc9UvAcDR0KR6HvE0n2YNg-B4d8F0Hb8V1-LR-3TeUx3jdgZHmFCpB0UjxwTShiB4FC22VUDVTyTNoW1TkC1Q0cAyDENRF4ocFXoijqConsRKpPiQI8LtzznUSo2NATxCEwhQ3iOSxLIid2EURjmJk3SXVYn1FLAzTg202SLOHd1HzNAo4Utazpj1XtzL4pyYyRZhKFOdyrOtaZwMPY9Tw1ZTVMAu9-IfJFGAw19mQaUT8MIkpiIkxNyGTIUawlMt+WKtNgJ-HLiwkqcmP4KQJUsjtPP3KLoPYWDwV88wkIYfjH1Sl8sMyvTv1AYj+pYti2sidcGzUkdH2BD9FzhAiImyDMNzWrdPjmbdNquDYKT0lljq2+auOzVSDu+I7V2uKoajRRoAFViD3YhqAAd28Sx3muh1fjCv0NlnRbXXUla4k3CzLsOOLuPgz8eHupRHuLcpNlUjbV2yZHbvOjH5kLRGtGe243pxT7vr+gGRCBonyFB1rwrjQM7NDJbnKRVbcIRktskE7m+0FyNSaxy4cbOoXKxF2zhN69HZge8mnoqF7YQ+r6fv+5FhCB0XhLZ3duy4XteYC9YBaveXLmybzxftyW1cxjXsdOlX8YVi2fLu92ybbCnQCp16YV1+mDcZIHnbNnBbEUcgGGOfhFEUeg4hkdhiBCTEyIgqCYPtODVIASC0UPfwAZjQAAGKR67QAB2MYcBZ5i04zrPJNz85HCAA')">function real_part(z) {
     return is_rectangular(z)
            ? real_part_rectangular(contents(z))
            : is_polar(z)
@@ -2354,7 +2356,7 @@ function angle(z) {
     
   </p></div>
   <div class='permalink'>
-<a name='p6' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     To implement the complex-number arithmetic operations, we can use the same
     
       <span style="color:green">procedures</span>
@@ -2406,6 +2408,9 @@ function add_complex(z1, z2) {
               real_part(z1) + real_part(z2),
               imag_part(z1) + imag_part(z2));
 }</pre></div></div></td></tr></table>
+  </p></div>
+  <div class='permalink'>
+<a name='p8' class='permalink'></a><p>
     Finally, we must choose whether to construct complex numbers using
     Ben's representation or Alyssa's representation.  One
     reasonable choice is to construct rectangular numbers whenever we have
@@ -2422,7 +2427,7 @@ function add_complex(z1, z2) {
           
 (define (make-from-mag-ang r a)
   (make-from-mag-ang-polar r a))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_43_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoAC0fW2Wfg1Oru5kVLTSsvaKhSlhaVp6BkagsfGmtUXKyyVZbaYANgshewfa5ZXVOymNLV3tnd1F-YO2cgqKo85uE55pps9BR6MQuIRjvRzAAvJYRVbRIa+bg8OGgAC8WNADRBzHBkOhDT+AKmMTigmoUNh8O0iPWPis4jRqixGJxlOpxPGpK8oEUAEdCNDhDwAB60lZRdZi0AAKlAYpJvOmenoxy2OnI7DxYIh1JZ6n29LouXyLJJREmfMowXEmu1uoJBvR4Tp0u8Jwt4ytgLodq4xEoBn8oid+uhhrdUrW-sYHEFWp4guFeh4ao1Ji1OuEoOdkbhF0uoAA1PsSimRTxbfas47c-iIzTlGM3L6yQxwccww29YSaUaER7QHbyBxGGDqwGHTm802WRJy8WMhmZ+H+yzWyq4wBrUT4arBHPq9g1rizxsbsVSfiSyKxhhMFgcVG43v5nQNRfL5cJczX0Bby3ds+TtPd2APagj2nPULz7A0dCkeg7xNR9mDYPweDfOd+y-JcfwiP903lEd43YGR5mQqQdBI0cE0oYgeGQltlRA1U8kzaFtU5AsUOHAMgxDUQeIHBU6PI6hKK7YSqV44CPA7M8ZxEqNjX48RBMIUN4lk0TSLHdhFAYpjpJ0l0WJ9BTQI04MtJk8zB3dB8zQKOFLSs6Y9W7MzeMcmMkWYShTjcyzrWmMD90PY8NSUlSANvPz7yRRh0JfZkGhEvCCMuIjxMTchkyFKsJVLfkirTIDv2yn9xInRj+CkCULLbDzd0iqD2Bg8EfPMRCGD4h8UufTCMt0rLqoyIi+uY1jWsiE861UocH2Bd95zhfCImyVc6zgj8eE+OZN02q4NgpXSWROrb5s47MVMO75joI64qhqNFGgAVWIHdiGoAB3bxLHeG6HV+UK-Q2adFtdNSVriddzKuw5Yq4vb5wepQnuLcpNhUjaCOyFG7oujH5kLJGtBe253pxL6fv+wGRGBonyDBlqwrjQNbNDJanKRVacMR5dsgE7me0FyNSaxy4cfOoWfxFmyhJ6g7Zke8nnoqV7YU+77foB5FhGB0WhLZ7dOy4btef89YBcveXLmyLzxftyW1cxjXsbOlX8YVi3vPu92yZbCnQCpt6YV1+mDcZYHnbN82IogqLVzPcUbwGpEk8go9U+nBHI3i+SOdI8Cc86+09XTJDM-WbOoq688VOmrccFsRRyAYY5+EURR6DiGR2GIEJMVL9roMr8EeAASC0UPsoAZjQAAGKRl7QAB2MYcBZpju97-uJKH85HCAA')">function make_from_real_imag(x, y) {
+            <td><div class='snippet' id='javascript_43_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQBY0oFA4GYCuAdgMYAuAlgPbGgCG559pAFgPrMDmAFOQJ4AHAKad6XADShStcsOLkAzgEpQAbxygtoAE7DyhHXUH1KOvkNHcpMhfKXKA3DgC+BEhRp0BIsbwAmjIQAtqoa2rr6hnSUiuwmZjyBBqGaEemgAPygrML0-klBqRnpAFygwjo61ObJIVIARABG+aDcXML+oHXBoAC0fW2Wfg1Oru5kVLTSsvaKhSlhaVp6BkagsfGmtUXKyyVZbaYANgshewfa5ZXVOymNLV3tnd1F-YO2cgqKo85uE55pps9BR6MQuIRjvRzAAvJYRVbRIa+bg8OGgAC8WNADRBzHBkOhDT+AKmMTigmoUNh8O0iPWPis4jRqixGJxlOpxPGpK8oEUAEdCNDhDwAB60lZRdZi0AAKlAYpJvOmenoxy2OnI7DxYIh1JZ6n29LouXyLJJREmfMowXEmu1uoJBvR4Tp0u8Jwt4ytgLodq4xEoBn8oid+uhhrdUrW-sYHEFWp4guFeh4ao1Ji1OuEoOdkbhF0uxdAAGp9iWMimRTxbfas47c-iIzTlGM3L6yQxwccw029YSaUaER7QHbyBxGGDawGHTm8y2WRIK5WR+q5+HByz2yq4wBrUT4arBHPrutcefNrdiqT8SWRWMMJgsDio3H9-M6BrL1eXBLmG9QDvHdOz5O0D3YI9qBPWc9UvAcDR0KR6HvE0n2YNg-B4d8F0Hb8V1-LR-3TeUx3jdgZHmFCpB0UjxwTShiB4FC22VUDVTyTNoW1TkC1Q0cAyDENRF4ocFXoijqConsRKpPiQI8LtzznUSo2NATxCEwhQ3iOSxLIid2EURjmJk3SXVYn1FLAzTg202SLOHd1HzNAo4Utazpj1XtzL4pyYyRZhKFOdyrOtaZwMPY9Tw1ZTVMAu9-IfJFGAw19mQaUT8MIkpiIkxNyGTIUawlMt+WKtNgJ-HLiwkqcmP4KQJUsjtPP3KLoPYWDwV88wkIYfjH1Sl8sMyvTv1AYj+pYti2sidcGzUkdH2BD9FzhAiImyDMNzWrdPjmbdNquDYKT0lljq2+auOzVSDu+I7V2uKoajRRoAFViD3YhqAAd28Sx3muh1fjCv0NlnRbXXUla4k3CzLsOOLuPgz8eHupRHuLcpNlUjbV2yZHbvOjH5kLRGtGe243pxT7vr+gGRCBonyFB1rwrjQM7NDJbnKRVbcIRktskE7m+0FyNSaxy4cbOoXKxF2zhN69HZge8mnoqF7YQ+r6fv+5FhCB0XhLZ3duy4XteYC9YBaveXLmybzxftyW1cxjXsdOlX8YVi2fLu92ybbCnQCp16YV1+mDcZIHnbN83Isg6KdvPcVb0GpEk6gk9U9neHIwShSObIiCc66+09XTZDM-WbPou6i9VOmnccFsRRyAYY5+EURR6DiGR2GIEJMVLjqYMr8EeAASC0UPfwAZjQAAGKRl7QAB2MYcBZ5ju97-vJKH85HCAA')">function make_from_real_imag(x, y) {
     return make_from_real_imag_rectangular(x, y);
 }
 function make_from_mag_ang(r, a) {
@@ -2432,7 +2437,7 @@ function make_from_mag_ang(r, a) {
     
   </p></div>
   <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
         <tr>
@@ -2481,7 +2486,7 @@ function make_from_mag_ang(r, a) {
     in terms of the abstract constructor/selector interface.
   </p></div>
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
     
     
     Since each data object is tagged with its type, the selectors operate on
