@@ -2115,12 +2115,12 @@ Acknowledgments
   (cond ((null? set) false)
         ((equal? x (car set)) true)
         (else (element-of-set? x (cdr set)))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_39_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQBDAEwCsqKiB9AZwFMyAKAB4AaUDzIBKUAG9soOaABOvAgtoVO7bgBtuAW25Ey7Kni69BIseNnzb8gPyjeNu7YBcoAA50KCi04kAbmwAX1xCUkoaUHVNHX1DY1MxfytpFyUyFTUNIgItLT40l1dQRzw6LR4S1w9uAEcCSv8AC25GIt5xa1KHUDIFAm4auw9Y7T0DIxMzfmF+n0KrSXFgsOxx+Kmk2b4ARgBWIRLGFjZdvYAGEVPWDhTDm+Y73ZRr0DyC7u7AoA')">function is_element_of_set(x, set) {
+            <td><div class='snippet' id='javascript_39_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQBDAEwCsqKiB9AZwFMyAKAB4AaUDzIBKUAG9soOaABOvAgtoVO7bgBtuAW25Ey7Kni69BIseNnzb8gPyjeNu7YBcoAA50KCi04kAbmwAX1xCUkoaUHVNHX1DY1MxfytpFyUyFTUNIgItLT40l1dQRzw6LR4S1w9uAEcCSv8AC25GIt5xa1KHUDIFAm4auw9Y7T0DIxMzfmF+n0KrcWCw7HH4qaTZvgBGAFYhEsYWNh3dgAYRE9YOFIPr5ludlCvQPILu7sCgA')">function is_element_of_set(x, set) {
    return is_null(set) 
           ? false
           : equal(x, head(set))
           ? true
-          : is_element_of_set(x, tail(set)) );
+          : is_element_of_set(x, tail(set));
 }
 </pre></div></div></td></tr></table>
     
@@ -2146,7 +2146,7 @@ Acknowledgments
   (if (element-of-set? x set)
     set
     (cons x set)))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_39_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQKBnAfQFMAbZgW2aLMar0b1mZABQAPADSghZAJSgA3tlAqATsIKraDRkQKtWImfOUqz5gPyg8AQ1ZDT58wC5QzAI4E74qQAtmNgAmRsKyso5OKlZkqgTMEZGuOmyc3Lz8gsI+oGQ2FIbG8rIA3NgAvriEpJQ0oEEAVlQURJmiktKhihHqZJraTClcPHwCMtnGCZFWMpNOrgAOearjoaUV2A1NLWMAjAAMUpvNrSI7AKyHgY3HYygHoHoGYSVAA')">function adjoin_set(x, set) {
+            <td><div class='snippet' id='javascript_39_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQKBnAfQFMAbZgW2aLMar0b1mZABQAPADSghZAJSgA3tlAqATsIKraDRkQKtWImfOUqz5gPyg8AQ1ZDT58wC5QzAI4E74qQAtmNgAmRsKyso5OKlZkqgTMEZGuOmyc3Lz8gsI+oGQ2FIbGsgDc2AC+uISklDSgQQBWVBREmaKS0qGKEepkmtpMKVw8fAIy2cYJkVYyE06uAA55qmOhJeXY9Y3NowCMAAxSG00tItsArAeBDUejKPugegZhxUA')">function adjoin_set(x, set) {
     return is_element_of_set(x, set)
            ? set
            : pair(x, set);
@@ -2193,7 +2193,7 @@ Acknowledgments
           (cons (car set1)
             (intersection-set (cdr set1) set2)))
         (else (intersection-set (cdr set1) set2))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_39_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQKBnAfQFMAbZgW2aLMar0b1mZABQAPADSghZAJSgA3tlAqATsIKraDRkQKtWImfOUqz5gPyg8AQ1ZDT58wC5QzAI4E74qQAtmNgAmRsKyso5OKlZkqgTMEZGuOmyc3Lz8gsI+oGQ2FIbG8rIA3NgAvriEpJQ0oEEAVlQURJmiktKhihHqZJraTClcPHwCMtnGCZFWMpNOrgAOearjoaUV+MTk1No8zKpCWzStIWQAjFIyKPJK5j19dEx6Bien8gA+bw+6+gXCV7OWUBPVgAsxJAbsIbpUZZfxBF6yC5-cKRJxWRYUZZw4IyV4SUGolTNMh7A41FpjXL5BFIshXFGElRJXb7ZiHClZKm-M6Ijp0krlXDE0ls8nHRwNJoc0SnAAMUklzWOKHldUCjSVYwwquBYUREvVUuOcoVhs1WVOAFZTRrpSIVVJdXrikA')">function intersection_set(set1, set2) {
+            <td><div class='snippet' id='javascript_39_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQKBnAfQFMAbZgW2aLMar0b1mZABQAPADSghZAJSgA3tlAqATsIKraDRkQKtWImfOUqz5gPyg8AQ1ZDT58wC5QzAI4E74qQAtmNgAmRsKyso5OKlZkqgTMEZGuOmyc3Lz8gsI+oGQ2FIbGsgDc2AC+uISklDSgQQBWVBREmaKS0qGKEepkmtpMKVw8fAIy2cYJkVYyE06uAA55qmOhJeX4xOTU2jzMqkKbNC0hZACMUjIo8krm3b10THoGxyfyAD6v97r6BcKXM5agR6sf5mJL9diDdIjLL+ILPWTnX7hSJOKwLChLWHBGQvCQglEqJpkXb7arNUa5fLwxFkS7IgkqJI7PbMA7krKUn6nBHtWnFMq4Ikk1lko6OeqNdmiE4ABikEqaRxQctqgQaitGGBVQLCCPFaslR1l8oNGqyJwArCb1VKRMqpDrdUUgA')">function intersection_set(set1, set2) {
     return is_null(set1) || is_null(set2)
            ? null
            : is_element_of_set(head(set1), set2)
@@ -2278,7 +2278,7 @@ Acknowledgments
           <tr>
             <td><div class='snippet' id='javascript_39_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 </pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_39_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQKBnAfQFMAbZgW2aLMar0b1mZABQAPADSghZAJSgA3tlAqATsIKraDRkQKtWImfOUqz5gPyg8AQ1ZDT58wC5QzAI4E74qQAtmNgAmRsKyso5OKlZkqgTMEZGuOmyc3Lz8gsI+oGQ2FIbG8rIA3NgAvriEpJQ0oEEAVlQURJmiktKhihHqZJraTClcPHwCMtnGCZFWMpNOrgAOearjoaUV+MTk1LTE260hZACMUjIo8krmPX10THoGB4fhkU7TwiizLnWBjc37-kEPWRSD7PUGgXY0fa5fKAk5vMJrXAQlpjRwNJoorKHAAMUnRvzGKFxXx+mNEGGJd1YYSBaO+GP2OLx9IJWIArMzSfsiVIqTSSkA')">function union_set(set1, set2) {
+            <td><div class='snippet' id='javascript_39_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQKBnAfQFMAbZgW2aLMar0b1mZABQAPADSghZAJSgA3tlAqATsIKraDRkQKtWImfOUqz5gPyg8AQ1ZDT58wC5QzAI4E74qQAtmNgAmRsKyso5OKlZkqgTMEZGuOmyc3Lz8gsI+oGQ2FIbGsgDc2AC+uISklDSgQQBWVBREmaKS0qGKEepkmtpMKVw8fAIy2cYJkVYyE06uAA55qmOhJeX4xOTUtMRbLSFkAIxSMijySubdvXRMegb7B+GRTlPCKDMutYENTXv+QfeyKTvJ4g0A7Gh7XL5AHHV5hVa4cHNUaOeqNZFZA4ABikaJ+oxQOM+3wxogwRNurDCgNRX3Re2xuLp+MxAFYmSS9oSpJTqcUgA')">function union_set(set1, set2) {
     return is_null(set1)
            ? set2
            : adjoin_set(head(set1), 
@@ -2347,7 +2347,7 @@ Acknowledgments
       Here is the new implementation of
       <kbd>adjoin_set</kbd> and
       <kbd>union_set</kbd>.
-      <div class='snippet' id='javascript_39_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQKBnAfQFMAbZgW2aLMar0b1mZABQAPADSghZAJSgA3tlAqATsIKraDRkQKtWImfOUqz5gPyg8AQ1ZDT58wC5QzAI4E74qQAtmNgAmRsKyso5OKlZkqgTMEZGuOmyc3Lz8gsI+oGQ2FIbG8rIA3NgAvriEpJQ0dDzMqkLk1ESZojIAjFIyKPJK5upkmtpMegYhZB3yAD7TdKP6BcK9CZFWY6yrTklMKVw8fAIyIv5BE1Pdy+GRTlYADnmqJwHBnbISWzfmFPWNzM00NoiXL5c7vaRXa5fFRJX5NGqtY4gpaTcE9ErlSrEAG0IIAKyoPyBkghckUEUGw1ADwoTxJxlKFSqONAxBaQM6lzIvXJAw0WlANjud24r2EXVJvUZuDZgOOjnxhMRWQ6AAYpIqiccUOrBYECVqshhdRswu8FfqlUC1RrLYbRB0AKy2g3K0Q6qSms3FIA')">function adjoin_set(x, set) {
+      <div class='snippet' id='javascript_39_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=2&prgrm=PTAEGUEkGEAVQFLlAJgHQGZMChsDMBXAOwGMAXASwHsjQKBnAfQFMAbZgW2aLMar0b1mZABQAPADSghZAJSgA3tlAqATsIKraDRkQKtWImfOUqz5gPyg8AQ1ZDT58wC5QzAI4E74qQAtmNgAmRsKyso5OKlZkqgTMEZGuOmyc3Lz8gsI+oGQ2FIbGsgDc2AC+uISklDR0PMyqQuTURJmiMgCMUjIo8krm6mSa2kx6BiFk7fIAPlN0I-oFwj0JkVajrCtOSUwpXDx8AjIi-kHjk11L4ZFOVgAOearHAcEdshKb1+YUdQ3MTTStES5fJnN7SS5XT4qJI-RrVFpHYGLCZg7rFMoVYj-WhBABWVG+gMk4LkigiAyGoHuFEexOMJXKlWxoGIzUBHQuZB6ZP6Gi0oBst1u3Bewk6JJ6DNwrIBR0ceIJCKy7QADFIFYSjig1QLAvjNVkMDr1mE3vK9YrAar1RaDaJ2gBWG36pWibVSE2mopAA')">function adjoin_set(x, set) {
     return pair(x, set);
 }
 function union_set(set1, set2) {
