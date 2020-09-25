@@ -2387,9 +2387,6 @@ function union_set(set1, set2) {
 }
 </pre></div></div>
     
-  </p></div>
-  <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
     How many steps does this save?  In the worst case, the item we are
     looking for may be the largest one in the set, so the number of steps
     is the same as for the unordered representation.  On the other hand,
@@ -2404,7 +2401,7 @@ function union_set(set1, set2) {
     previous implementation.
   </p></div>
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
+<a name='p7' class='permalink'></a><p>
     We obtain a more impressive speedup with
     
       
@@ -2470,7 +2467,7 @@ function union_set(set1, set2) {
     
   </p></div>
   <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
     To estimate the number of steps required by this process, observe that at
     each step we reduce the intersection problem to computing intersections of
     smaller sets—removing the first element from
@@ -2585,7 +2582,7 @@ function union_set(set1, set2) {
   
   
   <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
     We can do better than the ordered-list representation by arranging the set
     elements in the form of a tree.  Each node of the tree holds one element of
     the set, called the <QUOTE>entry</QUOTE> at that node, and a link to each
@@ -2608,7 +2605,7 @@ function union_set(set1, set2) {
   
   </p></div>
   <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
     The advantage of the tree representation is this: Suppose we want to check
     whether a number $x$ is contained in a set.  We
     begin by comparing $x$ with the entry in the
@@ -2626,7 +2623,7 @@ function union_set(set1, set2) {
     representations.
   </p></div>
   <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
+<a name='p11' class='permalink'></a><p>
     
     We can represent trees by using lists.  Each node will be a list of
     three items: the entry at the node, the left subtree, and the right
@@ -2650,7 +2647,7 @@ function make_tree(entry,left,right) {
     
   </p></div>
   <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
     Now we can write the
     
       
@@ -2675,7 +2672,7 @@ function make_tree(entry,left,right) {
         
   </p></div>
   <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
+<a name='p13' class='permalink'></a><p>
     Adjoining an item to a set is implemented similarly and also requires
     $\Theta(\log n)$ steps.  To adjoin an item
     <kbd>x</kbd>, we compare
@@ -2711,7 +2708,7 @@ function make_tree(entry,left,right) {
 </pre></div></div>
   </p></div>
   <div class='permalink'>
-<a name='p15' class='permalink'></a><p>
+<a name='p14' class='permalink'></a><p>
     The above claim that searching the tree can be performed in a logarithmic
     number of steps rests on the assumption that the tree is
     
@@ -3060,7 +3057,7 @@ function partial_tree(elts, n) {
   
 
   <div class='permalink'>
-<a name='p16' class='permalink'></a><p>
+<a name='p15' class='permalink'></a><p>
     We have examined options for using lists to represent sets and have
     seen how the choice of representation for a data object can have a
     large impact on the performance of the programs that use the data.
@@ -3069,7 +3066,7 @@ function partial_tree(elts, n) {
     information retrieval.
   </p></div>
   <div class='permalink'>
-<a name='p17' class='permalink'></a><p>
+<a name='p16' class='permalink'></a><p>
     
     Consider a data base containing a large number of individual records,
     
@@ -3093,7 +3090,7 @@ function partial_tree(elts, n) {
     that retrieves the key associated with a given record.
   </p></div>
   <div class='permalink'>
-<a name='p18' class='permalink'></a><p>
+<a name='p17' class='permalink'></a><p>
     Now we represent the data base as a set of records. To locate the record
     with a given key we use a
     
@@ -3128,7 +3125,7 @@ function partial_tree(elts, n) {
     
   </p></div>
   <div class='permalink'>
-<a name='p19' class='permalink'></a><p>
+<a name='p18' class='permalink'></a><p>
     Of course, there are better ways to represent large sets than as unordered
     lists.  Information-retrieval systems in which records have to be
     <QUOTE>randomly accessed</QUOTE> are typically implemented by a tree-based
