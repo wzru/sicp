@@ -2126,64 +2126,23 @@ Acknowledgments
 
   <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
-    The implementation of the evaluator will depend upon
-    
-      
-      functions
-    
-    that define the <EM>syntax</EM> of the
-    
-      statements and
-    
-    expressions
-    to be evaluated.
-    
-      
-	Instead of treating programs as text (JavaScript strings), we represent
-	programs as tagged data (see
-	section&nbsp;<REF NAME="sec:manifest-types"><a class="superscript" id="4.1-sec-link-2.4.2" href="./2.4.2.html">2.4.2</a></REF>). Each statement and
-	expression is a list whose first element is a string that identifies
-	the syntactic form.
-      
-    
-    We will use
-    
-    data abstraction to make the evaluator independent of the representation of
-    the language.  For example, rather than committing to a choice that an
-    assignment is to be represented by a list beginning with the 
     
       
       
-	string <kbd>assignment</kbd>
+	Running the evaluator as a program—discussed in
+	section&nbsp;<REF NAME="sec:running-eval"><a class="superscript" id="4.1-sec-link-4.1.4" href="./4.1.4.html">4.1.4</a></REF>— will require
+	a concrete representation of the interpreted language.
+	We will use
+	
+	data abstraction to isolate the evaluator from that representation.
+	The data abstraction layers presented in
+	section&nbsp;<REF NAME="sec:representing-expressions"><a class="superscript" id="4.1-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>
+	will allow the evaluator to remain independent of concrete syntactic issues,
+	such as the keywords of the interpreted language, and from 
+	the choice of data structures that represent the program components.
       
     
-    we use an abstract predicate
-    
-      
-      <kbd>is_assignment</kbd>
-    
-    to test for an assignment, and we use abstract selectors
-    
-      
-      <kbd>assignment_symbol</kbd>
-      
-    
-    and 
-    
-      
-      <kbd>assignment_value_expression</kbd>
-      
-    
-    to access the parts of an assignment.
-    
-      
-      
-	The tagged list representation and data abstraction
-      
-    
-    will
-    be described in detail in
-    section&nbsp;<REF NAME="sec:representing-expressions"><a class="superscript" id="4.1-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>. There are also
+    There are also
     operations, described in
     section&nbsp;<REF NAME="sec:eval-data-structures"><a class="superscript" id="4.1-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF>, that specify the
     representation of
@@ -2267,25 +2226,27 @@ Acknowledgments
 	expression
 	
 	  
-	  <kbd>1 + 6</kbd>,
+	  <kbd>2 * 6</kbd>,
 	
 	it is not adequate for handling 
 	
 	  
-	  <kbd>1 + (2 * 3)</kbd>.
+	  <kbd>2 * (1 + 5)</kbd>.
 	  
 	
 	As far as the 
 	
 	  
-	  operator
+	  
+	    operator
+	    <kbd>*</kbd>
+	  
 	
-	<kbd>+</kbd>
 	is concerned, its arguments must be numbers, and it would choke if we
 	passed it the expression
 	
 	  
-	  <kbd>2 * 3</kbd>
+	  <kbd>1 + 5</kbd>
 	
 	as an argument.	One important role of the evaluator is to choreograph
 	
@@ -2319,7 +2280,7 @@ Acknowledgments
 	We need an evaluator to keep track of
 	
 	  
-	  name
+	  names
 	
 	and obtain their values before invoking the 
 	
@@ -2336,9 +2297,11 @@ Acknowledgments
 	This involves keeping track of
 	
 	  
-	  function
+	  
+	    constant declarations, knowing how to use these declarations
+	  
 	
-	definitions, knowing how to use these definitions in evaluating
+	in evaluating
 	expressions, and providing a mechanism that enables
 	
 	  
