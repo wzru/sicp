@@ -2073,7 +2073,7 @@ Acknowledgments
 	the defined variables. (For an example of a procedure that doesn't
 	obey these restrictions, so that sequential definition isn't
 	equivalent to simultaneous definition, see
-	exercise&nbsp;<REF NAME="ex:simultaneous-def_scheme"><a class="superscript" id="4.1.6-ex-link-4.24" href="./4.1.6.html#ex_4.24">4.24</a></REF>.)<a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:green">[1]</a>
+	exercise&nbsp;<REF NAME="ex:simultaneous-def_scheme"><a class="superscript" id="4.1.6-ex-link-4.26" href="./4.1.6.html#ex_4.26">4.26</a></REF>.)<a class='superscript' id='footnote-link-1' href='#footnote-1'style="color:green">[1]</a>
       </p></div>
 
       <div class='permalink'>
@@ -2118,7 +2118,7 @@ Acknowledgments
       <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
 	An alternative strategy for scanning out internal definitions is shown
-	in exercise&nbsp;<REF NAME="ex:alternative-scanout"><a class="superscript" id="4.1.6-ex-link-4.21" href="./4.1.6.html#ex_4.21">4.21</a></REF>. Unlike the
+	in exercise&nbsp;<REF NAME="ex:alternative-scanout"><a class="superscript" id="4.1.6-ex-link-4.23" href="./4.1.6.html#ex_4.23">4.23</a></REF>. Unlike the
 	transformation shown above, this enforces the restriction that the
 	defined variables' values can be evaluated without using any of the
 	variables' values.<a class='superscript' id='footnote-link-2' href='#footnote-2'style="color:green">[2]</a>
@@ -2224,7 +2224,7 @@ Acknowledgments
 <a name='p11' class='permalink'></a><p>
 	An alternative strategy for scanning out internal
 	declarations is shown in
-	exercise&nbsp;<REF NAME="ex:alternative-scanout"><a class="superscript" id="4.1.6-ex-link-4.21" href="./4.1.6.html#ex_4.21">4.21</a></REF>. Unlike the
+	exercise&nbsp;<REF NAME="ex:alternative-scanout"><a class="superscript" id="4.1.6-ex-link-4.23" href="./4.1.6.html#ex_4.23">4.23</a></REF>. Unlike the
 	transformation shown above, this enforces the restriction that the
 	declared names' values can be evaluated without using any of the
 	names' values.
@@ -2234,7 +2234,7 @@ Acknowledgments
 
   
     <div class="permalink">
-    <a name="ex_4.20" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.20">Exercise 4.20 </a></b> 
+    <a name="ex_4.22" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.22">Exercise 4.22 </a></b> 
   
     
     <table width="100%">
@@ -2291,26 +2291,6 @@ Acknowledgments
 	    <kbd>evaluate</kbd>
 	    in an appropriate way.
 	  </LI>
-	  
-	  <LI>
-	    JavaScript's semantics requires that any attempt to access the
-	    value <kbd>"*unassigned*"</kbd> leads to
-	    a runtime error. Change
-	    <kbd>lookup_symbol_value</kbd>
-	    (section&nbsp;<REF NAME="sec:operations-on-environments"><a class="superscript" id="4.1.6-sec-link-4.1.3" href="./4.1.3.html">4.1.3</a></REF>) to
-	    signal an error if the value it finds is 
-	    <kbd>"*unassigned*"</kbd>.
-	  </LI>
-	  <LI>
-	    Even with this protection in place, there is a loophole: A program
-	    could declare a variable in a block and assign a value to the
-	    variable before its <kbd>let</kbd>
-	    declaration is evaluated. Change the evaluator of
-	    section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> such that any
-	    assignment to a variable declared with
-	    <kbd>let</kbd> leads to an error if
-	    the declaration has not been evaluated yet.
-	  </LI>
 	</OL>
       </span></td></tr></table>
   
@@ -2324,7 +2304,7 @@ Acknowledgments
 
   
     <div class="permalink">
-    <a name="ex_4.21" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.21">Exercise 4.21 </a></b> 
+    <a name="ex_4.23" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.23">Exercise 4.23 </a></b> 
   
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
@@ -2392,7 +2372,7 @@ Acknowledgments
         <tr><td><span style="color:green">
       
     <div class="permalink">
-    <a name="ex_4.22" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.22">Exercise 4.22 </a></b> 
+    <a name="ex_4.24" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.24">Exercise 4.24 </a></b> 
   
 	
 	Consider an alternative strategy for scanning out definitions that
@@ -2435,7 +2415,7 @@ Acknowledgments
           <td><span style="color:blue">
       
     <div class="permalink">
-    <a name="ex_4.23" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.23">Exercise 4.23 </a></b> 
+    <a name="ex_4.25" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.25">Exercise 4.25 </a></b> 
   
 		
 	Our implementation of blocks in
@@ -2488,7 +2468,7 @@ Acknowledgments
 
   
     <div class="permalink">
-    <a name="ex_4.24" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.24">Exercise 4.24 </a></b> 
+    <a name="ex_4.26" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.26">Exercise 4.26 </a></b> 
   
     <table width="100%">
         <colgroup><col width="48%"><col width="1%"><col width="51%"></colgroup>
@@ -2514,7 +2494,7 @@ Acknowledgments
 	the simultaneous scope rule for internal procedure definitions,	and that
 	it is unreasonable to treat procedure names differently from other names.
 	Thus, she argues for the mechanism implemented in
-	exercise&nbsp;<REF NAME="ex:internal-defs"><a class="superscript" id="4.1.6-ex-link-4.20" href="./4.1.6.html#ex_4.20">4.20</a></REF>. This would lead to
+	exercise&nbsp;<REF NAME="ex:internal-defs"><a class="superscript" id="4.1.6-ex-link-4.22" href="./4.1.6.html#ex_4.22">4.22</a></REF>. This would lead to
 	<kbd>a</kbd> being unassigned at the time that the
 	value for <kbd>b</kbd> is to be computed.  Hence, in
 	Alyssa's view the procedure should produce an error.  Eva has a
@@ -2536,11 +2516,11 @@ Acknowledgments
 	$\textit{statements}$ in the
 	function in the text, comparing how this will be structured when
 	declarations are interpreted sequentially as described in
-	exercise&nbsp;<REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.23" href="./4.1.6.html#ex_4.23">4.23</a></REF>
+	exercise&nbsp;<REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.25" href="./4.1.6.html#ex_4.25">4.25</a></REF>
 	with how it is structured if declarations are scanned out as described
 	in section&nbsp;&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>.
 	Why is there an extra frame in the latter case?
-	JavaScript forbids the re-declaration of parameters
+	JavaScript forbids the redeclaration of parameters
 	as local names in the body block of any function. With this restriction,
 	can you achieve the scoping for local names
 	in lambda expressions of 
@@ -2566,7 +2546,7 @@ Acknowledgments
         <tr><td><span style="color:green">
       
     <div class="permalink">
-    <a name="ex_4.25" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.25">Exercise 4.25 </a></b> 
+    <a name="ex_4.27" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.27">Exercise 4.27 </a></b> 
   
 	  
 	
@@ -2619,7 +2599,7 @@ Acknowledgments
 	    expression, by transforming a <kbd>letrec</kbd>
 	    expression into a <kbd>let</kbd> expression as
 	    shown in  the text above or in
-	    exercise&nbsp;<REF NAME="ex:alternative-scanout_scheme"><a class="superscript" id="4.1.6-ex-link-4.22" href="./4.1.6.html#ex_4.22">4.22</a></REF>. That is,
+	    exercise&nbsp;<REF NAME="ex:alternative-scanout_scheme"><a class="superscript" id="4.1.6-ex-link-4.24" href="./4.1.6.html#ex_4.24">4.24</a></REF>. That is,
 	    the <kbd>letrec</kbd> variables should be created
 	    with a <kbd>let</kbd> and then be assigned their
 	    values with <kbd>set!</kbd>.
@@ -2653,7 +2633,7 @@ Acknowledgments
           <td><span style="color:blue">
       
     <div class="permalink">
-    <a name="ex_4.26" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.26">Exercise 4.26 </a></b> 
+    <a name="ex_4.28" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.28">Exercise 4.28 </a></b> 
   
 	 
 	Ben Bitdiddle, Alyssa P. Hacker, and Eva Lu Ator are arguing about
@@ -2668,7 +2648,7 @@ f(10);
 </pre></div></div>
 	Ben asserts that the result should be obtained using the sequential
 	implementation for <kbd>let</kbd> as given
-	in exercise&nbsp;<REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.23" href="./4.1.6.html#ex_4.23">4.23</a></REF>:
+	in exercise&nbsp;<REF NAME="ex:add_binding_to_frame"><a class="superscript" id="4.1.6-ex-link-4.25" href="./4.1.6.html#ex_4.25">4.25</a></REF>:
 	<kbd>b</kbd> is declared to be 11, then
 	<kbd>a</kbd> is declared to be 5, so the result is 16.
 	Alyssa objects that mutual recursion requires the simultaneous scope
@@ -2701,7 +2681,7 @@ f(10);
 
   
     <div class="permalink">
-    <a name="ex_4.27" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.27">Exercise 4.27 </a></b> 
+    <a name="ex_4.29" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.29">Exercise 4.29 </a></b> 
   
     
     <table width="100%">
@@ -2714,7 +2694,7 @@ f(10);
         <tr><td><span style="color:green">
 	
 	Amazingly, Louis's intuition in
-	exercise&nbsp;<REF NAME="ex:letrec"><a class="superscript" id="4.1.6-ex-link-4.25" href="./4.1.6.html#ex_4.25">4.25</a></REF> is correct. It is indeed
+	exercise&nbsp;<REF NAME="ex:letrec"><a class="superscript" id="4.1.6-ex-link-4.27" href="./4.1.6.html#ex_4.27">4.27</a></REF> is correct. It is indeed
 	possible to specify recursive procedures without using
 	<kbd>letrec</kbd> (or even
 	<kbd>define</kbd>), although the method for

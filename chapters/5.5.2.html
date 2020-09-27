@@ -2648,7 +2648,7 @@ function compile_lambda_expression(exp, target, linkage) {
     
     <div class='snippet' id='javascript_118_8_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 function compile_lambda_body(exp, fun_entry) {
-    let formals  = lambda_parameters(exp);
+    let formals  = lambda_parameter_symbols(exp);
     return append_instruction_sequences(
         make_instruction_sequence(
             list("env", "fun", "argl"),

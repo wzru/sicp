@@ -1995,24 +1995,25 @@ Acknowledgments
 	Programmers write programs as text, i.e. sequences of characters, entered
 	in a programming environment or a text editor. To run our evaluator, we need
 	to start with a representation of this program text as a JavaScript value.
-	In section&nbsp; we introduced strings to represent
+	In section&nbsp;<REF NAME="sec:strings"><a class="superscript" id="4.1.2-sec-link-2.3.1" href="./2.3.1.html">2.3.1</a></REF> we introduced strings to represent
 	text. To revisit an example from
 	section&nbsp;<REF NAME="sec:naming"><a class="superscript" id="4.1.2-sec-link-1.1.2" href="./1.1.2.html">1.1.2</a></REF>,
-	we would like to evaluate strings such as
+	we would like to evaluate programs such as
 	<kbd>"const size = 2; 5 * size;"</kbd>.
 	Unfortunately, such program text does not provide enough structure to
 	the evaluator. In this example, the program parts
 	<kbd>"size = 2"</kbd> and
 	<kbd>"5 * size"</kbd> look similar, but carry
-	very different meaning. The textual representation of programs lies at
-	too low a level of abstraction for the evaluator. In this section, we
+	very different meaning. The textual representation of programs provides
+	a level of abstraction that is too low for the evaluator. In this section, we
 	describe a function 
 	<kbd>parse</kbd> that translates program text
 	to a <EM>tagged list representation</EM>, reminiscent of
 	the tagged data of section&nbsp;<REF NAME="sec:manifest-types"><a class="superscript" id="4.1.2-sec-link-2.4.2" href="./2.4.2.html">2.4.2</a></REF>. We will see
 	that the application of the 
 	<kbd>parse</kbd> function to the program string
-	above produces a data structure that reflects the structure of the program.
+	above produces a data structure that properly
+	reflects the structure of the program.
 	<div class='snippet' id='javascript_77_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiAYwHsA7MgF1DIEsAvC0AXlDYA3KACsoAFQceFYTQCUwoA')">parse("const size = 2; 5 * size;");
 </pre><pre class='prettyprintoutput'>
 list("sequence",
@@ -2070,8 +2071,9 @@ list("sequence",
     
       
       
-	the data structure representation of the language being evaluated is determined
-	solely by the functions	that classify and extract pieces of the
+	the syntax of the language being evaluated is determined
+	solely by <kbd>parse</kbd> and
+	the functions that classify and extract pieces of the
 	tagged lists produced by <kbd>parse</kbd>.	
       
     
@@ -2102,71 +2104,61 @@ list("sequence",
   
     
     
-      <div class='permalink'>
-<a name='p4' class='permalink'></a><p>
-	As data structure representation for components, we shall employ a tagged list
-	notation reminiscent of
-	the tagged data of section&nbsp;<REF NAME="sec:manifest-types"><a class="superscript" id="4.1.2-sec-link-2.4.2" href="./2.4.2.html">2.4.2</a></REF>.
-	For example, an assignment statement is represented by a list whose first
-	element is the string <kbd>"assignment"</kbd>.
-	The function <kbd>make_assignment</kbd> is the
-	constructor for assignments,
-	<kbd>is_assignment</kbd> is the
-	<EM>syntax predicate</EM> and
-	<kbd>assignment_symbol</kbd> and
-	<kbd>assignment_value_expression</kbd>
-	are the selectors.
-	<div class='snippet' id='javascript_77_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0mBnbqgcxIM2JCgApuFAE5US-ADSg2ADwAOUtr1okAlKADeuUMdAaKRKfQA2VSWIBEPPoOGj7iyTLmKV6zXzodAG5cAF9CUkptUFsuLRcRcTIaBlU6RL1DE1M2c0sY7g4KJn5+NgATDhs7ZNT00UVHeKFE+2CwiPJqOlAnARbRDm4ATwYAIxorMVq0kgyDIxMzC3oACzYmcrFiqin1ze2mXemU2YydC5Dw4i7ovoTBgDcmKyJOXw0tOhO6udFMxbGZb5fZbHZTcE-M7-S5hIA')">function make_assignment(string, expression) {
-    return list("assignment", string, expression);
-}
-function is_assignment(component) {
-    return is_tagged_list(component, "assignment");
-}
-function assignment_symbol(component) {
-    return head(tail(head(tail(component))));
-}
-function assignment_value_expression(component) {
-    return head(tail(tail(component)));
-}
-</pre></div></div>
-	The syntax predicate 
-	is defined in terms of the function
-	<kbd>is_tagged_list</kbd>,
-	which identifies the kind of component using a designated
-	string as first element:
-	<div class='snippet' id='javascript_77_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvkA')">function is_tagged_list(stmt, the_tag) {
-    return is_pair(stmt) && head(stmt) === the_tag;
-}
-</pre></div></div>
-	
-	The second element of the list
-	is the symbol, i.e., the string that represents the name to which a new value
-	is being assigned, and the third element is the value
-	expression, which is itself represented by a tagged list.
-	With the constructor,
-	we can construct a statement consisting of an assignment of the name
-	<kbd>x</kbd> to the number 1,
-	and <kbd>evaluate</kbd> it, provided we
-	have an environment, here <kbd>my_environment</kbd>, in
-	which <kbd>x</kbd> is declared:
-	<div class='snippet' id='javascript_77_4_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-evaluate(make_assignment("x", 1), my_environment);</pre></div></div>
-	Constructing programs this way is possible in principle but in practice 
-	intolerably tedious when the programs become more complex.
-	We prefer to write programs in text form, using keywords, braces and operators
-	following the JavaScript syntax introduced throughout this book.
-	For this purpose we assume that the JavaScript environment
-	provides a function <kbd>parse</kbd> that
-	translates a given string in JavaScript syntax into the corresponding
-	tagged list notation. For example, the program above can be represented as
-	a string, parsed and evaluated as follows:
-	<div class='snippet' id='javascript_77_5_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
-evaluate(parse("x = 1;"), my_environment);</pre></div></div>
-      </p></div>
 
   
       <div class='permalink'>
         <a name='h1' class='permalink'></a><h2>
+    
+    Literal values
+  </h2></div>
+      
+  <div class='permalink'>
+<a name='p4' class='permalink'></a><p>
+	
+	Literal values are parsed into tagged lists with
+	tag <kbd>"literal"</kbd> and
+	the actual value.
+	
+	  \begin{eqnarray*}
+	  \ll \textit{literal-value} \gg & = &
+	  \texttt{list("literal", }\textit{value}\texttt{)}
+	  \end{eqnarray*}
+	
+	where $\textit{value}$ is
+	the JavaScript value represented by the
+	$\textit{literal-value}$ string.
+	Here $\ll \textit{literal-value} \gg$ denotes the
+	result of parsing the string $\textit{literal-value}$.
+	<div class='snippet' id='javascript_77_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiDAbhoEp6g')">parse("1;");
+</pre><pre class='prettyprintoutput'>
+list("literal", 1)</pre></div></div>
+	<div class='snippet' id='javascript_77_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiAcgAsKAbZge1AHc2TmATOgG4aASkFA')">parse("'hello world';");
+</pre><pre class='prettyprintoutput'>
+list("literal", "hello world")</pre></div></div>
+	<div class='snippet' id='javascript_77_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiAOwFcAbJgbhoEpWg')">parse("null;");
+</pre><pre class='prettyprintoutput'>
+list("literal", null)</pre></div></div>
+	The syntax predicate is 
+	<kbd>is_literal</kbd>.
+	<div class='snippet' id='javascript_77_5_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0AbKigUwCcBDVgBRkaAWwAOdTiQoBKUAG9coZaG6cKRbvSbMSREQCMeQ0RJJTZygD5WlK+yp2MK3KiQDmJ8ZOlzQNuwd7HQMaGlZOXhIvMws5AKCHHT1WQWFvc197BMTHFlIAE04CN04CmJ9ZAG5cAF9CUkpaenYuPlZmADd+Ik4KzMt5e0DVdU16dNjpGvrcYRJnUBEAT2Yxbhp3PhFQAF5QMV5uRj6AIhdeqtAMKtOZGvnFleYLzmZnXi4RCz3QdmdmGoCAJnutNtsADSgAAM91wOlaPH4INWr3eFE+nG+viqQA')">function is_literal(component) {
+    is_tagged_list(component, "literal");
+}
+</pre></div></div>
+	
+	The selector for retrieving the value is
+	<kbd>literal_value</kbd>.
+	<div class='snippet' id='javascript_77_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAbASwBcBTAJwEMCB9ANxoFcyAKAByooGc2AiAHZMCBANx8AlBNH4AZkwEBjEkQD2A0MXLU6jAi1aLVAW3bqyAkhNABvUPdC4HoCmRJMKGo6fOWZAXyA')">function literal_value(component) {    
+    return component;
+}
+</pre></div></div>
+	<div class='snippet' id='javascript_77_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAbASwBcBTAJwEMCB9ANxoFcyAKAByooGc2AiAHZMCBANx8AlBNFA')">literal_value(parse("null;"));
+</pre><pre class='prettyprintoutput'>
+null</pre></div></div>
+      </p></div>
+
+  
+      <div class='permalink'>
+        <a name='h2' class='permalink'></a><h2>
     
     Names
   </h2></div>
@@ -2179,27 +2171,51 @@ evaluate(parse("x = 1;"), my_environment);</pre></div></div>
 	
 	  \begin{eqnarray*}
 	  \ll \textit{name} \gg & = &
-	  \texttt{list("name", }\textit{name}\texttt{)}
+	  \texttt{list("name", }\textit{symbol}\texttt{)}
 	  \end{eqnarray*}
 	
-	Here $\ll \textit{name} \gg$ denotes the
-	result of parsing the string $\textit{name}$.
-	    <div class='snippet' id='javascript_77_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0SBDAWwFMAKMmjgAc6XEhQCUoAN65Qc0ACcuFIgvpNmFNgHNtXACbMANkwp8BwkqIoAaUACJ23e+IDcuAL6FSlWvUYAnhwARjRGzDQErJy8-EIiYpIy8orKqvQAFlxs+jxaVEbm8VaJbp5AA')">function is_name(component) {
+	where $\textit{symbol}$ is a string
+	that contains the characters that make up the
+	$\textit{name}$ as written in the program.
+	The syntax predicate for names is
+	<kbd>is_name</kbd>.
+	    <div class='snippet' id='javascript_77_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCwkbBLcImQ0EmZ03CR2Glo6+obG0f48-ELiicmpJOkyoABEsfE1KkGhuEkk4qASAJ7M9UribBTc8RmgnqAWuowJNQAeAY1BvExmAmxdIqZ9It29cf3sQyN2TbjLjKvrYl0SAEY0Asw0BHvxOz19zANHVSpNQA')">function is_name(component) {
     return is_tagged_list(component, "name");
 }
-function symbol_of_name(component) {
+</pre></div></div>
+	The syntax predicate 
+	<kbd>is_name</kbd>
+	is defined in terms of the function
+	<kbd>is_tagged_list</kbd>,
+	which identifies the kind of component using a designated
+	string as first element:
+	<div class='snippet' id='javascript_77_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvim7Fx8gsIiQuIiAEQkbBLcCbIJAB4JKhnJqTkBQA')">function is_tagged_list(stmt, the_tag) {
+    return is_pair(stmt) && head(stmt) === the_tag;
+}
+</pre></div></div>
+	
+	The second element of the list that results from parsing a name is
+	the symbol, i.e., the string that represents the name in the evaluator.
+	The symbol is accessed using the selector 
+	<kbd>symbol_of_name</kbd>.	
+	    <div class='snippet' id='javascript_77_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0oIwAnhIARjQCzDQEzCRsEtwiZDQSZnTcJHYaWjr6hsbO3K4i7FQCOXkFJEV2KkGhuLkk4qASMemZSuJsFNxZxaCeoBa6jNkARAAeAYsduLxMZgJsMSKmGVkiA0NZzKPjk+1BW4w7e2JxicmpZ9mnRyPsV20qHUA')">function symbol_of_name(component) {
     return head(tail(component));
 }
 </pre></div></div>
 	    In the following, we just list the syntax predicates and and selectors,
 	    and omit their declarations if they just access the obvious list elements.
 	    
+	    We add a constructor for names as follows:
+	    <div class='snippet' id='javascript_77_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0oBJsANZKJGwS3GIAnhIARjQCapo6egZG9ELiIgBEicllsozpWTlBobhkdOLRqcyVSuJsFNzJJBSgnqAWuowpZQAeAWUqQbxMZgJsqSKmXSISHV3MPX0DdvO4i4zLq2mZ2cw0BJ1JKdv3yXvsB9yDKvNAA')">function make_name(symbol) {
+    return list("name", symbol);
+}
+</pre></div></div>
   </p></div>
       
 
   
       <div class='permalink'>
-        <a name='h2' class='permalink'></a><h2>
+        <a name='h3' class='permalink'></a><h2>
     
     Expression statements
   </h2></div>
@@ -2218,215 +2234,72 @@ function symbol_of_name(component) {
 	
   </p></div>
 
-  
-      <div class='permalink'>
-        <a name='h3' class='permalink'></a><h2>
-    
-    Literal values
-  </h2></div>
-      
-  <div class='permalink'>
-<a name='p7' class='permalink'></a><p>
-	
-	Literal values are parsed into tagged lists with
-	tag <kbd>"literal"</kbd> and
-	the actual value.
-	
-	  \begin{eqnarray*}
-	  \ll \textit{literal-value} \gg & = &
-	  \texttt{list("literal", }\textit{value}\texttt{)}
-	  \end{eqnarray*}
-	
-	where $\textit{value}$ is
-	the JavaScript value represented by the
-	$\textit{literal-value}$ string.
-	<div class='snippet' id='javascript_77_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiDAbhoEp6g')">parse("1;");
-</pre><pre class='prettyprintoutput'>
-list("literal", 1)</pre></div></div>
-	<div class='snippet' id='javascript_77_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiAcgAsKAbZge1AHc2TmATOgG4aASkFA')">parse("'hello world';");
-</pre><pre class='prettyprintoutput'>
-list("literal", "hello world")</pre></div></div>
-	<div class='snippet' id='javascript_77_9_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiAOwFcAbJgbhoEpWg')">parse("null;");
-</pre><pre class='prettyprintoutput'>
-list("literal", null)</pre></div></div>
-	The syntax predicate is 
-	<kbd>is_literal</kbd>.
-	
-	
-	<kbd>literal_value</kbd>.
-	<div class='snippet' id='javascript_77_10_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAbASwBcBTAJwEMCB9ANxoFcyAKAByooGc2AiAHZMCBANx8AlBNFA')">literal_value(parse("null;"));
-</pre><pre class='prettyprintoutput'>
-null</pre></div></div>
-	The selector for retrieving the value is
-	<kbd>literal_value</kbd>.
-      </p></div>
-  
+
   
       <div class='permalink'>
         <a name='h4' class='permalink'></a><h2>
     
-    Assignments
+    Function applications
   </h2></div>
 
   <div class='permalink'>
-<a name='p8' class='permalink'></a><p>
-    The parsing of assignments described above is denoted by the rule:
+<a name='p7' class='permalink'></a><p>
+	Function applications are parsed as follows:
 	
 	  \begin{eqnarray*}
-	  \ll \textit{name}\ \ \texttt{=}\ \ \textit{expression}\texttt{;} \gg & = &
-	  \texttt{list("assignment", }\ll \textit{name}\gg \texttt{, }\ll \textit{expression} \gg \texttt{)}
+&	  \ll \textit{fun-expr}\texttt{(}\textit{arg-expr}_1\texttt{, }\ldots\texttt{, } \textit{arg-expr}_n \texttt{)} \gg \\
+&	  = \\
+&	  \texttt{list("application",}\ \ll \textit{fun-expr} \gg \texttt{, list(} \ll \textit{arg-expr}_1 \gg \texttt{, }\ldots\texttt{, } \ll \textit{arg-expr}_n \gg \texttt{))}
 	  \end{eqnarray*}
 	
-	The syntax predicate is <kbd>is_assignment</kbd>
-	and the selectors are <kbd>assignment_symbol</kbd>
-	and <kbd>assignment_value_expression</kbd>.
-    
-    
-    
+	The syntax predicate is
+	<kbd>is_application</kbd>
+	and the selectors are
+	<kbd>function_expression</kbd> and
+	<kbd>arg_expressions</kbd>.
+	    
+	    
+	    We add a constructor for function applications as follows:
+	    <div class='snippet' id='javascript_77_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0oBJsANZKbGZmQmRskSQi4ZS0JMzcAB5m+oyMObJsuhxEEtwkFHmFxaV0jGqaOnoGRvRC4iIARInJVKnp-bJZ6Q1F3CVloBVVNXXTTTmtQaG4ZC0U0QCezCRsNcziadzLe56gFrqM3AP5Af0qQbxMyWz7IqbHNSIJId-kpzhRLrU7G9cB9GF8fox9hIAEY0ATMGgEI4nR5A7GnMEQuoqN5AA')">function make_application(function_expression, argument_expressions) {
+    return list("application", function_expression, argument_expressions);
+}
+</pre></div></div>
+	    
   </p></div>
 
   
       <div class='permalink'>
         <a name='h5' class='permalink'></a><h2>
     
-    Declarations
-  </h2></div>
-
-    <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
-  Constant and variable declarations are parsed as follows.
-	
-	  \begin{eqnarray*}
-	  \ll \textbf{\texttt{const}}\ \textit{name}\ \texttt{=}\ \ \textit{expression}\texttt{;} \gg & = &
-	  \texttt{list("constant_declaration", } \ll \textit{name} \gg \texttt{, }\ll \textit{expression} \gg \texttt{)}\\
-	  \ll \textbf{\texttt{let}}\ \textit{name} \ \texttt{=}\ \textit{expression}\texttt{;} \gg & = &
-	  \texttt{list("variable_declaration", } \ll \textit{name} \gg \texttt{, }\ll \textit{expression} \gg \texttt{)}
-	  \end{eqnarray*}
-	
-	The selectors 
-	<kbd>declaration_symbol</kbd> and
-	<kbd>declaration_value_expression</kbd> apply to both
-	kinds of declarations, and the syntax predicate
-	<kbd>is_declaration</kbd>
-	returns true for both kinds.
-	<div class='snippet' id='javascript_77_11_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AEwFMyAbAQwCd3q6B9AM4BPALYAjGqwAUAiiIoBKUAG9codZyYUinegAsm7BlIrsq0g0ZNnps+QocKA3LgC+hUpVr1mbLj28+ADd2ViImPiYADwAHTQEBbxk5RRU1DS0dfUNjU3NrfLtFBxd3YnJeeioBPl8Obkrk+zT1DO1dUGq+UwBzHqYGPlZqiiaKABpQACIyOll2EgpalnqAuimlAB9N9Na99S7e-sHh2THJqZDOKnYxVgi6-0qN0G23IA')">function declaration_symbol(stmt) {
-   return head(tail(head(tail(stmt))));
-}
-function declaration_value_expression(stmt) {
-   return head(tail(tail(stmt)));
-}
-function is_declaration(stmt) {
-    return is_tagged_list(stmt, "constant_declaration") ||
-           is_tagged_list(stmt, "variable_declaration") ||
-}
-</pre></div></div>
-	    
-	We also declare a constructor for function declarations.
-	<div class='snippet' id='javascript_77_12_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AWwEMBrAUwH0y6BnCpkhQ4ATNmQA2TAE5NqdABQ8AngwBGNcQBpQANybiinNgA8ADlLY8etEgEpQAb1ygXFikSn1xVPvIBE3CR8AkKiEtKyNn7aymoa2noGRmYWVja2ANy4AL5AA')">function make_constant_declaration(symbol, value_expression) {
-   return list("constant_declaration", symbol, value_expression);
-}
-</pre></div></div>
-    </p></div>
-    <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
-	    
-	    
-	    We treat function declarations as syntactic sugar<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
-	    for the corresponding constant declarations:
-	
-	  \begin{eqnarray*}
-&	  \ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{parameter}_n \texttt{) \{}\ \textit{statements} \ \texttt{\}} \gg \\
-&	  = \\
-&	  \ll \textbf{\texttt{const}}\ \textit{name}\ \texttt{=}\ \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{parameter}_n \texttt{)\ =\ \{}\ \textit{statements} \ \texttt{\};} \gg
-	  \end{eqnarray*}
-	
-    </p></div>
-
-
-  
-      <div class='permalink'>
-        <a name='h6' class='permalink'></a><h2>
-    
-    Lambda expressions
-  </h2></div>
-
-	    <div class='permalink'>
-<a name='p11' class='permalink'></a><p>	    
-	      Lambda expressions are parsed as follows:
-	      <p></p>
-	      
-$\ll \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{parameter}_n \texttt{) => \{}\ \textit{statements} \ \texttt{\}} \gg\ \ =$ \newline
-\vspace{-8mm}
-	
-	<kbd class='snippet'>list("lambda_expression",
-     list(list("name", $parameter_1$), ..., list("name", $parameter_n$)), )}, 
-     $\ll$ { $statements$ } $\gg$)</kbd>
-	The syntax predicate is
-	<kbd>is_lambda_expression</kbd>
-	and the selector for the body of the lambda expression is
-	<kbd>lambda_body</kbd>.
-	The selector for the parameters is called
-	<kbd>lambda_parameters</kbd> and
-	additionally extracts the symbols from the names.
-	    <div class='snippet' id='javascript_77_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0AbAQwFsAjAE3eYBTAB4AHAE6DGjWiQAUjCpwoBKUAG9cobZIpFx9JswrsA5qcG82TCgqUUANKABEHHvyFjJ02c5UBuXABfQlJKWVA3PgFRdnEuQQpBcUY7ZTVNbVBdfXpOdlEFAE8eGlZmGgJmEgSnAAtBdl45EypWNNUVAODQ8mo6SK5o5m4aXiKOjK0dRNzQBqaW9jallcV0rsCgoA')">function lambda_parameters(stmt) {
-   return map(symbol_of_name, head(tail(stmt)));
-}
-</pre></div></div>
-	    
-	    </p></div>
-
-  
-      <div class='permalink'>
-        <a name='h7' class='permalink'></a><h2>
-    
-    Return statements
-  </h2></div>
-
-  <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
-    Return statements are parsed as follows:    
-	
-	  \begin{eqnarray*}
-	  \ll \textbf{\texttt{return}}\ \textit{expression} \texttt{;} \gg
-	  & = &
-	  \texttt{list("return_statement",}\ \ll \textit{expression} \gg \texttt{)}
-	  \end{eqnarray*}
-	
-	The predicate is <kbd>is_return_statement</kbd>
-	and the selector is <kbd>return_expression</kbd>.
-	    
-	    
-	    </p></div>
-	    
-  
-      <div class='permalink'>
-        <a name='h8' class='permalink'></a><h2>
-    
     Conditionals
   </h2></div>
 
   <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p8' class='permalink'></a><p>
     Conditional expressions are parsed as follows:
-    <p></p>
+    <blockquote class='blockquote'>
 	
-$\ll \textit{predicate}\ \texttt{?}\ \textit{consequent-expression} \texttt{:}\ \textit{alternate-expression}   \gg\ \ = $\newline
+$\ll \textit{predicate}\ \texttt{?}\ \textit{consequent-expression} \texttt{:}\ \textit{alternative-expression}   \gg\ \ = $\newline
 \vspace{-8mm}
 	
 	<kbd class='snippet'>list("conditional_expression", 
      $\ll predicate \gg$,
      $\ll consequent$-$expression \gg$,
-     $\ll alternate$-$expression \gg$)</kbd>
-	Similarly, conditional statements are parsed as follows:
-	<p></p>
+     $\ll alternative$-$expression \gg$)</kbd>
+    </blockquote>
+
+    Similarly, conditional statements are parsed as follows:
+	<blockquote class='blockquote'>
 	
-$\ll \textbf{\texttt{if}}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{consequent-block}\ \textbf{\texttt{else}}\ \textit{alternate-block} \gg\ \ =$\newline
+$\ll \textbf{\texttt{if}}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{consequent-block}\ \textbf{\texttt{else}}\ \textit{alternative-block} \gg\ \ =$\newline
 \vspace{-8mm}
 	
 	<kbd class='snippet'>list("conditional_statement", 
      $\ll predicate \gg$,
      $\ll consequent$-$block \gg$,
-     $\ll alternate$-$block \gg$)</kbd>
+     $\ll alternative$-$block \gg$)</kbd>
+	</blockquote>
+
 	The selectors 
 	<kbd>conditional_predicate</kbd>,
 	<kbd>conditional_consequent</kbd> and
@@ -2441,13 +2314,65 @@ $\ll \textbf{\texttt{if}}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{con
 
   
       <div class='permalink'>
-        <a name='h9' class='permalink'></a><h2>
+        <a name='h6' class='permalink'></a><h2>
+    
+    Lambda expressions
+  </h2></div>
+
+  <div class='permalink'>
+<a name='p9' class='permalink'></a><p>
+    Lambda expressions whose body forms an expression are parsed as if their
+    body consisted of a block containing a single return statement whose
+    return expression is the body of the lambda expression.
+    
+\begin{eqnarray*}      
+& \ll \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{parameter}_n \texttt{) =>}\ \textit{expression} \gg \\
+& = \\
+& \ll \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{parameter}_n \texttt{) => \{}\ \textbf{\texttt{return}} \ \textit{expression}\texttt{;}\ \texttt{\}} \gg
+\end{eqnarray*}
+	
+	      Lambda expressions whose body forms a block are parsed as follows:
+	      <blockquote class='blockquote'>
+	      
+$\ll \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{parameter}_n \texttt{) =>}\ \textit{block} \gg\ \ =$ \newline
+\vspace{-8mm}
+	
+	<kbd class='snippet'>list("lambda_expression",
+     list(list("name", $\textit{parameter}_1$), ..., list("name", $\textit{parameter}_n$)),
+     $\ll block \gg$)</kbd>
+	      </blockquote>
+
+	The syntax predicate is
+	<kbd>is_lambda_expression</kbd>
+	and the selector for the body of the lambda expression is
+	<kbd>lambda_body</kbd>.
+	The selector for the parameters is called
+	<kbd>lambda_parameter_symbols</kbd> and
+	additionally extracts the symbols from the names.
+	    <div class='snippet' id='javascript_77_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCwkbBLcImQ0EmZ03CR2Glo6+obG0f48-ELiicmpJOkyoABEsfE1KkGhhKSUtPSMAJ4SAEY0Asw0BMz1CUkpaRlqmjp6Bkb0Lm7sVAJlk5XTTSFhbZEmLAJxvbxszNwAHmb6jIwd7pmz2rmLBexcfILCj7I1x30zhdrrd7nRGs1WhEOqAAadzhZdHEDNxdMxun0BoxHjNsvM8vQJGwzGIev1BsNRsjZMsRKt1uIPCodqFwu0onCgf1eF0cVkcgt8rT6XTLAzbMyWfgkiRxKAJF1BCczqBPKBEYwEjVLqqnJcIbheEwzMdeaZOecrjduHcHgqlYC2MygkbGCa2LyLeY2Ej4hRUeiyViRPaLc7DcbTSIvdzeaHlU6mkA')">function lambda_parameter_symbols(stmt) {
+   return map(symbol_of_name, head(tail(stmt)));
+}
+</pre></div></div>
+	    
+	    We add a constructor for lambda expressions as follows:
+	    <div class='snippet' id='javascript_77_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0oBJsANZKAmwSAEa8bMzcAB5m+oyMtCQiFrpJBty6jLLJNLwAnmqaOnoGRvRC4iIARIkpaRnZufl0nbLFpRTllaDVdSpBobhkdOLRtcwkpczibBMS3CQUoJ6gxYzcXZkBnXO4vExmibUipht7IhJrr0rbu-t2N3dGA82E9GLUUjQBMwaAR1qV3p9Nj9uHsDio5kA')">function make_lambda_expression(parameters, body) {
+    return list("lambda_expression", parameters, body);
+}
+</pre></div></div>
+
+
+	    
+	    </p></div>
+
+  
+      <div class='permalink'>
+        <a name='h7' class='permalink'></a><h2>
     
     Sequences
   </h2></div>
 
 <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
 	    A sequence statement packages a sequence of statements into a
 	    single statement and is parsed as follows:
 	
@@ -2460,8 +2385,8 @@ $\ll \textbf{\texttt{if}}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{con
 	  \end{eqnarray*}
 	
 	The predicate is <kbd>is_sequence</kbd>
-	and the selector is <kbd>sequence_statements</kbd>.
-	We include a constructor
+	the selector is <kbd>sequence_statements</kbd>,
+	and we include a constructor
 	<kbd>make_sequence</kbd>.
 	We retrieve the first of a list of statements using
 	<kbd>first_statement</kbd> and
@@ -2471,8 +2396,8 @@ $\ll \textbf{\texttt{if}}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{con
 	the predicates 
 	<kbd>is_empty_sequence</kbd> and 
 	<kbd>is_last_statement</kbd>,
-	respectively.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
-	    <div class='snippet' id='javascript_77_14_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH1GBTARyLfLYApGFALYUAlKADeuUDIBObCkVn0mzCgEMA5prYATZgBsmFAcIoAaUACJ2XHmTZXRAblwBfQqUq16Q9QGs2Vk5uXlMRRnEpGVB5RWVQI0E+GxD7R0tBCJd3T3JqOlBbUIdWDQo2IR4KRnCxSRjpOQUlegALNnVdPg0qAzrRHI9ifJ9QAipZQTL1CqqSEyyaqKbYloSOrrrI12GvAvp5acFZyurapcjJVbjW0F7+y6G870LVSoAHCgBPYLswp7XGK3BKqEhEAyPMw7XIjV4qFgGdTHcpnBbbFbA9YI5jgyE9dR9DFDIA')">function make_sequence(stmts) {
+	respectively.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
+	    <div class='snippet' id='javascript_77_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCyM3ACORNzk3O52Glra+obG0f48-ELiqbIARLEJSWTcJSpBoeGUtPQSbADWSuWJyamMapo6WUb0haJl8V1VJbLiUr11hKSNUZ2VHewU3BJJFIypfToZegZDztyuIuxUAnu1IQsRTaAEVuLM4mwbWySiMzt9h4Mci43L85ncGpF6PpXu9PttdqD-gNjjlLtdEfMIY9TJszBQAJ5vcarHpIzIokwsEhEATo2xg+qLSG5ARsGHrTbbUnpZHZSnMam0i6WOmzFS3UK4Mh0cSgCSElbJUCeUAWXSxEQlDABOS6RI6lAAVgCNSCvCYZlZ+JEpkVVRE8qJFWS4qC0pIssdbCWHuVoDtaw+nO+u0dAdu5sYlrY1pxEjxCuJ3S9Pt6EYtVptLFZ7KDX1EKchabNGZjIme6oobw5+YdhO9RdduEj0et0KrsODOzrzAbTWLQA')">function make_sequence(stmts) {
    return list("sequence", stmts);
 }
 function first_statement(stmts) {
@@ -2493,14 +2418,14 @@ function is_last_statement(stmts) {
 
   
       <div class='permalink'>
-        <a name='h10' class='permalink'></a><h2>
+        <a name='h8' class='permalink'></a><h2>
     
     Blocks
   </h2></div>
 
 
 <div class='permalink'>
-<a name='p15' class='permalink'></a><p>
+<a name='p11' class='permalink'></a><p>
     Blocks are parsed as follows:    
 	
 	  \begin{eqnarray*}
@@ -2517,43 +2442,96 @@ function is_last_statement(stmts) {
 
   
       <div class='permalink'>
-        <a name='h11' class='permalink'></a><h2>
+        <a name='h9' class='permalink'></a><h2>
     
-    Function applications and operator combinations
+    Return statements
   </h2></div>
 
   <div class='permalink'>
-<a name='p16' class='permalink'></a><p>
-	Function applications are parsed as follows:
+<a name='p12' class='permalink'></a><p>
+    Return statements are parsed as follows:    
 	
 	  \begin{eqnarray*}
-&	  \ll \textit{fun-expr}\texttt{(}\textit{arg-expr}_1\texttt{, }\ldots\texttt{, } \textit{arg-expr}_n \texttt{)} \gg \\
-&	  = \\
-&	  \texttt{list("application",}\ \ll \textit{fun-expr} \gg \texttt{, list(} \ll \textit{arg-expr}_1 \gg \texttt{, }\ldots \ll \textit{arg-expr}_n \gg \texttt{))}
+	  \ll \textbf{\texttt{return}}\ \textit{expression} \texttt{;} \gg
+	  & = &
+	  \texttt{list("return_statement",}\ \ll \textit{expression} \gg \texttt{)}
 	  \end{eqnarray*}
 	
-	The syntax predicate is
-	<kbd>is_application</kbd>
-	and the selectors are
-	<kbd>function_expression</kbd> and
-	<kbd>arg_expressions</kbd>.
+	The predicate is <kbd>is_return_statement</kbd>
+	and the selector is <kbd>return_expression</kbd>.
 	    
 	    
-  </p></div>
+	    </p></div>
+
+  
+      <div class='permalink'>
+        <a name='h10' class='permalink'></a><h2>
+    
+    Assignments
+  </h2></div>
+
   <div class='permalink'>
-<a name='p17' class='permalink'></a><p>
-	Operator combinations are treated as function applications:
+<a name='p13' class='permalink'></a><p>
+    Assignments are parsed as follows:
 	
 	  \begin{eqnarray*}
-&	  \ll \textit{operand}_1 \ \textit{infix-operator}\ \textit{operand}_2 \gg \\
-& = \\
-&	  \texttt{list("application",}\ \texttt{list("name",}\ \textit{infix-operator} \texttt{), list(} \ll \textit{operand}_1 \gg \texttt{, } \ll \textit{operand}_2 \gg \texttt{)}\\[3mm]
-&	  \ll \textit{prefix-operator}\ \textit{operand} \gg \\
-& = \\
-&	  \texttt{list("application",}\ \texttt{list("name",}\ \textit{prefix-operator} \texttt{), list(} \ll \textit{operand} \gg \texttt{)}
+	  \ll \textit{name}\ \ \texttt{=}\ \ \textit{expression}\texttt{;} \gg & = &
+	  \texttt{list("assignment", }\ll \textit{name}\gg \texttt{, }\ll \textit{expression} \gg \texttt{)}
 	  \end{eqnarray*}
 	
+	The syntax predicate is <kbd>is_assignment</kbd>
+	and the selectors are <kbd>assignment_symbol</kbd>
+	and <kbd>assignment_value_expression</kbd>.
+    
+    
   </p></div>
+
+  
+      <div class='permalink'>
+        <a name='h11' class='permalink'></a><h2>
+    
+    Constant and variable declarations
+  </h2></div>
+
+    <div class='permalink'>
+<a name='p14' class='permalink'></a><p>
+  Constant and variable declarations are parsed as follows:
+	
+	  \begin{eqnarray*}
+&  \ll \textbf{\texttt{const}}\ \textit{name}\ \texttt{=}\ \ \textit{expression}\texttt{;} \gg \\
+& = \\
+& \texttt{list("constant_declaration", } \ll \textit{name} \gg \texttt{, }\ll \textit{expression} \gg \texttt{)}\\[3mm]
+&  \ll \textbf{\texttt{let}}\ \textit{name} \ \texttt{=}\ \textit{expression}\texttt{;} \gg \\
+& = \\
+& \texttt{list("variable_declaration", } \ll \textit{name} \gg \texttt{, }\ll \textit{expression} \gg \texttt{)}
+	  \end{eqnarray*}
+	
+	The syntax predicate
+	<kbd>is_declaration</kbd>
+	returns true for both kinds of declaration, and
+	the selectors 
+	<kbd>declaration_symbol</kbd> and
+	<kbd>declaration_value_expression</kbd> apply to both
+	kinds.
+	<div class='snippet' id='javascript_77_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCy83GQCbLpskSTudhpaOvqGxtH+PPxC4mmyAERkdOJsJBTMsfGJybQkpWoAPm2ZOt3apuxcfILCJaClAG6JVGwARgJK9QlJKa2gHSGEpJTNoAuNKcyMAJ4S0zQCaWqaWQZG9C5u7FTn9yKP5+IeKl9BoeFbUbsls1mBMBEQlNwAB5mfSMRjNC4Za45O7cVyvSznN4Xb7rXAVEjiUASQ51OKLJp0A7sCjcCTcGqgTygCy6RjcESlOYUUCQpmgDABVpBXhMMwJQ4iUyAympElkhpAqlVWn0mq40WMcVsSUy-ZHE5nETyvXAlV0hl2FQisUSkSmqmg8HMKEw7hwhEm8l7M00i3q61AA')">function is_declaration(stmt) {
+    return is_tagged_list(stmt, "constant_declaration") ||
+           is_tagged_list(stmt, "variable_declaration") ||
+}
+function declaration_symbol(stmt) {
+   return head(tail(head(tail(stmt))));
+}
+function declaration_value_expression(stmt) {
+   return head(tail(tail(stmt)));
+}
+</pre></div></div>
+	    
+	We also declare a constructor for constant declarations.
+	<div class='snippet' id='javascript_77_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0oBJsANZKZHTibCQUzLzcZAJsumyRJGIAnhIARjQCsgBubAJEStwAHmb6jIy0JGqaOnoGRvRC4iIARIkkyanpmdm5+UOyjMVlFaDVtfVNLW10KkGhuKPi0YWTWTl57czJFNwS3KmgnqAWuozcwwIGoA0PoBgBQztcLwmGZsoURKYMqcZu0RBJjlDpuc6Jd2NdbqkVIDgYxQWxwYizvlLotynCEVMiRcrjc7nZsSCwSJCTCUas6sxGs1uK1YfCTkjiTSMfSAkA')">function make_constant_declaration(symbol, value_expression) {
+    return list("constant_declaration", symbol, value_expression);
+}
+</pre></div></div>
+    </p></div>
+
 
 
 
@@ -2569,53 +2547,50 @@ function is_last_statement(stmts) {
       </h2></div>
       
       <div class='permalink'>
-<a name='p18' class='permalink'></a><p>
+<a name='p15' class='permalink'></a><p>
 	
 	
 	
 	
 	Some syntactic forms in our language can be defined in terms of
 	components involving other syntactic forms, rather than being
-	implemented directly.  One example is function declaration,
-	which can be implemented as a constant declaration whose
-	value expression is a lambda expression.
+	implemented directly.
+	The first such <EM>derived component</EM> is function declaration, which is
+	parsed as follows:
+	      <blockquote class='blockquote'>
+	      
+$\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{parameter}_n \texttt{)} \ \textit{block} \ \gg\ \ =$ \newline
+\vspace{-8mm}
+	
+	<kbd class='snippet'>list("lambda_expression",
+     list(list("name", $\textit{parameter}_1$), ..., list("name", $\textit{parameter}_n$)),
+     $\ll \textit{block} \gg$)</kbd>
+	      </blockquote>
+
+     The syntax predicate and selectors are
+     <kbd>is_function_declaration</kbd>,
+     <kbd>function_declaration_name</kbd>,
+     <kbd>function_declaration_parameters</kbd> and
+     <kbd>function_declaration_body</kbd>.
+	We implement function declaration as a constant declaration whose
+	value expression is a lambda expression.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
 	For example, we can reduce the problem of evaluating the
-	statement
-	<div class='snippet' id='javascript_77_15_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AcwAoAPAGlAE8BKUAb1yghoMnQDOFUAENQAXlAZQAalAtQAKi4BuQcIBOAUwpE99NZpkXl0jaCaKAtF246AvkA')">function g(x, y) {
+	function declaration
+	<div class='snippet' id='javascript_77_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AcwAoAPAGlAE8BKUAb1yghoMnQDOFUAENQAXlAZQAalAtQAKi4BuQcIBOAUwpE99NZpkXl0jaCaKAtF246AvkA')">function g(x, y) {
     const a = 1 + x * y;
     return x * a * a + a * (1 - y);
 }
 </pre></div></div>
 	to the problem of evaluating the following constant declaration:
-	<div class='snippet' id='javascript_77_16_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuBjAewDsBnAF1DIEcBXAQwCcBTUAXlAA8OA+UAN65QI0WPFji5Kgw6gMoANTdQAKlABPANzCJe8awp0mJFetnmloC6AAUCgLSaAlDv16AvlqA')">const square = x => {
+	<div class='snippet' id='javascript_77_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuBjAewDsBnAF1DIEcBXAQwCcBTUAXlAA8OA+UAN65QI0WPFji5Kgw6gMoANTdQAKlABPANzCJe8awp0mJFetnmloC6AAUCgLSaAlDv16AvlqA')">const square = x => {
                    const a = 1 + x * y;
                    return x * a * a + a * (1 - y);
                };
 </pre></div></div>
-	Implementing the evaluation of function declarations
-	in this	way simplifies the evaluator because it reduces the number of
-	syntactic forms for which the evaluation process must be explicitly specified.
-      </p></div>
-      
-      <div class='permalink'>
-<a name='p19' class='permalink'></a><p>
-	We include syntax functions that extract the parts of a
-	function declaration, and a function
+     The evaluator uses 
 	<kbd>function_declaration_to_constant_declaration</kbd>
-	that transforms function declarations into constant declarations.
-	<div class='snippet' id='javascript_77_17_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH1jzq7mATAUzIBsAhgCdBHEgAoyNALYAHOjxIUAlKADeASFA7QuXaGE8KRYfSbMKggObWeXZvyYUpshSSUUANKABEbSloSbj4hUXFfFQBuXABfQlJAulAA8RCBETEg5hJBGR5XeUVlNXV9XSMTM1AnRgpmIwJC908fDBVouIT2IJTEtN4M8Oy5TPyKHmFGZuLVDXKdStN6WvrGmY9lH2wOmPjU3oPOQbCszgAjGi4ATw3PUoXDY2Wa5waeJukize9QAGZdl0jvRgelTmkKDRmNISHVBMowZlxHcSvMDEtqjJBABrHjQuhwhEnJFBCSPAwUnTE4acRjXGSXfgo1RecmUgxY3GOPLnLiCZg8AAeciMjEYpLZ7MpoOpZ2Co1E40m0y+LRKrKlmp0MtCJIuV1uqtmgNiQA')">function is_function_declaration(component) {	    
-    return is_tagged_list(component, "function_declaration");
-}
-function function_declaration_name(component) {
-    return list_ref(component, 1));
-}
-function function_declaration_parameters(component) {
-    return list_ref(component, 2));
-}
-function function_declaration_body(component) {
-    return list_ref(component, 3));
-}
-function function_declaration_to_constant_declaration(component) {
+	to transform function declarations into constant declarations.
+	<div class='snippet' id='javascript_77_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH1jzq7mATAUzIBsAhgCdBHEgAoyNALYAHOjxIUAlKADeASFA7QuXaGE8KRYfSbMKggObWeXZvyYUpshSSUUANKABEbSloSbj4hUXFfFQBuXABfQlJAulAA8RCBETEg5hJBGR5XeUVlNXV9XSMTM1AnRgpmIwJC908fDBVouIT2IJTEtN4M8Oy5TPyKHmFGZuLVDXKdStN6WvrGmY9lH2wOmPjU3oPOQbCszgAjGi4ATw3PUoXDY2Wa5waeJukize9QAGZdl0jvRgelTmkKDRmNISHVBMowZlxHcSvMDEtqjJBABrHjQuhwhEnJFBCSPAwUnTE4acRjXGSXfgo1RecmUgxY3GOPLnLiCZg8AAeciMjEYpLZ7MpoOpZ2Co1E40m0y+LRKrKlmp0MtCJIuV1uqtmgNiQA')">function function_declaration_to_constant_declaration(component) {
     return make_constant_declaration(
                declaration_symbol(component),
                make_lambda_expression(
@@ -2623,31 +2598,66 @@ function function_declaration_to_constant_declaration(component) {
                    function_declaration_body(component));
 }
 </pre></div></div>
+	Implementing the evaluation of function declarations
+	in this	way simplifies the evaluator because it reduces the number of
+	syntactic forms for which the evaluation process must be explicitly specified.
       </p></div>
 
+      
       <div class='permalink'>
-<a name='p20' class='permalink'></a><p>
-	Similarly, we define unary and binary operator combinations in terms of
-	function applications.
-	<div class='snippet' id='javascript_77_18_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0aAHAUwCcBDCmrszI0AtgCMqJPrXKi2dDiQoBKUAG8AkKG2hcO0Fw4UiXek2YUeAcyscAJswA2TCgAphI+SUUUANKAAidm4+ASFRCSlqOgDlAG5cAF9CUkoZUGDefkEPSOk6Vk4sgXc5BSVVNT0dQ2NTUGdGCmZDAlLPcr9QDGV4pJTyaPpM0JyIyXySZgIqLibCkJI7dq8fSurtWpN6RubWlc7-bF6E5OJB9JHs8PEJoeZGDmElhd4lg+8K9Q2DI22GlwtDhtDyrJT+ADMJ365zSdAyRVGNzEFho01S9x4bDYzjIkw+a2++meTQRIWyoAAvGTimNblEZK9RgSKgl9Ft6lcBFTKdSAgBCAKgAA+wppox5fIAtKQeFwAJ4BH76HQAflAIh4AGsOOiLgUsTiqHihq5lSqLRrtbqpCIOK4uVxlL5zZb9LsHYjrrk7oyZnNmiN3qDOr1lK79AAuK06vVwqaG3H4iNumM2nh2z3kgTOlNuj2O5G+gr++ZB5Yhz4qF2p2s6Qs+hkFR7PBzllkqaGJIA')">function is_operator_combinationcomponent) {	    
-    return is_tagged_list(component, "operator_combination");
-}
-function operator_combination_operator(component) {
-    return list_ref(component, 1));
-}
-function operator_combination_first_operand(component) {
-    return list_ref(component, 2));
-}
-function operator_combination_second_operand(component) {
-    return list_ref(component, 3));
-}
-function operator_comb_to_function_application(component) {
-    const operator = operator_combination_operator(component);
+<a name='p16' class='permalink'></a><p>
+	Similarly, we define operator combinations in terms of
+	function applications. Unary operator combinations are parsed such that
+	unary <kbd>-</kbd> is represented by
+	<kbd>"-unary"</kbd>.
+	
+      \begin{eqnarray*}
+	\ll \texttt{!}\ \textit{expression} \gg & = &
+\texttt{list("operator_combination", "!", list(}\ll \textit{expression} \gg \texttt{))}\\	\ll \texttt{-}\ \textit{expression} \gg & = &
+\texttt{list("operator_combination", "-unary", list(}\ll \textit{expression} \gg \texttt{))}
+      \end{eqnarray*}
+	
+	Binary operator combinations simply carry their operator symbol as second element
+	in the tagged list representation.
+    <blockquote class='blockquote'>
+	
+	  $\ll \textit{expression}_1 \ \textit{binary-operator}\ \textit{expression}_2 \gg \ \ = $\newline
+\vspace{-8mm}
+	
+	<kbd class='snippet'>list("operator_combination",
+     name("$binary-operator$",
+     list($\ll \textit{expression}_1 \gg$, $\ll \textit{expression}_2 \gg$))</kbd>
+    </blockquote>
+
+    where $\textit{binary-operator}$ is 
+    <kbd>+</kbd>,
+    <kbd>-</kbd>,
+    <kbd>*</kbd>,
+    <kbd>/</kbd>,
+    <kbd>%</kbd>,
+    <kbd>===</kbd>,
+    <kbd>!==</kbd>,
+    <kbd>></kbd>,
+    <kbd><</kbd>,
+    <kbd>>=</kbd> or
+    <kbd><=</kbd>.
+     The syntax predicate and selectors are
+     <kbd>is_operator_combination</kbd>,
+     <kbd>operator_combination_operator_symbol</kbd>,
+     <kbd>operator_combination_first_operand</kbd> and
+     <kbd>operator_combination_second_operand</kbd>.
+	
+	The evaluator uses 
+	<kbd>operator_combination_to_application</kbd>
+	to transform operator combinations into function applications whose
+	function expression is the name of the operator.
+	<div class='snippet' id='javascript_77_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0GgBwFMAnAQwptYH0yaAtgCMqJTrRI8uPdo0YAbKmXF0AFPwGM6zEhQCUoAN65Qp0PxIBnCgxYcurUAF5bbTtz6CRY6nR5M3Bx5LAE9hGnl1QS0SHX0AbhMzVmYKIlZ6APtuZycXACIAQnzQAB9S12zHPIKAWlJ2VhD8pLM20wB+UAF2AGtmGTlFZV8SVVb2ybMe-p4xAWZVLPdWPQAaCanJxWsluxXPYVEVSQIqVmt-fZIAEyjNbV09Z83JgC5uvoHZBSUT8a2gJmA3mi2WDnWr0Bph2FD2gQ8Gm8Jx4ZwuFCublu9xicUh0IJlQOSOOo2CzAsN0xHGxGlxT2eiQAvkA')">function operator_combination_to_application(component) {
+    const operator = operator_combination_operator_symbol(component);
     return operator === "!" || operator === "-unary"
-           ? make_function_application(
+           ? make_application(
                  make_name(operator),
                  list(operator_combination_first_operand(component)))
-           : make_function_application(
+           : make_application(
                  make_name(operator),
                  list(operator_combination_first_operand(component),
                       operator_combination_second_operand(component)));
@@ -2656,7 +2666,7 @@ function operator_comb_to_function_application(component) {
 	
       </p></div>
       <div class='permalink'>
-<a name='p21' class='permalink'></a><p>
+<a name='p17' class='permalink'></a><p>
 	Components (such as function declarations and operator combinations) that we
 	choose
 	to implement as syntactic transformations are called <EM>derived
@@ -2673,7 +2683,7 @@ function operator_comb_to_function_application(component) {
   
 
   
-  
+
   
     
     
@@ -2687,10 +2697,10 @@ function operator_comb_to_function_application(component) {
 	  variant of lambda expressions introduced in
 	  footnote&nbsp;<REF NAME="foot:lambda_with_block"><a class="superscript" id="4.1.2-foot-link-3" href="./2.2.4.html#footnote-3">3</a></REF> of chapter 2
 	  by comparing the results of
-	  <div class='snippet' id='javascript_77_19_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiAD1AF4A+UDAbhoEp2g')">parse("x => 1;");
+	  <div class='snippet' id='javascript_77_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiAD1AF4A+UDAbhoEp2g')">parse("x => 1;");
 </pre></div></div>
 	  and
-	  <div class='snippet' id='javascript_77_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiAD1AF4A+UAb1BIoBcBXEgHagMAblABfETQCUIoA')">parse("x => { return 1; };");
+	  <div class='snippet' id='javascript_77_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiAD1AF4A+UAb1BIoBcBXEgHagMAblABfETQCUIoA')">parse("x => { return 1; };");
 </pre></div></div>
 	</LI>
 	<LI>
@@ -2808,20 +2818,29 @@ function operator_comb_to_function_application(component) {
 	    $\textit{expression}_2$.
 	  </LI>
 	</UL>
-	Explore how <kbd>parse</kbd>
-	represents 
-	<kbd>&&</kbd> and
-	<kbd>||</kbd> expressions.
-	Explain why we should not treat these expressions as
-	applications of primitive functions, similar to operator
-	combinations. Install 
-	<kbd>&&</kbd> and
-	<kbd>||</kbd> operations for the
-	evaluator by defining suitable syntax predicates and
-	selectors, as well as appropriate evaluation functions
-	<kbd>eval_and</kbd> and 
-	<kbd>eval_or</kbd>.
-	
+	<OL type="a">
+	  <LI>
+	    Explore how <kbd>parse</kbd>
+	    represents 
+	    <kbd>&&</kbd> and
+	    <kbd>||</kbd> expressions.
+	  </LI>
+	  <LI>
+	    Explain why we should not treat these expressions as
+	    derived components, as we treated operator
+	    combinations.
+	  </LI>
+	  <LI>
+	    Install 
+	    <kbd>&&</kbd> and
+	    <kbd>||</kbd> operations for the
+	    evaluator by defining suitable syntax predicates and
+	    selectors, as well as appropriate evaluation functions
+	    <kbd>eval_and</kbd> and 
+	    <kbd>eval_or</kbd>.
+	    
+	  </LI>
+	</OL>
       
     
   
@@ -2896,13 +2915,13 @@ function operator_comb_to_function_application(component) {
 	introduces a new block whose body includes the declaration and all
 	subsequent statements of the statement sequence in which the
 	declaration occurs. For example, the program
-	<div class='snippet' id='javascript_77_21_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_77_24_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 display(1);
 let* x = 2;
 let* y = x + 3;
 display(x + y);</pre></div></div>
 	could be seen as a shorthand for
-	<div class='snippet' id='javascript_77_22_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_77_25_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 display(1);
 {
   let x = 2;
@@ -2975,7 +2994,7 @@ display(1);
 	this syntax, we can for example compute the greatest common divisor
 	of two numbers using the following function:
 	
-	<div class='snippet' id='javascript_77_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AczIBMAKAQwBpQAjASlABvXKFGgA7gAsqAGwCmoDqACEAXlW8BwsTtBUCSgHyahI3efagNlgLS8A3GfMBfUHJkBnBdvO6eV3lA7dkdfUGcASFEncJiAJzkKIjj6EIjcZyA')">function gcd(a, b) {
+	<div class='snippet' id='javascript_77_26_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AczIBMAKAQwBpQAjASlABvXKFGgA7gAsqAGwCmoDqACEAXlW8BwsTtBUCSgHyahI3efagNlgLS8A3GfMBfUHJkBnBdvO6eV3lA7dkdfUGcASFEncJiAJzkKIjj6EIjcZ3wmNhRsbgxsPnsgA')">function gcd(a, b) {
     while (a !== b) {
         if(a > b) {
             a = a - b;
@@ -2995,7 +3014,7 @@ display(1);
 	    <kbd>while</kbd> loop. The
 	    <kbd>gcd</kbd> function would then
 	    look as follows:
-	    <div class='snippet' id='javascript_77_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuRQB3ACwEsAbAUwH0KB7egB1ABd7QAjK4gJzNasqAOy4BPUAGdWAVwAmI1pNwAzGcIDGrMvVEBzDXIAUAQwA0XAJSgA3rlAPi5anUZMjoI9YC8APlAmoACE3t5cZvaOUdGOXqB+tg5kKp6B-pzWdjHZOTmBYYEAtFwA3JG5FVEAvqBUFJI8WZXN0ZzxXKDFJmUtzVXlvdH9vZY9jrxUsryi3bhVQA')">function gcd(a, b) {
+	    <div class='snippet' id='javascript_77_27_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuRQB3ACwEsAbAUwH0KB7egB1ABd7QAjK4gJzNasqAOy4BPUAGdWAVwAmI1pNwAzGcIDGrMvVEBzDXIAUAQwA0XAJSgA3rlAPi5anUZMjoI9YC8APlAmoACE3t5cZvaOUdGOXqB+tg5kKp6B-pzWdjHZOTmBYYEAtFwA3JG5FVEAvqBUFJI8WZXN0ZzxXKDFJmUtzVXlvdH9vZY9jrxUsryi3bhVQA')">function gcd(a, b) {
     while_loop( () => a !== b,
                 () => {  if (a > b) {
                              a = a - b;
@@ -3076,7 +3095,7 @@ display(1);
 	that reverses a list, using a <kbd>for</kbd>
 	loop. 
 	
-	<div class='snippet' id='javascript_77_25_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDjQAGyYVGTDkUmyAvKBKLJAbjESCNBqG7TZZIg2YkVofptABCUFQ4B9dZMndT5ppYG2vFlYUAIZUHgE+FAJCohJxcgpKoKoADqEM3AAWTMEAJp5mgQIANAmKUdpxAL464swUZvTMiRTaVUA')">function reverse(xs) {
+	<div class='snippet' id='javascript_77_28_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDjQAGyYVGTDkUmyAvKBKLJAbjESCNBqG7TZZIg2YkVofptABCUFQ4B9dZMndT5ppYG2vFlYUAIZUHgE+FAJCohJxcgpKoKoADqEM3AAWTMEAJp5mgQIANAmKUdpxAL464swUZvTMiRTaNbjMbJw8kk4U3Bil2KUAzNGaQA')">function reverse(xs) {
     let result = null;
     for (let current = xs; ! is_null(current); current = tail(current)) {
         result = pair(head(current), result);
@@ -3115,7 +3134,7 @@ display(1);
 	    Eva Lu Ator tries to combine 
 	    <kbd>for</kbd> loops 
 	    with lambda expressions in the following program.
-	    <div class='snippet' id='javascript_77_26_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYH1jzq6HABQAPDgEpQAb1yg5AGyYVGTDkXnKAvKBLr5AbllyCNBqCGLlZIgzPax+0AEJQVDt13z5Q67fGPfO1AKAEMqb0DxSRk5WJU1DVBtAAcwhiEhSU0APlAACyYQgBMfGwZxABp49Qp-I1AAX3rmCht6ZgSKQwagA')">function reverse_functions(xs) {
+	    <div class='snippet' id='javascript_77_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYH1jzq6HABQAPDgEpQAb1yg5AGyYVGTDkXnKAvKBLr5AbllyCNBqCGLlZIgzPax+0AEJQVDt13z5Q67fGPfO1AKAEMqb0DxSRk5WJU1DVBtAAcwhiEhSU0APlAACyYQgBMfGwZxABp49Qp-I1AAX3rmCht6ZgSKQwagA')">function reverse_functions(xs) {
    let result = null;
    for (let curr = xs; ! is_null(curr); curr = tail(curr)) {
       result = pair(() => head(curr), result);
@@ -3162,7 +3181,8 @@ display(1);
     
       
       
-	Following up on footnote&nbsp;<REF NAME="foot:value_producing"><a class="superscript" id="4.1.2-foot-link-4" href="./4.1.1.html#footnote-4">4</a></REF>,
+	Following up on footnotes&nbsp;<REF NAME="foot:value_producing"><a class="superscript" id="4.1.2-foot-link-4" href="./4.1.1.html#footnote-4">4</a></REF>
+	and&nbsp;<REF NAME="foot:value_producing_2"><a class="superscript" id="4.1.2-foot-link-7" href="./4.1.1.html#footnote-7">7</a></REF>,
 	this exercise addresses the question what should be the result of
 	evaluating a JavaScript program that consists of a sequence containing
 	declarations, blocks, expression statements, conditional
@@ -3195,19 +3215,19 @@ display(1);
 	    following programs?
 	    <UL>
 	      <LI>
-		<div class='snippet' id='javascript_77_27_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+		<div class='snippet' id='javascript_77_30_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 1; 2; 3;</pre></div></div>
 	      </LI>
 	      <LI>
-		<div class='snippet' id='javascript_77_28_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+		<div class='snippet' id='javascript_77_31_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 1; { if (true) { } else { 2; } }</pre></div></div>
 	      </LI>
 	      <LI>
-		<div class='snippet' id='javascript_77_29_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+		<div class='snippet' id='javascript_77_32_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 1; const x = 2;</pre></div></div>
 	      </LI>
 	      <LI>
-		<div class='snippet' id='javascript_77_30_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+		<div class='snippet' id='javascript_77_33_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 1; { let x = 2; { x = x + 3; } }</pre></div></div>
 	      </LI>
 	    </UL>
@@ -3230,21 +3250,49 @@ display(1);
 
 
   
+    <div class="permalink">
+    <a name="ex_4.10" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.10">Exercise 4.10 </a></b> 
+  
+        
+    
+      
+	Eva Lu Ator is writing programs with blocks in which
+	function declarations and other statements appear interspersed.
+	She needs to take care that the declarations are evaluated before
+	the functions are being applied. She complains: <QUOTE>Why can't
+	the evaluator take care of this chore, and move all function
+	declarations to beginning of the block in which they appear?</QUOTE>
+	<OL type="a">
+	  <LI>
+	    Modify the evaluator following Eva's suggestion.
+	  </LI>
+	  <LI>
+	    The designers of JavaScript decided to follow Eva's approach. Discuss 
+	    this decision.
+	  </LI>
+	  <LI>
+	    In addition, the designers of JavaScript decided to allow the name declared
+	    by a function declaration to be reassigned using assignment statements.
+	    Modify your solution
+	    accordingly and discuss this decision.
+	  </LI>
+	</OL>
+      
+    
+  
+      <div class="Solution">
+      <div class="solution_btn"><button class="btn btn-secondary solution_btn" href="#no_solution_77_9_div" data-toggle="collapse">Add solution</button></div>
+      <div class="solution_content collapse" id="no_solution_77_9_div">There is currently no solution available for this exercise. This textbook adaptation is a community effort. Do consider contributing by providing a solution for this exercise, using a Pull Request in <a address="https://github.com/source-academy/sicp" href="https://github.com/source-academy/sicp">Github</a>.</div>
+      </div>
+    
+</EXERCISE></div>
+
+  
+  
 <hr>
 
     <div class='footnote'>
       <a class='footnote-number' id='footnote-1' href='#footnote-link-1'>[1] </a>
-    <FOOTNOTE>
-    In 
-	    actual JavaScript, there is a subtle difference between the two
-	    forms, see footnote&nbsp;<REF NAME="foot:function-decl-vs-lambda"><a class="superscript" id="4.1.2-foot-link-2" href="./1.3.2.html#footnote-2">2</a></REF>
-	    in chapter 1.
-            
-    </FOOTNOTE></div>
-
-    
-    <div class='footnote'>
-      <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
     <FOOTNOTE>
     These
 	    selectors for a list of statements are not intended
@@ -3254,6 +3302,18 @@ display(1);
 	    explicit-control evaluator in
 	    section&nbsp;<REF NAME="sec:eceval"><a class="superscript" id="4.1.2-sec-link-5.4" href="./5.4.html">5.4</a></REF>.
 	    
+            
+    </FOOTNOTE></div>
+
+    
+    <div class='footnote'>
+      <a class='footnote-number' id='footnote-2' href='#footnote-link-2'>[2] </a>
+    <FOOTNOTE>
+    In 
+	    actual JavaScript, there is are two differences between the two
+	    forms, see footnote&nbsp;<REF NAME="foot:function-decl-vs-lambda"><a class="superscript" id="4.1.2-foot-link-2" href="./1.3.2.html#footnote-2">2</a></REF>
+	    in chapter 1.
+	    Exercise&nbsp;<REF NAME="ex:hoisting"><a class="superscript" id="4.1.2-ex-link-4.10" href="./4.1.2.html#ex_4.10">4.10</a></REF> addresses these differences.
             
     </FOOTNOTE></div>
 
