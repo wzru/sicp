@@ -2144,9 +2144,9 @@ Acknowledgments
 	the names refer to the special value
 	<kbd>"*unassigned*"</kbd>, but evaluation of
 	their declaration statement assigns them to their proper values. Correct
-	JavaScript programs never attempt to access the value of names before
-	their declaration has been evaluated. In this section, we explore
-	alternative solutions to problem of local declarations in programming
+	JavaScript programs never attempt to access the value of a name before
+	its declaration has been evaluated. In this section, we explore
+	alternative solutions to the problem of local declarations in programming
 	languages.
       </p></div>
 
@@ -2166,10 +2166,6 @@ Acknowledgments
     }
     $\langle rest$ $of$ $body$ $of$ f$\rangle$
 }</kbd>
-      </p></div>
-
-      <div class='permalink'>
-<a name='p9' class='permalink'></a><p>
 	Our intention here is that the name
 	 <kbd>is_odd</kbd>
 	in the body of the function <kbd>is_even</kbd>
@@ -2193,7 +2189,7 @@ Acknowledgments
 	in which the declaration is evaluated.
       </p></div>
       <div class='permalink'>
-<a name='p10' class='permalink'></a><p>
+<a name='p9' class='permalink'></a><p>
 	The evaluator in section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>
 	finds all locally declared names of a block using
 	<kbd>scan_out_declarations</kbd>,
@@ -2221,7 +2217,7 @@ Acknowledgments
       </p></div>
 
       <div class='permalink'>
-<a name='p11' class='permalink'></a><p>
+<a name='p10' class='permalink'></a><p>
 	An alternative strategy for scanning out internal
 	declarations is shown in
 	exercise&nbsp;<REF NAME="ex:alternative-scanout"><a class="superscript" id="4.1.6-ex-link-4.23" href="./4.1.6.html#ex_4.23">4.23</a></REF>. Unlike the
@@ -2287,9 +2283,7 @@ Acknowledgments
 	  </LI>
 	  <LI>
 	    Install <kbd>transform_lambda</kbd>
-	    in the interpreter by modifying the function 
-	    <kbd>evaluate</kbd>
-	    in an appropriate way.
+	    in the evaluator.
 	  </LI>
 	</OL>
       </span></td></tr></table>
@@ -2421,34 +2415,34 @@ Acknowledgments
 	Our implementation of blocks in
 	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> imposes a
 	runtime burden: It needs to scan
-	the body of the block for locally declared names. We shall devise
-	a simpler mechanism in this exercise. We can achieve the desired result
+	the body of the block for locally declared names. We avoid 
+	scanning for local names
 	in many cases by changing the evaluation of constant and variable
-	declaration such that they force into the innermost
+	declaration such that they add to the innermost
 	frame of the given environment a binding of the declared name to
 	the result of evaluating the expression on the right hand side of the
 	declaration.
 	<OL type="a">
 	  <LI>
-	    Simplify the declaration of 
+	    Simplify 
 	    <kbd>eval_block</kbd> in
 	    section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> to 
 	    ignore local declarations.
 	  </LI>
 	  <LI>
 	    Declare a function
-	    <kbd class='snippet'>add_binding_to_frame($name$, $value$, $frame$)</kbd>
+	    <kbd class='snippet'>add_binding_to_frame($symbol$, $value$, $frame$)</kbd>
 	    that permanently changes the given
 	    $\textit{frame}$ such that after calling
-	    the function, the given $\textit{name}$
-	    refers to the given $\textit{value}$.
+	    the function, $\textit{symbol}$
+	    refers to $\textit{value}$.
 	  </LI>
 	  <LI>
 	    Change the function
 	    <kbd>eval_declaration</kbd>
 	    such that it makes use of
 	    <kbd>add_binding_to_frame</kbd> instead of
-	    <kbd>set_name_value</kbd>.
+	    <kbd>assign_symbol_value</kbd>.
 	  </LI>
 	  <LI>
 	    Can you find programs that behave differently with this treatment
@@ -2512,7 +2506,7 @@ Acknowledgments
       </span>    </td>
           <td></td>
           <td><span style="color:blue">
-	Draw diagrams of the environment in effect when evaluating the
+	Draw diagrams of the environment in effect when evaluating 
 	$\textit{statements}$ in the
 	function in the text, comparing how this will be structured when
 	declarations are interpreted sequentially as described in
@@ -2637,7 +2631,7 @@ Acknowledgments
   
 	 
 	Ben Bitdiddle, Alyssa P. Hacker, and Eva Lu Ator are arguing about
-	the desired result of evaluating the expression
+	the desired result of evaluating the program
 	<div class='snippet' id='javascript_81_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAbAUwBdQBDUAXlAwG5cAzAVwDsBjEgSwHtXRGACgAeASlABvUNJm4ZoYmQBG1CqADUoYQ3mK1NAKw6ZAJ1LMT-SpqUMAvk0EYADKLpA')">let a = 1;
 function f(x) {      
     let b = a + x;
@@ -2777,7 +2771,7 @@ f(10);
 	  </LI>
 	  <LI>
 	    Consider the following function, which includes mutually recursive
-	    internal definitions:
+	    internal declarations:
 	    
 	    <div class='snippet' id='javascript_81_13_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0DYBQuAzAVwDsBjAFwEsB7E0AgCgA8BKUAb11B4dMtr0qAZwD6AUwBu4koxLsuvJaABO4ikRX16AXj2gADN2UneAflAUVRccdMmAXKBGiaAEzdzQAWlAZWANx2oAC+wcTk1HTOYu6e8pzBSmoaWqC6+kb2phYEAIYANsK22Y4xEtKy9L7+QUphyeqaQmJSMiyBuGGEjACcvYFAA')">function f(x) {
     function is_even(n) {

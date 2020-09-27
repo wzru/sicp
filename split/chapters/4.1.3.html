@@ -1981,8 +1981,12 @@ Acknowledgments
   
   <div class='permalink'>
 <a name='p1' class='permalink'></a><p>
-    In addition to defining the external syntax of expressions, the
-    evaluator implementation must also define the data structures that the
+    In addition to defining the external syntax of
+    
+      <span style="color:green">expressions,</span>
+      <span style="color:blue">components,</span>
+    
+    the evaluator implementation must also define the data structures that the
     evaluator manipulates internally, as part of the execution of a
     program, such as the representation of
     
@@ -2035,9 +2039,9 @@ Acknowledgments
 
 (define (false? x)
   (eq? x false))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_78_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0KgZwH0KAnIigCwE8AKAB4BKUAG9coSaDYBTCkTb0mzAEY0aAGxkBDEoJESpRqQH5QA0AF5rodkRmhDxowC5QMtmxptBAGlAARGqaOvQyAgAOMpQyACb+smQyVABucS4BQgDcuAC++Mp23PwY2aAgoIxcNEQasdJyCvQE2hqMDirR2kTtoHQaPLYcDkxDnLxAA')">function is_truthy(x) {
+            <td><div class='snippet' id='javascript_78_1_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0KgZwH0KAnIigCwE8AKAB4BKUAG9coSaDYBTCkTb0mzAEY0aAGxkBDEoJESpRqQH5QAw8aMAuUDLZsabQQBpQAIjWad9GQIAOMpQyACZusmQyVABuodbuQgDcuAC++MrsnLx8GEmgIKCMXDREGiHScgr0BNoajDKgKkHaRPWgdBo8oJkNTN0c3DxAA')">function is_truthy(x) {
     return is_boolean(x) 
-           ? x === true 
+           ? x
            : error(x, "boolean expected, received:");
 }
 </pre></div></div></td></tr></table>
@@ -2149,7 +2153,7 @@ Acknowledgments
 (define (procedure-parameters p) (cadr p))
 (define (procedure-body p) (caddr p))
 (define (procedure-environment p) (cadddr p))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_78_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajpQOTIBGkYqEg5mOQA3OzoJFxF87T1DY1NzenYqAVKSPM1ouITKWnoCO0YKZgIjNmLG5t19QxMzCy9uHxGW2MJSDuTU9MZ1ACMATxEBoe4lMt1K8YNJmtAbOz3B4qOmhbjxEl6w9W5pCm3cpsKSYryUBBUAkIgCATRJaJTqgCRsADW6naSRIIhsd1M3CMjCUmxovG2D1GFQm1WmQl6IgAROJ-KR+CjOtSFGdKuzKhiDhRsbjQPjCcSntCVpYWHSZAz+stUXtymyLtMrOwuHxBMI9kpaY4aFKmXRqcL9V0ZZ1rGxMTycXKxpVFfRKX0TARNaAMEbTcljcwBbsCPK7eSHcJmM7XQAmD0wr2eki-ApGIolf22slTYO9UPcF0EJTYYW4F5vCQ-Y3A0Bs+FI6XRtFsyqOmkADxZoGp20NrI5Bkb1PtzF6bB5gIorYxG2boAA1KBtpFDZou93VB8vj98v8RwteEwpAI2LsrBLdSRGbGRCWa6LNNvd-u-bHzZbeRfS7Gb9Ed4w9we9o-fa+V6oh+uBfj+D61vGm4lJexofkAA')">function make_function(parameters, body, env) {
+            <td><div class='snippet' id='javascript_78_2_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajpQOTIBGkYqEg5mOQA3OzoJFxF87T1DY1NzenYqAVKSPM1ouITKWnoCO0YKZgIjNmLG5t19QxMzCy9uHxGW2NxxEl6w9W5pCgBPXKbCkmL5UCDQEiIBAWjCUg7kiTYAa3V2pJIRG0Hiim4jRiUAIxovC2SjKY0qkxqoCEvREACJxP5SPwXp04QpxpUsViPkNTD8-qBAcDQU0Fm0bq8GCxETJkf1KZ0RARypiqlNLCx2Fw+IJhMylAjHDR6ai6HDyddEp1QGKSNY2J98b9mayIdVpjC+iYCALQBhJXLZYy6MxiVtVeCJhr6FrmDq9QAmQ0mrqu3YFIxFEosq0GSGa4T27i6ghKbCSpZ0VYSHZGk5s+5PBnSugiNmVLXwgAe6NAcK2Eox2IMWbhAflvTY30OFDzH0Y3BzoAA1KAtpEJZpiyXVOtNjt8vtawteEwpAI2BarLSRSQUa6RLGU7cSJpR+PJxa5Qqld8Vcu5evomPGBOp8z3eal3HXcfcKfz9v3UOvQcSoe7y0gA')">function make_function(parameters, body, env) {
     return list("compound_function",
                 parameters, body, env);
 }
@@ -2191,14 +2195,14 @@ function function_environment(f) {
       <div class='permalink'>
 <a name='p5' class='permalink'></a><p>
 	We saw in section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.3-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> that the
-	evaluation of sequences terminates when the first return statement
+	evaluation of a sequence terminates when a return statement is
 	encountered, and that the evaluation of function applications needs to
 	return the value <kbd>undefined</kbd> if the
 	evaluation of the function body does not encounter a
-	return statement. In order to identify the evaluation of return
+	return statement. In order to recognize the evaluation of return
 	statements, we introduce <EM>return values</EM> as evaluator data
 	structures.
-	<div class='snippet' id='javascript_78_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajpQOTIBGkYqEg5mOQA3OzoJFxF87T1DY1NzenYqAVKSPM1ouITKWnoCO0YKZgIjNmLG5t19QxMzCy9uHxGW2MJSDuTU9MZ1ACMATxEBoe4lMt1K8YNJmtAbOz3B4qOmhbjxEl6w9W5pCm3cpsKSYryUBBUAkIgCATRJaJTqgCRsADW6guFmYeTYAiI3Ac8hc5TOVSm9CEvREACIUSQ0RisWSlC8KHjWtCVpYWJTqZjseiufjKpSGCx2Fw+IJhCIeVilBTqqjJdwyU8WUl6Bz5cwGSV5XyJrL6N5fHUGtqlbgXm8JD81TTuMC4YjkXrOViRCgAEwLXhMKQCNi7KzWrkiS3MQNYzSe72+3Zh9Sa+TBq1Ok2RIA')">function make_return_value(content) {
+	<div class='snippet' id='javascript_78_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajpQOTIBGkYqEg5mOQA3OzoJFxF87T1DY1NzenYqAVKSPM1ouITKWnoCO0YKZgIjNmLG5t19QxMzCy9uHxGW2NxxEl6w9W5pCgBPXKbCkmL5UCDQEiIBAWjCUg7kiTYAa3VJmuY8tgEibgd5F3LxgwvaZCXoiABEQJIbw+XzBSmWFD+rWuiU6DBYkOhn2+72x-0qkPRER4-BBolxXyUEOqFixsIWbRuSXomIp6gRJTZ+ImNPo3l8dQaXIZ+GWqwkO1ZMO4x1A9yezCl2JEKAATAteEwpAI2FsRFYlV8RBLFby6dxNBqtTq9Yb2XREfJjZKzcLIkA')">function make_return_value(content) {
     return list("return_value", content);
 }
 function is_return_value(value) {
@@ -2304,9 +2308,9 @@ function return_value_content(value) {
 	    <kbd>)</kbd>
 	  
 
-	  returns the value that is bound to the
+	  returns the value that is bound to
 	  $\textit{symbol}$ in the environment
-	  env, or signals an error if the
+	  \textit{env}, or signals an error if
 	  $\textit{symbol}$ is unbound.
 	  </LI>
 	  <LI>
@@ -2334,10 +2338,14 @@ function return_value_content(value) {
 
 	    finds the innermost frame of
 	    $\textit{env}$
-	    in which the $\textit{symbol}$
+	    in which $\textit{symbol}$
 	    is bound, and changes that frame
-	    so that the symbol is now bound to the given
-	    $\textit{value}$.
+	    so that
+	    $\textit{symbol}$
+	    is now bound to 
+	    $\textit{value}$, or signals an
+	    error if $\textit{symbol}$ is
+	    unbound.
 	  </LI>
 	</UL>
       </span></td></tr></table>
@@ -2362,20 +2370,22 @@ function return_value_content(value) {
 (define (first-frame env) (car env))
 
 (define the-empty-environment \'())</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_78_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0AU3IBsaBnKkgcwH0mA3KgCc6AWyYUAFAICUoAN65Qy0EIYUiQ+hQCGVZtJL8ZAblwBfQqUq16BYWwo8CQneMPGFSlWo1bQABYMOgAmHqYWVuTUdIws7Aw8AEYAnpIubgwANHGe8iqg3sq+mvQADnpC6a7iObJmlmR0jqAUQXyiZRQpfEbCYhKgALygJETMzGa4bYkMnd29giIk4iQUJkA')">function enclosing_environment(env) {
+            <td><div class='snippet' id='javascript_78_4_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0AU3IBsaBnKkgcwH0mA3KgCc6AWyYUAFAICUoAN65Qy0EIYUiQ+hQCGVZtJL8ZAblwBfQqUq16BYWwo8CQneMPGFSlWo1bQABYMOgAmHqYWuGR0jqAUQXyiAA4UAJ58RsJiEqAAvKAkRMzMZrjxDIkp6QJZJOIkFCZAA')">function enclosing_environment(env) {
     return tail(env);
 }
 function first_frame(env) {
     return head(env);
 }
-function enclose_by(frame, env) {    
-    return pair(frame, env);
-}
 const the_empty_environment = null;
 </pre></div></div></td></tr></table>
     
     Each frame of an environment is represented as a pair of lists: a list
-    of the variables bound in that frame and a list of the associated
+    of the
+    
+      <span style="color:green">variables</span>
+      <span style="color:blue">names</span>
+    
+    bound in that frame and a list of the associated
     values.<a class='superscript' id='footnote-link-2' href='#footnote-2'>[2]</a>
     
     <table width="100%">
@@ -2434,20 +2444,19 @@ function frame_values(frame) {
       (if (< (length vars) (length vals))
           (error "Too many arguments supplied" vars vals)
           (error "Too few arguments supplied" vars vals))))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_78_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0AU3IBsaBnKkgcwH0mA3KgCc6AWyYUAFAICUoAN65Qy0EIYUiQ+hQCGVZtJL8ZAblwBfQqUq16BYWwo8CQneMPGFSlWo1bQABYMOgAmHqYWVuTUdIws7Aw8AEYAnpIubgwANHGe8iqg3sq+mvQADnpC6a7iObJmlmR0jqAUQXyiZRQpfEbCYhKgALygJETMzGZRNrGiOgDWiRnubCmiSTTMbDn8OsxEDGxyigUl-hXCkqvrm9ugu-uHEZbE0bagy4nXG1vVmccFIqqdSlQLBMKfZ7TGJ2GqJB4HNh-cQAlRAs7aPQGSENfCvGb0BgADwoTBCvUEIhI4hIUm+tx2ezuSR0bESsi8pxB-mYTC4bSuax+R2GQxGvO4AoeRyBBRUAH5QBcqnNFs44YKbltGVsZDkWWyKTJZXLQAAuUAS-kBTXCuQAHktfKlTONpvdioYQhEVQARAAVGg0UBzEgpUA6IRcIg0ihsUBsIhlMrMKgMEIW32gADUhXd+dNjiEnC4VAIaXpupzoF9OSzuZNBcLFGL3DLaWlMjdTeUFq9PskAaDHwYAHcI1GYxJ44nk6n05nq42eyoiyX27bbnJc7Wa0uVwW123y5JO1DcMTSSRyQJ+tSJJJU45B0Td76Um+AF6+vXLntPqQMByAAmHJsF-A9TTadlOm6Ck71jUwgA')">function extend_environment(symbols, vals, base_env) {
+            <td><div class='snippet' id='javascript_78_6_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0AU3IBsaBnKkgcwH0mA3KgCc6AWyYUAFAICUoAN65Qy0EIYUiQ+hQCGVZtJL8ZAblwBfQqUq16BYWwo8CQneMPGFSlWo1bQABYMOgAmHqYWuGR0jqAUQXyiAA4UAJ58RsJiEqAAvKAkRMzMZlbk1HSgojoA1gzOru5sqaIARjTMbAA0oPw6zEQMbHKKKqrqmvRJekKSzW0d3b39g8NmlsTltqAubvXz7Z2Su+IjY97KvpOBwWEnDBEb1hV2jfV9A0PHb2cqF+N+bR6Az3R74TY2SoMAAeFCYIQyghEJHEJCkB0WPQ+S1aOjY9VkXjGV38zCYXHicxah2GeVy+TJ3Ep2Jk-zGKgA-KBpsJJNU6g09lSFp0sf1hj1cfjEaz2XKAFygRkUgLCmlyAA8SvJzPFsrlcq5DCEIlmACIACo0GhVHQkVKgHRCLhEVEUNigNhEJJJZhUBghRVm0AAalAbINkc9FCEnC4VAIqTVizkYbNPWDYYjUbljlj3ATSZZ+pzoEVxtNkkt1p2DAA7o7na6JB6vT6-QGg6Hw6Wc3m44Xk51U6B06Pu9ne8p+wXE5Ji+t8DC4SQEQIsiiJJI-Y4q9Cx2bUgeAF5mmRdSelndSDA9ABMPWw58vOfiBOSaURG7dpiAA')">function extend_environment(symbols, vals, base_env) {
     return length(symbols) === length(vals)
-        ? pair(make_frame(symbols, vals), base_env)
-        : error(pair(symbols, vals), 
-                length(symbols) < length(vals)
-                ? "Too many arguments supplied"
-                : "Too few arguments supplied");
+           ? pair(make_frame(symbols, vals), base_env)
+           : error(pair(symbols, vals), 
+                   length(symbols) < length(vals)
+                   ? "Too many arguments supplied"
+                   : "Too few arguments supplied");
 }
 </pre></div></div></td></tr></table>
     
     
       <span style="color:blue">
-	The function <kbd>extend_environment</kbd>
-	is used by <kbd>apply</kbd> in
+	This is used by <kbd>apply</kbd> in
 	section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.3-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> to bind the
 	parameters of a function to its arguments. 
       </span>
@@ -2509,7 +2518,7 @@ function frame_values(frame) {
           (scan (frame-variables frame)
                 (frame-values frame)))))
   (env-loop env))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_78_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0AU3IBsaBnKkgcwH0mA3KgCc6AWyYUAFAICUoAN65Qy0EIYUiQ+hQCGVZtJL8ZAblwBfQqUq16BYWwo8CQneMPGFSlWo1bQABYMOgAmHqYWVuTUdIws7Aw8AEYAnpIubgwANHGe8iqg3sq+mvQADnpC6a7iObJmlmR0jqAUQXyiZRQpfEbCYhKgALygJETMzGZRNrEMAB4UTCG9giIk4iRSbCmiSTTMbDn8Ogc5STpsibJeBSX+zExcbZLbu-tsckNfoA-cz8cHGRFAoFAD8oAqwkkoh0AGtEhl3K89qdQACPmcLlcjECQXiAFw-R7PZHvOQAHiJfwCknRuLxePBDCEIiqACIACo0GigGEkFKgHRCLhEDYUNigNhEMplZhUBghQls0AAakKDI1eMcQk4XCoBDSpMBqtAbJyyrVwM1Gu1uv1aTp9OtoEJzNZkk53NABAYAHdBcLRRIJVKZXKFUqTVbnSDbdx7S8diiPiazaaozHNXG9QbaScPhFLNMYvQYfDnDUGIm3qiAUQGCnFLd1KUIZVq8mjid6x8GsXbN7KzwjWxqpk5PkVMC7vQgqEx+JC-3YojEnWGwuGBOCtOW-5dPpN0vl-RWDRYdLh0n9jx1x39nUcTcVMRogOBDwz2Vws+8a+ZvQbBkDoJD3rW+YTtGeIzqAVBsDwYwTGBHxQTGTJGJ+3LfqhmbKEwZCsBw3ArP06wSOETq4cohJGsM3xzmEI6UVRyjggxeaAjhMY0cBoEHgYTE5PxHEFmYGqWBq+qgB4dEjG0VydN0JFrGKkExm6NBVEa5oAKokHspAhKMmRshE4mMAcDC-pqTQkC0q7DN6DhOKu4Ric6MFASBm5XjWo6rjIWRcbhq63t2G4BWZDISSoMXFHu9Afl+bmRLgtktKIPQCKRYrDMC8yLCQyzZSp5Fyo4HpzGmbIpNVABeplBSxDLlVIGA5AATDk2CBcFMbyR0XRZX0pWbBEuBnheZS+SiYXMPWlVpplykDGNJhAA')">function lookup_symbol_value(symbol, env) {
+            <td><div class='snippet' id='javascript_78_7_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0AU3IBsaBnKkgcwH0mA3KgCc6AWyYUAFAICUoAN65Qy0EIYUiQ+hQCGVZtJL8ZAblwBfQqUq16BYWwo8CQneMPGFSlWo1bQABYMOgAmHqYWuGR0jqAUQXyiAA4UAJ58RsJiEqAAvKAkRMzMZlbk1HSMAB4UTCEZgiIk4iRSbKmiAEY0zGwANKD8Or0DnTpsDA1yiiqq6pr0zExc8ZLtXT1scrk7oEvcq0O9Mt6zZwD8oEl6QpKiOgDWky5uDGsd3SODw1uj45OyU5nFQALj2y1W60+W1AAB5wQcApIjlsgcCVJcGEIRLcAEQAFRoNFA9xIqVAOiEXCILQobFAbCISSSzCoDBCYNxoAA1KA0eiBQyKEJOFwqARUu8NsceaBcQMubz+YLgY4RdxxZKUTITirQYxsTQ8YTiQQGAB3ClUmkSemM5ms9mc2XKvUqNWizVS6FyXnyuUut2Cj0aiXIn46syWMo2Sr3J7OVzuKGbAZHIgMGEzHzzfzXYTe1PfZgZrZRmMVOxJyYp3qSF7iaazIG+BaBYJhBsMCKWYjlWygLs8dOZ+vVpsqFu57R6Axdnv4PuxxZEh5Mni14fDDOF5gDWReWZLyuMIw8Vg0JLhQ-o48DthkHQkXf9YtZ12zVv+KhsHiFYovrqQYXKe-DnkSV4fsBTBkKwHDcA0WTNBI4RAcB+q1nkuxBKEgFQXqlw4WE2r4SqYIPk+ki6PogEDNRBjahEAqWAK4qgB4WH5PEALJGkiFNLS0ykViOK7gqACqJDdKQIQFK8uJMei5iML0DA3iq0QkLEXZ5IODhOF24RmG6X70BRz5DrWbBjq8Mh9KRbpDiO1nzopwIsSoHnKKZoHgZeRmRFEMQUCS6QCEhtJ5ECDA1HU-HZK0kiso4ki4lU-q4qkGUAF4KfZ6ECslUgYAMABMAzYHZDkqtxiQpGFmQCRIES4Bea5JBuHw9FuJZvGl-qiA1jQJRQphAA')">function lookup_symbol_value(symbol, env) {
     function env_loop(env) {
         function scan(symbols, vals) {
             return is_null(symbols)
@@ -2549,9 +2558,9 @@ function frame_values(frame) {
       and change the corresponding value when we find it.
       </span>    </td>
           <td></td>
-          <td><span style="color:blue">To assign a name
-      to a new value in a specified environment, we scan
-      for the symbol of the name, just as in 
+          <td><span style="color:blue">To assign 
+      a new value to a symbol in a specified environment, we scan
+      for the symbol, just as in 
       <kbd>lookup_symbol_value</kbd>,
       and change the corresponding value when we find it.
       </span></td></tr></table>
@@ -2574,7 +2583,7 @@ function frame_values(frame) {
           (scan (frame-variables frame)
                 (frame-values frame)))))
   (env-loop env))</pre></div></div>    </td>
-            <td><div class='snippet' id='javascript_78_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuRQAzAVwDsBjAFwEsB7MgZ2ICc6BbCGeJVTTfKUq0GoAKYA3AIYAbElKpiAFBQ4AHBmLJUANOLISAlKADeuUBZZiqJFmVA1GAfRk1FLWSvWbth8xYDAgH5QV3dZJ2k5ZVV2DTItKj9AlNAALgdnMil2GO8E339UixCZOjoAaxI1J0YAT3YAIzoZSNkSZXqmlqc6Iids3K84nyS9LSMi4ozHJyk1NVcKBXoyYfjE5OKS0HnFuqVJdoVlIWpVpzEADzUrRkZV9dHDcYMXqe3U10YqXv6ojqMJRSFgAc0uNzuDwYQNiG18ryMfgAkBYZs46GoxB4qHQWE5Yo0aNkRGs4c8PikQkc5CclJjsQo8QSOESSRdcXMFksVgwngUxvpJp90pkWWQACZuVaeckCrbbalRcVS0my-KJREK6ZimQ5RoSqQQ25ie6POWbSnBUDsKQVMROM6kpR6pqGpxqEE5azY2oNZoyWEahFWkWfV0Go3NCUHC0IoXa1Lo2piACOHUoeRG8tDOxpKfTWgonTTGeLtSoJ1y2iD2c2WtzotmjTKFAq-MtIqVERbdDbHe0DZFyasNjsFariQHSUb3dao9sZAnimrVGnQ8+yakZtBZFX08TVPEyu3D13+7jugTjeTErEFD1OPNwZnXePETvD69zsvG+2GWxNgWHXUAACIAFUyAqMg6AAd3septCkK5QAAWlQ99aUUUDDAAblwABfQRyHOUQ9hkA4hD0EFQUYYwzACGgiFAJRZluGh2GlCQHSdR4hEMejKQXOxdm5OoPRYDiuJ4kjnSo3YwTo-CAgI8RAzEBxmNY5xyXICVHVkvjyAE0xKVUJgqFAO4SBkSyAF5MPkRQlF4hgnGjSjjJ0Rsw0+a5FElS4DBoNg9ynHzfLDVyl09DxcncIF+O8yKUuKGjGGS1KsosaKgokEKGH3fiBOUlJhPsWZyraaIlGs2zD2KEIqoBB1zICtc6tfXyMj0sQiGJMQJVK0BVLEdTTNSQC8Rc8g9AgqCYPg4hDNEKg6ixNCMPIuocOGoiiNwaLQkcX4+mqwFDhuDKEwmwJypteZgTBUA7IAPkcukaK1cYrrwwjiOEVZMJVaUGHVOtBxuhiAnu2YqBYEgqAACwOGknLySVQeyVoTSlZZnMvF4Ewa600bpczVRlVpzMYUsp0Jv9-w+gmGEpsHWlkdx2W4g8tXwg6jvzWnC0zJQfnYKhromQTAiYljZjEOI1oLMtOioCW6Jl4p7t6-qEiGqZRvGuXtJcbdfh+SdtDF9XJZM6GRXusnnP6lgfmXRWp3Fu2dGl4aRrU2nbtSGnLNd93vfOjSHIi53ThCiPKxXL3bbo323n92WtMq6xFyjlyE4t22o-tiL7vDouJajzOVMDjSHc+J3lWF1WlAiu7TSLq3JZtjWXj90MiMCfaAdI+xvlO-pyFPGhd0GpRBlNLXLFzkTbTUBfvRe97QIAKmnnd9d30C9EXpT-sOlaEOWJc6ERpxP0fXkmAPYPNPl5wW6LLN4SSZeUlDqAb2zAHJf0zB7VctZf5-W2LDZwis1DKzAcWXudt247DIDZGQ6DRR7C0BKMWN9ej30ft+VYiVC4QJTn3d42ViiMCIXfX4pCnwwjbnQkUtp7Qq2-rVTuVCayoM1iVQ2dc34dzHBVZwLDn4HgiqUE6SgZGkj9N0GQB4SaBAyJgmQMh-Yj0voDUQ+Zez9l-FDKYgCPIvVAKYio7k6AxgPP7QBrZZAgKAYwkh94n6kiBB5GBARAEHzPPrDxE8-hOBCbPfWLo+zuMCSvSRzNlAeR+gFfSEwCphWtm4wMmUOGFMCNEueEpro4KKX5N4f0BZX2BlVS2ydrbmOlm-e6XCHTNXaMoHBcc+GSONFCZ8ENBTSxqaPUkwMZ7nnpi+LUb9AEtRsX06ZOTfgtUGaaaEZIXxEwHoEVZqiAz51WauI5LReagBanzKY90Wr8wmUDfMyjhm-3mQ3WYuUXl8kJqiAIUw5zoxmkYpc3ylyclDlIbQD8fFkJ+bsgpvlpZTAyIcroxyWpKNhawpc6KLkM1ABUkUfSwVR02WaeFIzaGVKRdUh5BAwDRWYEQNgnAoBwEQMgdAWAABMjzRCzDCIydRhM2mrykQMEgTRsSv1AAAHzlT5WYPxJJkFBLKhVSrnDNBaGIKFr9NVhlmDokVuzAiGpFLMXWA0CGEweUdIVHhWiYtFSYQItzxWgEvPSo6cMpCglBINFwijzHIwdJWUE-84EeikCFV+AAyeNoAkZ6ttWauyGbQBhqcBGn1dTjXelfg3aNEbA36QniBUCi9doXyOni1oZ1F5Fo9cklNUgCGVhoKaql4zDFjzFKc2ZVKxXJL9QGoNFbzGgUHdoGtREjozotv6fFZri2erbR22N6iN1KE7d26BAlxkLsPmcjZ1wTQUp2cOtdrbU27q3fertGje2+ukdi2RrqW2LjFKWidIa5lgUhdCsFOF5WKqNc4X95b-0jLmtISSUgWwOhA8YTV866mkvrc2mG66717qUDu-DhND32ow++lRZ7IRbNec8YO91CMPqI7skRtSQW6n1O6c9QzKXQLo56sdZbg0-ErRGTjVHL1zr7ZM0TRpYrencOcwM2GknfvXmLZdDb+iLz0Axp9xGj11Jkw4pxn6cO3vbY+9RTGe0vvzc4BpSdPbNNXUUEt-rBOToA6BBz3dJNHSqlx6jPHaMO3o3hh9xG81sdmBTLG4NeM3u-QJv9wmp2xbVK0QLEnUPgctZB9zKW1xpdZnF1ojSnNUD83U9LVMJKDRoPjH+IXXOeoiVYIgIEMAGbYzV9m4owFFZc2Z79bW+ogR5d1-tvXsZzFstibmTX5R8eSaNjr5jsC2ei5-OmotvbLzc+O6DwnvZzWQWIKrbGOk8N26nfbrXFGgTOyfIBt3SNsbOwInue3TD-OGyJXT6i9uTcmRXT7Qi7vmYIcA4HQM7hdyaV927y3v34eh29-tCslbiTO+D5HIljVYPB+jyZgrzZg+h3jiVJrLPg82xj7VrZ2ymb+xKqDQnBuwbAnYi7-a7HGdjENlnybwt6eY1F+nXJFgNY-YLqy-H8uHfZ5W8i0vSQ85B1fcl2zlNy8hzTyL-0F1gi1+QnXYWLP4eswe3thAmWsA4FwDlvBuU4H5azhGyMDhXCjfLhxur9Xe8JWGEIKEM0OXhh0IPw5xAsCAkoK4c0dUyD1fYc995FASj0FYYsNBuISjSJJqTQMrvRSUHJ+K2JrppIsRIkbD3dKBWiifCp5efRuz0NXge6GtsshGHpAyIKXI+9HQrjziiiBzQb-pJvMPRC5VbwlIfI66-u3ay5PQXXidA1yh5JfiWRKrfX6ACbW+5+a6yaFIqw+V+-DXxP0AG3xeTKu10mqbVNjL4Pw91-HRnvv98KfhKj-soC1NfvjqPoVkoNcmBMAerrDuKmSv-muKAZ-vYADlAd0ixm7voA+HQA8GqnlNkvuK0vvvYPhl3kXnPpQiyoWiQV+v9nehQYLJQGULTO5JRHFGIO8u6rXiJJ6HGjQbkDckRIAtmggsrBfoVIkDYiavhJQfYCXpwepmotdC1HRKgaAPwcBPWqod0ufN3v2oIQ6DoS5JwfRDwULjukYbPvYEYVHIlGYT9r9kLvhtYU-k8lcBkoQZfl7BprofkrYtuA6HQbwePFoKCMjMoQGOoWHqEOEZEVEHRD5CEFoUoIoYWjoXoIkUTI0EEXlJomiHEWqpETocYAADxFERFIwYGBgFEBDUix7TSgQAAq5QD0ZAdQCkoIUqiQzAjA1QUug0GQoEoAAA1FHhwiqsSKCExAcKUWMWBHNAsUSoEFMWqrMTUZrO3ABI0cBC0W0UQGILBF0T0TWEAgMa4EMWBMsUUmsTMUQHMX4cYOMc9iMeMSsQEHcRsdkXTtJuUFUDUPWvnPWu8lMMwRIC4OUBvCEcUHWjfFES0P4eoQ3LAr7tTqUR8dSAYJCZiOwpUkWKwdMd4VIdbGMh8RkPWi9JmjuhiUUiEDutkR8YUQwvqqjk8XoPhj8TXBYEPMUCbBMFSeHimpcFjsSWsv-NsFNNoRpnNJBM0HpKANWokikEbEHCicUIAkYTYqDkYYcBnGXJ6iyWsHYSYdYYioUnYWoaYd6CItsLyTyfQantiWULiRQQystCCsyqyo7jwFyvwCgNgWxJJJxLQNxAPmPMChDklhAUdmuPJKBOxCGbnudjYZocGdJE4BxIsBVrIvxJTsLhbg+sVPSoAomRmXbg5BWlaBWqBBus9gEBupFNSikDWXuvWRYHuk2eaRYDWVoe2ZobGiwF2dWQ9hPP2RPMOcUDWQTros9jOTICKM2YEDWVKIwIsFIDtHoKueuZ0Z8EuQEDWVKe2VKb5PuT2Q9raMjHMI0IwCfJeUjNecwNsGecdMJqBKMf2QEPHnoHUMYG9KAChOMbuS+TWahJ+RYN+aAL+dvABWhFBRYCBQ9sfHoKkJBdBf+ShLvPBaAIhW+cAOBSxAnlBX+e9ChGAMBd2a+WuKBAAKQEVoUkWwU0XYW4XUVh6fkMUwWh6Zq-mUU1kACEGaHFRF6FpFoAglDkvFI5b5ZR9FIljFKEFRFgUlU5D2ZRdk4FnFGFoA6lylrFSgoEr0clP5CloA70elfFD2r0GlKFgQWlYl1lFl0l1F-FBFsFgQ-5Fg-FAQ3uVof0pZ6ZoZMkIKimICoYamG6egZZQV4Zfi-lMIlk0VyZsVFwdAjQAAVunmFdsGpkIDBb2YFcmc9ugcVC+SkElWGUyn9LgAFVJDFUBpLDYhWjWdavrM9q1YNGVTSueW+ZAGQHrG4JuRYH1QNWtF1d1TWfeU4LAJAO2VNTNeNTSpNQoA+QAKL9lTWrWLWVI1kAByUgu1BF+1u1dRRS8VFkaZdVyVDVoVL04Vj0zE-5VhRMFVrUCVUKds+EtVSZYZN1ahd1OVD1MFJVAkUVhVv171NY1VC6YkEkV1lVV8wK1EYIE8YB9g20mZS4vULAFERJ6VUg0gDCkkiCeJKUr1mZcQyeq4uZXkFSNEqNuEKQtadStMNgNQkhaySgaN4gnh+CYp+4OCeCkoZe4NwVY8oVegTJFg5NN1pRlF2wQtBC5NuUaVmV1A5SlSMtkN6yeh21AQYhopHNq4vayelk2aoIZQuRmWwUPh2gNirN1Q-NU40NdSaKGmwJMpVysgoJgQ4JOJ0Jbw4iAQcJ+qmRXttRQdqQ0a6JTxFSWJEJLpG8TJBJeBRJRtU4ZJWUFJGmgpBZUOsddCIQrNTgDJ7iWRsgp1SYnirJD6ctWaD6XJg8ExKQ-JBgudBtiC4k6dvgkdKQUpCJMgspZA8pkoipW86EuwJ6iQNadpYi6pIcCVrAW8DkOpSh+yYY90Rp1puQoV29YgetUUnB9he9tpxQ9pI0jpQo-tepRgJZi97A4kdiNisUtMBlbqptsFDkGAjNoex+jNBENafSD97kjOHJwpFtaVEQ3dSQuEQAA')">function assign_symbol_value(symbol, val, env) {
+            <td><div class='snippet' id='javascript_78_8_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuRQAzAVwDsBjAFwEsB7MgZ2ICc6BbCGeJVTTfKUq0GoAKYA3AIYAbElKpiAFBQ4AHBmLJUANOLISAlKADeuUBZZiqJFmVA1GAfRk1FLWSvWbth8xYDAgH5QV3dZJ2k5ZVV2DTItKj9AlNAALgdnMil2GO8E339UixCZOjoAaxI1J0YAT3YAIzoZSNkSZXqmlqc6Iids3K84nyS9LSMi4ozHJyk1NVcKBXoyYfjE5OKS0HnFuqVJdoVlIWpVpzEADzUrRkZV9dHDcYMXqe3U10YqXv6ojqMJRSFgAc0uNzuDwYQNiG18ryMfgAkBYZs46GoxB4qHQWE5Yo0aNkRGs4c8PikQkc5CclJjsQo8QSOESSRdcXMFksVgwngUxvpJp90pkWWQACZuVaeckCrbbalRcVS0my-KJREK6ZimQ5RoSqQQ25ie6POWbSnBUDsKQVMROM6kpR6pqGpxqEE5azY2oNZoyWEahFWkWfV0Go3NCUHC0IoXa1Lo2piACOHUoeRG8tDOxpKfTWgonTTGeLtSoJ1y2iD2c2WtzotmjTKFAq-MtIqVERbdDbHe0DZFyasNjsFariQHSUb3dao9sZAnimrVGnQ8+yakZtBZFX08TVPEyu3D13+7jugTjeTErEFD1OPNwZnXePETvD69zsvG+2GWxNgWHXUAACIAFUyAqMg6AAd3septCkK5QAAWlQ99aUUUDDAAblwABfQRyHOUQ9hkA4hD0EFQUYYwzACGgiFAJRZluGh2GlCQHSdR4hEMejKQXOxdm5OoPRYDiuJ4kjnSo3YwTo-CAgI8RAzEBxmNY5xyXICVHVkvjyAE0xKVUJgqFAO4SBkSyAF5MPkRQlF4hgnGjSjjJ0Rsw0+a5FElS4DBoNg9ynHzfLDVyl09DxcncIF+O8yKUuKGjGGS1KsosaKgokEKGH3fiBOUlJhPsWZyraaIlGs2zD2KEIqoBB1zICtc6tfXyMj0sQiGJMQJVK0BVLEdTTNSQC8Rc8g9AgqCYPg4hDNEKg6ixNCMPIuocOGoiiNwaLQkcX4+mqwFDhuDKEwmwJypteZgTBUA7IAPkcukaK1cYrrwwjiOEVZMJVaUGHVOtBxuhiAnu2YqBYEgqAACwOGknLySVQeyVoTSlZZnMvF4Ewa600bpczVRlVpzMYUsp0Jv9-w+gmGEpsHWlkdx2W4g8tXwg6jvzWnC0zJQfnYKhromQTAiYljZjEOI1oLMtOioCW6Jl4p7t6-qEiGqZRvGuXtJcbdfh+SdtDF9XJZM6GRXusnnP6lgfmXRWp3Fu2dGl4aRrU2nbtSGnLNd93vfOjSHIi53ThCiPKxXL3bbo323n92WtMq6xFyjlyE4t22o-tiL7vDouJajzOVMDjSHc+J3lWF1WlAiu7TSLq3JZtjWXj90MiMCfaAdI+xvlO-pyFPGhd0GpRBlNLXLFzkTbTUBfvRe97QIAKmnnd9d30C9EXpT-sOlaEOWJc6ERpxP0fXkmAPYPNPl5wW6LLN4SSZeUlDqAb2zAHJf0zB7VctZf5-W2LDZwis1DKzAcWXudt247DIDZGQ6DRR7C0BKMWN9ej30ft+VYiVC4QJTn3d42ViiMCIXfX4pCnwwjbnQkUtp7Qq2-rVTuVCayoM1iVQ2dc34dzHBVZwLDn4HgiqUE6SgZGkj9N0GQB4SaBAyJgmQMh-Yj0voDUQ+Zez9l-FDKYgCPIvVAKYio7k6AxgPP7QBrZZAgKAYwkh94n6kiBB5GBARAEHzPPrDxE8-hOBCbPfWLo+zuMCSvSRzNlAeR+gFfSEwCphWtm4wMmUOGFMCNEueEpro4KKX5N4f0BZX2BlVS2ydrbmOlm-e6XCHTNXaMoHBcc+GSONFCZ8ENBTSxqaPUkwMZ7nnpi+LUb9AEtRsX06ZOTfgtUGaaaEZIXxEwHoEVZqiAz51WauI5LReagBanzKY90Wr8wmUDfMyjhm-3mQ3WYuUXl8kJqiAIUw5zoxmkYpc3ylyclDlIbQD8fFkJ+bsgpvlpZTAyIcroxyWpKNhawpc6KLkM1ABUkUfSwVR02WaeFIzaGVKRdUh5BAwDRWYEQNgnAoBwEQMgdAWAABMjzRCzDCIydRhM2mrykQMEgTRsSv1AAAHzlT5WYPxJJkFBLKhVSrnDNBaGIKFr9NVhlmDokVuzAiGpFLMXWA0CGEweUdIVHhWiYtFSYQItzxWgEvPSo6cMpCglBINFwijzHIwdJWUE-84EeikCFV+AAyeNoAkZ6ttWauyGbQBhqcBGn1dTjXelfg3aNEbA36QniBUCi9doXyOni1oZ1F5Fo9cklNUgCGVhoKaql4zDFjzFKc2ZVKxXJL9QGoNFbzGgUHdoGtREjozotv6fFZri2erbR22N6iN1KE7d26BAlxkLsPmcjZ1wTQUp2cOtdrbU27q3fertGje2+ukdi2RrqW2LjFKWidIa5lgUhdCsFOF5WKqNc4X95b-0jLmtISSUgWwOhA8YTV866mkvrc2mG66717qUDu-DhND32ow++lRZ7IRbNec8YO91CMPqI7skRtSQW6n1O6c9QzKXQLo56sdZbg0-ErRGTjVHL1zr7ZM0TRpYrencOcwM2GknfvXmLZdDb+iLz0Axp9xGj11Jkw4pxn6cO3vbY+9RTGe0vvzc4BpSdPbNNXUUEt-rBOToA6BBz3dJNHSqlx6jPHaMO3o3hh9xG81sdmBTLG4NeM3u-QJv9wmp2xbVK0QLEnUPgctZB9zKW1xpdZnF1ojSnNUD83U9LVMJKDRoPjH+IXXOeoiVYIgIEMAGbYzV9m4owFFZc2Z79bW+ogR5d1-tvXsZzFstibmTX5R8eSaNjr5jsC2ei5-OmotvbLzc+O6DwnvZzWQWIKrbGOk8N26nfbrXFGgTOyfIBt3SNsbOwInue3TD-OGyJXT6i9uTcmRXT7Qi7vmYIcA4HQM7hdyaV927y3v34eh29-tCslbiTO+D5HIljVYPB+jyZgrzZg+h3jiVJrLPg82xj7VrZ2ymb+xKqDQnBuwbAnYi7-a7HGdjENlnybwt6eY1F+nXJFgNY-YLqy-H8uHfZ5W8i0vSQ85B1fcl2zlNy8hzTyL-0F1gi1+QnXYWLP4eswe3thAmWsA4FwDlvBuU4H5azhGyMDhXCjfLhxur9Xe8JWGEIVwfIARYEBJQVw5o6pkHq+w577yKAlHoKwxYaDcQlGkSTUmgZXeikoOT8VsTXTSRYiRI2Hu6UCtFE+FSi8+jdnoMvA90NbZZCMPSBkQUuR96OhXHnFFEDmtX-SteYeiFyg3hKveR2V-du1lyeguvE6BrlDys-EsiVW0v0AE3V+T811k0KRU+-z9+Iv4foANvi8mVdrpNU2qbDn9vh7D+OjPaf74A-Er3-KBamfvjgPoVkoNcmBH-urrDuKmSl-muAAS-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')">function assign_symbol_value(symbol, val, env) {
     function env_loop(env) {
         function scan(symbols, vals) {
             return is_null(symbols)
@@ -2756,7 +2765,7 @@ function frame_values(frame) {
 	assign a new value to a given symbol, regardless whether it is declared
 	as a constant or a variable. Correct this flaw by calling the function
 	<kbd>error</kbd> whenever an attempt is
-	made to use a constant on the left hand side of an assignment.
+	made to use a constant on the left-hand side of an assignment.
 	You may proceed as follows:
 	<UL>
 	  <LI>
@@ -2790,10 +2799,15 @@ function frame_values(frame) {
 	    Change the function
 	    <kbd>eval_declaration</kbd>
 	    such that when it encounters a constant declaration,
-	    it calls a new function, say
+	    it calls a new function, 
 	    <kbd>assign_constant_value</kbd>, which
 	    does not perform the check that you introduced in
 	    <kbd>assign_symbol_value</kbd>.
+	  </LI>
+	  <LI>
+	    If necessary, change
+	    <kbd>apply</kbd> to ensure that
+	    assignment to function parameters remains possible.
 	  </LI>
 	</UL>
       </span></td></tr></table>
@@ -2875,11 +2889,10 @@ function frame_values(frame) {
 	    of <kbd>var</kbd>.
 	  </LI>
 	  <LI>
-	    When not using the strict mode, JavaScript permits undeclared
+	    When not in strict mode, JavaScript permits undeclared
 	    names to appear to the left of the
-	    <kbd>=</kbd> sign in assignments. The
-	    meaning of such
-	    an assignment is that the new binding is added to the global
+	    <kbd>=</kbd> sign in assignments. 
+	    Such an assignment adds the new binding to the global
 	    environment. Modify the function 
 	    <kbd>assign_symbol_value</kbd>
 	    to make assignment behave this way. The strict mode was introduced
