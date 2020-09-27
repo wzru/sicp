@@ -2116,10 +2116,10 @@ list("sequence",
   
 	Figure&nbsp;<REF NAME="fig:parse-abstraction"><a class="superscript" id="4.1.2-fig-link-4.3" href="./4.1.2.html#fig_4.3">4.3</a></REF> depicts the abstraction barrier
 	formed by the syntax predicates and selectors,
-	which separates the evaluator from the tagged list representation of programs,
+	which interface the evaluator to the tagged list representation of programs,
 	which in turn is separated from the string representation by the
-	<kbd>parse</kbd> function. The following
-	subsections describe the parsing of components and list the
+	<kbd>parse</kbd> function. Below we
+	describe the parsing of components and list the
 	corresponding syntax predicates and selectors.
       </p></div>
     </span></td></tr></table>
@@ -2353,24 +2353,39 @@ list("literal", "hello world")</pre></div></div>
 	<div class='snippet' id='javascript_77_20_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiAOwFcAbJgbhoEpWg')">parse("null;");
 </pre><pre class='prettyprintoutput'>
 list("literal", null)</pre></div></div>
-	The syntax predicate is 
+	The syntax predicate for literal values is 
 	<kbd>is_literal</kbd>.
 	<div class='snippet' id='javascript_77_21_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0AbKigUwCcBDVgBRkaAWwAOdTiQoBKUAG9coZaG6cKRbvSbMSREQCMeQ0RJJTZygD5WlK+yp2MK3KiQDmJ8ZOlzQNuwd7HQMaGlZOXhIvMws5AKCHHT1WQWFvc197BMTHFlIAE04CN04CmJ9ZAG5cAF9CUkpaenYuPlZmADd+Ik4KzMt5e0DVdU16dNjpGvrcYRJnUBEAT2Yxbhp3PhFQAF5QMV5uRj6AIhdeqtAMKtOZGvnFleYLzmZnXi4RCz3QdmdmGoCAJnutNtsADSgAAM91wOlaPH4INWr3eFE+nG+viqQA')">function is_literal(component) {
     is_tagged_list(component, "literal");
 }
 </pre></div></div>
 	
-	The selector for retrieving the value is
-	<kbd>literal_value</kbd>.
-	<div class='snippet' id='javascript_77_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAbASwBcBTAJwEMCB9ANxoFcyAKAByooGc2AiAHZMCBANx8AlBNH4AZkwEBjEkQD2A0MXLU6jAi1aLVAW3bqyAkhNABvUPdC4HoCmRJMKGo6fOWZAXyA')">function literal_value(component) {    
-    return component;
+	The syntax predicate 
+	<kbd>is_literal</kbd>
+	is defined in terms of the function
+	<kbd>is_tagged_list</kbd>,
+	which identifies lists beginning with a designated
+	string:
+	<div class='snippet' id='javascript_77_22_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffCt2Lj5BYREhRlEAIhI2CW5MpUyAD0zNQpy80sigA')">function is_tagged_list(component, the_tag) {
+    return is_pair(component) && head(component) === the_tag;
 }
 </pre></div></div>
-	<div class='snippet' id='javascript_77_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAbASwBcBTAJwEMCB9ANxoFcyAKAByooGc2AiAHZMCBANx8AlBNFA')">literal_value(parse("null;"));
+	
+	The second element of the list that results from parsing a literal value
+	is its actual JavaScript value.
+	The selector for retrieving the value is
+	<kbd>literal_value</kbd>.
+	<div class='snippet' id='javascript_77_23_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAbASwBcBTAJwEMCB9ANxoFcyAKAByooGc2AiAHZMCBANx8AlBNH4AZkwEBjEkQD2A0MXLU6jAi1aLVAW3bqyAkhNABvUPdC4HoCmRJMKGgBZkqAE1YSKiICQxMzAQsraVwAXyA')">function literal_value(component) {    
+    return head(tail(component));
+}
+</pre></div></div>
+	<div class='snippet' id='javascript_77_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAbASwBcBTAJwEMCB9ANxoFcyAKAByooGc2AiAHZMCBANx8AlBNFA')">literal_value(parse("null;"));
 </pre><pre class='prettyprintoutput'>
 null</pre></div></div>
+	In the following, we just list the syntax predicates and selectors,
+	and omit their declarations if they just access the obvious list elements.
       </p></div>
-
+      
   
       <div class='permalink'>
         <a name='h2' class='permalink'></a><h2>
@@ -2392,36 +2407,15 @@ null</pre></div></div>
 	where $\textit{symbol}$ is a string
 	that contains the characters that make up the
 	$\textit{name}$ as written in the program.
-	The syntax predicate for names is
+	The syntax predicate for names is 
 	<kbd>is_name</kbd>.
-	    <div class='snippet' id='javascript_77_24_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCwkbBLcImQ0EmZ03CR2Glo6+obG0f48-ELiicmpJOkyoABEsfE1KkGhuEkk4qASAJ7M9UribBTc8RmgnqAWuowJNQAeAY1BvExmAmxdIqZ9It29cf3sQyN2TbjLjKvrYl0SAEY0Asw0BHvxOz19zANHVSpNQA')">function is_name(component) {
-    return is_tagged_list(component, "name");
-}
-</pre></div></div>
-	The syntax predicate 
-	<kbd>is_name</kbd>
-	is defined in terms of the function
-	<kbd>is_tagged_list</kbd>,
-	which identifies the kind of component using a designated
-	string as first element:
-	<div class='snippet' id='javascript_77_25_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvim7Fx8gsIiQuIiAEQkbBLcCbIJAB4JKhnJqTkBQA')">function is_tagged_list(stmt, the_tag) {
-    return is_pair(stmt) && head(stmt) === the_tag;
-}
-</pre></div></div>
-	
-	The second element of the list that results from parsing a name is
-	the symbol, i.e., the string that represents the name in the evaluator.
+	    
 	The symbol is accessed using the selector 
 	<kbd>symbol_of_name</kbd>.	
-	    <div class='snippet' id='javascript_77_26_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0oIwAnhIARjQCzDQEzCRsEtwiZDQSZnTcJHYaWjr6hsbO3K4i7FQCOXkFJEV2KkGhuLkk4qASMemZSuJsFNxZxaCeoBa6jNkARAAeAYsduLxMZgJsMSKmGVkiA0NZzKPjk+1BW4w7e2JxicmpZ9mnRyPsV20qHUA')">function symbol_of_name(component) {
-    return head(tail(component));
-}
-</pre></div></div>
-	    In the following, we just list the syntax predicates and and selectors,
-	    and omit their declarations if they just access the obvious list elements.
+	    
 	    
 	    We add a constructor for names as follows:
-	    <div class='snippet' id='javascript_77_27_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0oBJsANZKJGwS3GIAnhIARjQCapo6egZG9ELiIgBEicllsozpWTlBobhkdOLRqcyVSuJsFNzJJBSgnqAWuowpZQAeAWUqQbxMZgJsqSKmXSISHV3MPX0DdvO4i4zLq2mZ2cw0BJ1JKdv3yXvsB9yDKvNAA')">function make_name(symbol) {
+	    <div class='snippet' id='javascript_77_25_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajpQCTYAa3USNgluEUYATwkAIxoBbT1DY1NzeiFGUQAiLJyGpQLi0s1ouNxxEnqU-OZm9Xq2Cm4c+VAg0BsjRlyGgA9Ihq7cXiYpATZ8kSsRkQkhkeYxianXDa3GHb28wpKBZhoCYezck4+c8-ZLlyaLpAA')">function make_name(symbol) {
     return list("name", symbol);
 }
 </pre></div></div>
@@ -2475,7 +2469,7 @@ null</pre></div></div>
 	    
 	    
 	    We add a constructor for function applications as follows:
-	    <div class='snippet' id='javascript_77_28_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0oBJsANZKbGZmQmRskSQi4ZS0JMzcAB5m+oyMObJsuhxEEtwkFHmFxaV0jGqaOnoGRvRC4iIARInJVKnp-bJZ6Q1F3CVloBVVNXXTTTmtQaG4ZC0U0QCezCRsNcziadzLe56gFrqM3AP5Af0qQbxMyWz7IqbHNSIJId-kpzhRLrU7G9cB9GF8fox9hIAEY0ATMGgEI4nR5A7GnMEQuoqN5AA')">function make_application(function_expression, argument_expressions) {
+	    <div class='snippet' id='javascript_77_26_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajpQCTYAa3U2KSkhMjYkkhEEyloSZm4ADykTRkZSpTYjDiIJF3Kqmrq6Rm09Q2NTc3ohRlEAIiycqjyCsaVigvbq7lr60Ebm1vklztKe6LjccRJRlIBPZhI2VuZR-O4tilAg0BsjRm4RMYrIsc1o3hMHJsM4iKxXVoiCQXCHqO4UB4uTT-XCAxjA0GMM4SABGNAEzBoBEu10+0JJN3hiMC-yAA')">function make_application(function_expression, argument_expressions) {
     return list("application", function_expression, argument_expressions);
 }
 </pre></div></div>
@@ -2561,16 +2555,16 @@ $\ll \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{paramete
 	<kbd>is_lambda_expression</kbd>
 	and the selector for the body of the lambda expression is
 	<kbd>lambda_body</kbd>.
-	The selector for the parameters is called
-	<kbd>lambda_parameter_symbols</kbd> and
+	The selector for the parameters, called
+	<kbd>lambda_parameter_symbols</kbd>,
 	additionally extracts the symbols from the names.
-	    <div class='snippet' id='javascript_77_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCwkbBLcImQ0EmZ03CR2Glo6+obG0f48-ELiicmpJOkyoABEsfE1KkGhhKSUtPSMAJ4SAEY0Asw0BMz1CUkpaRlqmjp6Bkb0Lm7sVAJlk5XTTSFhbZEmLAJxvbxszNwAHmb6jIwd7pmz2rmLBexcfILCj7I1x30zhdrrd7nRGs1WhEOqAAadzhZdHEDNxdMxun0BoxHjNsvM8vQJGwzGIev1BsNRsjZMsRKt1uIPCodqFwu0onCgf1eF0cVkcgt8rT6XTLAzbMyWfgkiRxKAJF1BCczqBPKBEYwEjVLqqnJcIbheEwzMdeaZOecrjduHcHgqlYC2MygkbGCa2LyLeY2Ej4hRUeiyViRPaLc7DcbTSIvdzeaHlU6mkA')">function lambda_parameter_symbols(stmt) {
-   return map(symbol_of_name, head(tail(stmt)));
+	    <div class='snippet' id='javascript_77_27_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFhI2CW4-JxdtPUNjU3NLFnYuPkFhLIDFUAAiNIzazWi4wlJKWnpGAE8JACMaAWYaAmYGzPF-Z0DdfUMTMwsvbh8RdioBKunXZtj49qTiwXS+3jZmbgAPKRNGRk6tnNn5wqWrUp5+IUZRSez5JS1AQnM4Xa63e50JotNqJTqgYH9UE2IzpUzcIzMHr9QaMR4zPIGBZFUASNhSETYgZDEZjNFKby+dabP7VTTsmEJDrJRGnc4DXjdfGuZ5E170RlrWybZnC9m7VriEg-UndY5ItigIKgFGMTK1S5azyXaG4XhMKTAoVWXmgq43bh3B4SNW2tgcs0Wq0iN3WNiojIUDFY3rUvEu9V8j3mxiWthC30CoURt0coA')">function lambda_parameter_symbols(component) {
+   return map(symbol_of_name, head(tail(component)));
 }
 </pre></div></div>
 	    
 	    We add a constructor for lambda expressions as follows:
-	    <div class='snippet' id='javascript_77_30_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0oBJsANZKAmwSAEa8bMzcAB5m+oyMtCQiFrpJBty6jLLJNLwAnmqaOnoGRvRC4iIARIkpaRnZufl0nbLFpRTllaDVdSpBobhkdOLRtcwkpczibBMS3CQUoJ6gxYzcXZkBnXO4vExmibUipht7IhJrr0rbu-t2N3dGA82E9GLUUjQBMwaAR1qV3p9Nj9uHsDio5kA')">function make_lambda_expression(parameters, body) {
+	    <div class='snippet' id='javascript_77_28_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajpQCTYAa3UBNgkAI142Zm4ADykTRkZaEhEbI2zTbiNGJRyaXgBPbT1DY1NzeiFGUQAiLNz8wpKyirohpRq6igam0Bb2zWi43HESQZS25hI65kG2RYkXUCDQGsZuESGiyKH13F4mKSy2kStD85EJfa-dQnM4uTQvN6MD5sL6MNq5GgCZg0AgHOr-QFHEHcc6BdZAA')">function make_lambda_expression(parameters, body) {
     return list("lambda_expression", parameters, body);
 }
 </pre></div></div>
@@ -2612,7 +2606,7 @@ $\ll \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{paramete
 	<kbd>is_empty_sequence</kbd> and 
 	<kbd>is_last_statement</kbd>,
 	respectively.<a class='superscript' id='footnote-link-4' href='#footnote-4'style="color:blue">[4]</a>
-	    <div class='snippet' id='javascript_77_31_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCyM3ACORNzk3O52Glra+obG0f48-ELiqbIARLEJSWTcJSpBoeGUtPQSbADWSuWJyamMapo6WUb0haJl8V1VJbLiUr11hKSNUZ2VHewU3BJJFIypfToZegZDztyuIuxUAnu1IQsRTaAEVuLM4mwbWySiMzt9h4Mci43L85ncGpF6PpXu9PttdqD-gNjjlLtdEfMIY9TJszBQAJ5vcarHpIzIokwsEhEATo2xg+qLSG5ARsGHrTbbUnpZHZSnMam0i6WOmzFS3UK4Mh0cSgCSElbJUCeUAWXSxEQlDABOS6RI6lAAVgCNSCvCYZlZ+JEpkVVRE8qJFWS4qC0pIssdbCWHuVoDtaw+nO+u0dAdu5sYlrY1pxEjxCuJ3S9Pt6EYtVptLFZ7KDX1EKchabNGZjIme6oobw5+YdhO9RdduEj0et0KrsODOzrzAbTWLQA')">function make_sequence(stmts) {
+	    <div class='snippet' id='javascript_77_29_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFkZuAEciOTJuEUYKCVddfQMTMwsUiJ5+IXy8gsVQACI0zOzuJs1ouITKWnoJNgBrdVas8lz8wsZtPUMy83pa0RaM8ZympSmKGe7CUj7ksfbmfLYKbgkXRnrC2cMS41NFr24fEXYqAVvXLtj9xL9UAEOz5U7sC5XeQ-GbFebPCreXzbXb-XpJegmMFnSHXGGzR4LCqfb4ov49A4YyqXKQUACepzW7XxcNKCMsLBIRAEpIaqIpgOSVgEbGxEMuLhZczZ5Q5zC5PI+tl50005Pw4hI+VAEgZxwmoCCoBsRjSIiaGEiyiMWStKAArJFOtFeEwpCK6SIrPqciJdYy2hM1dFNdr-WxDlrDaAfaNxVCdn69Uygy63R6vSwafSA+tcuHIzM-q7GO62J7haKKODzhLoQWMUW06WMyDTdWcXXRA3+k3cCWy56sR343ie3Qm0A')">function make_sequence(stmts) {
    return list("sequence", stmts);
 }
 function first_statement(stmts) {
@@ -2697,7 +2691,14 @@ function is_last_statement(stmts) {
 	The syntax predicate is <kbd>is_assignment</kbd>
 	and the selectors are <kbd>assignment_symbol</kbd>
 	and <kbd>assignment_value_expression</kbd>.
-    
+	The symbol is wrapped in a tagged list representing the name and thus
+	<kbd>assignment_symbol</kbd> needs to
+	unwrap it.
+	$\textit{name}$
+    <div class='snippet' id='javascript_77_30_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFjZGRioOEgkXPycXbT1DY1NzSxZ2Lj5BYTyAxVAAIjSMrJz5Rs1ouITKWnoWzOyXZkYATwkAIxoBOudA3X1DEzMLL24fEXYqWe9fbdnxf3nXTTPuwlI+5MG2kYA3NgEidW4ADykTdP65gsXilZldabA5bWyHRz1M5dWL4cQkRgUUASMbMW7DeSjdgUbjtJFBUA2IyMbgiRpvUAEjCRTrRXhMKQCNhjETovGjCbTWYotHfO6YxFsHF4864emMRnM1l8jEUZiPZ6vD5fDJ0EQ8tkjQXCgpdIA')">function assignment_symbol(component) {
+    return head(tail(head(tail(component))));
+}
+</pre></div></div>
     
   </p></div>
 
@@ -2713,10 +2714,10 @@ function is_last_statement(stmts) {
   Constant and variable declarations are parsed as follows:
 	
 	  \begin{eqnarray*}
-&  \ll \textbf{\texttt{const}}\ \textit{name}\ \texttt{=}\ \ \textit{expression}\texttt{;} \gg \\
+&  \ll \textbf{\texttt{const}}\ \textit{name}\ \ \texttt{=}\ \ \textit{expression}\texttt{;} \gg \\
 & = \\
 & \texttt{list("constant_declaration", } \ll \textit{name} \gg \texttt{, }\ll \textit{expression} \gg \texttt{)}\\[3mm]
-&  \ll \textbf{\texttt{let}}\ \textit{name} \ \texttt{=}\ \textit{expression}\texttt{;} \gg \\
+&  \ll \textbf{\texttt{let}}\ \textit{name} \ \ \texttt{=}\ \ \textit{expression}\texttt{;} \gg \\
 & = \\
 & \texttt{list("variable_declaration", } \ll \textit{name} \gg \texttt{, }\ll \textit{expression} \gg \texttt{)}
 	  \end{eqnarray*}
@@ -2728,21 +2729,21 @@ function is_last_statement(stmts) {
 	<kbd>declaration_symbol</kbd> and
 	<kbd>declaration_value_expression</kbd> apply to both
 	kinds.
-	<div class='snippet' id='javascript_77_32_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0DCy83GQCbLpskSTudhpaOvqGxtH+PPxC4mmyAERkdOJsJBTMsfGJybQkpWoAPm2ZOt3apuxcfILCJaClAG6JVGwARgJK9QlJKa2gHSGEpJTNoAuNKcyMAJ4S0zQCaWqaWQZG9C5u7FTn9yKP5+IeKl9BoeFbUbsls1mBMBEQlNwAB5mfSMRjNC4Za45O7cVyvSznN4Xb7rXAVEjiUASQ51OKLJp0A7sCjcCTcGqgTygCy6RjcESlOYUUCQpmgDABVpBXhMMwJQ4iUyAympElkhpAqlVWn0mq40WMcVsSUy-ZHE5nETyvXAlV0hl2FQisUSkSmqmg8HMKEw7hwhEm8l7M00i3q61AA')">function is_declaration(stmt) {
-    return is_tagged_list(stmt, "constant_declaration") ||
-           is_tagged_list(stmt, "variable_declaration") ||
+	<div class='snippet' id='javascript_77_31_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFl5uMgE2IzYkkj8nF209Q2NTc0sWdi4+QWF8gMVQACJxEkZ2eWY0jKyc2hIm7QAfIf0S8ZSInn4hdvrneSUmgDcsqjYAIwF1bszs3MHQEdjCUkp+0F3e3OZGAE8JDZoBecLdMdKzCy9uHxF2Kgvby+AEvcT+BauTTQ6JxBLnZJXfb9ZirAREdTcAAeUhMjEY-VegXehhMX3owP+theoKJUM0sPwrXaoAkdy66T2fTot3YFG4EhcoCCoBsRkY3BETW2FFAWOFoAwkUG0V4TCkmTuIisSO5eTZHJ6yJ57RyAsKDNwasYGrYWt1N3uj2eIgNDpRpv5gsCluttvtnOuKLRGOY2Nx3HxhLdgeNJF5Zu9UMiQA')">function is_declaration(component) {
+    return is_tagged_list(component, "constant_declaration") ||
+           is_tagged_list(component, "variable_declaration") ||
 }
-function declaration_symbol(stmt) {
-   return head(tail(head(tail(stmt))));
+function declaration_symbol(component) {
+   return head(tail(head(tail(component))));
 }
-function declaration_value_expression(stmt) {
-   return head(tail(tail(stmt)));
+function declaration_value_expression(component) {
+   return head(tail(tail(component)));
 }
 </pre></div></div>
 	    
 	We also declare a constructor for constant declarations.
-	<div class='snippet' id='javascript_77_33_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACkYUAthQA0oCgAturTgEpQAb1yhtoAE7cKRXfSbMADmyq6xkimoBk90Ira8bUtQF5vcxco4A3LgAvvjE5NR0oBJsANZKZHTibCQUzLzcZAJsumyRJGIAnhIARjQCsgBubAJEStwAHmb6jIy0JGqaOnoGRvRC4iIARIkkyanpmdm5+UOyjMVlFaDVtfVNLW10KkGhuKPi0YWTWTl57czJFNwS3KmgnqAWuozcwwIGoA0PoBgBQztcLwmGZsoURKYMqcZu0RBJjlDpuc6Jd2NdbqkVIDgYxQWxwYizvlLotynCEVMiRcrjc7nZsSCwSJCTCUas6sxGs1uK1YfCTkjiTSMfSAkA')">function make_constant_declaration(symbol, value_expression) {
-    return list("constant_declaration", symbol, value_expression);
+	<div class='snippet' id='javascript_77_32_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajpQCTYAa3VxEkZ2eWZebjIBNiM2JJIREjYJbiUANzYBInVuAA8pE0ZGWhJtPUNjU3N6IRyRACIsnLY8gqKSsp7xpSqa+sbm5jaO7i6ezWi43CmKFIBPfMLi0vLmaYpuGvlQINAbI0ZuCYFTUFaX0AYSLjA64XhMKTFM4iKxza6LOgiCQXOELW73R4uTSg8GMSFsaGom49O5nCQAIxoAiRKKuaJJGKerhxEKhIiJCJIzAaTRa7U63URyMu82JdDu7AeTOxkSAA')">function make_constant_declaration(name, value_expression) {
+    return list("constant_declaration", name, value_expression);
 }
 </pre></div></div>
     </p></div>
@@ -2777,14 +2778,14 @@ function declaration_value_expression(stmt) {
 	which can be implemented as a nest of <kbd>if</kbd>
 	expressions.  For example, we can reduce the problem of evaluating the
 	expression
-	<div class='snippet' id='javascript_77_34_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_77_33_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (cond ((> x 0) x)
       ((= x 0) (display 'zero) 0)
       (else (- x)))</pre></div></div>
 	to the problem of evaluating the following expression involving
 	<kbd>if</kbd> and <kbd>begin</kbd>
 	expressions:
-	<div class='snippet' id='javascript_77_35_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_77_34_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (if (> x 0)
     x
     (if (= x 0)
@@ -2806,7 +2807,7 @@ function declaration_value_expression(stmt) {
 	<kbd>cond</kbd> and has a list of predicate-action
 	clauses.  A clause is an <kbd>else</kbd> clause if its
 	predicate is the symbol	<kbd>else</kbd>.<a class='superscript' id='footnote-link-5' href='#footnote-5'style="color:green">[5]</a>
-	<div class='snippet' id='javascript_77_36_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_77_35_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (cond? exp) (tagged-list? exp \'cond))
 
 (define (cond-clauses exp) (cdr exp))
@@ -2869,15 +2870,16 @@ function declaration_value_expression(stmt) {
 	Some syntactic forms in our language can be defined in terms of
 	components involving other syntactic forms, rather than being
 	implemented directly.
-	The first such <EM>derived component</EM> is function declaration, which is
+	One example is function declaration, which is
 	parsed as follows:
 	      <blockquote class='blockquote'>
 	      
 $\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\texttt{, }\ldots\texttt{, } \textit{parameter}_n \texttt{)} \ \textit{block} \ \gg\ \ =$ \newline
 \vspace{-8mm}
 	
-	<kbd class='snippet'>list("lambda_expression",
-     list(list("name", $\textit{parameter}_1$), ..., list("name", $\textit{parameter}_n$)),
+	<kbd class='snippet'>list("function_declaration",
+     $\ll \textit{name} \gg$)
+     list($\ll \textit{parameter}_1 \gg $, ..., $\ll \textit{parameter}_n \gg$),
      $\ll \textit{block} \gg$)</kbd>
 	      </blockquote>
 
@@ -2890,13 +2892,13 @@ $\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\te
 	value expression is a lambda expression.<a class='superscript' id='footnote-link-7' href='#footnote-7'style="color:blue">[7]</a>
 	For example, we can reduce the problem of evaluating the
 	function declaration
-	<div class='snippet' id='javascript_77_37_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AcwAoAPAGlAE8BKUAb1yghoMnQDOFUAENQAXlAZQAalAtQAKi4BuQcIBOAUwpE99NZpkXl0jaCaKAtF246AvkA')">function g(x, y) {
+	<div class='snippet' id='javascript_77_36_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AcwAoAPAGlAE8BKUAb1yghoMnQDOFUAENQAXlAZQAalAtQAKi4BuQcIBOAUwpE99NZpkXl0jaCaKAtF246AvkA')">function g(x, y) {
     const a = 1 + x * y;
     return x * a * a + a * (1 - y);
 }
 </pre></div></div>
 	to the problem of evaluating the following constant declaration:
-	<div class='snippet' id='javascript_77_38_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuBjAewDsBnAF1DIEcBXAQwCcBTUAXlAA8OA+UAN65QI0WPFji5Kgw6gMoANTdQAKlABPANzCJe8awp0mJFetnmloC6AAUCgLSaAlDv16AvlqA')">const square = x => {
+	<div class='snippet' id='javascript_77_37_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuBjAewDsBnAF1DIEcBXAQwCcBTUAXlAA8OA+UAN65QI0WPFji5Kgw6gMoANTdQAKlABPANzCJe8awp0mJFetnmloC6AAUCgLSaAlDv16AvlqA')">const square = x => {
                    const a = 1 + x * y;
                    return x * a * a + a * (1 - y);
                };
@@ -2904,9 +2906,9 @@ $\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\te
      The evaluator uses 
 	<kbd>function_declaration_to_constant_declaration</kbd>
 	to transform function declarations into constant declarations.
-	<div class='snippet' id='javascript_77_39_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH1jzq7mATAUzIBsAhgCdBHEgAoyNALYAHOjxIUAlKADeASFA7QuXaGE8KRYfSbMKggObWeXZvyYUpshSSUUANKABEbSloSbj4hUXFfFQBuXABfQlJAulAA8RCBETEg5hJBGR5XeUVlNXV9XSMTM1AnRgpmIwJC908fDBVouIT2IJTEtN4M8Oy5TPyKHmFGZuLVDXKdStN6WvrGmY9lH2wOmPjU3oPOQbCszgAjGi4ATw3PUoXDY2Wa5waeJukize9QAGZdl0jvRgelTmkKDRmNISHVBMowZlxHcSvMDEtqjJBABrHjQuhwhEnJFBCSPAwUnTE4acRjXGSXfgo1RecmUgxY3GOPLnLiCZg8AAeciMjEYpLZ7MpoOpZ2Co1E40m0y+LRKrKlmp0MtCJIuV1uqtmgNiQA')">function function_declaration_to_constant_declaration(component) {
+	<div class='snippet' id='javascript_77_38_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH1jzq7mATAUzIBsAhgCdBHEgAoyNALYAHOjxIUAlKADeASFA7QuXaGE8KRYfSbMKggObWeXZvyYUpshSSUUANKABEbSloSbj4hUXFfFQBuXABfQlJAulAA8RCBETEg5hJBGR5XeUVlNXV9XSMTM1AnRgpmIwJC908fDBVouIT2IJTEtN4M8Oy5TPyKHmFGZuLVDXKdStN6WvrGmY9lH2wOmPjU3oPOQbCszgAjGi4ATw3PUoXDY2Wa5waeJukize9QAGZdl0jvRgelTmkKDRmNISHVBMowZlxHcSvMDEtqjJBABrHjQuhwhEnJFBCSPAwUnSg4nDTi5fIo1RecmUgxY3GOPLnLiCZg8AAeciMjEYpJZrMp1NCJM4o1E40m0y+LRKzIl6qp-WyNLOwUuN0ZgNiQA')">function function_declaration_to_constant_declaration(component) {
     return make_constant_declaration(
-               declaration_symbol(component),
+               function_declaration_name(component),
                make_lambda_expression(
                    function_declaration_parameters(component),
                    function_declaration_body(component));
@@ -2916,30 +2918,35 @@ $\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\te
 	in this	way simplifies the evaluator because it reduces the number of
 	syntactic forms for which the evaluation process must be explicitly specified.
       </p></div>
-
       
       <div class='permalink'>
 <a name='p20' class='permalink'></a><p>
 	Similarly, we define operator combinations in terms of
-	function applications. Unary operator combinations are parsed such that
-	unary <kbd>-</kbd> is represented by
-	<kbd>"-unary"</kbd>.
+	function applications. The boolean negation operator is represented by
+	<kbd>"!"</kbd>.	
 	
       \begin{eqnarray*}
 	\ll \texttt{!}\ \textit{expression} \gg & = &
-\texttt{list("operator_combination", "!", list(}\ll \textit{expression} \gg \texttt{))}\\	\ll \texttt{-}\ \textit{expression} \gg & = &
+	\texttt{list("operator_combination", "!", list(}\ll \textit{expression} \gg \texttt{))}
+	\end{eqnarray*}
+	
+	The unary minus operator is represented by
+	<kbd>"-unary"</kbd>.
+	
+      \begin{eqnarray*}
+	\ll \texttt{-}\ \textit{expression} \gg & = &
 \texttt{list("operator_combination", "-unary", list(}\ll \textit{expression} \gg \texttt{))}
       \end{eqnarray*}
 	
-	Binary operator combinations simply carry their operator symbol as second element
+	Binary operator combinations carry their operator symbol as second element
 	in the tagged list representation.
     <blockquote class='blockquote'>
 	
-	  $\ll \textit{expression}_1 \ \textit{binary-operator}\ \textit{expression}_2 \gg \ \ = $\newline
+	  $\ll \textit{expression}_1\ \ \textit{binary-operator}\ \ \textit{expression}_2 \gg \ \ = $\newline
 \vspace{-8mm}
 	
 	<kbd class='snippet'>list("operator_combination",
-     name("$binary-operator$",
+     name("$binary$-$operator$",
      list($\ll \textit{expression}_1 \gg$, $\ll \textit{expression}_2 \gg$))</kbd>
     </blockquote>
 
@@ -2965,7 +2972,7 @@ $\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\te
 	<kbd>operator_combination_to_application</kbd>
 	to transform operator combinations into function applications whose
 	function expression is the name of the operator.
-	<div class='snippet' id='javascript_77_40_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0GgBwFMAnAQwptYH0yaAtgCMqJTrRI8uPdo0YAbKmXF0AFPwGM6zEhQCUoAN65Qp0PxIBnCgxYcurUAF5bbTtz6CRY6nR5M3Bx5LAE9hGnl1QS0SHX0AbhMzVmYKIlZ6APtuZycXACIAQnzQAB9S12zHPIKAWlJ2VhD8pLM20wB+UAF2AGtmGTlFZV8SVVb2ybMe-p4xAWZVLPdWPQAaCanJxWsluxXPYVEVSQIqVmt-fZIAEyjNbV09Z83JgC5uvoHZBSUT8a2gJmA3mi2WDnWr0Bph2FD2gQ8Gm8Jx4ZwuFCublu9xicUh0IJlQOSOOo2CzAsN0xHGxGlxT2eiQAvkA')">function operator_combination_to_application(component) {
+	<div class='snippet' id='javascript_77_39_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0GgBwFMAnAQwptYH0yaAtgCMqJTrRI8uPdo0YAbKmXF0AFPwGM6zEhQCUoAN65Qp0PxIBnCgxYcurUAF5bbTtz6CRY6nR5M3Bx5LAE9hGnl1QS0SHX0AbhMzVmYKIlZ6APtuZycXACIAQnzQAB9S12zHPIKAWlJ2VhD8pLM20wB+UAF2AGtmGTlFZV8SVVb2ybMe-p4xAWZVLPdWPQAaCanJxWsluxXPYVEVSQIqVmt-fZIAEyjNbV09Z83JgC5uvoHZBSUT8a2gJmA3mi2WDnWr0Bph2FD2gQ8Gm8Jx4ZwuFCublu9xicUh0IJlQOSOOo2CzAsN0xHGxGlxT2eiQAvkA')">function operator_combination_to_application(component) {
     const operator = operator_combination_operator_symbol(component);
     return operator === "!" || operator === "-unary"
            ? make_application(
@@ -2985,7 +2992,7 @@ $\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\te
 	choose
 	to implement as syntactic transformations are called <EM>derived
 	components</EM>. Logical composition operations are also
-	derived expressions (see exercise&nbsp;<REF NAME="ex:eval-and-or"><a class="superscript" id="4.1.2-ex-link-4.7" href="./4.1.2.html#ex_4.7">4.7</a></REF>.
+	derived components (see exercise&nbsp;).
 	
 	
 	
@@ -3055,27 +3062,17 @@ $\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\te
     <div class="permalink">
     <a name="ex_4.4" class="permalink"></a><EXERCISE><b><a class="exercise-number permalink" id="ex_4.4">Exercise 4.4 </a></b> 
   
-      <OL type="a">
-	<LI>
-	  Explore how <kbd>parse</kbd> treats the
-	  variant of lambda expressions introduced in
-	  footnote&nbsp;<REF NAME="foot:lambda_with_block"><a class="superscript" id="4.1.2-foot-link-3" href="./2.2.4.html#footnote-3">3</a></REF> of chapter 2
-	  by comparing the results of
-	  <div class='snippet' id='javascript_77_41_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiAD1AF4A+UDAbhoEp2g')">parse("x => 1;");
-</pre></div></div>
-	  and
-	  <div class='snippet' id='javascript_77_42_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAHAQwCcBnAUwAoAiAD1AF4A+UAb1BIoBcBXEgHagMAblABfETQCUIoA')">parse("x => { return 1; };");
-</pre></div></div>
-	</LI>
-	<LI>
-	  The inverse of the function <kbd>parse</kbd>
-	  is called <kbd>unparse</kbd>. It takes a
-	  tagged list as produced by <kbd>parse</kbd>
-	  as argument and returns a string that adheres to JavaScript notation.
+	The inverse of the function <kbd>parse</kbd>
+	is called <kbd>unparse</kbd>. It takes
+	as argument a
+	tagged list as produced by <kbd>parse</kbd>
+	and returns a string that adheres to JavaScript notation.
+	<OL type="a">
+	  <LI>
 	  Write a function <kbd>unparse</kbd> by 
 	  following the structure of <kbd>evaluate</kbd>
 	  (without the environment parameter), but producing a string that represents
-	  the given statement, rather than evaluating it. Recall
+	  the given component, rather than evaluating it. Recall
 	  from section&nbsp;<REF NAME="sec:circuit-simulator"><a class="superscript" id="4.1.2-sec-link-3.3.4" href="./3.3.4.html">3.3.4</a></REF> that the
 	  the operator <kbd>+</kbd> can be applied
 	  to two strings to concatenate them and that the primitive function
@@ -3225,6 +3222,7 @@ $\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\te
       </span>    </td>
           <td></td>
           <td><span style="color:blue">
+	
 	<UL>
 	  <LI>
 	    $\textit{expression}_1$
@@ -3265,7 +3263,6 @@ $\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\te
 	    selectors, as well as appropriate evaluation functions
 	    <kbd>eval_and</kbd> and 
 	    <kbd>eval_or</kbd>.
-	    
 	  </LI>
 	</OL>
       </span></td></tr></table>
@@ -3304,7 +3301,7 @@ $\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\te
 	of the test, and the result is returned as
 	the value of the <kbd>cond</kbd> expression.  For
 	example
-	<div class='snippet' id='javascript_77_43_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_77_40_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (cond ((assoc 'b '((a 1) (b 2))) => cadr)
       (else false))</pre></div></div>
 	returns 2. Modify the handling of <kbd>cond</kbd> 
@@ -3330,7 +3327,7 @@ $\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\te
 	    <kbd>evaluate</kbd>.
 	  </LI>
 	</UL>
-	In order to implement this check in a JavaScript interpreter, which one
+	In order to implement this check in an evaluator for JavaScript, which one
 	of these two approaches would you prefer? Why?
 	<p></p>
 	The names declared in the body of a lambda expression outside of a block
@@ -3362,11 +3359,11 @@ $\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\te
 	
 	<kbd>Let</kbd> expressions are derived expressions,
 	because
-	<div class='snippet' id='javascript_77_44_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_77_41_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (let ((^var$_{1}$^ ^exp$_{1}$^) ^$\ldots$^ (^var$_{n}$^ ^exp$_{n}$^))
   ^body^)</pre></div></div>
 	is equivalent to
-	<div class='snippet' id='javascript_77_45_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_77_42_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 ((lambda (^var$_{1}$^ ^$\ldots$^ ^var$_{n}$^)
    ^body^)
  ^exp$_{1}$^
@@ -3410,7 +3407,7 @@ $\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\te
 	<kbd>let*</kbd> variables are performed sequentially
 	from left to right, and each binding is made in an environment in which
 	all of the preceding bindings are visible.  For example
-	<div class='snippet' id='javascript_77_46_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_77_43_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (let* ((x 3)
        (y (+ x 2))
        (z (+ x y 5)))
@@ -3425,7 +3422,7 @@ $\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\te
 	and we want to extend the evaluator to handle
 	<kbd>let*</kbd>, is it sufficient to add a clause to
 	<kbd>eval</kbd> whose action is
-	<div class='snippet' id='javascript_77_47_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_77_44_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (eval (let*->nested-lets exp) env)</pre></div></div>
 	or must we
 	explicitly expand <kbd>let*</kbd> in terms of
@@ -3444,13 +3441,13 @@ $\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\te
 	introduces a new block whose body includes the declaration and all
 	subsequent statements of the statement sequence in which the
 	declaration occurs. For example, the program
-	<div class='snippet' id='javascript_77_48_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_77_45_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 display(1);
 let* x = 2;
 let* y = x + 3;
 display(x + y);</pre></div></div>
 	could be seen as a shorthand for
-	<div class='snippet' id='javascript_77_49_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_77_46_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 display(1);
 {
   let x = 2;
@@ -3517,7 +3514,7 @@ display(1);
 	
 	<QUOTE>Named <kbd>let</kbd></QUOTE> is a variant of
 	<kbd>let</kbd> that has the form
-	<div class='snippet' id='javascript_77_50_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_77_47_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (let ^var^ ^bindings^ ^body^)</pre></div></div>
 	The bindings and
 	body are just as in ordinary
@@ -3530,7 +3527,7 @@ display(1);
 	named var.  For example, the iterative
 	Fibonacci procedure (section&nbsp;<REF NAME="sec:tree-recursion"><a class="superscript" id="4.1.2-sec-link-1.2.2" href="./1.2.2.html">1.2.2</a></REF>)
 	can be rewritten using named <kbd>let</kbd> as follows:
-	<div class='snippet' id='javascript_77_51_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+	<div class='snippet' id='javascript_77_48_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 (define (fib n)
   (let fib-iter ((a 1)
                  (b 0)
@@ -3559,7 +3556,7 @@ display(1);
 	this syntax, we can for example compute the greatest common divisor
 	of two numbers using the following function:
 	
-	<div class='snippet' id='javascript_77_52_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AczIBMAKAQwBpQAjASlABvXKFGgA7gAsqAGwCmoDqACEAXlW8BwsTtBUCSgHyahI3efagNlgLS8A3GfMBfUHJkBnBdvO6eV3lA7dkdfUGcASFEncJiAJzkKIjj6EIjcZ3wmNhRsbgxsPnsgA')">function gcd(a, b) {
+	<div class='snippet' id='javascript_77_49_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AczIBMAKAQwBpQAjASlABvXKFGgA7gAsqAGwCmoDqACEAXlW8BwsTtBUCSgHyahI3efagNlgLS8A3GfMBfUHJkBnBdvO6eV3lA7dkdfUGcASFEncJiAJzkKIjj6EIjcZ3wmNhRsbgxsPnsgA')">function gcd(a, b) {
     while (a !== b) {
         if(a > b) {
             a = a - b;
@@ -3579,7 +3576,7 @@ display(1);
 	    <kbd>while</kbd> loop. The
 	    <kbd>gcd</kbd> function would then
 	    look as follows:
-	    <div class='snippet' id='javascript_77_53_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuRQB3ACwEsAbAUwH0KB7egB1ABd7QAjK4gJzNasqAOy4BPUAGdWAVwAmI1pNwAzGcIDGrMvVEBzDXIAUAQwA0XAJSgA3rlAPi5anUZMjoI9YC8APlAmoACE3t5cZvaOUdGOXqB+tg5kKp6B-pzWdjHZOTmBYYEAtFwA3JG5FVEAvqBUFJI8WZXN0ZzxXKDFJmUtzVXlvdH9vZY9jrxUsryi3bhVQA')">function gcd(a, b) {
+	    <div class='snippet' id='javascript_77_50_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuRQB3ACwEsAbAUwH0KB7egB1ABd7QAjK4gJzNasqAOy4BPUAGdWAVwAmI1pNwAzGcIDGrMvVEBzDXIAUAQwA0XAJSgA3rlAPi5anUZMjoI9YC8APlAmoACE3t5cZvaOUdGOXqB+tg5kKp6B-pzWdjHZOTmBYYEAtFwA3JG5FVEAvqBUFJI8WZXN0ZzxXKDFJmUtzVXlvdH9vZY9jrxUsryi3bhVQA')">function gcd(a, b) {
     while_loop( () => a !== b,
                 () => {  if (a > b) {
                              a = a - b;
@@ -3678,7 +3675,7 @@ display(1);
 	that reverses a list, using a <kbd>for</kbd>
 	loop. 
 	
-	<div class='snippet' id='javascript_77_54_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDjQAGyYVGTDkUmyAvKBKLJAbjESCNBqG7TZZIg2YkVofptABCUFQ4B9dZMndT5ppYG2vFlYUAIZUHgE+FAJCohJxcgpKoKoADqEM3AAWTMEAJp5mgQIANAmKUdpxAL464swUZvTMiRTaNbjMbJw8kk4U3Bil2KUAzNGaQA')">function reverse(xs) {
+	<div class='snippet' id='javascript_77_51_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYAoAPDgJSgA3rlDjQAGyYVGTDkUmyAvKBKLJAbjESCNBqG7TZZIg2YkVofptABCUFQ4B9dZMndT5ppYG2vFlYUAIZUHgE+FAJCohJxcgpKoKoADqEM3AAWTMEAJp5mgQIANAmKUdpxAL464swUZvTMiRTaNbjMbJw8kk4U3Bil2KUAzNGaQA')">function reverse(xs) {
     let result = null;
     for (let current = xs; ! is_null(current); current = tail(current)) {
         result = pair(head(current), result);
@@ -3704,7 +3701,7 @@ display(1);
 	    that makes use of your function
 	    <kbd>for_loop</kbd>. Finally,
 	    install <kbd>for</kbd> loops directly
-	    in the interpreter, using a function
+	    in the evaluator, using a function
 	    <kbd>eval_for</kbd>.
 	  </LI>
 	  <LI>
@@ -3717,7 +3714,7 @@ display(1);
 	    Eva Lu Ator tries to combine 
 	    <kbd>for</kbd> loops 
 	    with lambda expressions in the following program.
-	    <div class='snippet' id='javascript_77_55_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYH1jzq6HABQAPDgEpQAb1yg5AGyYVGTDkXnKAvKBLr5AbllyCNBqCGLlZIgzPax+0AEJQVDt13z5Q67fGPfO1AKAEMqb0DxSRk5WJU1DVBtAAcwhiEhSU0APlAACyYQgBMfGwZxABp49Qp-I1AAX3rmCht6ZgSKQwagA')">function reverse_functions(xs) {
+	    <div class='snippet' id='javascript_77_52_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0AJwFMA3JhgZyYH1jzq6HABQAPDgEpQAb1yg5AGyYVGTDkXnKAvKBLr5AbllyCNBqCGLlZIgzPax+0AEJQVDt13z5Q67fGPfO1AKAEMqb0DxSRk5WJU1DVBtAAcwhiEhSU0APlAACyYQgBMfGwZxABp49Qp-I1AAX3rmCht6ZgSKQwagA')">function reverse_functions(xs) {
    let result = null;
    for (let curr = xs; ! is_null(curr); curr = tail(curr)) {
       result = pair(() => head(curr), result);
@@ -3817,19 +3814,19 @@ display(1);
 	    following programs?
 	    <UL>
 	      <LI>
-		<div class='snippet' id='javascript_77_56_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+		<div class='snippet' id='javascript_77_53_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 1; 2; 3;</pre></div></div>
 	      </LI>
 	      <LI>
-		<div class='snippet' id='javascript_77_57_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+		<div class='snippet' id='javascript_77_54_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 1; { if (true) { } else { 2; } }</pre></div></div>
 	      </LI>
 	      <LI>
-		<div class='snippet' id='javascript_77_58_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+		<div class='snippet' id='javascript_77_55_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 1; const x = 2;</pre></div></div>
 	      </LI>
 	      <LI>
-		<div class='snippet' id='javascript_77_59_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
+		<div class='snippet' id='javascript_77_56_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 1; { let x = 2; { x = x + 3; } }</pre></div></div>
 	      </LI>
 	    </UL>
@@ -3994,8 +3991,8 @@ display(1);
       <a class='footnote-number' id='footnote-7' href='#footnote-link-7' style="color:blue">[7] </a>
     <FOOTNOTE>
     In 
-	    actual JavaScript, there is are two differences between the two
-	    forms, see footnote&nbsp;<REF NAME="foot:function-decl-vs-lambda"><a class="superscript" id="4.1.2-foot-link-2" href="./1.3.2.html#footnote-2">2</a></REF>
+	    actual JavaScript, there are two differences between the two
+	    forms; see footnote&nbsp;<REF NAME="foot:function-decl-vs-lambda"><a class="superscript" id="4.1.2-foot-link-2" href="./1.3.2.html#footnote-2">2</a></REF>
 	    in chapter 1.
 	    Exercise&nbsp;<REF NAME="ex:hoisting"><a class="superscript" id="4.1.2-ex-link-4.14" href="./4.1.2.html#ex_4.14">4.14</a></REF> addresses these differences.
             
