@@ -2601,8 +2601,8 @@ M-evaluate value:
       </span>    </td>
           <td></td>
           <td><span style="color:blue">
-        JavaScript's <kbd>apply</kbd> method of
-	function objects expects arguments in a vector. (Confusingly, vectors
+        JavaScript's <kbd>apply</kbd> method 
+	expects arguments in a vector. (Confusingly, vectors
 	are called <EM>arrays</EM> in JavaScript. For more on vectors, see
         section&nbsp;<REF NAME="sec:memory-as-vectors"><a class="superscript" id="4.1.4-sec-link-5.3.1" href="./5.3.1.html">5.3.1</a></REF>.)
 	Thus, the <kbd>arglist</kbd> is transformed into 
@@ -2613,7 +2613,7 @@ function apply_in_underlying_javascript(prim, arglist) {
    const arg_array = [];               // empty vector
    let i = 0;
    while (!is_null(arglist)) {
-      arg_array[i] = head(arglist);   // vector_set (see 5.3.1)
+      arg_array[i] = head(arglist);    // vector_set (see 5.3.1)
       i = i + 1;
       arglist = tail(arglist);
    }
