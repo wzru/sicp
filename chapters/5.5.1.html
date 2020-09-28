@@ -2426,10 +2426,24 @@ function empty_instruction_sequence() {
     application, the explicit-control evaluator always saves and restores
     the <kbd>env</kbd> register around the evaluation of the
     operator, saves and restores <kbd>env</kbd> around the
-    evaluation of each operand (except the final one), saves and restores
-    <kbd>argl</kbd> around the evaluation of each operand,
+    evaluation of each
+    
+      
+      argument expression
+    
+    (except the final one), saves and restores
+    <kbd>argl</kbd> around the evaluation of each
+    
+      
+      argument expression,
+    
     and saves and restores <kbd>proc</kbd> around the
-    evaluation of the operand sequence.  For each of the following combinations,
+    evaluation of the
+    
+      
+      argument expression
+    
+    sequence.  For each of the following combinations,
     say which of these <kbd>save</kbd> and
     <kbd>restore</kbd> operations are superfluous and
     thus could be eliminated by the compiler's
