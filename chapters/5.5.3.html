@@ -2041,7 +2041,12 @@ $\langle compilation$ $of$ $function$ $call$ $with$ $given$ $target$ $and$ $link
       <kbd>compile_application</kbd>.
       
     
-    This recursively compiles the operator, to produce code that puts the
+    This recursively compiles the
+    
+      
+      function expression,
+    
+    to produce code that puts the
     
       
       function
@@ -2053,8 +2058,22 @@ $\langle compilation$ $of$ $function$ $call$ $with$ $given$ $target$ $and$ $link
       
     
     and compiles the
-    operands, to produce code that evaluates the individual operands of the
-    application.  The instruction sequences for the operands are combined
+    
+      
+      argument expressions,
+    
+    to produce code that evaluates the individual
+    
+      
+      argument expressions
+    
+    of the
+    application.  The instruction sequences for the
+    
+      
+      argument expressions
+    
+    are combined
     (by
     
       
@@ -2080,9 +2099,24 @@ $\langle compilation$ $of$ $function$ $call$ $with$ $given$ $target$ $and$ $link
       
     
     In appending the code sequences, the <kbd>env</kbd>
-    register must be preserved around the evaluation of the operator (since
-    evaluating the operator might modify <kbd>env</kbd>, which
-    will be needed to evaluate the operands), and the
+    register must be preserved around the evaluation of the
+    
+      
+      function expression
+    
+    (since
+    evaluating the
+    
+      
+      function expression
+    
+    might modify <kbd>env</kbd>, which
+    will be needed to evaluate the
+    
+      
+      argument expressions),
+    
+    and the
     
       
       
@@ -2090,7 +2124,12 @@ $\langle compilation$ $of$ $function$ $call$ $with$ $given$ $target$ $and$ $link
       
     
     register must be preserved around the
-    construction of the argument list (since evaluating the operands might
+    construction of the argument list (since evaluating the
+    
+      
+      arguments
+    
+    might
     modify
     
       
@@ -2132,7 +2171,7 @@ function compile_application(exp, target, linkage) {
     
       
       
-	argument
+	argument expression
       
     
     into
@@ -2188,7 +2227,7 @@ assign("argl", list(op("pair"), reg("val"), reg("argl")));</kbd>
     
       
       
-	subsequent operand evaluations).
+	subsequent argument evaluation).
       
     
   </p></div>
@@ -2196,7 +2235,12 @@ assign("argl", list(op("pair"), reg("val"), reg("argl")));</kbd>
   <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
     Compiling this argument code is a bit tricky, because of the special
-    treatment of the first operand to be evaluated and the need to preserve
+    treatment of the first
+    
+      
+      argument expression
+    
+    to be evaluated and the need to preserve
     <kbd>argl</kbd> and <kbd>env</kbd> in
     different places. The
     
@@ -2208,8 +2252,17 @@ assign("argl", list(op("pair"), reg("val"), reg("argl")));</kbd>
       
       function
     
-    takes as arguments the code that evaluates the individual operands.
-    If there are no operands at all, it simply emits the instruction
+    takes as arguments the code that evaluates the individual
+    
+      
+      argument expressions.
+    
+    If there are no
+    
+      
+      argument expressions
+    
+    at all, it simply emits the instruction
     <div class='snippet' id='javascript_119_2_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 assign(argl, constant(null));</pre></div></div>
   </p></div>
@@ -2226,7 +2279,11 @@ assign(argl, constant(null));</pre></div></div>
     last argument, and appends code that evaluates the rest of the arguments and
     adjoins them to <kbd>argl</kbd> in succession.  In order
     to process the arguments from last to first, we must reverse the list of
-    operand code sequences from the order supplied by
+    
+      
+      argument
+    
+    code sequences from the order supplied by
     
       
       <kbd>compile_application</kbd>.
@@ -2596,7 +2653,12 @@ function compile_function_call(target, linkage) {
     exactly the code our compiler will generate.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
     Usually, however, the target is <kbd>val</kbd> (the only
     time the compiler specifies a different register is when targeting the
-    evaluation of an operator to
+    evaluation of
+    
+      
+      a function expression
+    
+    to
     
       
       

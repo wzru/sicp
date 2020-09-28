@@ -2057,7 +2057,12 @@ $\langle compilation$ $of$ $function$ $call$ $with$ $given$ $target$ $and$ $link
       <span style="color:blue"><kbd>compile_application</kbd>.
       </span>
     
-    This recursively compiles the operator, to produce code that puts the
+    This recursively compiles the
+    
+      <span style="color:green">operator,</span>
+      <span style="color:blue">function expression,</span>
+    
+    to produce code that puts the
     
       <span style="color:green">procedure</span>
       <span style="color:blue">function</span>
@@ -2069,8 +2074,22 @@ $\langle compilation$ $of$ $function$ $call$ $with$ $given$ $target$ $and$ $link
       </span>
     
     and compiles the
-    operands, to produce code that evaluates the individual operands of the
-    application.  The instruction sequences for the operands are combined
+    
+      <span style="color:green">operands,</span>
+      <span style="color:blue">argument expressions,</span>
+    
+    to produce code that evaluates the individual
+    
+      <span style="color:green">operands</span>
+      <span style="color:blue">argument expressions</span>
+    
+    of the
+    application.  The instruction sequences for the
+    
+      <span style="color:green">operands</span>
+      <span style="color:blue">argument expressions</span>
+    
+    are combined
     (by
     
       <span style="color:green"><kbd>construct-arglist</kbd>)</span>
@@ -2096,9 +2115,24 @@ $\langle compilation$ $of$ $function$ $call$ $with$ $given$ $target$ $and$ $link
       </span>
     
     In appending the code sequences, the <kbd>env</kbd>
-    register must be preserved around the evaluation of the operator (since
-    evaluating the operator might modify <kbd>env</kbd>, which
-    will be needed to evaluate the operands), and the
+    register must be preserved around the evaluation of the
+    
+      <span style="color:green">operator</span>
+      <span style="color:blue">function expression</span>
+    
+    (since
+    evaluating the
+    
+      <span style="color:green">operator</span>
+      <span style="color:blue">function expression</span>
+    
+    might modify <kbd>env</kbd>, which
+    will be needed to evaluate the
+    
+      <span style="color:green">operands),</span>
+      <span style="color:blue">argument expressions),</span>
+    
+    and the
     
       <span style="color:green">
 	<kbd>proc</kbd>
@@ -2108,7 +2142,12 @@ $\langle compilation$ $of$ $function$ $call$ $with$ $given$ $target$ $and$ $link
       </span>
     
     register must be preserved around the
-    construction of the argument list (since evaluating the operands might
+    construction of the argument list (since evaluating the
+    
+      <span style="color:green">operands</span>
+      <span style="color:blue">arguments</span>
+    
+    might
     modify
     
       <span style="color:green">
@@ -2169,7 +2208,7 @@ function compile_application(exp, target, linkage) {
     operand
       </span>
       <span style="color:blue">
-	argument
+	argument expression
       </span>
     
     into
@@ -2238,7 +2277,7 @@ assign("argl", list(op("pair"), reg("val"), reg("argl")));</kbd>
 	operand evaluation except the last (for use by
       </span>
       <span style="color:blue">
-	subsequent operand evaluations).
+	subsequent argument evaluation).
       </span>
     
   </p></div>
@@ -2246,7 +2285,12 @@ assign("argl", list(op("pair"), reg("val"), reg("argl")));</kbd>
   <div class='permalink'>
 <a name='p6' class='permalink'></a><p>
     Compiling this argument code is a bit tricky, because of the special
-    treatment of the first operand to be evaluated and the need to preserve
+    treatment of the first
+    
+      <span style="color:green">operand</span>
+      <span style="color:blue">argument expression</span>
+    
+    to be evaluated and the need to preserve
     <kbd>argl</kbd> and <kbd>env</kbd> in
     different places. The
     
@@ -2258,8 +2302,17 @@ assign("argl", list(op("pair"), reg("val"), reg("argl")));</kbd>
       <span style="color:green">procedure</span>
       <span style="color:blue">function</span>
     
-    takes as arguments the code that evaluates the individual operands.
-    If there are no operands at all, it simply emits the instruction
+    takes as arguments the code that evaluates the individual
+    
+      <span style="color:green">operands.</span>
+      <span style="color:blue">argument expressions.</span>
+    
+    If there are no
+    
+      <span style="color:green">operands</span>
+      <span style="color:blue">argument expressions</span>
+    
+    at all, it simply emits the instruction
     <table width="100%">
           <colgroup><col width="48%"><col width="52%"></colgroup>
           
@@ -2282,7 +2335,11 @@ assign(argl, constant(null));</pre></div></div></td></tr></table>
     last argument, and appends code that evaluates the rest of the arguments and
     adjoins them to <kbd>argl</kbd> in succession.  In order
     to process the arguments from last to first, we must reverse the list of
-    operand code sequences from the order supplied by
+    
+      <span style="color:green">operand</span>
+      <span style="color:blue">argument</span>
+    
+    code sequences from the order supplied by
     
       <span style="color:green"><kbd>compile-application</kbd>.</span>
       <span style="color:blue"><kbd>compile_application</kbd>.
@@ -2731,7 +2788,12 @@ function compile_function_call(target, linkage) {
     exactly the code our compiler will generate.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
     Usually, however, the target is <kbd>val</kbd> (the only
     time the compiler specifies a different register is when targeting the
-    evaluation of an operator to
+    evaluation of
+    
+      <span style="color:green">an operator</span>
+      <span style="color:blue">a function expression</span>
+    
+    to
     
       <span style="color:green">
     <kbd>proc</kbd>),
