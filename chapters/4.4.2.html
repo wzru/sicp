@@ -2152,13 +2152,13 @@ Acknowledgments
     For example, using the pattern
     
       
-      <kbd>list(x, y, z)</kbd>
+      <kbd>list(x, y, x)</kbd>
       
     
     to match
     
       
-      <kbd>list("a", "b", "c")</kbd>
+      <kbd>list("a", "b", "a")</kbd>
       
     
     given an empty frame will return a frame specifying that
@@ -2328,10 +2328,6 @@ and(can_do_job(x, list("computer", "programmer", "trainee")),
     pattern
     <div class='snippet' id='javascript_93_3_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 can_do_job(x, list("computer", "programmer", "trainee"))</pre></div></div>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p12' class='permalink'></a><p>
     This produces a stream of frames, each of which contains a binding for
     
       
@@ -2385,7 +2381,7 @@ job(person, x)</pre></div></div>
   </p></div>
 
   <div class='permalink'>
-<a name='p13' class='permalink'></a><p>
+<a name='p12' class='permalink'></a><p>
     
     
       
@@ -2419,7 +2415,7 @@ job(person, x)</pre></div></div>
   </p></div>
 
   <div class='permalink'>
-<a name='p14' class='permalink'></a><p>
+<a name='p13' class='permalink'></a><p>
     
     Even from this high-level description, it is apparent that the
     processing of compound queries can be slow.
@@ -2434,7 +2430,7 @@ job(person, x)</pre></div></div>
   </p></div>
 
   <div class='permalink'>
-<a name='p15' class='permalink'></a><p>
+<a name='p14' class='permalink'></a><p>
     
     From the stream-of-frames viewpoint, the <kbd>not</kbd> of
     some query acts as a filter that removes all frames for which the query can
@@ -2492,7 +2488,7 @@ and(supervisor(x, y),
   </p></div>
 
   <div class='permalink'>
-<a name='p16' class='permalink'></a><p>
+<a name='p15' class='permalink'></a><p>
     
     The
     
@@ -2521,7 +2517,7 @@ and(supervisor(x, y),
   
   
   <div class='permalink'>
-<a name='p17' class='permalink'></a><p>
+<a name='p16' class='permalink'></a><p>
     In order to handle rules in the query language, we must be able to
     find the rules whose conclusions match a given query pattern.  Rule
     conclusions are like assertions except that they can contain
@@ -2531,7 +2527,7 @@ and(supervisor(x, y),
   </p></div>
 
   <div class='permalink'>
-<a name='p18' class='permalink'></a><p>
+<a name='p17' class='permalink'></a><p>
     A unifier takes two patterns, each containing constants and variables,
     and determines whether it is possible to assign values to the
     variables that will make the two patterns equal.  If so, it returns a
@@ -2608,7 +2604,7 @@ and(supervisor(x, y),
   </p></div>
 
   <div class='permalink'>
-<a name='p19' class='permalink'></a><p>
+<a name='p18' class='permalink'></a><p>
     The unification algorithm is the most technically difficult part of
     the query system.  With complex patterns, performing unification may
     seem to require deduction.  To unify
@@ -2679,10 +2675,6 @@ and(supervisor(x, y),
 	
       
     
-  </p></div>
-
-  <div class='permalink'>
-<a name='p20' class='permalink'></a><p>
     These equations imply that
     
       
@@ -2715,7 +2707,7 @@ and(supervisor(x, y),
   </p></div>
 
   <div class='permalink'>
-<a name='p21' class='permalink'></a><p>
+<a name='p19' class='permalink'></a><p>
     
     
     In a successful pattern match, all pattern variables become bound, and
@@ -2727,7 +2719,7 @@ and(supervisor(x, y),
   </p></div>
 
   <div class='permalink'>
-<a name='p22' class='permalink'></a><p>
+<a name='p20' class='permalink'></a><p>
     Consider the unification of
     
       
@@ -2846,16 +2838,12 @@ and(supervisor(x, y),
 
   
   <div class='permalink'>
-<a name='p23' class='permalink'></a><p>
+<a name='p21' class='permalink'></a><p>
     Unification is the key to the component of the query system that makes
     inferences from rules. To see how this is accomplished, consider
     processing a query that involves applying a rule, such as
     <div class='snippet' id='javascript_93_7_div'><div class='pre-prettyprint'><pre class='prettyprint no-eval'>
 lives_near(x, list("Hacker", "Alyssa", "P"))</pre></div></div>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p24' class='permalink'></a><p>
     To process this query, we first use the ordinary pattern-match
     
       
@@ -2909,7 +2897,7 @@ rule(lives_near(person_1, person_2),
   </p></div>
 
   <div class='permalink'>
-<a name='p25' class='permalink'></a><p>
+<a name='p22' class='permalink'></a><p>
     In general, the query evaluator uses the following method to apply a
     rule when trying to establish a query pattern in a frame that
     specifies bindings for some of the pattern variables:
@@ -2927,7 +2915,7 @@ rule(lives_near(person_1, person_2),
   </p></div>
 
   <div class='permalink'>
-<a name='p26' class='permalink'></a><p>
+<a name='p23' class='permalink'></a><p>
     
     Notice how similar this is to the method for applying a
     
@@ -2968,10 +2956,6 @@ rule(lives_near(person_1, person_2),
 	
       </LI>
     </UL>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p27' class='permalink'></a><p>
     The similarity between the two evaluators should come as no surprise.
     Just as
     
@@ -3003,7 +2987,7 @@ rule(lives_near(person_1, person_2),
 
   
   <div class='permalink'>
-<a name='p28' class='permalink'></a><p>
+<a name='p24' class='permalink'></a><p>
     We saw earlier in this section how to evaluate simple queries in the
     absence of rules.  Now that we have seen how to apply rules, we can
     describe how to evaluate simple queries by using both rules and
@@ -3011,7 +2995,7 @@ rule(lives_near(person_1, person_2),
   </p></div>
 
   <div class='permalink'>
-<a name='p29' class='permalink'></a><p>
+<a name='p25' class='permalink'></a><p>
     Given the query pattern and a stream of frames, we produce, for each
     frame in the input stream, two streams:
     <UL>
@@ -3024,10 +3008,6 @@ rule(lives_near(person_1, person_2),
       possible rules (using the unifier).<a class='superscript' id='footnote-link-7' href='#footnote-7'>[7]</a>
       </LI>
     </UL>
-  </p></div>
-
-  <div class='permalink'>
-<a name='p30' class='permalink'></a><p>
     Appending these two streams produces a stream that consists of all the
     ways that the given pattern can be satisfied consistent with the
     original frame.  These streams (one for each frame in the input
@@ -3046,7 +3026,7 @@ rule(lives_near(person_1, person_2),
 
   
   <div class='permalink'>
-<a name='p31' class='permalink'></a><p>
+<a name='p26' class='permalink'></a><p>
     Despite the complexity of the underlying matching operations, the
     system is organized much like an evaluator for any language.  The
     
@@ -3111,7 +3091,12 @@ rule(lives_near(person_1, person_2),
       
       function
     
-    for each special form
+    for each
+    
+      
+      syntactic
+    
+    form
     (<kbd>and</kbd>, <kbd>or</kbd>,
     <kbd>not</kbd>, and
     
@@ -3125,7 +3110,7 @@ rule(lives_near(person_1, person_2),
   </p></div>
 
   <div class='permalink'>
-<a name='p32' class='permalink'></a><p>
+<a name='p27' class='permalink'></a><p>
     
     
     The driver loop, which is analogous to the
@@ -3158,7 +3143,7 @@ rule(lives_near(person_1, person_2),
   </p></div>
 
   <div class='permalink'>
-<a name='p33' class='permalink'></a><p>
+<a name='p28' class='permalink'></a><p>
     
     
     The driver also checks for the special command
