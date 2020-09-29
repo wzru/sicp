@@ -2018,9 +2018,12 @@ Acknowledgments
 	the evaluator. In this example, the program parts
 	<kbd>"size = 2"</kbd> and
 	<kbd>"5 * size"</kbd> look similar, but carry
-	very different meaning. The textual representation of programs provides
-	a level of abstraction that is too low for the evaluator. In this section, we
-	describe a function 
+	very different meaning. Abstract syntax functions such as
+	<kbd>declaration_value_expression</kbd> would be
+	difficult
+	and error-prone to implement by examining the program text.
+	In this section, we therefore
+	introduce a function 
 	<kbd>parse</kbd> that translates program text
 	to a <EM>tagged list representation</EM>, reminiscent of
 	the tagged data of section&nbsp;<REF NAME="sec:manifest-types"><a class="superscript" id="4.1.2-sec-link-2.4.2" href="./2.4.2.html">2.4.2</a></REF>. We will see
@@ -2511,7 +2514,7 @@ $\ll \textbf{\texttt{if}}\ \texttt{(} \textit{predicate} \texttt{)}\ \textit{con
 
 	The selectors 
 	<kbd>conditional_predicate</kbd>,
-	<kbd>conditional_consequent</kbd> and
+	<kbd>conditional_consequent</kbd>, and
 	<kbd>conditional_alternative</kbd>
 	can be applied to both kinds
 	of conditionals, and the syntax predicate
@@ -2724,14 +2727,15 @@ function is_last_statement(stmts) {
 	
 	The syntax predicate
 	<kbd>is_declaration</kbd>
-	returns true for both kinds of declaration, and
+	returns true for all three kinds of declaration, and
 	the selectors 
 	<kbd>declaration_symbol</kbd> and
 	<kbd>declaration_value_expression</kbd> apply to both
 	kinds.
-	<div class='snippet' id='javascript_77_31_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFl5uMgE2IzYkkj8nF209Q2NTc0sWdi4+QWF8gMVQACJxEkZ2eWY0jKyc2hIm7QAfIf0S8ZSInn4hdvrneSUmgDcsqjYAIwF1bszs3MHQEdjCUkp+0F3e3OZGAE8JDZoBecLdMdKzCy9uHxF2Kgvby+AEvcT+BauTTQ6JxBLnZJXfb9ZirAREdTcAAeUhMjEY-VegXehhMX3owP+theoKJUM0sPwrXaoAkdy66T2fTot3YFG4EhcoCCoBsRkY3BETW2FFAWOFoAwkUG0V4TCkmTuIisSO5eTZHJ6yJ57RyAsKDNwasYGrYWt1N3uj2eIgNDpRpv5gsCluttvtnOuKLRGOY2Nx3HxhLdgeNJF5Zu9UMiQA')">function is_declaration(component) {
+	<div class='snippet' id='javascript_77_31_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajoGFl5uMgE2IzYkkj8nF209Q2NTc0sWdi4+QWF8gMVQACJxEkZ2eWY0jKyc2hIm7QAfIf0S8ZSInn4hdvrneSUmgDcsqjYAIwF1bszs3MHQEbGJwysq6dq58X8FxqaEyn6u9L2+ukHouMfc0F3e3LMRgATwkGxoAnmhV0JxMZgsXm4PhE7CokO8vlRkJuBUCmnxX0IpCeyX++2eqwERHU3AAHlITIxGP0oYEYYY4eVEcisSjbNjHA18ZpCbhWu1QBJgS8euS6ED2BRuBIXKAgqAbEZGNwRE1thRQLS1aAMJFPrheEwpJlgSIrGT3nkpTK3oD2jllYURRarTaRA63aDwZDnQHnu6lSq8dFLYxrWxbWH5ZTqcw6QzuEyWaHXgDw4rPdGgA')">function is_declaration(component) {
     return is_tagged_list(component, "constant_declaration") ||
            is_tagged_list(component, "variable_declaration") ||
+           is_tagged_list(component, "function_declaration");
 }
 function declaration_symbol(component) {
    return head(tail(head(tail(component))));
@@ -2904,11 +2908,11 @@ $\ll \textbf{\texttt{function}}\ \textit{name} \texttt{(}\textit{parameter}_1\te
                };
 </pre></div></div>
      The evaluator uses 
-	<kbd>function_declaration_to_constant_declaration</kbd>
+	<kbd>function_decl_to_constant_decl</kbd>
 	to transform function declarations into constant declarations.
-	<div class='snippet' id='javascript_77_38_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH1jzq7mATAUzIBsAhgCdBHEgAoyNALYAHOjxIUAlKADeASFA7QuXaGE8KRYfSbMKggObWeXZvyYUpshSSUUANKABEbSloSbj4hUXFfFQBuXABfQlJAulAA8RCBETEg5hJBGR5XeUVlNXV9XSMTM1AnRgpmIwJC908fDBVouIT2IJTEtN4M8Oy5TPyKHmFGZuLVDXKdStN6WvrGmY9lH2wOmPjU3oPOQbCszgAjGi4ATw3PUoXDY2Wa5waeJukize9QAGZdl0jvRgelTmkKDRmNISHVBMowZlxHcSvMDEtqjJBABrHjQuhwhEnJFBCSPAwUnSg4nDTi5fIo1RecmUgxY3GOPLnLiCZg8AAeciMjEYpJZrMp1NCJM4o1E40m0y+LRKzIl6qp-WyNLOwUuN0ZgNiQA')">function function_declaration_to_constant_declaration(component) {
+	<div class='snippet' id='javascript_77_38_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0CYBQuAzAVwDsBjAFwEsB7E0KgZwH1jzq7mATAUzIBsAhgCdBHEgAoyNALYAHOjxIUAlKADeASFA7QuXaGE8KRYfSbMKggObWeXZvyYUpshSSUUANKABEbSloSbj4hUXFfFQBuXABfQlJAulAA8RCBETEg5kYATxkAIxp+V3lFZTV1fV0jEzNQPMLi5hoCZhJBGR4JJ0YKZiMCUvdPHwwVCZj41KCUxLTeDPDsuUyuih5hRmHy1Q1qnVrTel7+wZ2PZR9sSbiE9lmZzkWwrM4irlyLz0qDw2NjqBTgMeENpGVLt5QABmW7TeaPBHPUKWGjMaQkPqCZTpErgkYVfYGI71GSCADWPHRdCxOJemXEEj+BhZOiewXpy04HS63wqXmZrIMZMpjk6BS4gmYPAAHnIjIxGEEmULVQZ2biGSs1sZNtt8bsVAK1SaNZy3sEPl8DZC4UA')">function function_decl_to_constant_decl(component) {
     return make_constant_declaration(
-               function_declaration_name(component),
+               make_name(function_declaration_symbol(component)),
                make_lambda_expression(
                    function_declaration_parameters(component),
                    function_declaration_body(component));
@@ -3678,7 +3682,7 @@ display(1);
 	      
 	Another kind of loop available in JavaScript is the
 	<kbd>for</kbd> loop, which combines
-	an initialization, a predicate, an update statement and a body in a single
+	an initialization, a predicate, an update statement, and a body in a single
 	construct. Similar to the <kbd>while</kbd>
 	loop, the body is repeatedly executed as long as the predicate holds. After
 	every execution, the update statement is evaluated. Here is a function

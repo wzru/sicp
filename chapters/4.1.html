@@ -2129,17 +2129,24 @@ Acknowledgments
     
       
       
-	Running the evaluator as a program—discussed in
-	section&nbsp;<REF NAME="sec:running-eval"><a class="superscript" id="4.1-sec-link-4.1.4" href="./4.1.4.html">4.1.4</a></REF>— will require
-	a concrete representation of the interpreted language.
-	We will use
-	
-	data abstraction to isolate the evaluator from that representation.
+	The implementation of the evaluator will depend upon functions that
+	define the <EM>syntax</EM> of the expressions to be evaluated.  
+	We will use data abstraction to make the evaluator independent of the
+	representation of the language.
+	For example, rather than committing
+	to a choice that an assignment statement is to be represented by a 
+	string beginning with a name followed by
+	<kbd>=</kbd>, we use an abstract predicate
+	<kbd>is_assignment</kbd> to test for an
+	assignment, and we use abstract
+	selectors <kbd>assignment_variable</kbd> and
+	<kbd>assignment_value</kbd> to
+	access the parts of an assignment.
 	The data abstraction layers presented in
 	section&nbsp;<REF NAME="sec:representing-expressions"><a class="superscript" id="4.1-sec-link-4.1.2" href="./4.1.2.html">4.1.2</a></REF>
-	will allow the evaluator to remain independent of concrete syntactic issues,
-	such as the keywords of the interpreted language, and from 
-	the choice of data structures that represent the program components.
+	will allow the evaluator to remain independent of concrete syntactic
+	issues, such as the keywords of the interpreted language, and of the
+	choice of data structures that represent the program components.
       
     
     There are also
@@ -2294,12 +2301,11 @@ Acknowledgments
 	  
 	  functions.
 	
-	This involves keeping track of
+	This involves 
 	
 	  
 	  
-	    lambda expressions, knowing how to use these lambda expressions
-	in evaluating other
+	    knowing how to use these functions in evaluating 
 	  
 	
 	expressions, and providing a mechanism that enables
