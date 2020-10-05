@@ -2201,13 +2201,13 @@ Acknowledgments
 	immediately invoked lambda expressions
 	(see section&nbsp;<REF NAME="sec:env-local-state"><a class="superscript" id="4.1.6-sec-link-3.2.3" href="./3.2.3.html">3.2.3</a></REF>). For example,
 	the lambda expression
-	<kbd class='snippet'>( $vars$ ) => {
+	<kbd class='snippet'>( $params$ ) => {
     let u = $e_1$;
     let v = $e_2$;
     $statements$
 }</kbd>
 	would be transformed into
-	<kbd class='snippet'>( $vars$ ) => {
+	<kbd class='snippet'>( $params$ ) => {
     return ( (u, v) => {
                u = $e_1$;
                v = $e_2$;
@@ -2322,7 +2322,7 @@ Acknowledgments
           <td><span style="color:blue">
 	Consider an alternative strategy for scanning out declarations
 	that translates the example in the text to
-	<kbd class='snippet'>( $vars$ ) => {
+	<kbd class='snippet'>( $params$ ) => {
     return ( (u, v) => {
                return ( (a, b) => {
                           u = a;
@@ -2420,7 +2420,7 @@ Acknowledgments
 	in many cases by changing the evaluation of constant and variable
 	declaration such that they add to the innermost
 	frame of the given environment a binding of the declared name to
-	the result of evaluating the expression on the right hand side of the
+	the result of evaluating the expression on the right-hand side of the
 	declaration.
 	<OL type="a">
 	  <LI>
@@ -2518,7 +2518,7 @@ Acknowledgments
 	as local names in the body block of any function. With this restriction,
 	can you achieve the scoping for local names
 	in lambda expressions of 
-	section&nbsp;&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>,
+	section&nbsp;&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.6-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF>
 	without constructing the extra frame?
       </span></td></tr></table>
   
@@ -2797,10 +2797,10 @@ f(10);
         (is_even, is_odd) => 
            is_even(is_even, is_odd, x)
       )
-      ( (ev, od, n) =>
-           n === 0 ? true : od($\langle ??\rangle$, $\langle ??\rangle$, $\langle ??\rangle$),
-        (ev, od, n) =>
-           n === 0 ? false : ev($\langle ??\rangle$, $\langle ??\rangle$, $\langle ??\rangle$) 
+      ( (is_ev, is_od, n) =>
+           n === 0 ? true : is_od($\langle ??\rangle$, $\langle ??\rangle$, $\langle ??\rangle$),
+        (is_ev, is_od, n) =>
+           n === 0 ? false : is_ev($\langle ??\rangle$, $\langle ??\rangle$, $\langle ??\rangle$) 
       );
 }</kbd>
 	  </LI>

@@ -2062,7 +2062,7 @@ Acknowledgments
     primitive
     
       <span style="color:green">procedures</span>
-      <span style="color:blue">functions</span>
+      <span style="color:blue">functions and operators</span>
     
     that can appear in the expressions we will be evaluating.  
     <table width="100%">
@@ -2216,7 +2216,7 @@ function primitive_implementation(fun) {
        $\langle more$ $primitive$ $functions \rangle$
        );
 const primitive_function_symbols =
-        map(head, primitive_functions);
+        map(f => head(f), primitive_functions);
 const primitive_function_objects =
         map(f => list("primitive", head(tail(f))),
             primitive_functions);
@@ -2247,7 +2247,7 @@ const primitive_function_objects =
 const primitive_constant_symbols =
         map(c => head(c), primitive_constants);
 const primitive_constant_values =
-        map(f => head(tail(f)), primitive_constants);
+        map(c => head(tail(c)), primitive_constants);
 </pre></div></div>
 
 	

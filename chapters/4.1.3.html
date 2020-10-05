@@ -2008,8 +2008,8 @@ Acknowledgments
 	In order to limit the predicate expressions of conditionals to proper
 	predicates (expressions that evaluate to a boolean value) as we do throughout
 	this book, we insist here that the function 
-	<kbd>is_truthy</kbd> only gets applied to
-	boolean values, and we only accept the boolean value
+	<kbd>is_truthy</kbd> gets applied only to
+	boolean values, and we accept only the boolean value
 	<kbd>true</kbd> to be truthy.<a class='superscript' id='footnote-link-1' href='#footnote-1'>[1]</a>
       
     
@@ -2146,11 +2146,11 @@ function function_environment(f) {
 <a name='p5' class='permalink'></a><p>
 	We saw in section&nbsp;<REF NAME="sec:core-of-evaluator"><a class="superscript" id="4.1.3-sec-link-4.1.1" href="./4.1.1.html">4.1.1</a></REF> that the
 	evaluation of sequential composition terminates when a return statement
-	is encountered, and that the evaluation of function applications needs
+	is encountered, and that the evaluation of a function application needs
 	to return the value <kbd>undefined</kbd> if
 	the evaluation of the function body does not encounter a
-	return statement. In order to recognize the evaluation of return
-	statements, we introduce <EM>return values</EM> as evaluator data
+	return statement. In order to recognize that a value resulted from a
+	return statement, we introduce <EM>return values</EM> as evaluator data
 	structures.
 	<div class='snippet' id='javascript_78_3_div'><div class='pre-prettyprint'><pre class='prettyprint eval' title='Evaluate Javascript program'onclick="window.open('http://source-academy.github.io/playground#chap=4&prgrm=PTAEGUEkGEAVQFLlAFgHQEY0GYBQuAzAVwDsBjAFwEsB7E0KgZwH0KBDAcw4FMATZgDZMKACjI0AtgAc63EhQA0oCgAturTgEpQAb1ygDoAE7cKRI-SbMpbKkbGSZJORW0AyN6DVteD6bPltAF4Q5TUNDgBuXABffGJyajpQOTIBGkYqEg5mOQA3OzoJFxF87T1DY1NzenYqAVKSPM1ouITKWnoCO0YKZgIjNmLG5t19QxMzCy9uHxGW2NxxEl6w9W5pCgBPXKbCkmL5UCDQEiIBAWjCUg7kiTYAa3VJmuY8tgEibgd5F3LxgwvaZCXoiABEQJIbw+XzBSmWFD+rWuiU6DBYkOhn2+72x-0qkPRER4-BBolxXyUEOqFixsIWbRuSXomIp6gRJTZ+ImNPo3l8dQaXIZ+GWqwkO1ZMO4x1A9yezCl2JEKAATAteEwpAI2FsRFYlV8RBLFby6dxNBqtTq9Yb2XREfJjZKzcLIkA')">function make_return_value(content) {
     return list("return_value", content);
@@ -2183,7 +2183,7 @@ function return_value_content(value) {
     sequence of frames, where each frame is a table of bindings that associate
     
       
-      names
+      symbols
     
     with their corresponding values.  We use the following operations for
     manipulating environments:
@@ -2589,10 +2589,10 @@ function frame_values(frame) {
 	    <kbd>"*unassigned*"</kbd>.
 	  </LI>
 	  <LI>
-	    Similarly, we must not assign a new value to a variable, if
+	    Similarly, we must not assign a new value to a variable if
 	    we have not evaluated its <kbd>let</kbd>
 	    declaration yet. Change the evaluation of assignment
-	    such that any
+	    such that
 	    assignment to a variable declared with
 	    <kbd>let</kbd> leads to an error 
 	    in this case.
@@ -2628,7 +2628,7 @@ function frame_values(frame) {
 	    <kbd>var</kbd> is the entire body of the
 	    immediately surrounding function declaration or lambda expression,
 	    rather than just the immediately enclosing block. Modify
-	    <kbd>scan_out_names</kbd> and 
+	    <kbd>scan_out_declarations</kbd> and 
 	    <kbd>eval_block</kbd> such that
 	    names declared with <kbd>const</kbd> and
 	    <kbd>let</kbd> follow the scoping rules
