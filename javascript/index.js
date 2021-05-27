@@ -3,7 +3,6 @@ import fse from "fs-extra";
 import util from "util";
 import path from "path";
 
-import xpath from "xpath";
 import { DOMParser as dom } from "xmldom";
 
 const readdir = util.promisify(fs.readdir);
@@ -26,10 +25,7 @@ $postscript_mode = 0;`;
 import { switchTitle } from "./htmlContent";
 import { switchParseFunctionsHtml, parseXmlHtml } from "./parseXmlHtml";
 import { setupSnippetsHtml } from "./processingFunctions/processSnippetHtml";
-import {
-  setupReferences,
-  referenceStore
-} from "./processingFunctions/processReferenceHtml";
+import { setupReferences } from "./processingFunctions/processReferenceHtml";
 import { generateTOC, sortTOC, indexHtml } from "./generateTocHtml";
 export let allFilepath = [];
 export let tableOfContent = {};
@@ -38,6 +34,7 @@ export let tableOfContent = {};
 import { parseXmlJs } from "./parseXmlJs";
 import { setupSnippetsJs } from "./processingFunctions/processSnippetJs";
 import { setupSnippetsEpub } from "./processingFunctions/processSnippetEpub";
+import { getAnswers } from "./processingFunctions/processExercisePdf";
 
 let parseType;
 let version;
@@ -270,7 +267,17 @@ async function main() {
     await recursiveTranslateXml("", "setupSnippet");
     console.log("setup snippets done\n");
 
-    recursiveTranslateXml("", "parseXml");
+    await recursiveTranslateXml("", "parseXml");
+
+    // Dump all the answers somewhere
+    // This must be called efter the recursiveTranslateXml has collected all the answers
+    const answerStream = fs.createWriteStream(
+      path.join(outputDir, "answers.tex")
+    );
+    answerStream.once("open", fd => {
+      answerStream.write(getAnswers().join("\n\n%-----\n\n"));
+      answerStream.end();
+    });
   } else if (parseType == "web") {
     version = process.argv[3];
 

@@ -1,5 +1,5 @@
-import { recursiveProcessTextLatex, processTextLatex } from "../parseXmlLatex";
-import { getChildrenByTagName, ancestorHasTag } from "../utilityFunctions";
+import { recursiveProcessTextLatex } from "../parseXmlLatex";
+import { getChildrenByTagName } from "../utilityFunctions";
 
 let unlabeledEx = 0;
 const processExercisePdf = (node, writeTo) => {
@@ -15,26 +15,33 @@ const processExercisePdf = (node, writeTo) => {
     }
   }
 
-  writeTo.push(
-    "\n\\stepcounter{ExerciseDisplayNumber}\n\\begin{Exercise}\\begin{small}"
-  );
+  writeTo.push("\n\\begin{Exercise}");
   if (solution && !label) {
     writeTo.push("\\label{" + labelName + "}");
   }
-  writeTo.push("\\noindent%\n");
+  // writeTo.push("\\noindent%\n");
 
-  recursiveProcessTextLatex(node.firstChild, writeTo);
+  const text = [];
+  recursiveProcessTextLatex(node.firstChild, text);
+  writeTo.push(text.join("").trim());
+
   if (solution) {
     //  include the following line for a clickable "Solution"
     //  writeTo.push("\\hfill{\\hyperref[" + labelName + "-Answer]{Solution}}\\\\");
   }
-  writeTo.push("\n\\end{small}\\end{Exercise}\n");
+  writeTo.push("\n\\end{Exercise}\n");
 
   if (solution) {
-    writeTo.push("\n\\begin{Answer}[ref={" + labelName + "}]\n");
-    recursiveProcessTextLatex(solution.firstChild, writeTo);
-    writeTo.push("\n\\end{Answer}\n");
+    /// TODO: change this format
+    answers.push("\n\\begin{Answer}[ref={" + labelName + "}]\n");
+    recursiveProcessTextLatex(solution.firstChild, answers);
+    answers.push("\n\\end{Answer}\n");
   }
 };
 
 export default processExercisePdf;
+const answers = [];
+
+export const getAnswers = () => {
+  return answers;
+};

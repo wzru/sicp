@@ -22,10 +22,11 @@
     without seriously violating our module boundaries.
   </TEXT>
   <TEXT>
+    One way to handle
     <INDEX>operation<SUBINDEX>cross-type</SUBINDEX></INDEX>
     <INDEX>cross-type operations</INDEX>
     <INDEX>type(s)<SUBINDEX>cross-type operations</SUBINDEX></INDEX>
-    One way to handle cross-type operations is to design a different
+    cross-type operations is to design a different
     <SPLITINLINE>
       <SCHEME>procedure</SCHEME>
     <JAVASCRIPT>function</JAVASCRIPT></SPLITINLINE>
@@ -38,7 +39,7 @@
     </SPLITINLINE>
     for adding complex numbers to ordinary numbers and installs this in the
     table using the tag
-    <SPLITINLINE><SCHEME><SCHEMEINLINE>(complex scheme-number)</SCHEMEINLINE></SCHEME><JAVASCRIPT><JAVASCRIPTINLINE>list("complex","javascript_number")</JAVASCRIPTINLINE></JAVASCRIPT></SPLITINLINE>:<FOOTNOTE>We
+    <SPLITINLINE><SCHEME><SCHEMEINLINE>(complex scheme-number)</SCHEMEINLINE></SCHEME><JAVASCRIPT><JAVASCRIPTINLINE>list("complex", "javascript_number")</JAVASCRIPTINLINE></JAVASCRIPT></SPLITINLINE>:<FOOTNOTE>We
     also have to supply an almost identical
     <SPLITINLINE>
       <SCHEME>procedure</SCHEME>
@@ -48,7 +49,7 @@
     <SPLITINLINE>
       <SCHEME><SCHEMEINLINE>(scheme_number complex)</SCHEMEINLINE>.</SCHEME>
       <JAVASCRIPT>
-	<JAVASCRIPTINLINE>list("javascript_number","complex")</JAVASCRIPTINLINE>.
+	<JAVASCRIPTINLINE>list("javascript_number", "complex")</JAVASCRIPTINLINE>.
       </JAVASCRIPT>
     </SPLITINLINE></FOOTNOTE>
     <SNIPPET CHAP="4" HIDE="yes">
@@ -61,6 +62,7 @@ add(c, n);
       </JAVASCRIPT>
     </SNIPPET>
     <SNIPPET CHAP="4" EVAL="no">
+      <INDEX><DECLARATION>add_complex_to_javascript_num</DECLARATION></INDEX> 
       <NAME>add_complex_to_javascript_number</NAME>
       <REQUIRES>install_javascript_number_package_usage</REQUIRES>
       <REQUIRES>install_complex_package_usage</REQUIRES>
@@ -68,7 +70,6 @@ add(c, n);
       <EXPECTED>[ 'complex', [ 'rectangular', [ 11, 3 ] ] ]</EXPECTED>
       <SCHEME>
 ;; to be included in the complex package
-          <!-- \indcode*{add-complex-to-schemenum} -->
 (define (add-complex-to-schemenum z x)
   (make-from-real-imag (+ (real-part z) x)
                        (imag-part z)))
@@ -79,7 +80,7 @@ add(c, n);
       <JAVASCRIPT>
 // to be included in the complex package
 function add_complex_to_javascript_num(z, x) {
-   return make_complex_from_real_imag(real_part(z) + x, imag_part(z));
+    return make_complex_from_real_imag(real_part(z) + x, imag_part(z));
 }
 put("add", list("complex", "javascript_number"),
     (z, x) => tag(add_complex_to_javascript_num(z, x)));
@@ -118,7 +119,7 @@ put("add", list("complex", "javascript_number"),
     <NAME>Coercion</NAME>
   </SUBHEADING>
 
-  <INDEX>coercion|(</INDEX>
+  <INDEX>coercion<OPEN/></INDEX>
   <TEXT>
     In the general situation of completely unrelated operations acting on
     completely unrelated types, implementing explicit cross-type operations,
@@ -134,9 +135,9 @@ put("add", list("complex", "javascript_number"),
     can be handled in the ordinary way by the complex-arithmetic package.
   </TEXT>
   <TEXT>
-    <INDEX>coercion<SUBINDEX><SPLITINLINE><SCHEME>procedure</SCHEME>
-    <JAVASCRIPT>function</JAVASCRIPT></SPLITINLINE></SUBINDEX></INDEX>
-    In general, we can implement this idea by designing coercion
+    In general, we can implement this idea by designing
+    <INDEX>coercion<SUBINDEX><SPLITINLINE><SCHEME>procedure</SCHEME><JAVASCRIPT>function</JAVASCRIPT></SPLITINLINE></SUBINDEX></INDEX>
+    coercion
     <SPLITINLINE>
       <SCHEME>procedures</SCHEME>
       <JAVASCRIPT>functions</JAVASCRIPT>
@@ -150,19 +151,19 @@ put("add", list("complex", "javascript_number"),
     which transforms a given ordinary number to a complex number with that real
     part and zero imaginary part:
     <SNIPPET EVAL="no">
+      <INDEX><DECLARATION>javascript_number_to_complex</DECLARATION></INDEX> 
       <NAME>javascript_number_to_complex</NAME>
       <SCHEME>
-          <!-- \indcode*{scheme-number-&gt;complex} -->
 (define (scheme-number-&gt;complex n)
   (make-complex-from-real-imag (contents n) 0))
       </SCHEME>
       <JAVASCRIPT>
 function javascript_number_to_complex(n) {
-   return make_complex_from_real_imag(contents(n), 0);
+    return make_complex_from_real_imag(contents(n), 0);
 }
       </JAVASCRIPT>
     </SNIPPET>
-    <INDEX>table<SUBINDEX>coercion@for coercion</SUBINDEX></INDEX>
+    <INDEX>table<SUBINDEX><ORDER>coercion</ORDER>for coercion</SUBINDEX></INDEX>
     <INDEX>coercion<SUBINDEX>table</SUBINDEX></INDEX>
     We install these coercion
     <SPLITINLINE>
@@ -231,9 +232,9 @@ function get_coercion(type1, type2) {
         } else {
             const top = head(items);
             return equal(type1, get_type1(top)) &amp;&amp;
-	           equal(type2, get_type2(top))
-                 ? get_item(top)
-	         : get_coercion_iter(tail(items));
+                   equal(type2, get_type2(top))
+                   ? get_item(top)
+                   : get_coercion_iter(tail(items));
         }
     }
     return get_coercion_iter(coercion_list);
@@ -328,7 +329,7 @@ get_coercion("javascript_number", "complex");
       <SCHEME>procedure:</SCHEME>
       <JAVASCRIPT>function:</JAVASCRIPT>
     </SPLITINLINE>
-    <!-- \indcode*{apply-generic}[with coercion] -->
+     <INDEX><DECLARATION>apply_generic</DECLARATION><SUBINDEX>with coercion</SUBINDEX></INDEX>
     <SNIPPET HIDE="yes">
       <NAME>base_operation_table</NAME>
       <JAVASCRIPT>
@@ -365,10 +366,10 @@ function make_table() {
         } else {
             const record = assoc(key_2, tail(subtable));
             if (is_undefined(record)) {
-      	        set_tail(subtable,
-	                       pair(pair(key_2, value),
+                set_tail(subtable,
+                         pair(pair(key_2, value),
                               tail(subtable)));
-	    } else {
+            } else {
                 set_tail(record, value);
             }
         }
@@ -395,16 +396,16 @@ function apply(fun, args) {
     return apply_in_underlying_javascript(fun, args);
 }
 function add(x, y) {
-   return apply_generic("add", list(x, y));
+    return apply_generic("add", list(x, y));
 }
 function sub(x, y) {
-   return apply_generic("sub", list(x, y));
+    return apply_generic("sub", list(x, y));
 }
 function mul(x, y) {
-   return apply_generic("mul", list(x, y));
+    return apply_generic("mul", list(x, y));
 }
 function div(x, y) {
-   return apply_generic("div", list(x, y));
+    return apply_generic("div", list(x, y));
 }
 
 function attach_tag(type_tag, contents) {
@@ -456,16 +457,16 @@ function make_javascript_number(n) {
 // generic selector functions for complex numbers
 
 function real_part(z) {
-   return apply_generic("real_part", list(z));
+    return apply_generic("real_part", list(z));
 }
 function imag_part(z) {
-   return apply_generic("imag_part", list(z));
+    return apply_generic("imag_part", list(z));
 }
 function magnitude(z) {
-   return apply_generic("magnitude", list(z));
+    return apply_generic("magnitude", list(z));
 }
 function angle(z) {
-   return apply_generic("angle", list(z));
+    return apply_generic("angle", list(z));
 }
 function square(x) {
     return x * x;
@@ -507,14 +508,14 @@ function install_polar_package() {
     function angle(z) { return tail(z); }
     function make_from_mag_ang(r, a) { return pair(r, a); }
     function real_part(z) {
-       return magnitude(z) * math_cos(angle(z));
+        return magnitude(z) * math_cos(angle(z));
     }
     function imag_part(z) {
-       return magnitude(z) * math_sin(angle(z));
+        return magnitude(z) * math_sin(angle(z));
     }
     function make_from_real_imag(x, y) {
-       return pair(math_sqrt(square(x) + square(y)),
-                   math_atan(y, x));
+        return pair(math_sqrt(square(x) + square(y)),
+                    math_atan(y, x));
     }
 
     // interface to the rest of the system
@@ -558,13 +559,13 @@ function install_complex_package() {
                                  magnitude(z2),
                                  angle(z1) +
                                  angle(z2));
-	}
+    }
     function div_complex(z1, z2) {
         return make_from_mag_ang(magnitude(z1) /
                                  magnitude(z2),
                                  angle(z1) -
                                  angle(z2));
-	}
+    }
 
     // interface to rest of the system
     function tag(z) {
@@ -587,10 +588,10 @@ function install_complex_package() {
 install_complex_package();
 
 function make_complex_from_real_imag(x, y){
-   return get("make_from_real_imag", "complex")(x, y);
+    return get("make_from_real_imag", "complex")(x, y);
 }
 function make_complex_from_mag_ang(r, a){
-   return get("make_from_mag_ang", "complex")(r, a);
+    return get("make_from_mag_ang", "complex")(r, a);
 }
       </JAVASCRIPT>
     </SNIPPET>
@@ -630,9 +631,9 @@ function get_coercion(type1, type2) {
         } else {
             const top = head(items);
             return equal(type1, get_type1(top)) &amp;&amp;
-	           equal(type2, get_type2(top))
-                 ? get_item(top)
-	         : get_coercion_iter(tail(items));
+                   equal(type2, get_type2(top))
+                   ? get_item(top)
+                   : get_coercion_iter(tail(items));
         }
     }
     return get_coercion_iter(coercion_list);
@@ -647,7 +648,7 @@ function get_coercion(type1, type2) {
       <REQUIRES>coercion_support</REQUIRES>
       <JAVASCRIPT>
 function javascript_number_to_complex(n) {
-   return make_complex_from_real_imag(contents(n), 0);
+    return make_complex_from_real_imag(contents(n), 0);
 }
 
 put_coercion("javascript_number", "complex",
@@ -700,19 +701,15 @@ function apply_generic(op, args) {
             const a2 = head(tail(args));
             const t1_to_t2 = get_coercion(type1, type2);
             const t2_to_t1 = get_coercion(type2, type1);
-            if (! is_undefined(t1_to_t2)) {
-                return apply_generic(op,list(t1_to_t2(a1),
-                                             a2));
-            } else if (! is_undefined(t2_to_t1)) {
-                return apply_generic(op, list(a1,
-                                              t2_to_t1(a2)));
-		} else {
-                return error(list(op, type_tags),
-                             "No method for these types");
-            }
+            return ! is_undefined(t1_to_t2)
+                   ? apply_generic(op,list(t1_to_t2(a1), a2))
+                   : ! is_undefined(t2_to_t1)
+                   ? apply_generic(op, list(a1, t2_to_t1(a2)))
+                   : error(list(op, type_tags),
+                           "no method for these types");
         } else {
             return error(list(op, type_tags),
-                         "No method for these types");
+                         "no method for these types");
         }
     }
 }
@@ -784,8 +781,8 @@ function apply_generic(op, args) {
     <NAME>Hierarchies of types</NAME>
   </SUBHEADING>
 
-  <INDEX>type(s)<SUBINDEX>hierarchy of|(</SUBINDEX></INDEX>
-  <INDEX>hierarchy of types|(</INDEX>
+  <INDEX>type(s)<SUBINDEX>hierarchy of</SUBINDEX><OPEN/></INDEX>
+  <INDEX>hierarchy of types<OPEN/></INDEX>
   <TEXT>
     The coercion scheme presented above relied on the existence of natural
     relations between pairs of types.  Often there is more <QUOTE>global</QUOTE>
@@ -811,12 +808,13 @@ function apply_generic(op, args) {
     called a <EM>tower</EM>, is illustrated in
     figure<SPACE/><REF NAME="fig:tower"/>.
     <FIGURE>
-      <FIGURE src="img_original/ch2-Z-G-66.svg"></FIGURE>
-      <CAPTION>A tower of types.</CAPTION>
+      <FIGURE scale="0.59" src="img_original/ch2-Z-G-66.svg"></FIGURE>
+      <CAPTION>A tower of types.
+      <INDEX>tower of types</INDEX>
+      <INDEX>type(s)<SUBINDEX>tower of</SUBINDEX></INDEX>
+      </CAPTION>
       <LABEL NAME="fig:tower"/>
     </FIGURE>
-    <INDEX>tower of types</INDEX>
-    <INDEX>type(s)<SUBINDEX>tower of</SUBINDEX></INDEX>
   </TEXT>
   <TEXT>
     If we have a tower structure, then we can greatly simplify the problem
@@ -842,7 +840,7 @@ function apply_generic(op, args) {
   </TEXT>
   <TEXT>
     <INDEX>type(s)<SUBINDEX>raising</SUBINDEX></INDEX>
-    <!-- \indcode{apply-generic}[with tower of types] -->
+     <INDEX><USE>apply_generic</USE><SUBINDEX>with tower of types</SUBINDEX></INDEX>
     We can redesign our
     <SPLITINLINE>
       <SCHEME><SCHEMEINLINE>apply-generic</SCHEMEINLINE></SCHEME>
@@ -908,7 +906,7 @@ function apply_generic(op, args) {
     <LATEXINLINE>$6+0i$</LATEXINLINE>, from those that cannot, such as
     <LATEXINLINE>$6+2i$</LATEXINLINE>.)
     <FIGURE>
-      <FIGURE src="img_original/ch2-Z-G-67.svg"></FIGURE>
+      <FIGURE scale="0.59" src="img_original/ch2-Z-G-67.svg"></FIGURE>
       <CAPTION>Relations among types of geometric figures.</CAPTION>
       <LABEL NAME="fig:relations-among-figures"/>
     </FIGURE>
@@ -955,10 +953,20 @@ function apply_generic(op, args) {
     modularity in the design of large systems is very difficult, and is an area
     of much current research.<FOOTNOTE>This statement, which also appears in
     the first edition of this book, is just as true now as it was when we wrote
-    it twelve years ago. Developing a useful, general framework for expressing
+    it
+    <SPLITINLINE>
+      <SCHEME>twelve years ago.</SCHEME>
+      <JAVASCRIPT>in 1984.</JAVASCRIPT>
+    </SPLITINLINE>
+    Developing a useful, general framework for expressing
     the relations among different types of entities (what philosophers call
     <QUOTE>ontology</QUOTE>) seems intractably difficult.  The main difference
-    between the confusion that existed ten years ago and the confusion that
+    between the confusion that existed
+    <SPLITINLINE>
+      <SCHEME>ten years ago</SCHEME>
+      <JAVASCRIPT>in 1984</JAVASCRIPT>
+    </SPLITINLINE>
+    and the confusion that
     exists now is that now a variety of inadequate ontological theories have
     been embodied in a plethora of correspondingly inadequate programming
     languages.  For example, much of the complexity of
@@ -978,7 +986,7 @@ function apply_generic(op, args) {
   </TEXT>
 
   <EXERCISE>
-    <!-- \indcode{apply-generic}[with coercion] -->
+     <INDEX><USE>apply_generic</USE><SUBINDEX>with coercion</SUBINDEX></INDEX>
     Louis Reasoner has noticed that
     <SPLITINLINE>
       <SCHEME><SCHEMEINLINE>apply-generic</SCHEMEINLINE></SCHEME>
@@ -1000,11 +1008,11 @@ function apply_generic(op, args) {
       </JAVASCRIPT>
     </SPLITINLINE>
     coercion shown above, he would do:
+    <INDEX><DECLARATION>javascript_number_to_javscript_number</DECLARATION></INDEX> 
+    <INDEX><DECLARATION>complex_to_complex</DECLARATION></INDEX> 
     <SNIPPET EVAL="no">
       <SCHEME>
-            <!-- \indcode*{scheme-number-&gt;scheme-number} -->
 (define (scheme-number-&gt;scheme-number n) n)
-            <!-- \indcode*{complex-&gt;complex} -->
 (define (complex-&gt;complex z) z)
 (put-coercion 'scheme-number 'scheme-number
   scheme-number-&gt;scheme-number)
@@ -1192,22 +1200,18 @@ function apply_generic(op, args) {
             const a2 = head(tail(args));
             const t1_to_t2 = get_coercion(type1, type2);
             const t2_to_t1 = get_coercion(type2, type1);
-            if (type1 === type2) {
-              return error(list(op, type_tags),
-                             "No method for these types");
-            } else if (! is_undefined(t1_to_t2)) {
-                return apply_generic(op,list(t1_to_t2(a1),
-                                             a2));
-            } else if (! is_undefined(t2_to_t1)) {
-                return apply_generic(op, list(a1,
-                                              t2_to_t1(a2)));
-		} else {
-                return error(list(op, type_tags),
-                             "No method for these types");
-            }
+            return type1 === type2
+                   ? error(list(op, type_tags),
+                                "no method for these types")
+                   : ! is_undefined(t1_to_t2)
+                   ? apply_generic(op,list(t1_to_t2(a1), a2))
+                   : ! is_undefined(t2_to_t1)
+                   ? apply_generic(op, list(a1, t2_to_t1(a2)))
+                   : error(list(op, type_tags),
+                           "no method for these types");
         } else {
             return error(list(op, type_tags),
-                         "No method for these types");
+                         "no method for these types");
         }
     }
 }
@@ -1219,7 +1223,7 @@ function apply_generic(op, args) {
   </EXERCISE>
 
   <EXERCISE>
-    <!-- \indcode{apply-generic}[with coercion of multiple arguments] -->
+     <INDEX><USE>apply_generic</USE><SUBINDEX>with coercion of multiple arguments</SUBINDEX></INDEX>
     Show how to generalize
     <SPLITINLINE>
       <SCHEME><SCHEMEINLINE>apply-generic</SCHEMEINLINE></SCHEME>
@@ -1243,7 +1247,7 @@ function apply_generic(op, args) {
       <REQUIRES>coercion_support</REQUIRES>
       <JAVASCRIPT>
 function javascript_number_to_complex(n) {
-   return make_complex_from_real_imag(contents(n), 0);
+    return make_complex_from_real_imag(contents(n), 0);
 }
 
 put_coercion("javascript_number", "complex",
@@ -1254,8 +1258,8 @@ put("add", list("complex", "complex", "complex"),
     real_part(x) + real_part(y) + real_part(z),
     imag_part(x) + imag_part(y) + imag_part(z))));
 
-function add_three(x,y,z) {
-    return apply_generic("add", list(x,y,z));
+function add_three(x, y, z) {
+    return apply_generic("add", list(x, y, z));
 }
 
 const c = make_complex_from_real_imag(4, 3);
@@ -1271,27 +1275,27 @@ add_three(c, c, n);
         <EXAMPLE>multi_coercion_example</EXAMPLE>
         <JAVASCRIPT>
 function can_coerce_to(type_tags, target_type) {
-  return accumulate((type_tag, result) =>
-                       result &amp;&amp; 
-                       (type_tag === target_type ||
-                        ! is_undefined(get_coercion(type_tag, target_type)),
-                    true,
-                    type_tags);
+    return accumulate((type_tag, result) =>
+                        result &amp;&amp;
+                        (type_tag === target_type ||
+                         ! is_undefined(get_coercion(type_tag, target_type)),
+                      true,
+                      type_tags);
 }
 
 function find_coerced_type(type_tags) {
-  return is_null(type_tags)
-         ? undefined
-         : can_coerce_to(type_tags, head(type_tags))
+    return is_null(type_tags)
+           ? undefined
+           : can_coerce_to(type_tags, head(type_tags))
            ? head(type_tags)
            : find_coerced_type(tail(type_tags));
 }
 
 function coerce_all(args, target_type) {
-  return map(arg => type_tag(arg) === target_type
-                    ? arg
-                    : get_coercion(type_tag(arg), target_type)(arg),
-             args);
+    return map(arg => type_tag(arg) === target_type
+                      ? arg
+                      : get_coercion(type_tag(arg), target_type)(arg),
+               args);
 }
 
 function apply_generic(op, args) {
@@ -1305,7 +1309,7 @@ function apply_generic(op, args) {
           return apply_generic(op, coerce_all(args, target_type));
         } else {
             return error(list(op, type_tags),
-                         "No method for these types");
+                         "no method for these types");
         }
     }
 }
@@ -1414,7 +1418,7 @@ raise(a);
         <EXAMPLE>raise_example</EXAMPLE>
         <JAVASCRIPT>
 function raise(x) {
-  return apply_generic("raise", list(x));
+    return apply_generic("raise", list(x));
 }
 
 // add to Javascript-number package
@@ -1434,7 +1438,7 @@ put("raise", list("javascript_number"),
   </EXERCISE>
 
   <EXERCISE>
-    <!-- \indcode{apply-generic}[with coercion by raising] -->
+     <INDEX><USE>apply_generic</USE><SUBINDEX>with coercion by raising</SUBINDEX></INDEX>
     Using the <SCHEMEINLINE>raise</SCHEMEINLINE> operation of
     exercise<SPACE/><REF NAME="ex:raise"/>, modify the
     <SPLITINLINE>
@@ -1455,7 +1459,7 @@ put("raise", list("javascript_number"),
   </EXERCISE>
 
   <EXERCISE>
-    <!-- \indcode{apply-generic}[with coercion to simplify] -->
+     <INDEX><USE>apply_generic</USE><SUBINDEX>with coercion to simplify</SUBINDEX></INDEX>
     <INDEX>type(s)<SUBINDEX>lowering</SUBINDEX></INDEX>
     This section mentioned a method for <QUOTE>simplifying</QUOTE> a data object
     by lowering it in the tower of types as far as possible.  Design a
@@ -1495,13 +1499,8 @@ put("raise", list("javascript_number"),
     that drops an object as far as possible.  You will need to design the
     various projection operations<FOOTNOTE>A real number can be projected to
     an integer using the
-    <!--\indprim*{round}-->
-    <!--\ind*{primitive
-        <SPLITINLINE><SCHEME>procedures</SCHEME>
-	<JAVASCRIPT>functions</JAVASCRIPT></SPLITINLINE>
-        (those marked <EM>ns</EM> are not in the IEEE Scheme
-	standard)}[round@<SCHEMEINLINE>round</SCHEMEINLINE>]
-    -->
+    <INDEX><DECLARATION>math_round</DECLARATION> (primitive function)</INDEX>
+    <INDEX><PRIMITIVE/><SUBINDEX><DECLARATION>math_round</DECLARATION><ECMA>Math.round</ECMA></SUBINDEX></INDEX>
     <SPLITINLINE>
       <SCHEME>
 	<SCHEMEINLINE>round</SCHEMEINLINE>
@@ -1537,8 +1536,8 @@ put("raise", list("javascript_number"),
     that are generic over ordinary numbers and rational numbers.
   </EXERCISE>
 
-  <INDEX>coercion|)</INDEX>
-  <INDEX>type(s)<SUBINDEX>hierarchy of|)</SUBINDEX></INDEX>
-  <INDEX>hierarchy of types|)</INDEX>
+  <INDEX>coercion<CLOSE/></INDEX>
+  <INDEX>type(s)<SUBINDEX>hierarchy of</SUBINDEX><CLOSE/></INDEX>
+  <INDEX>hierarchy of types<CLOSE/></INDEX>
 
 </SUBSECTION>

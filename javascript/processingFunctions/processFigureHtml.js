@@ -1,20 +1,11 @@
 import {
   recursiveProcessTextHtml,
   processTextHtml,
-  processTextFunctionsHtml,
   toIndexFolder
 } from "../parseXmlHtml";
-import { getChildrenByTagName, ancestorHasTag } from "../utilityFunctions";
-import { processSnippetHtml, processSnippetHtmlScheme } from ".";
 import { referenceStore } from "./processReferenceHtml";
 
-export const processFigureHtml = (
-  node,
-  writeTo,
-  chapArrIndex,
-  snippet_count,
-  split
-) => {
+export const processFigureHtml = (node, writeTo) => {
   let src = node.getAttribute("src");
   if (!src && node.getElementsByTagName("FIGURE")[0]) {
     src = node.getElementsByTagName("FIGURE")[0].getAttribute("src");
@@ -54,10 +45,14 @@ export const processFigureHtml = (
 
   // get href and displayed name from "referenceStore"
   const referenceName = label.getAttribute("NAME");
-  // console.log("reference name is " + referenceName);
-  const href = referenceStore[referenceName].href;
+  console.log("reference name is " + referenceName);
+  const href = referenceStore[referenceName]
+    ? referenceStore[referenceName].href
+    : "";
   // console.log("lookup successful");
-  const displayName = referenceStore[referenceName].displayName;
+  const displayName = referenceStore[referenceName]
+    ? referenceStore[referenceName].displayName
+    : "";
 
   if (src && label) {
     writeTo.push(`

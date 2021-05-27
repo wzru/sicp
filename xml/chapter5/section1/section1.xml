@@ -4,22 +4,24 @@
   <SECTIONCONTENT/>
 
   <LABEL NAME="sec:designing-register-machines"/>
-  <INDEX>register machine<SUBINDEX>design of|(</SUBINDEX></INDEX>
-  <INDEX>register machine<SUBINDEX>data paths|(</SUBINDEX></INDEX>
-  <INDEX>register machine<SUBINDEX>controller|(</SUBINDEX></INDEX>
-  <INDEX>data paths for register machine|(</INDEX>
-  <INDEX>controller for register machine|(</INDEX>
-  <INDEX>operation<SUBINDEX>in register machine|(</SUBINDEX></INDEX>
+
+  <INDEX>register machine<SUBINDEX>design of<OPEN/></SUBINDEX></INDEX>
+  <INDEX>register machine<SUBINDEX>data paths<OPEN/></SUBINDEX></INDEX>
+  <INDEX>register machine<SUBINDEX>controller<OPEN/></SUBINDEX></INDEX>
+  <INDEX>data paths for register machine<OPEN/></INDEX>
+  <INDEX>controller for register machine<OPEN/></INDEX>
+  <INDEX>operation<SUBINDEX>in register machine<OPEN/></SUBINDEX></INDEX>
 
   <TEXT>
     To design a register machine, we must design its <EM>data paths</EM>
     (registers and operations) and the <EM>controller</EM> that sequences
     these operations.  To illustrate the design of a simple register
     machine, let us examine Euclid<APOS/>s Algorithm, which is used to compute
-    <!--  \indcode{gcd}[register machine for|(] -->
+    <INDEX><USE>gcd</USE><SUBINDEX>register machine for<OPEN/></SUBINDEX></INDEX>
     the greatest common divisor (GCD) of two integers.  As we saw in
+    section<SPACE/><REF NAME="sec:gcd"/>,
     <INDEX>Euclid<APOS/>s Algorithm</INDEX>
-    section<SPACE/><REF NAME="sec:gcd"/>, Euclid<APOS/>s Algorithm can be
+    Euclid<APOS/>s Algorithm can be
     carried out by an iterative process, as specified by the following
     <SPLITINLINE>
       <SCHEME>procedure:</SCHEME>
@@ -43,36 +45,26 @@ function gcd(a, b) {
 
   <TEXT>
     A machine to carry out this algorithm must keep track of two numbers,
-    <LATEXINLINE>$a$</LATEXINLINE> and <LATEXINLINE>$b$</LATEXINLINE>, so let
-    us assume that these numbers are stored in two registers with those names.
-    The basic operations required are testing whether the contents of register
-    <SCHEMEINLINE>b</SCHEMEINLINE><SPLITINLINE><JAVASCRIPT><FOOTNOTE>In our
-    controllers, we shall use strings to represent machine components such as
-    registers, labels and operations. In the text, we shall omit the quotation
-    marks around the names and write
-    <BLOCKQUOTE>
-      register <JAVASCRIPTINLINE>b</JAVASCRIPTINLINE>
-    </BLOCKQUOTE>
-    instead of
-    <BLOCKQUOTE>register <JAVASCRIPTINLINE>"b"</JAVASCRIPTINLINE>
-    </BLOCKQUOTE></FOOTNOTE></JAVASCRIPT></SPLITINLINE>
-    is zero and computing the remainder of the
+    <LATEXINLINE>$a$</LATEXINLINE> and <LATEXINLINE>$b$</LATEXINLINE>, so let us
+    assume that these numbers are stored in two registers with those names. The
+    basic operations required are testing whether the contents of register
+    <SCHEMEINLINE>b</SCHEMEINLINE> is zero and computing the remainder of the
     contents of register <SCHEMEINLINE>a</SCHEMEINLINE> divided by the contents
-    of register <SCHEMEINLINE>b</SCHEMEINLINE>.  The remainder operation is a
-    complex process,
-    but assume for the moment that we have a primitive device that
-    computes remainders.  On each cycle of the GCD algorithm, the contents
-    of register <SCHEMEINLINE>a</SCHEMEINLINE> must be replaced by the contents
-    of register <SCHEMEINLINE>b</SCHEMEINLINE>, and the contents of
-    <SCHEMEINLINE>b</SCHEMEINLINE> must be replaced by the remainder of
-    the old contents of <SCHEMEINLINE>a</SCHEMEINLINE> divided by the old
-    contents of <SCHEMEINLINE>b</SCHEMEINLINE>. It would be convenient if these
-    replacements could be done simultaneously, but in our model of register
-    machines we will assume that only one register can be assigned a new value
-    at each step.  To accomplish the replacements, our machine will use a third
-    <QUOTE>temporary</QUOTE> register, which we call
-    <SCHEMEINLINE>t</SCHEMEINLINE>.  (First the remainder
-    will be placed in <SCHEMEINLINE>t</SCHEMEINLINE>, then the contents of
+    of register <SCHEMEINLINE>b</SCHEMEINLINE>.
+
+    The remainder operation is a complex process, but assume for the moment that
+    we have a primitive device that computes remainders. On each cycle of the
+    GCD algorithm, the contents of register <SCHEMEINLINE>a</SCHEMEINLINE> must
+    be replaced by the contents of register <SCHEMEINLINE>b</SCHEMEINLINE>, and
+    the contents of <SCHEMEINLINE>b</SCHEMEINLINE> must be replaced by the
+    remainder of the old contents of <SCHEMEINLINE>a</SCHEMEINLINE> divided by
+    the old contents of <SCHEMEINLINE>b</SCHEMEINLINE>. It would be convenient
+    if these replacements could be done simultaneously, but in our model of
+    register machines we will assume that only one register can be assigned a
+    new value at each step. To accomplish the replacements, our machine will use
+    a third <QUOTE>temporary</QUOTE> register, which we call
+    <SCHEMEINLINE>t</SCHEMEINLINE>. (First the remainder will be placed in
+    <SCHEMEINLINE>t</SCHEMEINLINE>, then the contents of
     <SCHEMEINLINE>b</SCHEMEINLINE> will be placed in
     <SCHEMEINLINE>a</SCHEMEINLINE>, and finally the remainder stored in
     <SCHEMEINLINE>t</SCHEMEINLINE> will be placed in
@@ -80,11 +72,11 @@ function gcd(a, b) {
   </TEXT>
 
   <TEXT>
-    <INDEX>data paths for register machine
-    <SUBINDEX>data-path diagram</SUBINDEX></INDEX>
-    <INDEX>register machine<SUBINDEX>data-path diagram</SUBINDEX></INDEX>
     We can illustrate the registers and operations required for this
-    machine by using the data-path diagram shown in
+    machine by using the
+    <INDEX>data paths for register machine<SUBINDEX>data-path diagram</SUBINDEX></INDEX>
+    <INDEX>register machine<SUBINDEX>data-path diagram</SUBINDEX></INDEX>
+    data-path diagram shown in
     figure<SPACE/><REF NAME="fig:gcd-machine"/>.  In this
     diagram, the registers (<SCHEMEINLINE>a</SCHEMEINLINE>,
     <SCHEMEINLINE>b</SCHEMEINLINE>, and <SCHEMEINLINE>t</SCHEMEINLINE>) are
@@ -117,10 +109,10 @@ function gcd(a, b) {
     constants to the box, and arrows connect the operation<APOS/>s output value
     to registers. A test is represented by a circle containing a name for the
     test.  For  example, our GCD machine has an operation that tests whether the
-    contents of register <SCHEMEINLINE>b</SCHEMEINLINE> is zero.  A test also
-    has arrows from its input
+    contents of register <SCHEMEINLINE>b</SCHEMEINLINE> is zero.  A
     <INDEX>test operation in register machine</INDEX>
     <INDEX>register machine<SUBINDEX>test operation</SUBINDEX></INDEX>
+    test also has arrows from its input
     registers and constants, but it has no output
     arrows; its value is used by the controller rather than by the data
     paths.  Overall, the data-path diagram shows the registers and
@@ -137,12 +129,12 @@ function gcd(a, b) {
   </TEXT>
 
   <TEXT>
-    <INDEX>register machine<SUBINDEX>controller diagram</SUBINDEX></INDEX>
-    <INDEX>controller for register machine
-    <SUBINDEX>controller diagram</SUBINDEX></INDEX>
     In order for the data paths to actually compute GCDs, the buttons must
     be pushed in the correct sequence.  We will describe this sequence in
-    terms of a controller diagram, as illustrated in
+    terms of a
+    <INDEX>register machine<SUBINDEX>controller diagram</SUBINDEX></INDEX>
+    <INDEX>controller for register machine<SUBINDEX>controller diagram</SUBINDEX></INDEX>
+    controller diagram, as illustrated in
     figure<SPACE/><REF NAME="fig:gcd-controller"/>.  The elements of the
     controller diagram indicate how the data-path components should be operated.
     The rectangular boxes in the controller diagram identify data-path buttons
@@ -163,7 +155,6 @@ function gcd(a, b) {
     <SCHEMEINLINE>b</SCHEMEINLINE>.  When the controller reaches
     <SCHEMEINLINE>done</SCHEMEINLINE>, we will find the value of the GCD in
     register <SCHEMEINLINE>a</SCHEMEINLINE>.
-    <!--  \indcode{gcd}[register machine for|)] -->
     <FIGURE>
       <FIGURE scale_factor="5" src="img_original/Fig5.2.std.svg"/>
       <LABEL NAME="fig:gcd-controller"/>
@@ -171,12 +162,15 @@ function gcd(a, b) {
     </FIGURE>
   </TEXT>
 
+  <INDEX><USE>gcd</USE><SUBINDEX>register machine for<CLOSE/></SUBINDEX></INDEX>
+  
   <EXERCISE>
     <LABEL NAME="ex:iterative-fact"/>
-    <!--  \indcode{factorial}[register machine for (iterative)] -->
-    Design a register machine to compute factorials using the iterative
+    Design a register machine to compute
+    <INDEX><USE>factorial</USE><SUBINDEX>register machine for (iterative)</SUBINDEX></INDEX>
+    factorials using the iterative
     algorithm specified by the following
-    <SPLITINLINE>
+    <SPLITINLINE POSTPADDING="no">
       <SCHEME>procedure.</SCHEME>
       <JAVASCRIPT>function.</JAVASCRIPT>
     </SPLITINLINE>
@@ -206,25 +200,26 @@ function factorial(n) {
       </JAVASCRIPT>
     </SNIPPET>
   </EXERCISE>
-  <INDEX>data paths for register machine|)</INDEX>
-  <INDEX>controller for register machine|)</INDEX>
-  <INDEX>register machine<SUBINDEX>data paths|)</SUBINDEX></INDEX>
-  <INDEX>register machine<SUBINDEX>controller|)</SUBINDEX></INDEX>
-  <INDEX>operation<SUBINDEX>in register machine|)</SUBINDEX></INDEX>
+
+  <INDEX>data paths for register machine<CLOSE/></INDEX>
+  <INDEX>controller for register machine<CLOSE/></INDEX>
+  <INDEX>register machine<SUBINDEX>data paths<CLOSE/></SUBINDEX></INDEX>
+  <INDEX>register machine<SUBINDEX>controller<CLOSE/></SUBINDEX></INDEX>
+  <INDEX>operation<SUBINDEX>in register machine<CLOSE/></SUBINDEX></INDEX>
 
   <!-- Subsection 1 : A Language for Describing Register Machines -->
-  &subsection5.1.1;
+  &amp;subsection5.1.1;
 
   <!-- Subsection 2 : Abstraction in Machine Design -->
-  &subsection5.1.2;
+  &amp;subsection5.1.2;
 
   <!-- Subsection 3 : Subroutines -->
-  &subsection5.1.3;
+  &amp;subsection5.1.3;
 
   <!-- Subsection 4 : Using a Stack to Implement Recursion -->
-  &subsection5.1.4;
+  &amp;subsection5.1.4;
 
   <!-- Subsection 5 : Instruction Summary -->
-  &subsection5.1.5;
+  &amp;subsection5.1.5;
 
 </SECTION>

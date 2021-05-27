@@ -4,7 +4,8 @@
   </NAME>
 
   <LABEL NAME="sec:register-machine-language"/>
-  <INDEX>register machine<SUBINDEX>language for describing|(</SUBINDEX></INDEX>
+
+  <INDEX>register machine<SUBINDEX>language for describing<OPEN/></SUBINDEX></INDEX>
 
   <TEXT>
     Data-path and controller diagrams are adequate for representing simple
@@ -15,9 +16,10 @@
       <JAVASCRIPT>JavaScript</JAVASCRIPT>
     </SPLITINLINE>
     interpreter.  To make it possible to deal with complex machines, we will
-    create a language that presents, in textual form, all the information given
-    by the data-path and controller diagrams.  We will start with a notation
-    that directly mirrors the diagrams.
+    create a language that presents, in textual form, all the
+    information given by the data-path and controller
+    diagrams. We will start with a notation that directly
+    mirrors the diagrams.
   </TEXT>
   
   <TEXT>
@@ -33,52 +35,51 @@
   <TEXT>
     We define the controller of a machine as a sequence of 
     <INDEX>register-machine language<SUBINDEX>instructions</SUBINDEX></INDEX>
-    <EM>
-      instructions</EM> together with 
+    <EM>instructions</EM> together with 
       <INDEX>register-machine language<SUBINDEX>label</SUBINDEX></INDEX>
+      <EM>labels</EM> that identify
       <INDEX>register-machine language<SUBINDEX>entry point</SUBINDEX></INDEX>
-      <EM>labels</EM> that identify <EM>entry
-      points</EM> in the sequence. An instruction is one of the following:
+      <EM>entry points</EM> in the sequence. An instruction is one of the following:
       <UL>
 	<LI>
 	  The name of a data-path button to push to assign a value to
 	  a register.  (This corresponds to a box in the controller diagram.)
-	  <INDEX>register-machine language
-	  <SUBINDEX>test@<SCHEMEINLINE>test</SCHEMEINLINE></SUBINDEX></INDEX>
-	  <!-- \indcodeplus{test}{(in register machine)}-->
 	</LI>
 	<LI>
-	  A <SCHEMEINLINE>test</SCHEMEINLINE> instruction, that performs a
+	  A
+	  <INDEX><USE>test</USE> (in register machine)</INDEX>
+	  <INDEX>register-machine language<SUBINDEX><USE>test</USE></SUBINDEX></INDEX>
+	  <SCHEMEINLINE>test</SCHEMEINLINE>
+	  instruction, which performs a
 	  specified test.
-	  <INDEX>register-machine language
-	  <SUBINDEX>branch@<SCHEMEINLINE>branch</SCHEMEINLINE></SUBINDEX></INDEX>
-	  <!-- \indcodeplus{branch}{(in register machine)}-->
-	  <INDEX>register-machine language
-	  <SUBINDEX>label@<SCHEMEINLINE>label</SCHEMEINLINE></SUBINDEX></INDEX>
-	  <!-- \indcodeplus{label}{(in register machine)}-->
 	</LI>
 	<LI>
-	  A conditional branch (<SCHEMEINLINE>branch</SCHEMEINLINE> instruction)
+	  A
+	  <INDEX>register-machine language<SUBINDEX><USE>branch</USE></SUBINDEX></INDEX>
+	  <INDEX><USE>branch</USE> (in register machine)</INDEX>
+	  <INDEX>register-machine language<SUBINDEX><USE>label</USE></SUBINDEX></INDEX>
+	  <INDEX><USE>label</USE> (in register machine)</INDEX>
+	  conditional branch (<SCHEMEINLINE>branch</SCHEMEINLINE> instruction)
 	  to a	location indicated by a controller label, based on the result of
 	  the previous test.  (The test and branch together correspond to a
 	  diamond in the controller diagram.)  If the test is false, the
 	  controller should continue with the next instruction in the sequence.
 	  Otherwise, the controller should continue with the instruction after
 	  the label.
-	  <SPLITINLINE>
-	    <SCHEME>
-	  <INDEX>register-machine language
-	  <SUBINDEX>goto@<SCHEMEINLINE>goto</SCHEMEINLINE></SUBINDEX></INDEX>
-	    </SCHEME>
-	    <JAVASCRIPT>
-	  <INDEX>register-machine language
-	  <SUBINDEX>goto@<JAVASCRIPTINLINE>go_to</JAVASCRIPTINLINE></SUBINDEX></INDEX>
-	    </JAVASCRIPT>
-	  </SPLITINLINE>
-	  <!-- \indcodeplus{goto}{(in register machine)}-->
 	</LI>
 	<LI>
-	  An unconditional branch
+	  An	  
+	  <SPLITINLINE>
+	    <SCHEME>
+	      <INDEX>register-machine language<SUBINDEX><ORDER>goto</ORDER><SCHEMEINLINE>goto</SCHEMEINLINE></SUBINDEX></INDEX>
+	      <INDEX><USE>goto</USE> (in register machine)</INDEX>
+	    </SCHEME>
+	    <JAVASCRIPT>
+	      <INDEX>register-machine language<SUBINDEX><USE>go_to</USE></SUBINDEX></INDEX>
+	      <INDEX><USE>go_to</USE> (in register machine)</INDEX>
+	    </JAVASCRIPT>
+	  </SPLITINLINE>
+	  unconditional branch
 	  <SPLITINLINE>
 	    <SCHEME>(<SCHEMEINLINE>goto</SCHEMEINLINE></SCHEME>
 	    <JAVASCRIPT>(<JAVASCRIPTINLINE>go_to</JAVASCRIPTINLINE></JAVASCRIPT>
@@ -86,14 +87,12 @@
 	  instruction) naming a controller label at which to continue execution.
 	</LI>
       </UL>
-  </TEXT>
 
-  <TEXT>
     The machine starts at the beginning of the controller instruction
     sequence and stops when execution reaches the end of the sequence.
     Except when a branch changes the flow of control, instructions are
     executed in the order in which they are listed.
-    <FIGURE>
+    <FIGURE CENTER="no">
       <SNIPPET EVAL="no">
 	<SCHEME>
 (data-paths
@@ -140,14 +139,14 @@ data_paths(
 
 controller(
   list(
-    "test_b",                   // label
+    "test_b",                     // label
       test("="),                  // test
       branch(label("gcd_done")),  // conditional branch
       "t&lt;-r",                     // button push
       "a&lt;-b",                     // button push
       "b&lt;-t",                     // button push
       go_to(label("test_b"))),    // unconditional branch
-    "gcd_done");                    // label
+    "gcd_done");                  // label
 	</JAVASCRIPT>
       </SNIPPET>
       <CAPTION>A specification of the GCD machine.</CAPTION>
@@ -183,15 +182,12 @@ controller(
     <SCHEMEINLINE>t</SCHEMEINLINE></QUOTE> and <QUOTE>The
     <SCHEMEINLINE>rem</SCHEMEINLINE> operation<APOS/>s inputs are the contents
     of registers
-    <INDEX>register-machine language
-    <SUBINDEX>assign@<SCHEMEINLINE>assign</SCHEMEINLINE></SUBINDEX></INDEX>
-    <!-- \indcodeplus{assign}{(in register machine)}-->
-    <INDEX>register-machine language
-    <SUBINDEX>op@<SCHEMEINLINE>op</SCHEMEINLINE></SUBINDEX></INDEX>
-    <!-- \indcodeplus{op}{(in register machine)}-->
-    <INDEX>register-machine language
-    <SUBINDEX>reg@<SCHEMEINLINE>reg</SCHEMEINLINE></SUBINDEX></INDEX>
-    <!-- \indcodeplus{reg}{(in register machine)}-->
+    <INDEX>register-machine language<SUBINDEX><USE>assign</USE></SUBINDEX></INDEX>
+    <INDEX><USE>assign</USE> (in register machine)</INDEX>
+    <INDEX>register-machine language<SUBINDEX><USE>op</USE></SUBINDEX></INDEX>
+    <INDEX><USE>op</USE> (in register machine)</INDEX>
+    <INDEX>register-machine language<SUBINDEX><USE>reg</USE></SUBINDEX></INDEX>
+    <INDEX><USE>reg</USE> (in register machine)</INDEX>
     <SCHEMEINLINE>a</SCHEMEINLINE> and <SCHEMEINLINE>b</SCHEMEINLINE>,</QUOTE>
     we will say (in the controller) <QUOTE>Push the button that assigns to
     register <SCHEMEINLINE>t</SCHEMEINLINE> the value of the
@@ -203,9 +199,8 @@ controller(
     contents of register <SCHEMEINLINE>b</SCHEMEINLINE> and the
     constant 0,</QUOTE> we will say <QUOTE>Perform the
     <SCHEMEINLINE>=</SCHEMEINLINE> test on the
-    <INDEX>register-machine language
-    <SUBINDEX>const@<SCHEMEINLINE>const</SCHEMEINLINE></SUBINDEX></INDEX>
-    <!-- \indcodeplus{const}{(in register machine)}-->
+    <INDEX>register-machine language<SUBINDEX><USE>constant</USE></SUBINDEX></INDEX>
+    <INDEX><USE>constant</USE> (in register machine)</INDEX>
     contents of register <SCHEMEINLINE>b</SCHEMEINLINE> and the
     constant 0.</QUOTE>  We will omit the data-path description, leaving only
     the controller sequence.  Thus, the GCD machine is described as follows:
@@ -285,7 +280,7 @@ function controller_sequence(controller) {
 
   <TEXT>
     This form of description is easier to read than the kind illustrated
-    in Figure<SPACE/><REF NAME="fig:gcd-machine-spec"/>, but it also has disadvantages:
+    in figure<SPACE/><REF NAME="fig:gcd-machine-spec"/>, but it also has disadvantages:
     <UL>
       <LI>It is more verbose for large machines,
       because complete descriptions of the data-path elements are repeated
@@ -305,17 +300,15 @@ function controller_sequence(controller) {
 	expressions, it is easy to forget that they are
 	not arbitrary
 	<SPLITINLINE>
-	  <SCHEME>Lisp.</SCHEME>
-	  <JAVASCRIPT>JavaScript.</JAVASCRIPT>
+	  <SCHEME>Lisp</SCHEME>
+	  <JAVASCRIPT>JavaScript</JAVASCRIPT>
 	</SPLITINLINE>
 	expressions.  They can notate only legal machine operations.  For
 	example, operations can operate directly only on constants and the
 	contents of registers, not on the results of other operations.
       </LI>
     </UL>
-  </TEXT>
 
-  <TEXT>
     In spite of these disadvantages, we will use this register-machine
     language throughout this chapter, because we will be more concerned with
     understanding controllers than with understanding the elements and
@@ -324,8 +317,9 @@ function controller_sequence(controller) {
   </TEXT>
 
   <EXERCISE>
-    <!--  \indcode{factorial}[register machine for (iterative)] -->
-    Use the register-machine language to describe the iterative factorial
+    Use the register-machine language to describe the
+    <INDEX><USE>factorial</USE><SUBINDEX>register machine for (iterative)</SUBINDEX></INDEX>
+    iterative factorial
     machine of exercise<SPACE/><REF NAME="ex:iterative-fact"/>.
     <LABEL NAME="ex:iterative-fact-2"/>
   </EXERCISE>
@@ -335,8 +329,8 @@ function controller_sequence(controller) {
     <NAME>Actions</NAME>
   </SUBHEADING>
 
-  <INDEX>actions, in register machine|(</INDEX>
-  <INDEX>register machine<SUBINDEX>actions|(</SUBINDEX></INDEX>
+  <INDEX>actions, in register machine<OPEN/></INDEX>
+  <INDEX>register machine<SUBINDEX>actions<OPEN/></SUBINDEX></INDEX>
 
   <TEXT>
     Let us modify the GCD machine so that we can type in the numbers
@@ -359,20 +353,23 @@ function controller_sequence(controller) {
     that they are available as primitive
     operations.<SPLITINLINE><SCHEME><FOOTNOTE>This assumption glosses over a
     great deal of complexity.  Usually a large portion of the implementation of
-    a Lisp 
-    <SPLITINLINE>
-      <SCHEME>system</SCHEME>
-      <JAVASCRIPT>system, for example,</JAVASCRIPT>
-    </SPLITINLINE>
-    is dedicated to making reading
-    and printing work.</FOOTNOTE></SCHEME></SPLITINLINE>
+    a Lisp system is dedicated to making reading
+    and printing work.</FOOTNOTE></SCHEME><JAVASCRIPT><FOOTNOTE>
+        This assumption glosses over a great deal of complexity. Implementation of reading 
+        and printing requires significant effort, for example to handle character encodings
+        for different languages. 
+      </FOOTNOTE>
+    </JAVASCRIPT>
+  </SPLITINLINE>
   </TEXT>
 
   <TEXT>
-    <!-- \indcodeplus{read}{operation in register machine}-->
     <SPLITINLINE>
       <SCHEME><SCHEMEINLINE>Read</SCHEMEINLINE></SCHEME>
-      <JAVASCRIPT>The operation <JAVASCRIPTINLINE>prompt</JAVASCRIPTINLINE>
+      <JAVASCRIPT>
+	The operation
+	<INDEX><USE>prompt</USE> operation in register machine</INDEX>
+	<JAVASCRIPTINLINE>prompt</JAVASCRIPTINLINE>
       </JAVASCRIPT>
     </SPLITINLINE>
     is like the operations we have been using in that it produces a value that
@@ -399,10 +396,12 @@ function controller_sequence(controller) {
   </TEXT>
 
   <TEXT>
-    <!-- \indcodeplus{print}{operation in register machine}-->
     <SPLITINLINE>
       <SCHEME><SCHEMEINLINE>Print</SCHEMEINLINE>,</SCHEME>
-      <JAVASCRIPT>The operation <JAVASCRIPTINLINE>display</JAVASCRIPTINLINE>,
+      <JAVASCRIPT>
+	The operation
+	<INDEX><USE>display</USE> operation in register machine</INDEX>
+	<JAVASCRIPTINLINE>display</JAVASCRIPTINLINE>,
       </JAVASCRIPT>
     </SPLITINLINE>
     on the other hand, differs from the operations we have
@@ -415,12 +414,12 @@ function controller_sequence(controller) {
     Arrows point to the action box from any inputs (registers or
     constants).  We also associate a button with the action.  Pushing the
     button makes the action happen.  To make a controller push an action
-    <INDEX>register-machine language
-    <SUBINDEX>perform@<SCHEMEINLINE>perform</SCHEMEINLINE></SUBINDEX></INDEX>
-    <!-- \indcodeplus{perform}{(in register machine)}-->
     button we use a new kind of instruction called
+    <INDEX>register-machine language<SUBINDEX><USE>perform</USE></SUBINDEX></INDEX>
+    <INDEX><USE>perform</USE> (in register machine)</INDEX>
     <SCHEMEINLINE>perform</SCHEMEINLINE>.  Thus,
-    the action of printing the contents of register
+    the action of printing
+    the contents of register
     <SCHEMEINLINE>a</SCHEMEINLINE> is represented
     in a controller sequence by the instruction
     <SNIPPET EVAL="no">
@@ -443,9 +442,10 @@ perform(list(op("display"), reg("a")))
       </JAVASCRIPT>
     </SPLITINLINE>
     shows the data paths and controller for
-    the new GCD machine.  Instead of having the machine stop after
-    printing the answer, we have made it start over, so that it repeatedly
-    reads a pair of numbers, computes their GCD, and prints the result.
+    the new GCD machine.  Instead of having the machine stop after printing
+    the answer, we have made it start over, so that it repeatedly
+    reads a pair of numbers, computes their GCD, and prints
+    the result.
     This structure is like the driver loops we used in the interpreters of
     chapter<SPACE/>4.
     <!--  % (registers a b t) (operations read = rem print) -->
@@ -471,14 +471,15 @@ perform(list(op("display"), reg("a")))
    (goto (label gcd-loop)))
 	    </SCHEME>
 	  </SNIPPET>
-	  <CAPTION>A GCD machine that reads inputs and prints results.</CAPTION>
+	  <CAPTION>A GCD machine that reads inputs and prints
+	  results.</CAPTION>
 	  <LABEL NAME="fig:gcd-with-io_scheme"/>
 	</FIGURE>
       </SCHEME>
       <JAVASCRIPT>
 	<FIGURE>
 	  <FIGURE src="img_javascript/Fig5.4c.std.svg"/>      
-	  <SNIPPET>
+	  <SNIPPET CENTER="no">
 	    <NAME>gcd_with_prompt</NAME>
 	    <EXAMPLE>gcd_with_prompt_example</EXAMPLE>
             <JAVASCRIPT>
@@ -520,21 +521,22 @@ const gcd_with_prompt_machine =
 start(gcd_with_prompt_machine);
 	    </JAVASCRIPT>
 	  </SNIPPET>
-	  
 	  <SNIPPET HIDE="yes">
 	    <NAME>gcd_with_prompt_declaration</NAME>
             <JAVASCRIPT>
 const gcd_with_prompt_controller =
 	    </JAVASCRIPT>
 	  </SNIPPET>
-	  
 	  <CAPTION>A GCD machine that reads inputs and prints results.</CAPTION>
 	  <LABEL NAME="fig:gcd-with-io"/>
 	</FIGURE>
       </JAVASCRIPT>
     </SPLIT>
-    <INDEX>register machine<SUBINDEX>language for describing|)</SUBINDEX></INDEX>
-    <INDEX>actions, in register machine|)</INDEX>
-    <INDEX>register machine<SUBINDEX>actions|)</SUBINDEX></INDEX>
   </TEXT>
+
+  <INDEX>register machine<SUBINDEX>language for describing<CLOSE/></SUBINDEX></INDEX>
+  <INDEX>actions, in register machine<CLOSE/></INDEX>
+  <INDEX>register machine<SUBINDEX>actions<CLOSE/></SUBINDEX></INDEX>
+  
+  
 </SUBSECTION>

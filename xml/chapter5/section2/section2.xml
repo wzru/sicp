@@ -5,8 +5,9 @@
   <SECTIONCONTENT/>
 
   <LABEL NAME="sec:simulator"/>
-  <INDEX>register machine<SUBINDEX>simulator|(</SUBINDEX></INDEX>
-  <INDEX>register-machine simulator|(</INDEX>
+
+  <INDEX>register machine<SUBINDEX>simulator<OPEN/></SUBINDEX></INDEX>
+  <INDEX>register-machine simulator<OPEN/></INDEX>
 
   <TEXT>
     In order to gain a good understanding of the design of register machines,
@@ -33,60 +34,65 @@
     model:
     <UL>
       <LI>
-	<!--  \indcode{make-machine} -->
 	<SPLITINLINE>
 	  <SCHEME>(make-machine register-names operations controller)</SCHEME>
 	  <JAVASCRIPT>
-	    <JAVASCRIPTINLINE>make_machine(</JAVASCRIPTINLINE>
-            <LATEXINLINE>$\textit{register_names}\texttt{,}$</LATEXINLINE>
-            <LATEXINLINE>$\textit{operations}\texttt{,}$</LATEXINLINE>
-            <LATEXINLINE>$\textit{controller}$</LATEXINLINE>
-	    <JAVASCRIPTINLINE>)</JAVASCRIPTINLINE>
+	    <JAVASCRIPTINLINE>make_machine(</JAVASCRIPTINLINE><!--
+	    --><META>register-names</META><!--
+	    --><JAVASCRIPTINLINE>, </JAVASCRIPTINLINE><!--
+            --><META>operations</META><!--
+	    --><JAVASCRIPTINLINE>, </JAVASCRIPTINLINE><!--
+            --><META>controller</META><!--
+	    --><JAVASCRIPTINLINE>)</JAVASCRIPTINLINE>
 	  </JAVASCRIPT>
 	</SPLITINLINE>
+	<INDEX><USE>make_machine</USE></INDEX> 
 	<BR/>
 	constructs and returns a model of the machine with the given
 	registers, operations, and controller.
       </LI>
       <LI>
-	<!--  \indcode{set-register-contents!} -->
 	<SPLITINLINE>
 	  <SCHEME>(set_register_contents machine-model register-name value)</SCHEME>
 	  <JAVASCRIPT>
-	    <JAVASCRIPTINLINE>set_register_contents(</JAVASCRIPTINLINE>
-            <LATEXINLINE>$\textit{machine_model}\texttt{,}$</LATEXINLINE>
-	    <LATEXINLINE>$\textit{register_name}\texttt{,}$</LATEXINLINE>
-            <LATEXINLINE>$\textit{value}$</LATEXINLINE>
-	    <JAVASCRIPTINLINE>)</JAVASCRIPTINLINE>
+	    <JAVASCRIPTINLINE>set_register_contents(</JAVASCRIPTINLINE><!--
+	    --><META>machine-model</META><!--
+	    --><JAVASCRIPTINLINE>, </JAVASCRIPTINLINE><!--
+	    --><META>register-name</META><!--
+	    --><JAVASCRIPTINLINE>, </JAVASCRIPTINLINE><!--
+            --><META>value</META><!--
+	    --><JAVASCRIPTINLINE>)</JAVASCRIPTINLINE>
 	  </JAVASCRIPT>
 	</SPLITINLINE>
+	<INDEX><USE>set_register_contents</USE></INDEX> 
 	<BR/>
 	stores a value in a simulated register in the given machine.
       </LI>
       <LI>
-	<!--  \indcode{get-register-contents} -->
 	<SPLITINLINE>
 	  <SCHEME>(get-register-contents machine-model, register-name)</SCHEME>
 	  <JAVASCRIPT>
-	    <JAVASCRIPTINLINE>get_register_contents(</JAVASCRIPTINLINE>
-            <LATEXINLINE>$\textit{machine_model}\texttt{,}$</LATEXINLINE>
-            <LATEXINLINE>$\textit{register_name}$</LATEXINLINE>
-	    <JAVASCRIPTINLINE>)</JAVASCRIPTINLINE>
+	    <JAVASCRIPTINLINE>get_register_contents(</JAVASCRIPTINLINE><!--
+	    --><META>machine-model</META><!--
+	    --><JAVASCRIPTINLINE>, </JAVASCRIPTINLINE><!--
+            --><META>register-name</META><!--
+	    --><JAVASCRIPTINLINE>)</JAVASCRIPTINLINE>
 	  </JAVASCRIPT>
 	</SPLITINLINE>
+	<INDEX><USE>get_register_contents</USE></INDEX> 
 	<BR/>
 	returns the contents of a simulated register in the given machine.
       </LI>
       <LI>
-	<!-- \indcodeplus{start}{register machine}-->
 	<SPLITINLINE>
 	  <SCHEME>(start machine-model)</SCHEME>
 	  <JAVASCRIPT>
-	    <JAVASCRIPTINLINE>start(</JAVASCRIPTINLINE>
-	    <LATEXINLINE>$\textit{machine_model}$</LATEXINLINE>
-	    <JAVASCRIPTINLINE>)</JAVASCRIPTINLINE>
+	    <JAVASCRIPTINLINE>start(</JAVASCRIPTINLINE><!--
+	    --><META>machine-model</META><!--
+	    --><JAVASCRIPTINLINE>)</JAVASCRIPTINLINE>
 	  </JAVASCRIPT>
 	</SPLITINLINE>
+	<INDEX><USE>start</USE> register machine</INDEX>
 	<BR/>
 	simulates the execution of the given machine, starting from the
 	beginning of the controller sequence and stopping when it reaches the
@@ -120,8 +126,8 @@ start(gcd_machine);
 get_register_contents(gcd_machine, "a");	  
       </JAVASCRIPT>
     </SNIPPET>
-    <!--  \indcode{gcd}[register machine for] -->
     <SNIPPET>
+      <INDEX><USE>gcd</USE><SUBINDEX>register machine for</SUBINDEX></INDEX>
       <NAME>gcd_machine</NAME>
       <REQUIRES>make_machine</REQUIRES>
       <EXAMPLE>gcd_machine_example</EXAMPLE>
@@ -247,9 +253,7 @@ get_register_contents(gcd_machine, "a");
 2
       </JAVASCRIPT_OUTPUT>
     </SNIPPET>
-  </TEXT>
 
-  <TEXT>
     This computation will run much more slowly than a
     <SCHEMEINLINE>gcd</SCHEMEINLINE>
     <SPLITINLINE>
@@ -272,15 +276,15 @@ get_register_contents(gcd_machine, "a");
   </EXERCISE>
 
   <!-- Subsection 1 : The Machine Model -->
-  &subsection5.2.1;
+  &amp;subsection5.2.1;
 
   <!-- Subsection 2 : The Assembler -->
-  &subsection5.2.2;
+  &amp;subsection5.2.2;
 
   <!-- Subsection 3 : Generating Execution Procedures for Instructions -->
-  &subsection5.2.3;
+  &amp;subsection5.2.3;
 
   <!-- Subsection 4 : Monitoring Machine Performance -->
-  &subsection5.2.4;
+  &amp;subsection5.2.4;
 
 </SECTION>

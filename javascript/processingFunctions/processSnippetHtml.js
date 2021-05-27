@@ -1,16 +1,11 @@
 import { sourceAcademyURL } from "../constants";
 import lzString from "lz-string";
 import {
-  checkLongLineWarning,
   missingRequireWarning,
   missingExampleWarning,
   repeatedNameWarning
 } from "./warnings.js";
-import {
-  chapterIndex,
-  recursiveProcessTextHtml,
-  processTextHtml
-} from "../parseXmlHtml";
+import { chapterIndex } from "../parseXmlHtml";
 import recursiveProcessPureText from "./recursiveProcessPureText";
 
 const snippetStore = {};
@@ -33,11 +28,12 @@ export const setupSnippetsHtml = node => {
       }
       const codeArr = [];
       recursiveProcessPureText(jsRunSnippet.firstChild, codeArr);
-      const codeStr = codeArr.join("").trim();
-
+      const codeStr = codeArr.join("").replace(/###\n/g, "").trim();
       const requirements = snippet.getElementsByTagName("REQUIRES");
       const requireNames = [];
       for (let i = 0; requirements[i]; i++) {
+        //  console.log("in setupSnippetsHtml: name: " + nameStr);
+        //  console.log("in setupSnippetsHtml: " + requirements[i].firstChild.nodeValue);
         requireNames.push(requirements[i].firstChild.nodeValue);
       }
       snippetStore[nameStr] = { codeStr, requireNames };
@@ -64,6 +60,22 @@ export const processSnippetHtml = (node, writeTo, split) => {
     return;
   }
 
+  const jsPromptSnippet = node.getElementsByTagName("JAVASCRIPT_PROMPT")[0];
+
+  if (jsPromptSnippet) {
+    writeTo.push("<pre class='prettyprintoutput'>");
+    writeTo.push(jsPromptSnippet.firstChild.nodeValue.trimRight());
+    writeTo.push("</pre>");
+  }
+
+  const jsLonelySnippet = node.getElementsByTagName("JAVASCRIPT_LONELY")[0];
+
+  if (jsLonelySnippet) {
+    writeTo.push("<pre class='prettyprintoutput'>");
+    writeTo.push(jsLonelySnippet.firstChild.nodeValue.trimRight());
+    writeTo.push("</pre>");
+  }
+
   const jsSnippet = node.getElementsByTagName("JAVASCRIPT")[0];
   const jsOutputSnippet = node.getElementsByTagName("JAVASCRIPT_OUTPUT")[0];
 
@@ -76,7 +88,7 @@ export const processSnippetHtml = (node, writeTo, split) => {
 
     const codeArr = [];
     if (jsSnippet) recursiveProcessPureText(jsSnippet.firstChild, codeArr);
-    const codeStr = codeArr.join("").trim();
+    const codeStr = codeArr.join("").replace(/###\n/g, "").trim();
 
     const codeArr_run = [];
     if (jsRunSnippet)

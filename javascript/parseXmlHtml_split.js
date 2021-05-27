@@ -1,6 +1,4 @@
-import path from "path";
-import { getChildrenByTagName, ancestorHasTag } from "./utilityFunctions";
-import { checkIndexBadEndWarning } from "./processingFunctions/warnings.js";
+import { getChildrenByTagName } from "./utilityFunctions";
 import { allFilepath, tableOfContent } from "./index.js";
 import {
   html_links_part1,
@@ -310,6 +308,7 @@ export const processTextFunctionsHtml = {
         recursiveProcessTextHtml(node.firstChild, writeTo);
       }
       writeTo.push("</kbd>");
+
       return;
     }
     snippet_count += 1;

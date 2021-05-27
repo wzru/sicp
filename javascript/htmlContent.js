@@ -1,7 +1,3 @@
-import { adapters, adapters_with, authors, authors_with } from "constants";
-
-import { write } from "fs-extra";
-
 const shortTitleDefault = `SICP &mdash; JS`;
 const longTitleDefault = `Structure and Interpretation of Computer Programs &mdash; JavaScript Adaptation`;
 let shortTitle = shortTitleDefault;
@@ -14,13 +10,6 @@ let legend = `
 <div class="title-text-ALSO">
   <span class="title-text-ALSO">also available</span><BR/>
 </div>
-<div class="title-text-OTHEREDITIONS">
-  <span class="title-text-OTHEREDITIONS">
-<a href="sicpjs.pdf">PDF edition</a></span>
-</div>
-<div class="title-text-OTHEREDITIONS">
-  <span class="title-text-OTHEREDITIONS">
-<a href="sicpjs.epub">E-book edition</a></span>
 <div class="title-text-OTHEREDITIONS">
   <span class="title-text-OTHEREDITIONS">
 <a href="split">Comparison edition</a></span>
@@ -37,14 +26,6 @@ export const switchTitle = version => {
     legend = `
     <div class="title-text-ALSO">
       <span class="title-text-ALSO">also available</span><BR/>
-    </div>
-    <div class="title-text-OTHEREDITIONS">
-      <span class="title-text-OTHEREDITIONS">
-    <a href="sicpjs.pdf">PDF edition</a></span>
-    </div>
-    <div class="title-text-OTHEREDITIONS">
-      <span class="title-text-OTHEREDITIONS">
-    <a href="sicpjs.epub">E-book edition</a></span>
     </div>
     <div class="title-text-OTHEREDITIONS">
       <span class="title-text-OTHEREDITIONS">
